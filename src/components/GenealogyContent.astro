@@ -1,0 +1,18 @@
+---
+import Default from '@astrojs/starlight/components/TwoColumnContent.astro';
+import PersonTimeline from './PersonTimeline.astro';
+import PersonPlacesMap from './PersonPlacesMap.astro';
+
+const route = Astro.locals.starlightRoute;
+const isPerson = route.entry.data.entity === 'person' && route.id.startsWith('people/');
+const personRef = isPerson
+  ? `${route.id.replace(/^people\//, '').replace(/\/$/, '')}.md`
+  : null;
+---
+
+<Default>
+  <slot />
+  {personRef && <PersonTimeline personRef={personRef} />}
+  {personRef && <PersonPlacesMap personRef={personRef} />}
+  <slot name="right-sidebar" slot="right-sidebar" />
+</Default>
