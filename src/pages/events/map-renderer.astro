@@ -42,78 +42,57 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     <script>
       import maplibregl from 'maplibre-gl';
 
-      type MapTheme = 'dark' | 'light';
-      type EventProperties = {
-        eventRef: string;
-        eventUrl: string;
-        eventTitle: string;
-        date?: unknown;
-        endDate?: unknown;
-        startYear?: number | null;
-        endYear?: number | null;
-        placeRef: string;
-        placeLabel: string;
-      };
-      type EventFeature = {
-        type: 'Feature';
-        geometry: { type: 'Point'; coordinates: [number, number] };
-        properties: EventProperties;
-      };
-      type EventCollection = { type: 'FeatureCollection'; features: EventFeature[] };
-      type PlaceGroup = {
-        ref: string;
-        label: string;
-        coordinates: [number, number];
-        events: EventFeature[];
-      };
+      const root = document.querySelector('[data-map-shell]');
+      const canvas = document.querySelector('[data-map-canvas]');
+      const rangeControl = document.querySelector('[data-range-control]');
+      const rangeTrack = document.querySelector('[data-range-track]');
+      const rangeFrom = document.querySelector('[data-range-from]');
+      const rangeTo = document.querySelector('[data-range-to]');
+      const rangeLabel = document.querySelector('[data-range-label]');
+      const status = document.querySelector('[data-map-status]');
 
-      const root = document.querySelector<HTMLElement>('[data-map-shell]');
-      const canvas = document.querySelector<HTMLElement>('[data-map-canvas]');
-      const rangeControl = document.querySelector<HTMLElement>('[data-range-control]');
-      const rangeTrack = document.querySelector<HTMLElement>('[data-range-track]');
-      const rangeFrom = document.querySelector<HTMLInputElement>('[data-range-from]');
-      const rangeTo = document.querySelector<HTMLInputElement>('[data-range-to]');
-      const rangeLabel = document.querySelector<HTMLOutputElement>('[data-range-label]');
-      const status = document.querySelector<HTMLElement>('[data-map-status]');
-
-      if (!root || !canvas || !rangeControl || !rangeTrack || !rangeFrom || !rangeTo || !rangeLabel || !status) {
+      if (!(root instanceof HTMLElement)
+        || !(canvas instanceof HTMLElement)
+        || !(rangeControl instanceof HTMLElement)
+        || !(rangeTrack instanceof HTMLElement)
+        || !(rangeFrom instanceof HTMLInputElement)
+        || !(rangeTo instanceof HTMLInputElement)
+        || !(rangeLabel instanceof HTMLOutputElement)
+        || !(status instanceof HTMLElement)) {
         throw new Error('Event map renderer is missing required DOM nodes.');
       }
 
-      const mapStyleUrls: Record<MapTheme, string> = {
+      const mapStyleUrls = {
         dark: 'https://tiles.openfreemap.org/styles/fiord',
         light: 'https://tiles.openfreemap.org/styles/bright',
       };
 
-      function currentTheme(): MapTheme {
-        const value = document.documentElement.dataset.theme;
-        return value === 'light' ? 'light' : 'dark';
+      function currentTheme() {
+        return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
       }
 
-      function formatDateValue(value: unknown): string {
+      function formatDateValue(value) {
         if (typeof value === 'number') return String(value);
         if (typeof value === 'string') return value;
         if (!value || typeof value !== 'object') return '';
-        const date = value as { year?: number; month?: number; day?: number; text?: string };
-        if (date.text) return date.text;
-        if (!date.year) return '';
-        return [date.day, date.month, date.year].filter(Boolean).join('.');
+        if (value.text) return value.text;
+        if (!value.year) return '';
+        return [value.day, value.month, value.year].filter(Boolean).join('.');
       }
 
-      function eventDateLabel(feature: EventFeature): string {
+      function eventDateLabel(feature) {
         const start = formatDateValue(feature.properties.date);
         const end = formatDateValue(feature.properties.endDate);
         return end && end !== start ? `${start || '…'}–${end}` : start;
       }
 
-      function overlaps(feature: EventFeature, from: number, to: number): boolean {
+      function overlaps(feature, from, to) {
         const start = feature.properties.startYear;
         const end = feature.properties.endYear ?? start;
-        if (!Number.isFinite(start) || !Number.isFinite(end)) return false;
-        return Number(start) <= to && Number(end) >= from;
+        return Number.isFinite(start) && Number.isFinite(end) && Number(start) <= to && Number(end) >= from;
       }
 
-      function overviewIcon(): SVGSVGElement {
+      function overviewIcon() {
         const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
         svg.setAttribute('viewBox', '0 0 24 24');
         svg.setAttribute('aria-hidden', 'true');
@@ -129,17 +108,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       }
 
       class HomeControl {
-        private map?: maplibregl.Map;
-        private container?: HTMLDivElement;
-        private button?: HTMLButtonElement;
-        private readonly onOverview: () => void;
-
-        constructor(onOverview: () => void) {
+        constructor(onOverview) {
           this.onOverview = onOverview;
         }
-
-        onAdd(controlMap: maplibregl.Map) {
-          this.map = controlMap;
+        onAdd() {
           this.container = document.createElement('div');
           this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
           this.button = document.createElement('button');
@@ -152,11 +124,9 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           this.container.append(this.button);
           return this.container;
         }
-
         onRemove() {
           this.button?.removeEventListener('click', this.onOverview);
           this.container?.remove();
-          this.map = undefined;
         }
       }
 
@@ -177,8 +147,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         throw new Error(`Failed to load event map data: ${response.status}`);
       }
 
-      const dataset = await response.json() as EventCollection;
-      const datedFeatures = (dataset.features ?? []).filter((feature) => Number.isFinite(feature.properties.startYear));
+      const dataset = await response.json();
+      const datedFeatures = (dataset.features ?? []).filter((feature) => Number.isFinite(feature.properties?.startYear));
       const years = datedFeatures.flatMap((feature) => [
         Number(feature.properties.startYear),
         Number(feature.properties.endYear ?? feature.properties.startYear),
@@ -195,7 +165,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       let selectedFrom = datasetMin;
       let selectedTo = datasetMax;
       let theme = currentTheme();
-      const markers: maplibregl.Marker[] = [];
+      const markers = [];
 
       for (const input of [rangeFrom, rangeTo]) {
         input.min = String(datasetMin);
@@ -219,23 +189,24 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         return datedFeatures.filter((feature) => overlaps(feature, selectedFrom, selectedTo));
       }
 
-      function placeGroups(): PlaceGroup[] {
-        const groups = new Map<string, PlaceGroup>();
+      function placeGroups() {
+        const groups = new Map();
         for (const feature of filteredFeatures()) {
           const ref = feature.properties.placeRef;
-          const existing = groups.get(ref) ?? {
-            ref,
-            label: feature.properties.placeLabel,
-            coordinates: feature.geometry.coordinates,
-            events: [],
-          };
-          existing.events.push(feature);
-          groups.set(ref, existing);
+          if (!groups.has(ref)) {
+            groups.set(ref, {
+              ref,
+              label: feature.properties.placeLabel,
+              coordinates: feature.geometry.coordinates,
+              events: [],
+            });
+          }
+          groups.get(ref).events.push(feature);
         }
         return [...groups.values()].sort((a, b) => a.label.localeCompare(b.label, 'ru'));
       }
 
-      function popupFor(group: PlaceGroup) {
+      function popupFor(group) {
         const wrapper = document.createElement('div');
         wrapper.className = 'rslive-map-popup';
 
@@ -275,11 +246,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       function renderMarkers() {
         clearMarkers();
         for (const group of placeGroups()) {
-          const marker = new maplibregl.Marker()
-            .setLngLat(group.coordinates)
-            .setPopup(new maplibregl.Popup({ maxWidth: 'min(22rem, 80vw)', offset: 24 }).setDOMContent(popupFor(group)))
-            .addTo(map);
-          markers.push(marker);
+          markers.push(
+            new maplibregl.Marker()
+              .setLngLat(group.coordinates)
+              .setPopup(new maplibregl.Popup({ maxWidth: 'min(22rem, 80vw)', offset: 24 }).setDOMContent(popupFor(group)))
+              .addTo(map),
+          );
         }
       }
 
@@ -338,16 +310,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       });
       map.once('idle', collapseAttribution);
 
-      const parentDocument = (() => {
-        try {
-          return window.parent && window.parent !== window ? window.parent.document : null;
-        } catch {
-          return null;
-        }
-      })();
+      let parentDocument = null;
+      try {
+        if (window.parent && window.parent !== window) parentDocument = window.parent.document;
+      } catch {}
 
       const syncTheme = () => {
-        let next: MapTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        let next = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
         const parentValue = parentDocument?.documentElement.dataset.theme;
         if (parentValue === 'light' || parentValue === 'dark') next = parentValue;
         if (next === theme) return;
@@ -357,8 +326,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         map.once('style.load', collapseAttribution);
       };
 
-      const parentObserver = parentDocument ? new MutationObserver(syncTheme) : null;
-      parentObserver?.observe(parentDocument.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      if (parentDocument) {
+        const parentObserver = new MutationObserver(syncTheme);
+        parentObserver.observe(parentDocument.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+      }
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', syncTheme);
     </script>
   </body>
@@ -382,7 +353,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color-scheme: light;
   }
-
   html[data-theme='dark'] {
     --map-popup-bg: #1f2937;
     --map-popup-fg: #e5e7eb;
@@ -401,10 +371,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }
 
   * { box-sizing: border-box; }
-  html, body, .map-shell, .map-canvas { width: 100%; height: 100%; min-height: 100%; margin: 0; }
+  html, body, .map-shell, .map-canvas { width: 100%; height: 100%; margin: 0; }
   html, body { min-height: 100vh; }
   body { overflow: hidden; }
-  .map-shell { position: relative; overflow: hidden; background: #f5f2ea; }
+  .map-shell { position: relative; min-height: 100vh; overflow: hidden; background: #f5f2ea; }
   html[data-theme='dark'] .map-shell { background: #172129; }
   .map-canvas { position: absolute; inset: 0; }
 
@@ -424,20 +394,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     backdrop-filter: blur(8px);
   }
   .event-range[hidden] { display: none; }
-  .event-range output {
-    display: block;
-    margin-bottom: 0.3rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    font-variant-numeric: tabular-nums;
-    line-height: 1.2;
-  }
-  .event-range__track {
-    --range-from: 0%;
-    --range-to: 100%;
-    position: relative;
-    height: 1.25rem;
-  }
+  .event-range output { display: block; margin-bottom: 0.3rem; font-size: 0.8rem; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1.2; }
+  .event-range__track { --range-from: 0%; --range-to: 100%; position: relative; height: 1.25rem; }
   .event-range__track::before {
     content: '';
     position: absolute;
