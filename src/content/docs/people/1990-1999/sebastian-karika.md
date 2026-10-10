@@ -9,10 +9,14 @@ name:
   display: "Sebastian Karika"
   birth_last: "Karika"
   aliases: []
-family:
-  key: "karika"
-  label: "Karika"
-  locale: und-Latn
+families:
+  - key: "karika"
+    label: "Karika"
+    locale: und-Latn
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

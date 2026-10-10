@@ -8,6 +8,13 @@ name:
   full: "Захар"
   display: "Захар"
   aliases: []
+families:
+  - key: "zakhar"
+    label: "Захары"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

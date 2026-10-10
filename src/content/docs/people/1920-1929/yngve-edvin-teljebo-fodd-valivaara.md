@@ -9,10 +9,14 @@ name:
   display: "Yngve Edvin Teljebo (född Välivaara)"
   birth_last: "Teljebo (född Välivaara)"
   aliases: []
-family:
-  key: "teljebo"
-  label: "Teljebo"
-  locale: und-Latn
+families:
+  - key: "teljebo"
+    label: "Teljebo"
+    locale: und-Latn
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

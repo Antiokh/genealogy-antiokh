@@ -8,6 +8,13 @@ name:
   full: "Екатерина"
   display: "Екатерина"
   aliases: []
+families:
+  - key: "ekaterin"
+    label: "Екатерины"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: "unknown/tatyana-vinokurov.md"

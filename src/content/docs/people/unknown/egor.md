@@ -8,6 +8,13 @@ name:
   full: "Егор"
   display: "Егор"
   aliases: []
+families:
+  - key: "egor"
+    label: "Егоры"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

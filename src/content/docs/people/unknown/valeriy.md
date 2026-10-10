@@ -8,6 +8,13 @@ name:
   full: "Валерий"
   display: "Валерий"
   aliases: []
+families:
+  - key: "valeriy"
+    label: "Валерие"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThlNzI0MmMyYmRhYWUzNDljMDc0MzUxMjkwYzllMjhhNTk1NmEwNGVmZmQxNGE1ZWMwZWE5NmMzN2RlOGRjZDEmZT0xNzg5Njc1MjAw/129/852/4292/500106_649946txqz24466a1300c7_A.jpg"
 father: null

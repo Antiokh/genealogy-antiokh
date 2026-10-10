@@ -8,6 +8,13 @@ name:
   full: "Дарья"
   display: "Дарья"
   aliases: []
+families:
+  - key: "darya"
+    label: "Дарья"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/egor.md"
 mother: null

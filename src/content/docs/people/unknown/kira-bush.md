@@ -9,12 +9,16 @@ name:
   display: "Кира Буш"
   birth_last: "Буш"
   aliases: []
-family:
-  key: "bush"
-  label: "Буши"
-  locale: ru
-  localized:
-    "und-Latn": "Bush"
+families:
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
 sex: F
 father: null
 mother: "1880-1889/mariya-bush.md"

@@ -8,6 +8,13 @@ name:
   full: "Вячеслав"
   display: "Вячеслав"
   aliases: []
+families:
+  - key: "vyacheslav"
+    label: "Вячеславы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: "1920-1929/anna-nazarova.md"

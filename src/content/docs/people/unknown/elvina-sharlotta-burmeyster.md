@@ -10,10 +10,22 @@ name:
   birth_last: "Бартмер"
   married_last: "Бурмейстер"
   aliases: []
-family:
-  key: "burmeyster"
-  label: "Бурмейстеры"
-  locale: ru
+families:
+  - key: "bartmer"
+    label: "Бартмеры"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Bartmer"
+  - key: "burmeyster"
+    label: "Бурмейстеры"
+    locale: ru
+    roles:
+      - current
+      - marriage
+    inferred: true
 sex: F
 father: "1810-1819/aleksandr-eduard-bartmer.md"
 mother: "1820-1829/yoganna-zhozefina-bartmer.md"

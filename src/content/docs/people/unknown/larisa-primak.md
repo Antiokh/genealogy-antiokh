@@ -10,10 +10,22 @@ name:
   birth_last: "Курочкина"
   married_last: "Примак"
   aliases: []
-family:
-  key: "primak"
-  label: "Примаки"
-  locale: ru
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "primak"
+    label: "Примаки"
+    locale: ru
+    roles:
+      - current
+      - marriage
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTk5ZTkyYWMxMWNlZWM0OTlhNTAyZDgyNGEzNDZmNTAwNmY5OTAwZjQ1OGQ1N2ViNTQxMWYyYjViZGJlZWYyNDAmZT0xNzg5Njc1MjAw/129/852/4292/500154_3280261e2m1785c06au6ej_A.jpg"
 father: "1900-1909/nikolay-kurochkin.md"

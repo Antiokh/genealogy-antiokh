@@ -9,10 +9,14 @@ name:
   display: "Андрей Антонченко"
   birth_last: "Антонченко"
   aliases: []
-family:
-  key: "antonchenko"
-  label: "Антонченко"
-  locale: ru
+families:
+  - key: "antonchenko"
+    label: "Антонченко"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

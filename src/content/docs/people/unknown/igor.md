@@ -8,6 +8,13 @@ name:
   full: "Игорь"
   display: "Игорь"
   aliases: []
+families:
+  - key: "igor"
+    label: "Игорьы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "unknown/vadim-vinokurov.md"
 mother: "unknown/lyubov.md"

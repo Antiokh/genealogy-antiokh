@@ -10,10 +10,21 @@ name:
   birth_last: "Спиридонова"
   married_last: "Литошко"
   aliases: []
-family:
-  key: "litoshko"
-  label: "Литошко"
-  locale: ru
+families:
+  - key: "litoshko"
+    label: "Литошко"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+  - key: "spiridonov"
+    label: "Спиридоновы"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWYwNTU3N2E3OTcxMDJiOTAwZWQ1NTJjZTFhYjZkNGJkNzYzMTFiOTRiMjk4MTc3OTU0MjJkNDJmZjNiMmU0ZGQmZT0xNzg5Njc1MjAw/129/852/4292/500135_7272186bp1b6254l07fb51_A.jpg"
 father: "1880-1889/mikhail-spiridonov.md"

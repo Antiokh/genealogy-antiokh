@@ -9,10 +9,14 @@ name:
   display: "Александр Резяпкин"
   birth_last: "Резяпкин"
   aliases: []
-family:
-  key: "rezyapkin"
-  label: "Резяпкины"
-  locale: ru
+families:
+  - key: "rezyapkin"
+    label: "Резяпкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

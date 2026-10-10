@@ -8,6 +8,13 @@ name:
   full: "Елена"
   display: "Елена"
   aliases: []
+families:
+  - key: "elena"
+    label: "Еленаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/vadim-vinokurov.md"
 mother: "unknown/irina.md"

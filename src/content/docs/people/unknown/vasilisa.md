@@ -8,6 +8,13 @@ name:
   full: "Василиса"
   display: "Василиса"
   aliases: []
+families:
+  - key: "vasilisa"
+    label: "Василисаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/grigoriy.md"
 mother: null

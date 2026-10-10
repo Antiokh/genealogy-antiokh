@@ -9,12 +9,16 @@ name:
   display: "Georg Gottfried Erasmus Büsch"
   birth_last: "Büsch"
   aliases: []
-family:
-  key: "busch"
-  label: "Busch"
-  locale: und-Latn
-  localized:
-    "und-Latn": "Büsch"
+families:
+  - key: "busch"
+    label: "Busch"
+    locale: und-Latn
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Büsch"
 sex: M
 father: null
 mother: "1810-1819/louise-charlotte-gerdau.md"

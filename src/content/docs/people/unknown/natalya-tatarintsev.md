@@ -9,12 +9,17 @@ name:
   display: "Наталья Tatarintsev"
   married_last: "Tatarintsev"
   aliases: []
-family:
-  key: "tatarintsev"
-  label: "Татаринцевы"
-  locale: ru
-  localized:
-    "und-Latn": "Tatarintsev"
+families:
+  - key: "tatarintsev"
+    label: "Татаринцевы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Tatarintsev"
 sex: F
 father: null
 mother: null

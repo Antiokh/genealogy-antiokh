@@ -12,10 +12,14 @@ name:
   first: Михаил
   middle: Николаевич
   last: Римский-Корсаков
-family:
-  key: "rimskiy-korsakov"
-  label: "Римские-Корсаковы"
-  locale: ru
+families:
+  - key: "rimskiy-korsakov"
+    label: "Римские-Корсаковы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 photo: https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNkMDQwNmQxMWI4NjBmYjc3MGQ5NmY0N2Y3NGU2YzRlMzEwZDhhMmU2NWQyMGNiNWEyNTZkZTIyYTI0YjBjOWYmZT0xNzg5Njc1MjAw/129/852/4292/500280_548654w7r4663e152t2bg4_A.jpg
 father: null

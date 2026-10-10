@@ -8,6 +8,13 @@ name:
   full: "Юлия"
   display: "Юлия"
   aliases: []
+families:
+  - key: "yuliya"
+    label: "Юлия"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFmOGYzMDlhZTE4NjlhZjU1N2NlNGYwODY4Y2U4MjFjM2RkMDg3MGI5ZDkwMTc1ZjYxZTYyZDk1ZTFiOTUzMDImZT0xNzg5Njc1MjAw/129/852/4292/500160_50060965be8k4u20m22a61_A.jpg"
 father: "unknown/vladimir.md"

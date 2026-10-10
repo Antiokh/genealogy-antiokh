@@ -9,12 +9,16 @@ name:
   display: "Anton Nazarov"
   birth_last: "Nazarov"
   aliases: []
-family:
-  key: "nazarov"
-  label: "Назаровы"
-  locale: ru
-  localized:
-    "und-Latn": "Nazarov"
+families:
+  - key: "nazarov"
+    label: "Назаровы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Nazarov"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY0NjJmZTY3YjBkODEwYzhjOWU3OWUyMmNmYTAyNjI1M2RlMjZiODgzN2M0ODZiOGIxMTViNzZiMDQwYWJhNTImZT0xNzg5Njc1MjAw/129/852/4292/500214_453825id5197e67ocf193j_A.jpg"
 father: "1960-1969/vladislav-nazarov.md"

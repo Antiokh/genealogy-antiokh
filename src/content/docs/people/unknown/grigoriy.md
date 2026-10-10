@@ -8,6 +8,13 @@ name:
   full: "Григорий"
   display: "Григорий"
   aliases: []
+families:
+  - key: "grigoriy"
+    label: "Григорие"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

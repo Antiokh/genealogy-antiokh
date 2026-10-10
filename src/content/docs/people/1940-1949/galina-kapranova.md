@@ -10,10 +10,28 @@ name:
   birth_last: "Курочкина"
   married_last: "Капранова"
   aliases: []
-family:
-  key: "kapranov"
-  label: "Капрановы"
-  locale: ru
+families:
+  - key: "gennadiy"
+    label: "Геннадие"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "kapranov"
+    label: "Капрановы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+    inferred: true
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWU2MzBhMThhZGY4NDM4ZTUyMDk3MjY5ZmIzYTliMmFlNGM5YzQ2Y2QyODU2MGU0ZjQyNjBhNTRkMzFlN2NlMGQmZT0xNzg5Njc1MjAw/129/852/4292/500102_63929196281132sb067j46_A.jpg"
 father: "1900-1909/nikolay-kurochkin.md"

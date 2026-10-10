@@ -9,10 +9,14 @@ name:
   display: "Василий Лавриненко"
   birth_last: "Лавриненко"
   aliases: []
-family:
-  key: "lavrinenko"
-  label: "Лавриненко"
-  locale: ru
+families:
+  - key: "lavrinenko"
+    label: "Лавриненко"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

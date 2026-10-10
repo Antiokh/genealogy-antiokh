@@ -8,6 +8,21 @@ name:
   full: "Зоя"
   display: "Зоя"
   aliases: []
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "zoya"
+    label: "Зоя"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

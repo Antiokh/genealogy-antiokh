@@ -10,10 +10,29 @@ name:
   birth_last: "Буш"
   married_last: "Ботикова"
   aliases: []
-family:
-  key: "botikov"
-  label: "Ботиковы"
-  locale: ru
+families:
+  - key: "botikov"
+    label: "Ботиковы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
+  - key: "shestrem"
+    label: "Шестремы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTVjZWQ2NmFhMTUyZTEwODkyOWRkZDJmOWIzNTgxMjBhODUzMjdhMjUyMGVjOGQ0ZTBlNDJjYzMyYjJhZjczNmYmZT0xNzg5Njc1MjAw/129/852/4292/500037_8981891fw21xcf25cy06d6_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

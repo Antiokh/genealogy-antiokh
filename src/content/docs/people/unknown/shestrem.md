@@ -9,10 +9,14 @@ name:
   display: "Шестрем"
   birth_last: "Шестрем"
   aliases: []
-family:
-  key: "shestrem"
-  label: "Шестремы"
-  locale: ru
+families:
+  - key: "shestrem"
+    label: "Шестремы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

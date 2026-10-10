@@ -9,10 +9,14 @@ name:
   display: "Пётр Безкоровайный"
   birth_last: "Безкоровайный"
   aliases: []
-family:
-  key: "bezkorovaynyy"
-  label: "Безкоровайные"
-  locale: ru
+families:
+  - key: "bezkorovaynyy"
+    label: "Безкоровайные"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "unknown/trofim-bezkorovaynyy.md"
 mother: null

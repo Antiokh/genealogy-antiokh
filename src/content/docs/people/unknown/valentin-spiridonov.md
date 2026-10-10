@@ -9,10 +9,14 @@ name:
   display: "Валентин Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
-family:
-  key: "spiridonov"
-  label: "Спиридоновы"
-  locale: ru
+families:
+  - key: "spiridonov"
+    label: "Спиридоновы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1910-1919/mikhail-spiridonov.md"
 mother: null

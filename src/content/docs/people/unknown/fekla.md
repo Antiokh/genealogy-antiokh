@@ -8,6 +8,13 @@ name:
   full: "Фёкла"
   display: "Фёкла"
   aliases: []
+families:
+  - key: "fekla"
+    label: "Фёклаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/grigoriy.md"
 mother: null

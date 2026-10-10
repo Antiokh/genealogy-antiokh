@@ -9,12 +9,16 @@ name:
   display: "Николай Курочкин"
   birth_last: "Курочкин"
   aliases: []
-family:
-  key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
-  localized:
-    "und-Latn": "Kurochkin"
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc4MWUzM2M4MTEwNjc3OGFhZGY5N2Q5YTk3NmFjZTM4ZTE3NWJkNmViYjVlYjgwMDQ3YjNhYTYxNTQ3ZjcxMWEmZT0xNzg5Njc1MjAw/129/852/4292/500073_7309021y2dw1uf5631f0je_A.jpg"
 father: "1870-1879/petr-mikhaylovich-kurochkin.md"

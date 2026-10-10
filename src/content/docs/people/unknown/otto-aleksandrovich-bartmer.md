@@ -12,12 +12,16 @@ name:
   first: Отто
   middle: Александрович
   last: Бартмер
-family:
-  key: "bartmer"
-  label: "Бартмеры"
-  locale: ru
-  localized:
-    "und-Latn": "Bartmer"
+families:
+  - key: "bartmer"
+    label: "Бартмеры"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bartmer"
 sex: M
 father: 1810-1819/aleksandr-eduard-bartmer.md
 mother: 1820-1829/yoganna-zhozefina-bartmer.md

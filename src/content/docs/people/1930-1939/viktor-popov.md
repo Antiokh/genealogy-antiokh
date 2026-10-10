@@ -9,10 +9,14 @@ name:
   display: "Виктор Попов"
   birth_last: "Попов"
   aliases: []
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"

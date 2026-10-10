@@ -9,10 +9,14 @@ name:
   display: "Борис Винокуров"
   birth_last: "Винокуров"
   aliases: []
-family:
-  key: "vinokurov"
-  label: "Винокуровы"
-  locale: ru
+families:
+  - key: "vinokurov"
+    label: "Винокуровы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTI2YjEzYzQ3ODZlNTI3ZTA3MTMyODlkYTFmM2I0YmM2MTE2YzI4NWU4NDhlMTk3M2ZmNTUxNmNhZjI5MGVlZDcmZT0xNzg5Njc1MjAw/129/852/4292/500043_309325x71f21w2d3ug6c43_A.jpg"
 father: null

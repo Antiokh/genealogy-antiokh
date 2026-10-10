@@ -8,6 +8,13 @@ name:
   full: "Михаил"
   display: "Михаил"
   aliases: []
+families:
+  - key: "mikhail"
+    label: "Михаилы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

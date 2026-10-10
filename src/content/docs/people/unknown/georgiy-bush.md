@@ -9,12 +9,16 @@ name:
   display: "Георгий Буш"
   birth_last: "Буш"
   aliases: []
-family:
-  key: "bush"
-  label: "Буши"
-  locale: ru
-  localized:
-    "und-Latn": "Bush"
+families:
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0OWM2NTg5OGVkMjU5Y2U0YTIwOGI4YjFkNGFkMTMzN2I5MjEwMGI2MGE5NjRkZjMwZmRjM2ZlMGU5MmU3YjQmZT0xNzg5Njc1MjAw/129/852/4292/500039_88101516f642075am85c1c_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

@@ -9,12 +9,16 @@ name:
   display: "Юрий Курочкин"
   birth_last: "Курочкин"
   aliases: []
-family:
-  key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
-  localized:
-    "und-Latn": "Kurochkin"
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: M
 father: "unknown/vasiliy-kurochkin-i500145.md"
 mother: "unknown/zoya-i500146.md"

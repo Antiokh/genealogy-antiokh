@@ -8,6 +8,21 @@ name:
   full: "Наталья"
   display: "Наталья"
   aliases: []
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "natalya"
+    label: "Наталья"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTAwZmMzYTY4MjU2MTA5NmNjZTk1Y2I2NWY4NTBjMGYyYzU3YjM5N2QwMjkyMGJiZmNhNTllZTljMjQzYzVjYzYmZT0xNzg5Njc1MjAw/129/852/4292/500126_95990638066867h21ybsbb_A.jpg"
 father: null

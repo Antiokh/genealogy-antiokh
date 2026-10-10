@@ -12,10 +12,14 @@ name:
   first: Игорь
   middle: Михайлович
   last: Римский-Корсаков
-family:
-  key: "rimskiy-korsakov"
-  label: "Римские-Корсаковы"
-  locale: ru
+families:
+  - key: "rimskiy-korsakov"
+    label: "Римские-Корсаковы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
 mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md

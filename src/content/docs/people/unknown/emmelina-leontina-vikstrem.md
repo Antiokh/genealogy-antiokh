@@ -10,10 +10,22 @@ name:
   birth_last: "Бартмер"
   married_last: "Викстрём"
   aliases: []
-family:
-  key: "vikstrem"
-  label: "Викстрёмы"
-  locale: ru
+families:
+  - key: "bartmer"
+    label: "Бартмеры"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Bartmer"
+  - key: "vikstrem"
+    label: "Викстрёмы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+    inferred: true
 sex: F
 father: "1810-1819/aleksandr-eduard-bartmer.md"
 mother: "1820-1829/yoganna-zhozefina-bartmer.md"

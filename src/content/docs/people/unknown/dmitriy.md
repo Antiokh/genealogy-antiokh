@@ -8,6 +8,13 @@ name:
   full: "Дмитрий"
   display: "Дмитрий"
   aliases: []
+families:
+  - key: "dmitriy"
+    label: "Дмитрие"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

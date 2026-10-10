@@ -9,10 +9,14 @@ name:
   display: "Василий Капранов"
   birth_last: "Капранов"
   aliases: []
-family:
-  key: "kapranov"
-  label: "Капрановы"
-  locale: ru
+families:
+  - key: "kapranov"
+    label: "Капрановы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

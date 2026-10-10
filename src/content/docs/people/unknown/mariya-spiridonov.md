@@ -9,10 +9,14 @@ name:
   display: "Мария Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
-family:
-  key: "spiridonov"
-  label: "Спиридоновы"
-  locale: ru
+families:
+  - key: "spiridonov"
+    label: "Спиридоновы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: "unknown/ivan-spiridonov.md"
 mother: null

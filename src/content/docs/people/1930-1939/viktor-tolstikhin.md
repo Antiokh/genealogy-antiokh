@@ -9,10 +9,14 @@ name:
   display: "Виктор Толстихин"
   birth_last: "Толстихин"
   aliases: []
-family:
-  key: "tolstikhin"
-  label: "Толстихины"
-  locale: ru
+families:
+  - key: "tolstikhin"
+    label: "Толстихины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1880-1889/aleksey-tolstikhin.md"
 mother: "1890-1899/klavdiya-tolstikhina.md"

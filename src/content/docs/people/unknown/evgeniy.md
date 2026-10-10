@@ -8,6 +8,13 @@ name:
   full: "Евгений"
   display: "Евгений"
   aliases: []
+families:
+  - key: "evgeniy"
+    label: "Евгение"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWM1YmUxZmUyMjhkYzhmZDQ0ZTY5YTkzYjYzNDQ4ODc3NzE3YzE4NTk3NzZkOTZmZWYxYjJlZjkwMzY0NDUyM2YmZT0xNzg5Njc1MjAw/129/852/4292/500107_091020ht5w0b665635d921_A.jpg"
 father: "unknown/valeriy.md"

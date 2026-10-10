@@ -9,12 +9,16 @@ name:
   display: "Александр-Эдуард Бартмер"
   birth_last: "Бартмер"
   aliases: []
-family:
-  key: "bartmer"
-  label: "Бартмеры"
-  locale: ru
-  localized:
-    "und-Latn": "Bartmer"
+families:
+  - key: "bartmer"
+    label: "Бартмеры"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bartmer"
 sex: M
 father: null
 mother: null

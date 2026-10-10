@@ -10,10 +10,23 @@ name:
   birth_last: "Tatarintseva"
   married_last: "Зорина"
   aliases: []
-family:
-  key: "zorin"
-  label: "Зорины"
-  locale: ru
+families:
+  - key: "tatarintsev"
+    label: "Татаринцевы"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+    localized:
+      "und-Latn": "Tatarintsev"
+  - key: "zorin"
+    label: "Зорины"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTZlMTkwZGZmNmE1MTg4MTc2OTBlYzkzZGJjMDljMDY1Mjg4MTlkY2FiMzA1Mzk2MDcxYTc4ZGQ5YjA1MDM5ODUmZT0xNzg5Njc1MjAw/129/852/4292/500228_28936851dy5pra30436yra_A.jpg"
 father: "1960-1969/sergey-tatarintsev.md"

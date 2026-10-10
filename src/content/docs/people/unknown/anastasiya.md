@@ -8,6 +8,21 @@ name:
   full: "Анастасия"
   display: "Анастасия"
   aliases: []
+families:
+  - key: "anastasiya"
+    label: "Анастасия"
+    locale: ru
+    roles:
+      - current
+    inferred: true
+  - key: "nazarov"
+    label: "Назаровы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Nazarov"
 sex: F
 father: "unknown/egor.md"
 mother: null

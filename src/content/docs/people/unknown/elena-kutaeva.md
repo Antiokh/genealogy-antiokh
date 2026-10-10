@@ -9,10 +9,22 @@ name:
   display: "Елена Кутаева"
   birth_last: "Кутаева"
   aliases: []
-family:
-  key: "kutaev"
-  label: "Кутаевы"
-  locale: ru
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "kutaev"
+    label: "Кутаевы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

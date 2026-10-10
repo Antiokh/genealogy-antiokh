@@ -10,10 +10,21 @@ name:
   birth_last: "Teljebo"
   married_last: "Karika"
   aliases: []
-family:
-  key: "karika"
-  label: "Karika"
-  locale: und-Latn
+families:
+  - key: "karika"
+    label: "Karika"
+    locale: und-Latn
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+  - key: "teljebo"
+    label: "Teljebo"
+    locale: und-Latn
+    roles:
+      - birth
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhMzI5NmU1OTdhY2E5YTQwNDU5ODlkZGViNDkyODAxODc1ZjhhZDI3YmU4OGQxNDhkZWEzMzEyZGUzMDgwMTgmZT0xNzg5Njc1MjAw/129/852/4292/500194_471378j0816ra9ic1bt5f5_A.jpg"
 father: "1950-1959/gosta-ingvar-teljebo.md"

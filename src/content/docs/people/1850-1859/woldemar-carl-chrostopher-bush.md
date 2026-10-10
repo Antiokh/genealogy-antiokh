@@ -9,12 +9,16 @@ name:
   display: "Woldemar Carl Chrostopher Bush"
   birth_last: "Bush"
   aliases: []
-family:
-  key: "bush"
-  label: "Буши"
-  locale: ru
-  localized:
-    "und-Latn": "Bush"
+families:
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwNzJiOTAxNjIzNDA2YjBkZjY0NzYxYzA1ZGE2YjE4MGUwMDdhMTU1ZDFhNGUyM2RjZTFkYzFkMzA2Yjc0ZDAmZT0xNzg5Njc1MjAw/129/852/4292/500033_696713cw26lpfd16x21a2e_A.jpg"
 father: "unknown/jokhan-yulius-bush.md"

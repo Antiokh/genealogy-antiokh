@@ -9,10 +9,14 @@ name:
   display: "Людмила Спиридонова"
   birth_last: "Спиридонова"
   aliases: []
-family:
-  key: "spiridonov"
-  label: "Спиридоновы"
-  locale: ru
+families:
+  - key: "spiridonov"
+    label: "Спиридоновы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: "1910-1919/mikhail-spiridonov.md"
 mother: null

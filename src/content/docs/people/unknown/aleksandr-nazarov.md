@@ -9,12 +9,16 @@ name:
   display: "Александр Назаров"
   birth_last: "Назаров"
   aliases: []
-family:
-  key: "nazarov"
-  label: "Назаровы"
-  locale: ru
-  localized:
-    "und-Latn": "Nazarov"
+families:
+  - key: "nazarov"
+    label: "Назаровы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Nazarov"
 sex: M
 father: "1930-1939/vasiliy-nazarov.md"
 mother: null

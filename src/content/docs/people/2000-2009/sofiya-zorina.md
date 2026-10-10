@@ -9,10 +9,14 @@ name:
   display: "София Зорина"
   birth_last: "Зорина"
   aliases: []
-family:
-  key: "zorin"
-  label: "Зорины"
-  locale: ru
+families:
+  - key: "zorin"
+    label: "Зорины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc3MmNkZTgyOTU3NmJiYmJkNmRhNDkxZWMyMWU2NDA4MDY2YzNhODcxNTE2NTI1NTA3NzVjYWYyN2RkMzU5YmMmZT0xNzg5Njc1MjAw/129/852/4292/500232_594813o5u521ha41dl67h3_A.jpg"
 father: "unknown/dmitriy-zorin.md"

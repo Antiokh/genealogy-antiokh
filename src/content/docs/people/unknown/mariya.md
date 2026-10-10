@@ -8,6 +8,19 @@ name:
   full: "Мария"
   display: "Мария"
   aliases: []
+families:
+  - key: "mariya"
+    label: "Мария"
+    locale: ru
+    roles:
+      - current
+    inferred: true
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
 sex: F
 father: "unknown/grigoriy.md"
 mother: null

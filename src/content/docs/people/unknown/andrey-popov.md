@@ -9,10 +9,14 @@ name:
   display: "Андрей Попов"
   birth_last: "Попов"
   aliases: []
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1930-1939/viktor-popov.md"
 mother: null
