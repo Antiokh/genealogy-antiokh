@@ -37,7 +37,7 @@ async function loadRecords(root, entity) {
   const records = new Map();
   for (const filePath of await walk(root)) {
     const data = parseFrontmatter(await readFile(filePath, 'utf8'));
-    if (data.entity !== entity) continue;
+    if (data.entity !== entity || data.draft === true) continue;
     const ref = refFor(root, filePath);
     records.set(ref, { ref, filePath, data });
   }
@@ -48,6 +48,10 @@ function validateRef(ref, records, owner, kind, errors) {
   if (!records.has(ref)) errors.push(`${owner}: broken ${kind} reference ${ref}`);
 }
 
+function validateOptionalRef(ref, records, owner, kind, errors) {
+  if (typeof ref === 'string' && ref.trim()) validateRef(ref, records, owner, kind, errors);
+}
+
 const [people, events, places, sources] = await Promise.all([
   loadRecords(PEOPLE_ROOT, 'person'),
   loadRecords(EVENTS_ROOT, 'event'),
@@ -56,6 +60,17 @@ const [people, events, places, sources] = await Promise.all([
 ]);
 
 const errors = [];
+
+for (const person of people.values()) {
+  validateOptionalRef(person.data.born?.place, places, person.ref, 'birth place', errors);
+  validateOptionalRef(person.data.died?.place, places, person.ref, 'death place', errors);
+  validateOptionalRef(person.data.buried?.place, places, person.ref, 'burial place', errors);
+  for (const residence of person.data.residence ?? []) {
+    validateOptionalRef(residence?.place, places, person.ref, 'residence place', errors);
+  }
+  for (const ref of person.data.sources ?? []) validateRef(ref, sources, person.ref, 'source', errors);
+}
+
 for (const event of events.values()) {
   for (const ref of event.data.participants ?? []) validateRef(ref, people, event.ref, 'person', errors);
   for (const ref of event.data.places ?? []) validateRef(ref, places, event.ref, 'place', errors);
@@ -66,6 +81,9 @@ for (const event of events.values()) {
 }
 
 for (const place of places.values()) {
+  validateOptionalRef(place.data.parent, places, place.ref, 'parent place', errors);
+  for (const ref of place.data.sources ?? []) validateRef(ref, sources, place.ref, 'source', errors);
+
   const geo = place.data.geo;
   if (!geo) continue;
   if (!Number.isFinite(geo.latitude) || geo.latitude < -90 || geo.latitude > 90) {
