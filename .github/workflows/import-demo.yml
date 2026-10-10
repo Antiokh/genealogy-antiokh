@@ -2,9 +2,6 @@ name: Import MyHeritage snapshot
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - multi-family-membership
 
 permissions:
   contents: write
@@ -12,9 +9,6 @@ permissions:
 jobs:
   import:
     runs-on: ubuntu-latest
-    concurrency:
-      group: multi-family-migration-${{ github.ref }}
-      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -37,6 +31,5 @@ jobs:
             echo "No import changes"
             exit 0
           fi
-          git commit -m "Migrate people to multiple family memberships"
-          git pull --rebase origin "$GITHUB_REF_NAME"
-          git push origin "HEAD:$GITHUB_REF_NAME"
+          git commit -m "Import people from MyHeritage snapshot"
+          git push
