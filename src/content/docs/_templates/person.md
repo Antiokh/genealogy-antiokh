@@ -28,6 +28,7 @@ families:
     roles:
       - partner
 sex: U
+portrait:
 father:
 mother:
 born:
