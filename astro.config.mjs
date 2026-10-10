@@ -23,7 +23,7 @@ export default defineConfig({
         baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/src/content/docs/',
       },
       sidebar: [
-        { slug: 'index' },
+        { label: 'Главная', link: '/' },
         {
           label: 'Люди',
           autogenerate: { directory: 'people', collapsed: false },
