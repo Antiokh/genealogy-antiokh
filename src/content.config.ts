@@ -110,11 +110,25 @@ const archiveHolding = z.object({
   url: z.string().optional(),
 }).passthrough();
 
+const focalPoint = z.object({
+  x: z.number().min(0).max(1),
+  y: z.number().min(0).max(1),
+}).passthrough();
+
+const mediaSubject = z.union([
+  z.string(),
+  z.object({
+    person: z.string(),
+    focal: focalPoint.optional(),
+    label: z.string().optional(),
+  }).passthrough(),
+]);
+
 export const collections = {
   docs: defineCollection({
     loader: docsLoader(),
     schema: docsSchema({
-      extend: z.object({
+      extend: ({ image }) => z.object({
         entity: z.enum([
           'index',
           'person',
@@ -123,6 +137,7 @@ export const collections = {
           'source',
           'citation',
           'evidence',
+          'media',
         ]).optional(),
         importManaged: z.boolean().optional(),
 
@@ -130,6 +145,7 @@ export const collections = {
         name: z.union([z.string(), structuredName]).optional(),
         families: z.array(familyGroup).optional(),
         sex: z.enum(['M', 'F', 'X', 'U']).optional(),
+        portrait: z.string().nullish(),
         photo: z.string().optional(),
         father: z.string().nullish(),
         mother: z.string().nullish(),
@@ -173,6 +189,23 @@ export const collections = {
         year: z.number().int().optional(),
         publication: z.string().optional(),
         locator: z.string().optional(),
+
+        // Media fields. A media record is the canonical owner of one image.
+        mediaType: z.enum(['photo', 'scan', 'document', 'other']).optional(),
+        image: z.union([image(), z.string()]).optional(),
+        alt: z.string().optional(),
+        caption: z.string().optional(),
+        subjects: z.array(mediaSubject).optional(),
+        place: z.string().nullish(),
+        eventRefs: z.array(z.string()).optional(),
+        source: z.string().nullish(),
+        photographer: z.string().optional(),
+        credit: z.string().optional(),
+        rights: z.string().optional(),
+        license: z.string().optional(),
+        originalUrl: z.string().optional(),
+        width: z.number().int().positive().optional(),
+        height: z.number().int().positive().optional(),
 
         // Transitional compatibility with earlier snapshots.
         family: familyGroup.optional(),
