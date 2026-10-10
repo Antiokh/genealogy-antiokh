@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500117.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -40,7 +39,7 @@ external:
 
 **Родители:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500117/)
+**Партнёры:** —
 
 **Дети:** [Иван Курочкин](/people/unknown/ivan-kurochkin/), [Валентина Курочкина](/people/unknown/valentina-kurochkina/)
 

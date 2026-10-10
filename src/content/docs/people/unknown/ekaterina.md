@@ -8,7 +8,7 @@ name:
   display: "Екатерина"
   aliases: []
 sex: F
-father: "unknown/neizvestnyy-muzhchina.md"
+father: null
 mother: "unknown/tatyana-vinokurov.md"
 born:
   known: false
@@ -22,8 +22,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnyy-muzhchina-i500039.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -35,9 +34,9 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina/), [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/)
+**Родители:** [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/)
 
-**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500039/)
+**Партнёры:** —
 
 **Дети:** [Мария](/people/1980-1989/mariya/)
 

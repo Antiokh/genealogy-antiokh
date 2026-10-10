@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY1ODllNGUwNGQxNmZmYWE2MjRiNTVhMDRhOGJmNmY5MDdiZTljMjZmZTY1NTRjMmMzMTc3ODk0MTAwZjhmMTgmZT0xNzg5Njc1MjAw/129/852/4292/500156_8228247t22066v818vzc84_A.jpg"
-father: "unknown/neizvestnyy-muzhchina-i500110.md"
+father: null
 mother: "unknown/larisa-primak.md"
 born:
   known: false
@@ -39,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500110/), [Лариса Примак](/people/unknown/larisa-primak/)
+**Родители:** [Лариса Примак](/people/unknown/larisa-primak/)
 
 **Партнёры:** [Владимир](/people/unknown/vladimir/)
 

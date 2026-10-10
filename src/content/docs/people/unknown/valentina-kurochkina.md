@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: F
 father: "unknown/aleksandr-kurochkin.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500117.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500117/)
+**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/)
 
 **Партнёры:** —
 

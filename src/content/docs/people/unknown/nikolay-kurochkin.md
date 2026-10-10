@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500143.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -40,7 +39,7 @@ external:
 
 **Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500143/)
+**Партнёры:** —
 
 **Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-i500142/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500144/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-i500145/)
 

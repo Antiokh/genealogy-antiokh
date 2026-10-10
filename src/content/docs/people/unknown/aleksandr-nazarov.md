@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "1930-1939/vasiliy-nazarov.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500192.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500192/)
+**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/)
 
 **Партнёры:** —
 

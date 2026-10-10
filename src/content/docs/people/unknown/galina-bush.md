@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: F
 father: "unknown/vladimir-bush.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500032.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500032/)
+**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/)
 
 **Партнёры:** —
 

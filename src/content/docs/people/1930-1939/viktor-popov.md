@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500209.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -41,7 +40,7 @@ external:
 
 **Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500209/)
+**Партнёры:** —
 
 **Дети:** [Андрей Попов](/people/unknown/andrey-popov/), [Надежда Попова](/people/unknown/nadezhda-popova/), [Сергей Попов](/people/unknown/sergey-popov/), [Виктор Попов](/people/unknown/viktor-popov/)
 

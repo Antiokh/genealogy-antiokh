@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "1920-1929/sergey-nazarov.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500189.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500189/)
+**Родители:** [Сергей Назаров](/people/1920-1929/sergey-nazarov/)
 
 **Партнёры:** —
 

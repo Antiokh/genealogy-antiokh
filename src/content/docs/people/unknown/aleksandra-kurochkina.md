@@ -9,7 +9,7 @@ name:
   birth_last: "Курочкина"
   aliases: []
 sex: F
-father: "unknown/neizvestnyy-muzhchina-i500140.md"
+father: null
 mother: "unknown/anna-panteshkina.md"
 born:
   known: false
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500140/), [Анна Пантешкина](/people/unknown/anna-panteshkina/)
+**Родители:** [Анна Пантешкина](/people/unknown/anna-panteshkina/)
 
 **Партнёры:** —
 

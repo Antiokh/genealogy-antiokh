@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnyy-muzhchina-i500123.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -40,7 +39,7 @@ external:
 
 **Родители:** [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
 
-**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500123/)
+**Партнёры:** —
 
 **Дети:** [Инна Тихомирова](/people/unknown/inna-tikhomirova/)
 

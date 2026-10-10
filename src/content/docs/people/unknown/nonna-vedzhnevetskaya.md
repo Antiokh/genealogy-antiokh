@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwMDUzOTFhYzJhM2M4NzlkZjg1Mzg3OTQyZmRkMjRhOTRlNDk0ZTJiYmQ0MmFkNGIxMTE4ZTBmYWM0OWE5NjUmZT0xNzg5Njc1MjAw/129/852/4292/500119_6336855726w507626l701n_A.jpg"
-father: "unknown/neizvestnyy-muzhchina-i500096.md"
+father: null
 mother: null
 born:
   known: false
@@ -39,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500096/)
+**Родители:** —
 
 **Партнёры:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/)
 

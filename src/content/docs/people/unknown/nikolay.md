@@ -8,7 +8,7 @@ name:
   display: "Николай"
   aliases: []
 sex: M
-father: "unknown/neizvestnyy-muzhchina-i500186.md"
+father: null
 mother: "1920-1929/anna-nazarova.md"
 born:
   known: false
@@ -34,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500186/), [Анна Назарова](/people/1920-1929/anna-nazarova/)
+**Родители:** [Анна Назарова](/people/1920-1929/anna-nazarova/)
 
 **Партнёры:** —
 

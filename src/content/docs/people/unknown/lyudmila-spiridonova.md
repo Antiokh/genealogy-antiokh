@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: F
 father: "1910-1919/mikhail-spiridonov.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500158.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500158/)
+**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/)
 
 **Партнёры:** —
 

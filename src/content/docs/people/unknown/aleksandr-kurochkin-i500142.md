@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "unknown/nikolay-kurochkin.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500143.md"
+mother: null
 born:
   known: false
   date: null
@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500149.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -38,9 +37,9 @@ external:
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500143/)
+**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500149/)
+**Партнёры:** —
 
 **Дети:** [Иван Курочкин](/people/unknown/ivan-kurochkin-i500148/), [Валентина Курочкина](/people/unknown/valentina-kurochkina-i500150/)
 
