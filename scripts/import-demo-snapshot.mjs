@@ -1,4 +1,4 @@
-import { access, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { access, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
 import { family } from '../demos/anton-family/data.js';
@@ -14,6 +14,12 @@ const cyrillicMap = new Map(Object.entries({
   с: 's', т: 't', у: 'u', ф: 'f', х: 'kh', ц: 'ts', ч: 'ch', ш: 'sh', щ: 'shch',
   ъ: '', ы: 'y', ь: '', э: 'e', ю: 'yu', я: 'ya', і: 'i', ї: 'yi', є: 'ye', ґ: 'g',
 }));
+
+function isImportablePerson(person) {
+  return String(person.name ?? '').trim().toLowerCase() !== 'unassociated photos';
+}
+
+const people = family.people.filter(isImportablePerson);
 
 function transliterate(value) {
   return [...String(value).toLowerCase()]
@@ -62,6 +68,18 @@ function canonicalNumber(id) {
   return match ? Number(match[1]) : 0;
 }
 
+function isTechnicalName(person) {
+  const candidate = String(person.cardName || person.name || '').trim();
+  return !candidate || candidate === person.id || /^I\d+$/i.test(candidate);
+}
+
+function displayNameFor(person, canonicalId) {
+  if (!isTechnicalName(person)) return person.cardName || person.name;
+  if (person.sex === 'F') return `Неизвестная (${canonicalId})`;
+  if (person.sex === 'M') return `Неизвестный (${canonicalId})`;
+  return `Неизвестный человек (${canonicalId})`;
+}
+
 async function fileExists(filePath) {
   try {
     await access(filePath, constants.F_OK);
@@ -84,7 +102,11 @@ async function loadMapping() {
 }
 
 function ensurePersonIds(mapping) {
-  const sortedPeople = [...family.people].sort(
+  for (const [externalId] of Object.entries(mapping.people)) {
+    if (!people.some((person) => person.id === externalId)) delete mapping.people[externalId];
+  }
+
+  const sortedPeople = [...people].sort(
     (a, b) => numericExternalId(a.id) - numericExternalId(b.id) || a.id.localeCompare(b.id),
   );
   let next = Math.max(0, ...Object.values(mapping.people).map(canonicalNumber)) + 1;
@@ -97,12 +119,12 @@ function ensurePersonIds(mapping) {
 }
 
 function buildRelations(mapping) {
-  const known = new Set(family.people.map((person) => person.id));
+  const known = new Set(people.map((person) => person.id));
   const parents = new Map();
   const partners = new Map();
   const children = new Map();
 
-  for (const person of family.people) {
+  for (const person of people) {
     parents.set(person.id, new Set());
     partners.set(person.id, new Set());
     children.set(person.id, new Set());
@@ -140,11 +162,11 @@ function buildPaths(mapping) {
   const pathsByExternal = new Map();
   const used = new Set();
 
-  for (const person of [...family.people].sort((a, b) => numericExternalId(a.id) - numericExternalId(b.id))) {
+  for (const person of [...people].sort((a, b) => numericExternalId(a.id) - numericExternalId(b.id))) {
     const { birthYear } = parseYears(person.years);
     const decade = decadeFor(birthYear);
     const canonicalId = mapping.people[person.id];
-    const displayName = person.cardName || person.name || canonicalId;
+    const displayName = displayNameFor(person, canonicalId);
     const baseSlug = slugify(displayName);
     let slug = baseSlug;
     let key = `${decade}/${slug}`;
@@ -175,21 +197,23 @@ function relationLinks(canonicalIds, peopleByCanonical, pathsByExternal, mapping
     const person = peopleByCanonical.get(canonicalId);
     const externalId = externalByCanonical.get(canonicalId);
     const route = externalId ? pathsByExternal.get(externalId)?.url : undefined;
-    const name = person?.cardName || person?.name || canonicalId;
+    const name = person ? displayNameFor(person, canonicalId) : canonicalId;
     return route ? `[${markdownName(name)}](${route})` : markdownName(name);
   }).join(', ');
 }
 
 function renderFrontmatter(person, canonicalId, relations) {
   const { birthYear, deathYear } = parseYears(person.years);
-  const displayName = person.cardName || person.name || canonicalId;
+  const displayName = displayNameFor(person, canonicalId);
+  const sourceName = isTechnicalName(person) ? displayName : (person.name || displayName);
   const lines = [
     '---',
     `title: ${yamlString(displayName)}`,
     `description: ${yamlString(person.years ? `${displayName}, ${person.years}` : displayName)}`,
     'entity: person',
+    'importManaged: true',
     `id: ${canonicalId}`,
-    `name: ${yamlString(person.name || displayName)}`,
+    `name: ${yamlString(sourceName)}`,
     `displayName: ${yamlString(displayName)}`,
   ];
 
@@ -199,12 +223,8 @@ function renderFrontmatter(person, canonicalId, relations) {
   if (typeof person.deceased === 'boolean') lines.push(`deceased: ${person.deceased}`);
   if (person.sex) lines.push(`sex: ${person.sex}`);
 
-  if (birthYear) {
-    lines.push('birth:', `  year: ${birthYear}`);
-  }
-  if (deathYear) {
-    lines.push('death:', `  year: ${deathYear}`);
-  }
+  if (birthYear) lines.push('birth:', `  year: ${birthYear}`);
+  if (deathYear) lines.push('death:', `  year: ${deathYear}`);
 
   const renderArray = (key, values) => {
     if (!values.length) {
@@ -229,14 +249,14 @@ function renderFrontmatter(person, canonicalId, relations) {
   return lines.join('\n');
 }
 
-function renderBody(person, relationIds, peopleByCanonical, pathsByExternal, mapping) {
+function renderBody(person, canonicalId, relationIds, peopleByCanonical, pathsByExternal, mapping) {
   const lines = [];
   if (person.years) lines.push(`**Годы жизни:** ${person.years}`);
   if (person.birthSurname) lines.push(`**Фамилия при рождении:** ${person.birthSurname}`);
   if (person.marriedSurname && person.marriedSurname !== person.birthSurname) {
     lines.push(`**Фамилия после брака:** ${person.marriedSurname}`);
   }
-  if (person.name && person.cardName && person.name !== person.cardName) {
+  if (!isTechnicalName(person) && person.name && person.cardName && person.name !== person.cardName) {
     lines.push(`**Имя в исходных данных:** ${person.name}`);
   }
 
@@ -257,10 +277,43 @@ function renderBody(person, relationIds, peopleByCanonical, pathsByExternal, map
   return lines.join('\n');
 }
 
-async function canOverwritePlaceholder(filePath, externalId) {
+async function canOverwriteImported(filePath, externalId) {
   if (!(await fileExists(filePath))) return true;
   const existing = await readFile(filePath, 'utf8');
-  return existing.includes('draft: true') && existing.includes(`xref: ${externalId}`);
+  if (existing.includes('importManaged: true')) return true;
+  if (existing.includes('draft: true') && existing.includes(`xref: ${externalId}`)) return true;
+  return existing.includes(`snapshot: ${yamlString(SNAPSHOT)}`)
+    && existing.includes(`xref: ${yamlString(externalId)}`)
+    && existing.includes('Сведения пока не добавлены.');
+}
+
+async function markdownFiles(directory) {
+  if (!(await fileExists(directory))) return [];
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const full = path.join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await markdownFiles(full));
+    else if (entry.isFile() && entry.name.endsWith('.md')) files.push(full);
+  }
+  return files;
+}
+
+async function removeStaleManagedPages(pathsByExternal) {
+  const expected = new Map([...pathsByExternal].map(([externalId, route]) => [externalId, path.normalize(route.file)]));
+  let removed = 0;
+  for (const filePath of await markdownFiles(PEOPLE_ROOT)) {
+    const content = await readFile(filePath, 'utf8');
+    const xref = content.match(/xref:\s*["']?(I\d+)["']?/i)?.[1];
+    const isSnapshotImport = content.includes('myheritage:') && content.includes(SNAPSHOT) && xref;
+    if (!isSnapshotImport) continue;
+    const expectedPath = expected.get(xref);
+    if (!expectedPath || path.normalize(filePath) !== expectedPath) {
+      await rm(filePath, { force: true });
+      removed += 1;
+    }
+  }
+  return removed;
 }
 
 const mapping = await loadMapping();
@@ -268,23 +321,24 @@ ensurePersonIds(mapping);
 const relations = buildRelations(mapping);
 const pathsByExternal = buildPaths(mapping);
 const peopleByCanonical = new Map(
-  family.people.map((person) => [mapping.people[person.id], person]),
+  people.map((person) => [mapping.people[person.id], person]),
 );
 
+const removed = await removeStaleManagedPages(pathsByExternal);
 await mkdir(IMPORT_ROOT, { recursive: true });
 await writeFile(MAPPING_PATH, `${JSON.stringify(mapping, null, 2)}\n`, 'utf8');
 
-let created = 0;
+let written = 0;
 let skipped = 0;
 const unresolvedReferences = new Set();
-const knownExternalIds = new Set(family.people.map((person) => person.id));
+const knownExternalIds = new Set(people.map((person) => person.id));
 for (const relation of family.families) {
   for (const id of [...relation.partners, ...relation.children]) {
     if (!knownExternalIds.has(id)) unresolvedReferences.add(id);
   }
 }
 
-for (const person of family.people) {
+for (const person of people) {
   const canonicalId = mapping.people[person.id];
   const route = pathsByExternal.get(person.id);
   const relationIds = {
@@ -294,24 +348,25 @@ for (const person of family.people) {
   };
 
   await mkdir(path.dirname(route.file), { recursive: true });
-  if (!(await canOverwritePlaceholder(route.file, person.id))) {
+  if (!(await canOverwriteImported(route.file, person.id))) {
     skipped += 1;
     continue;
   }
 
   const content = `${renderFrontmatter(person, canonicalId, relationIds)}\n\n${renderBody(
     person,
+    canonicalId,
     relationIds,
     peopleByCanonical,
     pathsByExternal,
     mapping,
   )}\n`;
   await writeFile(route.file, content, 'utf8');
-  created += 1;
+  written += 1;
 }
 
-console.log(`Imported ${created} people; skipped ${skipped} existing records.`);
+console.log(`Imported ${written} people; skipped ${skipped} hand-managed records; removed ${removed} stale imported pages.`);
 console.log(`Mapping contains ${Object.keys(mapping.people).length} stable person IDs.`);
 if (unresolvedReferences.size) {
-  console.warn(`Family data references ${unresolvedReferences.size} people absent from the snapshot: ${[...unresolvedReferences].sort().join(', ')}`);
+  console.warn(`Family data references ${unresolvedReferences.size} people absent from the importable snapshot: ${[...unresolvedReferences].sort().join(', ')}`);
 }
