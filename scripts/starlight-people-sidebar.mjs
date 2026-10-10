@@ -48,10 +48,7 @@ function nameFromParts(name) {
   return parts.length ? parts.join(' ') : name.display;
 }
 
-function personLabel(data, filePath, locale) {
-  const local = localizedName(data, locale);
-  if (local) return local.display || nameFromParts(local);
-
+function personLabel(data, filePath) {
   if (data.name && typeof data.name === 'object') {
     const fio = nameFromParts(data.name);
     if (fio && data.name.first && data.name.last) return fio;
@@ -61,6 +58,13 @@ function personLabel(data, filePath, locale) {
   if (typeof data.name === 'string' && data.name.trim()) return data.name.trim();
   if (data.title) return String(data.title);
   return path.basename(filePath, path.extname(filePath));
+}
+
+function localePersonSortLabel(data, label, locale) {
+  const local = localizedName(data, locale);
+  if (local) return local.display || nameFromParts(local) || label;
+  if (String(locale).toLowerCase().startsWith('ru')) return label;
+  return genealogySortKey(label) || label;
 }
 
 function detectLocale(value) {
@@ -79,6 +83,7 @@ function familyInfo(data) {
       key: genealogySortKey(label) || label.toLowerCase(),
       label,
       locale: detectLocale(label),
+      localized: {},
     };
   }
 
@@ -89,6 +94,7 @@ function familyInfo(data) {
     key,
     label,
     locale: data.family.locale || detectLocale(label),
+    localized: data.family.localized ?? {},
   };
 }
 
@@ -107,7 +113,7 @@ function collectPersonPages(directory, relative = '') {
 
     const data = readFrontmatter(absolute);
     if (data.entity !== 'person') continue;
-    let slug = nextRelative.replace(/\.mdx?$/i, '').replace(/\/index$/i, '');
+    const slug = nextRelative.replace(/\.mdx?$/i, '').replace(/\/index$/i, '');
     const family = familyInfo(data);
     const label = personLabel(data, absolute);
     pages.push({ family, label, slug, data });
@@ -136,6 +142,11 @@ function compareFamilies(a, b) {
   return collator(locale).compare(a.label, b.label);
 }
 
+function choosePresentation(variants) {
+  const latin = variants.find((variant) => /[A-Za-z]/u.test(variant.label) && !/[А-ЯЁа-яё]/u.test(variant.label));
+  return latin ?? variants[0];
+}
+
 export function buildPeopleSidebar() {
   const grouped = new Map();
   const ungrouped = [];
@@ -145,12 +156,19 @@ export function buildPeopleSidebar() {
       ungrouped.push(page);
       continue;
     }
-    const id = `${page.family.locale}:${page.family.key}`;
-    if (!grouped.has(id)) grouped.set(id, { ...page.family, pages: [] });
-    grouped.get(id).pages.push(page);
+
+    // family.key is identity. Locale and label are presentation metadata and must not split one family.
+    const id = page.family.key;
+    if (!grouped.has(id)) grouped.set(id, { key: id, variants: [], pages: [] });
+    const group = grouped.get(id);
+    group.pages.push(page);
+    if (!group.variants.some((variant) => variant.label === page.family.label && variant.locale === page.family.locale)) {
+      group.variants.push(page.family);
+    }
   }
 
   const groups = [...grouped.values()]
+    .map((group) => ({ ...group, ...choosePresentation(group.variants) }))
     .sort(compareFamilies)
     .map((group) => {
       const groupCollator = collator(group.locale);
@@ -158,8 +176,11 @@ export function buildPeopleSidebar() {
         label: group.label,
         collapsed: true,
         items: group.pages
-          .map((page) => ({ ...page, localizedLabel: personLabel(page.data, '', group.locale) || page.label }))
-          .sort((a, b) => groupCollator.compare(a.localizedLabel, b.localizedLabel) || groupCollator.compare(a.label, b.label))
+          .map((page) => ({
+            ...page,
+            sortLabel: localePersonSortLabel(page.data, page.label, group.locale),
+          }))
+          .sort((a, b) => groupCollator.compare(a.sortLabel, b.sortLabel) || groupCollator.compare(a.label, b.label))
           .map((page) => ({
             label: page.label,
             link: `/people/${page.slug}/`,
