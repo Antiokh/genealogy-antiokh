@@ -70,7 +70,7 @@ function localePersonSortLabel(data, label, locale) {
 function detectLocale(value) {
   const text = String(value ?? '');
   if (/[А-ЯЁа-яёІіЇїЄєҐґЈјЉљЊњЋћЂђЏџ]/u.test(text)) return 'ru';
-  if (/[A-Za-zÀ-ž]/u.test(text)) return 'en';
+  if (/[A-Za-zÀ-ž]/u.test(text)) return 'und-Latn';
   return 'und';
 }
 
@@ -123,7 +123,8 @@ function collectPersonPages(directory, relative = '') {
 
 function collator(locale) {
   try {
-    return new Intl.Collator(locale === 'und' ? 'en' : locale, { numeric: true, sensitivity: 'base' });
+    const normalized = locale === 'und' || locale === 'und-Latn' ? 'en' : locale;
+    return new Intl.Collator(normalized, { numeric: true, sensitivity: 'base' });
   } catch {
     return new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
   }
