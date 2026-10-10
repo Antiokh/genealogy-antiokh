@@ -12,8 +12,15 @@ export default defineConfig({
           lang: 'ru',
         },
       },
-      social: {
-        github: 'https://github.com/Antiokh/genealogy-library',
+      social: [
+        {
+          icon: 'github',
+          label: 'GitHub',
+          href: 'https://github.com/Antiokh/genealogy-library',
+        },
+      ],
+      editLink: {
+        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/src/content/docs/',
       },
       sidebar: [
         { slug: 'index' },
