@@ -7,7 +7,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
   <div class="event-map-period" data-range-control hidden aria-label="Фильтр событий по годам">
     <output data-range-label>Загрузка…</output>
-    <div class="event-map-range">
+    <div class="event-map-range" data-range-track>
       <input data-range-from type="range" aria-label="Начальный год" />
       <input data-range-to type="range" aria-label="Конечный год" />
     </div>
@@ -152,8 +152,9 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const fromInput = root.querySelector<HTMLInputElement>('[data-range-from]');
       const toInput = root.querySelector<HTMLInputElement>('[data-range-to]');
       const rangeControl = root.querySelector<HTMLElement>('[data-range-control]');
+      const rangeTrack = root.querySelector<HTMLElement>('[data-range-track]');
       const rangeLabel = root.querySelector<HTMLOutputElement>('[data-range-label]');
-      if (!canvas || !fromInput || !toInput || !rangeLabel || !rangeControl) continue;
+      if (!canvas || !fromInput || !toInput || !rangeLabel || !rangeControl || !rangeTrack) continue;
 
       const mapCanvas = canvas;
       const fromControl = fromInput;
@@ -229,10 +230,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           source: sourceId,
           filter: ['has', 'point_count'],
           paint: {
-            'circle-color': '#64748b',
-            'circle-radius': ['step', ['get', 'point_count'], 18, 10, 23, 30, 28],
-            'circle-stroke-width': 2,
-            'circle-stroke-color': '#ffffff',
+            'circle-color': '#e05252',
+            'circle-radius': ['step', ['get', 'point_count'], 12, 8, 15, 20, 19, 45, 23],
+            'circle-stroke-width': 0,
+            'circle-opacity': 0.94,
           },
         });
         map.addLayer({
@@ -272,6 +273,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         currentFrom = from;
         currentTo = to;
         output.value = from === to ? String(from) : `${from}–${to}`;
+
+        const span = Math.max(1, datasetMax - datasetMin);
+        const fromPercent = ((from - datasetMin) / span) * 100;
+        const toPercent = ((to - datasetMin) / span) * 100;
+        rangeTrack?.style.setProperty('--range-from', `${fromPercent}%`);
+        rangeTrack?.style.setProperty('--range-to', `${toPercent}%`);
+
         const source = map.getSource(sourceId) as import('maplibre-gl').GeoJSONSource | undefined;
         source?.setData(filteredCollection());
       }
@@ -313,7 +321,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         const place = document.createElement('div');
         place.textContent = feature.properties.placeLabel;
         container.append(place);
-        new maplibregl.Popup({ offset: 12 })
+        new maplibregl.Popup({ maxWidth: 'min(22rem, 80vw)', offset: 12 })
           .setLngLat(feature.geometry.coordinates)
           .setDOMContent(container)
           .addTo(map);
@@ -372,6 +380,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     --map-control-fg: #1f2937;
     --map-control-border: #d7dde4;
     --map-link: #1d4ed8;
+    --map-range-track: #cbd5e1;
+    --map-range-active: #2563eb;
     position: relative;
     margin-top: 1.5rem;
     overflow: hidden;
@@ -392,6 +402,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     --map-control-fg: #e5e7eb;
     --map-control-border: #475569;
     --map-link: #93c5fd;
+    --map-range-track: #475569;
+    --map-range-active: #60a5fa;
     color-scheme: dark;
   }
 
@@ -404,7 +416,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   .event-map-period {
     position: absolute;
     z-index: 8;
-    top: max(0.65rem, env(safe-area-inset-top));
+    top: calc(max(0.45rem, env(safe-area-inset-top)) + 10px);
     left: 0;
     width: min(72vw, 30rem);
     padding: 0.55rem 0.8rem 0.6rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
@@ -429,21 +441,77 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }
 
   .event-map-range {
+    --range-from: 0%;
+    --range-to: 100%;
     position: relative;
     height: 1.25rem;
+  }
+
+  .event-map-range::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    height: 4px;
+    transform: translateY(-50%);
+    border-radius: 999px;
+    background: linear-gradient(
+      to right,
+      var(--map-range-track) 0 var(--range-from),
+      var(--map-range-active) var(--range-from) var(--range-to),
+      var(--map-range-track) var(--range-to) 100%
+    );
   }
 
   .event-map-range input[type='range'] {
     position: absolute;
     inset: 0;
     width: 100%;
+    height: 1.25rem;
     margin: 0;
+    appearance: none;
+    -webkit-appearance: none;
     background: transparent;
     pointer-events: none;
   }
 
-  .event-map-range input[type='range']::-webkit-slider-thumb { pointer-events: auto; }
-  .event-map-range input[type='range']::-moz-range-thumb { pointer-events: auto; }
+  .event-map-range input[type='range']::-webkit-slider-runnable-track {
+    height: 4px;
+    border: 0;
+    background: transparent;
+  }
+
+  .event-map-range input[type='range']::-moz-range-track {
+    height: 4px;
+    border: 0;
+    background: transparent;
+  }
+
+  .event-map-range input[type='range']::-moz-range-progress { background: transparent; }
+
+  .event-map-range input[type='range']::-webkit-slider-thumb {
+    width: 18px;
+    height: 18px;
+    margin-top: -7px;
+    appearance: none;
+    -webkit-appearance: none;
+    border: 0;
+    border-radius: 999px;
+    background: var(--map-range-active);
+    box-shadow: 0 1px 3px rgb(15 23 42 / 32%);
+    pointer-events: auto;
+  }
+
+  .event-map-range input[type='range']::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--map-range-active);
+    box-shadow: 0 1px 3px rgb(15 23 42 / 32%);
+    pointer-events: auto;
+  }
 
   .event-map-shell :global(.maplibregl-ctrl-top-left),
   .event-map-shell :global(.maplibregl-ctrl-top-right),
@@ -533,7 +601,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
   .event-map-shell :global(.maplibregl-popup-anchor-left .maplibregl-popup-tip) { border-right-color: var(--map-popup-bg); }
   .event-map-shell :global(.maplibregl-popup-anchor-right .maplibregl-popup-tip) { border-left-color: var(--map-popup-bg); }
-  .event-map-shell :global(.maplibregl-popup-close-button) { color: var(--map-popup-fg); }
+
+  .event-map-shell :global(.maplibregl-popup-close-button) {
+    padding: 0.25rem 0.5rem;
+    color: var(--map-popup-fg);
+    font-size: 1.15rem;
+    line-height: 1;
+  }
 
   .event-map-shell :global(.genealogy-map-popup) {
     display: grid;
