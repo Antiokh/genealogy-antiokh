@@ -56,6 +56,43 @@ function normalizedName(data) {
   };
 }
 
+function normalizedFamily(value) {
+  if (!value) return undefined;
+  if (typeof value === 'string') {
+    const label = value.trim();
+    return label ? { key: label.toLowerCase(), label, roles: [] } : undefined;
+  }
+  if (!value.key) return undefined;
+  return {
+    key: String(value.key),
+    label: String(value.label || value.key),
+    locale: value.locale,
+    localized: value.localized ?? {},
+    roles: Array.isArray(value.roles) ? [...new Set(value.roles.map(String))].sort() : [],
+    ...(value.inferred === true ? { inferred: true } : {}),
+  };
+}
+
+function normalizedFamilies(data) {
+  const rawFamilies = Array.isArray(data.families) && data.families.length
+    ? data.families
+    : data.family
+      ? [data.family]
+      : [];
+  const unique = new Map();
+  for (const raw of rawFamilies) {
+    const family = normalizedFamily(raw);
+    if (!family) continue;
+    const existing = unique.get(family.key);
+    if (!existing) {
+      unique.set(family.key, family);
+      continue;
+    }
+    existing.roles = [...new Set([...(existing.roles ?? []), ...(family.roles ?? [])])].sort();
+  }
+  return [...unique.values()].sort((a, b) => a.key.localeCompare(b.key));
+}
+
 function normalizedEvent(primary, legacy, deceased = false) {
   if (primary && typeof primary === 'object') return primary;
   if (legacy && typeof legacy === 'object') {
@@ -164,6 +201,7 @@ for (const person of people) {
     title: data.title || displayName(data, ref),
     name: normalizedName(data),
     displayName: displayName(data, ref),
+    families: normalizedFamilies(data),
     sex: data.sex,
     photo: data.photo,
     born: normalizedEvent(data.born, data.birth),
