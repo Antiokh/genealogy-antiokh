@@ -21,8 +21,8 @@ const dateValue = z.union([
 
 const lifeEvent = z.object({
   known: z.boolean().optional(),
-  date: dateValue.optional(),
-  place: z.string().optional(),
+  date: dateValue.nullish(),
+  place: z.string().nullish(),
 }).passthrough();
 
 const structuredName = z.object({
@@ -48,8 +48,8 @@ const partner = z.union([
 
 const residence = z.object({
   place: z.string(),
-  from: dateValue.optional(),
-  to: dateValue.optional(),
+  from: dateValue.nullish(),
+  to: dateValue.nullish(),
 }).passthrough();
 
 export const collections = {
@@ -72,8 +72,8 @@ export const collections = {
         name: z.union([z.string(), structuredName]).optional(),
         sex: z.enum(['M', 'F', 'X', 'U']).optional(),
         photo: z.string().optional(),
-        father: z.string().optional(),
-        mother: z.string().optional(),
+        father: z.string().nullish(),
+        mother: z.string().nullish(),
         parents: z.array(z.string()).optional(),
         partners: z.array(partner).optional(),
         born: lifeEvent.optional(),
