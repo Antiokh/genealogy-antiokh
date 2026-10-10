@@ -20,6 +20,7 @@ function isImportablePerson(person) {
 }
 
 const people = family.people.filter(isImportablePerson);
+const byExternalId = new Map(people.map((person) => [person.id, person]));
 
 function transliterate(value) {
   return [...String(value).toLowerCase()]
@@ -63,21 +64,36 @@ function numericExternalId(id) {
   return match ? Number(match[1]) : Number.MAX_SAFE_INTEGER;
 }
 
-function canonicalNumber(id) {
-  const match = String(id).match(/(\d+)$/);
-  return match ? Number(match[1]) : 0;
-}
-
 function isTechnicalName(person) {
   const candidate = String(person.cardName || person.name || '').trim();
   return !candidate || candidate === person.id || /^I\d+$/i.test(candidate);
 }
 
-function displayNameFor(person, canonicalId) {
+function displayNameFor(person) {
   if (!isTechnicalName(person)) return person.cardName || person.name;
-  if (person.sex === 'F') return `Неизвестная (${canonicalId})`;
-  if (person.sex === 'M') return `Неизвестный (${canonicalId})`;
-  return `Неизвестный человек (${canonicalId})`;
+  if (person.sex === 'F') return 'Неизвестная женщина';
+  if (person.sex === 'M') return 'Неизвестный мужчина';
+  return 'Неизвестный человек';
+}
+
+function sourceNameFor(person) {
+  return isTechnicalName(person) ? displayNameFor(person) : (person.name || displayNameFor(person));
+}
+
+function parseFamilyDate(label) {
+  const raw = String(label ?? '').trim();
+  if (!raw) return undefined;
+  if (/^\d{4}$/.test(raw)) return Number(raw);
+
+  const months = {
+    JAN: '01', FEB: '02', MAR: '03', APR: '04', MAY: '05', JUN: '06',
+    JUL: '07', AUG: '08', SEP: '09', OCT: '10', NOV: '11', DEC: '12',
+  };
+  const match = raw.match(/^(\d{1,2})\s+([A-Z]{3})\s+(\d{4})$/i);
+  if (match && months[match[2].toUpperCase()]) {
+    return `${match[3]}-${months[match[2].toUpperCase()]}-${String(match[1]).padStart(2, '0')}`;
+  }
+  return raw;
 }
 
 async function fileExists(filePath) {
@@ -89,95 +105,27 @@ async function fileExists(filePath) {
   }
 }
 
-async function loadMapping() {
-  if (!(await fileExists(MAPPING_PATH))) {
-    return {
-      schema: 'myheritage-snapshot-mapping-1',
-      source: family.source,
-      snapshot: SNAPSHOT,
-      people: {},
-    };
-  }
-  return JSON.parse(await readFile(MAPPING_PATH, 'utf8'));
-}
-
-function ensurePersonIds(mapping) {
-  for (const [externalId] of Object.entries(mapping.people)) {
-    if (!people.some((person) => person.id === externalId)) delete mapping.people[externalId];
-  }
-
-  const sortedPeople = [...people].sort(
-    (a, b) => numericExternalId(a.id) - numericExternalId(b.id) || a.id.localeCompare(b.id),
-  );
-  let next = Math.max(0, ...Object.values(mapping.people).map(canonicalNumber)) + 1;
-  for (const person of sortedPeople) {
-    if (!mapping.people[person.id]) {
-      mapping.people[person.id] = `P${String(next).padStart(6, '0')}`;
-      next += 1;
-    }
-  }
-}
-
-function buildRelations(mapping) {
-  const known = new Set(people.map((person) => person.id));
-  const parents = new Map();
-  const partners = new Map();
-  const children = new Map();
-
-  for (const person of people) {
-    parents.set(person.id, new Set());
-    partners.set(person.id, new Set());
-    children.set(person.id, new Set());
-  }
-
-  for (const relation of family.families) {
-    const relationPartners = relation.partners.filter((id) => known.has(id));
-    const relationChildren = relation.children.filter((id) => known.has(id));
-
-    for (const partner of relationPartners) {
-      for (const other of relationPartners) {
-        if (other !== partner) partners.get(partner).add(other);
-      }
-      for (const child of relationChildren) children.get(partner).add(child);
-    }
-
-    for (const child of relationChildren) {
-      for (const parent of relationPartners) parents.get(child).add(parent);
-    }
-  }
-
-  const toCanonical = (set) => [...set]
-    .map((externalId) => mapping.people[externalId])
-    .filter(Boolean)
-    .sort();
-
-  return {
-    parents: new Map([...parents].map(([id, set]) => [id, toCanonical(set)])),
-    partners: new Map([...partners].map(([id, set]) => [id, toCanonical(set)])),
-    children: new Map([...children].map(([id, set]) => [id, toCanonical(set)])),
-  };
-}
-
-function buildPaths(mapping) {
+function buildPaths() {
   const pathsByExternal = new Map();
   const used = new Set();
 
   for (const person of [...people].sort((a, b) => numericExternalId(a.id) - numericExternalId(b.id))) {
     const { birthYear } = parseYears(person.years);
     const decade = decadeFor(birthYear);
-    const canonicalId = mapping.people[person.id];
-    const displayName = displayNameFor(person, canonicalId);
+    const displayName = displayNameFor(person);
     const baseSlug = slugify(displayName);
     let slug = baseSlug;
     let key = `${decade}/${slug}`;
     if (used.has(key)) {
-      slug = `${baseSlug}-${canonicalId.toLowerCase()}`;
+      slug = `${baseSlug}-${person.id.toLowerCase()}`;
       key = `${decade}/${slug}`;
     }
     used.add(key);
+    const ref = `${decade}/${slug}.md`;
     pathsByExternal.set(person.id, {
       decade,
       slug,
+      ref,
       file: path.join(PEOPLE_ROOT, decade, `${slug}.md`),
       url: `/people/${decade}/${slug}/`,
     });
@@ -186,58 +134,147 @@ function buildPaths(mapping) {
   return pathsByExternal;
 }
 
+function buildRelations(pathsByExternal) {
+  const parents = new Map();
+  const partners = new Map();
+  const children = new Map();
+
+  for (const person of people) {
+    parents.set(person.id, { father: undefined, mother: undefined, other: new Set() });
+    partners.set(person.id, new Map());
+    children.set(person.id, new Set());
+  }
+
+  for (const relation of family.families) {
+    const relationPartners = relation.partners.filter((id) => byExternalId.has(id));
+    const relationChildren = relation.children.filter((id) => byExternalId.has(id));
+    const marriageDate = parseFamilyDate(relation.label);
+
+    for (const partner of relationPartners) {
+      for (const other of relationPartners) {
+        if (partner === other) continue;
+        const existing = partners.get(partner).get(other) ?? {};
+        if (marriageDate !== undefined) existing.married = { date: marriageDate };
+        partners.get(partner).set(other, existing);
+      }
+      for (const child of relationChildren) children.get(partner).add(child);
+    }
+
+    for (const child of relationChildren) {
+      const target = parents.get(child);
+      for (const parentId of relationPartners) {
+        const parent = byExternalId.get(parentId);
+        if (parent?.sex === 'M' && !target.father) target.father = parentId;
+        else if (parent?.sex === 'F' && !target.mother) target.mother = parentId;
+        else target.other.add(parentId);
+      }
+    }
+  }
+
+  const toRef = (externalId) => externalId ? pathsByExternal.get(externalId)?.ref : undefined;
+  const result = new Map();
+
+  for (const person of people) {
+    const parentInfo = parents.get(person.id);
+    result.set(person.id, {
+      father: toRef(parentInfo.father),
+      mother: toRef(parentInfo.mother),
+      parents: [...parentInfo.other].map(toRef).filter(Boolean).sort(),
+      partners: [...partners.get(person.id).entries()]
+        .map(([externalId, meta]) => ({ person: toRef(externalId), ...meta }))
+        .filter((item) => item.person)
+        .sort((a, b) => a.person.localeCompare(b.person)),
+      children: [...children.get(person.id)].map(toRef).filter(Boolean).sort(),
+    });
+  }
+
+  return result;
+}
+
 function markdownName(value) {
   return String(value).replace(/([\\[\]])/g, '\\$1');
 }
 
-function relationLinks(canonicalIds, peopleByCanonical, pathsByExternal, mapping) {
-  if (!canonicalIds.length) return '—';
-  const externalByCanonical = new Map(Object.entries(mapping.people).map(([external, canonical]) => [canonical, external]));
-  return canonicalIds.map((canonicalId) => {
-    const person = peopleByCanonical.get(canonicalId);
-    const externalId = externalByCanonical.get(canonicalId);
-    const route = externalId ? pathsByExternal.get(externalId)?.url : undefined;
-    const name = person ? displayNameFor(person, canonicalId) : canonicalId;
+function nameByRef(ref, pathsByExternal) {
+  for (const [externalId, route] of pathsByExternal) {
+    if (route.ref !== ref) continue;
+    return displayNameFor(byExternalId.get(externalId));
+  }
+  return ref;
+}
+
+function routeByRef(ref, pathsByExternal) {
+  for (const route of pathsByExternal.values()) {
+    if (route.ref === ref) return route.url;
+  }
+  return undefined;
+}
+
+function relationLinks(refs, pathsByExternal) {
+  if (!refs.length) return '—';
+  return refs.map((ref) => {
+    const name = nameByRef(ref, pathsByExternal);
+    const route = routeByRef(ref, pathsByExternal);
     return route ? `[${markdownName(name)}](${route})` : markdownName(name);
   }).join(', ');
 }
 
-function renderFrontmatter(person, canonicalId, relations) {
+function pushEvent(lines, key, event) {
+  lines.push(`${key}:`);
+  lines.push(`  known: ${event.known ? 'true' : 'false'}`);
+  lines.push(event.date !== undefined ? `  date: ${typeof event.date === 'number' ? event.date : yamlString(event.date)}` : '  date: null');
+  lines.push(event.place ? `  place: ${yamlString(event.place)}` : '  place: null');
+}
+
+function renderFrontmatter(person, relationInfo) {
   const { birthYear, deathYear } = parseYears(person.years);
-  const displayName = displayNameFor(person, canonicalId);
-  const sourceName = isTechnicalName(person) ? displayName : (person.name || displayName);
+  const displayName = displayNameFor(person);
+  const sourceName = sourceNameFor(person);
   const lines = [
     '---',
     `title: ${yamlString(displayName)}`,
     `description: ${yamlString(person.years ? `${displayName}, ${person.years}` : displayName)}`,
     'entity: person',
     'importManaged: true',
-    `id: ${canonicalId}`,
-    `name: ${yamlString(sourceName)}`,
-    `displayName: ${yamlString(displayName)}`,
+    'name:',
+    `  full: ${yamlString(sourceName)}`,
+    `  display: ${yamlString(displayName)}`,
   ];
 
-  if (person.birthSurname) lines.push(`birthSurname: ${yamlString(person.birthSurname)}`);
-  if (person.marriedSurname) lines.push(`marriedSurname: ${yamlString(person.marriedSurname)}`);
-  if (person.photo) lines.push(`photo: ${yamlString(person.photo)}`);
-  if (typeof person.deceased === 'boolean') lines.push(`deceased: ${person.deceased}`);
+  if (person.birthSurname) lines.push(`  birth_last: ${yamlString(person.birthSurname)}`);
+  if (person.marriedSurname) lines.push(`  married_last: ${yamlString(person.marriedSurname)}`);
+  lines.push('  aliases: []');
+
   if (person.sex) lines.push(`sex: ${person.sex}`);
+  if (person.photo) lines.push(`photo: ${yamlString(person.photo)}`);
 
-  if (birthYear) lines.push('birth:', `  year: ${birthYear}`);
-  if (deathYear) lines.push('death:', `  year: ${deathYear}`);
+  lines.push(relationInfo.father ? `father: ${yamlString(relationInfo.father)}` : 'father: null');
+  lines.push(relationInfo.mother ? `mother: ${yamlString(relationInfo.mother)}` : 'mother: null');
 
-  const renderArray = (key, values) => {
-    if (!values.length) {
-      lines.push(`${key}: []`);
-      return;
+  if (relationInfo.parents.length) {
+    lines.push('parents:');
+    for (const ref of relationInfo.parents) lines.push(`  - ${yamlString(ref)}`);
+  }
+
+  pushEvent(lines, 'born', { known: birthYear !== undefined, date: birthYear });
+  pushEvent(lines, 'died', { known: person.deceased === true || deathYear !== undefined, date: deathYear });
+  pushEvent(lines, 'buried', { known: false });
+
+  if (relationInfo.partners.length) {
+    lines.push('partners:');
+    for (const partner of relationInfo.partners) {
+      lines.push(`  - person: ${yamlString(partner.person)}`);
+      if (partner.married) {
+        lines.push('    married:');
+        const date = partner.married.date;
+        lines.push(`      date: ${typeof date === 'number' ? date : yamlString(date)}`);
+      }
     }
-    lines.push(`${key}:`);
-    for (const value of values) lines.push(`  - ${value}`);
-  };
+  } else {
+    lines.push('partners: []');
+  }
 
-  renderArray('parents', relations.parents);
-  renderArray('partners', relations.partners);
-  lines.push('sources: []');
+  lines.push('occupation: []', 'residence: []', 'sources: []');
   lines.push(
     'external:',
     '  myheritage:',
@@ -249,7 +286,7 @@ function renderFrontmatter(person, canonicalId, relations) {
   return lines.join('\n');
 }
 
-function renderBody(person, canonicalId, relationIds, peopleByCanonical, pathsByExternal, mapping) {
+function renderBody(person, relationInfo, pathsByExternal) {
   const lines = [];
   if (person.years) lines.push(`**Годы жизни:** ${person.years}`);
   if (person.birthSurname) lines.push(`**Фамилия при рождении:** ${person.birthSurname}`);
@@ -260,15 +297,18 @@ function renderBody(person, canonicalId, relationIds, peopleByCanonical, pathsBy
     lines.push(`**Имя в исходных данных:** ${person.name}`);
   }
 
+  const parentRefs = [relationInfo.father, relationInfo.mother, ...relationInfo.parents].filter(Boolean);
+  const partnerRefs = relationInfo.partners.map((partner) => partner.person);
+
   if (lines.length) lines.push('');
   lines.push(
     '## Семья',
     '',
-    `**Родители:** ${relationLinks(relationIds.parents, peopleByCanonical, pathsByExternal, mapping)}`,
+    `**Родители:** ${relationLinks(parentRefs, pathsByExternal)}`,
     '',
-    `**Партнёры:** ${relationLinks(relationIds.partners, peopleByCanonical, pathsByExternal, mapping)}`,
+    `**Партнёры:** ${relationLinks(partnerRefs, pathsByExternal)}`,
     '',
-    `**Дети:** ${relationLinks(relationIds.children, peopleByCanonical, pathsByExternal, mapping)}`,
+    `**Дети:** ${relationLinks(relationInfo.children, pathsByExternal)}`,
     '',
     '## Биография',
     '',
@@ -281,9 +321,7 @@ async function canOverwriteImported(filePath, externalId) {
   if (!(await fileExists(filePath))) return true;
   const existing = await readFile(filePath, 'utf8');
   if (existing.includes('importManaged: true')) return true;
-  if (existing.includes('draft: true') && existing.includes(`xref: ${externalId}`)) return true;
-  return existing.includes(`snapshot: ${yamlString(SNAPSHOT)}`)
-    && existing.includes(`xref: ${yamlString(externalId)}`)
+  return existing.includes(`xref: ${yamlString(externalId)}`)
     && existing.includes('Сведения пока не добавлены.');
 }
 
@@ -294,7 +332,7 @@ async function markdownFiles(directory) {
   for (const entry of entries) {
     const full = path.join(directory, entry.name);
     if (entry.isDirectory()) files.push(...await markdownFiles(full));
-    else if (entry.isFile() && entry.name.endsWith('.md')) files.push(full);
+    else if (entry.isFile() && /\.mdx?$/i.test(entry.name)) files.push(full);
   }
   return files;
 }
@@ -305,8 +343,7 @@ async function removeStaleManagedPages(pathsByExternal) {
   for (const filePath of await markdownFiles(PEOPLE_ROOT)) {
     const content = await readFile(filePath, 'utf8');
     const xref = content.match(/xref:\s*["']?(I\d+)["']?/i)?.[1];
-    const isSnapshotImport = content.includes('myheritage:') && content.includes(SNAPSHOT) && xref;
-    if (!isSnapshotImport) continue;
+    if (!content.includes('importManaged: true') || !xref) continue;
     const expectedPath = expected.get(xref);
     if (!expectedPath || path.normalize(filePath) !== expectedPath) {
       await rm(filePath, { force: true });
@@ -316,13 +353,18 @@ async function removeStaleManagedPages(pathsByExternal) {
   return removed;
 }
 
-const mapping = await loadMapping();
-ensurePersonIds(mapping);
-const relations = buildRelations(mapping);
-const pathsByExternal = buildPaths(mapping);
-const peopleByCanonical = new Map(
-  people.map((person) => [mapping.people[person.id], person]),
-);
+const pathsByExternal = buildPaths();
+const relations = buildRelations(pathsByExternal);
+const mapping = {
+  schema: 'myheritage-content-ref-mapping-2',
+  source: family.source,
+  snapshot: SNAPSHOT,
+  people: Object.fromEntries(
+    [...pathsByExternal.entries()]
+      .sort(([a], [b]) => numericExternalId(a) - numericExternalId(b))
+      .map(([externalId, route]) => [externalId, route.ref]),
+  ),
+};
 
 const removed = await removeStaleManagedPages(pathsByExternal);
 await mkdir(IMPORT_ROOT, { recursive: true });
@@ -330,22 +372,9 @@ await writeFile(MAPPING_PATH, `${JSON.stringify(mapping, null, 2)}\n`, 'utf8');
 
 let written = 0;
 let skipped = 0;
-const unresolvedReferences = new Set();
-const knownExternalIds = new Set(people.map((person) => person.id));
-for (const relation of family.families) {
-  for (const id of [...relation.partners, ...relation.children]) {
-    if (!knownExternalIds.has(id)) unresolvedReferences.add(id);
-  }
-}
-
 for (const person of people) {
-  const canonicalId = mapping.people[person.id];
   const route = pathsByExternal.get(person.id);
-  const relationIds = {
-    parents: relations.parents.get(person.id) ?? [],
-    partners: relations.partners.get(person.id) ?? [],
-    children: relations.children.get(person.id) ?? [],
-  };
+  const relationInfo = relations.get(person.id);
 
   await mkdir(path.dirname(route.file), { recursive: true });
   if (!(await canOverwriteImported(route.file, person.id))) {
@@ -353,20 +382,10 @@ for (const person of people) {
     continue;
   }
 
-  const content = `${renderFrontmatter(person, canonicalId, relationIds)}\n\n${renderBody(
-    person,
-    canonicalId,
-    relationIds,
-    peopleByCanonical,
-    pathsByExternal,
-    mapping,
-  )}\n`;
+  const content = `${renderFrontmatter(person, relationInfo)}\n\n${renderBody(person, relationInfo, pathsByExternal)}\n`;
   await writeFile(route.file, content, 'utf8');
   written += 1;
 }
 
 console.log(`Imported ${written} people; skipped ${skipped} hand-managed records; removed ${removed} stale imported pages.`);
-console.log(`Mapping contains ${Object.keys(mapping.people).length} stable person IDs.`);
-if (unresolvedReferences.size) {
-  console.warn(`Family data references ${unresolvedReferences.size} people absent from the importable snapshot: ${[...unresolvedReferences].sort().join(', ')}`);
-}
+console.log(`Mapping contains ${Object.keys(mapping.people).length} external → content refs.`);

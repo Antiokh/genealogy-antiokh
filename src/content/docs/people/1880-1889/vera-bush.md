@@ -3,22 +3,32 @@ title: "Вера Буш"
 description: "Вера Буш, 1889–1955"
 entity: person
 importManaged: true
-id: P000017
-name: "Вера Даниэльсон"
-displayName: "Вера Буш"
-birthSurname: "Даниэльсон"
-marriedSurname: "Буш"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkNTExYWQ4OTkzZDE3NTc0ZTQzZjA5Y2Q0ZGMzN2EyNGQ2ODg1MjU1MDQyOWUxNzU3YWY3ZGJhYTQ3OWY4MjQmZT0xNzg5Njc1MjAw/129/852/4292/500075_878799y1f66f3fun9ga41f_A.jpg"
-deceased: true
+name:
+  full: "Вера Даниэльсон"
+  display: "Вера Буш"
+  birth_last: "Даниэльсон"
+  married_last: "Буш"
+  aliases: []
 sex: F
-birth:
-  year: 1889
-death:
-  year: 1955
-parents:
-  - P000018
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkNTExYWQ4OTkzZDE3NTc0ZTQzZjA5Y2Q0ZGMzN2EyNGQ2ODg1MjU1MDQyOWUxNzU3YWY3ZGJhYTQ3OWY4MjQmZT0xNzg5Njc1MjAw/129/852/4292/500075_878799y1f66f3fun9ga41f_A.jpg"
+father: null
+mother: "unknown/leonida-danielson.md"
+born:
+  known: true
+  date: 1889
+  place: null
+died:
+  known: true
+  date: 1955
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000013
+  - person: "1880-1889/vladimir-bush.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -37,7 +47,7 @@ external:
 
 **Партнёры:** [Vladimir Bush](/people/1880-1889/vladimir-bush/)
 
-**Дети:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/)
+**Дети:** [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/), [Вадим Буш](/people/1910-1919/vadim-bush/)
 
 ## Биография
 

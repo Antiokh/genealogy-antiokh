@@ -3,19 +3,32 @@ title: "Evgenia Mikhalets"
 description: "Evgenia Mikhalets"
 entity: person
 importManaged: true
-id: P000091
-name: "Evgenia Бескоровайная"
-displayName: "Evgenia Mikhalets"
-birthSurname: "Бескоровайная"
-marriedSurname: "Mikhalets"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTUyOWFlYTZhYWUzODdkMTJlZGI3ZjZmMTJkNmYxZDEzZDA5ZTc2YmUwZDk0MDcxNTJkNmE5NzY0MzE5MzE5MWYmZT0xNzg5Njc1MjAw/129/852/4292/500099_0689391u43c64c61c60202_A.jpg"
-deceased: false
+name:
+  full: "Evgenia Бескоровайная"
+  display: "Evgenia Mikhalets"
+  birth_last: "Бескоровайная"
+  married_last: "Mikhalets"
+  aliases: []
 sex: F
-parents:
-  - P000009
-  - P000012
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTUyOWFlYTZhYWUzODdkMTJlZGI3ZjZmMTJkNmYxZDEzZDA5ZTc2YmUwZDk0MDcxNTJkNmE5NzY0MzE5MzE5MWYmZT0xNzg5Njc1MjAw/129/852/4292/500099_0689391u43c64c61c60202_A.jpg"
+father: "unknown/aleksandr-rezyapkin.md"
+mother: "1900-1909/klavdiya-beskorovaynaya.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000092
+  - person: "unknown/petr-mikhalets.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,11 +42,11 @@ external:
 
 ## Семья
 
-**Родители:** [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/), [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/)
+**Родители:** [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/), [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/)
 
 **Партнёры:** [Пётр Mikhalets](/people/unknown/petr-mikhalets/)
 
-**Дети:** [Вадим Mikhalets](/people/unknown/vadim-mikhalets/), [Larisa Teljebo](/people/1960-1969/larisa-teljebo/)
+**Дети:** [Larisa Teljebo](/people/1960-1969/larisa-teljebo/), [Вадим Mikhalets](/people/unknown/vadim-mikhalets/)
 
 ## Биография
 

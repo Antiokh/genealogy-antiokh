@@ -3,15 +3,29 @@ title: "Мария Спиридонов"
 description: "Мария Спиридонов"
 entity: person
 importManaged: true
-id: P000235
-name: "Мария Спиридонов"
-displayName: "Мария Спиридонов"
-birthSurname: "Спиридонов"
-deceased: true
+name:
+  full: "Мария Спиридонов"
+  display: "Мария Спиридонов"
+  birth_last: "Спиридонов"
+  aliases: []
 sex: F
-parents:
-  - P000234
+father: "unknown/ivan-spiridonov.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

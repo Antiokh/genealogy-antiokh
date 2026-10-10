@@ -3,25 +3,34 @@ title: "Клавдия Бескоровайная"
 description: "Клавдия Бескоровайная, 1908–1994"
 entity: person
 importManaged: true
-id: P000009
-name: "Клавдия Безкоровайная"
-displayName: "Клавдия Бескоровайная"
-birthSurname: "Безкоровайная"
-marriedSurname: "Бескоровайная"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE5NGM5MjRkNjJhNmY2YTg0NTZmNmVmNWM3YmI2NmMwYTIzNTBlN2ExZTliODQzODdhZGY4ZDE2MjY3YjVjN2EmZT0xNzg5Njc1MjAw/129/852/4292/500029_84165011f6ac20favz31w0_A.jpg"
-deceased: true
+name:
+  full: "Клавдия Безкоровайная"
+  display: "Клавдия Бескоровайная"
+  birth_last: "Безкоровайная"
+  married_last: "Бескоровайная"
+  aliases: []
 sex: F
-birth:
-  year: 1908
-death:
-  year: 1994
-parents:
-  - P000046
-  - P000047
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE5NGM5MjRkNjJhNmY2YTg0NTZmNmVmNWM3YmI2NmMwYTIzNTBlN2ExZTliODQzODdhZGY4ZDE2MjY3YjVjN2EmZT0xNzg5Njc1MjAw/129/852/4292/500029_84165011f6ac20favz31w0_A.jpg"
+father: "unknown/petr-bezkorovaynyy.md"
+mother: "unknown/stepanida.md"
+born:
+  known: true
+  date: 1908
+  place: null
+died:
+  known: true
+  date: 1994
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000010
-  - P000011
-  - P000012
+  - person: "1910-1919/vadim-bush.md"
+  - person: "unknown/aleksandr-rezyapkin.md"
+  - person: "unknown/georgiy-beskorovaynyy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -38,7 +47,7 @@ external:
 
 **Родители:** [Пётр Безкоровайный](/people/unknown/petr-bezkorovaynyy/), [Степанида](/people/unknown/stepanida/)
 
-**Партнёры:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Георгий Бескоровайный](/people/unknown/georgiy-beskorovaynyy/), [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/)
+**Партнёры:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/), [Георгий Бескоровайный](/people/unknown/georgiy-beskorovaynyy/)
 
 **Дети:** [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/), [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
 

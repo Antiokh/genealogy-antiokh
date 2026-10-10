@@ -3,19 +3,30 @@ title: "София Зорина"
 description: "София Зорина, 2007–"
 entity: person
 importManaged: true
-id: P000227
-name: "София Зорина"
-displayName: "София Зорина"
-birthSurname: "Зорина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc3MmNkZTgyOTU3NmJiYmJkNmRhNDkxZWMyMWU2NDA4MDY2YzNhODcxNTE2NTI1NTA3NzVjYWYyN2RkMzU5YmMmZT0xNzg5Njc1MjAw/129/852/4292/500232_594813o5u521ha41dl67h3_A.jpg"
-deceased: false
+name:
+  full: "София Зорина"
+  display: "София Зорина"
+  birth_last: "Зорина"
+  aliases: []
 sex: F
-birth:
-  year: 2007
-parents:
-  - P000225
-  - P000226
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc3MmNkZTgyOTU3NmJiYmJkNmRhNDkxZWMyMWU2NDA4MDY2YzNhODcxNTE2NTI1NTA3NzVjYWYyN2RkMzU5YmMmZT0xNzg5Njc1MjAw/129/852/4292/500232_594813o5u521ha41dl67h3_A.jpg"
+father: "unknown/dmitriy-zorin.md"
+mother: "1980-1989/ekaterina-zorina.md"
+born:
+  known: true
+  date: 2007
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/), [Дмитрий Зорин](/people/unknown/dmitriy-zorin/)
+**Родители:** [Дмитрий Зорин](/people/unknown/dmitriy-zorin/), [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/)
 
 **Партнёры:** —
 

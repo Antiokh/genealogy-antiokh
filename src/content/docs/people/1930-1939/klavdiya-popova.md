@@ -3,20 +3,29 @@ title: "Клавдия Попова"
 description: "Клавдия Попова, 1932–1951"
 entity: person
 importManaged: true
-id: P000197
-name: "Клавдия Попова"
-displayName: "Клавдия Попова"
-birthSurname: "Попова"
-deceased: true
+name:
+  full: "Клавдия Попова"
+  display: "Клавдия Попова"
+  birth_last: "Попова"
+  aliases: []
 sex: F
-birth:
-  year: 1932
-death:
-  year: 1951
-parents:
-  - P000014
-  - P000015
+father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
+mother: "1900-1909/efrosiniya-popova.md"
+born:
+  known: true
+  date: 1932
+  place: null
+died:
+  known: true
+  date: 1951
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/), [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/)
+**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
 **Партнёры:** —
 

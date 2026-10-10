@@ -3,16 +3,29 @@ title: "Евгений"
 description: "Евгений"
 entity: person
 importManaged: true
-id: P000086
-name: "Евгений"
-displayName: "Евгений"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWM1YmUxZmUyMjhkYzhmZDQ0ZTY5YTkzYjYzNDQ4ODc3NzE3YzE4NTk3NzZkOTZmZWYxYjJlZjkwMzY0NDUyM2YmZT0xNzg5Njc1MjAw/129/852/4292/500107_091020ht5w0b665635d921_A.jpg"
-deceased: false
+name:
+  full: "Евгений"
+  display: "Евгений"
+  aliases: []
 sex: M
-parents:
-  - P000085
-  - P000087
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWM1YmUxZmUyMjhkYzhmZDQ0ZTY5YTkzYjYzNDQ4ODc3NzE3YzE4NTk3NzZkOTZmZWYxYjJlZjkwMzY0NDUyM2YmZT0xNzg5Njc1MjAw/129/852/4292/500107_091020ht5w0b665635d921_A.jpg"
+father: "unknown/valeriy.md"
+mother: "1960-1969/irina-kapranova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -22,7 +35,7 @@ external:
 
 ## Семья
 
-**Родители:** [Ирина Капранова](/people/1960-1969/irina-kapranova/), [Валерий](/people/unknown/valeriy/)
+**Родители:** [Валерий](/people/unknown/valeriy/), [Ирина Капранова](/people/1960-1969/irina-kapranova/)
 
 **Партнёры:** —
 

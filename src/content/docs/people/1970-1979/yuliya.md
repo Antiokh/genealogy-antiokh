@@ -3,20 +3,29 @@ title: "Юлия"
 description: "Юлия, 1977–2019"
 entity: person
 importManaged: true
-id: P000111
-name: "Юлия"
-displayName: "Юлия"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFmOGYzMDlhZTE4NjlhZjU1N2NlNGYwODY4Y2U4MjFjM2RkMDg3MGI5ZDkwMTc1ZjYxZTYyZDk1ZTFiOTUzMDImZT0xNzg5Njc1MjAw/129/852/4292/500160_50060965be8k4u20m22a61_A.jpg"
-deceased: true
+name:
+  full: "Юлия"
+  display: "Юлия"
+  aliases: []
 sex: F
-birth:
-  year: 1977
-death:
-  year: 2019
-parents:
-  - P000107
-  - P000110
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFmOGYzMDlhZTE4NjlhZjU1N2NlNGYwODY4Y2U4MjFjM2RkMDg3MGI5ZDkwMTc1ZjYxZTYyZDk1ZTFiOTUzMDImZT0xNzg5Njc1MjAw/129/852/4292/500160_50060965be8k4u20m22a61_A.jpg"
+father: "unknown/vladimir.md"
+mother: "unknown/elena-primak.md"
+born:
+  known: true
+  date: 1977
+  place: null
+died:
+  known: true
+  date: 2019
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Елена Примак](/people/unknown/elena-primak/), [Владимир](/people/unknown/vladimir/)
+**Родители:** [Владимир](/people/unknown/vladimir/), [Елена Примак](/people/unknown/elena-primak/)
 
 **Партнёры:** —
 

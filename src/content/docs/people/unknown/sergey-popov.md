@@ -3,16 +3,29 @@ title: "Сергей Попов"
 description: "Сергей Попов"
 entity: person
 importManaged: true
-id: P000202
-name: "Сергей Попов"
-displayName: "Сергей Попов"
-birthSurname: "Попов"
-deceased: false
+name:
+  full: "Сергей Попов"
+  display: "Сергей Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-parents:
-  - P000201
-  - P000203
+father: "1930-1939/viktor-popov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500209.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная (P000203)](/people/unknown/neizvestnaya-p000203/)
+**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500209/)
 
 **Партнёры:** —
 

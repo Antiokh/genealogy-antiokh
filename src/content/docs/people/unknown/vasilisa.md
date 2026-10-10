@@ -3,14 +3,28 @@ title: "Василиса"
 description: "Василиса"
 entity: person
 importManaged: true
-id: P000214
-name: "Василиса"
-displayName: "Василиса"
-deceased: true
+name:
+  full: "Василиса"
+  display: "Василиса"
+  aliases: []
 sex: F
-parents:
-  - P000211
+father: "unknown/grigoriy.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

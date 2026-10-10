@@ -3,16 +3,29 @@ title: "Иван Курочкин"
 description: "Иван Курочкин"
 entity: person
 importManaged: true
-id: P000114
-name: "Иван Курочкин"
-displayName: "Иван Курочкин"
-birthSurname: "Курочкин"
-deceased: false
+name:
+  full: "Иван Курочкин"
+  display: "Иван Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-parents:
-  - P000063
-  - P000115
+father: "unknown/aleksandr-kurochkin.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500117.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Неизвестная (P000115)](/people/unknown/neizvestnaya-p000115/)
+**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500117/)
 
 **Партнёры:** —
 

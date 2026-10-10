@@ -3,19 +3,30 @@ title: "Георгий Буш"
 description: "Георгий Буш, ?–1978"
 entity: person
 importManaged: true
-id: P000027
-name: "Георгий Буш"
-displayName: "Георгий Буш"
-birthSurname: "Буш"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0OWM2NTg5OGVkMjU5Y2U0YTIwOGI4YjFkNGFkMTMzN2I5MjEwMGI2MGE5NjRkZjMwZmRjM2ZlMGU5MmU3YjQmZT0xNzg5Njc1MjAw/129/852/4292/500039_88101516f642075am85c1c_A.jpg"
-deceased: true
+name:
+  full: "Георгий Буш"
+  display: "Георгий Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-death:
-  year: 1978
-parents:
-  - P000020
-  - P000021
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0OWM2NTg5OGVkMjU5Y2U0YTIwOGI4YjFkNGFkMTMzN2I5MjEwMGI2MGE5NjRkZjMwZmRjM2ZlMGU5MmU3YjQmZT0xNzg5Njc1MjAw/129/852/4292/500039_88101516f642075am85c1c_A.jpg"
+father: "1850-1859/woldemar-carl-chrostopher-bush.md"
+mother: "1860-1869/elizaveta-olga-busch.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1978
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

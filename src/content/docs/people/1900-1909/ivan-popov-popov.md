@@ -3,18 +3,29 @@ title: "Иван Попов (Popov)"
 description: "Иван Попов (Popov), 1903–?"
 entity: person
 importManaged: true
-id: P000232
-name: "Иван Попов (Popov)"
-displayName: "Иван Попов (Popov)"
-birthSurname: "Попов (Popov)"
-deceased: true
+name:
+  full: "Иван Попов (Popov)"
+  display: "Иван Попов (Popov)"
+  birth_last: "Попов (Popov)"
+  aliases: []
 sex: M
-birth:
-  year: 1903
-parents:
-  - P000189
-  - P000233
+father: "unknown/timofey-popov.md"
+mother: "unknown/fevroniya.md"
+born:
+  known: true
+  date: 1903
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

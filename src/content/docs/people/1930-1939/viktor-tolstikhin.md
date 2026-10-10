@@ -3,18 +3,29 @@ title: "Виктор Толстихин"
 description: "Виктор Толстихин, 1935–?"
 entity: person
 importManaged: true
-id: P000099
-name: "Виктор Толстихин"
-displayName: "Виктор Толстихин"
-birthSurname: "Толстихин"
-deceased: true
+name:
+  full: "Виктор Толстихин"
+  display: "Виктор Толстихин"
+  birth_last: "Толстихин"
+  aliases: []
 sex: M
-birth:
-  year: 1935
-parents:
-  - P000058
-  - P000097
+father: "1880-1889/aleksey-tolstikhin.md"
+mother: "1890-1899/klavdiya-tolstikhina.md"
+born:
+  known: true
+  date: 1935
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/)
+**Родители:** [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/), [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/)
 
 **Партнёры:** —
 

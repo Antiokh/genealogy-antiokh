@@ -3,21 +3,30 @@ title: "Йоганна-Мария Lobeck"
 description: "Йоганна-Мария Lobeck, 1850–1878"
 entity: person
 importManaged: true
-id: P000161
-name: "Йоганна-Мария Bartmer Бартмер"
-displayName: "Йоганна-Мария Lobeck"
-birthSurname: "Bartmer Бартмер"
-marriedSurname: "Lobeck"
-deceased: true
+name:
+  full: "Йоганна-Мария Bartmer Бартмер"
+  display: "Йоганна-Мария Lobeck"
+  birth_last: "Bartmer Бартмер"
+  married_last: "Lobeck"
+  aliases: []
 sex: F
-birth:
-  year: 1850
-death:
-  year: 1878
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: true
+  date: 1850
+  place: null
+died:
+  known: true
+  date: 1878
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

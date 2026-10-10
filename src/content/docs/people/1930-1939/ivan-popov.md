@@ -3,18 +3,29 @@ title: "Иван Попов"
 description: "Иван Попов, 1930–?"
 entity: person
 importManaged: true
-id: P000196
-name: "Иван Попов"
-displayName: "Иван Попов"
-birthSurname: "Попов"
-deceased: true
+name:
+  full: "Иван Попов"
+  display: "Иван Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1930
-parents:
-  - P000014
-  - P000015
+father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
+mother: "1900-1909/efrosiniya-popova.md"
+born:
+  known: true
+  date: 1930
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/), [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/)
+**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
 **Партнёры:** —
 

@@ -3,16 +3,29 @@ title: "Юрий Курочкин"
 description: "Юрий Курочкин"
 entity: person
 importManaged: true
-id: P000112
-name: "Юрий Курочкин"
-displayName: "Юрий Курочкин"
-birthSurname: "Курочкин"
-deceased: true
+name:
+  full: "Юрий Курочкин"
+  display: "Юрий Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-parents:
-  - P000066
-  - P000113
+father: "unknown/vasiliy-kurochkin.md"
+mother: "unknown/zoya.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

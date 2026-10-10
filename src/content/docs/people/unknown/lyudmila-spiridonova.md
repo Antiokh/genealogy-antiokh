@@ -3,16 +3,29 @@ title: "Людмила Спиридонова"
 description: "Людмила Спиридонова"
 entity: person
 importManaged: true
-id: P000156
-name: "Людмила Спиридонова"
-displayName: "Людмила Спиридонова"
-birthSurname: "Спиридонова"
-deceased: true
+name:
+  full: "Людмила Спиридонова"
+  display: "Людмила Спиридонова"
+  birth_last: "Спиридонова"
+  aliases: []
 sex: F
-parents:
-  - P000093
-  - P000155
+father: "1910-1919/mikhail-spiridonov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500158.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
+**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500158/)
 
 **Партнёры:** —
 

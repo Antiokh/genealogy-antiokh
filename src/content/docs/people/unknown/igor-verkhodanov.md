@@ -3,15 +3,30 @@ title: "Игорь Верходанов"
 description: "Игорь Верходанов"
 entity: person
 importManaged: true
-id: P000130
-name: "Игорь Верходанов"
-displayName: "Игорь Верходанов"
-birthSurname: "Верходанов"
-deceased: false
+name:
+  full: "Игорь Верходанов"
+  display: "Игорь Верходанов"
+  birth_last: "Верходанов"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000128
+  - person: "unknown/larisa-volkova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +42,7 @@ external:
 
 **Партнёры:** [Лариса Волкова](/people/unknown/larisa-volkova/)
 
-**Дети:** [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/), [Лилия Волкова](/people/unknown/liliya-volkova/)
+**Дети:** [Лилия Волкова](/people/unknown/liliya-volkova/), [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/)
 
 ## Биография
 

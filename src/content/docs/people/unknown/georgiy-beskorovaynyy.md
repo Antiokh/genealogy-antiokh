@@ -3,15 +3,30 @@ title: "Георгий Бескоровайный"
 description: "Георгий Бескоровайный"
 entity: person
 importManaged: true
-id: P000011
-name: "Георгий Бескоровайный"
-displayName: "Георгий Бескоровайный"
-birthSurname: "Бескоровайный"
-deceased: true
+name:
+  full: "Георгий Бескоровайный"
+  display: "Георгий Бескоровайный"
+  birth_last: "Бескоровайный"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000009
+  - person: "1900-1909/klavdiya-beskorovaynaya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

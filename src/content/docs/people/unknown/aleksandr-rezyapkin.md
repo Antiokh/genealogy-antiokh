@@ -3,15 +3,30 @@ title: "Александр Резяпкин"
 description: "Александр Резяпкин"
 entity: person
 importManaged: true
-id: P000012
-name: "Александр Резяпкин"
-displayName: "Александр Резяпкин"
-birthSurname: "Резяпкин"
-deceased: true
+name:
+  full: "Александр Резяпкин"
+  display: "Александр Резяпкин"
+  birth_last: "Резяпкин"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000009
+  - person: "1900-1909/klavdiya-beskorovaynaya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

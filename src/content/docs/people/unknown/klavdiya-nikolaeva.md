@@ -3,15 +3,30 @@ title: "Клавдия Николаева"
 description: "Клавдия Николаева"
 entity: person
 importManaged: true
-id: P000242
-name: "Клавдия Николаева"
-displayName: "Клавдия Николаева"
-birthSurname: "Николаева"
-deceased: false
+name:
+  full: "Клавдия Николаева"
+  display: "Клавдия Николаева"
+  birth_last: "Николаева"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000243
+  - person: "unknown/vasiliy-kapranov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +42,7 @@ external:
 
 **Партнёры:** [Василий Капранов](/people/unknown/vasiliy-kapranov/)
 
-**Дети:** [Геннадий](/people/unknown/gennadiy-p000084/)
+**Дети:** [Геннадий](/people/unknown/gennadiy-i500084/)
 
 ## Биография
 

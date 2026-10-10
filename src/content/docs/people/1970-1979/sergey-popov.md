@@ -3,18 +3,29 @@ title: "Сергей Попов"
 description: "Сергей Попов, 1973–"
 entity: person
 importManaged: true
-id: P000200
-name: "Сергей Попов"
-displayName: "Сергей Попов"
-birthSurname: "Попов"
-deceased: false
+name:
+  full: "Сергей Попов"
+  display: "Сергей Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1973
-parents:
-  - P000101
-  - P000102
+father: "1940-1949/vasiliy-popov.md"
+mother: "unknown/sofya-popova.md"
+born:
+  known: true
+  date: 1973
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

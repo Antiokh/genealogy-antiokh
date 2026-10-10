@@ -3,16 +3,29 @@ title: "Аполлинарий Александрович Бартмер"
 description: "Аполлинарий Александрович Бартмер"
 entity: person
 importManaged: true
-id: P000165
-name: "Аполлинарий Александрович Бартмер"
-displayName: "Аполлинарий Александрович Бартмер"
-birthSurname: "Бартмер"
-deceased: false
+name:
+  full: "Аполлинарий Александрович Бартмер"
+  display: "Аполлинарий Александрович Бартмер"
+  birth_last: "Бартмер"
+  aliases: []
 sex: M
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

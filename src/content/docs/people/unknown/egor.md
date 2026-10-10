@@ -3,13 +3,28 @@ title: "Егор"
 description: "Егор"
 entity: person
 importManaged: true
-id: P000169
-name: "Егор"
-displayName: "Егор"
-deceased: true
+name:
+  full: "Егор"
+  display: "Егор"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

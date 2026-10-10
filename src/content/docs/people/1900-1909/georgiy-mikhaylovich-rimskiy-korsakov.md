@@ -3,20 +3,29 @@ title: "Георгий Михайлович Римский-Корсаков"
 description: "Георгий Михайлович Римский-Корсаков, 1901–1965"
 entity: person
 importManaged: true
-id: P000239
-name: "Георгий Михайлович Римский-Корсаков"
-displayName: "Георгий Михайлович Римский-Корсаков"
-birthSurname: "Римский-Корсаков"
-deceased: true
+name:
+  full: "Георгий Михайлович Римский-Корсаков"
+  display: "Георгий Михайлович Римский-Корсаков"
+  birth_last: "Римский-Корсаков"
+  aliases: []
 sex: M
-birth:
-  year: 1901
-death:
-  year: 1965
-parents:
-  - P000219
-  - P000236
+father: "1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md"
+mother: "1880-1889/evgeniya-petrovna-rimskaya-korsakova.md"
+born:
+  known: true
+  date: 1901
+  place: null
+died:
+  known: true
+  date: 1965
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/), [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
+**Родители:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/), [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/)
 
 **Партнёры:** —
 

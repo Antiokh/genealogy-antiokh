@@ -3,16 +3,30 @@ title: "Семён Назаров"
 description: "Семён Назаров"
 entity: person
 importManaged: true
-id: P000016
-name: "Семён Назаров"
-displayName: "Семён Назаров"
-birthSurname: "Назаров"
-deceased: true
+name:
+  full: "Семён Назаров"
+  display: "Семён Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-parents:
-  - P000170
+father: "unknown/grigoriy-nazarov.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000168
+  - person: "unknown/anastasiya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +42,7 @@ external:
 
 **Партнёры:** [Анастасия](/people/unknown/anastasiya/)
 
-**Дети:** [Семен Назаров](/people/1930-1939/semen-nazarov/), [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Николай Назаров](/people/1920-1929/nikolay-nazarov/), [Мария Назарова](/people/1920-1929/mariya-nazarova/), [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [Анна Назарова](/people/1920-1929/anna-nazarova/), [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [Александра Назарова](/people/1930-1939/aleksandra-nazarova/)
+**Дети:** [Анна Назарова](/people/1920-1929/anna-nazarova/), [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Мария Назарова](/people/1920-1929/mariya-nazarova/), [Николай Назаров](/people/1920-1929/nikolay-nazarov/), [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [Александра Назарова](/people/1930-1939/aleksandra-nazarova/), [Семен Назаров](/people/1930-1939/semen-nazarov/), [Василий Назаров](/people/1930-1939/vasiliy-nazarov/)
 
 ## Биография
 

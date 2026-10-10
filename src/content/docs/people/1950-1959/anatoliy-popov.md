@@ -3,18 +3,29 @@ title: "Анатолий Попов"
 description: "Анатолий Попов, 1955–?"
 entity: person
 importManaged: true
-id: P000195
-name: "Анатолий Попов"
-displayName: "Анатолий Попов"
-birthSurname: "Попов"
-deceased: true
+name:
+  full: "Анатолий Попов"
+  display: "Анатолий Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1955
-parents:
-  - P000192
-  - P000194
+father: "1920-1929/aleksandr-popov.md"
+mother: "1930-1939/polina-mikhaylovna-popova.md"
+born:
+  known: true
+  date: 1955
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

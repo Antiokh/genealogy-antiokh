@@ -3,18 +3,29 @@ title: "Мария Назарова"
 description: "Мария Назарова, 1922–?"
 entity: person
 importManaged: true
-id: P000174
-name: "Мария Назарова"
-displayName: "Мария Назарова"
-birthSurname: "Назарова"
-deceased: true
+name:
+  full: "Мария Назарова"
+  display: "Мария Назарова"
+  birth_last: "Назарова"
+  aliases: []
 sex: F
-birth:
-  year: 1922
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1922
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

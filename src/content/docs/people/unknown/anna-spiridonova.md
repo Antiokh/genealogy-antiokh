@@ -3,16 +3,31 @@ title: "Анна Спиридонова"
 description: "Анна Спиридонова"
 entity: person
 importManaged: true
-id: P000153
-name: "Анна"
-displayName: "Анна Спиридонова"
-marriedSurname: "Спиридонова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTA5MTRlZmFhOWRiMzU1YmI3N2JkOWMyZDc4YzZhY2RkMWU1Mzc2Y2Q5MDdkMWEzYTQxM2RlNjJlMzAxZWIxMjcmZT0xNzg5Njc1MjAw/129/852/4292/500138_0715572v86mbg14rtc6d07_A.jpg"
-deceased: true
+name:
+  full: "Анна"
+  display: "Анна Спиридонова"
+  married_last: "Спиридонова"
+  aliases: []
 sex: F
-parents: []
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTA5MTRlZmFhOWRiMzU1YmI3N2JkOWMyZDc4YzZhY2RkMWU1Mzc2Y2Q5MDdkMWEzYTQxM2RlNjJlMzAxZWIxMjcmZT0xNzg5Njc1MjAw/129/852/4292/500138_0715572v86mbg14rtc6d07_A.jpg"
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000094
+  - person: "unknown/aleksandr-spiridonov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

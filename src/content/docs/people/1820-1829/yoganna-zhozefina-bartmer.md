@@ -3,20 +3,31 @@ title: "Йоганна-Жозефина Bartmer"
 description: "Йоганна-Жозефина Bartmer, 1825–1892"
 entity: person
 importManaged: true
-id: P000160
-name: "Йоганна-Жозефина Thorsell Торселл"
-displayName: "Йоганна-Жозефина Bartmer"
-birthSurname: "Thorsell Торселл"
-marriedSurname: "Bartmer"
-deceased: true
+name:
+  full: "Йоганна-Жозефина Thorsell Торселл"
+  display: "Йоганна-Жозефина Bartmer"
+  birth_last: "Thorsell Торселл"
+  married_last: "Bartmer"
+  aliases: []
 sex: F
-birth:
-  year: 1825
-death:
-  year: 1892
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1825
+  place: null
+died:
+  known: true
+  date: 1892
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000159
+  - person: "1810-1819/aleksandr-eduard-bartmer.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -35,7 +46,7 @@ external:
 
 **Партнёры:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/)
 
-**Дети:** [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/), [Йоганна-Мария Lobeck](/people/1850-1859/yoganna-mariya-lobeck/), [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/), [Отто Александрович Бартмер](/people/unknown/otto-aleksandrovich-bartmer/), [Аполлинарий Александрович Бартмер](/people/unknown/apollinariy-aleksandrovich-bartmer/), [Эльвина-Шарлотта Бурмейстер](/people/unknown/elvina-sharlotta-burmeyster/), [Эммелина-Леонтина Викстрём](/people/unknown/emmelina-leontina-vikstrem/)
+**Дети:** [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/), [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Йоганна-Мария Lobeck](/people/1850-1859/yoganna-mariya-lobeck/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/), [Аполлинарий Александрович Бартмер](/people/unknown/apollinariy-aleksandrovich-bartmer/), [Эльвина-Шарлотта Бурмейстер](/people/unknown/elvina-sharlotta-burmeyster/), [Эммелина-Леонтина Викстрём](/people/unknown/emmelina-leontina-vikstrem/), [Отто Александрович Бартмер](/people/unknown/otto-aleksandrovich-bartmer/)
 
 ## Биография
 

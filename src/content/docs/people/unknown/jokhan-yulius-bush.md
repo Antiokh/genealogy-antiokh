@@ -3,15 +3,30 @@ title: "Jохан Юлиус Буш"
 description: "Jохан Юлиус Буш"
 entity: person
 importManaged: true
-id: P000215
-name: "Jохан Юлиус Буш"
-displayName: "Jохан Юлиус Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Jохан Юлиус Буш"
+  display: "Jохан Юлиус Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000216
+  - person: "unknown/molli-sharlotte-lange.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

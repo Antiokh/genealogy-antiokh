@@ -3,13 +3,28 @@ title: "Григорий"
 description: "Григорий"
 entity: person
 importManaged: true
-id: P000211
-name: "Григорий"
-displayName: "Григорий"
-deceased: true
+name:
+  full: "Григорий"
+  display: "Григорий"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -23,7 +38,7 @@ external:
 
 **Партнёры:** —
 
-**Дети:** [Мария](/people/unknown/mariya/), [Яков](/people/unknown/yakov/), [Фёкла](/people/unknown/fekla/), [Василиса](/people/unknown/vasilisa/)
+**Дети:** [Фёкла](/people/unknown/fekla/), [Мария](/people/unknown/mariya/), [Василиса](/people/unknown/vasilisa/), [Яков](/people/unknown/yakov/)
 
 ## Биография
 

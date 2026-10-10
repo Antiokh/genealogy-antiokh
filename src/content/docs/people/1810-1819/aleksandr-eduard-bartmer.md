@@ -3,19 +3,30 @@ title: "Александр-Эдуард Бартмер"
 description: "Александр-Эдуард Бартмер, 1812–1884"
 entity: person
 importManaged: true
-id: P000159
-name: "Александр-Эдуард Бартмер"
-displayName: "Александр-Эдуард Бартмер"
-birthSurname: "Бартмер"
-deceased: true
+name:
+  full: "Александр-Эдуард Бартмер"
+  display: "Александр-Эдуард Бартмер"
+  birth_last: "Бартмер"
+  aliases: []
 sex: M
-birth:
-  year: 1812
-death:
-  year: 1884
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1812
+  place: null
+died:
+  known: true
+  date: 1884
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000160
+  - person: "1820-1829/yoganna-zhozefina-bartmer.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +43,7 @@ external:
 
 **Партнёры:** [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Дети:** [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/), [Йоганна-Мария Lobeck](/people/1850-1859/yoganna-mariya-lobeck/), [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/), [Отто Александрович Бартмер](/people/unknown/otto-aleksandrovich-bartmer/), [Аполлинарий Александрович Бартмер](/people/unknown/apollinariy-aleksandrovich-bartmer/), [Эльвина-Шарлотта Бурмейстер](/people/unknown/elvina-sharlotta-burmeyster/), [Эммелина-Леонтина Викстрём](/people/unknown/emmelina-leontina-vikstrem/)
+**Дети:** [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/), [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Йоганна-Мария Lobeck](/people/1850-1859/yoganna-mariya-lobeck/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/), [Аполлинарий Александрович Бартмер](/people/unknown/apollinariy-aleksandrovich-bartmer/), [Эльвина-Шарлотта Бурмейстер](/people/unknown/elvina-sharlotta-burmeyster/), [Эммелина-Леонтина Викстрём](/people/unknown/emmelina-leontina-vikstrem/), [Отто Александрович Бартмер](/people/unknown/otto-aleksandrovich-bartmer/)
 
 ## Биография
 

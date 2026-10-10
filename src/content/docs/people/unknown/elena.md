@@ -3,15 +3,28 @@ title: "Елена"
 description: "Елена"
 entity: person
 importManaged: true
-id: P000045
-name: "Елена"
-displayName: "Елена"
-deceased: false
+name:
+  full: "Елена"
+  display: "Елена"
+  aliases: []
 sex: F
-parents:
-  - P000040
-  - P000043
+father: "unknown/vadim-vinokurov.md"
+mother: "unknown/irina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

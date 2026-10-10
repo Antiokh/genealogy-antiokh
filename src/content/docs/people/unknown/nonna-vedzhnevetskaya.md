@@ -3,17 +3,31 @@ title: "Нонна Веджневецкая"
 description: "Нонна Веджневецкая"
 entity: person
 importManaged: true
-id: P000057
-name: "Нонна Веджневецкая"
-displayName: "Нонна Веджневецкая"
-birthSurname: "Веджневецкая"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwMDUzOTFhYzJhM2M4NzlkZjg1Mzg3OTQyZmRkMjRhOTRlNDk0ZTJiYmQ0MmFkNGIxMTE4ZTBmYWM0OWE5NjUmZT0xNzg5Njc1MjAw/129/852/4292/500119_6336855726w507626l701n_A.jpg"
-deceased: true
+name:
+  full: "Нонна Веджневецкая"
+  display: "Нонна Веджневецкая"
+  birth_last: "Веджневецкая"
+  aliases: []
 sex: F
-parents:
-  - P000095
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwMDUzOTFhYzJhM2M4NzlkZjg1Mzg3OTQyZmRkMjRhOTRlNDk0ZTJiYmQ0MmFkNGIxMTE4ZTBmYWM0OWE5NjUmZT0xNzg5Njc1MjAw/129/852/4292/500119_6336855726w507626l701n_A.jpg"
+father: "unknown/neizvestnyy-muzhchina-i500096.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000056
+  - person: "1880-1889/mikhail-spiridonov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,11 +39,11 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный (P000095)](/people/unknown/neizvestnyy-p000095/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500096/)
 
 **Партнёры:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/)
 
-**Дети:** [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/), [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Елена Литошко](/people/1900-1909/elena-litoshko/), [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Александр Спиридонов](/people/unknown/aleksandr-spiridonov/)
+**Дети:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Елена Литошко](/people/1900-1909/elena-litoshko/), [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/), [Александр Спиридонов](/people/unknown/aleksandr-spiridonov/)
 
 ## Биография
 

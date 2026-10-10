@@ -3,22 +3,31 @@ title: "Vladimir Bush"
 description: "Vladimir Bush, 1888–1934"
 entity: person
 importManaged: true
-id: P000013
-name: "Vladimir Bush"
-displayName: "Vladimir Bush"
-birthSurname: "Bush"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhZTk2OWQ0YzYyZjBiM2Q1NDM4YzJhMWU5OWJjZWVjMjZlOWE1YWM1NjEwZWY1ZmE2MjQ0MGUwOWYwYzFjOWUmZT0xNzg5Njc1MjAw/129/852/4292/500079_6730726wvaz1l6e64faf11_A.jpg"
-deceased: true
+name:
+  full: "Vladimir Bush"
+  display: "Vladimir Bush"
+  birth_last: "Bush"
+  aliases: []
 sex: M
-birth:
-  year: 1888
-death:
-  year: 1934
-parents:
-  - P000020
-  - P000021
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhZTk2OWQ0YzYyZjBiM2Q1NDM4YzJhMWU5OWJjZWVjMjZlOWE1YWM1NjEwZWY1ZmE2MjQ0MGUwOWYwYzFjOWUmZT0xNzg5Njc1MjAw/129/852/4292/500079_6730726wvaz1l6e64faf11_A.jpg"
+father: "1850-1859/woldemar-carl-chrostopher-bush.md"
+mother: "1860-1869/elizaveta-olga-busch.md"
+born:
+  known: true
+  date: 1888
+  place: null
+died:
+  known: true
+  date: 1934
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000017
+  - person: "1880-1889/vera-bush.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -35,7 +44,7 @@ external:
 
 **Партнёры:** [Вера Буш](/people/1880-1889/vera-bush/)
 
-**Дети:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/)
+**Дети:** [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/), [Вадим Буш](/people/1910-1919/vadim-bush/)
 
 ## Биография
 

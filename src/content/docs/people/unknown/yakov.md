@@ -3,14 +3,28 @@ title: "Яков"
 description: "Яков"
 entity: person
 importManaged: true
-id: P000212
-name: "Яков"
-displayName: "Яков"
-deceased: true
+name:
+  full: "Яков"
+  display: "Яков"
+  aliases: []
 sex: M
-parents:
-  - P000211
+father: "unknown/grigoriy.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

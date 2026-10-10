@@ -3,19 +3,32 @@ title: "Yngve Edvin Teljebo (född Välivaara)"
 description: "Yngve Edvin Teljebo (född Välivaara), 1920–2002"
 entity: person
 importManaged: true
-id: P000250
-name: "Yngve Edvin Teljebo (född Välivaara)"
-displayName: "Yngve Edvin Teljebo (född Välivaara)"
-birthSurname: "Teljebo (född Välivaara)"
-deceased: true
+name:
+  full: "Yngve Edvin Teljebo (född Välivaara)"
+  display: "Yngve Edvin Teljebo (född Välivaara)"
+  birth_last: "Teljebo (född Välivaara)"
+  aliases: []
 sex: M
-birth:
-  year: 1920
-death:
-  year: 2002
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1920
+  place: null
+died:
+  known: true
+  date: 2002
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000251
+  - person: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"
+    married:
+      date: "1951-12-21"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

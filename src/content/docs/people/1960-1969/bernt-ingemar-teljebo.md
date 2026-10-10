@@ -3,18 +3,29 @@ title: "Bernt Ingemar Teljebo"
 description: "Bernt Ingemar Teljebo, 1960–?"
 entity: person
 importManaged: true
-id: P000253
-name: "Bernt Ingemar Teljebo"
-displayName: "Bernt Ingemar Teljebo"
-birthSurname: "Teljebo"
-deceased: true
+name:
+  full: "Bernt Ingemar Teljebo"
+  display: "Bernt Ingemar Teljebo"
+  birth_last: "Teljebo"
+  aliases: []
 sex: M
-birth:
-  year: 1960
-parents:
-  - P000250
-  - P000251
+father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
+mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"
+born:
+  known: true
+  date: 1960
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

@@ -3,14 +3,28 @@ title: "Дарья"
 description: "Дарья"
 entity: person
 importManaged: true
-id: P000171
-name: "Дарья"
-displayName: "Дарья"
-deceased: false
+name:
+  full: "Дарья"
+  display: "Дарья"
+  aliases: []
 sex: F
-parents:
-  - P000169
+father: "unknown/egor.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

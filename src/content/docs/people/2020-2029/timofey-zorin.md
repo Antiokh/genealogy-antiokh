@@ -3,19 +3,30 @@ title: "Тимофей Зорин"
 description: "Тимофей Зорин, 2022–"
 entity: person
 importManaged: true
-id: P000229
-name: "Тимофей Зорин"
-displayName: "Тимофей Зорин"
-birthSurname: "Зорин"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY4NDI4ZjRmNDZlZWNjNTM3NGM5Yjc4MzVlY2FiNGNmZmQzZjg4YzU4ZGU1MmNlN2VlMzliNjBmZmI1MWM0ZGImZT0xNzg5Njc1MjAw/129/852/4292/500236_3392020bae6d1r5065a3ix_A.jpg"
-deceased: false
+name:
+  full: "Тимофей Зорин"
+  display: "Тимофей Зорин"
+  birth_last: "Зорин"
+  aliases: []
 sex: M
-birth:
-  year: 2022
-parents:
-  - P000225
-  - P000226
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY4NDI4ZjRmNDZlZWNjNTM3NGM5Yjc4MzVlY2FiNGNmZmQzZjg4YzU4ZGU1MmNlN2VlMzliNjBmZmI1MWM0ZGImZT0xNzg5Njc1MjAw/129/852/4292/500236_3392020bae6d1r5065a3ix_A.jpg"
+father: "unknown/dmitriy-zorin.md"
+mother: "1980-1989/ekaterina-zorina.md"
+born:
+  known: true
+  date: 2022
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/), [Дмитрий Зорин](/people/unknown/dmitriy-zorin/)
+**Родители:** [Дмитрий Зорин](/people/unknown/dmitriy-zorin/), [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/)
 
 **Партнёры:** —
 

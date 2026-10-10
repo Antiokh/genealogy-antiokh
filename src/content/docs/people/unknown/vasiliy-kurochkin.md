@@ -3,18 +3,31 @@ title: "Василий Курочкин"
 description: "Василий Курочкин"
 entity: person
 importManaged: true
-id: P000066
-name: "Василий Курочкин"
-displayName: "Василий Курочкин"
-birthSurname: "Курочкин"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZkZDJjNGYxMTdlNjAxMDg2NDlkNTUzZDM3MjRlZmU3NzU4N2ZhNzRhN2M4NjM1MmNkNmJlZTlkOGUyNmViY2YmZT0xNzg5Njc1MjAw/129/852/4292/500113_600213g6096m0sgb7f6126_A.jpg"
-deceased: true
+name:
+  full: "Василий Курочкин"
+  display: "Василий Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-parents:
-  - P000061
-  - P000062
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZkZDJjNGYxMTdlNjAxMDg2NDlkNTUzZDM3MjRlZmU3NzU4N2ZhNzRhN2M4NjM1MmNkNmJlZTlkOGUyNmViY2YmZT0xNzg5Njc1MjAw/129/852/4292/500113_600213g6096m0sgb7f6126_A.jpg"
+father: "1870-1879/petr-mikhaylovich-kurochkin.md"
+mother: "unknown/olga-kurochkina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000113
+  - person: "unknown/zoya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

@@ -3,21 +3,30 @@ title: "Николай Курочкин"
 description: "Николай Курочкин, 1942–2020"
 entity: person
 importManaged: true
-id: P000082
-name: "Николай Курочкин"
-displayName: "Николай Курочкин"
-birthSurname: "Курочкин"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWUwZmZiYjk3ODExYzg1OTgwYmJhMWRhM2EwZmI1MWE2ODMxOTM3ZWI4ZDczMWYwYTU4ODU3ZjIzY2RkZWEyNGUmZT0xNzg5Njc1MjAw/129/852/4292/500057_98768510nz6bfl3hq1018c_A.jpg"
-deceased: true
+name:
+  full: "Николай Курочкин"
+  display: "Николай Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-birth:
-  year: 1942
-death:
-  year: 2020
-parents:
-  - P000054
-  - P000055
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWUwZmZiYjk3ODExYzg1OTgwYmJhMWRhM2EwZmI1MWE2ODMxOTM3ZWI4ZDczMWYwYTU4ODU3ZjIzY2RkZWEyNGUmZT0xNzg5Njc1MjAw/129/852/4292/500057_98768510nz6bfl3hq1018c_A.jpg"
+father: "1900-1909/nikolay-kurochkin.md"
+mother: "1910-1919/valentina-kurochkina.md"
+born:
+  known: true
+  date: 1942
+  place: null
+died:
+  known: true
+  date: 2020
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

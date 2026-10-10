@@ -3,23 +3,32 @@ title: "Валентина Курочкина"
 description: "Валентина Курочкина, 1914–1981"
 entity: person
 importManaged: true
-id: P000055
-name: "Валентина Спиридонова"
-displayName: "Валентина Курочкина"
-birthSurname: "Спиридонова"
-marriedSurname: "Курочкина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkMTY0NTczZWU4OWJlYjQ0ZWYxNmZjYjU4YzA4OGYyYWEyODVmYTRjNGFmNzQzZmZjNjg4OTIxMTJkZjlhMjImZT0xNzg5Njc1MjAw/129/852/4292/500071_137348060e1363cfr3f140_A.jpg"
-deceased: true
+name:
+  full: "Валентина Спиридонова"
+  display: "Валентина Курочкина"
+  birth_last: "Спиридонова"
+  married_last: "Курочкина"
+  aliases: []
 sex: F
-birth:
-  year: 1914
-death:
-  year: 1981
-parents:
-  - P000056
-  - P000057
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkMTY0NTczZWU4OWJlYjQ0ZWYxNmZjYjU4YzA4OGYyYWEyODVmYTRjNGFmNzQzZmZjNjg4OTIxMTJkZjlhMjImZT0xNzg5Njc1MjAw/129/852/4292/500071_137348060e1363cfr3f140_A.jpg"
+father: "1880-1889/mikhail-spiridonov.md"
+mother: "unknown/nonna-vedzhnevetskaya.md"
+born:
+  known: true
+  date: 1914
+  place: null
+died:
+  known: true
+  date: 1981
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000054
+  - person: "1900-1909/nikolay-kurochkin.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -38,7 +47,7 @@ external:
 
 **Партнёры:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/)
 
-**Дети:** [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/), [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Владимир Курочкин](/people/1940-1949/vladimir-kurochkin/), [Лариса Примак](/people/unknown/larisa-primak/), [Николай Курочкин](/people/1940-1949/nikolay-kurochkin/), [Галина Капранова](/people/1940-1949/galina-kapranova/)
+**Дети:** [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/), [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Галина Капранова](/people/1940-1949/galina-kapranova/), [Николай Курочкин](/people/1940-1949/nikolay-kurochkin/), [Владимир Курочкин](/people/1940-1949/vladimir-kurochkin/), [Лариса Примак](/people/unknown/larisa-primak/)
 
 ## Биография
 

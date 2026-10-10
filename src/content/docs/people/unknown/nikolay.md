@@ -3,15 +3,28 @@ title: "Николай"
 description: "Николай"
 entity: person
 importManaged: true
-id: P000179
-name: "Николай"
-displayName: "Николай"
-deceased: false
+name:
+  full: "Николай"
+  display: "Николай"
+  aliases: []
 sex: M
-parents:
-  - P000176
-  - P000180
+father: "unknown/neizvestnyy-muzhchina-i500186.md"
+mother: "1920-1929/anna-nazarova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Анна Назарова](/people/1920-1929/anna-nazarova/), [Неизвестный (P000180)](/people/unknown/neizvestnyy-p000180/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500186/), [Анна Назарова](/people/1920-1929/anna-nazarova/)
 
 **Партнёры:** —
 

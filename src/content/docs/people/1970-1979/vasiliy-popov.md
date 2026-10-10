@@ -3,18 +3,29 @@ title: "Василий Попов"
 description: "Василий Попов, 1970–"
 entity: person
 importManaged: true
-id: P000199
-name: "Василий Попов"
-displayName: "Василий Попов"
-birthSurname: "Попов"
-deceased: false
+name:
+  full: "Василий Попов"
+  display: "Василий Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1970
-parents:
-  - P000101
-  - P000102
+father: "1940-1949/vasiliy-popov.md"
+mother: "unknown/sofya-popova.md"
+born:
+  known: true
+  date: 1970
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

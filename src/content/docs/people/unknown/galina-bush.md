@@ -3,16 +3,29 @@ title: "Галина Буш"
 description: "Галина Буш"
 entity: person
 importManaged: true
-id: P000033
-name: "Галина Буш"
-displayName: "Галина Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Галина Буш"
+  display: "Галина Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: F
-parents:
-  - P000029
-  - P000032
+father: "unknown/vladimir-bush.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500032.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
+**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500032/)
 
 **Партнёры:** —
 

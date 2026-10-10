@@ -3,16 +3,31 @@ title: "Адриан Литошко"
 description: "Адриан Литошко"
 entity: person
 importManaged: true
-id: P000060
-name: "Адриан Литошко"
-displayName: "Адриан Литошко"
-birthSurname: "Литошко"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhMDVmMjQ0NTIyNjhlZTNkYjZlNTc2ZWEwMzgwOWVjZDA5Yzg4ZDNiMTUzYWU5NjQxYzFkNTJiOTFiNzNlNzYmZT0xNzg5Njc1MjAw/129/852/4292/500134_214995j8087b2cd606ld01_A.jpg"
-deceased: true
+name:
+  full: "Адриан Литошко"
+  display: "Адриан Литошко"
+  birth_last: "Литошко"
+  aliases: []
 sex: M
-parents: []
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhMDVmMjQ0NTIyNjhlZTNkYjZlNTc2ZWEwMzgwOWVjZDA5Yzg4ZDNiMTUzYWU5NjQxYzFkNTJiOTFiNzNlNzYmZT0xNzg5Njc1MjAw/129/852/4292/500134_214995j8087b2cd606ld01_A.jpg"
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000059
+  - person: "1900-1909/elena-litoshko.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +43,7 @@ external:
 
 **Партнёры:** [Елена Литошко](/people/1900-1909/elena-litoshko/)
 
-**Дети:** [Галина Летошко](/people/1930-1939/galina-letoshko/), [Адриан Летошко](/people/1930-1939/adrian-letoshko/)
+**Дети:** [Адриан Летошко](/people/1930-1939/adrian-letoshko/), [Галина Летошко](/people/1930-1939/galina-letoshko/)
 
 ## Биография
 

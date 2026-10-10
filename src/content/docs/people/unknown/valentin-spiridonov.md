@@ -3,16 +3,29 @@ title: "Валентин Спиридонов"
 description: "Валентин Спиридонов"
 entity: person
 importManaged: true
-id: P000154
-name: "Валентин Спиридонов"
-displayName: "Валентин Спиридонов"
-birthSurname: "Спиридонов"
-deceased: true
+name:
+  full: "Валентин Спиридонов"
+  display: "Валентин Спиридонов"
+  birth_last: "Спиридонов"
+  aliases: []
 sex: M
-parents:
-  - P000093
-  - P000155
+father: "1910-1919/mikhail-spiridonov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500158.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
+**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500158/)
 
 **Партнёры:** —
 

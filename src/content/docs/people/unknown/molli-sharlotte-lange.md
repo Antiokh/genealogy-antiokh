@@ -3,15 +3,30 @@ title: "Молли Шарлотте Ланге"
 description: "Молли Шарлотте Ланге"
 entity: person
 importManaged: true
-id: P000216
-name: "Молли Шарлотте Ланге"
-displayName: "Молли Шарлотте Ланге"
-birthSurname: "Ланге"
-deceased: true
+name:
+  full: "Молли Шарлотте Ланге"
+  display: "Молли Шарлотте Ланге"
+  birth_last: "Ланге"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000215
+  - person: "unknown/jokhan-yulius-bush.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

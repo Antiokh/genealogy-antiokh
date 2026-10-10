@@ -3,15 +3,28 @@ title: "Надежда"
 description: "Надежда"
 entity: person
 importManaged: true
-id: P000044
-name: "Надежда"
-displayName: "Надежда"
-deceased: false
+name:
+  full: "Надежда"
+  display: "Надежда"
+  aliases: []
 sex: F
-parents:
-  - P000040
-  - P000043
+father: "unknown/vadim-vinokurov.md"
+mother: "unknown/irina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

@@ -3,20 +3,33 @@ title: "Татьяна Бескоровайная"
 description: "Татьяна Бескоровайная, 1961–"
 entity: person
 importManaged: true
-id: P000002
-name: "Татьяна Бескоровайная"
-displayName: "Татьяна Бескоровайная"
-birthSurname: "Бескоровайная"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhM2I2MzMzZGE2ZWNhYTRiOGY2YmFkOGFlMTg3ZTY4M2U2NmRjZGU5YjgxZWQxMmVmNGY2ZTg2MGRlNGI2YTMmZT0xNzg5Njc1MjAw/129/852/4292/500336_4326010a7cs9jg7ba18d6b_A.jpg"
-deceased: false
+name:
+  full: "Татьяна Бескоровайная"
+  display: "Татьяна Бескоровайная"
+  birth_last: "Бескоровайная"
+  aliases: []
 sex: F
-birth:
-  year: 1961
-parents:
-  - P000004
-  - P000005
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhM2I2MzMzZGE2ZWNhYTRiOGY2YmFkOGFlMTg3ZTY4M2U2NmRjZGU5YjgxZWQxMmVmNGY2ZTg2MGRlNGI2YTMmZT0xNzg5Njc1MjAw/129/852/4292/500336_4326010a7cs9jg7ba18d6b_A.jpg"
+father: "1930-1939/vladimir-beskorovaynyi.md"
+mother: "1930-1939/emiliya-beskorovaynaya.md"
+born:
+  known: true
+  date: 1961
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000003
+  - person: "1960-1969/vladislav-nazarov.md"
+    married:
+      date: "1988-08-08"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +42,7 @@ external:
 
 ## Семья
 
-**Родители:** [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/), [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/)
+**Родители:** [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/), [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/)
 
 **Партнёры:** [Владислав Назаров](/people/1960-1969/vladislav-nazarov/)
 

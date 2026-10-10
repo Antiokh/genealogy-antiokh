@@ -3,18 +3,29 @@ title: "Louise Charlotte Gerdau"
 description: "Louise Charlotte Gerdau, 1813–1889"
 entity: person
 importManaged: true
-id: P000157
-name: "Louise Charlotte Gerdau"
-displayName: "Louise Charlotte Gerdau"
-birthSurname: "Gerdau"
-deceased: true
+name:
+  full: "Louise Charlotte Gerdau"
+  display: "Louise Charlotte Gerdau"
+  birth_last: "Gerdau"
+  aliases: []
 sex: F
-birth:
-  year: 1813
-death:
-  year: 1889
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1813
+  place: null
+died:
+  known: true
+  date: 1889
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

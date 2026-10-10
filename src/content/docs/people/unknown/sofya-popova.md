@@ -3,16 +3,31 @@ title: "Софья Попова"
 description: "Софья Попова"
 entity: person
 importManaged: true
-id: P000102
-name: "Софья"
-displayName: "Софья Попова"
-marriedSurname: "Попова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTMyOWQ4NzIxNGY1MWRmMzFkNjUwYjQyMmFiNzRjZTNlNzM5YjM2M2Y4ODY3ZWE3OWVkNWEwZTg1NTkxMDRhN2EmZT0xNzg5Njc1MjAw/129/852/4292/500088_070951b1o1642g1xeff71y_A.jpg"
-deceased: false
+name:
+  full: "Софья"
+  display: "Софья Попова"
+  married_last: "Попова"
+  aliases: []
 sex: F
-parents: []
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTMyOWQ4NzIxNGY1MWRmMzFkNjUwYjQyMmFiNzRjZTNlNzM5YjM2M2Y4ODY3ZWE3OWVkNWEwZTg1NTkxMDRhN2EmZT0xNzg5Njc1MjAw/129/852/4292/500088_070951b1o1642g1xeff71y_A.jpg"
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000101
+  - person: "1940-1949/vasiliy-popov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +44,7 @@ external:
 
 **Партнёры:** [Василий Попов](/people/1940-1949/vasiliy-popov/)
 
-**Дети:** [Василий Попов](/people/1970-1979/vasiliy-popov/), [Сергей Попов](/people/1970-1979/sergey-popov/)
+**Дети:** [Сергей Попов](/people/1970-1979/sergey-popov/), [Василий Попов](/people/1970-1979/vasiliy-popov/)
 
 ## Биография
 

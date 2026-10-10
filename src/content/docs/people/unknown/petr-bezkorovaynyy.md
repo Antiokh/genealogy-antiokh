@@ -3,16 +3,30 @@ title: "Пётр Безкоровайный"
 description: "Пётр Безкоровайный"
 entity: person
 importManaged: true
-id: P000046
-name: "Пётр Безкоровайный"
-displayName: "Пётр Безкоровайный"
-birthSurname: "Безкоровайный"
-deceased: true
+name:
+  full: "Пётр Безкоровайный"
+  display: "Пётр Безкоровайный"
+  birth_last: "Безкоровайный"
+  aliases: []
 sex: M
-parents:
-  - P000053
+father: "unknown/trofim-bezkorovaynyy.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000047
+  - person: "unknown/stepanida.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

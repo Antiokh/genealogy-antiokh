@@ -3,14 +3,29 @@ title: "Дмитрий"
 description: "Дмитрий"
 entity: person
 importManaged: true
-id: P000245
-name: "Дмитрий"
-displayName: "Дмитрий"
-deceased: false
+name:
+  full: "Дмитрий"
+  display: "Дмитрий"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000129
+  - person: "unknown/yuliya-verkhoyantseva.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

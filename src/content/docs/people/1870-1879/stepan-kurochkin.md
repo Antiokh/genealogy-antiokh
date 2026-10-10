@@ -3,20 +3,29 @@ title: "Степан Курочкин"
 description: "Степан Курочкин, 1871–1937"
 entity: person
 importManaged: true
-id: P000132
-name: "Степан Курочкин"
-displayName: "Степан Курочкин"
-birthSurname: "Курочкин"
-deceased: true
+name:
+  full: "Степан Курочкин"
+  display: "Степан Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-birth:
-  year: 1871
-death:
-  year: 1937
-parents:
-  - P000069
-  - P000070
+father: "unknown/mikhail-kurochkin-i500069.md"
+mother: "unknown/elena-kutaeva.md"
+born:
+  known: true
+  date: 1871
+  place: null
+died:
+  known: true
+  date: 1937
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
+**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
 **Партнёры:** —
 

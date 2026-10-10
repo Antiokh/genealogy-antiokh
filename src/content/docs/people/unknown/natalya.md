@@ -3,14 +3,29 @@ title: "Наталья"
 description: "Наталья"
 entity: person
 importManaged: true
-id: P000049
-name: "Наталья"
-displayName: "Наталья"
-deceased: true
+name:
+  full: "Наталья"
+  display: "Наталья"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000048
+  - person: "1900-1909/mikhail-bezkorovaynyy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

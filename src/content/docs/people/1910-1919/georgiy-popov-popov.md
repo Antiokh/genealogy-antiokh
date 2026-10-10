@@ -3,18 +3,29 @@ title: "Георгий Попов (Popov)"
 description: "Георгий Попов (Popov), 1914–?"
 entity: person
 importManaged: true
-id: P000231
-name: "Георгий Попов (Popov)"
-displayName: "Георгий Попов (Popov)"
-birthSurname: "Попов (Popov)"
-deceased: true
+name:
+  full: "Георгий Попов (Popov)"
+  display: "Георгий Попов (Popov)"
+  birth_last: "Попов (Popov)"
+  aliases: []
 sex: M
-birth:
-  year: 1914
-parents:
-  - P000189
-  - P000233
+father: "unknown/timofey-popov.md"
+mother: "unknown/fevroniya.md"
+born:
+  known: true
+  date: 1914
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

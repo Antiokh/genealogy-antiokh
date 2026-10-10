@@ -3,16 +3,29 @@ title: "Сергей"
 description: "Сергей, ?–2024"
 entity: person
 importManaged: true
-id: P000089
-name: "Сергей"
-displayName: "Сергей"
-deceased: true
+name:
+  full: "Сергей"
+  display: "Сергей"
+  aliases: []
 sex: M
-death:
-  year: 2024
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 2024
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000088
+  - person: "1960-1969/lyubov-ledovskikh.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

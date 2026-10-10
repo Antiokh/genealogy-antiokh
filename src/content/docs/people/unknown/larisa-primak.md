@@ -3,19 +3,32 @@ title: "Лариса Примак"
 description: "Лариса Примак"
 entity: person
 importManaged: true
-id: P000081
-name: "Лариса Курочкина"
-displayName: "Лариса Примак"
-birthSurname: "Курочкина"
-marriedSurname: "Примак"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTk5ZTkyYWMxMWNlZWM0OTlhNTAyZDgyNGEzNDZmNTAwNmY5OTAwZjQ1OGQ1N2ViNTQxMWYyYjViZGJlZWYyNDAmZT0xNzg5Njc1MjAw/129/852/4292/500154_3280261e2m1785c06au6ej_A.jpg"
-deceased: true
+name:
+  full: "Лариса Курочкина"
+  display: "Лариса Примак"
+  birth_last: "Курочкина"
+  married_last: "Примак"
+  aliases: []
 sex: F
-parents:
-  - P000054
-  - P000055
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTk5ZTkyYWMxMWNlZWM0OTlhNTAyZDgyNGEzNDZmNTAwNmY5OTAwZjQ1OGQ1N2ViNTQxMWYyYjViZGJlZWYyNDAmZT0xNzg5Njc1MjAw/129/852/4292/500154_3280261e2m1785c06au6ej_A.jpg"
+father: "1900-1909/nikolay-kurochkin.md"
+mother: "1910-1919/valentina-kurochkina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000108
+  - person: "unknown/neizvestnyy-muzhchina-i500110.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -31,7 +44,7 @@ external:
 
 **Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
 
-**Партнёры:** [Неизвестный (P000108)](/people/unknown/neizvestnyy-p000108/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500110/)
 
 **Дети:** [Елена Примак](/people/unknown/elena-primak/)
 

@@ -3,14 +3,29 @@ title: "Ирина"
 description: "Ирина"
 entity: person
 importManaged: true
-id: P000043
-name: "Ирина"
-displayName: "Ирина"
-deceased: true
+name:
+  full: "Ирина"
+  display: "Ирина"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000040
+  - person: "unknown/vadim-vinokurov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +39,7 @@ external:
 
 **Партнёры:** [Вадим Винокуров](/people/unknown/vadim-vinokurov/)
 
-**Дети:** [Надежда](/people/unknown/nadezhda/), [Елена](/people/unknown/elena/)
+**Дети:** [Елена](/people/unknown/elena/), [Надежда](/people/unknown/nadezhda/)
 
 ## Биография
 

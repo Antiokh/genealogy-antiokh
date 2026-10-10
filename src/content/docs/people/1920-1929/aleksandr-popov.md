@@ -3,21 +3,30 @@ title: "Александр Попов"
 description: "Александр Попов, 1928–2008"
 entity: person
 importManaged: true
-id: P000192
-name: "Александр Попов"
-displayName: "Александр Попов"
-birthSurname: "Попов"
-deceased: true
+name:
+  full: "Александр Попов"
+  display: "Александр Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1928
-death:
-  year: 2008
-parents:
-  - P000014
-  - P000015
+father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
+mother: "1900-1909/efrosiniya-popova.md"
+born:
+  known: true
+  date: 1928
+  place: null
+died:
+  known: true
+  date: 2008
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000194
+  - person: "1930-1939/polina-mikhaylovna-popova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -30,11 +39,11 @@ external:
 
 ## Семья
 
-**Родители:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/), [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/)
+**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
 **Партнёры:** [Полина Михайловна Попова](/people/1930-1939/polina-mikhaylovna-popova/)
 
-**Дети:** [Николай Попов](/people/1950-1959/nikolay-popov/), [Анатолий Попов](/people/1950-1959/anatoliy-popov/)
+**Дети:** [Анатолий Попов](/people/1950-1959/anatoliy-popov/), [Николай Попов](/people/1950-1959/nikolay-popov/)
 
 ## Биография
 

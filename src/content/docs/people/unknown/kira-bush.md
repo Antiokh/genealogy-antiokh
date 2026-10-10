@@ -3,15 +3,29 @@ title: "Кира Буш"
 description: "Кира Буш"
 entity: person
 importManaged: true
-id: P000023
-name: "Кира Буш"
-displayName: "Кира Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Кира Буш"
+  display: "Кира Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: F
-parents:
-  - P000022
+father: null
+mother: "1880-1889/mariya-bush.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

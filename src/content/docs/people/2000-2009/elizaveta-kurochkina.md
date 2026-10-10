@@ -3,19 +3,30 @@ title: "Елизавета Курочкина"
 description: "Елизавета Курочкина, 2000–"
 entity: person
 importManaged: true
-id: P000080
-name: "Елизавета Курочкина"
-displayName: "Елизавета Курочкина"
-birthSurname: "Курочкина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFiMjI1ZWRmYzZmNWU5ZWJjM2EyZTY3NjgzNjg1NGZlNGJjMjIwNzhmMTczZmMyZGNiMzFmNDY2Njc4MTE3OWUmZT0xNzg5Njc1MjAw/129/852/4292/500238_19231112a4d350u6ba0r9q_A.jpg"
-deceased: false
+name:
+  full: "Елизавета Курочкина"
+  display: "Елизавета Курочкина"
+  birth_last: "Курочкина"
+  aliases: []
 sex: F
-birth:
-  year: 2000
-parents:
-  - P000078
-  - P000079
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFiMjI1ZWRmYzZmNWU5ZWJjM2EyZTY3NjgzNjg1NGZlNGJjMjIwNzhmMTczZmMyZGNiMzFmNDY2Njc4MTE3OWUmZT0xNzg5Njc1MjAw/129/852/4292/500238_19231112a4d350u6ba0r9q_A.jpg"
+father: "unknown/vladislav-kurochkin.md"
+mother: "unknown/elena-i500079.md"
+born:
+  known: true
+  date: 2000
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владислав Курочкин](/people/unknown/vladislav-kurochkin/), [Елена](/people/unknown/elena-p000079/)
+**Родители:** [Владислав Курочкин](/people/unknown/vladislav-kurochkin/), [Елена](/people/unknown/elena-i500079/)
 
 **Партнёры:** —
 

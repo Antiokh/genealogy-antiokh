@@ -3,15 +3,28 @@ title: "Даниил"
 description: "Даниил"
 entity: person
 importManaged: true
-id: P000244
-name: "Даниил"
-displayName: "Даниил"
-deceased: false
+name:
+  full: "Даниил"
+  display: "Даниил"
+  aliases: []
 sex: M
-parents:
-  - P000129
-  - P000245
+father: "unknown/dmitriy.md"
+mother: "unknown/yuliya-verkhoyantseva.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/), [Дмитрий](/people/unknown/dmitriy/)
+**Родители:** [Дмитрий](/people/unknown/dmitriy/), [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/)
 
 **Партнёры:** —
 

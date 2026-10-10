@@ -3,21 +3,30 @@ title: "Юрий Толстихин"
 description: "Юрий Толстихин, 1933–1992"
 entity: person
 importManaged: true
-id: P000098
-name: "Юрий Толстихин"
-displayName: "Юрий Толстихин"
-birthSurname: "Толстихин"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc5MmYwYWQ5YjFlMGQwZWE4MmY1M2E1Njc5N2RlZTA5NGRiZDFhZjVhY2RiYTg0NzIyOTMyZDA3ZTgxZmJiNzgmZT0xNzg5Njc1MjAw/129/852/4292/500191_702955evd11587sce9e655_A.jpg"
-deceased: true
+name:
+  full: "Юрий Толстихин"
+  display: "Юрий Толстихин"
+  birth_last: "Толстихин"
+  aliases: []
 sex: M
-birth:
-  year: 1933
-death:
-  year: 1992
-parents:
-  - P000058
-  - P000097
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc5MmYwYWQ5YjFlMGQwZWE4MmY1M2E1Njc5N2RlZTA5NGRiZDFhZjVhY2RiYTg0NzIyOTMyZDA3ZTgxZmJiNzgmZT0xNzg5Njc1MjAw/129/852/4292/500191_702955evd11587sce9e655_A.jpg"
+father: "1880-1889/aleksey-tolstikhin.md"
+mother: "1890-1899/klavdiya-tolstikhina.md"
+born:
+  known: true
+  date: 1933
+  place: null
+died:
+  known: true
+  date: 1992
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -30,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/)
+**Родители:** [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/), [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/)
 
 **Партнёры:** —
 

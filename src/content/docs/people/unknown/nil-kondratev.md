@@ -3,14 +3,29 @@ title: "Нил Кондратьев"
 description: "Нил Кондратьев"
 entity: person
 importManaged: true
-id: P000068
-name: "Нил Кондратьев"
-displayName: "Нил Кондратьев"
-birthSurname: "Кондратьев"
-deceased: true
+name:
+  full: "Нил Кондратьев"
+  display: "Нил Кондратьев"
+  birth_last: "Кондратьев"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -26,7 +41,7 @@ external:
 
 **Партнёры:** —
 
-**Дети:** [Ольга Курочкина](/people/unknown/olga-kurochkina/), [Александра Кондратьева](/people/unknown/aleksandra-kondrateva/), [Иван Кондратьев](/people/unknown/ivan-kondratev/)
+**Дети:** [Александра Кондратьева](/people/unknown/aleksandra-kondrateva/), [Иван Кондратьев](/people/unknown/ivan-kondratev/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
 
 ## Биография
 

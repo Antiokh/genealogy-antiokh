@@ -3,16 +3,29 @@ title: "Борис Буш"
 description: "Борис Буш"
 entity: person
 importManaged: true
-id: P000031
-name: "Борис Буш"
-displayName: "Борис Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Борис Буш"
+  display: "Борис Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-parents:
-  - P000029
-  - P000032
+father: "unknown/vladimir-bush.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500032.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
+**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500032/)
 
 **Партнёры:** —
 

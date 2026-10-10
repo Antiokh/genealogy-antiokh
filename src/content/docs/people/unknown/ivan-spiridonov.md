@@ -3,14 +3,29 @@ title: "Иван Спиридонов"
 description: "Иван Спиридонов"
 entity: person
 importManaged: true
-id: P000234
-name: "Иван Спиридонов"
-displayName: "Иван Спиридонов"
-birthSurname: "Спиридонов"
-deceased: true
+name:
+  full: "Иван Спиридонов"
+  display: "Иван Спиридонов"
+  birth_last: "Спиридонов"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

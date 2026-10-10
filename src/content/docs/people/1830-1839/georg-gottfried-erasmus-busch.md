@@ -3,17 +3,29 @@ title: "Georg Gottfried Erasmus Büsch"
 description: "Georg Gottfried Erasmus Büsch, 1832–?"
 entity: person
 importManaged: true
-id: P000158
-name: "Georg Gottfried Erasmus Büsch"
-displayName: "Georg Gottfried Erasmus Büsch"
-birthSurname: "Büsch"
-deceased: true
+name:
+  full: "Georg Gottfried Erasmus Büsch"
+  display: "Georg Gottfried Erasmus Büsch"
+  birth_last: "Büsch"
+  aliases: []
 sex: M
-birth:
-  year: 1832
-parents:
-  - P000157
+father: null
+mother: "1810-1819/louise-charlotte-gerdau.md"
+born:
+  known: true
+  date: 1832
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

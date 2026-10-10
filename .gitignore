@@ -2,3 +2,9 @@
 demos/private-data/
 *.private.json
 *.private.js
+
+# Build outputs and generated datasets.
+node_modules/
+.astro/
+dist/
+public/generated/

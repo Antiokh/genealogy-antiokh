@@ -3,18 +3,29 @@ title: "Михаил Курочкин"
 description: "Михаил Курочкин, ?–1944"
 entity: person
 importManaged: true
-id: P000065
-name: "Михаил Курочкин"
-displayName: "Михаил Курочкин"
-birthSurname: "Курочкин"
-deceased: true
+name:
+  full: "Михаил Курочкин"
+  display: "Михаил Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-death:
-  year: 1944
-parents:
-  - P000061
-  - P000062
+father: "1870-1879/petr-mikhaylovich-kurochkin.md"
+mother: "unknown/olga-kurochkina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1944
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

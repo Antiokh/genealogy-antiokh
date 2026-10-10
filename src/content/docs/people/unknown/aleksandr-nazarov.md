@@ -3,16 +3,29 @@ title: "Александр Назаров"
 description: "Александр Назаров"
 entity: person
 importManaged: true
-id: P000185
-name: "Александр Назаров"
-displayName: "Александр Назаров"
-birthSurname: "Назаров"
-deceased: false
+name:
+  full: "Александр Назаров"
+  display: "Александр Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-parents:
-  - P000177
-  - P000186
+father: "1930-1939/vasiliy-nazarov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500192.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [Неизвестная (P000186)](/people/unknown/neizvestnaya-p000186/)
+**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500192/)
 
 **Партнёры:** —
 

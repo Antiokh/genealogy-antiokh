@@ -3,21 +3,30 @@ title: "Оттилия-Мария Lobeck"
 description: "Оттилия-Мария Lobeck, 1855–1939"
 entity: person
 importManaged: true
-id: P000163
-name: "Оттилия-Мария Bartmer Бартмер"
-displayName: "Оттилия-Мария Lobeck"
-birthSurname: "Bartmer Бартмер"
-marriedSurname: "Lobeck"
-deceased: true
+name:
+  full: "Оттилия-Мария Bartmer Бартмер"
+  display: "Оттилия-Мария Lobeck"
+  birth_last: "Bartmer Бартмер"
+  married_last: "Lobeck"
+  aliases: []
 sex: F
-birth:
-  year: 1855
-death:
-  year: 1939
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: true
+  date: 1855
+  place: null
+died:
+  known: true
+  date: 1939
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

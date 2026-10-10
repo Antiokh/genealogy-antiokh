@@ -20,7 +20,7 @@ jobs:
         run: npm install
       - name: Validate content
         run: npm run check
-      - name: Build site
+      - name: Build site and derived genealogy data
         run: npm run build
       - name: Commit imported records
         run: |

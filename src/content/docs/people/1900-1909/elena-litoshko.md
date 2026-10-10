@@ -3,21 +3,32 @@ title: "Елена Литошко"
 description: "Елена Литошко, 1909–?"
 entity: person
 importManaged: true
-id: P000059
-name: "Елена Спиридонова"
-displayName: "Елена Литошко"
-birthSurname: "Спиридонова"
-marriedSurname: "Литошко"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWYwNTU3N2E3OTcxMDJiOTAwZWQ1NTJjZTFhYjZkNGJkNzYzMTFiOTRiMjk4MTc3OTU0MjJkNDJmZjNiMmU0ZGQmZT0xNzg5Njc1MjAw/129/852/4292/500135_7272186bp1b6254l07fb51_A.jpg"
-deceased: true
+name:
+  full: "Елена Спиридонова"
+  display: "Елена Литошко"
+  birth_last: "Спиридонова"
+  married_last: "Литошко"
+  aliases: []
 sex: F
-birth:
-  year: 1909
-parents:
-  - P000056
-  - P000057
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWYwNTU3N2E3OTcxMDJiOTAwZWQ1NTJjZTFhYjZkNGJkNzYzMTFiOTRiMjk4MTc3OTU0MjJkNDJmZjNiMmU0ZGQmZT0xNzg5Njc1MjAw/129/852/4292/500135_7272186bp1b6254l07fb51_A.jpg"
+father: "1880-1889/mikhail-spiridonov.md"
+mother: "unknown/nonna-vedzhnevetskaya.md"
+born:
+  known: true
+  date: 1909
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000060
+  - person: "unknown/adrian-litoshko.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -36,7 +47,7 @@ external:
 
 **Партнёры:** [Адриан Литошко](/people/unknown/adrian-litoshko/)
 
-**Дети:** [Галина Летошко](/people/1930-1939/galina-letoshko/), [Адриан Летошко](/people/1930-1939/adrian-letoshko/)
+**Дети:** [Адриан Летошко](/people/1930-1939/adrian-letoshko/), [Галина Летошко](/people/1930-1939/galina-letoshko/)
 
 ## Биография
 

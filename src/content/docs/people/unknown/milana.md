@@ -3,15 +3,28 @@ title: "Милана"
 description: "Милана"
 entity: person
 importManaged: true
-id: P000246
-name: "Милана"
-displayName: "Милана"
-deceased: false
+name:
+  full: "Милана"
+  display: "Милана"
+  aliases: []
 sex: F
-parents:
-  - P000131
-  - P000247
+father: "unknown/mikhail.md"
+mother: "unknown/liliya-volkova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Лилия Волкова](/people/unknown/liliya-volkova/), [Михаил](/people/unknown/mikhail/)
+**Родители:** [Михаил](/people/unknown/mikhail/), [Лилия Волкова](/people/unknown/liliya-volkova/)
 
 **Партнёры:** —
 

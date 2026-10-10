@@ -3,15 +3,30 @@ title: "Андрей Антонченко"
 description: "Андрей Антонченко"
 entity: person
 importManaged: true
-id: P000122
-name: "Андрей Антонченко"
-displayName: "Андрей Антонченко"
-birthSurname: "Антонченко"
-deceased: true
+name:
+  full: "Андрей Антонченко"
+  display: "Андрей Антонченко"
+  birth_last: "Антонченко"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000064
+  - person: "unknown/evdokiya-antonchenko.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

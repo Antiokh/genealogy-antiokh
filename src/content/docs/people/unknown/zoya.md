@@ -3,14 +3,29 @@ title: "Зоя"
 description: "Зоя"
 entity: person
 importManaged: true
-id: P000113
-name: "Зоя"
-displayName: "Зоя"
-deceased: true
+name:
+  full: "Зоя"
+  display: "Зоя"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000066
+  - person: "unknown/vasiliy-kurochkin.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

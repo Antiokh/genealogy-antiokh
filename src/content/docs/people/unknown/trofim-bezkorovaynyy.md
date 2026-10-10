@@ -3,14 +3,29 @@ title: "Трофим Безкоровайный"
 description: "Трофим Безкоровайный"
 entity: person
 importManaged: true
-id: P000053
-name: "Трофим Безкоровайный"
-displayName: "Трофим Безкоровайный"
-birthSurname: "Безкоровайный"
-deceased: true
+name:
+  full: "Трофим Безкоровайный"
+  display: "Трофим Безкоровайный"
+  birth_last: "Безкоровайный"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

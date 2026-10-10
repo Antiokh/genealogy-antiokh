@@ -3,23 +3,32 @@ title: "Клавдия Толстихина"
 description: "Клавдия Толстихина, 1895–1959"
 entity: person
 importManaged: true
-id: P000058
-name: "Клавдия Спиридонова"
-displayName: "Клавдия Толстихина"
-birthSurname: "Спиридонова"
-marriedSurname: "Толстихина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZkZjdhYjFiNTVhMDg0ZDE0NDg2MGU4MmMzYzY0YTdlODQ2YTE4ZjMyMjM4NWI5MmE5MTFkNGZjMzNlYWZkY2ImZT0xNzg5Njc1MjAw/129/852/4292/500140_2834866f10g21aj7966wae_A.jpg"
-deceased: true
+name:
+  full: "Клавдия Спиридонова"
+  display: "Клавдия Толстихина"
+  birth_last: "Спиридонова"
+  married_last: "Толстихина"
+  aliases: []
 sex: F
-birth:
-  year: 1895
-death:
-  year: 1959
-parents:
-  - P000056
-  - P000057
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZkZjdhYjFiNTVhMDg0ZDE0NDg2MGU4MmMzYzY0YTdlODQ2YTE4ZjMyMjM4NWI5MmE5MTFkNGZjMzNlYWZkY2ImZT0xNzg5Njc1MjAw/129/852/4292/500140_2834866f10g21aj7966wae_A.jpg"
+father: "1880-1889/mikhail-spiridonov.md"
+mother: "unknown/nonna-vedzhnevetskaya.md"
+born:
+  known: true
+  date: 1895
+  place: null
+died:
+  known: true
+  date: 1959
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000097
+  - person: "1880-1889/aleksey-tolstikhin.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -38,7 +47,7 @@ external:
 
 **Партнёры:** [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/)
 
-**Дети:** [Ольга Толстихина](/people/1940-1949/olga-tolstikhina/), [Юрий Толстихин](/people/1930-1939/yuriy-tolstikhin/), [Виктор Толстихин](/people/1930-1939/viktor-tolstikhin/), [Владислав Толстихин](/people/1930-1939/vladislav-tolstikhin/)
+**Дети:** [Виктор Толстихин](/people/1930-1939/viktor-tolstikhin/), [Владислав Толстихин](/people/1930-1939/vladislav-tolstikhin/), [Юрий Толстихин](/people/1930-1939/yuriy-tolstikhin/), [Ольга Толстихина](/people/1940-1949/olga-tolstikhina/)
 
 ## Биография
 

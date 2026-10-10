@@ -3,15 +3,29 @@ title: "Мария"
 description: "Мария"
 entity: person
 importManaged: true
-id: P000207
-name: "Мария"
-displayName: "Мария"
-deceased: true
+name:
+  full: "Мария"
+  display: "Мария"
+  aliases: []
 sex: F
-parents:
-  - P000211
+father: "unknown/grigoriy.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000190
+  - person: "unknown/grigoriy-popov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

@@ -3,17 +3,30 @@ title: "Шестрем"
 description: "Шестрем, ?–1918"
 entity: person
 importManaged: true
-id: P000025
-name: "Шестрем"
-displayName: "Шестрем"
-birthSurname: "Шестрем"
-deceased: true
+name:
+  full: "Шестрем"
+  display: "Шестрем"
+  birth_last: "Шестрем"
+  aliases: []
 sex: M
-death:
-  year: 1918
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1918
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000024
+  - person: "unknown/elisaveta-botikova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

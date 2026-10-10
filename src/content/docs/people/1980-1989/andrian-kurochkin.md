@@ -3,20 +3,31 @@ title: "Andrian Kurochkin"
 description: "Andrian Kurochkin, 1981–"
 entity: person
 importManaged: true
-id: P000074
-name: "Andrian Kurochkin"
-displayName: "Andrian Kurochkin"
-birthSurname: "Kurochkin"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNjY2ZiYjgyMDZhNjBkODk5YmQyYWU1N2ZmY2ViY2ViZDA1N2JiOTIyNTA2YzJiNDVlNDdkOWM3OTUzOGI4OTEmZT0xNzg5Njc1MjAw/129/852/4292/500124_5387536c7218rz6gy40x16_A.jpg"
-deceased: false
+name:
+  full: "Andrian Kurochkin"
+  display: "Andrian Kurochkin"
+  birth_last: "Kurochkin"
+  aliases: []
 sex: M
-birth:
-  year: 1981
-parents:
-  - P000072
-  - P000073
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNjY2ZiYjgyMDZhNjBkODk5YmQyYWU1N2ZmY2ViY2ViZDA1N2JiOTIyNTA2YzJiNDVlNDdkOWM3OTUzOGI4OTEmZT0xNzg5Njc1MjAw/129/852/4292/500124_5387536c7218rz6gy40x16_A.jpg"
+father: "1940-1949/aleksandr-kurochkin.md"
+mother: "unknown/natalya-i500073.md"
+born:
+  known: true
+  date: 1981
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000151
+  - person: "unknown/natalya-i500154.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,9 +40,9 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Наталья](/people/unknown/natalya-p000073/)
+**Родители:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Наталья](/people/unknown/natalya-i500073/)
 
-**Партнёры:** [Наталья](/people/unknown/natalya-p000151/)
+**Партнёры:** [Наталья](/people/unknown/natalya-i500154/)
 
 **Дети:** [Ульяна Курочкина](/people/unknown/ulyana-kurochkina/)
 

@@ -3,21 +3,32 @@ title: "Любовь Ледовских"
 description: "Любовь Ледовских, 1960–"
 entity: person
 importManaged: true
-id: P000088
-name: "Любовь Назарова"
-displayName: "Любовь Ледовских"
-birthSurname: "Назарова"
-marriedSurname: "Ледовских"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTg4MTFiYzM3OGMyZmJkODIzZDM5Mzg2ZDc5MGYwMWUyNTJhZmFiMzIxZTJhNjg4MWI4OTRmYWViMGE0YWZiMzQmZT0xNzg5Njc1MjAw/129/852/4292/500059_396246rcv1f716731b1bc0_A.jpg"
-deceased: false
+name:
+  full: "Любовь Назарова"
+  display: "Любовь Ледовских"
+  birth_last: "Назарова"
+  married_last: "Ледовских"
+  aliases: []
 sex: F
-birth:
-  year: 1960
-parents:
-  - P000006
-  - P000007
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTg4MTFiYzM3OGMyZmJkODIzZDM5Mzg2ZDc5MGYwMWUyNTJhZmFiMzIxZTJhNjg4MWI4OTRmYWViMGE0YWZiMzQmZT0xNzg5Njc1MjAw/129/852/4292/500059_396246rcv1f716731b1bc0_A.jpg"
+father: "1930-1939/semen-nazarov.md"
+mother: "1930-1939/mariya-nazarova.md"
+born:
+  known: true
+  date: 1960
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000089
+  - person: "unknown/sergey.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +43,7 @@ external:
 
 ## Семья
 
-**Родители:** [Мария Назарова](/people/1930-1939/mariya-nazarova/), [Семен Назаров](/people/1930-1939/semen-nazarov/)
+**Родители:** [Семен Назаров](/people/1930-1939/semen-nazarov/), [Мария Назарова](/people/1930-1939/mariya-nazarova/)
 
 **Партнёры:** [Сергей](/people/unknown/sergey/)
 

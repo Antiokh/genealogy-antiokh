@@ -3,17 +3,30 @@ title: "Инна Тихомирова"
 description: "Инна Тихомирова"
 entity: person
 importManaged: true
-id: P000120
-name: "Инна Тихомирова"
-displayName: "Инна Тихомирова"
-birthSurname: "Тихомирова"
-deceased: false
+name:
+  full: "Инна Тихомирова"
+  display: "Инна Тихомирова"
+  birth_last: "Тихомирова"
+  aliases: []
 sex: F
-parents:
-  - P000119
-  - P000121
+father: "unknown/neizvestnyy-muzhchina-i500123.md"
+mother: "unknown/larisa-tikhomirova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000249
+  - person: "unknown/aleksandr.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,11 +38,11 @@ external:
 
 ## Семья
 
-**Родители:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/), [Неизвестный (P000121)](/people/unknown/neizvestnyy-p000121/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500123/), [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/)
 
 **Партнёры:** [Александр](/people/unknown/aleksandr/)
 
-**Дети:** [Сергей](/people/unknown/sergey-p000248/)
+**Дети:** [Сергей](/people/unknown/sergey-i500257/)
 
 ## Биография
 

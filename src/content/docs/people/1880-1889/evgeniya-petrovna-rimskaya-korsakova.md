@@ -3,23 +3,34 @@ title: "Евгения Петровна Римская-Корсакова"
 description: "Евгения Петровна Римская-Корсакова, 1884–1929"
 entity: person
 importManaged: true
-id: P000219
-name: "Евгения Петровна Бартмер"
-displayName: "Евгения Петровна Римская-Корсакова"
-birthSurname: "Бартмер"
-marriedSurname: "Римская-Корсакова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE4MTg5Yzc1NjdmZTkyY2ZjYzliZTAwZGE0Mzc1MWU1M2M0ZWE3YzY4MjA2MGNmM2IzOWExZTgwZGEwZTZkNjcmZT0xNzg5Njc1MjAw/129/852/4292/500203_056494a11638775d536e58_A.jpg"
-deceased: true
+name:
+  full: "Евгения Петровна Бартмер"
+  display: "Евгения Петровна Римская-Корсакова"
+  birth_last: "Бартмер"
+  married_last: "Римская-Корсакова"
+  aliases: []
 sex: F
-birth:
-  year: 1884
-death:
-  year: 1929
-parents:
-  - P000162
-  - P000220
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE4MTg5Yzc1NjdmZTkyY2ZjYzliZTAwZGE0Mzc1MWU1M2M0ZWE3YzY4MjA2MGNmM2IzOWExZTgwZGEwZTZkNjcmZT0xNzg5Njc1MjAw/129/852/4292/500203_056494a11638775d536e58_A.jpg"
+father: "1850-1859/petr-aleksandrovich-bartmer.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500227.md"
+born:
+  known: true
+  date: 1884
+  place: null
+died:
+  known: true
+  date: 1929
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000236
+  - person: "1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md"
+    married:
+      date: 1911
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -34,11 +45,11 @@ external:
 
 ## Семья
 
-**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Неизвестная (P000220)](/people/unknown/neizvestnaya-p000220/)
+**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500227/)
 
 **Партнёры:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
 
-**Дети:** [Ольга Михайловна Фаворская](/people/1910-1919/olga-mikhaylovna-favorskaya/), [Игорь Михайлович Римский-Корсаков](/people/1910-1919/igor-mikhaylovich-rimskiy-korsakov/), [Георгий Михайлович Римский-Корсаков](/people/1900-1909/georgiy-mikhaylovich-rimskiy-korsakov/)
+**Дети:** [Георгий Михайлович Римский-Корсаков](/people/1900-1909/georgiy-mikhaylovich-rimskiy-korsakov/), [Игорь Михайлович Римский-Корсаков](/people/1910-1919/igor-mikhaylovich-rimskiy-korsakov/), [Ольга Михайловна Фаворская](/people/1910-1919/olga-mikhaylovna-favorskaya/)
 
 ## Биография
 

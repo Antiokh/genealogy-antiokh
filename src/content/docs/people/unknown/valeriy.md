@@ -3,15 +3,30 @@ title: "Валерий"
 description: "Валерий"
 entity: person
 importManaged: true
-id: P000087
-name: "Валерий"
-displayName: "Валерий"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThlNzI0MmMyYmRhYWUzNDljMDc0MzUxMjkwYzllMjhhNTk1NmEwNGVmZmQxNGE1ZWMwZWE5NmMzN2RlOGRjZDEmZT0xNzg5Njc1MjAw/129/852/4292/500106_649946txqz24466a1300c7_A.jpg"
-deceased: false
+name:
+  full: "Валерий"
+  display: "Валерий"
+  aliases: []
 sex: M
-parents: []
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThlNzI0MmMyYmRhYWUzNDljMDc0MzUxMjkwYzllMjhhNTk1NmEwNGVmZmQxNGE1ZWMwZWE5NmMzN2RlOGRjZDEmZT0xNzg5Njc1MjAw/129/852/4292/500106_649946txqz24466a1300c7_A.jpg"
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000085
+  - person: "1960-1969/irina-kapranova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

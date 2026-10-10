@@ -3,14 +3,29 @@ title: "Михаил"
 description: "Михаил"
 entity: person
 importManaged: true
-id: P000247
-name: "Михаил"
-displayName: "Михаил"
-deceased: false
+name:
+  full: "Михаил"
+  display: "Михаил"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000131
+  - person: "unknown/liliya-volkova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
