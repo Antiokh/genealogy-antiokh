@@ -2,6 +2,7 @@
 title: "Зоя Попова"
 description: "Зоя Попова, 1936–?"
 entity: person
+importManaged: true
 id: P000198
 name: "Зоя Попова"
 displayName: "Зоя Попова"

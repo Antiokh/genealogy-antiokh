@@ -2,6 +2,7 @@
 title: "Lars Yngve Erik Teljebo"
 description: "Lars Yngve Erik Teljebo, 1954–2021"
 entity: person
+importManaged: true
 id: P000252
 name: "Lars Yngve Erik Teljebo"
 displayName: "Lars Yngve Erik Teljebo"

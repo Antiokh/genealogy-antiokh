@@ -2,6 +2,7 @@
 title: "Клавдия Николаева"
 description: "Клавдия Николаева"
 entity: person
+importManaged: true
 id: P000242
 name: "Клавдия Николаева"
 displayName: "Клавдия Николаева"

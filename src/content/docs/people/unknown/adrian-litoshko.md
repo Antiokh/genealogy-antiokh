@@ -2,6 +2,7 @@
 title: "Адриан Литошко"
 description: "Адриан Литошко"
 entity: person
+importManaged: true
 id: P000060
 name: "Адриан Литошко"
 displayName: "Адриан Литошко"

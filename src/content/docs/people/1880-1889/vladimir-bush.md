@@ -2,6 +2,7 @@
 title: "Vladimir Bush"
 description: "Vladimir Bush, 1888–1934"
 entity: person
+importManaged: true
 id: P000013
 name: "Vladimir Bush"
 displayName: "Vladimir Bush"

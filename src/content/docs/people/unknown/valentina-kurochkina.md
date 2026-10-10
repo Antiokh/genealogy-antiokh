@@ -2,6 +2,7 @@
 title: "Валентина Курочкина"
 description: "Валентина Курочкина"
 entity: person
+importManaged: true
 id: P000116
 name: "Валентина Курочкина"
 displayName: "Валентина Курочкина"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [I500117](/people/unknown/i500117/)
+**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Неизвестная (P000115)](/people/unknown/neizvestnaya-p000115/)
 
 **Партнёры:** —
 

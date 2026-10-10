@@ -2,6 +2,7 @@
 title: "Анна Назарова"
 description: "Анна Назарова, 1928–?"
 entity: person
+importManaged: true
 id: P000176
 name: "Анна Назарова"
 displayName: "Анна Назарова"
@@ -29,7 +30,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [I500186](/people/unknown/i500186/)
+**Партнёры:** [Неизвестный (P000180)](/people/unknown/neizvestnyy-p000180/)
 
 **Дети:** [Николай](/people/unknown/nikolay/), [Вячеслав](/people/unknown/vyacheslav/)
 

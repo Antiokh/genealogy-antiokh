@@ -2,6 +2,7 @@
 title: "Степан Курочкин"
 description: "Степан Курочкин, 1871–1937"
 entity: person
+importManaged: true
 id: P000132
 name: "Степан Курочкин"
 displayName: "Степан Курочкин"

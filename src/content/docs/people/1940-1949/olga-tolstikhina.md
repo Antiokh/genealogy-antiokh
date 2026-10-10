@@ -2,6 +2,7 @@
 title: "Ольга Толстихина"
 description: "Ольга Толстихина, 1941–?"
 entity: person
+importManaged: true
 id: P000096
 name: "Ольга Толстихина"
 displayName: "Ольга Толстихина"

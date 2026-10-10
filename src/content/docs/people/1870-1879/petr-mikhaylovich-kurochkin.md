@@ -2,6 +2,7 @@
 title: "Пётр Михайлович Курочкин"
 description: "Пётр Михайлович Курочкин, 1879–1937"
 entity: person
+importManaged: true
 id: P000061
 name: "Пётр Михайлович Курочкин"
 displayName: "Пётр Михайлович Курочкин"

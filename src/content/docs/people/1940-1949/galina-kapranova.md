@@ -2,6 +2,7 @@
 title: "Галина Капранова"
 description: "Галина Капранова, 1941–"
 entity: person
+importManaged: true
 id: P000083
 name: "Галина Курочкина"
 displayName: "Галина Капранова"

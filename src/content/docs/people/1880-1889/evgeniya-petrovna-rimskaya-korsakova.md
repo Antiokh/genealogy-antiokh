@@ -2,6 +2,7 @@
 title: "Евгения Петровна Римская-Корсакова"
 description: "Евгения Петровна Римская-Корсакова, 1884–1929"
 entity: person
+importManaged: true
 id: P000219
 name: "Евгения Петровна Бартмер"
 displayName: "Евгения Петровна Римская-Корсакова"
@@ -33,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [I500227](/people/unknown/i500227/)
+**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Неизвестная (P000220)](/people/unknown/neizvestnaya-p000220/)
 
 **Партнёры:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
 

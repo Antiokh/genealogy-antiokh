@@ -2,6 +2,7 @@
 title: "Борис Винокуров"
 description: "Борис Винокуров"
 entity: person
+importManaged: true
 id: P000034
 name: "Борис Винокуров"
 displayName: "Борис Винокуров"

@@ -2,6 +2,7 @@
 title: "Клавдия Бескоровайная"
 description: "Клавдия Бескоровайная, 1908–1994"
 entity: person
+importManaged: true
 id: P000009
 name: "Клавдия Безкоровайная"
 displayName: "Клавдия Бескоровайная"

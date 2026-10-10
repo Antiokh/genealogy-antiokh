@@ -2,6 +2,7 @@
 title: "Yngve Edvin Teljebo (född Välivaara)"
 description: "Yngve Edvin Teljebo (född Välivaara), 1920–2002"
 entity: person
+importManaged: true
 id: P000250
 name: "Yngve Edvin Teljebo (född Välivaara)"
 displayName: "Yngve Edvin Teljebo (född Välivaara)"

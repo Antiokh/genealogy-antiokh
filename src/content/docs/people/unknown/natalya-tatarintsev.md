@@ -2,6 +2,7 @@
 title: "Наталья Tatarintsev"
 description: "Наталья Tatarintsev, ?–2002"
 entity: person
+importManaged: true
 id: P000241
 name: "Наталья"
 displayName: "Наталья Tatarintsev"

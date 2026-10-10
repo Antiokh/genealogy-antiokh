@@ -2,6 +2,7 @@
 title: "Анатолий Попов"
 description: "Анатолий Попов, 1955–?"
 entity: person
+importManaged: true
 id: P000195
 name: "Анатолий Попов"
 displayName: "Анатолий Попов"

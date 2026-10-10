@@ -2,6 +2,7 @@
 title: "Эльвина-Шарлотта Бурмейстер"
 description: "Эльвина-Шарлотта Бурмейстер"
 entity: person
+importManaged: true
 id: P000166
 name: "Эльвина-Шарлотта Бартмер"
 displayName: "Эльвина-Шарлотта Бурмейстер"

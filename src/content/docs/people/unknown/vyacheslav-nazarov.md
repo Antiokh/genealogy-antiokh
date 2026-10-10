@@ -2,6 +2,7 @@
 title: "Вячеслав Назаров"
 description: "Вячеслав Назаров"
 entity: person
+importManaged: true
 id: P000182
 name: "Вячеслав Назаров"
 displayName: "Вячеслав Назаров"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [I500189](/people/unknown/i500189/)
+**Родители:** [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [Неизвестная (P000183)](/people/unknown/neizvestnaya-p000183/)
 
 **Партнёры:** —
 

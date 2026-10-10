@@ -2,6 +2,7 @@
 title: "Нонна Веджневецкая"
 description: "Нонна Веджневецкая"
 entity: person
+importManaged: true
 id: P000057
 name: "Нонна Веджневецкая"
 displayName: "Нонна Веджневецкая"
@@ -24,7 +25,7 @@ external:
 
 ## Семья
 
-**Родители:** [I500096](/people/unknown/i500096/)
+**Родители:** [Неизвестный (P000095)](/people/unknown/neizvestnyy-p000095/)
 
 **Партнёры:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/)
 

@@ -2,6 +2,7 @@
 title: "Inkeri Helvi Kyllikki Teljebo"
 description: "Inkeri Helvi Kyllikki Teljebo, 1927–2004"
 entity: person
+importManaged: true
 id: P000251
 name: "Inkeri Helvi Kyllikki Iso-Kamula"
 displayName: "Inkeri Helvi Kyllikki Teljebo"

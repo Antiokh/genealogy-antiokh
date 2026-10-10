@@ -2,6 +2,7 @@
 title: "Мария Назарова"
 description: "Мария Назарова, 1934–2022"
 entity: person
+importManaged: true
 id: P000006
 name: "Мария Попова"
 displayName: "Мария Назарова"

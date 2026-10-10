@@ -2,6 +2,7 @@
 title: "Степанида"
 description: "Степанида"
 entity: person
+importManaged: true
 id: P000047
 name: "Степанида"
 displayName: "Степанида"

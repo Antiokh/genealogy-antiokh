@@ -2,6 +2,7 @@
 title: "Сергей Попов"
 description: "Сергей Попов, 1973–"
 entity: person
+importManaged: true
 id: P000200
 name: "Сергей Попов"
 displayName: "Сергей Попов"

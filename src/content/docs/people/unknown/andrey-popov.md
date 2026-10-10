@@ -2,6 +2,7 @@
 title: "Андрей Попов"
 description: "Андрей Попов"
 entity: person
+importManaged: true
 id: P000206
 name: "Андрей Попов"
 displayName: "Андрей Попов"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [I500209](/people/unknown/i500209/)
+**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная (P000203)](/people/unknown/neizvestnaya-p000203/)
 
 **Партнёры:** —
 

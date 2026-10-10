@@ -2,6 +2,7 @@
 title: "Александр Назаров"
 description: "Александр Назаров"
 entity: person
+importManaged: true
 id: P000185
 name: "Александр Назаров"
 displayName: "Александр Назаров"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [I500192](/people/unknown/i500192/)
+**Родители:** [Василий Назаров](/people/1930-1939/vasiliy-nazarov/), [Неизвестная (P000186)](/people/unknown/neizvestnaya-p000186/)
 
 **Партнёры:** —
 

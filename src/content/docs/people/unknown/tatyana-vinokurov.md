@@ -2,6 +2,7 @@
 title: "Татьяна Винокуров"
 description: "Татьяна Винокуров"
 entity: person
+importManaged: true
 id: P000035
 name: "Татьяна Винокуров"
 displayName: "Татьяна Винокуров"
@@ -26,7 +27,7 @@ external:
 
 **Родители:** [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/), [Борис Винокуров](/people/unknown/boris-vinokurov/)
 
-**Партнёры:** [I500037](/people/unknown/i500037/)
+**Партнёры:** [Неизвестный (P000037)](/people/unknown/neizvestnyy-p000037/)
 
 **Дети:** [Екатерина](/people/unknown/ekaterina/)
 

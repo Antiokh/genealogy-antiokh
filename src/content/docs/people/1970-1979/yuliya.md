@@ -2,6 +2,7 @@
 title: "Юлия"
 description: "Юлия, 1977–2019"
 entity: person
+importManaged: true
 id: P000111
 name: "Юлия"
 displayName: "Юлия"

@@ -2,6 +2,7 @@
 title: "Larisa Teljebo"
 description: "Larisa Teljebo, 1965–"
 entity: person
+importManaged: true
 id: P000104
 name: "Larisa Михалец"
 displayName: "Larisa Teljebo"

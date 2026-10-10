@@ -2,6 +2,7 @@
 title: "Юлия Верхоянцева"
 description: "Юлия Верхоянцева"
 entity: person
+importManaged: true
 id: P000129
 name: "Юлия Волкова"
 displayName: "Юлия Верхоянцева"

@@ -2,6 +2,7 @@
 title: "Николай"
 description: "Николай"
 entity: person
+importManaged: true
 id: P000179
 name: "Николай"
 displayName: "Николай"
@@ -20,7 +21,7 @@ external:
 
 ## Семья
 
-**Родители:** [Анна Назарова](/people/1920-1929/anna-nazarova/), [I500186](/people/unknown/i500186/)
+**Родители:** [Анна Назарова](/people/1920-1929/anna-nazarova/), [Неизвестный (P000180)](/people/unknown/neizvestnyy-p000180/)
 
 **Партнёры:** —
 

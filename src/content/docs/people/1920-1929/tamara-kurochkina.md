@@ -2,6 +2,7 @@
 title: "Тамара Курочкина"
 description: "Тамара Курочкина, 1928–2024"
 entity: person
+importManaged: true
 id: P000067
 name: "Тамара Курочкина"
 displayName: "Тамара Курочкина"

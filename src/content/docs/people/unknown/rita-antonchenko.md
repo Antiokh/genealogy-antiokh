@@ -2,6 +2,7 @@
 title: "Рита Антонченко"
 description: "Рита Антонченко"
 entity: person
+importManaged: true
 id: P000123
 name: "Рита Антонченко"
 displayName: "Рита Антонченко"

@@ -2,6 +2,7 @@
 title: "Leonard Nazarov"
 description: "Leonard Nazarov, 2023–"
 entity: person
+importManaged: true
 id: P000218
 name: "Leonard Nazarov"
 displayName: "Leonard Nazarov"

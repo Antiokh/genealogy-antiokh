@@ -2,6 +2,7 @@
 title: "Валентина Курочкина"
 description: "Валентина Курочкина, 1914–1981"
 entity: person
+importManaged: true
 id: P000055
 name: "Валентина Спиридонова"
 displayName: "Валентина Курочкина"

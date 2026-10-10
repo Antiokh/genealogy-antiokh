@@ -2,6 +2,7 @@
 title: "Захар"
 description: "Захар"
 entity: person
+importManaged: true
 id: P000210
 name: "Захар"
 displayName: "Захар"
@@ -20,7 +21,7 @@ external:
 
 ## Семья
 
-**Родители:** [I500214](/people/unknown/i500214/), [I500215](/people/unknown/i500215/)
+**Родители:** [Неизвестный (P000208)](/people/unknown/neizvestnyy-p000208/), [Неизвестная (P000209)](/people/unknown/neizvestnaya-p000209/)
 
 **Партнёры:** —
 

@@ -2,6 +2,7 @@
 title: "Николай Курочкин"
 description: "Николай Курочкин, 1942–2020"
 entity: person
+importManaged: true
 id: P000082
 name: "Николай Курочкин"
 displayName: "Николай Курочкин"

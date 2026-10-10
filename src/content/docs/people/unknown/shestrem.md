@@ -2,6 +2,7 @@
 title: "Шестрем"
 description: "Шестрем, ?–1918"
 entity: person
+importManaged: true
 id: P000025
 name: "Шестрем"
 displayName: "Шестрем"

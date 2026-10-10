@@ -2,6 +2,7 @@
 title: "Sebastian Karika"
 description: "Sebastian Karika, 1991–"
 entity: person
+importManaged: true
 id: P000230
 name: "Sebastian Karika"
 displayName: "Sebastian Karika"

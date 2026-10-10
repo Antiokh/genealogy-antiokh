@@ -1,27 +1,28 @@
 ---
-title: "I500214"
-description: "I500214"
+title: "Неизвестная (P000209)"
+description: "Неизвестная (P000209)"
 entity: person
-id: P000208
-name: "I500214"
-displayName: "I500214"
+importManaged: true
+id: P000209
+name: "Неизвестная (P000209)"
+displayName: "Неизвестная (P000209)"
 deceased: false
-sex: M
+sex: F
 parents: []
 partners:
-  - P000209
+  - P000208
 sources: []
 external:
   myheritage:
     snapshot: "2026-09-10"
-    xref: "I500214"
+    xref: "I500215"
 ---
 
 ## Семья
 
 **Родители:** —
 
-**Партнёры:** [I500215](/people/unknown/i500215/)
+**Партнёры:** [Неизвестный (P000208)](/people/unknown/neizvestnyy-p000208/)
 
 **Дети:** [Григорий Попов](/people/unknown/grigoriy-popov/), [Захар](/people/unknown/zakhar/)
 

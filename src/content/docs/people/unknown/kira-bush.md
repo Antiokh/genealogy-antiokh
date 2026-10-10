@@ -2,6 +2,7 @@
 title: "Кира Буш"
 description: "Кира Буш"
 entity: person
+importManaged: true
 id: P000023
 name: "Кира Буш"
 displayName: "Кира Буш"

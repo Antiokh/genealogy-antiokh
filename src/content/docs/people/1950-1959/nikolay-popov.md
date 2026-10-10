@@ -2,6 +2,7 @@
 title: "Николай Попов"
 description: "Николай Попов, 1954–2016"
 entity: person
+importManaged: true
 id: P000193
 name: "Николай Попов"
 displayName: "Николай Попов"

@@ -2,6 +2,7 @@
 title: "Пётр Mikhalets"
 description: "Пётр Mikhalets"
 entity: person
+importManaged: true
 id: P000092
 name: "Пётр Mikhalets"
 displayName: "Пётр Mikhalets"

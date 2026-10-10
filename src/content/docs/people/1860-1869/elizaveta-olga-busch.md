@@ -2,6 +2,7 @@
 title: "Елизавета-Ольга Busch"
 description: "Елизавета-Ольга Busch, 1860–1933"
 entity: person
+importManaged: true
 id: P000021
 name: "Елизавета-Ольга Bartmer"
 displayName: "Елизавета-Ольга Busch"

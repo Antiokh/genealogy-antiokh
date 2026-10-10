@@ -2,6 +2,7 @@
 title: "Леонида Даниэльсон"
 description: "Леонида Даниэльсон"
 entity: person
+importManaged: true
 id: P000018
 name: "Леонида Даниэльсон"
 displayName: "Леонида Даниэльсон"

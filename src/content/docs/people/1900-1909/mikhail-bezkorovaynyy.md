@@ -2,6 +2,7 @@
 title: "Михаил Безкоровайный"
 description: "Михаил Безкоровайный, 1907–1956"
 entity: person
+importManaged: true
 id: P000048
 name: "Михаил Безкоровайный"
 displayName: "Михаил Безкоровайный"

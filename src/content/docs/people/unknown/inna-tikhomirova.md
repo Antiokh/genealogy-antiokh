@@ -2,6 +2,7 @@
 title: "Инна Тихомирова"
 description: "Инна Тихомирова"
 entity: person
+importManaged: true
 id: P000120
 name: "Инна Тихомирова"
 displayName: "Инна Тихомирова"
@@ -24,7 +25,7 @@ external:
 
 ## Семья
 
-**Родители:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/), [I500123](/people/unknown/i500123/)
+**Родители:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/), [Неизвестный (P000121)](/people/unknown/neizvestnyy-p000121/)
 
 **Партнёры:** [Александр](/people/unknown/aleksandr/)
 

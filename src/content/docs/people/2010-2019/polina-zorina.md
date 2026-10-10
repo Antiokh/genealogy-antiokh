@@ -2,6 +2,7 @@
 title: "Полина Зорина"
 description: "Полина Зорина, 2011–"
 entity: person
+importManaged: true
 id: P000228
 name: "Полина Зорина"
 displayName: "Полина Зорина"

@@ -2,6 +2,7 @@
 title: "Vladimir Beskorovaynyi"
 description: "Vladimir Beskorovaynyi, 1936–2017"
 entity: person
+importManaged: true
 id: P000005
 name: "Vladimir Beskorovaynyi"
 displayName: "Vladimir Beskorovaynyi"

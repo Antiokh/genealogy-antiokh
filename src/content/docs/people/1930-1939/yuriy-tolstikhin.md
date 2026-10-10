@@ -2,6 +2,7 @@
 title: "Юрий Толстихин"
 description: "Юрий Толстихин, 1933–1992"
 entity: person
+importManaged: true
 id: P000098
 name: "Юрий Толстихин"
 displayName: "Юрий Толстихин"

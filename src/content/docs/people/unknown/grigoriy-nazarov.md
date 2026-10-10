@@ -2,6 +2,7 @@
 title: "Григорий Назаров"
 description: "Григорий Назаров"
 entity: person
+importManaged: true
 id: P000170
 name: "Григорий Назаров"
 displayName: "Григорий Назаров"

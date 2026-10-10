@@ -2,6 +2,7 @@
 title: "Georg Gottfried Erasmus Büsch"
 description: "Georg Gottfried Erasmus Büsch, 1832–?"
 entity: person
+importManaged: true
 id: P000158
 name: "Georg Gottfried Erasmus Büsch"
 displayName: "Georg Gottfried Erasmus Büsch"

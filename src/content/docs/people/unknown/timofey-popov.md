@@ -2,6 +2,7 @@
 title: "Тимофей Попов"
 description: "Тимофей Попов"
 entity: person
+importManaged: true
 id: P000189
 name: "Тимофей Попов"
 displayName: "Тимофей Попов"

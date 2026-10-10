@@ -2,6 +2,7 @@
 title: "Александр-Эдуард Бартмер"
 description: "Александр-Эдуард Бартмер, 1812–1884"
 entity: person
+importManaged: true
 id: P000159
 name: "Александр-Эдуард Бартмер"
 displayName: "Александр-Эдуард Бартмер"

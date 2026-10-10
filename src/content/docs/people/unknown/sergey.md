@@ -2,6 +2,7 @@
 title: "Сергей"
 description: "Сергей, ?–2024"
 entity: person
+importManaged: true
 id: P000089
 name: "Сергей"
 displayName: "Сергей"

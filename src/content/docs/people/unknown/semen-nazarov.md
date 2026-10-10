@@ -2,6 +2,7 @@
 title: "Семён Назаров"
 description: "Семён Назаров"
 entity: person
+importManaged: true
 id: P000016
 name: "Семён Назаров"
 displayName: "Семён Назаров"

@@ -2,6 +2,7 @@
 title: "Angelica Kristina Karika"
 description: "Angelica Kristina Karika, 1993–"
 entity: person
+importManaged: true
 id: P000105
 name: "Angelica Kristina Teljebo"
 displayName: "Angelica Kristina Karika"

@@ -2,6 +2,7 @@
 title: "Александр Тихомиров"
 description: "Александр Тихомиров"
 entity: person
+importManaged: true
 id: P000117
 name: "Александр Тихомиров"
 displayName: "Александр Тихомиров"

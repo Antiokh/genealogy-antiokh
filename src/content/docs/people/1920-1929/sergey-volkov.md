@@ -2,6 +2,7 @@
 title: "Сергей Волков"
 description: "Сергей Волков, 1920–1997"
 entity: person
+importManaged: true
 id: P000126
 name: "Сергей Волков"
 displayName: "Сергей Волков"

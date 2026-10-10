@@ -2,6 +2,7 @@
 title: "Семен Назаров"
 description: "Семен Назаров, 1935–2010"
 entity: person
+importManaged: true
 id: P000007
 name: "Семен Назаров"
 displayName: "Семен Назаров"

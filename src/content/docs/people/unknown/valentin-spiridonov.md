@@ -2,6 +2,7 @@
 title: "Валентин Спиридонов"
 description: "Валентин Спиридонов"
 entity: person
+importManaged: true
 id: P000154
 name: "Валентин Спиридонов"
 displayName: "Валентин Спиридонов"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [I500158](/people/unknown/i500158/)
+**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
 
 **Партнёры:** —
 

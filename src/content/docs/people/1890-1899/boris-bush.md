@@ -2,6 +2,7 @@
 title: "Борис Буш"
 description: "Борис Буш, 1898–1945"
 entity: person
+importManaged: true
 id: P000028
 name: "Борис Буш"
 displayName: "Борис Буш"
@@ -32,7 +33,7 @@ external:
 
 **Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
 
-**Партнёры:** [I500030](/people/unknown/i500030/)
+**Партнёры:** [Неизвестная (P000030)](/people/unknown/neizvestnaya-p000030/)
 
 **Дети:** [Владимир Буш](/people/unknown/vladimir-bush/)
 

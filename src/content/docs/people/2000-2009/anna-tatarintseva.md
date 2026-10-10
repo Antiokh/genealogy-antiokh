@@ -2,6 +2,7 @@
 title: "Anna Tatarintseva"
 description: "Anna Tatarintseva, 2001–"
 entity: person
+importManaged: true
 id: P000217
 name: "Anna Tatarintseva"
 displayName: "Anna Tatarintseva"

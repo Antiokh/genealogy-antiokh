@@ -2,6 +2,7 @@
 title: "Екатерина Зорина"
 description: "Екатерина Зорина, 1986–"
 entity: person
+importManaged: true
 id: P000225
 name: "Екатерина Tatarintseva"
 displayName: "Екатерина Зорина"

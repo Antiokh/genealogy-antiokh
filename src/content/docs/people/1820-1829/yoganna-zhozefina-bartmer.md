@@ -2,6 +2,7 @@
 title: "Йоганна-Жозефина Bartmer"
 description: "Йоганна-Жозефина Bartmer, 1825–1892"
 entity: person
+importManaged: true
 id: P000160
 name: "Йоганна-Жозефина Thorsell Торселл"
 displayName: "Йоганна-Жозефина Bartmer"

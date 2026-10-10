@@ -2,6 +2,7 @@
 title: "Ульяна Курочкина"
 description: "Ульяна Курочкина"
 entity: person
+importManaged: true
 id: P000152
 name: "Ульяна Курочкина"
 displayName: "Ульяна Курочкина"

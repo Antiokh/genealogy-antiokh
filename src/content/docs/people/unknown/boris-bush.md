@@ -2,6 +2,7 @@
 title: "Борис Буш"
 description: "Борис Буш"
 entity: person
+importManaged: true
 id: P000031
 name: "Борис Буш"
 displayName: "Борис Буш"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [I500032](/people/unknown/i500032/)
+**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
 
 **Партнёры:** —
 

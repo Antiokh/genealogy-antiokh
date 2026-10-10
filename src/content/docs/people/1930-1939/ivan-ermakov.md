@@ -2,6 +2,7 @@
 title: "Иван Ермаков"
 description: "Иван Ермаков, 1938–2011"
 entity: person
+importManaged: true
 id: P000223
 name: "Иван Ермаков"
 displayName: "Иван Ермаков"

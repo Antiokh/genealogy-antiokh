@@ -2,6 +2,7 @@
 title: "Ирина Капранова"
 description: "Ирина Капранова, 1965–"
 entity: person
+importManaged: true
 id: P000085
 name: "Ирина Капранова"
 displayName: "Ирина Капранова"

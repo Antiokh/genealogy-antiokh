@@ -2,6 +2,7 @@
 title: "Дмитрий Зорин"
 description: "Дмитрий Зорин"
 entity: person
+importManaged: true
 id: P000226
 name: "Дмитрий Зорин"
 displayName: "Дмитрий Зорин"

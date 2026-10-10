@@ -2,6 +2,7 @@
 title: "Иван Попов (Popov)"
 description: "Иван Попов (Popov), 1903–?"
 entity: person
+importManaged: true
 id: P000232
 name: "Иван Попов (Popov)"
 displayName: "Иван Попов (Popov)"

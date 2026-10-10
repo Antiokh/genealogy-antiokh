@@ -2,6 +2,7 @@
 title: "Woldemar Carl Chrostopher Bush"
 description: "Woldemar Carl Chrostopher Bush, 1855–1904"
 entity: person
+importManaged: true
 id: P000020
 name: "Woldemar Carl Chrostopher Bush"
 displayName: "Woldemar Carl Chrostopher Bush"

@@ -2,6 +2,7 @@
 title: "Галина Буш"
 description: "Галина Буш"
 entity: person
+importManaged: true
 id: P000033
 name: "Галина Буш"
 displayName: "Галина Буш"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [I500032](/people/unknown/i500032/)
+**Родители:** [Владимир Буш](/people/unknown/vladimir-bush/), [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
 
 **Партнёры:** —
 

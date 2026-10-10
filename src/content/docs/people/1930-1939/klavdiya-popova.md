@@ -2,6 +2,7 @@
 title: "Клавдия Попова"
 description: "Клавдия Попова, 1932–1951"
 entity: person
+importManaged: true
 id: P000197
 name: "Клавдия Попова"
 displayName: "Клавдия Попова"

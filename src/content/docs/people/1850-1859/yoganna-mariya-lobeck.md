@@ -2,6 +2,7 @@
 title: "Йоганна-Мария Lobeck"
 description: "Йоганна-Мария Lobeck, 1850–1878"
 entity: person
+importManaged: true
 id: P000161
 name: "Йоганна-Мария Bartmer Бартмер"
 displayName: "Йоганна-Мария Lobeck"

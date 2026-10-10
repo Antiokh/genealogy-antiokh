@@ -2,6 +2,7 @@
 title: "Василий Лавриненко"
 description: "Василий Лавриненко"
 entity: person
+importManaged: true
 id: P000052
 name: "Василий Лавриненко"
 displayName: "Василий Лавриненко"

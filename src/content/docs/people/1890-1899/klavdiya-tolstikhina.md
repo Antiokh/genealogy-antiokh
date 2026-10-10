@@ -2,6 +2,7 @@
 title: "Клавдия Толстихина"
 description: "Клавдия Толстихина, 1895–1959"
 entity: person
+importManaged: true
 id: P000058
 name: "Клавдия Спиридонова"
 displayName: "Клавдия Толстихина"

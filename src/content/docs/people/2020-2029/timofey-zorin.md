@@ -2,6 +2,7 @@
 title: "Тимофей Зорин"
 description: "Тимофей Зорин, 2022–"
 entity: person
+importManaged: true
 id: P000229
 name: "Тимофей Зорин"
 displayName: "Тимофей Зорин"

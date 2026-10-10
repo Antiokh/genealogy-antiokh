@@ -2,6 +2,7 @@
 title: "Андрей Антонченко"
 description: "Андрей Антонченко"
 entity: person
+importManaged: true
 id: P000122
 name: "Андрей Антонченко"
 displayName: "Андрей Антонченко"

@@ -2,6 +2,7 @@
 title: "Александра Назарова"
 description: "Александра Назарова, 1932–?"
 entity: person
+importManaged: true
 id: P000178
 name: "Александра Назарова"
 displayName: "Александра Назарова"

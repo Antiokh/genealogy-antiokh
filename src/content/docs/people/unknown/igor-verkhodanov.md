@@ -2,6 +2,7 @@
 title: "Игорь Верходанов"
 description: "Игорь Верходанов"
 entity: person
+importManaged: true
 id: P000130
 name: "Игорь Верходанов"
 displayName: "Игорь Верходанов"

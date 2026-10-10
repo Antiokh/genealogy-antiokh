@@ -2,6 +2,7 @@
 title: "Сергей Tatarintsev"
 description: "Сергей Tatarintsev, 1964–"
 entity: person
+importManaged: true
 id: P000222
 name: "Сергей Tatarintsev"
 displayName: "Сергей Tatarintsev"

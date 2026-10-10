@@ -2,6 +2,7 @@
 title: "Анна Пантешкина"
 description: "Анна Пантешкина"
 entity: person
+importManaged: true
 id: P000135
 name: "Анна Курочкина"
 displayName: "Анна Пантешкина"
@@ -29,7 +30,7 @@ external:
 
 **Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
-**Партнёры:** [I500140](/people/unknown/i500140/)
+**Партнёры:** [Неизвестный (P000137)](/people/unknown/neizvestnyy-p000137/)
 
 **Дети:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000136/), [Александра Курочкина](/people/unknown/aleksandra-kurochkina/)
 

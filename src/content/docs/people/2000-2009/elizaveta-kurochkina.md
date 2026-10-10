@@ -2,6 +2,7 @@
 title: "Елизавета Курочкина"
 description: "Елизавета Курочкина, 2000–"
 entity: person
+importManaged: true
 id: P000080
 name: "Елизавета Курочкина"
 displayName: "Елизавета Курочкина"

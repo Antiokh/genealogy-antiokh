@@ -2,6 +2,7 @@
 title: "Иван Спиридонов"
 description: "Иван Спиридонов"
 entity: person
+importManaged: true
 id: P000234
 name: "Иван Спиридонов"
 displayName: "Иван Спиридонов"

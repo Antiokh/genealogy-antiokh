@@ -2,6 +2,7 @@
 title: "Виктор Попов"
 description: "Виктор Попов"
 entity: person
+importManaged: true
 id: P000205
 name: "Виктор Попов"
 displayName: "Виктор Попов"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [I500209](/people/unknown/i500209/)
+**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная (P000203)](/people/unknown/neizvestnaya-p000203/)
 
 **Партнёры:** —
 

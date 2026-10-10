@@ -2,6 +2,7 @@
 title: "Михаил Спиридонов"
 description: "Михаил Спиридонов, 1912–1942"
 entity: person
+importManaged: true
 id: P000093
 name: "Михаил Спиридонов"
 displayName: "Михаил Спиридонов"
@@ -31,7 +32,7 @@ external:
 
 **Родители:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/), [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
 
-**Партнёры:** [I500158](/people/unknown/i500158/)
+**Партнёры:** [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
 
 **Дети:** [Валентин Спиридонов](/people/unknown/valentin-spiridonov/), [Людмила Спиридонова](/people/unknown/lyudmila-spiridonova/)
 

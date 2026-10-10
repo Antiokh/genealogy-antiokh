@@ -2,6 +2,7 @@
 title: "Gösta Ingvar Teljebo"
 description: "Gösta Ingvar Teljebo, 1958–"
 entity: person
+importManaged: true
 id: P000106
 name: "Gösta Ingvar Teljebo"
 displayName: "Gösta Ingvar Teljebo"

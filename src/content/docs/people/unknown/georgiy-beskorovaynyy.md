@@ -2,6 +2,7 @@
 title: "Георгий Бескоровайный"
 description: "Георгий Бескоровайный"
 entity: person
+importManaged: true
 id: P000011
 name: "Георгий Бескоровайный"
 displayName: "Георгий Бескоровайный"

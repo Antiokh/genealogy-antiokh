@@ -2,6 +2,7 @@
 title: "Пётр Безкоровайный"
 description: "Пётр Безкоровайный"
 entity: person
+importManaged: true
 id: P000046
 name: "Пётр Безкоровайный"
 displayName: "Пётр Безкоровайный"

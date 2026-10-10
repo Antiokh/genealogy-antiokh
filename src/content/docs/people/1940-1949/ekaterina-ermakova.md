@@ -2,6 +2,7 @@
 title: "Екатерина Ермакова"
 description: "Екатерина Ермакова, 1942–2016"
 entity: person
+importManaged: true
 id: P000224
 name: "Екатерина Руденская"
 displayName: "Екатерина Ермакова"

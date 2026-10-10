@@ -2,6 +2,7 @@
 title: "Петр Александрович Бартмер"
 description: "Петр Александрович Бартмер, 1852–?"
 entity: person
+importManaged: true
 id: P000162
 name: "Петр Александрович Бартмер"
 displayName: "Петр Александрович Бартмер"
@@ -30,7 +31,7 @@ external:
 
 **Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Партнёры:** [I500227](/people/unknown/i500227/)
+**Партнёры:** [Неизвестная (P000220)](/people/unknown/neizvestnaya-p000220/)
 
 **Дети:** [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/)
 

@@ -2,6 +2,7 @@
 title: "Anton Nazarov"
 description: "Anton Nazarov, 1988–"
 entity: person
+importManaged: true
 id: P000001
 name: "Anton Nazarov"
 displayName: "Anton Nazarov"

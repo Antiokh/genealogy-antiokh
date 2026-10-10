@@ -2,6 +2,7 @@
 title: "София Зорина"
 description: "София Зорина, 2007–"
 entity: person
+importManaged: true
 id: P000227
 name: "София Зорина"
 displayName: "София Зорина"

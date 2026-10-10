@@ -2,6 +2,7 @@
 title: "Василий Курочкин"
 description: "Василий Курочкин"
 entity: person
+importManaged: true
 id: P000142
 name: "Василий Курочкин"
 displayName: "Василий Курочкин"
@@ -24,7 +25,7 @@ external:
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/), [I500143](/people/unknown/i500143/)
+**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/), [Неизвестная (P000140)](/people/unknown/neizvestnaya-p000140/)
 
 **Партнёры:** [Зоя](/people/unknown/zoya-p000143/)
 

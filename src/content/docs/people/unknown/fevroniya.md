@@ -2,6 +2,7 @@
 title: "Феврония"
 description: "Феврония"
 entity: person
+importManaged: true
 id: P000233
 name: "Феврония"
 displayName: "Феврония"

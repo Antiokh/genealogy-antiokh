@@ -2,6 +2,7 @@
 title: "Louise Charlotte Gerdau"
 description: "Louise Charlotte Gerdau, 1813–1889"
 entity: person
+importManaged: true
 id: P000157
 name: "Louise Charlotte Gerdau"
 displayName: "Louise Charlotte Gerdau"

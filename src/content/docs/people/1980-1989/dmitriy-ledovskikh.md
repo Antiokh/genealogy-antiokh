@@ -2,6 +2,7 @@
 title: "Дмитрий Ледовских"
 description: "Дмитрий Ледовских, 1989–"
 entity: person
+importManaged: true
 id: P000090
 name: "Дмитрий Ледовских"
 displayName: "Дмитрий Ледовских"

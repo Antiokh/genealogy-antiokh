@@ -2,6 +2,7 @@
 title: "Александр Курочкин"
 description: "Александр Курочкин, 1946–2009"
 entity: person
+importManaged: true
 id: P000072
 name: "Александр Курочкин"
 displayName: "Александр Курочкин"

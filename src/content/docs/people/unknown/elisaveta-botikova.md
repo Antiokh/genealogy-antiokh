@@ -2,6 +2,7 @@
 title: "Елисавета Ботикова"
 description: "Елисавета Ботикова, ?–1939"
 entity: person
+importManaged: true
 id: P000024
 name: "Елисавета Буш"
 displayName: "Елисавета Ботикова"

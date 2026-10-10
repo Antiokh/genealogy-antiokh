@@ -2,6 +2,7 @@
 title: "Лилия Волкова"
 description: "Лилия Волкова"
 entity: person
+importManaged: true
 id: P000131
 name: "Лилия Волкова"
 displayName: "Лилия Волкова"

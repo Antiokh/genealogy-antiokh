@@ -2,6 +2,7 @@
 title: "Молли Шарлотте Ланге"
 description: "Молли Шарлотте Ланге"
 entity: person
+importManaged: true
 id: P000216
 name: "Молли Шарлотте Ланге"
 displayName: "Молли Шарлотте Ланге"

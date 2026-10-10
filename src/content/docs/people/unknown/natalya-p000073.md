@@ -2,6 +2,7 @@
 title: "Наталья"
 description: "Наталья"
 entity: person
+importManaged: true
 id: P000073
 name: "Наталья"
 displayName: "Наталья"

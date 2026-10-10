@@ -2,6 +2,7 @@
 title: "Григорий Попов"
 description: "Григорий Попов"
 entity: person
+importManaged: true
 id: P000190
 name: "Григорий Попов"
 displayName: "Григорий Попов"
@@ -24,7 +25,7 @@ external:
 
 ## Семья
 
-**Родители:** [I500214](/people/unknown/i500214/), [I500215](/people/unknown/i500215/)
+**Родители:** [Неизвестный (P000208)](/people/unknown/neizvestnyy-p000208/), [Неизвестная (P000209)](/people/unknown/neizvestnaya-p000209/)
 
 **Партнёры:** [Мария](/people/unknown/mariya/)
 

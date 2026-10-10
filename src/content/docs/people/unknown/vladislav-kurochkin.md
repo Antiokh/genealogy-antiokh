@@ -2,6 +2,7 @@
 title: "Владислав Курочкин"
 description: "Владислав Курочкин"
 entity: person
+importManaged: true
 id: P000078
 name: "Владислав Курочкин"
 displayName: "Владислав Курочкин"

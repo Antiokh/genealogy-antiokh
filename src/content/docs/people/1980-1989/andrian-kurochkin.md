@@ -2,6 +2,7 @@
 title: "Andrian Kurochkin"
 description: "Andrian Kurochkin, 1981–"
 entity: person
+importManaged: true
 id: P000074
 name: "Andrian Kurochkin"
 displayName: "Andrian Kurochkin"

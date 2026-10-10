@@ -2,6 +2,7 @@
 title: "Галина Летошко"
 description: "Галина Летошко, 1932–?"
 entity: person
+importManaged: true
 id: P000149
 name: "Галина Летошко"
 displayName: "Галина Летошко"

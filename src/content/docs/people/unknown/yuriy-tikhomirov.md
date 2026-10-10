@@ -2,6 +2,7 @@
 title: "Юрий Тихомиров"
 description: "Юрий Тихомиров"
 entity: person
+importManaged: true
 id: P000118
 name: "Юрий Тихомиров"
 displayName: "Юрий Тихомиров"

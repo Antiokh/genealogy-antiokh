@@ -2,6 +2,7 @@
 title: "Bernt Ingemar Teljebo"
 description: "Bernt Ingemar Teljebo, 1960–?"
 entity: person
+importManaged: true
 id: P000253
 name: "Bernt Ingemar Teljebo"
 displayName: "Bernt Ingemar Teljebo"

@@ -2,6 +2,7 @@
 title: "Елена Примак"
 description: "Елена Примак"
 entity: person
+importManaged: true
 id: P000107
 name: "Елена Примак"
 displayName: "Елена Примак"
@@ -25,7 +26,7 @@ external:
 
 ## Семья
 
-**Родители:** [Лариса Примак](/people/unknown/larisa-primak/), [I500110](/people/unknown/i500110/)
+**Родители:** [Лариса Примак](/people/unknown/larisa-primak/), [Неизвестный (P000108)](/people/unknown/neizvestnyy-p000108/)
 
 **Партнёры:** [Владимир](/people/unknown/vladimir/)
 

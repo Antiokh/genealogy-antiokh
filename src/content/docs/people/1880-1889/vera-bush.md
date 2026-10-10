@@ -2,6 +2,7 @@
 title: "Вера Буш"
 description: "Вера Буш, 1889–1955"
 entity: person
+importManaged: true
 id: P000017
 name: "Вера Даниэльсон"
 displayName: "Вера Буш"

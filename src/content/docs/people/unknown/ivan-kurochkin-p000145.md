@@ -2,6 +2,7 @@
 title: "Иван Курочкин"
 description: "Иван Курочкин"
 entity: person
+importManaged: true
 id: P000145
 name: "Иван Курочкин"
 displayName: "Иван Курочкин"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-p000139/), [I500149](/people/unknown/i500149/)
+**Родители:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-p000139/), [Неизвестная (P000146)](/people/unknown/neizvestnaya-p000146/)
 
 **Партнёры:** —
 

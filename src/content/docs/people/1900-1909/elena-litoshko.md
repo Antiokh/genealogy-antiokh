@@ -2,6 +2,7 @@
 title: "Елена Литошко"
 description: "Елена Литошко, 1909–?"
 entity: person
+importManaged: true
 id: P000059
 name: "Елена Спиридонова"
 displayName: "Елена Литошко"

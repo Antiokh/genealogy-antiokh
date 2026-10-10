@@ -2,6 +2,7 @@
 title: "Эмилия Бескоровайная"
 description: "Эмилия Бескоровайная, 1935–2024"
 entity: person
+importManaged: true
 id: P000004
 name: "Эмилия Курочкина"
 displayName: "Эмилия Бескоровайная"

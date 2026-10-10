@@ -2,6 +2,7 @@
 title: "Евдокия Антонченко"
 description: "Евдокия Антонченко"
 entity: person
+importManaged: true
 id: P000064
 name: "Евдокия Курочкина"
 displayName: "Евдокия Антонченко"

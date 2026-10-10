@@ -2,6 +2,7 @@
 title: "Николай Назаров"
 description: "Николай Назаров"
 entity: person
+importManaged: true
 id: P000187
 name: "Николай Назаров"
 displayName: "Николай Назаров"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/), [I500194](/people/unknown/i500194/)
+**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Неизвестная (P000188)](/people/unknown/neizvestnaya-p000188/)
 
 **Партнёры:** —
 

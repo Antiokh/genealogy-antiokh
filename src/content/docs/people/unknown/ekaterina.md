@@ -2,6 +2,7 @@
 title: "Екатерина"
 description: "Екатерина"
 entity: person
+importManaged: true
 id: P000036
 name: "Екатерина"
 displayName: "Екатерина"
@@ -21,9 +22,9 @@ external:
 
 ## Семья
 
-**Родители:** [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/), [I500037](/people/unknown/i500037/)
+**Родители:** [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/), [Неизвестный (P000037)](/people/unknown/neizvestnyy-p000037/)
 
-**Партнёры:** [I500039](/people/unknown/i500039/)
+**Партнёры:** [Неизвестный (P000039)](/people/unknown/neizvestnyy-p000039/)
 
 **Дети:** [Мария](/people/1980-1989/mariya/)
 

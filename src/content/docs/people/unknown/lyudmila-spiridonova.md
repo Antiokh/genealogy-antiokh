@@ -2,6 +2,7 @@
 title: "Людмила Спиридонова"
 description: "Людмила Спиридонова"
 entity: person
+importManaged: true
 id: P000156
 name: "Людмила Спиридонова"
 displayName: "Людмила Спиридонова"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [I500158](/people/unknown/i500158/)
+**Родители:** [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
 
 **Партнёры:** —
 

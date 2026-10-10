@@ -2,6 +2,7 @@
 title: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
 description: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov), 1901–1942"
 entity: person
+importManaged: true
 id: P000015
 name: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
 displayName: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"

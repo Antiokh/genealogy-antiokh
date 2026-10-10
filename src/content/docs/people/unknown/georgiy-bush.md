@@ -2,6 +2,7 @@
 title: "Георгий Буш"
 description: "Георгий Буш, ?–1978"
 entity: person
+importManaged: true
 id: P000027
 name: "Георгий Буш"
 displayName: "Георгий Буш"

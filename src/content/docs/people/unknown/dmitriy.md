@@ -2,6 +2,7 @@
 title: "Дмитрий"
 description: "Дмитрий"
 entity: person
+importManaged: true
 id: P000245
 name: "Дмитрий"
 displayName: "Дмитрий"

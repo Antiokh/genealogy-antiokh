@@ -2,6 +2,7 @@
 title: "Александра Курочкина"
 description: "Александра Курочкина"
 entity: person
+importManaged: true
 id: P000138
 name: "Александра Курочкина"
 displayName: "Александра Курочкина"
@@ -23,7 +24,7 @@ external:
 
 ## Семья
 
-**Родители:** [Анна Пантешкина](/people/unknown/anna-panteshkina/), [I500140](/people/unknown/i500140/)
+**Родители:** [Анна Пантешкина](/people/unknown/anna-panteshkina/), [Неизвестный (P000137)](/people/unknown/neizvestnyy-p000137/)
 
 **Партнёры:** —
 

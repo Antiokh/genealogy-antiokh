@@ -2,6 +2,7 @@
 title: "Лариса Волкова"
 description: "Лариса Волкова"
 entity: person
+importManaged: true
 id: P000128
 name: "Лариса Волкова"
 displayName: "Лариса Волкова"

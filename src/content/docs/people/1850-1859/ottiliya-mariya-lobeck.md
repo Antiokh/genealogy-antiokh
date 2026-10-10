@@ -2,6 +2,7 @@
 title: "Оттилия-Мария Lobeck"
 description: "Оттилия-Мария Lobeck, 1855–1939"
 entity: person
+importManaged: true
 id: P000163
 name: "Оттилия-Мария Bartmer Бартмер"
 displayName: "Оттилия-Мария Lobeck"

@@ -2,6 +2,7 @@
 title: "Иван Назаров"
 description: "Иван Назаров, 1920–?"
 entity: person
+importManaged: true
 id: P000172
 name: "Иван Назаров"
 displayName: "Иван Назаров"
@@ -29,7 +30,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [I500194](/people/unknown/i500194/)
+**Партнёры:** [Неизвестная (P000188)](/people/unknown/neizvestnaya-p000188/)
 
 **Дети:** [Николай Назаров](/people/unknown/nikolay-nazarov/)
 

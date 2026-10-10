@@ -2,6 +2,7 @@
 title: "Трофим Безкоровайный"
 description: "Трофим Безкоровайный"
 entity: person
+importManaged: true
 id: P000053
 name: "Трофим Безкоровайный"
 displayName: "Трофим Безкоровайный"

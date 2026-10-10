@@ -2,6 +2,7 @@
 title: "Владимир Курочкин"
 description: "Владимир Курочкин, 1949–2019"
 entity: person
+importManaged: true
 id: P000076
 name: "Владимир Курочкин"
 displayName: "Владимир Курочкин"

@@ -2,6 +2,7 @@
 title: "Мария Спиридонов"
 description: "Мария Спиридонов"
 entity: person
+importManaged: true
 id: P000235
 name: "Мария Спиридонов"
 displayName: "Мария Спиридонов"

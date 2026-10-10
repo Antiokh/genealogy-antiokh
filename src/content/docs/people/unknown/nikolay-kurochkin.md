@@ -2,6 +2,7 @@
 title: "Николай Курочкин"
 description: "Николай Курочкин"
 entity: person
+importManaged: true
 id: P000134
 name: "Николай Курочкин"
 displayName: "Николай Курочкин"
@@ -26,7 +27,7 @@ external:
 
 **Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
-**Партнёры:** [I500143](/people/unknown/i500143/)
+**Партнёры:** [Неизвестная (P000140)](/people/unknown/neizvestnaya-p000140/)
 
 **Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-p000139/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000141/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-p000142/)
 

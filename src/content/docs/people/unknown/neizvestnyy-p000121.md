@@ -1,10 +1,11 @@
 ---
-title: "I500123"
-description: "I500123"
+title: "Неизвестный (P000121)"
+description: "Неизвестный (P000121)"
 entity: person
+importManaged: true
 id: P000121
-name: "I500123"
-displayName: "I500123"
+name: "Неизвестный (P000121)"
+displayName: "Неизвестный (P000121)"
 deceased: false
 sex: M
 parents: []

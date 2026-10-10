@@ -2,6 +2,7 @@
 title: "Вадим Буш"
 description: "Вадим Буш, 1912–1941"
 entity: person
+importManaged: true
 id: P000010
 name: "Вадим Буш"
 displayName: "Вадим Буш"

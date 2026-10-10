@@ -2,6 +2,7 @@
 title: "Полина Михайловна Попова"
 description: "Полина Михайловна Попова, 1930–2016"
 entity: person
+importManaged: true
 id: P000194
 name: "Полина Михайловна Письменская"
 displayName: "Полина Михайловна Попова"

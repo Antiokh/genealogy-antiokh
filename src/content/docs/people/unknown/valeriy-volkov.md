@@ -2,6 +2,7 @@
 title: "Валерий Волков"
 description: "Валерий Волков"
 entity: person
+importManaged: true
 id: P000127
 name: "Валерий Волков"
 displayName: "Валерий Волков"

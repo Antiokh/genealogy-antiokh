@@ -2,6 +2,7 @@
 title: "Лариса Примак"
 description: "Лариса Примак"
 entity: person
+importManaged: true
 id: P000081
 name: "Лариса Курочкина"
 displayName: "Лариса Примак"
@@ -30,7 +31,7 @@ external:
 
 **Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
 
-**Партнёры:** [I500110](/people/unknown/i500110/)
+**Партнёры:** [Неизвестный (P000108)](/people/unknown/neizvestnyy-p000108/)
 
 **Дети:** [Елена Примак](/people/unknown/elena-primak/)
 

@@ -2,6 +2,7 @@
 title: "Владислав Назаров"
 description: "Владислав Назаров, 1965–"
 entity: person
+importManaged: true
 id: P000003
 name: "Владислав Назаров"
 displayName: "Владислав Назаров"

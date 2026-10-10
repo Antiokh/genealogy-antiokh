@@ -2,6 +2,7 @@
 title: "Мария"
 description: "Мария, 1987–"
 entity: person
+importManaged: true
 id: P000038
 name: "Мария"
 displayName: "Мария"
@@ -24,7 +25,7 @@ external:
 
 ## Семья
 
-**Родители:** [Екатерина](/people/unknown/ekaterina/), [I500039](/people/unknown/i500039/)
+**Родители:** [Екатерина](/people/unknown/ekaterina/), [Неизвестный (P000039)](/people/unknown/neizvestnyy-p000039/)
 
 **Партнёры:** —
 

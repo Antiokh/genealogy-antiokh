@@ -2,6 +2,7 @@
 title: "Александр Ботиков"
 description: "Александр Ботиков, ?–1939"
 entity: person
+importManaged: true
 id: P000026
 name: "Александр Ботиков"
 displayName: "Александр Ботиков"

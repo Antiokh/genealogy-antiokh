@@ -2,6 +2,7 @@
 title: "Александра Кондратьева"
 description: "Александра Кондратьева"
 entity: person
+importManaged: true
 id: P000124
 name: "Александра Кондратьева"
 displayName: "Александра Кондратьева"

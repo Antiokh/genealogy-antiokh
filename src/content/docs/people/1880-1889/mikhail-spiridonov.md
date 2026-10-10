@@ -2,6 +2,7 @@
 title: "Михаил Спиридонов"
 description: "Михаил Спиридонов, 1887–1915"
 entity: person
+importManaged: true
 id: P000056
 name: "Михаил Спиридонов"
 displayName: "Михаил Спиридонов"

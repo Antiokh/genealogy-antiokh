@@ -2,6 +2,7 @@
 title: "Василий Попов"
 description: "Василий Попов, 1941–2015"
 entity: person
+importManaged: true
 id: P000101
 name: "Василий Попов"
 displayName: "Василий Попов"

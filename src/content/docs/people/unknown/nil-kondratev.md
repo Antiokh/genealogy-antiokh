@@ -2,6 +2,7 @@
 title: "Нил Кондратьев"
 description: "Нил Кондратьев"
 entity: person
+importManaged: true
 id: P000068
 name: "Нил Кондратьев"
 displayName: "Нил Кондратьев"

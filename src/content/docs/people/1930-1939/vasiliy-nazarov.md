@@ -2,6 +2,7 @@
 title: "Василий Назаров"
 description: "Василий Назаров, 1930–?"
 entity: person
+importManaged: true
 id: P000177
 name: "Василий Назаров"
 displayName: "Василий Назаров"
@@ -29,7 +30,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [I500192](/people/unknown/i500192/)
+**Партнёры:** [Неизвестная (P000186)](/people/unknown/neizvestnaya-p000186/)
 
 **Дети:** [Александр Назаров](/people/unknown/aleksandr-nazarov/)
 

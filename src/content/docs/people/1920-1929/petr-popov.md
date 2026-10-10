@@ -2,6 +2,7 @@
 title: "Петр Попов"
 description: "Петр Попов, 1926–1973"
 entity: person
+importManaged: true
 id: P000191
 name: "Петр Попов"
 displayName: "Петр Попов"

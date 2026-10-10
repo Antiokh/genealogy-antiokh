@@ -2,6 +2,7 @@
 title: "Алексей Толстихин"
 description: "Алексей Толстихин, 1885–1950"
 entity: person
+importManaged: true
 id: P000097
 name: "Алексей Толстихин"
 displayName: "Алексей Толстихин"

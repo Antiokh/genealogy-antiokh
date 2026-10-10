@@ -2,6 +2,7 @@
 title: "Отто Александрович Бартмер"
 description: "Отто Александрович Бартмер, ?–1898"
 entity: person
+importManaged: true
 id: P000164
 name: "Отто Александрович Бартмер"
 displayName: "Отто Александрович Бартмер"

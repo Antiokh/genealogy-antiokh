@@ -2,6 +2,7 @@
 title: "Evgenia Mikhalets"
 description: "Evgenia Mikhalets"
 entity: person
+importManaged: true
 id: P000091
 name: "Evgenia Бескоровайная"
 displayName: "Evgenia Mikhalets"

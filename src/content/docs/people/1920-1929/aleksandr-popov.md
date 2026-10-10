@@ -2,6 +2,7 @@
 title: "Александр Попов"
 description: "Александр Попов, 1928–2008"
 entity: person
+importManaged: true
 id: P000192
 name: "Александр Попов"
 displayName: "Александр Попов"

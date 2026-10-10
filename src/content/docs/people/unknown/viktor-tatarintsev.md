@@ -2,6 +2,7 @@
 title: "Виктор Tatarintsev"
 description: "Виктор Tatarintsev, ?–2004"
 entity: person
+importManaged: true
 id: P000240
 name: "Виктор Tatarintsev"
 displayName: "Виктор Tatarintsev"

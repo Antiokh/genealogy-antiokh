@@ -2,6 +2,7 @@
 title: "Виктор Толстихин"
 description: "Виктор Толстихин, 1935–?"
 entity: person
+importManaged: true
 id: P000099
 name: "Виктор Толстихин"
 displayName: "Виктор Толстихин"

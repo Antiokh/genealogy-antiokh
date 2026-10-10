@@ -2,6 +2,7 @@
 title: "Татьяна Татаринцева"
 description: "Татьяна Татаринцева, 1967–"
 entity: person
+importManaged: true
 id: P000221
 name: "Татьяна Ермакова"
 displayName: "Татьяна Татаринцева"

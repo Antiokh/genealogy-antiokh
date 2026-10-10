@@ -2,6 +2,7 @@
 title: "Владимир Буш"
 description: "Владимир Буш"
 entity: person
+importManaged: true
 id: P000029
 name: "Владимир Буш"
 displayName: "Владимир Буш"
@@ -24,9 +25,9 @@ external:
 
 ## Семья
 
-**Родители:** [Борис Буш](/people/1890-1899/boris-bush/), [I500030](/people/unknown/i500030/)
+**Родители:** [Борис Буш](/people/1890-1899/boris-bush/), [Неизвестная (P000030)](/people/unknown/neizvestnaya-p000030/)
 
-**Партнёры:** [I500032](/people/unknown/i500032/)
+**Партнёры:** [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
 
 **Дети:** [Борис Буш](/people/unknown/boris-bush/), [Галина Буш](/people/unknown/galina-bush/)
 

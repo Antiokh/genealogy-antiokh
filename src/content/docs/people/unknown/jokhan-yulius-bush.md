@@ -2,6 +2,7 @@
 title: "Jохан Юлиус Буш"
 description: "Jохан Юлиус Буш"
 entity: person
+importManaged: true
 id: P000215
 name: "Jохан Юлиус Буш"
 displayName: "Jохан Юлиус Буш"

@@ -2,6 +2,7 @@
 title: "Эммелина-Леонтина Викстрём"
 description: "Эммелина-Леонтина Викстрём"
 entity: person
+importManaged: true
 id: P000167
 name: "Эммелина-Леонтина Бартмер"
 displayName: "Эммелина-Леонтина Викстрём"

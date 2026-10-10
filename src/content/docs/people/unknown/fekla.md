@@ -2,6 +2,7 @@
 title: "Фёкла"
 description: "Фёкла"
 entity: person
+importManaged: true
 id: P000213
 name: "Фёкла"
 displayName: "Фёкла"

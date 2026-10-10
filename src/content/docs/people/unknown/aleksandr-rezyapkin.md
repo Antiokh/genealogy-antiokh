@@ -2,6 +2,7 @@
 title: "Александр Резяпкин"
 description: "Александр Резяпкин"
 entity: person
+importManaged: true
 id: P000012
 name: "Александр Резяпкин"
 displayName: "Александр Резяпкин"

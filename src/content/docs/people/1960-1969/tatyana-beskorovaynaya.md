@@ -2,6 +2,7 @@
 title: "Татьяна Бескоровайная"
 description: "Татьяна Бескоровайная, 1961–"
 entity: person
+importManaged: true
 id: P000002
 name: "Татьяна Бескоровайная"
 displayName: "Татьяна Бескоровайная"

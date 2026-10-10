@@ -2,6 +2,7 @@
 title: "Ольга Курочкина"
 description: "Ольга Курочкина"
 entity: person
+importManaged: true
 id: P000062
 name: "Ольга Кондратьева"
 displayName: "Ольга Курочкина"

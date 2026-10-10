@@ -2,6 +2,7 @@
 title: "Любовь Ледовских"
 description: "Любовь Ледовских, 1960–"
 entity: person
+importManaged: true
 id: P000088
 name: "Любовь Назарова"
 displayName: "Любовь Ледовских"

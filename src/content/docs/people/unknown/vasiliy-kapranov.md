@@ -2,6 +2,7 @@
 title: "Василий Капранов"
 description: "Василий Капранов"
 entity: person
+importManaged: true
 id: P000243
 name: "Василий Капранов"
 displayName: "Василий Капранов"

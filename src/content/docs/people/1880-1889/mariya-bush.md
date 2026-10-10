@@ -2,6 +2,7 @@
 title: "Мария Буш"
 description: "Мария Буш, 1882–1976"
 entity: person
+importManaged: true
 id: P000022
 name: "Мария Буш"
 displayName: "Мария Буш"

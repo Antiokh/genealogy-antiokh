@@ -2,6 +2,7 @@
 title: "Ефросиния Попова"
 description: "Ефросиния Попова, 1906–1984"
 entity: person
+importManaged: true
 id: P000014
 name: "Ефросиния Попова"
 displayName: "Ефросиния Попова"

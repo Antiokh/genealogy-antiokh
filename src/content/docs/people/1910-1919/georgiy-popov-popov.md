@@ -2,6 +2,7 @@
 title: "Георгий Попов (Popov)"
 description: "Георгий Попов (Popov), 1914–?"
 entity: person
+importManaged: true
 id: P000231
 name: "Георгий Попов (Popov)"
 displayName: "Георгий Попов (Popov)"

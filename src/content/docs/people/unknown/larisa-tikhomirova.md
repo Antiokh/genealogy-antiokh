@@ -2,6 +2,7 @@
 title: "Лариса Тихомирова"
 description: "Лариса Тихомирова"
 entity: person
+importManaged: true
 id: P000119
 name: "Лариса Тихомирова"
 displayName: "Лариса Тихомирова"
@@ -26,7 +27,7 @@ external:
 
 **Родители:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/)
 
-**Партнёры:** [I500123](/people/unknown/i500123/)
+**Партнёры:** [Неизвестный (P000121)](/people/unknown/neizvestnyy-p000121/)
 
 **Дети:** [Инна Тихомирова](/people/unknown/inna-tikhomirova/)
 

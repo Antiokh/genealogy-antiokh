@@ -2,6 +2,7 @@
 title: "Софья Попова"
 description: "Софья Попова"
 entity: person
+importManaged: true
 id: P000102
 name: "Софья"
 displayName: "Софья Попова"

@@ -2,6 +2,7 @@
 title: "Вадим Mikhalets"
 description: "Вадим Mikhalets"
 entity: person
+importManaged: true
 id: P000103
 name: "Вадим Mikhalets"
 displayName: "Вадим Mikhalets"

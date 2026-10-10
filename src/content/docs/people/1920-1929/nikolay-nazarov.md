@@ -2,6 +2,7 @@
 title: "Николай Назаров"
 description: "Николай Назаров, 1924–?"
 entity: person
+importManaged: true
 id: P000173
 name: "Николай Назаров"
 displayName: "Николай Назаров"

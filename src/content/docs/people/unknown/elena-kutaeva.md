@@ -2,6 +2,7 @@
 title: "Елена Кутаева"
 description: "Елена Кутаева"
 entity: person
+importManaged: true
 id: P000070
 name: "Елена Кутаева"
 displayName: "Елена Кутаева"

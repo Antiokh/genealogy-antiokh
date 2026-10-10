@@ -2,6 +2,7 @@
 title: "Анна Спиридонова"
 description: "Анна Спиридонова"
 entity: person
+importManaged: true
 id: P000153
 name: "Анна"
 displayName: "Анна Спиридонова"

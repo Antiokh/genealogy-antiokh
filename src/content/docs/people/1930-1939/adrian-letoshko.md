@@ -2,6 +2,7 @@
 title: "Адриан Летошко"
 description: "Адриан Летошко, 1935–?"
 entity: person
+importManaged: true
 id: P000150
 name: "Адриан Летошко"
 displayName: "Адриан Летошко"
