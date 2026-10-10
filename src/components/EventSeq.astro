@@ -75,11 +75,6 @@ function formatDate(value: unknown): string {
   return 'Дата не указана';
 }
 
-function eventDateLabel(event: (typeof events)[number]): string {
-  const start = formatDate(event.data.date);
-  return event.data.endDate ? `${start} — ${formatDate(event.data.endDate)}` : start;
-}
-
 function personLabel(entry: (typeof docs)[number] | undefined, fallback: string): string {
   if (!entry) return fallback;
   const name = entry.data.name;
@@ -115,61 +110,92 @@ const events = docs
       : entry.data.places?.includes(subjectRef);
   })
   .sort((a, b) => dateKey(a.data.date) - dateKey(b.data.date) || a.data.title.localeCompare(b.data.title, 'ru'));
+
+function eventDateLabel(event: (typeof events)[number]): string {
+  const start = formatDate(event.data.date);
+  return event.data.endDate ? `${start} — ${formatDate(event.data.endDate)}` : start;
+}
+
+interface EventGroup {
+  label: string;
+  events: typeof events;
+  major: boolean;
+}
+
+const eventGroups: EventGroup[] = [];
+for (const event of events) {
+  const label = eventDateLabel(event);
+  const previous = eventGroups[eventGroups.length - 1];
+  if (previous?.label === label) {
+    previous.events.push(event);
+    previous.major ||= event.data.importance === 'major';
+  } else {
+    eventGroups.push({
+      label,
+      events: [event],
+      major: event.data.importance === 'major',
+    });
+  }
+}
 ---
 
-{events.length > 0 && (
+{eventGroups.length > 0 && (
   <section class="event-seq-section" aria-labelledby={`event-seq-${subject}-heading`}>
     <h2 id={`event-seq-${subject}-heading`}>{heading}</h2>
     <ol class="event-seq">
-      {events.map((event) => {
-        const relatedPlaces = subject === 'person'
-          ? (event.data.places ?? [])
-            .map((ref) => ({ ref, entry: placesByRef.get(ref) }))
-            .filter((item) => item.entry)
-          : [];
-        const relatedPeople = subject === 'place'
-          ? (event.data.participants ?? [])
-            .map((ref) => ({ ref, entry: peopleByRef.get(ref) }))
-            .filter((item) => item.entry)
-          : [];
+      {eventGroups.map((group) => (
+        <li class:list={['event-seq-item', group.major && 'importance-major']}>
+          <div class="event-seq-date">{group.label}</div>
+          <div class="event-seq-content">
+            {group.events.map((event) => {
+              const relatedPlaces = subject === 'person'
+                ? (event.data.places ?? [])
+                  .map((ref) => ({ ref, entry: placesByRef.get(ref) }))
+                  .filter((item) => item.entry)
+                : [];
+              const relatedPeople = subject === 'place'
+                ? (event.data.participants ?? [])
+                  .map((ref) => ({ ref, entry: peopleByRef.get(ref) }))
+                  .filter((item) => item.entry)
+                : [];
 
-        return (
-          <li class:list={['event-seq-item', event.data.importance && `importance-${event.data.importance}`]}>
-            <div class="event-seq-date">{eventDateLabel(event)}</div>
-            <div class="event-seq-content">
-              <h3><a href={`/${event.id}/`}>{event.data.title}</a></h3>
-              {event.data.kind && <p class="event-seq-kind">{kindLabels[event.data.kind] ?? event.data.kind}</p>}
-              {(event.data.summary ?? event.data.description) && <p>{event.data.summary ?? event.data.description}</p>}
-              {relatedPlaces.length > 0 && (
-                <p class="event-seq-related">
-                  Место:{' '}
-                  {relatedPlaces.map((item, index) => (
-                    <>
-                      {index > 0 && ', '}
-                      <a href={`/places/${item.ref.replace(/\.mdx?$/, '')}/`}>
-                        {item.entry?.data.label ?? item.entry?.data.title ?? item.ref}
-                      </a>
-                    </>
-                  ))}
-                </p>
-              )}
-              {relatedPeople.length > 0 && (
-                <p class="event-seq-related">
-                  Участники:{' '}
-                  {relatedPeople.map((item, index) => (
-                    <>
-                      {index > 0 && ', '}
-                      <a href={`/people/${item.ref.replace(/\.mdx?$/, '')}/`}>
-                        {personLabel(item.entry, item.ref)}
-                      </a>
-                    </>
-                  ))}
-                </p>
-              )}
-            </div>
-          </li>
-        );
-      })}
+              return (
+                <article class:list={['event-seq-event', event.data.importance && `importance-${event.data.importance}`]}>
+                  <h3><a href={`/${event.id}/`}>{event.data.title}</a></h3>
+                  {event.data.kind && <p class="event-seq-kind">{kindLabels[event.data.kind] ?? event.data.kind}</p>}
+                  {(event.data.summary ?? event.data.description) && <p>{event.data.summary ?? event.data.description}</p>}
+                  {relatedPlaces.length > 0 && (
+                    <p class="event-seq-related">
+                      Место:{' '}
+                      {relatedPlaces.map((item, index) => (
+                        <>
+                          {index > 0 && ', '}
+                          <a href={`/places/${item.ref.replace(/\.mdx?$/, '')}/`}>
+                            {item.entry?.data.label ?? item.entry?.data.title ?? item.ref}
+                          </a>
+                        </>
+                      ))}
+                    </p>
+                  )}
+                  {relatedPeople.length > 0 && (
+                    <p class="event-seq-related">
+                      Участники:{' '}
+                      {relatedPeople.map((item, index) => (
+                        <>
+                          {index > 0 && ', '}
+                          <a href={`/people/${item.ref.replace(/\.mdx?$/, '')}/`}>
+                            {personLabel(item.entry, item.ref)}
+                          </a>
+                        </>
+                      ))}
+                    </p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </li>
+      ))}
     </ol>
   </section>
 )}
@@ -231,13 +257,19 @@ const events = docs
     padding-top: 0.05rem;
   }
 
-  .event-seq-content h3 {
+  .event-seq-event + .event-seq-event {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--sl-color-gray-6);
+  }
+
+  .event-seq-event h3 {
     margin: 0;
     font-size: var(--sl-text-lg);
     line-height: var(--sl-line-height-headings);
   }
 
-  .event-seq-content p {
+  .event-seq-event p {
     margin: 0.45rem 0 0;
   }
 
