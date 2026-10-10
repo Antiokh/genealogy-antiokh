@@ -1,16 +1,7 @@
 name: Import MyHeritage snapshot
 
 on:
-  push:
-    branches:
-      - starlight-people-import
-    paths:
-      - scripts/import-demo-snapshot.mjs
-      - .github/workflows/import-demo.yml
-      - demos/anton-family/**
-      - src/content.config.ts
-      - src/content/docs/_templates/**
-      - astro.config.mjs
+  workflow_dispatch:
 
 permissions:
   contents: write
