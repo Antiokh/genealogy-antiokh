@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BALKAN FamilyTreeJS 2</title>
+    <link rel="stylesheet" href="/tree/renderer.css" />
+    <style is:global>#BalkanTree { width:100%; height:100%; background:var(--sl-color-bg); }</style>
+  </head>
+  <body>
+    <main class="tree-shell">
+      <div id="BalkanTree" class="tree-canvas"></div>
+      <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS 2…</div>
+      <div class="tree-controls">
+        <button id="collapse" disabled>Свернуть</button>
+        <button id="expand" disabled>Развернуть</button>
+      </div>
+    </main>
+    <script type="module" is:inline>
+      import { toBalkanFamilyTree2Data } from '/tree/renderer-adapters.js';
+      import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
+      import { startThemeBridge } from '/tree/theme-bridge.js';
+
+      startThemeBridge();
+      const status = document.getElementById('status');
+      const collapseButton = document.getElementById('collapse');
+      const expandButton = document.getElementById('expand');
+
+      const loadScript = (url) => new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = url; script.async = true; script.onload = resolve;
+        script.onerror = () => reject(new Error(`Не загрузился ${url}`));
+        document.head.appendChild(script);
+      });
+
+      async function loadLibrary() {
+        for (const source of ['https://cdn.balkan.app/familytree2.js', 'https://cdn.jsdelivr.net/npm/@balkangraph/familytree2.js@2.0.186/familytree2.js']) {
+          try {
+            await loadScript(source);
+            if (window.FamilyTree2) return { FamilyTree2:window.FamilyTree2, source };
+          } catch {}
+        }
+        throw new Error('FamilyTreeJS 2 не загрузился ни с одного CDN');
+      }
+
+      function configureTemplate(template) {
+        if (!template || typeof template !== 'object') return;
+        template.width = PERSON_CARD_WIDTH;
+        template.height = PERSON_CARD_HEIGHT;
+        template.fill = 'transparent';
+        template.stroke = 'transparent';
+        template.strokeWidth = 0;
+        template.html = (node) => personCardElementHtml({
+          id:node.familyMember.id, name:node.familyMember.name || 'Unknown person',
+          birthSurname:node.familyMember.birthSurname || '', marriedSurname:node.familyMember.marriedSurname || '',
+          years:node.familyMember.years || '', sex:node.familyMember.sex || '',
+          deceased:Boolean(node.familyMember.deceased), photo:node.familyMember.photo || ''
+        });
+      }
+
+      try {
+        const [response, loaded] = await Promise.all([fetch('/generated/tree.json'), loadLibrary()]);
+        if (!response.ok) throw new Error(`tree.json: ${response.status}`);
+        const family = await response.json();
+        const FamilyTree2 = loaded.FamilyTree2;
+        const template = FamilyTree2.createTemplate('genealogyPersonCard', 'base');
+        configureTemplate(template);
+        for (const type of ['focus','spouse','parent','child','childInLaw','sibling','parentSibling','parentInLaw','pibling','stepParent']) {
+          configureTemplate(template.nodes?.[type]);
+        }
+        if (template.separations) {
+          Object.assign(template.separations, {
+            focusSide:34, parentSide:34, parentNeighbor:34, childSide:34, childNeighbor:34,
+            spouseNeighbor:30, parentLevel:148, childLevel:148
+          });
+        }
+        const tree = new FamilyTree2(document.getElementById('BalkanTree'));
+        tree.readOnly = true;
+        tree.navigationBar = false;
+        tree.templateName = 'genealogyPersonCard';
+        tree.onLoaded(() => {
+          tree.fit(); collapseButton.disabled = false; expandButton.disabled = false;
+          status.textContent = `BALKAN · ${family.summary.people} людей · ${family.summary.families} союзов`;
+        });
+        tree.addFamilyMembers(toBalkanFamilyTree2Data(family)).draw(family.root);
+
+        const leafIds = family.people
+          .filter((person) => !family.families.some((unit) => unit.partners.includes(person.id)))
+          .map((person) => person.id);
+        collapseButton.addEventListener('click', () => {
+          tree.collapsedIds = leafIds;
+          tree.draw(family.root, null, () => tree.fit());
+        });
+        expandButton.addEventListener('click', () => {
+          tree.collapsedIds = [];
+          tree.draw(family.root, null, () => tree.fit());
+        });
+      } catch (error) {
+        console.error(error);
+        status.textContent = `BALKAN: ${error?.message || error}`;
+        status.classList.add('error');
+      }
+    </script>
+  </body>
+</html>

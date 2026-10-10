@@ -1,0 +1,12 @@
+---
+title: Family Chart
+description: Актуальное генеалогическое дерево на Family Chart.
+sidebar:
+  order: 1
+---
+
+import TreeFrame from '../../../components/TreeFrame.astro';
+
+Family Chart получает person-centric проекцию общего `tree.json`. Это удобно и компактно, но контекст конкретного союза в renderer-модели частично сплющивается — поэтому здесь особенно проверяем несколько браков.
+
+<TreeFrame src="/trees/renderers/family-chart/" title="Family Chart — генеалогическое дерево" />

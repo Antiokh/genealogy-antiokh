@@ -1,0 +1,12 @@
+---
+title: Vue Flow + ELK
+description: Актуальное генеалогическое дерево с явными union-узлами.
+sidebar:
+  order: 3
+---
+
+import TreeFrame from '../../../components/TreeFrame.astro';
+
+Vue Flow + ELK использует явный граф `person → union → child`, поэтому не теряет принадлежность ребёнка к конкретному союзу. Это самый тяжёлый, но и самый контролируемый вариант.
+
+<TreeFrame src="/trees/renderers/vue-flow-elk/" title="Vue Flow + ELK — генеалогическое дерево" />

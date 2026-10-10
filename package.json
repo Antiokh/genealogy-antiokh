@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "npm run build:data && astro dev",
-    "build:data": "node scripts/build-genealogy.mjs && node scripts/augment-genealogy-metadata.mjs && node scripts/build-events-places.mjs && node scripts/build-media.mjs",
+    "build:data": "node scripts/build-genealogy.mjs && node scripts/augment-genealogy-metadata.mjs && node scripts/build-tree-data.mjs && node scripts/build-events-places.mjs && node scripts/build-media.mjs",
     "build": "npm run build:data && astro build && node scripts/copy-demos.mjs",
     "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/enrich-person-names.mjs && node scripts/enrich-family-groups.mjs",
     "preview": "astro preview",
