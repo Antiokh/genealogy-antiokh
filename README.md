@@ -7,11 +7,13 @@ The repository must remain useful independently of MyHeritage, Genotek, a partic
 ## Current state
 
 - Astro + Starlight encyclopedia shell.
-- 253 person records imported from the 2026-09-10 MyHeritage snapshot.
-- People grouped by birth decade; unknown birth year goes to `people/unknown/`.
+- 233 real person records imported from the 2026-09-10 MyHeritage snapshot; technical unknown-parent placeholders are excluded.
+- People files remain grouped by birth decade; unknown birth year goes to `people/unknown/`.
+- The navigation is independent from the filesystem and groups people by explicit `family` metadata.
 - Person-to-person authoring uses readable content refs such as `1960-1969/vladislav-nazarov.md`.
 - `father` and `mother` are canonical forward relations; children and siblings are derived at build time.
 - Explicit partners/marriages remain canonical because they cannot be inferred from children alone.
+- Names support a primary locale plus optional localized forms such as `ru`, `sr-Latn`, `sr-Cyrl`, `en`, `de` or `sv`.
 - Every build produces `people.json` for all people and `genealogy.json` for the connected visual graph.
 - Completely isolated people remain in encyclopedia/search/table views but are omitted from the visual graph.
 - Independent family branches are detected as connected components.
@@ -67,15 +69,28 @@ A typical record looks like:
 
 ```yaml
 ---
-title: Антон Назаров
+title: Антон Владиславович Назаров
 entity: person
 
 name:
-  display: Антон Назаров
+  locale: ru
+  display: Антон Владиславович Назаров
   first: Антон
+  middle: Владиславович
   last: Назаров
   birth_last: Назаров
+  localized:
+    sr-Latn:
+      first: Anton
+      middle: Vladislavovič
+      last: Nazarov
+      display: Anton Vladislavovič Nazarov
   aliases: []
+
+family:
+  key: nazarov
+  label: Назаровы
+  locale: ru
 
 sex: M
 photo: anton.webp
@@ -110,11 +125,48 @@ sources: []
 
 The schema accepts empty values so these records can later be represented as an editable table without inventing placeholder data.
 
+### Localized names
+
+The primary `name` fields are the reference form used by the Russian-language encyclopedia. `name.locale` records its language/script. Other known forms belong under `name.localized` and use BCP-47-style keys such as `sr-Latn`, `sr-Cyrl`, `en`, `de` or `sv`.
+
+Do not invent a language just because a name is written in Latin script. If only the script is known, use `und-Latn`.
+
+Localized forms are explicit data, not automatically generated translations. This lets a future Serbian or English presentation choose a local form without changing the canonical person record.
+
+### Family navigation groups
+
+`family` is navigation and analytics metadata, separate from the person's current or birth surname:
+
+```yaml
+family:
+  key: spiridonov
+  label: Спиридоновы
+  locale: ru
+```
+
+Russian gendered surname forms are grouped under one key, for example `Спиридонов` and `Спиридонова` → `spiridonov` / `Спиридоновы`.
+
+The same family may have labels in multiple scripts:
+
+```yaml
+family:
+  key: bush
+  label: Bush
+  locale: und-Latn
+  localized:
+    ru: Буши
+```
+
+`family.key` defines group identity. `label`, `locale` and `localized` control presentation. Therefore a married woman may have a `name.last` different from the family group in which we want to show her. The group can always be overridden manually without changing genealogy relations.
+
+The People sidebar groups by `family`, not by physical decade folders. Russian groups use Russian collation; Latin-script groups use an appropriate Latin collation/fallback. People without a reliable family assignment appear under `Без семейной группы`.
+
 ## Stored vs derived relations
 
 Store facts we actually know or import:
 
-- names and surnames;
+- names, surnames and explicit localized forms;
+- family navigation group;
 - sex and photo;
 - father and mother;
 - generic `parents[]` only for ambiguous/additional parent cases;
@@ -136,10 +188,11 @@ Do not maintain these manually when they can be derived:
 
 ## Build model
 
-`npm run build` first runs:
+`npm run build` first runs the genealogy data build and attaches presentation metadata such as family groups:
 
 ```text
 scripts/build-genealogy.mjs
+scripts/augment-genealogy-metadata.mjs
 ```
 
 The build scans all person frontmatter, validates person references and reconstructs the graph from zero.
@@ -154,6 +207,8 @@ resolve father / mother / parents / partners
 derive children + siblings
         ↓
 detect connected components
+        ↓
+attach family/presentation metadata
         ↓
 people.json + genealogy.json
         ↓
@@ -175,14 +230,16 @@ They are build artifacts and are not committed.
 
 Independent branches are separate connected components and may be rendered separately.
 
-The current imported dataset builds as 253 connected people, 406 edges and 2 connected components. The implementation already supports unconnected people even though the current snapshot happens to contain none.
+The current imported dataset builds as 233 people: 232 connected, 1 unconnected, 354 edges and 2 connected components.
 
 ## MyHeritage snapshot import
 
-The current source snapshot is under `demos/anton-family/`. The deterministic importer is:
+The current source snapshot is under `demos/anton-family/`. The deterministic import/enrichment pipeline is:
 
 ```text
 scripts/import-demo-snapshot.mjs
+scripts/enrich-person-names.mjs
+scripts/enrich-family-groups.mjs
 ```
 
 Its mapping is persisted at:
@@ -191,7 +248,7 @@ Its mapping is persisted at:
 imports/myheritage-2026/mapping.json
 ```
 
-The mapping now records MyHeritage XREF → current content ref, for example:
+The mapping records MyHeritage XREF → current content ref, for example:
 
 ```json
 {
@@ -208,20 +265,26 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 1. Choose the birth decade, or `unknown`.
 2. Create `src/content/docs/people/<decade>/<person-slug>.md`.
 3. Start from `src/content/docs/_templates/person.md`.
-4. Fill in known facts.
-5. Point `father`, `mother` and explicit partners to other person files when known.
-6. Do not add `children`; the build derives them.
-7. Run `npm run build:data` or the full build to validate refs and inspect generated relations.
+4. Fill in known facts and the primary name locale.
+5. Add localized name forms only when actually known.
+6. Assign `family` when the desired navigation group is known; it may differ from `name.last`.
+7. Point `father`, `mother` and explicit partners to other person files when known.
+8. Do not add `children`; the build derives them.
+9. Run `npm run build:data` or the full build to validate refs and inspect generated relations.
 
 ## Implementation status
 
 ```text
 [x] Astro + Starlight encyclopedia shell
-[x] 253 imported person pages
+[x] 233 real imported person pages
 [x] Path-based person references
 [x] Father / mother canonical forward relations
 [x] Explicit partner + marriage relations
 [x] Birth / death / burial structured fields
+[x] Structured FIO with optional patronymic/middle name
+[x] Localized name variants and primary name locale
+[x] Explicit family navigation groups
+[x] Locale/script-aware family navigation sorting
 [x] Human-editable analytics fields (occupation, residence, sources)
 [x] Derived children and siblings
 [x] Broken/self-reference validation
@@ -248,4 +311,3 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 ## Visualization
 
 Visualization is a consumer of `genealogy.json`, not part of the canonical data model. A renderer should normally receive either one connected component or a component around a selected person rather than every encyclopedia record indiscriminately.
-

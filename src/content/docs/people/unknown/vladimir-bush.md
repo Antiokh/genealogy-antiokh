@@ -4,10 +4,17 @@ description: "Владимир Буш"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Владимир Буш"
   display: "Владимир Буш"
   birth_last: "Буш"
   aliases: []
+family:
+  key: "bush"
+  label: "Буши"
+  locale: ru
+  localized:
+    "und-Latn": "Bush"
 sex: M
 father: "1890-1899/boris-bush.md"
 mother: null

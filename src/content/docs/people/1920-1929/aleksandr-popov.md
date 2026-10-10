@@ -4,10 +4,15 @@ description: "Александр Попов, 1928–2008"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Попов"
   display: "Александр Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"

@@ -4,10 +4,15 @@ description: "Иван Попов (Popov), 1903–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Иван Попов (Popov)"
   display: "Иван Попов (Popov)"
   birth_last: "Попов (Popov)"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "unknown/timofey-popov.md"
 mother: "unknown/fevroniya.md"

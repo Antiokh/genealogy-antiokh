@@ -4,10 +4,17 @@ description: "Николай Назаров, 1924–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Николай Назаров"
   display: "Николай Назаров"
   birth_last: "Назаров"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
+  localized:
+    "und-Latn": "Nazarov"
 sex: M
 father: "unknown/semen-nazarov.md"
 mother: "unknown/anastasiya.md"

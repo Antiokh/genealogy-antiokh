@@ -4,11 +4,16 @@ description: "Inkeri Helvi Kyllikki Teljebo, 1927–2004"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Inkeri Helvi Kyllikki Iso-Kamula"
   display: "Inkeri Helvi Kyllikki Teljebo"
   birth_last: "Iso-Kamula"
   married_last: "Teljebo"
   aliases: []
+family:
+  key: "teljebo"
+  label: "Teljebo"
+  locale: und-Latn
 sex: F
 father: null
 mother: null

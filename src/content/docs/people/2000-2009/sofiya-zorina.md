@@ -4,10 +4,15 @@ description: "София Зорина, 2007–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "София Зорина"
   display: "София Зорина"
   birth_last: "Зорина"
   aliases: []
+family:
+  key: "zorin"
+  label: "Зорины"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc3MmNkZTgyOTU3NmJiYmJkNmRhNDkxZWMyMWU2NDA4MDY2YzNhODcxNTE2NTI1NTA3NzVjYWYyN2RkMzU5YmMmZT0xNzg5Njc1MjAw/129/852/4292/500232_594813o5u521ha41dl67h3_A.jpg"
 father: "unknown/dmitriy-zorin.md"

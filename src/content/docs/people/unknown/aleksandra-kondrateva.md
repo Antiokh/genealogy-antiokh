@@ -4,10 +4,15 @@ description: "Александра Кондратьева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александра Кондратьева"
   display: "Александра Кондратьева"
   birth_last: "Кондратьева"
   aliases: []
+family:
+  key: "kondratev"
+  label: "Кондратьевы"
+  locale: ru
 sex: F
 father: "unknown/nil-kondratev.md"
 mother: null

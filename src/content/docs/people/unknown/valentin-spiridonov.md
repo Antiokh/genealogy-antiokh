@@ -4,10 +4,15 @@ description: "Валентин Спиридонов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Валентин Спиридонов"
   display: "Валентин Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 father: "1910-1919/mikhail-spiridonov.md"
 mother: null

@@ -4,11 +4,16 @@ description: "Галина Капранова, 1941–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Галина Курочкина"
   display: "Галина Капранова"
   birth_last: "Курочкина"
   married_last: "Капранова"
   aliases: []
+family:
+  key: "kapranov"
+  label: "Капрановы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWU2MzBhMThhZGY4NDM4ZTUyMDk3MjY5ZmIzYTliMmFlNGM5YzQ2Y2QyODU2MGU0ZjQyNjBhNTRkMzFlN2NlMGQmZT0xNzg5Njc1MjAw/129/852/4292/500102_63929196281132sb067j46_A.jpg"
 father: "1900-1909/nikolay-kurochkin.md"

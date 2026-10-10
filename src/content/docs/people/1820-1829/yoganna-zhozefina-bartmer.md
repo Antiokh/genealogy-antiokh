@@ -4,11 +4,18 @@ description: "Йоганна-Жозефина Bartmer, 1825–1892"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Йоганна-Жозефина Thorsell Торселл"
   display: "Йоганна-Жозефина Bartmer"
   birth_last: "Thorsell Торселл"
   married_last: "Bartmer"
   aliases: []
+family:
+  key: "bartmer"
+  label: "Бартмеры"
+  locale: ru
+  localized:
+    "und-Latn": "Bartmer"
 sex: F
 father: null
 mother: null

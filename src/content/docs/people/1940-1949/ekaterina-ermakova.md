@@ -4,11 +4,16 @@ description: "Екатерина Ермакова, 1942–2016"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Екатерина Руденская"
   display: "Екатерина Ермакова"
   birth_last: "Руденская"
   married_last: "Ермакова"
   aliases: []
+family:
+  key: "ermakov"
+  label: "Ермаковы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTRiYzhhNzk3MzI2YTg2NzUxNmJkYWViN2RkZDlhMmQ5ZjUxNDcwZTY5NDk5MmViOGJmM2IzMzBiM2EyYzBiNDcmZT0xNzg5Njc1MjAw/129/852/4292/500224_3458426dcas153i9gheq12_A.jpg"
 father: null

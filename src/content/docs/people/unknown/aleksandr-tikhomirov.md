@@ -4,10 +4,15 @@ description: "Александр Тихомиров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Тихомиров"
   display: "Александр Тихомиров"
   birth_last: "Тихомиров"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: M
 father: null
 mother: null

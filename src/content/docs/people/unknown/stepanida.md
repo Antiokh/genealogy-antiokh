@@ -4,6 +4,7 @@ description: "Степанида"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Степанида"
   display: "Степанида"
   aliases: []

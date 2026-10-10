@@ -4,6 +4,7 @@ description: Аполлинарий Александрович Бартмер
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Аполлинарий Александрович Бартмер
   display: Аполлинарий Александрович Бартмер
   birth_last: Бартмер
@@ -11,6 +12,12 @@ name:
   first: Аполлинарий
   middle: Александрович
   last: Бартмер
+family:
+  key: "bartmer"
+  label: "Бартмеры"
+  locale: ru
+  localized:
+    "und-Latn": "Bartmer"
 sex: M
 father: 1810-1819/aleksandr-eduard-bartmer.md
 mother: 1820-1829/yoganna-zhozefina-bartmer.md

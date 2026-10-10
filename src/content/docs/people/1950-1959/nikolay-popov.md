@@ -4,10 +4,15 @@ description: "Николай Попов, 1954–2016"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Николай Попов"
   display: "Николай Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "1920-1929/aleksandr-popov.md"
 mother: "1930-1939/polina-mikhaylovna-popova.md"

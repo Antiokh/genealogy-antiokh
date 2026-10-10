@@ -4,10 +4,17 @@ description: "Борис Буш, 1898–1945"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Борис Буш"
   display: "Борис Буш"
   birth_last: "Буш"
   aliases: []
+family:
+  key: "bush"
+  label: "Буши"
+  locale: ru
+  localized:
+    "und-Latn": "Bush"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTM4MmY5ODk1YjNiNzRmYzBmYjUwOWE4MzUzMTk0YWFkY2ZkZTRmZWE3MmRmZDQ4MTQ0N2QwYjJhNzAzMzhjOTcmZT0xNzg5Njc1MjAw/129/852/4292/500041_957267fci1y316765drtg2_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

@@ -4,10 +4,17 @@ description: "Александр Назаров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Назаров"
   display: "Александр Назаров"
   birth_last: "Назаров"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
+  localized:
+    "und-Latn": "Nazarov"
 sex: M
 father: "1930-1939/vasiliy-nazarov.md"
 mother: null

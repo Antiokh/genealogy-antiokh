@@ -4,6 +4,7 @@ description: Полина Михайловна Попова, 1930–2016
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Полина Михайловна Письменская
   display: Полина Михайловна Попова
   birth_last: Письменская
@@ -12,6 +13,10 @@ name:
   first: Полина
   middle: Михайловна
   last: Попова
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 father: null
 mother: null

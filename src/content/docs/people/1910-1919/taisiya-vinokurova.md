@@ -4,11 +4,16 @@ description: "Таисия Винокурова, 1911–1979"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Таисия Буш"
   display: "Таисия Винокурова"
   birth_last: "Буш"
   married_last: "Винокурова"
   aliases: []
+family:
+  key: "vinokurov"
+  label: "Винокуровы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ2NTg0M2M0OTlkZTk3ZmE2Y2UxNTQxNWY2MmQ5NmI1MTc4ZDY2YzY5NjQwNWVmOTY2YzhmOGVmY2I1MjFhOGYmZT0xNzg5Njc1MjAw/129/852/4292/500031_457634rc2i48p14fdc5116_A.jpg"
 father: "1880-1889/vladimir-bush.md"

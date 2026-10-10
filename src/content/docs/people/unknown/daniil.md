@@ -4,6 +4,7 @@ description: "Даниил"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Даниил"
   display: "Даниил"
   aliases: []

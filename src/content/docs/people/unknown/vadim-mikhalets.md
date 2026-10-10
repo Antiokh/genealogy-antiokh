@@ -4,10 +4,15 @@ description: "Вадим Mikhalets"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Вадим Mikhalets"
   display: "Вадим Mikhalets"
   birth_last: "Mikhalets"
   aliases: []
+family:
+  key: "mikhalets"
+  label: "Mikhalets"
+  locale: und-Latn
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQyNGY2OTZjOGZiMjViYjIzODE1ZDdiZDcxNWFhMmM0ODViNWY1OTg2MGZhMWJjMGFiMGM0ZTYzN2UzN2YzMDAmZT0xNzg5Njc1MjAw/129/852/4292/500096_2641705bc1v21667w6p20u_A.jpg"
 father: "unknown/petr-mikhalets.md"

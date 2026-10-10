@@ -4,10 +4,17 @@ description: "Николай Курочкин"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Николай Курочкин"
   display: "Николай Курочкин"
   birth_last: "Курочкин"
   aliases: []
+family:
+  key: "kurochkin"
+  label: "Курочкины"
+  locale: ru
+  localized:
+    "und-Latn": "Kurochkin"
 sex: M
 father: "unknown/mikhail-kurochkin-i500069.md"
 mother: "unknown/elena-kutaeva.md"

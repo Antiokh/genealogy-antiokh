@@ -4,10 +4,15 @@ description: "Михаил Спиридонов, 1912–1942"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Михаил Спиридонов"
   display: "Михаил Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 father: "1880-1889/mikhail-spiridonov.md"
 mother: "unknown/nonna-vedzhnevetskaya.md"

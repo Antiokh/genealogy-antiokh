@@ -4,10 +4,15 @@ description: "Софья Попова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Софья"
   display: "Софья Попова"
   married_last: "Попова"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTMyOWQ4NzIxNGY1MWRmMzFkNjUwYjQyMmFiNzRjZTNlNzM5YjM2M2Y4ODY3ZWE3OWVkNWEwZTg1NTkxMDRhN2EmZT0xNzg5Njc1MjAw/129/852/4292/500088_070951b1o1642g1xeff71y_A.jpg"
 father: null

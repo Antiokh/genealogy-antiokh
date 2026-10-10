@@ -4,10 +4,15 @@ description: "Тимофей Зорин, 2022–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Тимофей Зорин"
   display: "Тимофей Зорин"
   birth_last: "Зорин"
   aliases: []
+family:
+  key: "zorin"
+  label: "Зорины"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY4NDI4ZjRmNDZlZWNjNTM3NGM5Yjc4MzVlY2FiNGNmZmQzZjg4YzU4ZGU1MmNlN2VlMzliNjBmZmI1MWM0ZGImZT0xNzg5Njc1MjAw/129/852/4292/500236_3392020bae6d1r5065a3ix_A.jpg"
 father: "unknown/dmitriy-zorin.md"

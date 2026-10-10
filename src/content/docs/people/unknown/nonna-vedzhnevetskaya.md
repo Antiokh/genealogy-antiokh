@@ -4,10 +4,15 @@ description: "Нонна Веджневецкая"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Нонна Веджневецкая"
   display: "Нонна Веджневецкая"
   birth_last: "Веджневецкая"
   aliases: []
+family:
+  key: "vedzhnevetskiy"
+  label: "Веджневецкие"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwMDUzOTFhYzJhM2M4NzlkZjg1Mzg3OTQyZmRkMjRhOTRlNDk0ZTJiYmQ0MmFkNGIxMTE4ZTBmYWM0OWE5NjUmZT0xNzg5Njc1MjAw/129/852/4292/500119_6336855726w507626l701n_A.jpg"
 father: null

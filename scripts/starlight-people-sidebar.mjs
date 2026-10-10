@@ -37,19 +37,65 @@ function readFrontmatter(filePath) {
   return raw ? (YAML.parse(raw) ?? {}) : {};
 }
 
+function localizedName(data, locale) {
+  if (!locale || !data.name || typeof data.name !== 'object') return undefined;
+  return data.name.localized?.[locale];
+}
+
+function nameFromParts(name) {
+  if (!name || typeof name !== 'object') return undefined;
+  const parts = [name.first, name.middle || name.patronymic, name.last].filter(Boolean);
+  return parts.length ? parts.join(' ') : name.display;
+}
+
 function personLabel(data, filePath) {
   if (data.name && typeof data.name === 'object') {
-    const first = data.name.first;
-    const middle = data.name.middle || data.name.patronymic;
-    const last = data.name.last;
-    const fio = [first, middle, last].filter(Boolean).join(' ').trim();
-    if (fio && first && last) return fio;
+    const fio = nameFromParts(data.name);
+    if (fio && data.name.first && data.name.last) return fio;
     if (data.name.display) return data.name.display;
     if (data.name.full) return data.name.full;
   }
   if (typeof data.name === 'string' && data.name.trim()) return data.name.trim();
   if (data.title) return String(data.title);
   return path.basename(filePath, path.extname(filePath));
+}
+
+function localePersonSortLabel(data, label, locale) {
+  const local = localizedName(data, locale);
+  if (local) return local.display || nameFromParts(local) || label;
+  if (String(locale).toLowerCase().startsWith('ru')) return label;
+  return genealogySortKey(label) || label;
+}
+
+function detectLocale(value) {
+  const text = String(value ?? '');
+  if (/[А-ЯЁа-яёІіЇїЄєҐґЈјЉљЊњЋћЂђЏџ]/u.test(text)) return 'ru';
+  if (/[A-Za-zÀ-ž]/u.test(text)) return 'und-Latn';
+  return 'und';
+}
+
+function familyInfo(data) {
+  if (!data.family) return undefined;
+  if (typeof data.family === 'string') {
+    const label = data.family.trim();
+    if (!label) return undefined;
+    return {
+      key: genealogySortKey(label) || label.toLowerCase(),
+      label,
+      locale: detectLocale(label),
+      localized: {},
+    };
+  }
+
+  const key = String(data.family.key ?? '').trim();
+  const label = String(data.family.label || key).trim();
+  if (!key || !label) return undefined;
+  return {
+    key,
+    label,
+    locale: data.family.locale || detectLocale(label),
+    localized: data.family.localized ?? {},
+  };
 }
 
 function collectPersonPages(directory, relative = '') {
@@ -66,47 +112,93 @@ function collectPersonPages(directory, relative = '') {
     if (/^index\.mdx?$/i.test(entry.name) && !relative) continue;
 
     const data = readFrontmatter(absolute);
+    if (data.entity !== 'person') continue;
+    const slug = nextRelative.replace(/\.mdx?$/i, '').replace(/\/index$/i, '');
+    const family = familyInfo(data);
     const label = personLabel(data, absolute);
-    let slug = nextRelative.replace(/\.mdx?$/i, '');
-    slug = slug.replace(/\/index$/i, '');
-    const [section] = slug.split('/');
-    pages.push({
-      section,
-      label,
-      slug,
-      sortKey: genealogySortKey(label),
-    });
+    pages.push({ family, label, slug, data });
   }
   return pages;
 }
 
-function compareSections(a, b) {
-  if (a === 'unknown') return b === 'unknown' ? 0 : 1;
-  if (b === 'unknown') return -1;
-  const aYear = Number.parseInt(a, 10);
-  const bYear = Number.parseInt(b, 10);
-  if (Number.isFinite(aYear) && Number.isFinite(bYear) && aYear !== bYear) return aYear - bYear;
-  return a.localeCompare(b, 'en', { numeric: true, sensitivity: 'base' });
+function collator(locale) {
+  try {
+    const normalized = locale === 'und' || locale === 'und-Latn' ? 'en' : locale;
+    return new Intl.Collator(normalized, { numeric: true, sensitivity: 'base' });
+  } catch {
+    return new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
+  }
 }
 
-const keyCollator = new Intl.Collator('en', { numeric: true, sensitivity: 'base' });
-const labelCollator = new Intl.Collator(['ru', 'en'], { numeric: true, sensitivity: 'base' });
+function scriptBucket(label) {
+  if (/[А-ЯЁа-яё]/u.test(label)) return 0;
+  if (/[A-Za-z]/u.test(label)) return 1;
+  return 2;
+}
+
+function compareFamilies(a, b) {
+  const bucketDifference = scriptBucket(a.label) - scriptBucket(b.label);
+  if (bucketDifference) return bucketDifference;
+  const locale = scriptBucket(a.label) === 0 ? 'ru' : 'en';
+  return collator(locale).compare(a.label, b.label);
+}
+
+function choosePresentation(variants) {
+  const latin = variants.find((variant) => /[A-Za-z]/u.test(variant.label) && !/[А-ЯЁа-яё]/u.test(variant.label));
+  return latin ?? variants[0];
+}
 
 export function buildPeopleSidebar() {
   const grouped = new Map();
+  const ungrouped = [];
+
   for (const page of collectPersonPages(PEOPLE_ROOT)) {
-    if (!grouped.has(page.section)) grouped.set(page.section, []);
-    grouped.get(page.section).push(page);
+    if (!page.family) {
+      ungrouped.push(page);
+      continue;
+    }
+
+    // family.key is identity. Locale and label are presentation metadata and must not split one family.
+    const id = page.family.key;
+    if (!grouped.has(id)) grouped.set(id, { key: id, variants: [], pages: [] });
+    const group = grouped.get(id);
+    group.pages.push(page);
+    if (!group.variants.some((variant) => variant.label === page.family.label && variant.locale === page.family.locale)) {
+      group.variants.push(page.family);
+    }
   }
 
-  return [...grouped.keys()].sort(compareSections).map((section) => ({
-    label: section === 'unknown' ? 'Год рождения неизвестен' : section,
-    collapsed: false,
-    items: grouped.get(section)
-      .sort((a, b) => keyCollator.compare(a.sortKey, b.sortKey) || labelCollator.compare(a.label, b.label))
-      .map((page) => ({
-        label: page.label,
-        link: `/people/${page.slug}/`,
-      })),
-  }));
+  const groups = [...grouped.values()]
+    .map((group) => ({ ...group, ...choosePresentation(group.variants) }))
+    .sort(compareFamilies)
+    .map((group) => {
+      const groupCollator = collator(group.locale);
+      return {
+        label: group.label,
+        collapsed: true,
+        items: group.pages
+          .map((page) => ({
+            ...page,
+            sortLabel: localePersonSortLabel(page.data, page.label, group.locale),
+          }))
+          .sort((a, b) => groupCollator.compare(a.sortLabel, b.sortLabel) || groupCollator.compare(a.label, b.label))
+          .map((page) => ({
+            label: page.label,
+            link: `/people/${page.slug}/`,
+          })),
+      };
+    });
+
+  if (ungrouped.length) {
+    const fallbackCollator = collator('ru');
+    groups.push({
+      label: 'Без семейной группы',
+      collapsed: true,
+      items: ungrouped
+        .sort((a, b) => fallbackCollator.compare(a.label, b.label))
+        .map((page) => ({ label: page.label, link: `/people/${page.slug}/` })),
+    });
+  }
+
+  return groups;
 }

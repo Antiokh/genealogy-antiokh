@@ -4,6 +4,7 @@ description: Георгий Михайлович Римский-Корсаков
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Георгий Михайлович Римский-Корсаков
   display: Георгий Михайлович Римский-Корсаков
   birth_last: Римский-Корсаков
@@ -11,6 +12,10 @@ name:
   first: Георгий
   middle: Михайлович
   last: Римский-Корсаков
+family:
+  key: "rimskiy-korsakov"
+  label: "Римские-Корсаковы"
+  locale: ru
 sex: M
 father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
 mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md

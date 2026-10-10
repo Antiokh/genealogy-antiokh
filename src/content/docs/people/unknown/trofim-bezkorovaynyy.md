@@ -4,10 +4,15 @@ description: "Трофим Безкоровайный"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Трофим Безкоровайный"
   display: "Трофим Безкоровайный"
   birth_last: "Безкоровайный"
   aliases: []
+family:
+  key: "bezkorovaynyy"
+  label: "Безкоровайные"
+  locale: ru
 sex: M
 father: null
 mother: null

@@ -4,10 +4,15 @@ description: "Louise Charlotte Gerdau, 1813–1889"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Louise Charlotte Gerdau"
   display: "Louise Charlotte Gerdau"
   birth_last: "Gerdau"
   aliases: []
+family:
+  key: "gerdau"
+  label: "Gerdau"
+  locale: und-Latn
 sex: F
 father: null
 mother: null

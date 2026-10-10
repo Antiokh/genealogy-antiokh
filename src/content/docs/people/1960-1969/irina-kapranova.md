@@ -4,10 +4,15 @@ description: "Ирина Капранова, 1965–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Ирина Капранова"
   display: "Ирина Капранова"
   birth_last: "Капранова"
   aliases: []
+family:
+  key: "kapranov"
+  label: "Капрановы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTU1OWZmYzgzZjJmNzdiZGY3NjhmODA1MWZlNTVjZjIzODViMDk2YjczNzhiY2RiYTc3ODNhNDFjMTBkODE4N2EmZT0xNzg5Njc1MjAw/129/852/4292/500081_494514l21zdbfja66sb1fz_A.jpg"
 father: "unknown/gennadiy-i500084.md"

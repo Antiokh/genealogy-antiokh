@@ -4,10 +4,15 @@ description: "Сергей Попов, 1973–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Сергей Попов"
   display: "Сергей Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "1940-1949/vasiliy-popov.md"
 mother: "unknown/sofya-popova.md"

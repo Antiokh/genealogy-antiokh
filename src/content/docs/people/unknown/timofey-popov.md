@@ -4,10 +4,15 @@ description: "Тимофей Попов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Тимофей Попов"
   display: "Тимофей Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: null
 mother: null

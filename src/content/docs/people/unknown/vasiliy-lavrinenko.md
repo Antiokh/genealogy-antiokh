@@ -4,10 +4,15 @@ description: "Василий Лавриненко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Лавриненко"
   display: "Василий Лавриненко"
   birth_last: "Лавриненко"
   aliases: []
+family:
+  key: "lavrinenko"
+  label: "Лавриненко"
+  locale: ru
 sex: M
 father: null
 mother: null

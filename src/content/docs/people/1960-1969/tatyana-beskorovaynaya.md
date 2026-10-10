@@ -4,10 +4,15 @@ description: "Татьяна Бескоровайная, 1961–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Татьяна Бескоровайная"
   display: "Татьяна Бескоровайная"
   birth_last: "Бескоровайная"
   aliases: []
+family:
+  key: "beskorovaynyy"
+  label: "Бескоровайные"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhM2I2MzMzZGE2ZWNhYTRiOGY2YmFkOGFlMTg3ZTY4M2U2NmRjZGU5YjgxZWQxMmVmNGY2ZTg2MGRlNGI2YTMmZT0xNzg5Njc1MjAw/129/852/4292/500336_4326010a7cs9jg7ba18d6b_A.jpg"
 father: "1930-1939/vladimir-beskorovaynyi.md"

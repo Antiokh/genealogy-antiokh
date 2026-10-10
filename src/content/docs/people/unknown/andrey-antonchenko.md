@@ -4,10 +4,15 @@ description: "Андрей Антонченко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Андрей Антонченко"
   display: "Андрей Антонченко"
   birth_last: "Антонченко"
   aliases: []
+family:
+  key: "antonchenko"
+  label: "Антонченко"
+  locale: ru
 sex: M
 father: null
 mother: null

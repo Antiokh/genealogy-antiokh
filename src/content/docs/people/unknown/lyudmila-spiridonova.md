@@ -4,10 +4,15 @@ description: "Людмила Спиридонова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Людмила Спиридонова"
   display: "Людмила Спиридонова"
   birth_last: "Спиридонова"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: F
 father: "1910-1919/mikhail-spiridonov.md"
 mother: null

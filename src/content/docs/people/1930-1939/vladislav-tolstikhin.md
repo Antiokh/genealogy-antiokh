@@ -4,10 +4,15 @@ description: "Владислав Толстихин, 1936–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Владислав Толстихин"
   display: "Владислав Толстихин"
   birth_last: "Толстихин"
   aliases: []
+family:
+  key: "tolstikhin"
+  label: "Толстихины"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWExZWVhYTY2N2M0NGQyMTJlNWI4ZDk2ZjI4NmIxNmUzN2U2YjIxNzk3NDNjNWJkOTA4ZDJmYjA3MDZlYWFlMjcmZT0xNzg5Njc1MjAw/129/852/4292/500142_2071074710170rfak2666b_A.jpg"
 father: "1880-1889/aleksey-tolstikhin.md"

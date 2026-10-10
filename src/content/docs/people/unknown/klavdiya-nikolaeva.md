@@ -4,10 +4,15 @@ description: "Клавдия Николаева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Николаева"
   display: "Клавдия Николаева"
   birth_last: "Николаева"
   aliases: []
+family:
+  key: "nikolaev"
+  label: "Николаевы"
+  locale: ru
 sex: F
 father: null
 mother: null

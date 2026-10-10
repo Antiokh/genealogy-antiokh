@@ -4,10 +4,15 @@ description: "Георгий Бескоровайный"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Георгий Бескоровайный"
   display: "Георгий Бескоровайный"
   birth_last: "Бескоровайный"
   aliases: []
+family:
+  key: "beskorovaynyy"
+  label: "Бескоровайные"
+  locale: ru
 sex: M
 father: null
 mother: null

@@ -4,10 +4,15 @@ description: "Зоя Попова, 1936–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Зоя Попова"
   display: "Зоя Попова"
   birth_last: "Попова"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"

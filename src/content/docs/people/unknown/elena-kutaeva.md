@@ -4,10 +4,15 @@ description: "Елена Кутаева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елена Кутаева"
   display: "Елена Кутаева"
   birth_last: "Кутаева"
   aliases: []
+family:
+  key: "kutaev"
+  label: "Кутаевы"
+  locale: ru
 sex: F
 father: null
 mother: null

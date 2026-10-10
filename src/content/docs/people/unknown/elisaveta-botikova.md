@@ -4,11 +4,16 @@ description: "Елисавета Ботикова, ?–1939"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елисавета Буш"
   display: "Елисавета Ботикова"
   birth_last: "Буш"
   married_last: "Ботикова"
   aliases: []
+family:
+  key: "botikov"
+  label: "Ботиковы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTVjZWQ2NmFhMTUyZTEwODkyOWRkZDJmOWIzNTgxMjBhODUzMjdhMjUyMGVjOGQ0ZTBlNDJjYzMyYjJhZjczNmYmZT0xNzg5Njc1MjAw/129/852/4292/500037_8981891fw21xcf25cy06d6_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

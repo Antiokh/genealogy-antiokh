@@ -4,10 +4,15 @@ description: "Татьяна Винокуров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Татьяна Винокуров"
   display: "Татьяна Винокуров"
   birth_last: "Винокуров"
   aliases: []
+family:
+  key: "vinokurov"
+  label: "Винокуровы"
+  locale: ru
 sex: F
 father: "unknown/boris-vinokurov.md"
 mother: "1910-1919/taisiya-vinokurova.md"

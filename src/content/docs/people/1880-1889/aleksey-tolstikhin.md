@@ -4,10 +4,15 @@ description: "Алексей Толстихин, 1885–1950"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Алексей Толстихин"
   display: "Алексей Толстихин"
   birth_last: "Толстихин"
   aliases: []
+family:
+  key: "tolstikhin"
+  label: "Толстихины"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTczYTNlNDVlZjRiYTUwMWYyOTExZjYzM2RlNGM0MTYyNDhkOTYxMmU5N2YxZWFlODlhZTU5OWJlZDE0YWZmZDQmZT0xNzg5Njc1MjAw/129/852/4292/500189_983277s6c17da6r1arccx5_A.jpg"
 father: null

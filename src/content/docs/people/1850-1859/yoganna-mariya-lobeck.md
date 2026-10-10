@@ -4,11 +4,16 @@ description: "Йоганна-Мария Lobeck, 1850–1878"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Йоганна-Мария Bartmer Бартмер"
   display: "Йоганна-Мария Lobeck"
   birth_last: "Bartmer Бартмер"
   married_last: "Lobeck"
   aliases: []
+family:
+  key: "lobeck"
+  label: "Lobeck"
+  locale: und-Latn
 sex: F
 father: "1810-1819/aleksandr-eduard-bartmer.md"
 mother: "1820-1829/yoganna-zhozefina-bartmer.md"

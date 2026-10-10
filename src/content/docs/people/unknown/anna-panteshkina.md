@@ -4,11 +4,16 @@ description: "Анна Пантешкина"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Анна Курочкина"
   display: "Анна Пантешкина"
   birth_last: "Курочкина"
   married_last: "Пантешкина"
   aliases: []
+family:
+  key: "panteshkin"
+  label: "Пантешкины"
+  locale: ru
 sex: F
 father: "unknown/mikhail-kurochkin-i500069.md"
 mother: "unknown/elena-kutaeva.md"

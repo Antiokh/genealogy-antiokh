@@ -4,6 +4,7 @@ description: Игорь Михайлович Римский-Корсаков, 19
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Игорь Михайлович Римский-Корсаков
   display: Игорь Михайлович Римский-Корсаков
   birth_last: Римский-Корсаков
@@ -11,6 +12,10 @@ name:
   first: Игорь
   middle: Михайлович
   last: Римский-Корсаков
+family:
+  key: "rimskiy-korsakov"
+  label: "Римские-Корсаковы"
+  locale: ru
 sex: M
 father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
 mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md

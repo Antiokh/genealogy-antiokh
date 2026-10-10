@@ -4,10 +4,15 @@ description: "Елена Примак"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елена Примак"
   display: "Елена Примак"
   birth_last: "Примак"
   aliases: []
+family:
+  key: "primak"
+  label: "Примаки"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY1ODllNGUwNGQxNmZmYWE2MjRiNTVhMDRhOGJmNmY5MDdiZTljMjZmZTY1NTRjMmMzMTc3ODk0MTAwZjhmMTgmZT0xNzg5Njc1MjAw/129/852/4292/500156_8228247t22066v818vzc84_A.jpg"
 father: null

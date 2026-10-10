@@ -4,10 +4,15 @@ description: "Вадим Винокуров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Вадим Винокуров"
   display: "Вадим Винокуров"
   birth_last: "Винокуров"
   aliases: []
+family:
+  key: "vinokurov"
+  label: "Винокуровы"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTkwOTQwZTViYzMzNDA0MzlhNTc4MDQ2MDc3YmY5MjhhNWM2NDBjMTdkYzcxMDIyNzY0MTNmOTBlNTliZGNjMDMmZT0xNzg5Njc1MjAw/129/852/4292/500045_429321wi8pc51ehf672a31_A.jpg"
 father: "unknown/boris-vinokurov.md"

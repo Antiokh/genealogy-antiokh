@@ -4,10 +4,15 @@ description: "Михаил Спиридонов, 1887–1915"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Михаил Спиридонов"
   display: "Михаил Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTYyNDQyNGM5ZGUyYjRkNjM3ZGIxYTIzMzRlMDEyOTg5NTM5M2RkMjJjOGYyMGFlN2JkNGFkYmU0YWRmNGI1MGYmZT0xNzg5Njc1MjAw/129/852/4292/500195_767292fh97d805b6a2135y_A.jpg"
 father: "unknown/ivan-spiridonov.md"

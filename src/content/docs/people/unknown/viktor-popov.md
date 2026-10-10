@@ -4,10 +4,15 @@ description: "Виктор Попов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Виктор Попов"
   display: "Виктор Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "1930-1939/viktor-popov.md"
 mother: null

@@ -4,10 +4,15 @@ description: "Лариса Тихомирова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Лариса Тихомирова"
   display: "Лариса Тихомирова"
   birth_last: "Тихомирова"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: F
 father: "unknown/aleksandr-tikhomirov.md"
 mother: "unknown/evdokiya-antonchenko.md"

@@ -4,6 +4,7 @@ description: "Фёкла"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Фёкла"
   display: "Фёкла"
   aliases: []

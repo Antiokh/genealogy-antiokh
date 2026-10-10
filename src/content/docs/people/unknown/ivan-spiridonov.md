@@ -4,10 +4,15 @@ description: "Иван Спиридонов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Иван Спиридонов"
   display: "Иван Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 father: null
 mother: null

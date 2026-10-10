@@ -4,10 +4,15 @@ description: "Василий Капранов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Капранов"
   display: "Василий Капранов"
   birth_last: "Капранов"
   aliases: []
+family:
+  key: "kapranov"
+  label: "Капрановы"
+  locale: ru
 sex: M
 father: null
 mother: null

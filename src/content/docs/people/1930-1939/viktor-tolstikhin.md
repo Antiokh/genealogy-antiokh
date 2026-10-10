@@ -4,10 +4,15 @@ description: "Виктор Толстихин, 1935–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Виктор Толстихин"
   display: "Виктор Толстихин"
   birth_last: "Толстихин"
   aliases: []
+family:
+  key: "tolstikhin"
+  label: "Толстихины"
+  locale: ru
 sex: M
 father: "1880-1889/aleksey-tolstikhin.md"
 mother: "1890-1899/klavdiya-tolstikhina.md"

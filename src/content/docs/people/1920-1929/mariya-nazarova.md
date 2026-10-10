@@ -4,10 +4,17 @@ description: "Мария Назарова, 1922–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Мария Назарова"
   display: "Мария Назарова"
   birth_last: "Назарова"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
+  localized:
+    "und-Latn": "Nazarov"
 sex: F
 father: "unknown/semen-nazarov.md"
 mother: "unknown/anastasiya.md"

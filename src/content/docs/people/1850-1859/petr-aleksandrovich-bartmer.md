@@ -4,6 +4,7 @@ description: Петр Александрович Бартмер, 1852–?
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Петр Александрович Бартмер
   display: Петр Александрович Бартмер
   birth_last: Бартмер
@@ -11,6 +12,12 @@ name:
   first: Петр
   middle: Александрович
   last: Бартмер
+family:
+  key: "bartmer"
+  label: "Бартмеры"
+  locale: ru
+  localized:
+    "und-Latn": "Bartmer"
 sex: M
 photo: https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWRhNjZhZDU3MmNkNWYzOGZkNzE5N2VkOTc0MWMwOWFkZTIwYmUwMWU3NTIzOWNkMTA3NmI2MjdiN2E0ZDQ3OGQmZT0xNzg5Njc1MjAw/129/852/4292/500167_879980r6g6beq1c8a31230_A.jpg
 father: 1810-1819/aleksandr-eduard-bartmer.md

@@ -4,10 +4,17 @@ description: "Anna Tatarintseva, 2001–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Anna Tatarintseva"
   display: "Anna Tatarintseva"
   birth_last: "Tatarintseva"
   aliases: []
+family:
+  key: "tatarintsev"
+  label: "Татаринцевы"
+  locale: ru
+  localized:
+    "und-Latn": "Tatarintsev"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTE1NzhmN2ExYjJiYzYzMzY2ZDZhYjhlZGE4MDJlNDE5ZjkzYjYxOTcxNzBjMmY1YmFlNzk3YTlmZGFhOGZlMGQmZT0xNzg5Njc1MjAw/129/852/4292/500212_481648965d7o01bz9r5431_A.jpg"
 father: "1960-1969/sergey-tatarintsev.md"

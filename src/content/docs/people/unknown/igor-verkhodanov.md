@@ -4,10 +4,15 @@ description: "Игорь Верходанов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Игорь Верходанов"
   display: "Игорь Верходанов"
   birth_last: "Верходанов"
   aliases: []
+family:
+  key: "verkhodanov"
+  label: "Верходановы"
+  locale: ru
 sex: M
 father: null
 mother: null

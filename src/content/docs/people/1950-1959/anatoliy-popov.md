@@ -4,10 +4,15 @@ description: "Анатолий Попов, 1955–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Анатолий Попов"
   display: "Анатолий Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 father: "1920-1929/aleksandr-popov.md"
 mother: "1930-1939/polina-mikhaylovna-popova.md"

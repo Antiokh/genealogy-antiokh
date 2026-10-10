@@ -4,10 +4,15 @@ description: "Инна Тихомирова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Инна Тихомирова"
   display: "Инна Тихомирова"
   birth_last: "Тихомирова"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: F
 father: null
 mother: "unknown/larisa-tikhomirova.md"

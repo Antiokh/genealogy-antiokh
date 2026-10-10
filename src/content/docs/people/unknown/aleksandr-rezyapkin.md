@@ -4,10 +4,15 @@ description: "Александр Резяпкин"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Резяпкин"
   display: "Александр Резяпкин"
   birth_last: "Резяпкин"
   aliases: []
+family:
+  key: "rezyapkin"
+  label: "Резяпкины"
+  locale: ru
 sex: M
 father: null
 mother: null

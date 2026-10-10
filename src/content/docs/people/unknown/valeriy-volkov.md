@@ -4,10 +4,15 @@ description: "Валерий Волков"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Валерий Волков"
   display: "Валерий Волков"
   birth_last: "Волков"
   aliases: []
+family:
+  key: "volkov"
+  label: "Волковы"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTMzZDRhNDE3NDk3NTE3ZjRhNmU5MmMyNjE0YmZjOTYzNTFkYmVmYTc4ZGFmMGQxYjhjYTU5MjBjNTUwZjM4NGEmZT0xNzg5Njc1MjAw/129/852/4292/500117_797046f3c666u20713j28c_A.jpg"
 father: "1920-1929/sergey-volkov.md"

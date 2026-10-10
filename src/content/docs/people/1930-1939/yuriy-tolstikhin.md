@@ -4,10 +4,15 @@ description: "Юрий Толстихин, 1933–1992"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Юрий Толстихин"
   display: "Юрий Толстихин"
   birth_last: "Толстихин"
   aliases: []
+family:
+  key: "tolstikhin"
+  label: "Толстихины"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc5MmYwYWQ5YjFlMGQwZWE4MmY1M2E1Njc5N2RlZTA5NGRiZDFhZjVhY2RiYTg0NzIyOTMyZDA3ZTgxZmJiNzgmZT0xNzg5Njc1MjAw/129/852/4292/500191_702955evd11587sce9e655_A.jpg"
 father: "1880-1889/aleksey-tolstikhin.md"

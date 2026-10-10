@@ -4,10 +4,15 @@ description: "Шестрем, ?–1918"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Шестрем"
   display: "Шестрем"
   birth_last: "Шестрем"
   aliases: []
+family:
+  key: "shestrem"
+  label: "Шестремы"
+  locale: ru
 sex: M
 father: null
 mother: null

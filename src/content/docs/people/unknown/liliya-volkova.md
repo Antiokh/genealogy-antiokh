@@ -4,10 +4,15 @@ description: "Лилия Волкова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Лилия Волкова"
   display: "Лилия Волкова"
   birth_last: "Волкова"
   aliases: []
+family:
+  key: "volkov"
+  label: "Волковы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTBlMjBkN2ZiODhiZGExN2M0ZTcxOGE1MjUyNzBjOTA0MjVkM2EyNjQzY2Q0ODEyYzAzYmY1NTNhMjRiODFlYmEmZT0xNzg5Njc1MjAw/129/852/4292/500116_927366676bb026cn6i10c5_A.jpg"
 father: "unknown/igor-verkhodanov.md"

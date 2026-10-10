@@ -4,10 +4,15 @@ description: "Нил Кондратьев"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Нил Кондратьев"
   display: "Нил Кондратьев"
   birth_last: "Кондратьев"
   aliases: []
+family:
+  key: "kondratev"
+  label: "Кондратьевы"
+  locale: ru
 sex: M
 father: null
 mother: null

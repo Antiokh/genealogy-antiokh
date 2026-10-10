@@ -4,10 +4,15 @@ description: "Клавдия Попова, 1932–1951"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Попова"
   display: "Клавдия Попова"
   birth_last: "Попова"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"

@@ -4,10 +4,15 @@ description: "Анна Спиридонова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Анна"
   display: "Анна Спиридонова"
   married_last: "Спиридонова"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTA5MTRlZmFhOWRiMzU1YmI3N2JkOWMyZDc4YzZhY2RkMWU1Mzc2Y2Q5MDdkMWEzYTQxM2RlNjJlMzAxZWIxMjcmZT0xNzg5Njc1MjAw/129/852/4292/500138_0715572v86mbg14rtc6d07_A.jpg"
 father: null

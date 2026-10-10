@@ -4,10 +4,15 @@ description: "Дмитрий Ледовских, 1989–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Дмитрий Ледовских"
   display: "Дмитрий Ледовских"
   birth_last: "Ледовских"
   aliases: []
+family:
+  key: "ledovskikh"
+  label: "Ледовских"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTJjNzA2YjYyZTQwOWM5NzljMjJiYjE2ZGEzNDNhN2E5YzYzYWE2MzVjNmNhZDdiOGI1NjJkZjMzMDdlZTU3ZGEmZT0xNzg5Njc1MjAw/129/852/4292/500061_030298o1qq13mf190362ca_A.jpg"
 father: "unknown/sergey.md"
