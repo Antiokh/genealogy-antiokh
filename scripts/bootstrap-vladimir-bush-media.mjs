@@ -4,7 +4,6 @@ import path from 'node:path';
 const personPath = path.resolve('src/content/docs/people/1880-1889/vladimir-bush.md');
 const mediaDir = path.resolve('src/content/docs/media/1880-1889');
 const mediaPath = path.join(mediaDir, 'vladimir-bush-portrait.md');
-const imagePath = path.join(mediaDir, 'vladimir-bush-portrait.jpg');
 const portraitRef = '1880-1889/vladimir-bush-portrait.md';
 const personRef = '1880-1889/vladimir-bush.md';
 
@@ -15,19 +14,7 @@ const remoteUrl = photoMatch[1];
 
 await mkdir(mediaDir, { recursive: true });
 
-const response = await fetch(remoteUrl, {
-  headers: {
-    'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/141 Safari/537.36',
-    accept: 'image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8',
-    referer: 'https://www.myheritage.com/',
-  },
-});
-if (!response.ok) throw new Error(`Failed to download portrait: ${response.status} ${response.statusText}`);
-const bytes = new Uint8Array(await response.arrayBuffer());
-if (!bytes.length) throw new Error('Downloaded portrait is empty.');
-await writeFile(imagePath, bytes);
-
-const media = `---\ntitle: "Владимир Владимирович Буш — портрет"\nentity: media\nmediaType: photo\nimage: ./vladimir-bush-portrait.jpg\nalt: "Владимир Владимирович Буш"\ncaption: "Владимир Владимирович Буш"\nsubjects:\n  - person: "${personRef}"\noriginalUrl: "${remoteUrl}"\ncredit: "MyHeritage snapshot 2026-09-10"\nsidebar:\n  hidden: true\n---\n\nПортрет Владимира Владимировича Буша. Канонический файл хранится в репозитории; исходный URL сохранён только как provenance.\n`;
+const media = `---\ntitle: "Владимир Владимирович Буш — портрет"\nentity: media\nmediaType: photo\nimage: "${remoteUrl}"\nalt: "Владимир Владимирович Буш"\ncaption: "Владимир Владимирович Буш"\nsubjects:\n  - person: "${personRef}"\noriginalUrl: "${remoteUrl}"\ncredit: "MyHeritage snapshot 2026-09-10"\nsidebar:\n  hidden: true\n---\n\nПортрет Владимира Владимировича Буша. Пока используется внешний импортный URL; media-record позволяет заменить его локальным файлом без изменения карточки человека или галерей.\n`;
 await writeFile(mediaPath, media, 'utf8');
 
 if (!/^portrait:/m.test(person)) {
@@ -35,4 +22,4 @@ if (!/^portrait:/m.test(person)) {
   await writeFile(personPath, person, 'utf8');
 }
 
-console.log(`Materialized ${bytes.length} bytes and linked ${portraitRef} from ${personRef}.`);
+console.log(`Linked remote media ${portraitRef} from ${personRef}; CDN materialization remains intentionally separate.`);
