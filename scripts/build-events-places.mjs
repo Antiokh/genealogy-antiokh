@@ -33,6 +33,16 @@ function routeFor(kind, ref) {
   return `/${kind}/${ref.replace(/\.mdx?$/i, '')}/`;
 }
 
+function yearFor(value) {
+  if (Number.isInteger(value)) return value;
+  if (value && typeof value === 'object' && Number.isInteger(value.year)) return value.year;
+  if (typeof value === 'string') {
+    const match = value.match(/(?:^|[^\d])(\d{3,4})(?:[^\d]|$)/);
+    if (match) return Number(match[1]);
+  }
+  return null;
+}
+
 async function loadRecords(root, entity) {
   const records = new Map();
   for (const filePath of await walk(root)) {
@@ -100,21 +110,27 @@ if (errors.length) {
 
 const eventRows = [...events.values()]
   .sort((a, b) => a.ref.localeCompare(b.ref))
-  .map(({ ref, data }) => ({
-    ref,
-    url: routeFor('events', ref),
-    title: data.title,
-    description: data.description ?? null,
-    kind: data.kind ?? null,
-    date: data.date ?? null,
-    endDate: data.endDate ?? null,
-    importance: data.importance ?? 'standard',
-    timeline: data.timeline !== false,
-    participants: data.participants ?? [],
-    places: data.places ?? [],
-    sources: data.sources ?? [],
-    provenance: data.provenance ?? [],
-  }));
+  .map(({ ref, data }) => {
+    const startYear = yearFor(data.date);
+    const endYear = yearFor(data.endDate) ?? startYear;
+    return {
+      ref,
+      url: routeFor('events', ref),
+      title: data.title,
+      description: data.description ?? null,
+      kind: data.kind ?? null,
+      date: data.date ?? null,
+      endDate: data.endDate ?? null,
+      startYear,
+      endYear,
+      importance: data.importance ?? 'standard',
+      timeline: data.timeline !== false,
+      participants: data.participants ?? [],
+      places: data.places ?? [],
+      sources: data.sources ?? [],
+      provenance: data.provenance ?? [],
+    };
+  });
 
 const placeRows = [...places.values()]
   .sort((a, b) => a.ref.localeCompare(b.ref))
@@ -152,6 +168,8 @@ for (const event of eventRows) {
         kind: event.kind,
         date: event.date,
         endDate: event.endDate,
+        startYear: event.startYear,
+        endYear: event.endYear,
         placeRef,
         placeLabel: place.data.label ?? place.data.title,
         precision: place.data.geo.precision ?? null,
