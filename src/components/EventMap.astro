@@ -22,7 +22,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 <script>
   type MapTheme = 'dark' | 'light';
-  type EventFeature = GeoJSON.Feature<GeoJSON.Point, {
+  type EventProperties = {
     eventRef: string;
     eventUrl: string;
     eventTitle: string;
@@ -35,7 +35,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     placeLabel: string;
     precision?: string | null;
     participants?: string[];
-  }>;
+  };
+  type EventFeature = {
+    type: 'Feature';
+    geometry: { type: 'Point'; coordinates: [number, number] };
+    properties: EventProperties;
+  };
+  type EventCollection = { type: 'FeatureCollection'; features: EventFeature[] };
 
   const mapStyleUrls: Record<MapTheme, string> = {
     dark: 'https://tiles.openfreemap.org/styles/fiord',
@@ -90,8 +96,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     ]);
     if (!response.ok) return;
     const { default: maplibregl } = maplibreModule;
-    const dataset = await response.json() as GeoJSON.FeatureCollection<GeoJSON.Point>;
-    const allFeatures = (dataset.features ?? []) as EventFeature[];
+    const dataset = await response.json() as EventCollection;
+    const allFeatures = dataset.features ?? [];
     const datedFeatures = allFeatures.filter((feature) => Number.isFinite(feature.properties.startYear));
     const years = datedFeatures.flatMap((feature) => [
       Number(feature.properties.startYear),
@@ -110,13 +116,19 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const stats = root.querySelector<HTMLElement>('[data-map-stats]');
       if (!canvas || !fromInput || !toInput || !rangeLabel || !stats || !rangeControl) continue;
 
-      for (const input of [fromInput, toInput]) {
+      const mapCanvas = canvas;
+      const fromControl = fromInput;
+      const toControl = toInput;
+      const output = rangeLabel;
+      const status = stats;
+
+      for (const input of [fromControl, toControl]) {
         input.min = String(datasetMin);
         input.max = String(datasetMax);
         input.step = '1';
       }
-      fromInput.value = String(datasetMin);
-      toInput.value = String(datasetMax);
+      fromControl.value = String(datasetMin);
+      toControl.value = String(datasetMax);
       rangeControl.hidden = false;
 
       let currentTheme = readMapTheme();
@@ -127,13 +139,13 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const clusterCountLayer = 'genealogy-event-cluster-count';
       const pointLayer = 'genealogy-event-points';
 
-      const filteredCollection = () => ({
-        type: 'FeatureCollection' as const,
+      const filteredCollection = (): EventCollection => ({
+        type: 'FeatureCollection',
         features: datedFeatures.filter((feature) => overlaps(feature, currentFrom, currentTo)),
       });
 
       const map = new maplibregl.Map({
-        container: canvas,
+        container: mapCanvas,
         style: mapStyleUrls[currentTheme],
         center: [30, 52],
         zoom: 2.5,
@@ -191,19 +203,19 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       }
 
       function updateRange() {
-        let from = Number(fromInput.value);
-        let to = Number(toInput.value);
+        let from = Number(fromControl.value);
+        let to = Number(toControl.value);
         if (from > to) {
-          if (document.activeElement === fromInput) to = from;
+          if (document.activeElement === fromControl) to = from;
           else from = to;
-          fromInput.value = String(from);
-          toInput.value = String(to);
+          fromControl.value = String(from);
+          toControl.value = String(to);
         }
         currentFrom = from;
         currentTo = to;
-        rangeLabel.value = from === to ? String(from) : `${from}–${to}`;
+        output.value = from === to ? String(from) : `${from}–${to}`;
         const filtered = filteredCollection();
-        stats.textContent = `${filtered.features.length} из ${datedFeatures.length} геопривязанных событий`;
+        status.textContent = `${filtered.features.length} из ${datedFeatures.length} геопривязанных событий`;
         const source = map.getSource(sourceId) as import('maplibre-gl').GeoJSONSource | undefined;
         source?.setData(filtered);
       }
@@ -245,7 +257,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         place.textContent = feature.properties.placeLabel;
         container.append(place);
         new maplibregl.Popup({ offset: 12 })
-          .setLngLat(feature.geometry.coordinates as [number, number])
+          .setLngLat(feature.geometry.coordinates)
           .setDOMContent(container)
           .addTo(map);
       });
@@ -255,8 +267,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         map.on('mouseleave', layerId, () => { map.getCanvas().style.cursor = ''; });
       }
 
-      fromInput.addEventListener('input', updateRange);
-      toInput.addEventListener('input', updateRange);
+      fromControl.addEventListener('input', updateRange);
+      toControl.addEventListener('input', updateRange);
 
       const preference = window.matchMedia?.('(prefers-color-scheme: light)');
       const syncTheme = () => {
@@ -277,8 +289,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const cleanup = () => {
         themeObserver.disconnect();
         preference?.removeEventListener('change', syncTheme);
-        fromInput.removeEventListener('input', updateRange);
-        toInput.removeEventListener('input', updateRange);
+        fromControl.removeEventListener('input', updateRange);
+        toControl.removeEventListener('input', updateRange);
         map.remove();
       };
       document.addEventListener('astro:before-swap', cleanup, { once: true });
