@@ -23,6 +23,7 @@ const lifeEvent = z.object({
   known: z.boolean().optional(),
   date: dateValue.nullish(),
   place: z.string().nullish(),
+  placeLabel: z.string().optional(),
 }).passthrough();
 
 const localizedName = z.object({
@@ -69,8 +70,44 @@ const partner = z.union([
 
 const residence = z.object({
   place: z.string(),
+  label: z.string().optional(),
   from: dateValue.nullish(),
   to: dateValue.nullish(),
+}).passthrough();
+
+const geoPoint = z.object({
+  latitude: z.number().min(-90).max(90),
+  longitude: z.number().min(-180).max(180),
+  precision: z.enum(['exact', 'building', 'city', 'region', 'representative']).optional(),
+}).passthrough();
+
+const historicalName = z.object({
+  name: z.string(),
+  from: dateValue.nullish(),
+  to: dateValue.nullish(),
+}).passthrough();
+
+const provenance = z.object({
+  source: z.string(),
+  locator: z.string().optional(),
+  confidence: z.enum(['high', 'medium', 'low']).optional(),
+  note: z.string().optional(),
+}).passthrough();
+
+const work = z.object({
+  title: z.string(),
+  year: z.number().int().optional(),
+  publication: z.string().optional(),
+  imprint: z.string().optional(),
+  notes: z.string().optional(),
+}).passthrough();
+
+const archiveHolding = z.object({
+  repository: z.string(),
+  fund: z.string().optional(),
+  units: z.number().int().optional(),
+  dates: z.string().optional(),
+  url: z.string().optional(),
 }).passthrough();
 
 export const collections = {
@@ -103,8 +140,39 @@ export const collections = {
         buried: lifeEvent.optional(),
         occupation: z.array(z.string()).optional(),
         residence: z.array(residence).optional(),
+        researchInterests: z.array(z.string()).optional(),
+        courses: z.array(z.string()).optional(),
+        works: z.array(work).optional(),
+        archives: z.array(archiveHolding).optional(),
         sources: z.array(z.string()).optional(),
         external: z.record(z.string(), z.unknown()).optional(),
+
+        // Event fields. References are relative to their entity collection roots.
+        kind: z.string().optional(),
+        date: dateValue.optional(),
+        endDate: dateValue.nullish(),
+        timeline: z.boolean().optional(),
+        importance: z.enum(['major', 'standard', 'minor']).optional(),
+        summary: z.string().optional(),
+        participants: z.array(z.string()).optional(),
+        places: z.array(z.string()).optional(),
+        provenance: z.array(provenance).optional(),
+
+        // Place fields.
+        label: z.string().optional(),
+        aliases: z.array(z.string()).optional(),
+        historicalNames: z.array(historicalName).optional(),
+        geo: geoPoint.nullish(),
+        parent: z.string().nullish(),
+        country: z.string().optional(),
+
+        // Source fields.
+        sourceType: z.string().optional(),
+        url: z.string().optional(),
+        author: z.string().optional(),
+        year: z.number().int().optional(),
+        publication: z.string().optional(),
+        locator: z.string().optional(),
 
         // Transitional compatibility with earlier snapshots.
         family: familyGroup.optional(),
@@ -115,11 +183,6 @@ export const collections = {
         deceased: z.boolean().optional(),
         birth: looseDate.optional(),
         death: looseDate.optional(),
-
-        // Other entity fields.
-        date: looseDate.optional(),
-        participants: z.array(z.string()).optional(),
-        places: z.array(z.string()).optional(),
       }),
     }),
   }),

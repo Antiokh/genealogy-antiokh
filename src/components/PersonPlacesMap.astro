@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import 'maplibre-gl/dist/maplibre-gl.css';
+
+interface Props {
+  personRef: string;
+}
+
+const { personRef } = Astro.props;
+const docs = await getCollection('docs');
+
+const placeByRef = new Map(
+  docs
+    .filter((entry) => entry.data.entity === 'place' && entry.id.startsWith('places/'))
+    .map((entry) => [`${entry.id.replace(/^places\//, '')}.md`, entry]),
+);
+
+const events = docs.filter((entry) => (
+  entry.data.entity === 'event'
+  && entry.data.participants?.includes(personRef)
+));
+
+const grouped = new Map<string, {
+  ref: string;
+  label: string;
+  latitude: number;
+  longitude: number;
+  precision?: string;
+  events: string[];
+}>();
+
+for (const event of events) {
+  for (const ref of event.data.places ?? []) {
+    const place = placeByRef.get(ref);
+    const geo = place?.data.geo;
+    if (!place || !geo) continue;
+    const existing = grouped.get(ref) ?? {
+      ref,
+      label: place.data.label ?? place.data.title ?? ref,
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+      precision: geo.precision,
+      events: [],
+    };
+    existing.events.push(event.data.title);
+    grouped.set(ref, existing);
+  }
+}
+
+const points = [...grouped.values()].sort((a, b) => a.label.localeCompare(b.label, 'ru'));
+const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
+---
+
+{points.length > 0 && (
+  <section class="person-places" aria-labelledby={`${mapId}-heading`} data-person-places-map data-points={JSON.stringify(points)}>
+    <h2 id={`${mapId}-heading`}>Места на карте</h2>
+    <p class="map-note">Точки собраны из связанных событий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
+    <div id={mapId} class="person-map-canvas" aria-label="Карта мест, связанных с человеком"></div>
+    <noscript>
+      <ul>
+        {points.map((point) => <li>{point.label}</li>)}
+      </ul>
+    </noscript>
+  </section>
+)}
+
+<script>
+  import maplibregl from 'maplibre-gl';
+
+  function initializePersonMaps() {
+    const roots = document.querySelectorAll<HTMLElement>('[data-person-places-map]:not([data-map-ready])');
+    for (const root of roots) {
+      const canvas = root.querySelector<HTMLElement>('.person-map-canvas');
+      if (!canvas) continue;
+      let points: Array<{ label: string; latitude: number; longitude: number; precision?: string; events: string[] }> = [];
+      try {
+        points = JSON.parse(root.dataset.points ?? '[]');
+      } catch {
+        continue;
+      }
+      if (!points.length) continue;
+
+      const dark = document.documentElement.dataset.theme === 'dark';
+      const map = new maplibregl.Map({
+        container: canvas,
+        style: dark
+          ? 'https://tiles.openfreemap.org/styles/fiord'
+          : 'https://tiles.openfreemap.org/styles/bright',
+        center: [points[0].longitude, points[0].latitude],
+        zoom: points.length === 1 ? 8 : 3,
+      });
+      map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+
+      const bounds = new maplibregl.LngLatBounds();
+      for (const point of points) {
+        const popupContent = document.createElement('div');
+        const title = document.createElement('strong');
+        title.textContent = point.label;
+        popupContent.append(title);
+        if (point.events.length) {
+          const list = document.createElement('ul');
+          for (const eventTitle of point.events) {
+            const item = document.createElement('li');
+            item.textContent = eventTitle;
+            list.append(item);
+          }
+          popupContent.append(list);
+        }
+        new maplibregl.Marker()
+          .setLngLat([point.longitude, point.latitude])
+          .setPopup(new maplibregl.Popup({ offset: 24 }).setDOMContent(popupContent))
+          .addTo(map);
+        bounds.extend([point.longitude, point.latitude]);
+      }
+
+      if (points.length > 1) {
+        map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
+      }
+      root.dataset.mapReady = 'true';
+    }
+  }
+
+  initializePersonMaps();
+  document.addEventListener('astro:page-load', initializePersonMaps);
+</script>
+
+<style>
+  .person-places { margin-top: 2.5rem; }
+  .map-note { color: var(--sl-color-gray-3); font-size: 0.875rem; }
+  .person-map-canvas {
+    width: 100%;
+    height: min(58vh, 34rem);
+    min-height: 24rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    overflow: hidden;
+  }
+  .person-places :global(.maplibregl-popup-content) { color: #111; max-width: 22rem; }
+  .person-places :global(.maplibregl-popup-content ul) { margin: 0.5rem 0 0; padding-left: 1.1rem; }
+</style>
