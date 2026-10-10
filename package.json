@@ -4,8 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node scripts/build-genealogy.mjs && astro dev",
-    "build:data": "node scripts/build-genealogy.mjs",
+    "dev": "npm run build:data && astro dev",
+    "build:data": "node scripts/build-genealogy.mjs && node scripts/augment-genealogy-metadata.mjs",
     "build": "npm run build:data && astro build && node scripts/copy-demos.mjs",
     "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/enrich-person-names.mjs && node scripts/enrich-family-groups.mjs",
     "preview": "astro preview",
