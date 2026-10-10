@@ -16,10 +16,17 @@ name:
       last: Prezime
       display: Ime Srednje ime Prezime
   aliases: []
-family:
-  key: family-key
-  label: Фамилия во множественном числе
-  locale: ru
+families:
+  - key: birth-family-key
+    label: Родовая фамилия во множественном числе
+    locale: ru
+    roles:
+      - birth
+  - key: partner-family-key
+    label: Семья партнёра во множественном числе
+    locale: ru
+    roles:
+      - partner
 sex: U
 father:
 mother:
