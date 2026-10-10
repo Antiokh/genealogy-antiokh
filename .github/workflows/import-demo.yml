@@ -12,6 +12,9 @@ permissions:
 jobs:
   import:
     runs-on: ubuntu-latest
+    concurrency:
+      group: family-migration-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -35,4 +38,5 @@ jobs:
             exit 0
           fi
           git commit -m "Populate family navigation groups"
-          git push
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
