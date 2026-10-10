@@ -9,7 +9,7 @@ The repository must remain useful independently of MyHeritage, Genotek, a partic
 - Astro + Starlight encyclopedia shell.
 - 233 real person records imported from the 2026-09-10 MyHeritage snapshot; technical unknown-parent placeholders are excluded.
 - People files remain grouped by birth decade; unknown birth year goes to `people/unknown/`.
-- The navigation is independent from the filesystem and groups people by explicit `family` metadata.
+- The navigation is independent from the filesystem and groups people by explicit `families` metadata. One person may appear in several family groups.
 - Person-to-person authoring uses readable content refs such as `1960-1969/vladislav-nazarov.md`.
 - `father` and `mother` are canonical forward relations; children and siblings are derived at build time.
 - Explicit partners/marriages remain canonical because they cannot be inferred from children alone.
@@ -87,10 +87,13 @@ name:
       display: Anton Vladislavovič Nazarov
   aliases: []
 
-family:
-  key: nazarov
-  label: Назаровы
-  locale: ru
+families:
+  - key: nazarov
+    label: Назаровы
+    locale: ru
+    roles:
+      - birth
+      - current
 
 sex: M
 photo: anton.webp
@@ -135,38 +138,60 @@ Localized forms are explicit data, not automatically generated translations. Thi
 
 ### Family navigation groups
 
-`family` is navigation and analytics metadata, separate from the person's current or birth surname:
+`families` is navigation and analytics metadata, separate from the person's current or birth surname. It is deliberately an array: one person may belong to several family groups at the same time.
 
 ```yaml
-family:
-  key: spiridonov
-  label: Спиридоновы
-  locale: ru
+families:
+  - key: kurochkin
+    label: Курочкины
+    locale: ru
+    roles:
+      - birth
+  - key: spiridonov
+    label: Спиридоновы
+    locale: ru
+    roles:
+      - partner
 ```
+
+Typical roles are:
+
+- `birth` — family identified by the birth/parent surname;
+- `current` — family identified by the person's current/display surname;
+- `marriage` — family identified by an explicit married surname;
+- `partner` — family reached through a recorded family union/partner.
+
+The roles explain why a person appears in a group; they do not replace genealogy relations. Membership can be overridden or added manually when the historical situation is more complicated than surname inference.
 
 Russian gendered surname forms are grouped under one key, for example `Спиридонов` and `Спиридонова` → `spiridonov` / `Спиридоновы`.
 
 The same family may have labels in multiple scripts:
 
 ```yaml
-family:
-  key: bush
-  label: Bush
-  locale: und-Latn
-  localized:
-    ru: Буши
+families:
+  - key: bush
+    label: Буши
+    locale: ru
+    localized:
+      und-Latn: Bush
+    roles:
+      - birth
 ```
 
-`family.key` defines group identity. `label`, `locale` and `localized` control presentation. Therefore a married woman may have a `name.last` different from the family group in which we want to show her. The group can always be overridden manually without changing genealogy relations.
+`family.key` inside each membership defines group identity. `label`, `locale` and `localized` control presentation. A woman can therefore appear both in her parental family and in the family group of a husband/partner; remarriages can produce more than two memberships. A person whose surname changed can likewise remain visible in both the birth family and the current-surname family.
 
-The People sidebar groups by `family`, not by physical decade folders. Russian groups use Russian collation; Latin-script groups use an appropriate Latin collation/fallback. People without a reliable family assignment appear under `Без семейной группы`.
+Imported inferred memberships are marked `inferred: true`. Hand-written memberships without that flag are preserved by the import enrichment step rather than being overwritten.
+
+The People sidebar groups by every entry in `families`, not by physical decade folders. The same person may therefore appear under several family headings, while remaining one canonical person page. Russian groups use Russian collation; Latin-script groups use an appropriate Latin collation/fallback. People without any family assignment appear under `Без семейной группы`.
+
+The legacy singular `family` field is still accepted temporarily for compatibility, but new and migrated records use `families[]`.
 
 ## Stored vs derived relations
 
 Store facts we actually know or import:
 
 - names, surnames and explicit localized forms;
-- family navigation group;
+- one or more family navigation memberships;
 - sex and photo;
 - father and mother;
 - generic `parents[]` only for ambiguous/additional parent cases;
@@ -224,7 +249,7 @@ public/generated/genealogy.json
 
 They are build artifacts and are not committed.
 
-`people.json` contains every person, including isolated records.
+`people.json` contains every person, including isolated records, and carries the person's `families[]` memberships for tables and analytics.
 
 `genealogy.json` contains only people with at least one genealogy edge. Isolated people therefore stay fully visible in the encyclopedia but do not create meaningless single boxes on a family map.
 
@@ -258,6 +283,8 @@ The mapping records MyHeritage XREF → current content ref, for example:
 
 MyHeritage identifiers remain external import metadata, not canonical genealogy relations.
 
+The family enrichment step can infer several memberships from birth/current/married surnames and recorded family unions. It deduplicates them by family key and records the reasons in `roles`. Explicit hand-managed memberships are preserved.
+
 The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because import is a maintenance action and must not silently rewrite canonical records.
 
 ## Adding a person manually
@@ -267,7 +294,7 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 3. Start from `src/content/docs/_templates/person.md`.
 4. Fill in known facts and the primary name locale.
 5. Add localized name forms only when actually known.
-6. Assign `family` when the desired navigation group is known; it may differ from `name.last`.
+6. Add every relevant entry to `families[]`; a person may intentionally belong to more than one family group.
 7. Point `father`, `mother` and explicit partners to other person files when known.
 8. Do not add `children`; the build derives them.
 9. Run `npm run build:data` or the full build to validate refs and inspect generated relations.
@@ -283,7 +310,7 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 [x] Birth / death / burial structured fields
 [x] Structured FIO with optional patronymic/middle name
 [x] Localized name variants and primary name locale
-[x] Explicit family navigation groups
+[x] Multiple family navigation memberships per person
 [x] Locale/script-aware family navigation sorting
 [x] Human-editable analytics fields (occupation, residence, sources)
 [x] Derived children and siblings
