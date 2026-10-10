@@ -33,6 +33,7 @@ export const collections = {
           'citation',
           'evidence',
         ]).optional(),
+        importManaged: z.boolean().optional(),
         id: z.string().optional(),
         name: z.union([z.string(), structuredName]).optional(),
         displayName: z.string().optional(),
