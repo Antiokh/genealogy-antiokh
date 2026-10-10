@@ -2,13 +2,6 @@ name: Import MyHeritage snapshot
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - content-refs-and-derived-graph
-    paths:
-      - scripts/import-demo-snapshot.mjs
-      - src/content.config.ts
-      - .github/workflows/import-demo.yml
 
 permissions:
   contents: write
@@ -38,5 +31,5 @@ jobs:
             echo "No import changes"
             exit 0
           fi
-          git commit -m "Migrate imported people to content references"
+          git commit -m "Import people from MyHeritage snapshot"
           git push
