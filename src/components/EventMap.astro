@@ -3,19 +3,15 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 ---
 
 <section class="event-map-shell" data-event-map>
-  <div class="event-map-toolbar" aria-label="Фильтр событий по годам">
-    <div class="event-map-toolbar-head">
-      <strong>Период</strong>
-      <output data-range-label>Загрузка…</output>
-    </div>
-    <div class="event-map-range" data-range-control hidden>
+  <div class="event-map-canvas" data-event-map-canvas aria-label="Карта всех географически привязанных событий"></div>
+
+  <div class="event-map-period" data-range-control hidden aria-label="Фильтр событий по годам">
+    <output data-range-label>Загрузка…</output>
+    <div class="event-map-range">
       <input data-range-from type="range" aria-label="Начальный год" />
       <input data-range-to type="range" aria-label="Конечный год" />
     </div>
-    <div class="event-map-stats" data-map-stats aria-live="polite"></div>
   </div>
-
-  <div class="event-map-canvas" data-event-map-canvas aria-label="Карта всех географически привязанных событий"></div>
 
   <noscript>Для интерактивной карты требуется JavaScript.</noscript>
 </section>
@@ -86,6 +82,50 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     return Number(start) <= to && Number(end) >= from;
   }
 
+  function overviewIcon(): SVGSVGElement {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.classList.add('rslive-map-overview-icon');
+    for (const [cx, cy, radius] of [[7, 8, 2.2], [16.5, 7, 1.8], [13, 16, 2.4]]) {
+      const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      circle.setAttribute('cx', String(cx));
+      circle.setAttribute('cy', String(cy));
+      circle.setAttribute('r', String(radius));
+      svg.append(circle);
+    }
+    return svg;
+  }
+
+  class HomeControl {
+    private container?: HTMLDivElement;
+    private button?: HTMLButtonElement;
+    private readonly onOverview: () => void;
+
+    constructor(onOverview: () => void) {
+      this.onOverview = onOverview;
+    }
+
+    onAdd() {
+      this.container = document.createElement('div');
+      this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
+      this.button = document.createElement('button');
+      this.button.type = 'button';
+      this.button.className = 'rslive-map-home';
+      this.button.title = 'Показать все события';
+      this.button.setAttribute('aria-label', 'Показать все события');
+      this.button.append(overviewIcon());
+      this.button.addEventListener('click', this.onOverview);
+      this.container.append(this.button);
+      return this.container;
+    }
+
+    onRemove() {
+      this.button?.removeEventListener('click', this.onOverview);
+      this.container?.remove();
+    }
+  }
+
   async function initializeEventMaps() {
     const roots = document.querySelectorAll<HTMLElement>('[data-event-map]:not([data-map-ready])');
     if (!roots.length) return;
@@ -113,14 +153,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const toInput = root.querySelector<HTMLInputElement>('[data-range-to]');
       const rangeControl = root.querySelector<HTMLElement>('[data-range-control]');
       const rangeLabel = root.querySelector<HTMLOutputElement>('[data-range-label]');
-      const stats = root.querySelector<HTMLElement>('[data-map-stats]');
-      if (!canvas || !fromInput || !toInput || !rangeLabel || !stats || !rangeControl) continue;
+      if (!canvas || !fromInput || !toInput || !rangeLabel || !rangeControl) continue;
 
       const mapCanvas = canvas;
       const fromControl = fromInput;
       const toControl = toInput;
       const output = rangeLabel;
-      const status = stats;
 
       for (const input of [fromControl, toControl]) {
         input.min = String(datasetMin);
@@ -151,7 +189,27 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         zoom: 2.5,
         attributionControl: false,
       });
+
+      function fitOverview() {
+        const features = filteredCollection().features;
+        if (!features.length) return;
+        if (features.length === 1) {
+          map.easeTo({ center: features[0].geometry.coordinates, zoom: Math.max(map.getZoom(), 7) });
+          return;
+        }
+        const bounds = new maplibregl.LngLatBounds();
+        for (const feature of features) bounds.extend(feature.geometry.coordinates);
+        map.fitBounds(bounds, { padding: 52, maxZoom: 10, duration: 450 });
+      }
+
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+      map.addControl(new HomeControl(fitOverview), 'top-right');
+      map.addControl(new maplibregl.FullscreenControl({ container: root }), 'top-right');
+      map.addControl(new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+      }), 'top-right');
+      map.addControl(new maplibregl.ScaleControl({ maxWidth: 90, unit: 'metric' }), 'bottom-left');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
       const collapseAttribution = () => collapseAttributionControl(root);
@@ -214,16 +272,15 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         currentFrom = from;
         currentTo = to;
         output.value = from === to ? String(from) : `${from}–${to}`;
-        const filtered = filteredCollection();
-        status.textContent = `${filtered.features.length} из ${datedFeatures.length} геопривязанных событий`;
         const source = map.getSource(sourceId) as import('maplibre-gl').GeoJSONSource | undefined;
-        source?.setData(filtered);
+        source?.setData(filteredCollection());
       }
 
       map.on('load', () => {
         addEventLayers();
         updateRange();
         collapseAttribution();
+        fitOverview();
       });
       map.once('idle', collapseAttribution);
 
@@ -304,37 +361,78 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
 <style>
   .event-map-shell {
+    --map-popup-bg: #ffffff;
+    --map-popup-fg: #1f2937;
+    --map-panel-bg: rgb(255 255 255 / 92%);
+    --map-panel-fg: #1f2937;
+    --map-panel-muted: #64748b;
+    --map-panel-border: rgb(148 163 184 / 42%);
     --map-control-bg: #ffffff;
     --map-control-hover: #f1f5f9;
     --map-control-fg: #1f2937;
     --map-control-border: #d7dde4;
-    --map-popup-bg: #ffffff;
-    --map-popup-fg: #1f2937;
     --map-link: #1d4ed8;
+    position: relative;
     margin-top: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.75rem;
+    color-scheme: light;
   }
+
   :global(html[data-theme='dark']) .event-map-shell {
+    --map-popup-bg: #1f2937;
+    --map-popup-fg: #e5e7eb;
+    --map-panel-bg: rgb(23 33 41 / 92%);
+    --map-panel-fg: #e5e7eb;
+    --map-panel-muted: #aab4bd;
+    --map-panel-border: rgb(100 116 139 / 50%);
     --map-control-bg: #1f2937;
     --map-control-hover: #334155;
     --map-control-fg: #e5e7eb;
     --map-control-border: #475569;
-    --map-popup-bg: #1f2937;
-    --map-popup-fg: #e5e7eb;
     --map-link: #93c5fd;
+    color-scheme: dark;
   }
-  .event-map-toolbar {
-    display: grid;
-    gap: 0.6rem;
-    margin-bottom: 0.75rem;
-    padding: 0.8rem 0.9rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.75rem;
-    background: var(--sl-color-bg-nav);
+
+  .event-map-canvas {
+    width: 100%;
+    height: min(68vh, 46rem);
+    min-height: 30rem;
   }
-  .event-map-toolbar-head { display: flex; justify-content: space-between; gap: 1rem; }
-  .event-map-toolbar output { font-variant-numeric: tabular-nums; font-weight: 700; }
-  .event-map-stats { color: var(--sl-color-gray-3); font-size: 0.82rem; }
-  .event-map-range { position: relative; height: 1.75rem; }
+
+  .event-map-period {
+    position: absolute;
+    z-index: 8;
+    top: max(0.65rem, env(safe-area-inset-top));
+    left: 0;
+    width: min(72vw, 30rem);
+    padding: 0.55rem 0.8rem 0.6rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
+    border: 1px solid var(--map-panel-border);
+    border-left: 0;
+    border-radius: 0 0.7rem 0.7rem 0;
+    background: var(--map-panel-bg);
+    box-shadow: 0 4px 18px rgb(15 23 42 / 14%);
+    color: var(--map-panel-fg);
+    backdrop-filter: blur(8px);
+  }
+
+  .event-map-period[hidden] { display: none; }
+
+  .event-map-period output {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.2;
+  }
+
+  .event-map-range {
+    position: relative;
+    height: 1.25rem;
+  }
+
   .event-map-range input[type='range'] {
     position: absolute;
     inset: 0;
@@ -343,16 +441,22 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     background: transparent;
     pointer-events: none;
   }
+
   .event-map-range input[type='range']::-webkit-slider-thumb { pointer-events: auto; }
   .event-map-range input[type='range']::-moz-range-thumb { pointer-events: auto; }
-  .event-map-canvas {
-    width: 100%;
-    height: min(68vh, 46rem);
-    min-height: 30rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.75rem;
-    overflow: hidden;
+
+  .event-map-shell :global(.maplibregl-ctrl-top-left),
+  .event-map-shell :global(.maplibregl-ctrl-top-right),
+  .event-map-shell :global(.maplibregl-ctrl-bottom-left),
+  .event-map-shell :global(.maplibregl-ctrl-bottom-right) {
+    z-index: 6;
   }
+
+  .event-map-shell :global(.maplibregl-ctrl-top-right) {
+    top: max(0.45rem, env(safe-area-inset-top));
+    right: max(0.4rem, env(safe-area-inset-right));
+  }
+
   .event-map-shell :global(.maplibregl-ctrl-group) {
     overflow: hidden;
     border: 1px solid var(--map-control-border);
@@ -360,36 +464,99 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     background: var(--map-control-bg) !important;
     box-shadow: 0 2px 9px rgb(15 23 42 / 16%);
   }
-  .event-map-shell :global(.maplibregl-ctrl-group button) { background-color: var(--map-control-bg) !important; color: var(--map-control-fg) !important; }
+
+  .event-map-shell :global(.maplibregl-ctrl-group button) {
+    background-color: var(--map-control-bg) !important;
+    color: var(--map-control-fg) !important;
+  }
+
   .event-map-shell :global(.maplibregl-ctrl-group button:hover),
-  .event-map-shell :global(.maplibregl-ctrl-group button:focus-visible) { background-color: var(--map-control-hover) !important; }
-  .event-map-shell :global(.maplibregl-ctrl-group button + button) { border-top-color: var(--map-control-border) !important; }
+  .event-map-shell :global(.maplibregl-ctrl-group button:focus-visible) {
+    background-color: var(--map-control-hover) !important;
+  }
+
+  .event-map-shell :global(.maplibregl-ctrl-group button + button) {
+    border-top-color: var(--map-control-border) !important;
+  }
+
+  .event-map-shell :global(.rslive-map-home) {
+    display: grid !important;
+    place-items: center;
+  }
+
+  .event-map-shell :global(.rslive-map-overview-icon) {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+
   :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-group .maplibregl-ctrl-icon),
-  :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-attrib-button) { filter: invert(1) brightness(1.35); }
+  :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-attrib-button) {
+    filter: invert(1) brightness(1.35);
+  }
+
   .event-map-shell :global(.maplibregl-ctrl-attrib) {
     border: 1px solid var(--map-control-border);
     background: color-mix(in srgb, var(--map-control-bg) 92%, transparent) !important;
     color: var(--map-control-fg);
     backdrop-filter: blur(8px);
   }
+
   .event-map-shell :global(.maplibregl-ctrl-attrib a) { color: var(--map-link); }
+
+  .event-map-shell :global(.maplibregl-popup) {
+    z-index: 7;
+    max-width: min(22rem, 80vw) !important;
+  }
+
   .event-map-shell :global(.maplibregl-popup-content) {
-    border: 1px solid var(--map-control-border);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    border: 1px solid var(--map-panel-border);
     border-radius: 0.65rem;
     background: var(--map-popup-bg);
     color: var(--map-popup-fg);
     box-shadow: 0 5px 20px rgb(15 23 42 / 24%);
   }
-  .event-map-shell :global(.maplibregl-popup-close-button) { color: var(--map-popup-fg); }
-  .event-map-shell :global(.maplibregl-popup-anchor-top .maplibregl-popup-tip) { border-bottom-color: var(--map-popup-bg); }
-  .event-map-shell :global(.maplibregl-popup-anchor-bottom .maplibregl-popup-tip) { border-top-color: var(--map-popup-bg); }
+
+  .event-map-shell :global(.maplibregl-popup-anchor-top .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-top-left .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-top-right .maplibregl-popup-tip) {
+    border-bottom-color: var(--map-popup-bg);
+  }
+
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip) {
+    border-top-color: var(--map-popup-bg);
+  }
+
   .event-map-shell :global(.maplibregl-popup-anchor-left .maplibregl-popup-tip) { border-right-color: var(--map-popup-bg); }
   .event-map-shell :global(.maplibregl-popup-anchor-right .maplibregl-popup-tip) { border-left-color: var(--map-popup-bg); }
-  .event-map-shell :global(.genealogy-map-popup) { display: grid; gap: 0.3rem; min-width: 12rem; }
-  .event-map-shell :global(.genealogy-map-popup-date) { opacity: 0.72; font-size: 0.78rem; font-weight: 700; }
-  .event-map-shell :global(.genealogy-map-popup-title) { color: var(--map-link); font-weight: 700; }
+  .event-map-shell :global(.maplibregl-popup-close-button) { color: var(--map-popup-fg); }
+
+  .event-map-shell :global(.genealogy-map-popup) {
+    display: grid;
+    gap: 0.3rem;
+    min-width: 0;
+    color: var(--map-popup-fg);
+    font-size: 0.8rem;
+    line-height: 1.35;
+  }
+
+  .event-map-shell :global(.genealogy-map-popup-date) {
+    color: var(--map-panel-muted);
+    font-size: 0.76rem;
+  }
+
+  .event-map-shell :global(.genealogy-map-popup-title) {
+    color: var(--map-link);
+    font-size: 0.92rem;
+    font-weight: 700;
+  }
 
   @media (max-width: 40rem) {
-    .event-map-canvas { min-height: 25rem; height: 62vh; }
+    .event-map-canvas { min-height: 26rem; }
+    .event-map-period { width: min(68vw, 22rem); }
   }
 </style>
