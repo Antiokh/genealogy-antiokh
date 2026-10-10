@@ -1,5 +1,6 @@
 ---
 title: Имя Фамилия
+draft: true
 entity: person
 id: P00000
 name:
@@ -13,7 +14,7 @@ parents: []
 partners: []
 sources: []
 sidebar:
-  order: 100
+  hidden: true
 ---
 
 Краткая биография и подтверждённые сведения о человеке.
