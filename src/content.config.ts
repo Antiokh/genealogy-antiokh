@@ -25,17 +25,36 @@ const lifeEvent = z.object({
   place: z.string().nullish(),
 }).passthrough();
 
+const localizedName = z.object({
+  first: z.string().optional(),
+  middle: z.string().optional(),
+  last: z.string().optional(),
+  display: z.string().optional(),
+}).passthrough();
+
 const structuredName = z.object({
   full: z.string().optional(),
   display: z.string().optional(),
+  locale: z.string().optional(),
   first: z.string().optional(),
   middle: z.string().optional(),
   patronymic: z.string().optional(),
   last: z.string().optional(),
   birth_last: z.string().optional(),
   married_last: z.string().optional(),
+  localized: z.record(z.string(), localizedName).optional(),
   aliases: z.array(z.string()).optional(),
 }).passthrough();
+
+const familyGroup = z.union([
+  z.string(),
+  z.object({
+    key: z.string(),
+    label: z.string().optional(),
+    locale: z.string().optional(),
+    localized: z.record(z.string(), z.string()).optional(),
+  }).passthrough(),
+]);
 
 const partner = z.union([
   z.string(),
@@ -70,6 +89,7 @@ export const collections = {
 
         // Canonical person fields.
         name: z.union([z.string(), structuredName]).optional(),
+        family: familyGroup.optional(),
         sex: z.enum(['M', 'F', 'X', 'U']).optional(),
         photo: z.string().optional(),
         father: z.string().nullish(),
