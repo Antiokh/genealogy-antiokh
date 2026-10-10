@@ -1,5 +1,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import { buildPeopleSidebar } from './scripts/starlight-people-sidebar.mjs';
+
+const peopleSidebar = buildPeopleSidebar();
 
 export default defineConfig({
   site: 'https://genealogy-antiokh.pages.dev',
@@ -28,7 +31,8 @@ export default defineConfig({
         {
           label: 'Люди',
           items: [
-            { autogenerate: { directory: 'people', collapsed: false } },
+            { label: 'Все люди', link: '/people/' },
+            ...peopleSidebar,
           ],
         },
         {
