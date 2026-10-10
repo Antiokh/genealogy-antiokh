@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "kurochkin"
-  label: "Kurochkin"
-  locale: und-Latn
+  label: "Курочкины"
+  locale: ru
   localized:
-    "ru": "Курочкины"
+    "und-Latn": "Kurochkin"
 sex: M
 father: "unknown/nikolay-kurochkin.md"
 mother: null

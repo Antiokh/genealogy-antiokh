@@ -12,10 +12,10 @@ name:
   aliases: []
 family:
   key: "bush"
-  label: "Bush"
-  locale: und-Latn
+  label: "Буши"
+  locale: ru
   localized:
-    "ru": "Буши"
+    "und-Latn": "Bush"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkNTExYWQ4OTkzZDE3NTc0ZTQzZjA5Y2Q0ZGMzN2EyNGQ2ODg1MjU1MDQyOWUxNzU3YWY3ZGJhYTQ3OWY4MjQmZT0xNzg5Njc1MjAw/129/852/4292/500075_878799y1f66f3fun9ga41f_A.jpg"
 father: null

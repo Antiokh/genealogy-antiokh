@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "kurochkin"
-  label: "Kurochkin"
-  locale: und-Latn
+  label: "Курочкины"
+  locale: ru
   localized:
-    "ru": "Курочкины"
+    "und-Latn": "Kurochkin"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThlMDliYzA0MDk1MjlkZjllOTllNDQ5Y2MyOWU3NGI5Mjc0MjFlY2RmMjA2NzZlMTFkNWVjZjJiODgwNjE5ZjEmZT0xNzg5Njc1MjAw/129/852/4292/500087_0773906kv16b14f46uwddf_A.jpg"
 father: "1900-1909/nikolay-kurochkin.md"

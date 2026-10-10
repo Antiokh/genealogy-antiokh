@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "busch"
-  label: "Büsch"
+  label: "Busch"
   locale: und-Latn
   localized:
-    "und-Latn": "Busch"
+    "und-Latn": "Büsch"
 sex: M
 father: null
 mother: "1810-1819/louise-charlotte-gerdau.md"

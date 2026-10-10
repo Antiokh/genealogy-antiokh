@@ -12,10 +12,10 @@ name:
   aliases: []
 family:
   key: "nazarov"
-  label: "Nazarov"
-  locale: und-Latn
+  label: "Назаровы"
+  locale: ru
   localized:
-    "ru": "Назаровы"
+    "und-Latn": "Nazarov"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQyZjU3YzdmZWUxMTg5N2QxMjBjMmQwOTE1MGZmMThjYjY2NzE3ZDlkNDE2MTk2MTc5ZGU3N2Y4M2FmMWJjYzkmZT0xNzg5Njc1MjAw/129/852/4292/500182_14857098694ao0d1nas6o2_A.jpg"
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"

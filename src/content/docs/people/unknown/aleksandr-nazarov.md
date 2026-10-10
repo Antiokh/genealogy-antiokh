@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "nazarov"
-  label: "Nazarov"
-  locale: und-Latn
+  label: "Назаровы"
+  locale: ru
   localized:
-    "ru": "Назаровы"
+    "und-Latn": "Nazarov"
 sex: M
 father: "1930-1939/vasiliy-nazarov.md"
 mother: null

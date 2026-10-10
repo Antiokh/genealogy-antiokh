@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "tatarintsev"
-  label: "Tatarintsev"
-  locale: und-Latn
+  label: "Татаринцевы"
+  locale: ru
   localized:
-    "ru": "Татаринцевы"
+    "und-Latn": "Tatarintsev"
 sex: F
 father: null
 mother: null

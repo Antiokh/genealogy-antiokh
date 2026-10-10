@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "bush"
-  label: "Bush"
-  locale: und-Latn
+  label: "Буши"
+  locale: ru
   localized:
-    "ru": "Буши"
+    "und-Latn": "Bush"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTM4MmY5ODk1YjNiNzRmYzBmYjUwOWE4MzUzMTk0YWFkY2ZkZTRmZWE3MmRmZDQ4MTQ0N2QwYjJhNzAzMzhjOTcmZT0xNzg5Njc1MjAw/129/852/4292/500041_957267fci1y316765drtg2_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

@@ -12,10 +12,10 @@ name:
   aliases: []
 family:
   key: "bartmer"
-  label: "Bartmer"
-  locale: und-Latn
+  label: "Бартмеры"
+  locale: ru
   localized:
-    "ru": "Бартмеры"
+    "und-Latn": "Bartmer"
 sex: F
 father: null
 mother: null

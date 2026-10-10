@@ -12,10 +12,10 @@ name:
   aliases: []
 family:
   key: "kurochkin"
-  label: "Kurochkin"
-  locale: und-Latn
+  label: "Курочкины"
+  locale: ru
   localized:
-    "ru": "Курочкины"
+    "und-Latn": "Kurochkin"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkMTY0NTczZWU4OWJlYjQ0ZWYxNmZjYjU4YzA4OGYyYWEyODVmYTRjNGFmNzQzZmZjNjg4OTIxMTJkZjlhMjImZT0xNzg5Njc1MjAw/129/852/4292/500071_137348060e1363cfr3f140_A.jpg"
 father: "1880-1889/mikhail-spiridonov.md"

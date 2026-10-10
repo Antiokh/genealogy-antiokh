@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "nazarov"
-  label: "Nazarov"
-  locale: und-Latn
+  label: "Назаровы"
+  locale: ru
   localized:
-    "ru": "Назаровы"
+    "und-Latn": "Nazarov"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ3OTg1MTk3OTNhZGRiMzUwMzQ0MDE3ZTZjY2U1MGU3ZTY3MmQ5ODNkNjM1ZGY2Zjc5MGY5YTFmNmI4NzYzNzUmZT0xNzg5Njc1MjAw/129/852/4292/500334_664093n66xba68qc1fa67a_A.jpg"
 father: "1930-1939/semen-nazarov.md"

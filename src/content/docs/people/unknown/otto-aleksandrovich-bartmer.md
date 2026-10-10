@@ -14,10 +14,10 @@ name:
   last: Бартмер
 family:
   key: "bartmer"
-  label: "Bartmer"
-  locale: und-Latn
+  label: "Бартмеры"
+  locale: ru
   localized:
-    "ru": "Бартмеры"
+    "und-Latn": "Bartmer"
 sex: M
 father: 1810-1819/aleksandr-eduard-bartmer.md
 mother: 1820-1829/yoganna-zhozefina-bartmer.md

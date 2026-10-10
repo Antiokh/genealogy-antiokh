@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "bush"
-  label: "Bush"
-  locale: und-Latn
+  label: "Буши"
+  locale: ru
   localized:
-    "ru": "Буши"
+    "und-Latn": "Bush"
 sex: M
 father: "1890-1899/boris-bush.md"
 mother: null

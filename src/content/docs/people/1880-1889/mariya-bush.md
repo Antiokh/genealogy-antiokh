@@ -11,10 +11,10 @@ name:
   aliases: []
 family:
   key: "bush"
-  label: "Bush"
-  locale: und-Latn
+  label: "Буши"
+  locale: ru
   localized:
-    "ru": "Буши"
+    "und-Latn": "Bush"
 sex: F
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"
 mother: "1860-1869/elizaveta-olga-busch.md"
