@@ -1,11 +1,11 @@
 ---
-title: Имя Фамилия
+title: Имя Отчество Фамилия
 draft: true
 entity: person
 name:
-  display: Имя Фамилия
+  display: Имя Отчество Фамилия
   first: Имя
-  patronymic: Отчество
+  middle: Отчество
   last: Фамилия
   birth_last: Фамилия
   aliases: []

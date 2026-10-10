@@ -1,16 +1,19 @@
 ---
-title: "Георгий Михайлович Римский-Корсаков"
-description: "Георгий Михайлович Римский-Корсаков, 1901–1965"
+title: Георгий Михайлович Римский-Корсаков
+description: Георгий Михайлович Римский-Корсаков, 1901–1965
 entity: person
 importManaged: true
 name:
-  full: "Георгий Михайлович Римский-Корсаков"
-  display: "Георгий Михайлович Римский-Корсаков"
-  birth_last: "Римский-Корсаков"
+  full: Георгий Михайлович Римский-Корсаков
+  display: Георгий Михайлович Римский-Корсаков
+  birth_last: Римский-Корсаков
   aliases: []
+  first: Георгий
+  middle: Михайлович
+  last: Римский-Корсаков
 sex: M
-father: "1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md"
-mother: "1880-1889/evgeniya-petrovna-rimskaya-korsakova.md"
+father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
+mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md
 born:
   known: true
   date: 1901
@@ -29,8 +32,8 @@ residence: []
 sources: []
 external:
   myheritage:
-    snapshot: "2026-09-10"
-    xref: "I500246"
+    snapshot: 2026-09-10
+    xref: I500246
 ---
 
 **Годы жизни:** 1901–1965

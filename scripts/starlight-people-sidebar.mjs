@@ -1,5 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import YAML from 'yaml';
 
 const PEOPLE_ROOT = path.resolve('src/content/docs/people');
 
@@ -30,21 +31,25 @@ export function genealogySortKey(value) {
     .trim();
 }
 
-function readTitle(filePath) {
+function readFrontmatter(filePath) {
   const content = readFileSync(filePath, 'utf8');
-  const frontmatter = content.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? '';
-  const raw = frontmatter.match(/^title:\s*(.*?)\s*$/m)?.[1]?.trim();
-  if (!raw) return path.basename(filePath, path.extname(filePath));
+  const raw = content.match(/^---\s*\r?\n([\s\S]*?)\r?\n---/)?.[1];
+  return raw ? (YAML.parse(raw) ?? {}) : {};
+}
 
-  if (raw.startsWith('"') && raw.endsWith('"')) {
-    try {
-      return JSON.parse(raw);
-    } catch {
-      // Fall through to a simple unquote for hand-authored YAML.
-    }
+function personLabel(data, filePath) {
+  if (data.name && typeof data.name === 'object') {
+    const first = data.name.first;
+    const middle = data.name.middle || data.name.patronymic;
+    const last = data.name.last;
+    const fio = [first, middle, last].filter(Boolean).join(' ').trim();
+    if (fio && first && last) return fio;
+    if (data.name.display) return data.name.display;
+    if (data.name.full) return data.name.full;
   }
-  if (raw.startsWith("'") && raw.endsWith("'")) return raw.slice(1, -1).replaceAll("''", "'");
-  return raw.replace(/\s+#.*$/, '').trim();
+  if (typeof data.name === 'string' && data.name.trim()) return data.name.trim();
+  if (data.title) return String(data.title);
+  return path.basename(filePath, path.extname(filePath));
 }
 
 function collectPersonPages(directory, relative = '') {
@@ -60,15 +65,16 @@ function collectPersonPages(directory, relative = '') {
     if (!entry.isFile() || !/\.mdx?$/i.test(entry.name)) continue;
     if (/^index\.mdx?$/i.test(entry.name) && !relative) continue;
 
-    const title = readTitle(absolute);
+    const data = readFrontmatter(absolute);
+    const label = personLabel(data, absolute);
     let slug = nextRelative.replace(/\.mdx?$/i, '');
     slug = slug.replace(/\/index$/i, '');
     const [section] = slug.split('/');
     pages.push({
       section,
-      title,
+      label,
       slug,
-      sortKey: genealogySortKey(title),
+      sortKey: genealogySortKey(label),
     });
   }
   return pages;
@@ -97,9 +103,9 @@ export function buildPeopleSidebar() {
     label: section === 'unknown' ? 'Год рождения неизвестен' : section,
     collapsed: false,
     items: grouped.get(section)
-      .sort((a, b) => keyCollator.compare(a.sortKey, b.sortKey) || labelCollator.compare(a.title, b.title))
+      .sort((a, b) => keyCollator.compare(a.sortKey, b.sortKey) || labelCollator.compare(a.label, b.label))
       .map((page) => ({
-        label: page.title,
+        label: page.label,
         link: `/people/${page.slug}/`,
       })),
   }));
