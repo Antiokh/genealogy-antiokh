@@ -1,11 +1,20 @@
-# Canonical content
+---
+title: Структура контента
+description: Служебное описание канонической структуры Starlight.
+draft: true
+entity: index
+sidebar:
+  hidden: true
+---
 
-Starlight reads this directory directly. The filesystem is a navigation structure, while semantic relationships use stable IDs from frontmatter.
+# Канонический контент
 
-- `people/<birth-decade>/<slug>.md` — people by birth decade.
-- `events/<year>/<slug>.md` — events by event year.
-- `places/` — reusable place entities.
-- `sources/` — source records.
-- `_templates/` — authoring templates ignored by Starlight's `docsLoader()`.
+Starlight читает этот каталог напрямую. Файловая система задаёт навигацию, а смысловые связи используют стабильные ID из frontmatter.
 
-Moving a file between decades or years must not change its `id` or break relationships.
+- `people/<birth-decade>/<slug>.md` — люди по десятилетию рождения.
+- `events/<year>/<slug>.md` — события по году.
+- `places/` — переиспользуемые сущности мест.
+- `sources/` — записи источников.
+- `_templates/` — шаблоны для авторинга, игнорируемые `docsLoader()`.
+
+Перемещение файла между десятилетиями или годами не должно менять его `id` или ломать связи.
