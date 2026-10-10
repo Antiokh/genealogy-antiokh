@@ -6,7 +6,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   <div class="event-map-canvas" data-event-map-canvas aria-label="Карта всех географически привязанных событий"></div>
 
   <div class="event-map-period" data-range-control hidden aria-label="Фильтр событий по годам">
-    <output data-range-label>Загрузка…</output>
+    <output data-range-label>Временной интервал: загрузка…</output>
     <div class="event-map-range" data-range-track>
       <input data-range-from type="range" aria-label="Начальный год" />
       <input data-range-to type="range" aria-label="Конечный год" />
@@ -135,6 +135,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       fetch('/generated/places.geojson'),
     ]);
     if (!response.ok) return;
+
     const { default: maplibregl } = maplibreModule;
     const dataset = await response.json() as EventCollection;
     const allFeatures = dataset.features ?? [];
@@ -144,6 +145,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       Number(feature.properties.endYear ?? feature.properties.startYear),
     ]).filter(Number.isFinite);
     if (!years.length) return;
+
     const datasetMin = Math.min(...years);
     const datasetMax = Math.max(...years);
 
@@ -160,6 +162,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const fromControl = fromInput;
       const toControl = toInput;
       const output = rangeLabel;
+      const rangeTrackElement = rangeTrack;
 
       for (const input of [fromControl, toControl]) {
         input.min = String(datasetMin);
@@ -189,6 +192,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         center: [30, 52],
         zoom: 2.5,
         attributionControl: false,
+        renderWorldCopies: false,
       });
 
       function fitOverview() {
@@ -230,10 +234,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           source: sourceId,
           filter: ['has', 'point_count'],
           paint: {
-            'circle-color': '#e05252',
-            'circle-radius': ['step', ['get', 'point_count'], 12, 8, 15, 20, 19, 45, 23],
-            'circle-stroke-width': 0,
-            'circle-opacity': 0.94,
+            'circle-color': '#64748b',
+            'circle-radius': ['step', ['get', 'point_count'], 18, 10, 23, 30, 28],
+            'circle-stroke-width': 2,
+            'circle-stroke-color': '#ffffff',
           },
         });
         map.addLayer({
@@ -270,15 +274,17 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           fromControl.value = String(from);
           toControl.value = String(to);
         }
+
         currentFrom = from;
         currentTo = to;
-        output.value = from === to ? String(from) : `${from}–${to}`;
+        const value = from === to ? String(from) : `${from}–${to}`;
+        output.value = `Временной интервал: ${value}`;
 
         const span = Math.max(1, datasetMax - datasetMin);
         const fromPercent = ((from - datasetMin) / span) * 100;
         const toPercent = ((to - datasetMin) / span) * 100;
-        rangeTrack?.style.setProperty('--range-from', `${fromPercent}%`);
-        rangeTrack?.style.setProperty('--range-to', `${toPercent}%`);
+        rangeTrackElement.style.setProperty('--range-from', `${fromPercent}%`);
+        rangeTrackElement.style.setProperty('--range-to', `${toPercent}%`);
 
         const source = map.getSource(sourceId) as import('maplibre-gl').GeoJSONSource | undefined;
         source?.setData(filteredCollection());
@@ -304,23 +310,24 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       map.on('click', pointLayer, (event) => {
         const feature = event.features?.[0] as unknown as EventFeature | undefined;
         if (!feature || feature.geometry.type !== 'Point') return;
+
         const container = document.createElement('div');
-        container.className = 'genealogy-map-popup';
-        const date = eventDateLabel(feature);
-        if (date) {
-          const time = document.createElement('div');
-          time.className = 'genealogy-map-popup-date';
-          time.textContent = date;
-          container.append(time);
-        }
-        const title = document.createElement('a');
-        title.href = feature.properties.eventUrl;
+        container.className = 'genealogy-map-popup rslive-map-popup';
+
+        const title = document.createElement('strong');
         title.textContent = feature.properties.eventTitle;
-        title.className = 'genealogy-map-popup-title';
         container.append(title);
-        const place = document.createElement('div');
-        place.textContent = feature.properties.placeLabel;
-        container.append(place);
+
+        const details = document.createElement('p');
+        const date = eventDateLabel(feature);
+        details.textContent = [date, feature.properties.placeLabel].filter(Boolean).join('\n');
+        container.append(details);
+
+        const link = document.createElement('a');
+        link.href = feature.properties.eventUrl;
+        link.textContent = 'Открыть событие';
+        container.append(link);
+
         new maplibregl.Popup({ maxWidth: 'min(22rem, 80vw)', offset: 12 })
           .setLngLat(feature.geometry.coordinates)
           .setDOMContent(container)
@@ -534,8 +541,15 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }
 
   .event-map-shell :global(.maplibregl-ctrl-group button) {
+    display: block;
+    width: 29px !important;
+    height: 29px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
     background-color: var(--map-control-bg) !important;
     color: var(--map-control-fg) !important;
+    line-height: 0;
   }
 
   .event-map-shell :global(.maplibregl-ctrl-group button:hover),
@@ -544,7 +558,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }
 
   .event-map-shell :global(.maplibregl-ctrl-group button + button) {
-    border-top-color: var(--map-control-border) !important;
+    border-top: 1px solid var(--map-control-border) !important;
   }
 
   .event-map-shell :global(.rslive-map-home) {
@@ -563,6 +577,16 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     filter: invert(1) brightness(1.35);
   }
 
+  /* Same quiet bottom utility layout used by the RSLive map renderer. */
+  .event-map-shell :global(.maplibregl-ctrl-bottom-right) {
+    left: 0;
+    right: auto;
+  }
+
+  .event-map-shell :global(.maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib) {
+    margin: 0 0 max(0.55rem, env(safe-area-inset-bottom)) max(0.55rem, env(safe-area-inset-left));
+  }
+
   .event-map-shell :global(.maplibregl-ctrl-attrib) {
     border: 1px solid var(--map-control-border);
     background: color-mix(in srgb, var(--map-control-bg) 92%, transparent) !important;
@@ -571,6 +595,24 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   }
 
   .event-map-shell :global(.maplibregl-ctrl-attrib a) { color: var(--map-link); }
+
+  .event-map-shell :global(.maplibregl-ctrl-bottom-left .maplibregl-ctrl-scale) {
+    max-width: 4.6rem !important;
+    margin: 0 0 max(0.55rem, env(safe-area-inset-bottom)) max(3.15rem, calc(env(safe-area-inset-left) + 3.15rem)) !important;
+    padding: 0 0.28rem !important;
+    border-color: var(--map-control-fg) !important;
+    border-width: 1px !important;
+    border-top-width: 0 !important;
+    background: color-mix(in srgb, var(--map-control-bg) 58%, transparent) !important;
+    color: var(--map-control-fg) !important;
+    font-size: 0.64rem !important;
+    line-height: 1.2 !important;
+    opacity: 0.82;
+  }
+
+  .event-map-shell :global(.maplibregl-ctrl-attrib.maplibregl-compact:not(.maplibregl-compact-show) .maplibregl-ctrl-attrib-inner) {
+    display: none !important;
+  }
 
   .event-map-shell :global(.maplibregl-popup) {
     z-index: 7;
@@ -606,27 +648,42 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     padding: 0.25rem 0.5rem;
     color: var(--map-popup-fg);
     font-size: 1.15rem;
-    line-height: 1;
   }
 
-  .event-map-shell :global(.genealogy-map-popup) {
+  .event-map-shell :global(.rslive-map-popup) {
     display: grid;
-    gap: 0.3rem;
-    min-width: 0;
-    color: var(--map-popup-fg);
+    gap: 0.42rem;
+    min-width: min(15rem, 70vw);
+  }
+
+  .event-map-shell :global(.rslive-map-popup strong) {
+    padding-right: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.2;
+  }
+
+  .event-map-shell :global(.rslive-map-popup p) {
+    margin: 0;
+    white-space: pre-wrap;
+    color: var(--map-panel-muted);
     font-size: 0.8rem;
     line-height: 1.35;
   }
 
-  .event-map-shell :global(.genealogy-map-popup-date) {
-    color: var(--map-panel-muted);
-    font-size: 0.76rem;
+  .event-map-shell :global(.rslive-map-popup a) {
+    color: var(--map-link);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
   }
 
-  .event-map-shell :global(.genealogy-map-popup-title) {
-    color: var(--map-link);
-    font-size: 0.92rem;
-    font-weight: 700;
+  .event-map-shell :global(.rslive-map-popup a:hover) { text-decoration: underline; }
+
+  .event-map-shell:fullscreen,
+  .event-map-shell:-webkit-full-screen {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
   }
 
   @media (max-width: 40rem) {
