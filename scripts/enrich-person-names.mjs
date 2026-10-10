@@ -36,7 +36,7 @@ function patronymicFrom(fullName) {
 function displaySurname(data) {
   const current = String(data.name?.display || data.title || '').trim().split(/\s+/).filter(Boolean);
   const currentLast = current.at(-1);
-  return data.name?.last || data.name?.married_last || data.name?.birth_last || currentLast;
+  return data.name?.married_last || data.name?.birth_last || data.name?.last || currentLast;
 }
 
 let changed = 0;
