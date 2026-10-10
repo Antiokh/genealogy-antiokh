@@ -2,6 +2,9 @@ name: Import MyHeritage snapshot
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - localized-names-family-groups
 
 permissions:
   contents: write
@@ -9,6 +12,9 @@ permissions:
 jobs:
   import:
     runs-on: ubuntu-latest
+    concurrency:
+      group: family-migration-${{ github.ref }}
+      cancel-in-progress: true
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -31,5 +37,6 @@ jobs:
             echo "No import changes"
             exit 0
           fi
-          git commit -m "Import people from MyHeritage snapshot"
-          git push
+          git commit -m "Normalize family labels and locale grouping"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          git push origin "HEAD:$GITHUB_REF_NAME"
