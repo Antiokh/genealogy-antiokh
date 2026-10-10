@@ -2,6 +2,9 @@ name: Import MyHeritage snapshot
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - sort-menu-and-drop-unknown-parents
 
 permissions:
   contents: write
@@ -31,5 +34,5 @@ jobs:
             echo "No import changes"
             exit 0
           fi
-          git commit -m "Import people from MyHeritage snapshot"
+          git commit -m "Remove synthetic unknown-parent records"
           git push
