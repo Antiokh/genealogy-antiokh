@@ -1,16 +1,16 @@
 ---
-title: Сергей Тимофеевич (Popov)
-description: Сергей Тимофеевич (Popov), 1901–1942
+title: Сергей Тимофеевич Попов (Popov)
+description: Сергей Тимофеевич Попов (Popov), 1901–1942
 entity: person
 importManaged: true
 name:
   full: Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)
-  display: Сергей Тимофеевич (Popov)
+  display: Сергей Тимофеевич Попов (Popov)
   birth_last: Попов (Popov)
   aliases: []
   first: Сергей
   middle: Тимофеевич
-  last: (Popov)
+  last: Попов (Popov)
 sex: M
 father: unknown/timofey-popov.md
 mother: unknown/fevroniya.md
