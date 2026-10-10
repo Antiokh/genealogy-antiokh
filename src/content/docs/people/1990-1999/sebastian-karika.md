@@ -3,17 +3,30 @@ title: "Sebastian Karika"
 description: "Sebastian Karika, 1991–"
 entity: person
 importManaged: true
-id: P000230
-name: "Sebastian Karika"
-displayName: "Sebastian Karika"
-birthSurname: "Karika"
-deceased: false
+name:
+  full: "Sebastian Karika"
+  display: "Sebastian Karika"
+  birth_last: "Karika"
+  aliases: []
 sex: M
-birth:
-  year: 1991
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1991
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000105
+  - person: "1990-1999/angelica-kristina-karika.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

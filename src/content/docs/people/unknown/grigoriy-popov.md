@@ -3,17 +3,30 @@ title: "Григорий Попов"
 description: "Григорий Попов"
 entity: person
 importManaged: true
-id: P000190
-name: "Григорий Попов"
-displayName: "Григорий Попов"
-birthSurname: "Попов"
-deceased: true
+name:
+  full: "Григорий Попов"
+  display: "Григорий Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-parents:
-  - P000208
-  - P000209
+father: "unknown/neizvestnyy-muzhchina-i500214.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500215.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000207
+  - person: "unknown/mariya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный (P000208)](/people/unknown/neizvestnyy-p000208/), [Неизвестная (P000209)](/people/unknown/neizvestnaya-p000209/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500214/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500215/)
 
 **Партнёры:** [Мария](/people/unknown/mariya/)
 

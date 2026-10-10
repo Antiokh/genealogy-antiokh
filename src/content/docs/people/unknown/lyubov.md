@@ -3,14 +3,29 @@ title: "Любовь"
 description: "Любовь"
 entity: person
 importManaged: true
-id: P000041
-name: "Любовь"
-displayName: "Любовь"
-deceased: false
+name:
+  full: "Любовь"
+  display: "Любовь"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000040
+  - person: "unknown/vadim-vinokurov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

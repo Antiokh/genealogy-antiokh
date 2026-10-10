@@ -3,15 +3,28 @@ title: "Игорь"
 description: "Игорь"
 entity: person
 importManaged: true
-id: P000042
-name: "Игорь"
-displayName: "Игорь"
-deceased: false
+name:
+  full: "Игорь"
+  display: "Игорь"
+  aliases: []
 sex: M
-parents:
-  - P000040
-  - P000041
+father: "unknown/vadim-vinokurov.md"
+mother: "unknown/lyubov.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

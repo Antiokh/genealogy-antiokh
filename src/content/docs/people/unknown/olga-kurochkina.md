@@ -3,18 +3,32 @@ title: "Ольга Курочкина"
 description: "Ольга Курочкина"
 entity: person
 importManaged: true
-id: P000062
-name: "Ольга Кондратьева"
-displayName: "Ольга Курочкина"
-birthSurname: "Кондратьева"
-marriedSurname: "Курочкина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTJkNTI3YTkzNTAyZjU5OTI3Y2U3MzU4ZjQ5ZjczZjZkZTJiNWRmNzkzNmM2MjM4ODgzZTRmM2UwNzhmNjEwYTYmZT0xNzg5Njc1MjAw/129/852/4292/500069_1339012c01xf6f217qh074_A.jpg"
-deceased: true
+name:
+  full: "Ольга Кондратьева"
+  display: "Ольга Курочкина"
+  birth_last: "Кондратьева"
+  married_last: "Курочкина"
+  aliases: []
 sex: F
-parents:
-  - P000068
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTJkNTI3YTkzNTAyZjU5OTI3Y2U3MzU4ZjQ5ZjczZjZkZTJiNWRmNzkzNmM2MjM4ODgzZTRmM2UwNzhmNjEwYTYmZT0xNzg5Njc1MjAw/129/852/4292/500069_1339012c01xf6f217qh074_A.jpg"
+father: "unknown/nil-kondratev.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000061
+  - person: "1870-1879/petr-mikhaylovich-kurochkin.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +46,7 @@ external:
 
 **Партнёры:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/)
 
-**Дети:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin/), [Тамара Курочкина](/people/1920-1929/tamara-kurochkina/)
+**Дети:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Тамара Курочкина](/people/1920-1929/tamara-kurochkina/), [Александр Курочкин](/people/unknown/aleksandr-kurochkin/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin/)
 
 ## Биография
 

@@ -3,19 +3,30 @@ title: "Сергей Волков"
 description: "Сергей Волков, 1920–1997"
 entity: person
 importManaged: true
-id: P000126
-name: "Сергей Волков"
-displayName: "Сергей Волков"
-birthSurname: "Волков"
-deceased: true
+name:
+  full: "Сергей Волков"
+  display: "Сергей Волков"
+  birth_last: "Волков"
+  aliases: []
 sex: M
-birth:
-  year: 1920
-death:
-  year: 1997
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1920
+  place: null
+died:
+  known: true
+  date: 1997
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000067
+  - person: "1920-1929/tamara-kurochkina.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +43,7 @@ external:
 
 **Партнёры:** [Тамара Курочкина](/people/1920-1929/tamara-kurochkina/)
 
-**Дети:** [Валерий Волков](/people/unknown/valeriy-volkov/), [Лариса Волкова](/people/unknown/larisa-volkova/)
+**Дети:** [Лариса Волкова](/people/unknown/larisa-volkova/), [Валерий Волков](/people/unknown/valeriy-volkov/)
 
 ## Биография
 

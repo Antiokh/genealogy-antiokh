@@ -3,22 +3,31 @@ title: "Vladimir Beskorovaynyi"
 description: "Vladimir Beskorovaynyi, 1936–2017"
 entity: person
 importManaged: true
-id: P000005
-name: "Vladimir Beskorovaynyi"
-displayName: "Vladimir Beskorovaynyi"
-birthSurname: "Bush"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTgzNWU0MzUzMmNjMjkwYTVhZGU5ZGE1ZWQwYTYxOWIyMmQ0ZTEyZTRjZGEwNzY0ZDAzN2U4NTQ3ODUyZDFhODQmZT0xNzg5Njc1MjAw/129/852/4292/500008_433470c4f328b086cds1u1_A.jpg"
-deceased: true
+name:
+  full: "Vladimir Beskorovaynyi"
+  display: "Vladimir Beskorovaynyi"
+  birth_last: "Bush"
+  aliases: []
 sex: M
-birth:
-  year: 1936
-death:
-  year: 2017
-parents:
-  - P000009
-  - P000010
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTgzNWU0MzUzMmNjMjkwYTVhZGU5ZGE1ZWQwYTYxOWIyMmQ0ZTEyZTRjZGEwNzY0ZDAzN2U4NTQ3ODUyZDFhODQmZT0xNzg5Njc1MjAw/129/852/4292/500008_433470c4f328b086cds1u1_A.jpg"
+father: "1910-1919/vadim-bush.md"
+mother: "1900-1909/klavdiya-beskorovaynaya.md"
+born:
+  known: true
+  date: 1936
+  place: null
+died:
+  known: true
+  date: 2017
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000004
+  - person: "1930-1939/emiliya-beskorovaynaya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -31,7 +40,7 @@ external:
 
 ## Семья
 
-**Родители:** [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/), [Вадим Буш](/people/1910-1919/vadim-bush/)
+**Родители:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/)
 
 **Партнёры:** [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/)
 

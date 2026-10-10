@@ -3,14 +3,29 @@ title: "Феврония"
 description: "Феврония"
 entity: person
 importManaged: true
-id: P000233
-name: "Феврония"
-displayName: "Феврония"
-deceased: false
+name:
+  full: "Феврония"
+  display: "Феврония"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000189
+  - person: "unknown/timofey-popov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +39,7 @@ external:
 
 **Партнёры:** [Тимофей Попов](/people/unknown/timofey-popov/)
 
-**Дети:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Георгий Попов (Popov)](/people/1910-1919/georgiy-popov-popov/), [Иван Попов (Popov)](/people/1900-1909/ivan-popov-popov/)
+**Дети:** [Иван Попов (Popov)](/people/1900-1909/ivan-popov-popov/), [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Георгий Попов (Popov)](/people/1910-1919/georgiy-popov-popov/)
 
 ## Биография
 

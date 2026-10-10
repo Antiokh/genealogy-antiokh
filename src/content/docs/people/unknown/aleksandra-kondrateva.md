@@ -3,15 +3,29 @@ title: "Александра Кондратьева"
 description: "Александра Кондратьева"
 entity: person
 importManaged: true
-id: P000124
-name: "Александра Кондратьева"
-displayName: "Александра Кондратьева"
-birthSurname: "Кондратьева"
-deceased: true
+name:
+  full: "Александра Кондратьева"
+  display: "Александра Кондратьева"
+  birth_last: "Кондратьева"
+  aliases: []
 sex: F
-parents:
-  - P000068
+father: "unknown/nil-kondratev.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

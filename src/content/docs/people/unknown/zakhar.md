@@ -3,15 +3,28 @@ title: "Захар"
 description: "Захар"
 entity: person
 importManaged: true
-id: P000210
-name: "Захар"
-displayName: "Захар"
-deceased: true
+name:
+  full: "Захар"
+  display: "Захар"
+  aliases: []
 sex: M
-parents:
-  - P000208
-  - P000209
+father: "unknown/neizvestnyy-muzhchina-i500214.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500215.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный (P000208)](/people/unknown/neizvestnyy-p000208/), [Неизвестная (P000209)](/people/unknown/neizvestnaya-p000209/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500214/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500215/)
 
 **Партнёры:** —
 

@@ -3,14 +3,29 @@ title: "Василий Лавриненко"
 description: "Василий Лавриненко"
 entity: person
 importManaged: true
-id: P000052
-name: "Василий Лавриненко"
-displayName: "Василий Лавриненко"
-birthSurname: "Лавриненко"
-deceased: true
+name:
+  full: "Василий Лавриненко"
+  display: "Василий Лавриненко"
+  birth_last: "Лавриненко"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

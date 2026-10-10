@@ -3,15 +3,30 @@ title: "Елена Кутаева"
 description: "Елена Кутаева"
 entity: person
 importManaged: true
-id: P000070
-name: "Елена Кутаева"
-displayName: "Елена Кутаева"
-birthSurname: "Кутаева"
-deceased: true
+name:
+  full: "Елена Кутаева"
+  display: "Елена Кутаева"
+  birth_last: "Кутаева"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000069
+  - person: "unknown/mikhail-kurochkin-i500069.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,9 +40,9 @@ external:
 
 **Родители:** —
 
-**Партнёры:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/)
+**Партнёры:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/)
 
-**Дети:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000071/), [Степан Курочкин](/people/1870-1879/stepan-kurochkin/), [Иван Курочкин](/people/unknown/ivan-kurochkin-p000133/), [Николай Курочкин](/people/unknown/nikolay-kurochkin/), [Анна Пантешкина](/people/unknown/anna-panteshkina/)
+**Дети:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Степан Курочкин](/people/1870-1879/stepan-kurochkin/), [Анна Пантешкина](/people/unknown/anna-panteshkina/), [Иван Курочкин](/people/unknown/ivan-kurochkin-i500136/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500071/), [Николай Курочкин](/people/unknown/nikolay-kurochkin/)
 
 ## Биография
 

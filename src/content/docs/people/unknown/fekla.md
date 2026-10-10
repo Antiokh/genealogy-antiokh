@@ -3,14 +3,28 @@ title: "Фёкла"
 description: "Фёкла"
 entity: person
 importManaged: true
-id: P000213
-name: "Фёкла"
-displayName: "Фёкла"
-deceased: true
+name:
+  full: "Фёкла"
+  display: "Фёкла"
+  aliases: []
 sex: F
-parents:
-  - P000211
+father: "unknown/grigoriy.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

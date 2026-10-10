@@ -3,21 +3,32 @@ title: "Larisa Teljebo"
 description: "Larisa Teljebo, 1965–"
 entity: person
 importManaged: true
-id: P000104
-name: "Larisa Михалец"
-displayName: "Larisa Teljebo"
-birthSurname: "Михалец"
-marriedSurname: "Teljebo"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNiNzJjMTIwZjFmZGRhYTE5YmI4ZjYxYmRkMzNhNmVjNzM5YTg0NDI5NWMzMGUxOGVmODYyOTgxNzk4NGU1MjUmZT0xNzg5Njc1MjAw/129/852/4292/500091_89692912t53e6j1072o61b_A.jpg"
-deceased: false
+name:
+  full: "Larisa Михалец"
+  display: "Larisa Teljebo"
+  birth_last: "Михалец"
+  married_last: "Teljebo"
+  aliases: []
 sex: F
-birth:
-  year: 1965
-parents:
-  - P000091
-  - P000092
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNiNzJjMTIwZjFmZGRhYTE5YmI4ZjYxYmRkMzNhNmVjNzM5YTg0NDI5NWMzMGUxOGVmODYyOTgxNzk4NGU1MjUmZT0xNzg5Njc1MjAw/129/852/4292/500091_89692912t53e6j1072o61b_A.jpg"
+father: "unknown/petr-mikhalets.md"
+mother: "unknown/evgenia-mikhalets.md"
+born:
+  known: true
+  date: 1965
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000106
+  - person: "1950-1959/gosta-ingvar-teljebo.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +43,7 @@ external:
 
 ## Семья
 
-**Родители:** [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/), [Пётр Mikhalets](/people/unknown/petr-mikhalets/)
+**Родители:** [Пётр Mikhalets](/people/unknown/petr-mikhalets/), [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
 
 **Партнёры:** [Gösta Ingvar Teljebo](/people/1950-1959/gosta-ingvar-teljebo/)
 

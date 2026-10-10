@@ -3,18 +3,29 @@ title: "Александра Назарова"
 description: "Александра Назарова, 1932–?"
 entity: person
 importManaged: true
-id: P000178
-name: "Александра Назарова"
-displayName: "Александра Назарова"
-birthSurname: "Назарова"
-deceased: true
+name:
+  full: "Александра Назарова"
+  display: "Александра Назарова"
+  birth_last: "Назарова"
+  aliases: []
 sex: F
-birth:
-  year: 1932
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1932
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

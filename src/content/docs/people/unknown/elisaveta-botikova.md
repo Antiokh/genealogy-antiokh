@@ -3,22 +3,35 @@ title: "Елисавета Ботикова"
 description: "Елисавета Ботикова, ?–1939"
 entity: person
 importManaged: true
-id: P000024
-name: "Елисавета Буш"
-displayName: "Елисавета Ботикова"
-birthSurname: "Буш"
-marriedSurname: "Ботикова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTVjZWQ2NmFhMTUyZTEwODkyOWRkZDJmOWIzNTgxMjBhODUzMjdhMjUyMGVjOGQ0ZTBlNDJjYzMyYjJhZjczNmYmZT0xNzg5Njc1MjAw/129/852/4292/500037_8981891fw21xcf25cy06d6_A.jpg"
-deceased: true
+name:
+  full: "Елисавета Буш"
+  display: "Елисавета Ботикова"
+  birth_last: "Буш"
+  married_last: "Ботикова"
+  aliases: []
 sex: F
-death:
-  year: 1939
-parents:
-  - P000020
-  - P000021
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTVjZWQ2NmFhMTUyZTEwODkyOWRkZDJmOWIzNTgxMjBhODUzMjdhMjUyMGVjOGQ0ZTBlNDJjYzMyYjJhZjczNmYmZT0xNzg5Njc1MjAw/129/852/4292/500037_8981891fw21xcf25cy06d6_A.jpg"
+father: "1850-1859/woldemar-carl-chrostopher-bush.md"
+mother: "1860-1869/elizaveta-olga-busch.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1939
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000025
-  - P000026
+  - person: "unknown/aleksandr-botikov.md"
+    married:
+      date: 1918
+  - person: "unknown/shestrem.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -35,7 +48,7 @@ external:
 
 **Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
 
-**Партнёры:** [Шестрем](/people/unknown/shestrem/), [Александр Ботиков](/people/unknown/aleksandr-botikov/)
+**Партнёры:** [Александр Ботиков](/people/unknown/aleksandr-botikov/), [Шестрем](/people/unknown/shestrem/)
 
 **Дети:** —
 

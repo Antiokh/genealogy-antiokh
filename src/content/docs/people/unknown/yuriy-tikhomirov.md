@@ -3,16 +3,29 @@ title: "Юрий Тихомиров"
 description: "Юрий Тихомиров"
 entity: person
 importManaged: true
-id: P000118
-name: "Юрий Тихомиров"
-displayName: "Юрий Тихомиров"
-birthSurname: "Тихомиров"
-deceased: false
+name:
+  full: "Юрий Тихомиров"
+  display: "Юрий Тихомиров"
+  birth_last: "Тихомиров"
+  aliases: []
 sex: M
-parents:
-  - P000064
-  - P000117
+father: "unknown/aleksandr-tikhomirov.md"
+mother: "unknown/evdokiya-antonchenko.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/)
+**Родители:** [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
 
 **Партнёры:** —
 

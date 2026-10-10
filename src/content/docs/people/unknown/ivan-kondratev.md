@@ -3,15 +3,29 @@ title: "Иван Кондратьев"
 description: "Иван Кондратьев"
 entity: person
 importManaged: true
-id: P000125
-name: "Иван Кондратьев"
-displayName: "Иван Кондратьев"
-birthSurname: "Кондратьев"
-deceased: true
+name:
+  full: "Иван Кондратьев"
+  display: "Иван Кондратьев"
+  birth_last: "Кондратьев"
+  aliases: []
 sex: M
-parents:
-  - P000068
+father: "unknown/nil-kondratev.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

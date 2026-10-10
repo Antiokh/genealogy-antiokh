@@ -3,22 +3,31 @@ title: "Вадим Буш"
 description: "Вадим Буш, 1912–1941"
 entity: person
 importManaged: true
-id: P000010
-name: "Вадим Буш"
-displayName: "Вадим Буш"
-birthSurname: "Буш"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWI4ZjZjNjBlMTZkNzQ2Y2U3M2ZhOWM3YmVlODAyZTY5YmNmZWM3NTYwYWM5Mzg3Yjc4NDRlNWFkMDY1MDMxODAmZT0xNzg5Njc1MjAw/129/852/4292/500014_73533341601f14e70jdc5b_A.jpg"
-deceased: true
+name:
+  full: "Вадим Буш"
+  display: "Вадим Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-birth:
-  year: 1912
-death:
-  year: 1941
-parents:
-  - P000013
-  - P000017
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWI4ZjZjNjBlMTZkNzQ2Y2U3M2ZhOWM3YmVlODAyZTY5YmNmZWM3NTYwYWM5Mzg3Yjc4NDRlNWFkMDY1MDMxODAmZT0xNzg5Njc1MjAw/129/852/4292/500014_73533341601f14e70jdc5b_A.jpg"
+father: "1880-1889/vladimir-bush.md"
+mother: "1880-1889/vera-bush.md"
+born:
+  known: true
+  date: 1912
+  place: null
+died:
+  known: true
+  date: 1941
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000009
+  - person: "1900-1909/klavdiya-beskorovaynaya.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

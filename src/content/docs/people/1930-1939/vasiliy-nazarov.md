@@ -3,19 +3,30 @@ title: "Василий Назаров"
 description: "Василий Назаров, 1930–?"
 entity: person
 importManaged: true
-id: P000177
-name: "Василий Назаров"
-displayName: "Василий Назаров"
-birthSurname: "Назаров"
-deceased: true
+name:
+  full: "Василий Назаров"
+  display: "Василий Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1930
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1930
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000186
+  - person: "unknown/neizvestnaya-zhenshchina-i500192.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -30,7 +41,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [Неизвестная (P000186)](/people/unknown/neizvestnaya-p000186/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500192/)
 
 **Дети:** [Александр Назаров](/people/unknown/aleksandr-nazarov/)
 

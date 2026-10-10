@@ -3,16 +3,29 @@ title: "Александра Курочкина"
 description: "Александра Курочкина"
 entity: person
 importManaged: true
-id: P000138
-name: "Александра Курочкина"
-displayName: "Александра Курочкина"
-birthSurname: "Курочкина"
-deceased: true
+name:
+  full: "Александра Курочкина"
+  display: "Александра Курочкина"
+  birth_last: "Курочкина"
+  aliases: []
 sex: F
-parents:
-  - P000135
-  - P000137
+father: "unknown/neizvestnyy-muzhchina-i500140.md"
+mother: "unknown/anna-panteshkina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Анна Пантешкина](/people/unknown/anna-panteshkina/), [Неизвестный (P000137)](/people/unknown/neizvestnyy-p000137/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500140/), [Анна Пантешкина](/people/unknown/anna-panteshkina/)
 
 **Партнёры:** —
 

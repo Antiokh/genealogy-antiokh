@@ -3,17 +3,30 @@ title: "Эльвина-Шарлотта Бурмейстер"
 description: "Эльвина-Шарлотта Бурмейстер"
 entity: person
 importManaged: true
-id: P000166
-name: "Эльвина-Шарлотта Бартмер"
-displayName: "Эльвина-Шарлотта Бурмейстер"
-birthSurname: "Бартмер"
-marriedSurname: "Бурмейстер"
-deceased: false
+name:
+  full: "Эльвина-Шарлотта Бартмер"
+  display: "Эльвина-Шарлотта Бурмейстер"
+  birth_last: "Бартмер"
+  married_last: "Бурмейстер"
+  aliases: []
 sex: F
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

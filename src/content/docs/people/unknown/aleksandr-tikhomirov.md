@@ -3,15 +3,30 @@ title: "Александр Тихомиров"
 description: "Александр Тихомиров"
 entity: person
 importManaged: true
-id: P000117
-name: "Александр Тихомиров"
-displayName: "Александр Тихомиров"
-birthSurname: "Тихомиров"
-deceased: true
+name:
+  full: "Александр Тихомиров"
+  display: "Александр Тихомиров"
+  birth_last: "Тихомиров"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000064
+  - person: "unknown/evdokiya-antonchenko.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +42,7 @@ external:
 
 **Партнёры:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
 
-**Дети:** [Юрий Тихомиров](/people/unknown/yuriy-tikhomirov/), [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/)
+**Дети:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/), [Юрий Тихомиров](/people/unknown/yuriy-tikhomirov/)
 
 ## Биография
 

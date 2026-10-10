@@ -3,14 +3,29 @@ title: "Александр"
 description: "Александр"
 entity: person
 importManaged: true
-id: P000249
-name: "Александр"
-displayName: "Александр"
-deceased: false
+name:
+  full: "Александр"
+  display: "Александр"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000120
+  - person: "unknown/inna-tikhomirova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +39,7 @@ external:
 
 **Партнёры:** [Инна Тихомирова](/people/unknown/inna-tikhomirova/)
 
-**Дети:** [Сергей](/people/unknown/sergey-p000248/)
+**Дети:** [Сергей](/people/unknown/sergey-i500257/)
 
 ## Биография
 

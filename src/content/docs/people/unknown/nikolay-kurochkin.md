@@ -3,17 +3,30 @@ title: "Николай Курочкин"
 description: "Николай Курочкин"
 entity: person
 importManaged: true
-id: P000134
-name: "Николай Курочкин"
-displayName: "Николай Курочкин"
-birthSurname: "Курочкин"
-deceased: true
+name:
+  full: "Николай Курочкин"
+  display: "Николай Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-parents:
-  - P000069
-  - P000070
+father: "unknown/mikhail-kurochkin-i500069.md"
+mother: "unknown/elena-kutaeva.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000140
+  - person: "unknown/neizvestnaya-zhenshchina-i500143.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,11 +38,11 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
+**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
-**Партнёры:** [Неизвестная (P000140)](/people/unknown/neizvestnaya-p000140/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500143/)
 
-**Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-p000139/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000141/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-p000142/)
+**Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-i500142/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500144/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-i500145/)
 
 ## Биография
 

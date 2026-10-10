@@ -3,20 +3,31 @@ title: "Полина Михайловна Попова"
 description: "Полина Михайловна Попова, 1930–2016"
 entity: person
 importManaged: true
-id: P000194
-name: "Полина Михайловна Письменская"
-displayName: "Полина Михайловна Попова"
-birthSurname: "Письменская"
-marriedSurname: "Попова"
-deceased: true
+name:
+  full: "Полина Михайловна Письменская"
+  display: "Полина Михайловна Попова"
+  birth_last: "Письменская"
+  married_last: "Попова"
+  aliases: []
 sex: F
-birth:
-  year: 1930
-death:
-  year: 2016
-parents: []
+father: null
+mother: null
+born:
+  known: true
+  date: 1930
+  place: null
+died:
+  known: true
+  date: 2016
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000192
+  - person: "1920-1929/aleksandr-popov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -35,7 +46,7 @@ external:
 
 **Партнёры:** [Александр Попов](/people/1920-1929/aleksandr-popov/)
 
-**Дети:** [Николай Попов](/people/1950-1959/nikolay-popov/), [Анатолий Попов](/people/1950-1959/anatoliy-popov/)
+**Дети:** [Анатолий Попов](/people/1950-1959/anatoliy-popov/), [Николай Попов](/people/1950-1959/nikolay-popov/)
 
 ## Биография
 

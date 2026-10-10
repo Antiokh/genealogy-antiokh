@@ -3,16 +3,29 @@ title: "Николай Назаров"
 description: "Николай Назаров"
 entity: person
 importManaged: true
-id: P000187
-name: "Николай Назаров"
-displayName: "Николай Назаров"
-birthSurname: "Назаров"
-deceased: false
+name:
+  full: "Николай Назаров"
+  display: "Николай Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-parents:
-  - P000172
-  - P000188
+father: "1920-1929/ivan-nazarov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500194.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Неизвестная (P000188)](/people/unknown/neizvestnaya-p000188/)
+**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500194/)
 
 **Партнёры:** —
 

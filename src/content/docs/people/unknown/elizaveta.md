@@ -3,14 +3,29 @@ title: "Елизавета"
 description: "Елизавета"
 entity: person
 importManaged: true
-id: P000051
-name: "Елизавета"
-displayName: "Елизавета"
-deceased: true
+name:
+  full: "Елизавета"
+  display: "Елизавета"
+  aliases: []
 sex: F
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000048
+  - person: "1900-1909/mikhail-bezkorovaynyy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

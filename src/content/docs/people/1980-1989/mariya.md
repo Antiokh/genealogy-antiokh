@@ -3,17 +3,28 @@ title: "Мария"
 description: "Мария, 1987–"
 entity: person
 importManaged: true
-id: P000038
-name: "Мария"
-displayName: "Мария"
-deceased: false
+name:
+  full: "Мария"
+  display: "Мария"
+  aliases: []
 sex: F
-birth:
-  year: 1987
-parents:
-  - P000036
-  - P000039
+father: "unknown/neizvestnyy-muzhchina-i500039.md"
+mother: "unknown/ekaterina.md"
+born:
+  known: true
+  date: 1987
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,7 +36,7 @@ external:
 
 ## Семья
 
-**Родители:** [Екатерина](/people/unknown/ekaterina/), [Неизвестный (P000039)](/people/unknown/neizvestnyy-p000039/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500039/), [Екатерина](/people/unknown/ekaterina/)
 
 **Партнёры:** —
 

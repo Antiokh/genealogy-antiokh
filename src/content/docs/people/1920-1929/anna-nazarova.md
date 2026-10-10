@@ -3,19 +3,30 @@ title: "Анна Назарова"
 description: "Анна Назарова, 1928–?"
 entity: person
 importManaged: true
-id: P000176
-name: "Анна Назарова"
-displayName: "Анна Назарова"
-birthSurname: "Назарова"
-deceased: true
+name:
+  full: "Анна Назарова"
+  display: "Анна Назарова"
+  birth_last: "Назарова"
+  aliases: []
 sex: F
-birth:
-  year: 1928
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1928
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000180
+  - person: "unknown/neizvestnyy-muzhchina-i500186.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -30,7 +41,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [Неизвестный (P000180)](/people/unknown/neizvestnyy-p000180/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500186/)
 
 **Дети:** [Николай](/people/unknown/nikolay/), [Вячеслав](/people/unknown/vyacheslav/)
 

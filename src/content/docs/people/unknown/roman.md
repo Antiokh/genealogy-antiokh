@@ -3,15 +3,28 @@ title: "Роман"
 description: "Роман"
 entity: person
 importManaged: true
-id: P000109
-name: "Роман"
-displayName: "Роман"
-deceased: false
+name:
+  full: "Роман"
+  display: "Роман"
+  aliases: []
 sex: M
-parents:
-  - P000107
-  - P000110
+father: "unknown/vladimir.md"
+mother: "unknown/elena-primak.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Елена Примак](/people/unknown/elena-primak/), [Владимир](/people/unknown/vladimir/)
+**Родители:** [Владимир](/people/unknown/vladimir/), [Елена Примак](/people/unknown/elena-primak/)
 
 **Партнёры:** —
 

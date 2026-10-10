@@ -3,17 +3,30 @@ title: "Татьяна Винокуров"
 description: "Татьяна Винокуров"
 entity: person
 importManaged: true
-id: P000035
-name: "Татьяна Винокуров"
-displayName: "Татьяна Винокуров"
-birthSurname: "Винокуров"
-deceased: false
+name:
+  full: "Татьяна Винокуров"
+  display: "Татьяна Винокуров"
+  birth_last: "Винокуров"
+  aliases: []
 sex: F
-parents:
-  - P000019
-  - P000034
+father: "unknown/boris-vinokurov.md"
+mother: "1910-1919/taisiya-vinokurova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000037
+  - person: "unknown/neizvestnyy-muzhchina.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,9 +38,9 @@ external:
 
 ## Семья
 
-**Родители:** [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/), [Борис Винокуров](/people/unknown/boris-vinokurov/)
+**Родители:** [Борис Винокуров](/people/unknown/boris-vinokurov/), [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/)
 
-**Партнёры:** [Неизвестный (P000037)](/people/unknown/neizvestnyy-p000037/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina/)
 
 **Дети:** [Екатерина](/people/unknown/ekaterina/)
 

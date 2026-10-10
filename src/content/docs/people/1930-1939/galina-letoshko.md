@@ -3,19 +3,30 @@ title: "Галина Летошко"
 description: "Галина Летошко, 1932–?"
 entity: person
 importManaged: true
-id: P000149
-name: "Галина Летошко"
-displayName: "Галина Летошко"
-birthSurname: "Летошко"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFhMWU0YTFjODYyN2U3YmU3NTVmMzViZDZlZjAxNWYzNTA3MGUyNjIwZGY1ZWI3ODg3YjljYWVhODE1YWE0OWImZT0xNzg5Njc1MjAw/129/852/4292/500121_4242666467v3c17525jz0b_A.jpg"
-deceased: true
+name:
+  full: "Галина Летошко"
+  display: "Галина Летошко"
+  birth_last: "Летошко"
+  aliases: []
 sex: F
-birth:
-  year: 1932
-parents:
-  - P000059
-  - P000060
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFhMWU0YTFjODYyN2U3YmU3NTVmMzViZDZlZjAxNWYzNTA3MGUyNjIwZGY1ZWI3ODg3YjljYWVhODE1YWE0OWImZT0xNzg5Njc1MjAw/129/852/4292/500121_4242666467v3c17525jz0b_A.jpg"
+father: "unknown/adrian-litoshko.md"
+mother: "1900-1909/elena-litoshko.md"
+born:
+  known: true
+  date: 1932
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Елена Литошко](/people/1900-1909/elena-litoshko/), [Адриан Литошко](/people/unknown/adrian-litoshko/)
+**Родители:** [Адриан Литошко](/people/unknown/adrian-litoshko/), [Елена Литошко](/people/1900-1909/elena-litoshko/)
 
 **Партнёры:** —
 

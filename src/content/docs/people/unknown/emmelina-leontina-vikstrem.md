@@ -3,17 +3,30 @@ title: "Эммелина-Леонтина Викстрём"
 description: "Эммелина-Леонтина Викстрём"
 entity: person
 importManaged: true
-id: P000167
-name: "Эммелина-Леонтина Бартмер"
-displayName: "Эммелина-Леонтина Викстрём"
-birthSurname: "Бартмер"
-marriedSurname: "Викстрём"
-deceased: false
+name:
+  full: "Эммелина-Леонтина Бартмер"
+  display: "Эммелина-Леонтина Викстрём"
+  birth_last: "Бартмер"
+  married_last: "Викстрём"
+  aliases: []
 sex: F
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

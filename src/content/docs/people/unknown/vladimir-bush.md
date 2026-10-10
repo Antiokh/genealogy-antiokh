@@ -3,17 +3,30 @@ title: "Владимир Буш"
 description: "Владимир Буш"
 entity: person
 importManaged: true
-id: P000029
-name: "Владимир Буш"
-displayName: "Владимир Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Владимир Буш"
+  display: "Владимир Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-parents:
-  - P000028
-  - P000030
+father: "1890-1899/boris-bush.md"
+mother: "unknown/neizvestnaya-zhenshchina.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000032
+  - person: "unknown/neizvestnaya-zhenshchina-i500032.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,9 +38,9 @@ external:
 
 ## Семья
 
-**Родители:** [Борис Буш](/people/1890-1899/boris-bush/), [Неизвестная (P000030)](/people/unknown/neizvestnaya-p000030/)
+**Родители:** [Борис Буш](/people/1890-1899/boris-bush/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina/)
 
-**Партнёры:** [Неизвестная (P000032)](/people/unknown/neizvestnaya-p000032/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500032/)
 
 **Дети:** [Борис Буш](/people/unknown/boris-bush/), [Галина Буш](/people/unknown/galina-bush/)
 

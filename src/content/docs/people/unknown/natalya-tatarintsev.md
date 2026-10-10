@@ -3,17 +3,30 @@ title: "Наталья Tatarintsev"
 description: "Наталья Tatarintsev, ?–2002"
 entity: person
 importManaged: true
-id: P000241
-name: "Наталья"
-displayName: "Наталья Tatarintsev"
-marriedSurname: "Tatarintsev"
-deceased: true
+name:
+  full: "Наталья"
+  display: "Наталья Tatarintsev"
+  married_last: "Tatarintsev"
+  aliases: []
 sex: F
-death:
-  year: 2002
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 2002
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000240
+  - person: "unknown/viktor-tatarintsev.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

@@ -3,19 +3,30 @@ title: "Gösta Ingvar Teljebo"
 description: "Gösta Ingvar Teljebo, 1958–"
 entity: person
 importManaged: true
-id: P000106
-name: "Gösta Ingvar Teljebo"
-displayName: "Gösta Ingvar Teljebo"
-birthSurname: "Teljebo"
-deceased: false
+name:
+  full: "Gösta Ingvar Teljebo"
+  display: "Gösta Ingvar Teljebo"
+  birth_last: "Teljebo"
+  aliases: []
 sex: M
-birth:
-  year: 1958
-parents:
-  - P000250
-  - P000251
+father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
+mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"
+born:
+  known: true
+  date: 1958
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000104
+  - person: "1960-1969/larisa-teljebo.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

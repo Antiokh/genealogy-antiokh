@@ -3,18 +3,31 @@ title: "Лилия Волкова"
 description: "Лилия Волкова"
 entity: person
 importManaged: true
-id: P000131
-name: "Лилия Волкова"
-displayName: "Лилия Волкова"
-birthSurname: "Волкова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTBlMjBkN2ZiODhiZGExN2M0ZTcxOGE1MjUyNzBjOTA0MjVkM2EyNjQzY2Q0ODEyYzAzYmY1NTNhMjRiODFlYmEmZT0xNzg5Njc1MjAw/129/852/4292/500116_927366676bb026cn6i10c5_A.jpg"
-deceased: false
+name:
+  full: "Лилия Волкова"
+  display: "Лилия Волкова"
+  birth_last: "Волкова"
+  aliases: []
 sex: F
-parents:
-  - P000128
-  - P000130
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTBlMjBkN2ZiODhiZGExN2M0ZTcxOGE1MjUyNzBjOTA0MjVkM2EyNjQzY2Q0ODEyYzAzYmY1NTNhMjRiODFlYmEmZT0xNzg5Njc1MjAw/129/852/4292/500116_927366676bb026cn6i10c5_A.jpg"
+father: "unknown/igor-verkhodanov.md"
+mother: "unknown/larisa-volkova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000247
+  - person: "unknown/mikhail.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -26,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Лариса Волкова](/people/unknown/larisa-volkova/), [Игорь Верходанов](/people/unknown/igor-verkhodanov/)
+**Родители:** [Игорь Верходанов](/people/unknown/igor-verkhodanov/), [Лариса Волкова](/people/unknown/larisa-volkova/)
 
 **Партнёры:** [Михаил](/people/unknown/mikhail/)
 

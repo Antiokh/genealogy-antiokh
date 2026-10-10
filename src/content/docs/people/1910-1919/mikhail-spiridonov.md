@@ -3,21 +3,30 @@ title: "Михаил Спиридонов"
 description: "Михаил Спиридонов, 1912–1942"
 entity: person
 importManaged: true
-id: P000093
-name: "Михаил Спиридонов"
-displayName: "Михаил Спиридонов"
-birthSurname: "Спиридонов"
-deceased: true
+name:
+  full: "Михаил Спиридонов"
+  display: "Михаил Спиридонов"
+  birth_last: "Спиридонов"
+  aliases: []
 sex: M
-birth:
-  year: 1912
-death:
-  year: 1942
-parents:
-  - P000056
-  - P000057
+father: "1880-1889/mikhail-spiridonov.md"
+mother: "unknown/nonna-vedzhnevetskaya.md"
+born:
+  known: true
+  date: 1912
+  place: null
+died:
+  known: true
+  date: 1942
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000155
+  - person: "unknown/neizvestnaya-zhenshchina-i500158.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,9 +41,9 @@ external:
 
 **Родители:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/), [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
 
-**Партнёры:** [Неизвестная (P000155)](/people/unknown/neizvestnaya-p000155/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500158/)
 
-**Дети:** [Валентин Спиридонов](/people/unknown/valentin-spiridonov/), [Людмила Спиридонова](/people/unknown/lyudmila-spiridonova/)
+**Дети:** [Людмила Спиридонова](/people/unknown/lyudmila-spiridonova/), [Валентин Спиридонов](/people/unknown/valentin-spiridonov/)
 
 ## Биография
 

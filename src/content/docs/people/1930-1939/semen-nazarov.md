@@ -3,22 +3,31 @@ title: "Семен Назаров"
 description: "Семен Назаров, 1935–2010"
 entity: person
 importManaged: true
-id: P000007
-name: "Семен Назаров"
-displayName: "Семен Назаров"
-birthSurname: "Назаров"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWFmZTA4NWJhYmI3NDhlZTg0OTQ3NWMwZWNlZTk4ZDViMDcyZTVkZmJjYTc1YjZiYjg5MzZjZjM4ZGVkNDI0MjcmZT0xNzg5Njc1MjAw/129/852/4292/500186_581758tz98q1976e0709j4_A.jpg"
-deceased: true
+name:
+  full: "Семен Назаров"
+  display: "Семен Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1935
-death:
-  year: 2010
-parents:
-  - P000016
-  - P000168
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWFmZTA4NWJhYmI3NDhlZTg0OTQ3NWMwZWNlZTk4ZDViMDcyZTVkZmJjYTc1YjZiYjg5MzZjZjM4ZGVkNDI0MjcmZT0xNzg5Njc1MjAw/129/852/4292/500186_581758tz98q1976e0709j4_A.jpg"
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1935
+  place: null
+died:
+  known: true
+  date: 2010
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000006
+  - person: "1930-1939/mariya-nazarova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -35,7 +44,7 @@ external:
 
 **Партнёры:** [Мария Назарова](/people/1930-1939/mariya-nazarova/)
 
-**Дети:** [Владислав Назаров](/people/1960-1969/vladislav-nazarov/), [Любовь Ледовских](/people/1960-1969/lyubov-ledovskikh/)
+**Дети:** [Любовь Ледовских](/people/1960-1969/lyubov-ledovskikh/), [Владислав Назаров](/people/1960-1969/vladislav-nazarov/)
 
 ## Биография
 

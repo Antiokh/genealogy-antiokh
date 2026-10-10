@@ -3,17 +3,30 @@ title: "Лариса Тихомирова"
 description: "Лариса Тихомирова"
 entity: person
 importManaged: true
-id: P000119
-name: "Лариса Тихомирова"
-displayName: "Лариса Тихомирова"
-birthSurname: "Тихомирова"
-deceased: false
+name:
+  full: "Лариса Тихомирова"
+  display: "Лариса Тихомирова"
+  birth_last: "Тихомирова"
+  aliases: []
 sex: F
-parents:
-  - P000064
-  - P000117
+father: "unknown/aleksandr-tikhomirov.md"
+mother: "unknown/evdokiya-antonchenko.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000121
+  - person: "unknown/neizvestnyy-muzhchina-i500123.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -25,9 +38,9 @@ external:
 
 ## Семья
 
-**Родители:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/)
+**Родители:** [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
 
-**Партнёры:** [Неизвестный (P000121)](/people/unknown/neizvestnyy-p000121/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500123/)
 
 **Дети:** [Инна Тихомирова](/people/unknown/inna-tikhomirova/)
 

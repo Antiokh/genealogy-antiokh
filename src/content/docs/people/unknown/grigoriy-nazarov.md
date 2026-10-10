@@ -3,14 +3,29 @@ title: "Григорий Назаров"
 description: "Григорий Назаров"
 entity: person
 importManaged: true
-id: P000170
-name: "Григорий Назаров"
-displayName: "Григорий Назаров"
-birthSurname: "Назаров"
-deceased: true
+name:
+  full: "Григорий Назаров"
+  display: "Григорий Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

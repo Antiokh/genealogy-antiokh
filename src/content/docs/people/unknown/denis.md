@@ -3,15 +3,28 @@ title: "Денис"
 description: "Денис"
 entity: person
 importManaged: true
-id: P000075
-name: "Денис"
-displayName: "Денис"
-deceased: false
+name:
+  full: "Денис"
+  display: "Денис"
+  aliases: []
 sex: M
-parents:
-  - P000072
-  - P000073
+father: "1940-1949/aleksandr-kurochkin.md"
+mother: "unknown/natalya-i500073.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -21,7 +34,7 @@ external:
 
 ## Семья
 
-**Родители:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Наталья](/people/unknown/natalya-p000073/)
+**Родители:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Наталья](/people/unknown/natalya-i500073/)
 
 **Партнёры:** —
 

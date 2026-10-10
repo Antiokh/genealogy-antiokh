@@ -3,19 +3,32 @@ title: "Юлия Верхоянцева"
 description: "Юлия Верхоянцева"
 entity: person
 importManaged: true
-id: P000129
-name: "Юлия Волкова"
-displayName: "Юлия Верхоянцева"
-birthSurname: "Волкова"
-marriedSurname: "Верхоянцева"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThkYzMzMzAwOTZlZjE0MWM4OTRkODAwODI4MDQwYzJhYmRjMmQ0Y2Y5ZTcxZjNlZmIxYmRiYjQzNmI1NzY4NzMmZT0xNzg5Njc1MjAw/129/852/4292/500115_750799c6c0s125668vw62l_A.jpg"
-deceased: false
+name:
+  full: "Юлия Волкова"
+  display: "Юлия Верхоянцева"
+  birth_last: "Волкова"
+  married_last: "Верхоянцева"
+  aliases: []
 sex: F
-parents:
-  - P000128
-  - P000130
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPThkYzMzMzAwOTZlZjE0MWM4OTRkODAwODI4MDQwYzJhYmRjMmQ0Y2Y5ZTcxZjNlZmIxYmRiYjQzNmI1NzY4NzMmZT0xNzg5Njc1MjAw/129/852/4292/500115_750799c6c0s125668vw62l_A.jpg"
+father: "unknown/igor-verkhodanov.md"
+mother: "unknown/larisa-volkova.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000245
+  - person: "unknown/dmitriy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +42,7 @@ external:
 
 ## Семья
 
-**Родители:** [Лариса Волкова](/people/unknown/larisa-volkova/), [Игорь Верходанов](/people/unknown/igor-verkhodanov/)
+**Родители:** [Игорь Верходанов](/people/unknown/igor-verkhodanov/), [Лариса Волкова](/people/unknown/larisa-volkova/)
 
 **Партнёры:** [Дмитрий](/people/unknown/dmitriy/)
 

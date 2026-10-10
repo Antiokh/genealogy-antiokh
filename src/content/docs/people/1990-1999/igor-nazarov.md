@@ -3,19 +3,30 @@ title: "Игорь Назаров"
 description: "Игорь Назаров, 1994–"
 entity: person
 importManaged: true
-id: P000008
-name: "Игорь Назаров"
-displayName: "Игорь Назаров"
-birthSurname: "Назаров"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTE2YjUzODg3MWQ2NWMxYzBhMjZjMGZhNGI5MDQ5MjdlYjQ1MWVhMDcyYjNjYzZmMTY4MDBmNTgyZDM3YzZkOGImZT0xNzg5Njc1MjAw/129/852/4292/500130_9748700w8v16l966212709_A.jpg"
-deceased: false
+name:
+  full: "Игорь Назаров"
+  display: "Игорь Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1994
-parents:
-  - P000002
-  - P000003
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTE2YjUzODg3MWQ2NWMxYzBhMjZjMGZhNGI5MDQ5MjdlYjQ1MWVhMDcyYjNjYzZmMTY4MDBmNTgyZDM3YzZkOGImZT0xNzg5Njc1MjAw/129/852/4292/500130_9748700w8v16l966212709_A.jpg"
+father: "1960-1969/vladislav-nazarov.md"
+mother: "1960-1969/tatyana-beskorovaynaya.md"
+born:
+  known: true
+  date: 1994
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/), [Владислав Назаров](/people/1960-1969/vladislav-nazarov/)
+**Родители:** [Владислав Назаров](/people/1960-1969/vladislav-nazarov/), [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/)
 
 **Партнёры:** —
 

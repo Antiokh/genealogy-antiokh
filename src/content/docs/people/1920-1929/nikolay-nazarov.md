@@ -3,18 +3,29 @@ title: "Николай Назаров"
 description: "Николай Назаров, 1924–?"
 entity: person
 importManaged: true
-id: P000173
-name: "Николай Назаров"
-displayName: "Николай Назаров"
-birthSurname: "Назаров"
-deceased: true
+name:
+  full: "Николай Назаров"
+  display: "Николай Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1924
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1924
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

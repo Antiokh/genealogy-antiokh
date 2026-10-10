@@ -3,23 +3,32 @@ title: "Таисия Винокурова"
 description: "Таисия Винокурова, 1911–1979"
 entity: person
 importManaged: true
-id: P000019
-name: "Таисия Буш"
-displayName: "Таисия Винокурова"
-birthSurname: "Буш"
-marriedSurname: "Винокурова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ2NTg0M2M0OTlkZTk3ZmE2Y2UxNTQxNWY2MmQ5NmI1MTc4ZDY2YzY5NjQwNWVmOTY2YzhmOGVmY2I1MjFhOGYmZT0xNzg5Njc1MjAw/129/852/4292/500031_457634rc2i48p14fdc5116_A.jpg"
-deceased: true
+name:
+  full: "Таисия Буш"
+  display: "Таисия Винокурова"
+  birth_last: "Буш"
+  married_last: "Винокурова"
+  aliases: []
 sex: F
-birth:
-  year: 1911
-death:
-  year: 1979
-parents:
-  - P000013
-  - P000017
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ2NTg0M2M0OTlkZTk3ZmE2Y2UxNTQxNWY2MmQ5NmI1MTc4ZDY2YzY5NjQwNWVmOTY2YzhmOGVmY2I1MjFhOGYmZT0xNzg5Njc1MjAw/129/852/4292/500031_457634rc2i48p14fdc5116_A.jpg"
+father: "1880-1889/vladimir-bush.md"
+mother: "1880-1889/vera-bush.md"
+born:
+  known: true
+  date: 1911
+  place: null
+died:
+  known: true
+  date: 1979
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000034
+  - person: "unknown/boris-vinokurov.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

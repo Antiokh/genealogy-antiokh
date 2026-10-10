@@ -3,22 +3,31 @@ title: "Василий Попов"
 description: "Василий Попов, 1941–2015"
 entity: person
 importManaged: true
-id: P000101
-name: "Василий Попов"
-displayName: "Василий Попов"
-birthSurname: "Попов"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTYwMmI0MDNhMzIxOTZjZDBmYzUyNjUxNmRkNjI4NzRiMTUyMDYzOGM5ZTE2YWFlY2Y2MTcyZGJhMzc3MDQ3ZDMmZT0xNzg5Njc1MjAw/129/852/4292/500089_310054o1f5fa616r3e117f_A.jpg"
-deceased: true
+name:
+  full: "Василий Попов"
+  display: "Василий Попов"
+  birth_last: "Попов"
+  aliases: []
 sex: M
-birth:
-  year: 1941
-death:
-  year: 2015
-parents:
-  - P000014
-  - P000015
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTYwMmI0MDNhMzIxOTZjZDBmYzUyNjUxNmRkNjI4NzRiMTUyMDYzOGM5ZTE2YWFlY2Y2MTcyZGJhMzc3MDQ3ZDMmZT0xNzg5Njc1MjAw/129/852/4292/500089_310054o1f5fa616r3e117f_A.jpg"
+father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
+mother: "1900-1909/efrosiniya-popova.md"
+born:
+  known: true
+  date: 1941
+  place: null
+died:
+  known: true
+  date: 2015
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000102
+  - person: "unknown/sofya-popova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -31,11 +40,11 @@ external:
 
 ## Семья
 
-**Родители:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/), [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/)
+**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
 **Партнёры:** [Софья Попова](/people/unknown/sofya-popova/)
 
-**Дети:** [Василий Попов](/people/1970-1979/vasiliy-popov/), [Сергей Попов](/people/1970-1979/sergey-popov/)
+**Дети:** [Сергей Попов](/people/1970-1979/sergey-popov/), [Василий Попов](/people/1970-1979/vasiliy-popov/)
 
 ## Биография
 

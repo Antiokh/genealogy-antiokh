@@ -3,20 +3,33 @@ title: "Владислав Назаров"
 description: "Владислав Назаров, 1965–"
 entity: person
 importManaged: true
-id: P000003
-name: "Владислав Назаров"
-displayName: "Владислав Назаров"
-birthSurname: "Назаров"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ3OTg1MTk3OTNhZGRiMzUwMzQ0MDE3ZTZjY2U1MGU3ZTY3MmQ5ODNkNjM1ZGY2Zjc5MGY5YTFmNmI4NzYzNzUmZT0xNzg5Njc1MjAw/129/852/4292/500334_664093n66xba68qc1fa67a_A.jpg"
-deceased: false
+name:
+  full: "Владислав Назаров"
+  display: "Владислав Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1965
-parents:
-  - P000006
-  - P000007
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQ3OTg1MTk3OTNhZGRiMzUwMzQ0MDE3ZTZjY2U1MGU3ZTY3MmQ5ODNkNjM1ZGY2Zjc5MGY5YTFmNmI4NzYzNzUmZT0xNzg5Njc1MjAw/129/852/4292/500334_664093n66xba68qc1fa67a_A.jpg"
+father: "1930-1939/semen-nazarov.md"
+mother: "1930-1939/mariya-nazarova.md"
+born:
+  known: true
+  date: 1965
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000002
+  - person: "1960-1969/tatyana-beskorovaynaya.md"
+    married:
+      date: "1988-08-08"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +42,7 @@ external:
 
 ## Семья
 
-**Родители:** [Мария Назарова](/people/1930-1939/mariya-nazarova/), [Семен Назаров](/people/1930-1939/semen-nazarov/)
+**Родители:** [Семен Назаров](/people/1930-1939/semen-nazarov/), [Мария Назарова](/people/1930-1939/mariya-nazarova/)
 
 **Партнёры:** [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/)
 

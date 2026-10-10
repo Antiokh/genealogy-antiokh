@@ -3,17 +3,32 @@ title: "Александр Ботиков"
 description: "Александр Ботиков, ?–1939"
 entity: person
 importManaged: true
-id: P000026
-name: "Александр Ботиков"
-displayName: "Александр Ботиков"
-birthSurname: "Ботиков"
-deceased: true
+name:
+  full: "Александр Ботиков"
+  display: "Александр Ботиков"
+  birth_last: "Ботиков"
+  aliases: []
 sex: M
-death:
-  year: 1939
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1939
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000024
+  - person: "unknown/elisaveta-botikova.md"
+    married:
+      date: 1918
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

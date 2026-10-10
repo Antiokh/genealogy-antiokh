@@ -3,19 +3,30 @@ title: "Иван Назаров"
 description: "Иван Назаров, 1920–?"
 entity: person
 importManaged: true
-id: P000172
-name: "Иван Назаров"
-displayName: "Иван Назаров"
-birthSurname: "Назаров"
-deceased: true
+name:
+  full: "Иван Назаров"
+  display: "Иван Назаров"
+  birth_last: "Назаров"
+  aliases: []
 sex: M
-birth:
-  year: 1920
-parents:
-  - P000016
-  - P000168
+father: "unknown/semen-nazarov.md"
+mother: "unknown/anastasiya.md"
+born:
+  known: true
+  date: 1920
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000188
+  - person: "unknown/neizvestnaya-zhenshchina-i500194.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -30,7 +41,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [Неизвестная (P000188)](/people/unknown/neizvestnaya-p000188/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500194/)
 
 **Дети:** [Николай Назаров](/people/unknown/nikolay-nazarov/)
 

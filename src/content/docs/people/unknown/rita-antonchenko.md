@@ -3,16 +3,29 @@ title: "Рита Антонченко"
 description: "Рита Антонченко"
 entity: person
 importManaged: true
-id: P000123
-name: "Рита Антонченко"
-displayName: "Рита Антонченко"
-birthSurname: "Антонченко"
-deceased: false
+name:
+  full: "Рита Антонченко"
+  display: "Рита Антонченко"
+  birth_last: "Антонченко"
+  aliases: []
 sex: F
-parents:
-  - P000064
-  - P000122
+father: "unknown/andrey-antonchenko.md"
+mother: "unknown/evdokiya-antonchenko.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/), [Андрей Антонченко](/people/unknown/andrey-antonchenko/)
+**Родители:** [Андрей Антонченко](/people/unknown/andrey-antonchenko/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
 
 **Партнёры:** —
 

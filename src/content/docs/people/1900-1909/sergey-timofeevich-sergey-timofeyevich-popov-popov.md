@@ -3,21 +3,30 @@ title: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popo
 description: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov), 1901–1942"
 entity: person
 importManaged: true
-id: P000015
-name: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
-displayName: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
-birthSurname: "Попов (Popov)"
-deceased: true
+name:
+  full: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
+  display: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
+  birth_last: "Попов (Popov)"
+  aliases: []
 sex: M
-birth:
-  year: 1901
-death:
-  year: 1942
-parents:
-  - P000189
-  - P000233
+father: "unknown/timofey-popov.md"
+mother: "unknown/fevroniya.md"
+born:
+  known: true
+  date: 1901
+  place: null
+died:
+  known: true
+  date: 1942
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000014
+  - person: "1900-1909/efrosiniya-popova.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -34,7 +43,7 @@ external:
 
 **Партнёры:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
 
-**Дети:** [Мария Назарова](/people/1930-1939/mariya-nazarova/), [Василий Попов](/people/1940-1949/vasiliy-popov/), [Петр Попов](/people/1920-1929/petr-popov/), [Александр Попов](/people/1920-1929/aleksandr-popov/), [Иван Попов](/people/1930-1939/ivan-popov/), [Клавдия Попова](/people/1930-1939/klavdiya-popova/), [Зоя Попова](/people/1930-1939/zoya-popova/), [Виктор Попов](/people/1930-1939/viktor-popov/)
+**Дети:** [Александр Попов](/people/1920-1929/aleksandr-popov/), [Петр Попов](/people/1920-1929/petr-popov/), [Иван Попов](/people/1930-1939/ivan-popov/), [Клавдия Попова](/people/1930-1939/klavdiya-popova/), [Мария Назарова](/people/1930-1939/mariya-nazarova/), [Виктор Попов](/people/1930-1939/viktor-popov/), [Зоя Попова](/people/1930-1939/zoya-popova/), [Василий Попов](/people/1940-1949/vasiliy-popov/)
 
 ## Биография
 

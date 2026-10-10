@@ -3,21 +3,30 @@ title: "Ольга Михайловна Фаворская"
 description: "Ольга Михайловна Фаворская, 1914–1987"
 entity: person
 importManaged: true
-id: P000237
-name: "Ольга Михайловна Римская-Корсакова"
-displayName: "Ольга Михайловна Фаворская"
-birthSurname: "Римская-Корсакова"
-marriedSurname: "Фаворская"
-deceased: true
+name:
+  full: "Ольга Михайловна Римская-Корсакова"
+  display: "Ольга Михайловна Фаворская"
+  birth_last: "Римская-Корсакова"
+  married_last: "Фаворская"
+  aliases: []
 sex: F
-birth:
-  year: 1914
-death:
-  year: 1987
-parents:
-  - P000219
-  - P000236
+father: "1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md"
+mother: "1880-1889/evgeniya-petrovna-rimskaya-korsakova.md"
+born:
+  known: true
+  date: 1914
+  place: null
+died:
+  known: true
+  date: 1987
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -32,7 +41,7 @@ external:
 
 ## Семья
 
-**Родители:** [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/), [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
+**Родители:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/), [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/)
 
 **Партнёры:** —
 

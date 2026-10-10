@@ -3,21 +3,32 @@ title: "Татьяна Татаринцева"
 description: "Татьяна Татаринцева, 1967–"
 entity: person
 importManaged: true
-id: P000221
-name: "Татьяна Ермакова"
-displayName: "Татьяна Татаринцева"
-birthSurname: "Ермакова"
-marriedSurname: "Татаринцева"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWRmMDRjY2VlZGM0NDYxNWIyOGM1Mjg3OTg2YWQ1NGFlNjlkM2JlMGFiNTg5M2RkYTM5Y2UzZmMyMTEyNmQwNGImZT0xNzg5Njc1MjAw/129/852/4292/500222_80742363yo9w511c8a5d0b_A.jpg"
-deceased: false
+name:
+  full: "Татьяна Ермакова"
+  display: "Татьяна Татаринцева"
+  birth_last: "Ермакова"
+  married_last: "Татаринцева"
+  aliases: []
 sex: F
-birth:
-  year: 1967
-parents:
-  - P000223
-  - P000224
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWRmMDRjY2VlZGM0NDYxNWIyOGM1Mjg3OTg2YWQ1NGFlNjlkM2JlMGFiNTg5M2RkYTM5Y2UzZmMyMTEyNmQwNGImZT0xNzg5Njc1MjAw/129/852/4292/500222_80742363yo9w511c8a5d0b_A.jpg"
+father: "1930-1939/ivan-ermakov.md"
+mother: "1940-1949/ekaterina-ermakova.md"
+born:
+  known: true
+  date: 1967
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000222
+  - person: "1960-1969/sergey-tatarintsev.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -36,7 +47,7 @@ external:
 
 **Партнёры:** [Сергей Tatarintsev](/people/1960-1969/sergey-tatarintsev/)
 
-**Дети:** [Anna Tatarintseva](/people/2000-2009/anna-tatarintseva/), [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/)
+**Дети:** [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/), [Anna Tatarintseva](/people/2000-2009/anna-tatarintseva/)
 
 ## Биография
 

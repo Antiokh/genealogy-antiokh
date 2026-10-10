@@ -3,18 +3,31 @@ title: "Анна Пантешкина"
 description: "Анна Пантешкина"
 entity: person
 importManaged: true
-id: P000135
-name: "Анна Курочкина"
-displayName: "Анна Пантешкина"
-birthSurname: "Курочкина"
-marriedSurname: "Пантешкина"
-deceased: true
+name:
+  full: "Анна Курочкина"
+  display: "Анна Пантешкина"
+  birth_last: "Курочкина"
+  married_last: "Пантешкина"
+  aliases: []
 sex: F
-parents:
-  - P000069
-  - P000070
+father: "unknown/mikhail-kurochkin-i500069.md"
+mother: "unknown/elena-kutaeva.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000137
+  - person: "unknown/neizvestnyy-muzhchina-i500140.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,11 +41,11 @@ external:
 
 ## Семья
 
-**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
+**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
 
-**Партнёры:** [Неизвестный (P000137)](/people/unknown/neizvestnyy-p000137/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500140/)
 
-**Дети:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000136/), [Александра Курочкина](/people/unknown/aleksandra-kurochkina/)
+**Дети:** [Александра Курочкина](/people/unknown/aleksandra-kurochkina/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500139/)
 
 ## Биография
 

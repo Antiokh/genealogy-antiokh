@@ -3,20 +3,29 @@ title: "Мария Буш"
 description: "Мария Буш, 1882–1976"
 entity: person
 importManaged: true
-id: P000022
-name: "Мария Буш"
-displayName: "Мария Буш"
-birthSurname: "Буш"
-deceased: true
+name:
+  full: "Мария Буш"
+  display: "Мария Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: F
-birth:
-  year: 1882
-death:
-  year: 1976
-parents:
-  - P000020
-  - P000021
+father: "1850-1859/woldemar-carl-chrostopher-bush.md"
+mother: "1860-1869/elizaveta-olga-busch.md"
+born:
+  known: true
+  date: 1882
+  place: null
+died:
+  known: true
+  date: 1976
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

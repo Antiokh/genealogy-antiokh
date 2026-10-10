@@ -3,18 +3,29 @@ title: "Отто Александрович Бартмер"
 description: "Отто Александрович Бартмер, ?–1898"
 entity: person
 importManaged: true
-id: P000164
-name: "Отто Александрович Бартмер"
-displayName: "Отто Александрович Бартмер"
-birthSurname: "Бартмер"
-deceased: true
+name:
+  full: "Отто Александрович Бартмер"
+  display: "Отто Александрович Бартмер"
+  birth_last: "Бартмер"
+  aliases: []
 sex: M
-death:
-  year: 1898
-parents:
-  - P000159
-  - P000160
+father: "1810-1819/aleksandr-eduard-bartmer.md"
+mother: "1820-1829/yoganna-zhozefina-bartmer.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: 1898
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

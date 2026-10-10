@@ -3,23 +3,32 @@ title: "Эмилия Бескоровайная"
 description: "Эмилия Бескоровайная, 1935–2024"
 entity: person
 importManaged: true
-id: P000004
-name: "Эмилия Курочкина"
-displayName: "Эмилия Бескоровайная"
-birthSurname: "Курочкина"
-marriedSurname: "Бескоровайная"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTUwYzQ5ZThkZTVjNzQzNTc0NGI5NTI0ODE4NzIxOTkxMjg3MGQ5MTU3MGZhNDA2Yzg0N2M2ZjFiNDBlNzYyZTMmZT0xNzg5Njc1MjAw/129/852/4292/500004_940921y6ca112310wuafr8_A.jpg"
-deceased: true
+name:
+  full: "Эмилия Курочкина"
+  display: "Эмилия Бескоровайная"
+  birth_last: "Курочкина"
+  married_last: "Бескоровайная"
+  aliases: []
 sex: F
-birth:
-  year: 1935
-death:
-  year: 2024
-parents:
-  - P000054
-  - P000055
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTUwYzQ5ZThkZTVjNzQzNTc0NGI5NTI0ODE4NzIxOTkxMjg3MGQ5MTU3MGZhNDA2Yzg0N2M2ZjFiNDBlNzYyZTMmZT0xNzg5Njc1MjAw/129/852/4292/500004_940921y6ca112310wuafr8_A.jpg"
+father: "1900-1909/nikolay-kurochkin.md"
+mother: "1910-1919/valentina-kurochkina.md"
+born:
+  known: true
+  date: 1935
+  place: null
+died:
+  known: true
+  date: 2024
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000005
+  - person: "1930-1939/vladimir-beskorovaynyi.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

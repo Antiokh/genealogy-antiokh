@@ -3,19 +3,30 @@ title: "Полина Зорина"
 description: "Полина Зорина, 2011–"
 entity: person
 importManaged: true
-id: P000228
-name: "Полина Зорина"
-displayName: "Полина Зорина"
-birthSurname: "Зорина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFlNWM4NTgwYmJiZTI5NDRjMzA4ZTI3ZDdjN2U0MDljN2U5NmYyZThkNjY0MzljMGNmYzAwODM5N2QwODYwYjImZT0xNzg5Njc1MjAw/129/852/4292/500234_2837656awd316p24ht5j5c_A.jpg"
-deceased: false
+name:
+  full: "Полина Зорина"
+  display: "Полина Зорина"
+  birth_last: "Зорина"
+  aliases: []
 sex: F
-birth:
-  year: 2011
-parents:
-  - P000225
-  - P000226
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFlNWM4NTgwYmJiZTI5NDRjMzA4ZTI3ZDdjN2U0MDljN2U5NmYyZThkNjY0MzljMGNmYzAwODM5N2QwODYwYjImZT0xNzg5Njc1MjAw/129/852/4292/500234_2837656awd316p24ht5j5c_A.jpg"
+father: "unknown/dmitriy-zorin.md"
+mother: "1980-1989/ekaterina-zorina.md"
+born:
+  known: true
+  date: 2011
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/), [Дмитрий Зорин](/people/unknown/dmitriy-zorin/)
+**Родители:** [Дмитрий Зорин](/people/unknown/dmitriy-zorin/), [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/)
 
 **Партнёры:** —
 

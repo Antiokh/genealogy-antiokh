@@ -3,22 +3,31 @@ title: "Борис Буш"
 description: "Борис Буш, 1898–1945"
 entity: person
 importManaged: true
-id: P000028
-name: "Борис Буш"
-displayName: "Борис Буш"
-birthSurname: "Буш"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTM4MmY5ODk1YjNiNzRmYzBmYjUwOWE4MzUzMTk0YWFkY2ZkZTRmZWE3MmRmZDQ4MTQ0N2QwYjJhNzAzMzhjOTcmZT0xNzg5Njc1MjAw/129/852/4292/500041_957267fci1y316765drtg2_A.jpg"
-deceased: true
+name:
+  full: "Борис Буш"
+  display: "Борис Буш"
+  birth_last: "Буш"
+  aliases: []
 sex: M
-birth:
-  year: 1898
-death:
-  year: 1945
-parents:
-  - P000020
-  - P000021
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTM4MmY5ODk1YjNiNzRmYzBmYjUwOWE4MzUzMTk0YWFkY2ZkZTRmZWE3MmRmZDQ4MTQ0N2QwYjJhNzAzMzhjOTcmZT0xNzg5Njc1MjAw/129/852/4292/500041_957267fci1y316765drtg2_A.jpg"
+father: "1850-1859/woldemar-carl-chrostopher-bush.md"
+mother: "1860-1869/elizaveta-olga-busch.md"
+born:
+  known: true
+  date: 1898
+  place: null
+died:
+  known: true
+  date: 1945
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000030
+  - person: "unknown/neizvestnaya-zhenshchina.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -33,7 +42,7 @@ external:
 
 **Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
 
-**Партнёры:** [Неизвестная (P000030)](/people/unknown/neizvestnaya-p000030/)
+**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina/)
 
 **Дети:** [Владимир Буш](/people/unknown/vladimir-bush/)
 

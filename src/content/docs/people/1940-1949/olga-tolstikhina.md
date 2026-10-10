@@ -3,19 +3,30 @@ title: "Ольга Толстихина"
 description: "Ольга Толстихина, 1941–?"
 entity: person
 importManaged: true
-id: P000096
-name: "Ольга Толстихина"
-displayName: "Ольга Толстихина"
-birthSurname: "Толстихина"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWEyMjY3ODYwNjMyMDU0NWY3YThjZDQ1NWYwNjljZDdiY2JkM2Q1OWNiODE4NGEyZjc1NDIxNDZlMzI3MDg5MDEmZT0xNzg5Njc1MjAw/129/852/4292/500144_5513316f10yj2601x6271f_A.jpg"
-deceased: true
+name:
+  full: "Ольга Толстихина"
+  display: "Ольга Толстихина"
+  birth_last: "Толстихина"
+  aliases: []
 sex: F
-birth:
-  year: 1941
-parents:
-  - P000058
-  - P000097
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWEyMjY3ODYwNjMyMDU0NWY3YThjZDQ1NWYwNjljZDdiY2JkM2Q1OWNiODE4NGEyZjc1NDIxNDZlMzI3MDg5MDEmZT0xNzg5Njc1MjAw/129/852/4292/500144_5513316f10yj2601x6271f_A.jpg"
+father: "1880-1889/aleksey-tolstikhin.md"
+mother: "1890-1899/klavdiya-tolstikhina.md"
+born:
+  known: true
+  date: 1941
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +39,7 @@ external:
 
 ## Семья
 
-**Родители:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/)
+**Родители:** [Алексей Толстихин](/people/1880-1889/aleksey-tolstikhin/), [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/)
 
 **Партнёры:** —
 

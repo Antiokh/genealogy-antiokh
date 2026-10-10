@@ -3,15 +3,30 @@ title: "Василий Капранов"
 description: "Василий Капранов"
 entity: person
 importManaged: true
-id: P000243
-name: "Василий Капранов"
-displayName: "Василий Капранов"
-birthSurname: "Капранов"
-deceased: false
+name:
+  full: "Василий Капранов"
+  display: "Василий Капранов"
+  birth_last: "Капранов"
+  aliases: []
 sex: M
-parents: []
+father: null
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000242
+  - person: "unknown/klavdiya-nikolaeva.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -27,7 +42,7 @@ external:
 
 **Партнёры:** [Клавдия Николаева](/people/unknown/klavdiya-nikolaeva/)
 
-**Дети:** [Геннадий](/people/unknown/gennadiy-p000084/)
+**Дети:** [Геннадий](/people/unknown/gennadiy-i500084/)
 
 ## Биография
 

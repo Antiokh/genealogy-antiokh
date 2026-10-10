@@ -3,16 +3,29 @@ title: "Надежда Попова"
 description: "Надежда Попова"
 entity: person
 importManaged: true
-id: P000204
-name: "Надежда Попова"
-displayName: "Надежда Попова"
-birthSurname: "Попова"
-deceased: false
+name:
+  full: "Надежда Попова"
+  display: "Надежда Попова"
+  birth_last: "Попова"
+  aliases: []
 sex: F
-parents:
-  - P000201
-  - P000203
+father: "1930-1939/viktor-popov.md"
+mother: "unknown/neizvestnaya-zhenshchina-i500209.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -24,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная (P000203)](/people/unknown/neizvestnaya-p000203/)
+**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500209/)
 
 **Партнёры:** —
 

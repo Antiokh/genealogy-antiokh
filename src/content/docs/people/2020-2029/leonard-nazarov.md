@@ -3,19 +3,30 @@ title: "Leonard Nazarov"
 description: "Leonard Nazarov, 2023–"
 entity: person
 importManaged: true
-id: P000218
-name: "Leonard Nazarov"
-displayName: "Leonard Nazarov"
-birthSurname: "Nazarov"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0YmQxMzFlMmRjOTlmNDk4MDYzY2NkOWUwMWE5MGVlMThmZGM2N2FhYTgxZjhjNGRhZjY2MmYzMjg2NTY3NDImZT0xNzg5Njc1MjAw/129/852/4292/500332_5024259a9p16znz54pa6f6_A.jpg"
-deceased: false
+name:
+  full: "Leonard Nazarov"
+  display: "Leonard Nazarov"
+  birth_last: "Nazarov"
+  aliases: []
 sex: M
-birth:
-  year: 2023
-parents:
-  - P000001
-  - P000217
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0YmQxMzFlMmRjOTlmNDk4MDYzY2NkOWUwMWE5MGVlMThmZGM2N2FhYTgxZjhjNGRhZjY2MmYzMjg2NTY3NDImZT0xNzg5Njc1MjAw/129/852/4292/500332_5024259a9p16znz54pa6f6_A.jpg"
+father: "1980-1989/anton-nazarov.md"
+mother: "2000-2009/anna-tatarintseva.md"
+born:
+  known: true
+  date: 2023
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners: []
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

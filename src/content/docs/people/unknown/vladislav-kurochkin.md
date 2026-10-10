@@ -3,18 +3,31 @@ title: "Владислав Курочкин"
 description: "Владислав Курочкин"
 entity: person
 importManaged: true
-id: P000078
-name: "Владислав Курочкин"
-displayName: "Владислав Курочкин"
-birthSurname: "Курочкин"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTRmOGYzOGQ4MjMwOTUxNzNkYzA1YTUwZTE2OGI0MzI4OTQ2YjQ3NjA1YjFhYjNiODEwYTEwYjhhYjE0MTgwYjQmZT0xNzg5Njc1MjAw/129/852/4292/500244_191626354dkm6tc1d0590a_A.jpg"
-deceased: false
+name:
+  full: "Владислав Курочкин"
+  display: "Владислав Курочкин"
+  birth_last: "Курочкин"
+  aliases: []
 sex: M
-parents:
-  - P000076
-  - P000077
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTRmOGYzOGQ4MjMwOTUxNzNkYzA1YTUwZTE2OGI0MzI4OTQ2YjQ3NjA1YjFhYjNiODEwYTEwYjhhYjE0MTgwYjQmZT0xNzg5Njc1MjAw/129/852/4292/500244_191626354dkm6tc1d0590a_A.jpg"
+father: "1940-1949/vladimir-kurochkin.md"
+mother: "unknown/lyudmila.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000079
+  - person: "unknown/elena-i500079.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -28,7 +41,7 @@ external:
 
 **Родители:** [Владимир Курочкин](/people/1940-1949/vladimir-kurochkin/), [Людмила](/people/unknown/lyudmila/)
 
-**Партнёры:** [Елена](/people/unknown/elena-p000079/)
+**Партнёры:** [Елена](/people/unknown/elena-i500079/)
 
 **Дети:** [Елизавета Курочкина](/people/2000-2009/elizaveta-kurochkina/)
 

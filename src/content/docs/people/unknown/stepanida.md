@@ -3,15 +3,29 @@ title: "Степанида"
 description: "Степанида"
 entity: person
 importManaged: true
-id: P000047
-name: "Степанида"
-displayName: "Степанида"
-deceased: true
+name:
+  full: "Степанида"
+  display: "Степанида"
+  aliases: []
 sex: F
-parents:
-  - P000052
+father: "unknown/vasiliy-lavrinenko.md"
+mother: null
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000046
+  - person: "unknown/petr-bezkorovaynyy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:

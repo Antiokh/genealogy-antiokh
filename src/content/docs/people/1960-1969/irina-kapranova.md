@@ -3,20 +3,31 @@ title: "Ирина Капранова"
 description: "Ирина Капранова, 1965–"
 entity: person
 importManaged: true
-id: P000085
-name: "Ирина Капранова"
-displayName: "Ирина Капранова"
-birthSurname: "Капранова"
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTU1OWZmYzgzZjJmNzdiZGY3NjhmODA1MWZlNTVjZjIzODViMDk2YjczNzhiY2RiYTc3ODNhNDFjMTBkODE4N2EmZT0xNzg5Njc1MjAw/129/852/4292/500081_494514l21zdbfja66sb1fz_A.jpg"
-deceased: false
+name:
+  full: "Ирина Капранова"
+  display: "Ирина Капранова"
+  birth_last: "Капранова"
+  aliases: []
 sex: F
-birth:
-  year: 1965
-parents:
-  - P000083
-  - P000084
+photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTU1OWZmYzgzZjJmNzdiZGY3NjhmODA1MWZlNTVjZjIzODViMDk2YjczNzhiY2RiYTc3ODNhNDFjMTBkODE4N2EmZT0xNzg5Njc1MjAw/129/852/4292/500081_494514l21zdbfja66sb1fz_A.jpg"
+father: "unknown/gennadiy-i500084.md"
+mother: "1940-1949/galina-kapranova.md"
+born:
+  known: true
+  date: 1965
+  place: null
+died:
+  known: false
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000087
+  - person: "unknown/valeriy.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -29,7 +40,7 @@ external:
 
 ## Семья
 
-**Родители:** [Галина Капранова](/people/1940-1949/galina-kapranova/), [Геннадий](/people/unknown/gennadiy-p000084/)
+**Родители:** [Геннадий](/people/unknown/gennadiy-i500084/), [Галина Капранова](/people/1940-1949/galina-kapranova/)
 
 **Партнёры:** [Валерий](/people/unknown/valeriy/)
 

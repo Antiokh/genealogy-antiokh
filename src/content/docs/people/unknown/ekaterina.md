@@ -3,16 +3,29 @@ title: "Екатерина"
 description: "Екатерина"
 entity: person
 importManaged: true
-id: P000036
-name: "Екатерина"
-displayName: "Екатерина"
-deceased: true
+name:
+  full: "Екатерина"
+  display: "Екатерина"
+  aliases: []
 sex: F
-parents:
-  - P000035
-  - P000037
+father: "unknown/neizvestnyy-muzhchina.md"
+mother: "unknown/tatyana-vinokurov.md"
+born:
+  known: false
+  date: null
+  place: null
+died:
+  known: true
+  date: null
+  place: null
+buried:
+  known: false
+  date: null
+  place: null
 partners:
-  - P000039
+  - person: "unknown/neizvestnyy-muzhchina-i500039.md"
+occupation: []
+residence: []
 sources: []
 external:
   myheritage:
@@ -22,9 +35,9 @@ external:
 
 ## Семья
 
-**Родители:** [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/), [Неизвестный (P000037)](/people/unknown/neizvestnyy-p000037/)
+**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina/), [Татьяна Винокуров](/people/unknown/tatyana-vinokurov/)
 
-**Партнёры:** [Неизвестный (P000039)](/people/unknown/neizvestnyy-p000039/)
+**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500039/)
 
 **Дети:** [Мария](/people/1980-1989/mariya/)
 
