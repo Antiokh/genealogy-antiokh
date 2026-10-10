@@ -98,15 +98,20 @@ function collapseAttribution() {
   if (button instanceof HTMLElement) button.setAttribute('aria-expanded', 'false');
 }
 
-const response = await fetch('/generated/places.geojson');
-if (!response.ok) {
+const [eventResponse, peopleResponse] = await Promise.all([
+  fetch('/generated/places.geojson'),
+  fetch('/generated/people.json'),
+]);
+if (!eventResponse.ok || !peopleResponse.ok) {
   status.hidden = false;
   status.classList.add('error');
   status.textContent = 'Не удалось загрузить данные карты.';
-  throw new Error(`Failed to load event map data: ${response.status}`);
+  throw new Error(`Failed to load event map data: events=${eventResponse.status}, people=${peopleResponse.status}`);
 }
 
-const dataset = await response.json();
+const dataset = await eventResponse.json();
+const peopleDataset = await peopleResponse.json();
+const peopleByRef = new Map((peopleDataset.people ?? []).map((person) => [person.ref, person]));
 const datedFeatures = (dataset.features ?? []).filter((feature) => Number.isFinite(feature.properties?.startYear));
 const years = datedFeatures.flatMap((feature) => [
   Number(feature.properties.startYear),
@@ -165,6 +170,30 @@ function placeGroups() {
   return [...groups.values()].sort((a, b) => a.label.localeCompare(b.label, 'ru'));
 }
 
+function appendParticipants(row, feature) {
+  const refs = Array.isArray(feature.properties.participants) ? feature.properties.participants : [];
+  const participants = refs
+    .map((ref) => peopleByRef.get(ref) ?? { ref, displayName: ref, url: `/people/${String(ref).replace(/\.mdx?$/i, '')}/` })
+    .filter(Boolean);
+  if (!participants.length) return;
+
+  const actors = document.createElement('div');
+  actors.className = 'rslive-map-popup-event-date';
+  const prefix = document.createElement('span');
+  prefix.textContent = participants.length === 1 ? 'Участник: ' : 'Участники: ';
+  actors.append(prefix);
+
+  participants.forEach((person, index) => {
+    if (index > 0) actors.append(document.createTextNode(', '));
+    const personLink = document.createElement('a');
+    personLink.href = person.url;
+    personLink.target = '_top';
+    personLink.textContent = person.displayName || person.title || person.ref;
+    actors.append(personLink);
+  });
+  row.append(actors);
+}
+
 function popupFor(group) {
   const wrapper = document.createElement('div');
   wrapper.className = 'rslive-map-popup';
@@ -192,6 +221,7 @@ function popupFor(group) {
     link.target = '_top';
     link.textContent = feature.properties.eventTitle;
     row.append(link);
+    appendParticipants(row, feature);
     list.append(row);
   }
   wrapper.append(list);
