@@ -8,6 +8,10 @@ name:
   display: "Александр Ботиков"
   birth_last: "Ботиков"
   aliases: []
+family:
+  key: "botikov"
+  label: "Ботиковы"
+  locale: ru
 sex: M
 father: null
 mother: null

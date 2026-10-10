@@ -8,6 +8,10 @@ name:
   display: "Иван Курочкин"
   birth_last: "Курочкин"
   aliases: []
+family:
+  key: "kurochkin"
+  label: "Курочкины"
+  locale: ru
 sex: M
 father: "unknown/aleksandr-kurochkin-i500142.md"
 mother: null

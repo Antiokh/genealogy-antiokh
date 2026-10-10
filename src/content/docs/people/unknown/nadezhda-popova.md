@@ -8,6 +8,10 @@ name:
   display: "Надежда Попова"
   birth_last: "Попова"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 father: "1930-1939/viktor-popov.md"
 mother: null

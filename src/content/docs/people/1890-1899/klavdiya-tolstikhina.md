@@ -9,6 +9,10 @@ name:
   birth_last: "Спиридонова"
   married_last: "Толстихина"
   aliases: []
+family:
+  key: "tolstikhin"
+  label: "Толстихины"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZkZjdhYjFiNTVhMDg0ZDE0NDg2MGU4MmMzYzY0YTdlODQ2YTE4ZjMyMjM4NWI5MmE5MTFkNGZjMzNlYWZkY2ImZT0xNzg5Njc1MjAw/129/852/4292/500140_2834866f10g21aj7966wae_A.jpg"
 father: "1880-1889/mikhail-spiridonov.md"

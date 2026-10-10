@@ -9,6 +9,10 @@ name:
   birth_last: "Курочкина"
   married_last: "Антонченко"
   aliases: []
+family:
+  key: "antonchenko"
+  label: "Антонченко"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc3NjFmNjVhOGE5OTU5N2M3YjY5N2U0NGZhYzYxYmY2NjczMzNiYzhiNmNiMzMwYzc5NGE1YWRmNGZmYWUzM2MmZT0xNzg5Njc1MjAw/129/852/4292/500109_597400bf6ri02i0y436c16_A.jpg"
 father: "1870-1879/petr-mikhaylovich-kurochkin.md"

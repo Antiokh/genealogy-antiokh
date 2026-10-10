@@ -9,6 +9,10 @@ name:
   birth_last: "Бескоровайная"
   married_last: "Mikhalets"
   aliases: []
+family:
+  key: "mikhalets"
+  label: "Mikhalets"
+  locale: en
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTUyOWFlYTZhYWUzODdkMTJlZGI3ZjZmMTJkNmYxZDEzZDA5ZTc2YmUwZDk0MDcxNTJkNmE5NzY0MzE5MzE5MWYmZT0xNzg5Njc1MjAw/129/852/4292/500099_0689391u43c64c61c60202_A.jpg"
 father: "unknown/aleksandr-rezyapkin.md"

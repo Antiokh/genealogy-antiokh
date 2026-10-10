@@ -8,6 +8,10 @@ name:
   display: "Георгий Бескоровайный"
   birth_last: "Бескоровайный"
   aliases: []
+family:
+  key: "beskorovaynyy"
+  label: "Бескоровайные"
+  locale: ru
 sex: M
 father: null
 mother: null

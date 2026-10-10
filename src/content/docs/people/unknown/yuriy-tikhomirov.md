@@ -8,6 +8,10 @@ name:
   display: "Юрий Тихомиров"
   birth_last: "Тихомиров"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: M
 father: "unknown/aleksandr-tikhomirov.md"
 mother: "unknown/evdokiya-antonchenko.md"

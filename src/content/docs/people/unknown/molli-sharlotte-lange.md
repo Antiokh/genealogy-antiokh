@@ -8,6 +8,10 @@ name:
   display: "Молли Шарлотте Ланге"
   birth_last: "Ланге"
   aliases: []
+family:
+  key: "lange"
+  label: "Ланге"
+  locale: ru
 sex: F
 father: null
 mother: null

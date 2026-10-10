@@ -8,6 +8,10 @@ name:
   display: "Мария Буш"
   birth_last: "Буш"
   aliases: []
+family:
+  key: "bush"
+  label: "Буши"
+  locale: ru
 sex: F
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"
 mother: "1860-1869/elizaveta-olga-busch.md"

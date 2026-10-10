@@ -8,6 +8,10 @@ name:
   display: "Louise Charlotte Gerdau"
   birth_last: "Gerdau"
   aliases: []
+family:
+  key: "gerdau"
+  label: "Gerdau"
+  locale: en
 sex: F
 father: null
 mother: null

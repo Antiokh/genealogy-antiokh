@@ -9,6 +9,10 @@ name:
   birth_last: "Bartmer"
   married_last: "Busch"
   aliases: []
+family:
+  key: "busch"
+  label: "Busch"
+  locale: en
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY4NzZkMDZlMDA1MWM0NTI0ZGI0NTY0YTk2MTE2MWJkMWJkYjc0MTMzYzBkZTVhYTdmZTJhYjZiNzU5MTU4NGQmZT0xNzg5Njc1MjAw/129/852/4292/500035_74269136wd1fif32413k8c_A.jpg"
 father: "1810-1819/aleksandr-eduard-bartmer.md"

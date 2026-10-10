@@ -8,6 +8,10 @@ name:
   display: "Sebastian Karika"
   birth_last: "Karika"
   aliases: []
+family:
+  key: "karika"
+  label: "Karika"
+  locale: en
 sex: M
 father: null
 mother: null

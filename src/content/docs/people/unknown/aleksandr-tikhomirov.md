@@ -8,6 +8,10 @@ name:
   display: "Александр Тихомиров"
   birth_last: "Тихомиров"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: M
 father: null
 mother: null

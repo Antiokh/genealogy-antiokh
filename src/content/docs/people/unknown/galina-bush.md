@@ -8,6 +8,10 @@ name:
   display: "Галина Буш"
   birth_last: "Буш"
   aliases: []
+family:
+  key: "bush"
+  label: "Буши"
+  locale: ru
 sex: F
 father: "unknown/vladimir-bush.md"
 mother: null

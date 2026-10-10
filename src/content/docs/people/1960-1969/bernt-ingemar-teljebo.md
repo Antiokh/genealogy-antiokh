@@ -8,6 +8,10 @@ name:
   display: "Bernt Ingemar Teljebo"
   birth_last: "Teljebo"
   aliases: []
+family:
+  key: "teljebo"
+  label: "Teljebo"
+  locale: en
 sex: M
 father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
 mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"

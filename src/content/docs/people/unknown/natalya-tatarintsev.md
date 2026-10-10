@@ -8,6 +8,10 @@ name:
   display: "Наталья Tatarintsev"
   married_last: "Tatarintsev"
   aliases: []
+family:
+  key: "tatarintsev"
+  label: "Tatarintsev"
+  locale: en
 sex: F
 father: null
 mother: null

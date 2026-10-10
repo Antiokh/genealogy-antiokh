@@ -9,6 +9,10 @@ name:
   birth_last: "Назарова"
   married_last: "Ледовских"
   aliases: []
+family:
+  key: "ledovskikh"
+  label: "Ледовскихи"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTg4MTFiYzM3OGMyZmJkODIzZDM5Mzg2ZDc5MGYwMWUyNTJhZmFiMzIxZTJhNjg4MWI4OTRmYWViMGE0YWZiMzQmZT0xNzg5Njc1MjAw/129/852/4292/500059_396246rcv1f716731b1bc0_A.jpg"
 father: "1930-1939/semen-nazarov.md"

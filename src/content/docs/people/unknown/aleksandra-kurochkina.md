@@ -8,6 +8,10 @@ name:
   display: "Александра Курочкина"
   birth_last: "Курочкина"
   aliases: []
+family:
+  key: "kurochkin"
+  label: "Курочкины"
+  locale: ru
 sex: F
 father: null
 mother: "unknown/anna-panteshkina.md"

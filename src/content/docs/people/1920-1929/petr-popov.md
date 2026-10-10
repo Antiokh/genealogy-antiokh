@@ -8,6 +8,10 @@ name:
   display: "Петр Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc5ZDg3ZmYwZGZlNzcwNDhjNThkMmRhZmZkZWZiNzkwZWU4OGFjMGUzYzBjYmY5NDU4MmNmNDJlZGUwOGE2M2UmZT0xNzg5Njc1MjAw/129/852/4292/500325_38453230zed681t6426819_A.jpg"
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"

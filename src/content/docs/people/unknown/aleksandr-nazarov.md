@@ -8,6 +8,10 @@ name:
   display: "Александр Назаров"
   birth_last: "Назаров"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
 sex: M
 father: "1930-1939/vasiliy-nazarov.md"
 mother: null

@@ -12,6 +12,10 @@ name:
   first: Полина
   middle: Михайловна
   last: Попова
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 father: null
 mother: null

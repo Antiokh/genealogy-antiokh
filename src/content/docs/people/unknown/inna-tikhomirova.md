@@ -8,6 +8,10 @@ name:
   display: "Инна Тихомирова"
   birth_last: "Тихомирова"
   aliases: []
+family:
+  key: "tikhomirov"
+  label: "Тихомировы"
+  locale: ru
 sex: F
 father: null
 mother: "unknown/larisa-tikhomirova.md"

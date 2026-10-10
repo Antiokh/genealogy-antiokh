@@ -8,6 +8,10 @@ name:
   display: "Трофим Безкоровайный"
   birth_last: "Безкоровайный"
   aliases: []
+family:
+  key: "bezkorovaynyy"
+  label: "Безкоровайные"
+  locale: ru
 sex: M
 father: null
 mother: null

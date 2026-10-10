@@ -8,6 +8,10 @@ name:
   display: "Тамара Курочкина"
   birth_last: "Курочкина"
   aliases: []
+family:
+  key: "kurochkin"
+  label: "Курочкины"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhNWNiYTFlMDUwZjQ1Mzg0MWY2ZjJlNmE5NDA1NmUwNDZiMWZmZmJhOWMxMWYyMGNjNWE0M2E2NDNkZjM5MzUmZT0xNzg5Njc1MjAw/129/852/4292/500288_731014c150wv2f7b76ab3y_A.jpg"
 father: "1870-1879/petr-mikhaylovich-kurochkin.md"

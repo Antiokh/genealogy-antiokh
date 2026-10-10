@@ -8,6 +8,10 @@ name:
   display: "Андрей Антонченко"
   birth_last: "Антонченко"
   aliases: []
+family:
+  key: "antonchenko"
+  label: "Антонченко"
+  locale: ru
 sex: M
 father: null
 mother: null

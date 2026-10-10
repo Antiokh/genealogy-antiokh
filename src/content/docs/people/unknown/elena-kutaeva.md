@@ -8,6 +8,10 @@ name:
   display: "Елена Кутаева"
   birth_last: "Кутаева"
   aliases: []
+family:
+  key: "kutaev"
+  label: "Кутаевы"
+  locale: ru
 sex: F
 father: null
 mother: null

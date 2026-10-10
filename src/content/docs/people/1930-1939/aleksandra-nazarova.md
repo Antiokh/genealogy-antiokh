@@ -8,6 +8,10 @@ name:
   display: "Александра Назарова"
   birth_last: "Назарова"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
 sex: F
 father: "unknown/semen-nazarov.md"
 mother: "unknown/anastasiya.md"

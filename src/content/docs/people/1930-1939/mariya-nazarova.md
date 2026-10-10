@@ -9,6 +9,10 @@ name:
   birth_last: "Попова"
   married_last: "Назарова"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQyZjU3YzdmZWUxMTg5N2QxMjBjMmQwOTE1MGZmMThjYjY2NzE3ZDlkNDE2MTk2MTc5ZGU3N2Y4M2FmMWJjYzkmZT0xNzg5Njc1MjAw/129/852/4292/500182_14857098694ao0d1nas6o2_A.jpg"
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"

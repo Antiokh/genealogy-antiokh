@@ -8,6 +8,10 @@ name:
   display: "Борис Буш"
   birth_last: "Буш"
   aliases: []
+family:
+  key: "bush"
+  label: "Буши"
+  locale: ru
 sex: M
 father: "unknown/vladimir-bush.md"
 mother: null

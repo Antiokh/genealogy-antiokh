@@ -8,6 +8,10 @@ name:
   display: "Александр Курочкин"
   birth_last: "Курочкин"
   aliases: []
+family:
+  key: "kurochkin"
+  label: "Курочкины"
+  locale: ru
 sex: M
 father: "1870-1879/petr-mikhaylovich-kurochkin.md"
 mother: "unknown/olga-kurochkina.md"

@@ -8,6 +8,10 @@ name:
   display: "Василий Попов"
   birth_last: "Попов"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTYwMmI0MDNhMzIxOTZjZDBmYzUyNjUxNmRkNjI4NzRiMTUyMDYzOGM5ZTE2YWFlY2Y2MTcyZGJhMzc3MDQ3ZDMmZT0xNzg5Njc1MjAw/129/852/4292/500089_310054o1f5fa616r3e117f_A.jpg"
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"

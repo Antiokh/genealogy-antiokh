@@ -8,6 +8,10 @@ name:
   display: "Михаил Безкоровайный"
   birth_last: "Безкоровайный"
   aliases: []
+family:
+  key: "bezkorovaynyy"
+  label: "Безкоровайные"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTEwOTdiNTE1OTEwNTQ4OGRkMmFkYzU5NTI4ZjRkNjQxYTYwYzRkNjJlMGY5MmFmNDMzMzhlY2Y3MWJlNDAzZGMmZT0xNzg5Njc1MjAw/129/852/4292/500174_1321167c4u182acd56c7c8_A.jpg"
 father: "unknown/petr-bezkorovaynyy.md"

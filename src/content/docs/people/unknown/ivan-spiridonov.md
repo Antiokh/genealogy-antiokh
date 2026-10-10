@@ -8,6 +8,10 @@ name:
   display: "Иван Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 father: null
 mother: null

@@ -8,6 +8,10 @@ name:
   display: "Александр Резяпкин"
   birth_last: "Резяпкин"
   aliases: []
+family:
+  key: "rezyapkin"
+  label: "Резяпкины"
+  locale: ru
 sex: M
 father: null
 mother: null

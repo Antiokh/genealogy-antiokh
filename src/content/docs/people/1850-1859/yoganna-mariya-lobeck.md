@@ -9,6 +9,10 @@ name:
   birth_last: "Bartmer Бартмер"
   married_last: "Lobeck"
   aliases: []
+family:
+  key: "lobeck"
+  label: "Lobeck"
+  locale: en
 sex: F
 father: "1810-1819/aleksandr-eduard-bartmer.md"
 mother: "1820-1829/yoganna-zhozefina-bartmer.md"

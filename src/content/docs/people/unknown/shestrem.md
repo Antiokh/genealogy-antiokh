@@ -8,6 +8,10 @@ name:
   display: "Шестрем"
   birth_last: "Шестрем"
   aliases: []
+family:
+  key: "shestrem"
+  label: "Шестремы"
+  locale: ru
 sex: M
 father: null
 mother: null

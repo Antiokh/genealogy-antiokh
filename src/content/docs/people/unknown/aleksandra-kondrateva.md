@@ -8,6 +8,10 @@ name:
   display: "Александра Кондратьева"
   birth_last: "Кондратьева"
   aliases: []
+family:
+  key: "kondratev"
+  label: "Кондратьевы"
+  locale: ru
 sex: F
 father: "unknown/nil-kondratev.md"
 mother: null

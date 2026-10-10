@@ -9,6 +9,10 @@ name:
   birth_last: "Курочкина"
   married_last: "Пантешкина"
   aliases: []
+family:
+  key: "panteshkin"
+  label: "Пантешкины"
+  locale: ru
 sex: F
 father: "unknown/mikhail-kurochkin-i500069.md"
 mother: "unknown/elena-kutaeva.md"

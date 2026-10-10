@@ -8,6 +8,10 @@ name:
   display: "Клавдия Николаева"
   birth_last: "Николаева"
   aliases: []
+family:
+  key: "nikolaev"
+  label: "Николаевы"
+  locale: ru
 sex: F
 father: null
 mother: null

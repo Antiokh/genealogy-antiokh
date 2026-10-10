@@ -8,6 +8,10 @@ name:
   display: "Григорий Назаров"
   birth_last: "Назаров"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
 sex: M
 father: null
 mother: null

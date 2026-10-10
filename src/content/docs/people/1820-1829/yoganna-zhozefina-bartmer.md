@@ -9,6 +9,10 @@ name:
   birth_last: "Thorsell Торселл"
   married_last: "Bartmer"
   aliases: []
+family:
+  key: "bartmer"
+  label: "Bartmer"
+  locale: en
 sex: F
 father: null
 mother: null

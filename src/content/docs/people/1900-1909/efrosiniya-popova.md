@@ -9,6 +9,10 @@ name:
   birth_last: "Попова"
   married_last: "Попова"
   aliases: []
+family:
+  key: "popov"
+  label: "Поповы"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTk3MWUyZGZkODVhZDI4Njk0N2NiNzc0NGEyYjZjMWU0ZTRjYTAwMDU0Mzk5MGEwNzU2NTA1MWNjYWQzZjRlYjEmZT0xNzg5Njc1MjAw/129/852/4292/500323_36478411f9a6vc0j06c817_A.jpg"
 father: "unknown/grigoriy-popov.md"

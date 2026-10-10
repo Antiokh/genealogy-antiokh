@@ -12,6 +12,10 @@ name:
   first: Ольга
   middle: Михайловна
   last: Фаворская
+family:
+  key: "favorskiy"
+  label: "Фаворские"
+  locale: ru
 sex: F
 father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
 mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md

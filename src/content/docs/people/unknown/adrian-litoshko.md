@@ -8,6 +8,10 @@ name:
   display: "Адриан Литошко"
   birth_last: "Литошко"
   aliases: []
+family:
+  key: "litoshko"
+  label: "Литошко"
+  locale: ru
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhMDVmMjQ0NTIyNjhlZTNkYjZlNTc2ZWEwMzgwOWVjZDA5Yzg4ZDNiMTUzYWU5NjQxYzFkNTJiOTFiNzNlNzYmZT0xNzg5Njc1MjAw/129/852/4292/500134_214995j8087b2cd606ld01_A.jpg"
 father: null

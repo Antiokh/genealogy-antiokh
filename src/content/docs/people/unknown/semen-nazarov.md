@@ -8,6 +8,10 @@ name:
   display: "Семён Назаров"
   birth_last: "Назаров"
   aliases: []
+family:
+  key: "nazarov"
+  label: "Назаровы"
+  locale: ru
 sex: M
 father: "unknown/grigoriy-nazarov.md"
 mother: null

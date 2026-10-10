@@ -8,6 +8,10 @@ name:
   display: "Виктор Tatarintsev"
   birth_last: "Tatarintsev"
   aliases: []
+family:
+  key: "tatarintsev"
+  label: "Tatarintsev"
+  locale: en
 sex: M
 father: null
 mother: null

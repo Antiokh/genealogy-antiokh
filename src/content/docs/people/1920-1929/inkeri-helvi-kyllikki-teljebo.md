@@ -9,6 +9,10 @@ name:
   birth_last: "Iso-Kamula"
   married_last: "Teljebo"
   aliases: []
+family:
+  key: "teljebo"
+  label: "Teljebo"
+  locale: en
 sex: F
 father: null
 mother: null

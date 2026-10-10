@@ -8,6 +8,10 @@ name:
   display: "Василий Лавриненко"
   birth_last: "Лавриненко"
   aliases: []
+family:
+  key: "lavrinenko"
+  label: "Лавриненко"
+  locale: ru
 sex: M
 father: null
 mother: null

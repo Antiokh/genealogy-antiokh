@@ -8,6 +8,10 @@ name:
   display: "Нил Кондратьев"
   birth_last: "Кондратьев"
   aliases: []
+family:
+  key: "kondratev"
+  label: "Кондратьевы"
+  locale: ru
 sex: M
 father: null
 mother: null

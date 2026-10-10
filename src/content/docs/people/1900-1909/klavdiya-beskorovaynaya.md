@@ -9,6 +9,10 @@ name:
   birth_last: "Безкоровайная"
   married_last: "Бескоровайная"
   aliases: []
+family:
+  key: "beskorovaynyy"
+  label: "Бескоровайные"
+  locale: ru
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE5NGM5MjRkNjJhNmY2YTg0NTZmNmVmNWM3YmI2NmMwYTIzNTBlN2ExZTliODQzODdhZGY4ZDE2MjY3YjVjN2EmZT0xNzg5Njc1MjAw/129/852/4292/500029_84165011f6ac20favz31w0_A.jpg"
 father: "unknown/petr-bezkorovaynyy.md"

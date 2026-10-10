@@ -8,6 +8,10 @@ name:
   display: "Александр-Эдуард Бартмер"
   birth_last: "Бартмер"
   aliases: []
+family:
+  key: "bartmer"
+  label: "Бартмеры"
+  locale: ru
 sex: M
 father: null
 mother: null

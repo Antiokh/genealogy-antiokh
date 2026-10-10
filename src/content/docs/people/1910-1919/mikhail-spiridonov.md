@@ -8,6 +8,10 @@ name:
   display: "Михаил Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
+family:
+  key: "spiridonov"
+  label: "Спиридоновы"
+  locale: ru
 sex: M
 father: "1880-1889/mikhail-spiridonov.md"
 mother: "unknown/nonna-vedzhnevetskaya.md"

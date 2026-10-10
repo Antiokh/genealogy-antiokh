@@ -8,6 +8,10 @@ name:
   display: "Сергей Волков"
   birth_last: "Волков"
   aliases: []
+family:
+  key: "volkov"
+  label: "Волковы"
+  locale: ru
 sex: M
 father: null
 mother: null

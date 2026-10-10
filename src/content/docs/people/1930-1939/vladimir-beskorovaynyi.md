@@ -8,6 +8,10 @@ name:
   display: "Vladimir Beskorovaynyi"
   birth_last: "Bush"
   aliases: []
+family:
+  key: "bush"
+  label: "Bush"
+  locale: en
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTgzNWU0MzUzMmNjMjkwYTVhZGU5ZGE1ZWQwYTYxOWIyMmQ0ZTEyZTRjZGEwNzY0ZDAzN2U4NTQ3ODUyZDFhODQmZT0xNzg5Njc1MjAw/129/852/4292/500008_433470c4f328b086cds1u1_A.jpg"
 father: "1910-1919/vadim-bush.md"

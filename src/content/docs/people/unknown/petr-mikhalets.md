@@ -8,6 +8,10 @@ name:
   display: "Пётр Mikhalets"
   birth_last: "Mikhalets"
   aliases: []
+family:
+  key: "mikhalets"
+  label: "Mikhalets"
+  locale: en
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWJlNzJlNTMxZjJjZWVmZjJmYTI0NDM1Y2FmYjk3NGY4M2EzNDRhYjYzZGZkMzkzZTY0MGU3NTIwMmM4NjAzZWUmZT0xNzg5Njc1MjAw/129/852/4292/500097_6859357192b662k3hke0vr_A.jpg"
 father: null
