@@ -3,12 +3,23 @@ title: Имя Отчество Фамилия
 draft: true
 entity: person
 name:
+  locale: ru
   display: Имя Отчество Фамилия
   first: Имя
   middle: Отчество
   last: Фамилия
   birth_last: Фамилия
+  localized:
+    sr-Latn:
+      first: Ime
+      middle: Srednje ime
+      last: Prezime
+      display: Ime Srednje ime Prezime
   aliases: []
+family:
+  key: family-key
+  label: Фамилия во множественном числе
+  locale: ru
 sex: U
 father:
 mother:
