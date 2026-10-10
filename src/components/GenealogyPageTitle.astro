@@ -25,7 +25,13 @@ const portraitWidth = typeof portraitImage === 'object' && portraitImage && 'wid
 const portraitHeight = typeof portraitImage === 'object' && portraitImage && 'height' in portraitImage
   ? portraitImage.height
   : portraitEntry?.data.height;
-const portraitAlt = portraitEntry?.data.alt || route.entry.data.name?.display || route.entry.data.title || '';
+const personName = route.entry.data.name;
+const personLabel = typeof personName === 'string'
+  ? personName
+  : personName && typeof personName === 'object'
+    ? personName.display || personName.full
+    : route.entry.data.title;
+const portraitAlt = portraitEntry?.data.alt || personLabel || route.entry.data.title || '';
 
 const subject = portraitEntry?.data.subjects?.find((value) => {
   if (!personRef) return false;
