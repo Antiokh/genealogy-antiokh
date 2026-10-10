@@ -74,28 +74,45 @@ function detectLocale(value) {
   return 'und';
 }
 
-function familyInfo(data) {
-  if (!data.family) return undefined;
-  if (typeof data.family === 'string') {
-    const label = data.family.trim();
+function familyInfo(value) {
+  if (!value) return undefined;
+  if (typeof value === 'string') {
+    const label = value.trim();
     if (!label) return undefined;
     return {
       key: genealogySortKey(label) || label.toLowerCase(),
       label,
       locale: detectLocale(label),
       localized: {},
+      roles: [],
     };
   }
 
-  const key = String(data.family.key ?? '').trim();
-  const label = String(data.family.label || key).trim();
+  const key = String(value.key ?? '').trim();
+  const label = String(value.label || key).trim();
   if (!key || !label) return undefined;
   return {
     key,
     label,
-    locale: data.family.locale || detectLocale(label),
-    localized: data.family.localized ?? {},
+    locale: value.locale || detectLocale(label),
+    localized: value.localized ?? {},
+    roles: Array.isArray(value.roles) ? value.roles : [],
   };
+}
+
+function familyInfos(data) {
+  const rawFamilies = Array.isArray(data.families) && data.families.length
+    ? data.families
+    : data.family
+      ? [data.family]
+      : [];
+  const unique = new Map();
+  for (const raw of rawFamilies) {
+    const family = familyInfo(raw);
+    if (!family) continue;
+    if (!unique.has(family.key)) unique.set(family.key, family);
+  }
+  return [...unique.values()];
 }
 
 function collectPersonPages(directory, relative = '') {
@@ -114,9 +131,9 @@ function collectPersonPages(directory, relative = '') {
     const data = readFrontmatter(absolute);
     if (data.entity !== 'person') continue;
     const slug = nextRelative.replace(/\.mdx?$/i, '').replace(/\/index$/i, '');
-    const family = familyInfo(data);
+    const families = familyInfos(data);
     const label = personLabel(data, absolute);
-    pages.push({ family, label, slug, data });
+    pages.push({ families, label, slug, data });
   }
   return pages;
 }
@@ -144,8 +161,16 @@ function compareFamilies(a, b) {
 }
 
 function choosePresentation(variants) {
-  const latin = variants.find((variant) => /[A-Za-z]/u.test(variant.label) && !/[А-ЯЁа-яё]/u.test(variant.label));
-  return latin ?? variants[0];
+  const counts = new Map();
+  for (const variant of variants) {
+    const id = `${variant.locale}:${variant.label}`;
+    const existing = counts.get(id) ?? { ...variant, count: 0 };
+    existing.count += 1;
+    counts.set(id, existing);
+  }
+  return [...counts.values()]
+    .sort((a, b) => b.count - a.count || scriptBucket(a.label) - scriptBucket(b.label) || a.label.localeCompare(b.label))[0]
+    ?? variants[0];
 }
 
 export function buildPeopleSidebar() {
@@ -153,18 +178,20 @@ export function buildPeopleSidebar() {
   const ungrouped = [];
 
   for (const page of collectPersonPages(PEOPLE_ROOT)) {
-    if (!page.family) {
+    if (!page.families.length) {
       ungrouped.push(page);
       continue;
     }
 
-    // family.key is identity. Locale and label are presentation metadata and must not split one family.
-    const id = page.family.key;
-    if (!grouped.has(id)) grouped.set(id, { key: id, variants: [], pages: [] });
-    const group = grouped.get(id);
-    group.pages.push(page);
-    if (!group.variants.some((variant) => variant.label === page.family.label && variant.locale === page.family.locale)) {
-      group.variants.push(page.family);
+    for (const family of page.families) {
+      // family.key is identity. A person can intentionally belong to several family keys.
+      const id = family.key;
+      if (!grouped.has(id)) grouped.set(id, { key: id, variants: [], pages: [] });
+      const group = grouped.get(id);
+      if (!group.pages.some((candidate) => candidate.slug === page.slug)) group.pages.push(page);
+      if (!group.variants.some((variant) => variant.label === family.label && variant.locale === family.locale)) {
+        group.variants.push(family);
+      }
     }
   }
 
