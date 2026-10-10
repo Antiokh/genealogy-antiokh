@@ -88,7 +88,6 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
           : 'https://tiles.openfreemap.org/styles/bright',
         center: [points[0].longitude, points[0].latitude],
         zoom: points.length === 1 ? 8 : 3,
-        attributionControl: true,
       });
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 
