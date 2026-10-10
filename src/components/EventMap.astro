@@ -277,8 +277,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         const span = Math.max(1, datasetMax - datasetMin);
         const fromPercent = ((from - datasetMin) / span) * 100;
         const toPercent = ((to - datasetMin) / span) * 100;
-        rangeTrack.style.setProperty('--range-from', `${fromPercent}%`);
-        rangeTrack.style.setProperty('--range-to', `${toPercent}%`);
+        rangeTrack?.style.setProperty('--range-from', `${fromPercent}%`);
+        rangeTrack?.style.setProperty('--range-to', `${toPercent}%`);
 
         const source = map.getSource(sourceId) as import('maplibre-gl').GeoJSONSource | undefined;
         source?.setData(filteredCollection());
