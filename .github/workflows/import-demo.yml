@@ -8,6 +8,9 @@ on:
       - scripts/import-demo-snapshot.mjs
       - .github/workflows/import-demo.yml
       - demos/anton-family/**
+      - src/content.config.ts
+      - src/content/docs/_templates/**
+      - astro.config.mjs
 
 permissions:
   contents: write
