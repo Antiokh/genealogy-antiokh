@@ -1,0 +1,281 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  subject: 'person' | 'place';
+  subjectRef: string;
+  heading?: string;
+}
+
+const { subject, subjectRef, heading = subject === 'person' ? 'Хронология' : 'Хронология места' } = Astro.props;
+const docs = await getCollection('docs');
+
+const peopleByRef = new Map(
+  docs
+    .filter((entry) => entry.data.entity === 'person' && entry.id.startsWith('people/'))
+    .map((entry) => [`${entry.id.replace(/^people\//, '')}.md`, entry]),
+);
+
+const placesByRef = new Map(
+  docs
+    .filter((entry) => entry.data.entity === 'place' && entry.id.startsWith('places/'))
+    .map((entry) => [`${entry.id.replace(/^places\//, '')}.md`, entry]),
+);
+
+function dateKey(value: unknown): number {
+  if (typeof value === 'number') return value * 10000;
+  if (typeof value === 'string') {
+    const match = value.match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+    if (match) return Number(match[1]) * 10000 + Number(match[2] ?? 0) * 100 + Number(match[3] ?? 0);
+    return Number.MAX_SAFE_INTEGER;
+  }
+  if (value && typeof value === 'object' && 'year' in value) {
+    const item = value as { year?: number; month?: number; day?: number };
+    if (item.year) return item.year * 10000 + (item.month ?? 0) * 100 + (item.day ?? 0);
+  }
+  return Number.MAX_SAFE_INTEGER;
+}
+
+const months = [
+  'января', 'февраля', 'марта', 'апреля', 'мая', 'июня',
+  'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря',
+];
+
+function formatDate(value: unknown): string {
+  if (typeof value === 'number') return String(value);
+  if (typeof value === 'string') {
+    const exact = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+    if (exact) return `${Number(exact[3])} ${months[Number(exact[2]) - 1]} ${exact[1]}`;
+    const month = value.match(/^(\d{4})-(\d{2})$/);
+    if (month) return `${months[Number(month[2]) - 1]} ${month[1]}`;
+    return value;
+  }
+  if (value && typeof value === 'object') {
+    const item = value as {
+      year?: number;
+      month?: number;
+      day?: number;
+      circa?: boolean;
+      before?: boolean;
+      after?: boolean;
+      text?: string;
+    };
+    if (item.text) return item.text;
+    if (!item.year) return 'Дата не указана';
+    let result = item.day && item.month
+      ? `${item.day} ${months[item.month - 1]} ${item.year}`
+      : item.month
+        ? `${months[item.month - 1]} ${item.year}`
+        : String(item.year);
+    if (item.circa) result = `ок. ${result}`;
+    if (item.before) result = `до ${result}`;
+    if (item.after) result = `после ${result}`;
+    return result;
+  }
+  return 'Дата не указана';
+}
+
+function eventDateLabel(event: (typeof events)[number]): string {
+  const start = formatDate(event.data.date);
+  return event.data.endDate ? `${start} — ${formatDate(event.data.endDate)}` : start;
+}
+
+function personLabel(entry: (typeof docs)[number] | undefined, fallback: string): string {
+  if (!entry) return fallback;
+  const name = entry.data.name;
+  if (typeof name === 'string' && name.trim()) return name;
+  if (name && typeof name === 'object') {
+    if (typeof name.display === 'string' && name.display.trim()) return name.display;
+    if (typeof name.full === 'string' && name.full.trim()) return name.full;
+  }
+  return entry.data.displayName ?? entry.data.title ?? fallback;
+}
+
+const kindLabels: Record<string, string> = {
+  birth: 'рождение',
+  education: 'образование',
+  teaching: 'преподавание',
+  career: 'работа',
+  research: 'исследования',
+  organization: 'организация',
+  expedition: 'экспедиция',
+  political: 'общественно-политическое',
+  arrest: 'арест',
+  move: 'переезд',
+  illness: 'здоровье',
+  death: 'смерть',
+  burial: 'захоронение',
+};
+
+const events = docs
+  .filter((entry) => {
+    if (entry.data.entity !== 'event' || entry.data.timeline === false) return false;
+    return subject === 'person'
+      ? entry.data.participants?.includes(subjectRef)
+      : entry.data.places?.includes(subjectRef);
+  })
+  .sort((a, b) => dateKey(a.data.date) - dateKey(b.data.date) || a.data.title.localeCompare(b.data.title, 'ru'));
+---
+
+{events.length > 0 && (
+  <section class="event-seq-section" aria-labelledby={`event-seq-${subject}-heading`}>
+    <h2 id={`event-seq-${subject}-heading`}>{heading}</h2>
+    <ol class="event-seq">
+      {events.map((event) => {
+        const relatedPlaces = subject === 'person'
+          ? (event.data.places ?? [])
+            .map((ref) => ({ ref, entry: placesByRef.get(ref) }))
+            .filter((item) => item.entry)
+          : [];
+        const relatedPeople = subject === 'place'
+          ? (event.data.participants ?? [])
+            .map((ref) => ({ ref, entry: peopleByRef.get(ref) }))
+            .filter((item) => item.entry)
+          : [];
+
+        return (
+          <li class:list={['event-seq-item', event.data.importance && `importance-${event.data.importance}`]}>
+            <div class="event-seq-date">{eventDateLabel(event)}</div>
+            <div class="event-seq-content">
+              <h3><a href={`/${event.id}/`}>{event.data.title}</a></h3>
+              {event.data.kind && <p class="event-seq-kind">{kindLabels[event.data.kind] ?? event.data.kind}</p>}
+              {(event.data.summary ?? event.data.description) && <p>{event.data.summary ?? event.data.description}</p>}
+              {relatedPlaces.length > 0 && (
+                <p class="event-seq-related">
+                  Место:{' '}
+                  {relatedPlaces.map((item, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      <a href={`/places/${item.ref.replace(/\.mdx?$/, '')}/`}>
+                        {item.entry?.data.label ?? item.entry?.data.title ?? item.ref}
+                      </a>
+                    </>
+                  ))}
+                </p>
+              )}
+              {relatedPeople.length > 0 && (
+                <p class="event-seq-related">
+                  Участники:{' '}
+                  {relatedPeople.map((item, index) => (
+                    <>
+                      {index > 0 && ', '}
+                      <a href={`/people/${item.ref.replace(/\.mdx?$/, '')}/`}>
+                        {personLabel(item.entry, item.ref)}
+                      </a>
+                    </>
+                  ))}
+                </p>
+              )}
+            </div>
+          </li>
+        );
+      })}
+    </ol>
+  </section>
+)}
+
+<style>
+  .event-seq-section {
+    margin-top: 2.75rem;
+  }
+
+  .event-seq {
+    --event-seq-rail: 9rem;
+    position: relative;
+    list-style: none;
+    margin: 1.25rem 0 0;
+    padding: 0;
+  }
+
+  .event-seq::before {
+    content: '';
+    position: absolute;
+    inset-block: 0.55rem 1.1rem;
+    inset-inline-start: var(--event-seq-rail);
+    border-inline-start: 1px solid var(--sl-color-gray-5);
+  }
+
+  .event-seq-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: var(--event-seq-rail) minmax(0, 1fr);
+    gap: 1.4rem;
+    padding: 0.15rem 0 1.75rem;
+  }
+
+  .event-seq-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .event-seq-date {
+    position: relative;
+    z-index: 1;
+    justify-self: end;
+    align-self: start;
+    max-width: calc(var(--event-seq-rail) - 0.5rem);
+    transform: translateX(0.45rem);
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 999px;
+    padding: 0.18rem 0.55rem;
+    background: var(--sl-color-bg);
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.25;
+    text-align: center;
+  }
+
+  .event-seq-content {
+    min-width: 0;
+    padding-top: 0.05rem;
+  }
+
+  .event-seq-content h3 {
+    margin: 0;
+    font-size: var(--sl-text-lg);
+    line-height: var(--sl-line-height-headings);
+  }
+
+  .event-seq-content p {
+    margin: 0.45rem 0 0;
+  }
+
+  .event-seq-kind,
+  .event-seq-related {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-sm);
+  }
+
+  .event-seq-kind {
+    margin-top: 0.25rem !important;
+    text-transform: lowercase;
+  }
+
+  .importance-major .event-seq-date {
+    border-color: var(--sl-color-accent);
+    color: var(--sl-color-accent-high);
+  }
+
+  @media (max-width: 36rem) {
+    .event-seq {
+      --event-seq-rail: 0.65rem;
+    }
+
+    .event-seq::before {
+      inset-inline-start: var(--event-seq-rail);
+    }
+
+    .event-seq-item {
+      grid-template-columns: 1fr;
+      gap: 0.55rem;
+      padding-inline-start: 1.75rem;
+    }
+
+    .event-seq-date {
+      justify-self: start;
+      max-width: none;
+      transform: translateX(-1.55rem);
+    }
+  }
+</style>

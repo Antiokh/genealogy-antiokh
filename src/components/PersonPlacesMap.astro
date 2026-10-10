@@ -17,6 +17,7 @@ const placeByRef = new Map(
 
 const events = docs.filter((entry) => (
   entry.data.entity === 'event'
+  && entry.data.timeline !== false
   && entry.data.participants?.includes(personRef)
 ));
 
@@ -65,10 +66,35 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
 )}
 
 <script>
-  import maplibregl from 'maplibre-gl';
+  type MapTheme = 'dark' | 'light';
 
-  function initializePersonMaps() {
+  const mapStyleUrls: Record<MapTheme, string> = {
+    dark: 'https://tiles.openfreemap.org/styles/fiord',
+    light: 'https://tiles.openfreemap.org/styles/bright',
+  };
+
+  function readMapTheme(): MapTheme {
+    const documentTheme = document.documentElement.dataset.theme;
+    if (documentTheme === 'light' || documentTheme === 'dark') return documentTheme;
+    return window.matchMedia?.('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function collapseAttributionControl(root: HTMLElement) {
+    const control = root.querySelector('.maplibregl-ctrl-attrib');
+    if (!(control instanceof HTMLElement)) return;
+
+    control.classList.add('maplibregl-compact');
+    control.classList.remove('maplibregl-compact-show');
+    const button = control.querySelector('.maplibregl-ctrl-attrib-button');
+    if (button instanceof HTMLElement) button.setAttribute('aria-expanded', 'false');
+  }
+
+  async function initializePersonMaps() {
     const roots = document.querySelectorAll<HTMLElement>('[data-person-places-map]:not([data-map-ready])');
+    if (!roots.length) return;
+
+    const { default: maplibregl } = await import('maplibre-gl');
+
     for (const root of roots) {
       const canvas = root.querySelector<HTMLElement>('.person-map-canvas');
       if (!canvas) continue;
@@ -80,16 +106,22 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
       }
       if (!points.length) continue;
 
-      const dark = document.documentElement.dataset.theme === 'dark';
+      let currentTheme = readMapTheme();
       const map = new maplibregl.Map({
         container: canvas,
-        style: dark
-          ? 'https://tiles.openfreemap.org/styles/fiord'
-          : 'https://tiles.openfreemap.org/styles/bright',
+        style: mapStyleUrls[currentTheme],
         center: [points[0].longitude, points[0].latitude],
         zoom: points.length === 1 ? 8 : 3,
+        attributionControl: false,
       });
+
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
+      map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
+
+      const collapseAttribution = () => collapseAttributionControl(root);
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(collapseAttribution);
+      });
 
       const bounds = new maplibregl.LngLatBounds();
       for (const point of points) {
@@ -113,19 +145,46 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
         bounds.extend([point.longitude, point.latitude]);
       }
 
-      if (points.length > 1) {
-        map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
-      }
+      map.once('load', () => {
+        collapseAttribution();
+        if (points.length > 1) {
+          map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
+        }
+      });
+      map.once('idle', collapseAttribution);
+
+      const preference = window.matchMedia?.('(prefers-color-scheme: light)');
+      const syncTheme = () => {
+        const nextTheme = readMapTheme();
+        if (nextTheme === currentTheme) return;
+        currentTheme = nextTheme;
+        map.setStyle(mapStyleUrls[currentTheme]);
+        map.once('style.load', collapseAttribution);
+      };
+      const themeObserver = new MutationObserver(syncTheme);
+      themeObserver.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ['data-theme'],
+      });
+      preference?.addEventListener('change', syncTheme);
+
+      const cleanup = () => {
+        themeObserver.disconnect();
+        preference?.removeEventListener('change', syncTheme);
+        map.remove();
+      };
+      document.addEventListener('astro:before-swap', cleanup, { once: true });
+
       root.dataset.mapReady = 'true';
     }
   }
 
-  initializePersonMaps();
-  document.addEventListener('astro:page-load', initializePersonMaps);
+  void initializePersonMaps();
+  document.addEventListener('astro:page-load', () => void initializePersonMaps());
 </script>
 
 <style>
-  .person-places { margin-top: 2.5rem; }
+  .person-places { margin-top: 2.75rem; }
   .map-note { color: var(--sl-color-gray-3); font-size: 0.875rem; }
   .person-map-canvas {
     width: 100%;
