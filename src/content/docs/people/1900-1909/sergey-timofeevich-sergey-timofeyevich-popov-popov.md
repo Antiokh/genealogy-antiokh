@@ -1,16 +1,19 @@
 ---
-title: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
-description: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov), 1901–1942"
+title: Сергей Тимофеевич (Popov)
+description: Сергей Тимофеевич (Popov), 1901–1942
 entity: person
 importManaged: true
 name:
-  full: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
-  display: "Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)"
-  birth_last: "Попов (Popov)"
+  full: Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)
+  display: Сергей Тимофеевич (Popov)
+  birth_last: Попов (Popov)
   aliases: []
+  first: Сергей
+  middle: Тимофеевич
+  last: (Popov)
 sex: M
-father: "unknown/timofey-popov.md"
-mother: "unknown/fevroniya.md"
+father: unknown/timofey-popov.md
+mother: unknown/fevroniya.md
 born:
   known: true
   date: 1901
@@ -24,14 +27,14 @@ buried:
   date: null
   place: null
 partners:
-  - person: "1900-1909/efrosiniya-popova.md"
+  - person: 1900-1909/efrosiniya-popova.md
 occupation: []
 residence: []
 sources: []
 external:
   myheritage:
-    snapshot: "2026-09-10"
-    xref: "I500015"
+    snapshot: 2026-09-10
+    xref: I500015
 ---
 
 **Годы жизни:** 1901–1942

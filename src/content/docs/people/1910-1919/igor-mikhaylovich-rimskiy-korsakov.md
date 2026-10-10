@@ -1,16 +1,19 @@
 ---
-title: "Игорь Михайлович Римский-Корсаков"
-description: "Игорь Михайлович Римский-Корсаков, 1911–1927"
+title: Игорь Михайлович Римский-Корсаков
+description: Игорь Михайлович Римский-Корсаков, 1911–1927
 entity: person
 importManaged: true
 name:
-  full: "Игорь Михайлович Римский-Корсаков"
-  display: "Игорь Михайлович Римский-Корсаков"
-  birth_last: "Римский-Корсаков"
+  full: Игорь Михайлович Римский-Корсаков
+  display: Игорь Михайлович Римский-Корсаков
+  birth_last: Римский-Корсаков
   aliases: []
+  first: Игорь
+  middle: Михайлович
+  last: Римский-Корсаков
 sex: M
-father: "1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md"
-mother: "1880-1889/evgeniya-petrovna-rimskaya-korsakova.md"
+father: 1870-1879/mikhail-nikolaevich-rimskiy-korsakov.md
+mother: 1880-1889/evgeniya-petrovna-rimskaya-korsakova.md
 born:
   known: true
   date: 1911
@@ -29,8 +32,8 @@ residence: []
 sources: []
 external:
   myheritage:
-    snapshot: "2026-09-10"
-    xref: "I500245"
+    snapshot: 2026-09-10
+    xref: I500245
 ---
 
 **Годы жизни:** 1911–1927
