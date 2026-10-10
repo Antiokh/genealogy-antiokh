@@ -2,6 +2,7 @@ import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
 export default defineConfig({
+  site: 'https://genealogy-antiokh.pages.dev',
   integrations: [
     starlight({
       title: 'Семейная энциклопедия',
