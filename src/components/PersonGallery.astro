@@ -64,8 +64,9 @@ const media = docs
         if (!image) return null;
         const isRemote = typeof image === 'string';
         const src = isRemote ? image : image.src;
-        const width = isRemote ? (entry.data.width ?? 1600) : image.width;
-        const height = isRemote ? (entry.data.height ?? 1200) : image.height;
+        const width = isRemote ? entry.data.width : image.width;
+        const height = isRemote ? entry.data.height : image.height;
+        const canLightbox = Boolean(width && height);
         const caption = entry.data.caption || entry.data.title;
         const date = dateLabel(entry.data.date);
         const alt = entry.data.alt || caption;
@@ -74,9 +75,11 @@ const media = docs
           <figure class="person-gallery-item">
             <a
               href={src}
-              data-pswp-width={width}
-              data-pswp-height={height}
-              data-pswp-caption={caption}
+              data-pswp-width={canLightbox ? width : undefined}
+              data-pswp-height={canLightbox ? height : undefined}
+              data-pswp-caption={canLightbox ? caption : undefined}
+              target={canLightbox ? undefined : '_blank'}
+              rel={canLightbox ? undefined : 'noreferrer'}
               aria-label={`Открыть: ${caption}`}
             >
               {isRemote ? (
@@ -105,7 +108,7 @@ const media = docs
 <script>
   async function initPhotoSwipe() {
     const galleries = [...document.querySelectorAll<HTMLElement>('[data-pswp-gallery]')]
-      .filter((gallery) => gallery.dataset.pswpReady !== 'true');
+      .filter((gallery) => gallery.dataset.pswpReady !== 'true' && gallery.querySelector('a[data-pswp-width]'));
     if (!galleries.length) return;
 
     const { default: PhotoSwipeLightbox } = await import('photoswipe/lightbox');
