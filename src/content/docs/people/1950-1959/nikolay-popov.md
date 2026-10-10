@@ -4,6 +4,7 @@ description: "Николай Попов, 1954–2016"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Николай Попов"
   display: "Николай Попов"
   birth_last: "Попов"

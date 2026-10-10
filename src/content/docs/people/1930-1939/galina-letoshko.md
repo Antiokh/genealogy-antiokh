@@ -4,6 +4,7 @@ description: "Галина Летошко, 1932–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Галина Летошко"
   display: "Галина Летошко"
   birth_last: "Летошко"

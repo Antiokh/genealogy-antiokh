@@ -4,6 +4,7 @@ description: "Иван Попов, 1930–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Иван Попов"
   display: "Иван Попов"
   birth_last: "Попов"

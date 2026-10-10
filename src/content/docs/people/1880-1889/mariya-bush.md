@@ -4,14 +4,17 @@ description: "Мария Буш, 1882–1976"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Мария Буш"
   display: "Мария Буш"
   birth_last: "Буш"
   aliases: []
 family:
   key: "bush"
-  label: "Буши"
-  locale: ru
+  label: "Bush"
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: F
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"
 mother: "1860-1869/elizaveta-olga-busch.md"

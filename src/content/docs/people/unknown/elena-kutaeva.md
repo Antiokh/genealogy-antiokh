@@ -4,6 +4,7 @@ description: "Елена Кутаева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елена Кутаева"
   display: "Елена Кутаева"
   birth_last: "Кутаева"

@@ -4,6 +4,7 @@ description: "Тимофей Зорин, 2022–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Тимофей Зорин"
   display: "Тимофей Зорин"
   birth_last: "Зорин"

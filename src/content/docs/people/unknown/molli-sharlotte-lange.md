@@ -4,6 +4,7 @@ description: "Молли Шарлотте Ланге"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Молли Шарлотте Ланге"
   display: "Молли Шарлотте Ланге"
   birth_last: "Ланге"

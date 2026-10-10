@@ -4,14 +4,17 @@ description: "Василий Курочкин"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Курочкин"
   display: "Василий Курочкин"
   birth_last: "Курочкин"
   aliases: []
 family:
   key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
+  label: "Kurochkin"
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: M
 father: "unknown/nikolay-kurochkin.md"
 mother: null

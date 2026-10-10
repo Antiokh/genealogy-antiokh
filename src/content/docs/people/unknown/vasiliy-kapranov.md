@@ -4,6 +4,7 @@ description: "Василий Капранов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Капранов"
   display: "Василий Капранов"
   birth_last: "Капранов"

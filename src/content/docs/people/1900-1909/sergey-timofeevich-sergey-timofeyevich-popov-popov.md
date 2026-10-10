@@ -4,6 +4,7 @@ description: Сергей Тимофеевич Попов (Popov), 1901–1942
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)
   display: Сергей Тимофеевич Попов (Popov)
   birth_last: Попов (Popov)

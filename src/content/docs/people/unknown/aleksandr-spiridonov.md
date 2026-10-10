@@ -4,6 +4,7 @@ description: "Александр Спиридонов, ?–1941"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Спиридонов"
   display: "Александр Спиридонов"
   birth_last: "Спиридонов"

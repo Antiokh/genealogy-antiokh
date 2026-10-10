@@ -4,6 +4,7 @@ description: "Лариса Тихомирова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Лариса Тихомирова"
   display: "Лариса Тихомирова"
   birth_last: "Тихомирова"

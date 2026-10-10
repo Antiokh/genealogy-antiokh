@@ -4,6 +4,7 @@ description: "Наталья Tatarintsev, ?–2002"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Наталья"
   display: "Наталья Tatarintsev"
   married_last: "Tatarintsev"
@@ -11,7 +12,9 @@ name:
 family:
   key: "tatarintsev"
   label: "Tatarintsev"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Татаринцевы"
 sex: F
 father: null
 mother: null

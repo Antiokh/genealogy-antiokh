@@ -4,6 +4,7 @@ description: "Екатерина Зорина, 1986–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Екатерина Tatarintseva"
   display: "Екатерина Зорина"
   birth_last: "Tatarintseva"

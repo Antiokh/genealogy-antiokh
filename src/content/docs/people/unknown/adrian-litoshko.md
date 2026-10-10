@@ -4,6 +4,7 @@ description: "Адриан Литошко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Адриан Литошко"
   display: "Адриан Литошко"
   birth_last: "Литошко"

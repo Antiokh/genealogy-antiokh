@@ -4,6 +4,7 @@ description: "Рита Антонченко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Рита Антонченко"
   display: "Рита Антонченко"
   birth_last: "Антонченко"

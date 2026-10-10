@@ -4,6 +4,7 @@ description: "Andrian Kurochkin, 1981–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Andrian Kurochkin"
   display: "Andrian Kurochkin"
   birth_last: "Kurochkin"
@@ -11,7 +12,9 @@ name:
 family:
   key: "kurochkin"
   label: "Kurochkin"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNjY2ZiYjgyMDZhNjBkODk5YmQyYWU1N2ZmY2ViY2ViZDA1N2JiOTIyNTA2YzJiNDVlNDdkOWM3OTUzOGI4OTEmZT0xNzg5Njc1MjAw/129/852/4292/500124_5387536c7218rz6gy40x16_A.jpg"
 father: "1940-1949/aleksandr-kurochkin.md"

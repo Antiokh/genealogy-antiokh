@@ -4,6 +4,7 @@ description: "Клавдия Николаева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Николаева"
   display: "Клавдия Николаева"
   birth_last: "Николаева"

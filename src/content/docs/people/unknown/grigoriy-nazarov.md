@@ -4,14 +4,17 @@ description: "Григорий Назаров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Григорий Назаров"
   display: "Григорий Назаров"
   birth_last: "Назаров"
   aliases: []
 family:
   key: "nazarov"
-  label: "Назаровы"
-  locale: ru
+  label: "Nazarov"
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: M
 father: null
 mother: null

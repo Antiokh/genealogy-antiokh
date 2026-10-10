@@ -4,6 +4,7 @@ description: Георгий Михайлович Римский-Корсаков
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Георгий Михайлович Римский-Корсаков
   display: Георгий Михайлович Римский-Корсаков
   birth_last: Римский-Корсаков

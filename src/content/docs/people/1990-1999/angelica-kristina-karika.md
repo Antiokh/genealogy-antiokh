@@ -4,6 +4,7 @@ description: "Angelica Kristina Karika, 1993–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Angelica Kristina Teljebo"
   display: "Angelica Kristina Karika"
   birth_last: "Teljebo"
@@ -12,7 +13,7 @@ name:
 family:
   key: "karika"
   label: "Karika"
-  locale: en
+  locale: und-Latn
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhMzI5NmU1OTdhY2E5YTQwNDU5ODlkZGViNDkyODAxODc1ZjhhZDI3YmU4OGQxNDhkZWEzMzEyZGUzMDgwMTgmZT0xNzg5Njc1MjAw/129/852/4292/500194_471378j0816ra9ic1bt5f5_A.jpg"
 father: "1950-1959/gosta-ingvar-teljebo.md"

@@ -4,6 +4,7 @@ description: "Вера Буш, 1889–1955"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Вера Даниэльсон"
   display: "Вера Буш"
   birth_last: "Даниэльсон"
@@ -11,8 +12,10 @@ name:
   aliases: []
 family:
   key: "bush"
-  label: "Буши"
-  locale: ru
+  label: "Bush"
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkNTExYWQ4OTkzZDE3NTc0ZTQzZjA5Y2Q0ZGMzN2EyNGQ2ODg1MjU1MDQyOWUxNzU3YWY3ZGJhYTQ3OWY4MjQmZT0xNzg5Njc1MjAw/129/852/4292/500075_878799y1f66f3fun9ga41f_A.jpg"
 father: null

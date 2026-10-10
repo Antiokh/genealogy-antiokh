@@ -4,14 +4,17 @@ description: "Вадим Буш, 1912–1941"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Вадим Буш"
   display: "Вадим Буш"
   birth_last: "Буш"
   aliases: []
 family:
   key: "bush"
-  label: "Буши"
-  locale: ru
+  label: "Bush"
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWI4ZjZjNjBlMTZkNzQ2Y2U3M2ZhOWM3YmVlODAyZTY5YmNmZWM3NTYwYWM5Mzg3Yjc4NDRlNWFkMDY1MDMxODAmZT0xNzg5Njc1MjAw/129/852/4292/500014_73533341601f14e70jdc5b_A.jpg"
 father: "1880-1889/vladimir-bush.md"

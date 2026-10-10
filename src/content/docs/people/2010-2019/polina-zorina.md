@@ -4,6 +4,7 @@ description: "Полина Зорина, 2011–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Полина Зорина"
   display: "Полина Зорина"
   birth_last: "Зорина"

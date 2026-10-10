@@ -4,6 +4,7 @@ description: "Софья Попова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Софья"
   display: "Софья Попова"
   married_last: "Попова"

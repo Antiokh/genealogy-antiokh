@@ -4,6 +4,7 @@ description: "Georg Gottfried Erasmus Büsch, 1832–?"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Georg Gottfried Erasmus Büsch"
   display: "Georg Gottfried Erasmus Büsch"
   birth_last: "Büsch"
@@ -11,7 +12,9 @@ name:
 family:
   key: "busch"
   label: "Büsch"
-  locale: en
+  locale: und-Latn
+  localized:
+    "und-Latn": "Busch"
 sex: M
 father: null
 mother: "1810-1819/louise-charlotte-gerdau.md"

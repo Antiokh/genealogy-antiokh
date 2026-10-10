@@ -4,6 +4,7 @@ description: "Эльвина-Шарлотта Бурмейстер"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Эльвина-Шарлотта Бартмер"
   display: "Эльвина-Шарлотта Бурмейстер"
   birth_last: "Бартмер"

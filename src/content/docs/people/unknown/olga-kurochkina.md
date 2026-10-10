@@ -4,6 +4,7 @@ description: "Ольга Курочкина"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Ольга Кондратьева"
   display: "Ольга Курочкина"
   birth_last: "Кондратьева"
@@ -11,8 +12,10 @@ name:
   aliases: []
 family:
   key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
+  label: "Kurochkin"
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTJkNTI3YTkzNTAyZjU5OTI3Y2U3MzU4ZjQ5ZjczZjZkZTJiNWRmNzkzNmM2MjM4ODgzZTRmM2UwNzhmNjEwYTYmZT0xNzg5Njc1MjAw/129/852/4292/500069_1339012c01xf6f217qh074_A.jpg"
 father: "unknown/nil-kondratev.md"

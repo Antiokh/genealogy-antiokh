@@ -4,6 +4,7 @@ description: "Елена Литошко, 1909–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елена Спиридонова"
   display: "Елена Литошко"
   birth_last: "Спиридонова"

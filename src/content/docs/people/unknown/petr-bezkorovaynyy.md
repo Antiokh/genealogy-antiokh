@@ -4,6 +4,7 @@ description: "Пётр Безкоровайный"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Пётр Безкоровайный"
   display: "Пётр Безкоровайный"
   birth_last: "Безкоровайный"

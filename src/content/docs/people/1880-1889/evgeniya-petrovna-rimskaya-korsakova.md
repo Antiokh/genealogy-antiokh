@@ -4,6 +4,7 @@ description: Евгения Петровна Римская-Корсакова, 
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Евгения Петровна Бартмер
   display: Евгения Петровна Римская-Корсакова
   birth_last: Бартмер

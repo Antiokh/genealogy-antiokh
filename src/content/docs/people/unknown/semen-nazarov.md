@@ -4,14 +4,17 @@ description: "Семён Назаров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Семён Назаров"
   display: "Семён Назаров"
   birth_last: "Назаров"
   aliases: []
 family:
   key: "nazarov"
-  label: "Назаровы"
-  locale: ru
+  label: "Nazarov"
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: M
 father: "unknown/grigoriy-nazarov.md"
 mother: null

@@ -4,14 +4,17 @@ description: "Владимир Курочкин, 1949–2019"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Владимир Курочкин"
   display: "Владимир Курочкин"
   birth_last: "Курочкин"
   aliases: []
 family:
   key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
+  label: "Kurochkin"
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTdkMzhhNzYzM2IwM2ZjMWQ0YjIzMWRmNTA4OTQ3MDE5N2NlZTI0N2VjNWIwYmNkZDNkMTU4NGE0Y2EzMWE1NWUmZT0xNzg5Njc1MjAw/129/852/4292/500051_62539324szfic611pf29o6_A.jpg"
 father: "1900-1909/nikolay-kurochkin.md"

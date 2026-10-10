@@ -4,6 +4,7 @@ description: "Сергей Попов, 1973–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Сергей Попов"
   display: "Сергей Попов"
   birth_last: "Попов"

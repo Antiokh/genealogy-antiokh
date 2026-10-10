@@ -4,14 +4,17 @@ description: "Галина Буш"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Галина Буш"
   display: "Галина Буш"
   birth_last: "Буш"
   aliases: []
 family:
   key: "bush"
-  label: "Буши"
-  locale: ru
+  label: "Bush"
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: F
 father: "unknown/vladimir-bush.md"
 mother: null

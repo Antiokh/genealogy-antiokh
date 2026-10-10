@@ -4,6 +4,7 @@ description: "Нил Кондратьев"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Нил Кондратьев"
   display: "Нил Кондратьев"
   birth_last: "Кондратьев"

@@ -4,6 +4,7 @@ description: "Елизавета-Ольга Busch, 1860–1933"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елизавета-Ольга Bartmer"
   display: "Елизавета-Ольга Busch"
   birth_last: "Bartmer"
@@ -11,8 +12,10 @@ name:
   aliases: []
 family:
   key: "busch"
-  label: "Busch"
-  locale: en
+  label: "Büsch"
+  locale: und-Latn
+  localized:
+    "und-Latn": "Busch"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY4NzZkMDZlMDA1MWM0NTI0ZGI0NTY0YTk2MTE2MWJkMWJkYjc0MTMzYzBkZTVhYTdmZTJhYjZiNzU5MTU4NGQmZT0xNzg5Njc1MjAw/129/852/4292/500035_74269136wd1fif32413k8c_A.jpg"
 father: "1810-1819/aleksandr-eduard-bartmer.md"

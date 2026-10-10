@@ -4,6 +4,7 @@ description: "Сергей Волков, 1920–1997"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Сергей Волков"
   display: "Сергей Волков"
   birth_last: "Волков"

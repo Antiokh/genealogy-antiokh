@@ -4,6 +4,7 @@ description: "Anton Nazarov, 1988–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Anton Nazarov"
   display: "Anton Nazarov"
   birth_last: "Nazarov"
@@ -11,7 +12,9 @@ name:
 family:
   key: "nazarov"
   label: "Nazarov"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY0NjJmZTY3YjBkODEwYzhjOWU3OWUyMmNmYTAyNjI1M2RlMjZiODgzN2M0ODZiOGIxMTViNzZiMDQwYWJhNTImZT0xNzg5Njc1MjAw/129/852/4292/500214_453825id5197e67ocf193j_A.jpg"
 father: "1960-1969/vladislav-nazarov.md"

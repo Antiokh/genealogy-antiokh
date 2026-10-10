@@ -4,6 +4,7 @@ description: "София Зорина, 2007–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "София Зорина"
   display: "София Зорина"
   birth_last: "Зорина"

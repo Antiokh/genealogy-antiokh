@@ -4,6 +4,7 @@ description: "Андрей Антонченко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Андрей Антонченко"
   display: "Андрей Антонченко"
   birth_last: "Антонченко"

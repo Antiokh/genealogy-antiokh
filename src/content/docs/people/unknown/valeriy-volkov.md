@@ -4,6 +4,7 @@ description: "Валерий Волков"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Валерий Волков"
   display: "Валерий Волков"
   birth_last: "Волков"

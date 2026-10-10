@@ -4,6 +4,7 @@ description: Ольга Михайловна Фаворская, 1914–1987
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Ольга Михайловна Римская-Корсакова
   display: Ольга Михайловна Фаворская
   birth_last: Римская-Корсакова

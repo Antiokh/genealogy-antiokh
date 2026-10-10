@@ -4,6 +4,7 @@ description: "Клавдия Попова, 1932–1951"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Попова"
   display: "Клавдия Попова"
   birth_last: "Попова"

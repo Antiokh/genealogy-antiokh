@@ -4,6 +4,7 @@ description: "Евдокия Антонченко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Евдокия Курочкина"
   display: "Евдокия Антонченко"
   birth_last: "Курочкина"

@@ -4,6 +4,7 @@ description: "Зоя Попова, 1936–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Зоя Попова"
   display: "Зоя Попова"
   birth_last: "Попова"

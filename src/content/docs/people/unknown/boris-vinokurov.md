@@ -4,6 +4,7 @@ description: "Борис Винокуров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Борис Винокуров"
   display: "Борис Винокуров"
   birth_last: "Винокуров"

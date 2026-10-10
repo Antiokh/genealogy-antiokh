@@ -4,6 +4,7 @@ description: "Bernt Ingemar Teljebo, 1960–?"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Bernt Ingemar Teljebo"
   display: "Bernt Ingemar Teljebo"
   birth_last: "Teljebo"
@@ -11,7 +12,7 @@ name:
 family:
   key: "teljebo"
   label: "Teljebo"
-  locale: en
+  locale: und-Latn
 sex: M
 father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
 mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"

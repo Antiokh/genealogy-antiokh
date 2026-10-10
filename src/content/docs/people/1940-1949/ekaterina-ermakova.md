@@ -4,6 +4,7 @@ description: "Екатерина Ермакова, 1942–2016"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Екатерина Руденская"
   display: "Екатерина Ермакова"
   birth_last: "Руденская"

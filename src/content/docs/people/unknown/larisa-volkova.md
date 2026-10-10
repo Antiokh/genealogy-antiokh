@@ -4,6 +4,7 @@ description: "Лариса Волкова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Лариса Волкова"
   display: "Лариса Волкова"
   birth_last: "Волкова"

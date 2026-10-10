@@ -4,6 +4,7 @@ description: "Татьяна Татаринцева, 1967–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Татьяна Ермакова"
   display: "Татьяна Татаринцева"
   birth_last: "Ермакова"
@@ -11,8 +12,10 @@ name:
   aliases: []
 family:
   key: "tatarintsev"
-  label: "Татаринцевы"
-  locale: ru
+  label: "Tatarintsev"
+  locale: und-Latn
+  localized:
+    "ru": "Татаринцевы"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWRmMDRjY2VlZGM0NDYxNWIyOGM1Mjg3OTg2YWQ1NGFlNjlkM2JlMGFiNTg5M2RkYTM5Y2UzZmMyMTEyNmQwNGImZT0xNzg5Njc1MjAw/129/852/4292/500222_80742363yo9w511c8a5d0b_A.jpg"
 father: "1930-1939/ivan-ermakov.md"

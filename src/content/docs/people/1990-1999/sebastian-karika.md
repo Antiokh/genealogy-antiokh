@@ -4,6 +4,7 @@ description: "Sebastian Karika, 1991–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Sebastian Karika"
   display: "Sebastian Karika"
   birth_last: "Karika"
@@ -11,7 +12,7 @@ name:
 family:
   key: "karika"
   label: "Karika"
-  locale: en
+  locale: und-Latn
 sex: M
 father: null
 mother: null

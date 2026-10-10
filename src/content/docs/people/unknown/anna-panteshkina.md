@@ -4,6 +4,7 @@ description: "Анна Пантешкина"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Анна Курочкина"
   display: "Анна Пантешкина"
   birth_last: "Курочкина"

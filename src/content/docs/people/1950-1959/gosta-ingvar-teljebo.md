@@ -4,6 +4,7 @@ description: "Gösta Ingvar Teljebo, 1958–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Gösta Ingvar Teljebo"
   display: "Gösta Ingvar Teljebo"
   birth_last: "Teljebo"
@@ -11,7 +12,7 @@ name:
 family:
   key: "teljebo"
   label: "Teljebo"
-  locale: en
+  locale: und-Latn
 sex: M
 father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
 mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"

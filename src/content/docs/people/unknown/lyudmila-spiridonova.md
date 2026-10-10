@@ -4,6 +4,7 @@ description: "Людмила Спиридонова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Людмила Спиридонова"
   display: "Людмила Спиридонова"
   birth_last: "Спиридонова"

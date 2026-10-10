@@ -4,6 +4,7 @@ description: "Дмитрий Зорин"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Дмитрий Зорин"
   display: "Дмитрий Зорин"
   birth_last: "Зорин"

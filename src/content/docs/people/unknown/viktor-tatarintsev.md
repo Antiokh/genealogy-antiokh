@@ -4,6 +4,7 @@ description: "Виктор Tatarintsev, ?–2004"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Виктор Tatarintsev"
   display: "Виктор Tatarintsev"
   birth_last: "Tatarintsev"
@@ -11,7 +12,9 @@ name:
 family:
   key: "tatarintsev"
   label: "Tatarintsev"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Татаринцевы"
 sex: M
 father: null
 mother: null

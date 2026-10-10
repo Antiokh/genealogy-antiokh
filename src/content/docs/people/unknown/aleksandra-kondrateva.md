@@ -4,6 +4,7 @@ description: "Александра Кондратьева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александра Кондратьева"
   display: "Александра Кондратьева"
   birth_last: "Кондратьева"

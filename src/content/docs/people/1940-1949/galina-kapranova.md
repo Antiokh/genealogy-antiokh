@@ -4,6 +4,7 @@ description: "Галина Капранова, 1941–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Галина Курочкина"
   display: "Галина Капранова"
   birth_last: "Курочкина"

@@ -4,6 +4,7 @@ description: "Ефросиния Попова, 1906–1984"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Ефросиния Попова"
   display: "Ефросиния Попова"
   birth_last: "Попова"

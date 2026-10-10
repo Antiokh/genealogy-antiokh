@@ -4,6 +4,7 @@ description: "Клавдия Бескоровайная, 1908–1994"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Безкоровайная"
   display: "Клавдия Бескоровайная"
   birth_last: "Безкоровайная"

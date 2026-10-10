@@ -4,6 +4,7 @@ description: "Lars Yngve Erik Teljebo, 1954–2021"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Lars Yngve Erik Teljebo"
   display: "Lars Yngve Erik Teljebo"
   birth_last: "Teljebo"
@@ -11,7 +12,7 @@ name:
 family:
   key: "teljebo"
   label: "Teljebo"
-  locale: en
+  locale: und-Latn
 sex: M
 father: "1920-1929/yngve-edvin-teljebo-fodd-valivaara.md"
 mother: "1920-1929/inkeri-helvi-kyllikki-teljebo.md"

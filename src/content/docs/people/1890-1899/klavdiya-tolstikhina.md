@@ -4,6 +4,7 @@ description: "Клавдия Толстихина, 1895–1959"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Клавдия Спиридонова"
   display: "Клавдия Толстихина"
   birth_last: "Спиридонова"

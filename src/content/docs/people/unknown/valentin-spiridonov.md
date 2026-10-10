@@ -4,6 +4,7 @@ description: "Валентин Спиридонов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Валентин Спиридонов"
   display: "Валентин Спиридонов"
   birth_last: "Спиридонов"

@@ -4,6 +4,7 @@ description: "Vladimir Bush, 1888–1934"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Vladimir Bush"
   display: "Vladimir Bush"
   birth_last: "Bush"
@@ -11,7 +12,9 @@ name:
 family:
   key: "bush"
   label: "Bush"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhZTk2OWQ0YzYyZjBiM2Q1NDM4YzJhMWU5OWJjZWVjMjZlOWE1YWM1NjEwZWY1ZmE2MjQ0MGUwOWYwYzFjOWUmZT0xNzg5Njc1MjAw/129/852/4292/500079_6730726wvaz1l6e64faf11_A.jpg"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"

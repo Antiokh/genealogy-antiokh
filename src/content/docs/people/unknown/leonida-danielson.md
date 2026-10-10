@@ -4,6 +4,7 @@ description: "Леонида Даниэльсон"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Леонида Даниэльсон"
   display: "Леонида Даниэльсон"
   birth_last: "Даниэльсон"

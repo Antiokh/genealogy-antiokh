@@ -4,6 +4,7 @@ description: "Елена Примак"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елена Примак"
   display: "Елена Примак"
   birth_last: "Примак"

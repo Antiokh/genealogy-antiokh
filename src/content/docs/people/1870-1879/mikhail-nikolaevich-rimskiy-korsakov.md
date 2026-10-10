@@ -4,6 +4,7 @@ description: Михаил Николаевич Римский-Корсаков, 
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Михаил Николаевич Римский-Корсаков
   display: Михаил Николаевич Римский-Корсаков
   birth_last: Римский-Корсаков

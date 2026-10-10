@@ -4,6 +4,7 @@ description: "Адриан Летошко, 1935–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Адриан Летошко"
   display: "Адриан Летошко"
   birth_last: "Летошко"

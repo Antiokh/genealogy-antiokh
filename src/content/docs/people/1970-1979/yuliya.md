@@ -4,6 +4,7 @@ description: "Юлия, 1977–2019"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Юлия"
   display: "Юлия"
   aliases: []

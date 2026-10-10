@@ -4,6 +4,7 @@ description: "Ирина Капранова, 1965–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Ирина Капранова"
   display: "Ирина Капранова"
   birth_last: "Капранова"

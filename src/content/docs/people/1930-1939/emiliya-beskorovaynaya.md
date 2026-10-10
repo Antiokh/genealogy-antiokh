@@ -4,6 +4,7 @@ description: "Эмилия Бескоровайная, 1935–2024"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Эмилия Курочкина"
   display: "Эмилия Бескоровайная"
   birth_last: "Курочкина"

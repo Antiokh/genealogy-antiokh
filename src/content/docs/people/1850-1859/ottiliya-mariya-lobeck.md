@@ -4,6 +4,7 @@ description: "Оттилия-Мария Lobeck, 1855–1939"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Оттилия-Мария Bartmer Бартмер"
   display: "Оттилия-Мария Lobeck"
   birth_last: "Bartmer Бартмер"
@@ -12,7 +13,7 @@ name:
 family:
   key: "lobeck"
   label: "Lobeck"
-  locale: en
+  locale: und-Latn
 sex: F
 father: "1810-1819/aleksandr-eduard-bartmer.md"
 mother: "1820-1829/yoganna-zhozefina-bartmer.md"

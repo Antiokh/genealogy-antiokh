@@ -4,6 +4,7 @@ description: "Александр Попов, 1928–2008"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Попов"
   display: "Александр Попов"
   birth_last: "Попов"

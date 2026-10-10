@@ -4,14 +4,17 @@ description: "Александр-Эдуард Бартмер, 1812–1884"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр-Эдуард Бартмер"
   display: "Александр-Эдуард Бартмер"
   birth_last: "Бартмер"
   aliases: []
 family:
   key: "bartmer"
-  label: "Бартмеры"
-  locale: ru
+  label: "Bartmer"
+  locale: und-Latn
+  localized:
+    "ru": "Бартмеры"
 sex: M
 father: null
 mother: null

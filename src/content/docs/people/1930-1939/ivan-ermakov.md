@@ -4,6 +4,7 @@ description: "Иван Ермаков, 1938–2011"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Иван Ермаков"
   display: "Иван Ермаков"
   birth_last: "Ермаков"

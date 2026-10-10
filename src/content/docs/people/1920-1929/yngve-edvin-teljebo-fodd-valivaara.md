@@ -4,6 +4,7 @@ description: "Yngve Edvin Teljebo (född Välivaara), 1920–2002"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Yngve Edvin Teljebo (född Välivaara)"
   display: "Yngve Edvin Teljebo (född Välivaara)"
   birth_last: "Teljebo (född Välivaara)"
@@ -11,7 +12,7 @@ name:
 family:
   key: "teljebo"
   label: "Teljebo"
-  locale: en
+  locale: und-Latn
 sex: M
 father: null
 mother: null

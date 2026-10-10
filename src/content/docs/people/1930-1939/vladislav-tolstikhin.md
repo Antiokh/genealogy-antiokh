@@ -4,6 +4,7 @@ description: "Владислав Толстихин, 1936–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Владислав Толстихин"
   display: "Владислав Толстихин"
   birth_last: "Толстихин"

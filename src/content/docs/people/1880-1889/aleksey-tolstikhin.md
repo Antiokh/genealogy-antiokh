@@ -4,6 +4,7 @@ description: "Алексей Толстихин, 1885–1950"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Алексей Толстихин"
   display: "Алексей Толстихин"
   birth_last: "Толстихин"

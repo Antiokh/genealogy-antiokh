@@ -4,14 +4,17 @@ description: "Михаил Курочкин, ?–1944"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Михаил Курочкин"
   display: "Михаил Курочкин"
   birth_last: "Курочкин"
   aliases: []
 family:
   key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
+  label: "Kurochkin"
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: M
 father: "1870-1879/petr-mikhaylovich-kurochkin.md"
 mother: "unknown/olga-kurochkina.md"

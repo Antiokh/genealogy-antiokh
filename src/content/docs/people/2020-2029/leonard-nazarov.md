@@ -4,6 +4,7 @@ description: "Leonard Nazarov, 2023–"
 entity: person
 importManaged: true
 name:
+  locale: und-Latn
   full: "Leonard Nazarov"
   display: "Leonard Nazarov"
   birth_last: "Nazarov"
@@ -11,7 +12,9 @@ name:
 family:
   key: "nazarov"
   label: "Nazarov"
-  locale: en
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTc0YmQxMzFlMmRjOTlmNDk4MDYzY2NkOWUwMWE5MGVlMThmZGM2N2FhYTgxZjhjNGRhZjY2MmYzMjg2NTY3NDImZT0xNzg5Njc1MjAw/129/852/4292/500332_5024259a9p16znz54pa6f6_A.jpg"
 father: "1980-1989/anton-nazarov.md"

@@ -4,6 +4,7 @@ description: "Мария Назарова, 1934–2022"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Мария Попова"
   display: "Мария Назарова"
   birth_last: "Попова"
@@ -11,8 +12,10 @@ name:
   aliases: []
 family:
   key: "nazarov"
-  label: "Назаровы"
-  locale: ru
+  label: "Nazarov"
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTQyZjU3YzdmZWUxMTg5N2QxMjBjMmQwOTE1MGZmMThjYjY2NzE3ZDlkNDE2MTk2MTc5ZGU3N2Y4M2FmMWJjYzkmZT0xNzg5Njc1MjAw/129/852/4292/500182_14857098694ao0d1nas6o2_A.jpg"
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"

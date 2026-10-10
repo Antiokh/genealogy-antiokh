@@ -4,6 +4,7 @@ description: "Дмитрий Ледовских, 1989–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Дмитрий Ледовских"
   display: "Дмитрий Ледовских"
   birth_last: "Ледовских"

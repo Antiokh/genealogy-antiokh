@@ -4,6 +4,7 @@ description: "Петр Попов, 1926–1973"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Петр Попов"
   display: "Петр Попов"
   birth_last: "Попов"

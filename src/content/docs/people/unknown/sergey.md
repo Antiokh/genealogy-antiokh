@@ -4,6 +4,7 @@ description: "Сергей, ?–2024"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Сергей"
   display: "Сергей"
   aliases: []

@@ -4,6 +4,7 @@ description: "Василий Лавриненко"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Лавриненко"
   display: "Василий Лавриненко"
   birth_last: "Лавриненко"

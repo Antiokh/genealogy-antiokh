@@ -4,6 +4,7 @@ description: "Александр Ботиков, ?–1939"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Александр Ботиков"
   display: "Александр Ботиков"
   birth_last: "Ботиков"

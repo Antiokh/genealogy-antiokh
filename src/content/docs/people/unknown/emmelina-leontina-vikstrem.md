@@ -4,6 +4,7 @@ description: "Эммелина-Леонтина Викстрём"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Эммелина-Леонтина Бартмер"
   display: "Эммелина-Леонтина Викстрём"
   birth_last: "Бартмер"

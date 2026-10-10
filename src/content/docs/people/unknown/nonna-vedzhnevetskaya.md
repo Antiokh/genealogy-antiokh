@@ -4,6 +4,7 @@ description: "Нонна Веджневецкая"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Нонна Веджневецкая"
   display: "Нонна Веджневецкая"
   birth_last: "Веджневецкая"

@@ -4,6 +4,7 @@ description: "Трофим Безкоровайный"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Трофим Безкоровайный"
   display: "Трофим Безкоровайный"
   birth_last: "Безкоровайный"

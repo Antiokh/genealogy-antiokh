@@ -4,6 +4,7 @@ description: "Юрий Толстихин, 1933–1992"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Юрий Толстихин"
   display: "Юрий Толстихин"
   birth_last: "Толстихин"

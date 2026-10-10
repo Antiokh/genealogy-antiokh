@@ -4,14 +4,17 @@ description: "Анна Назарова, 1928–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Анна Назарова"
   display: "Анна Назарова"
   birth_last: "Назарова"
   aliases: []
 family:
   key: "nazarov"
-  label: "Назаровы"
-  locale: ru
+  label: "Nazarov"
+  locale: und-Latn
+  localized:
+    "ru": "Назаровы"
 sex: F
 father: "unknown/semen-nazarov.md"
 mother: "unknown/anastasiya.md"

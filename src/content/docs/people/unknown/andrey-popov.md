@@ -4,6 +4,7 @@ description: "Андрей Попов"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Андрей Попов"
   display: "Андрей Попов"
   birth_last: "Попов"

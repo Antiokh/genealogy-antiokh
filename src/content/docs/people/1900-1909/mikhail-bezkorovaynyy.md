@@ -4,6 +4,7 @@ description: "Михаил Безкоровайный, 1907–1956"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Михаил Безкоровайный"
   display: "Михаил Безкоровайный"
   birth_last: "Безкоровайный"

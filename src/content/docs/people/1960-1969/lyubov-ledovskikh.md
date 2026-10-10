@@ -4,6 +4,7 @@ description: "Любовь Ледовских, 1960–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Любовь Назарова"
   display: "Любовь Ледовских"
   birth_last: "Назарова"

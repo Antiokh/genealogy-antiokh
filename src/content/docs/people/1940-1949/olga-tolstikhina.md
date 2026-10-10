@@ -4,6 +4,7 @@ description: "Ольга Толстихина, 1941–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Ольга Толстихина"
   display: "Ольга Толстихина"
   birth_last: "Толстихина"

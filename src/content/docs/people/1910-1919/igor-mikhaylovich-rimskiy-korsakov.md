@@ -4,6 +4,7 @@ description: Игорь Михайлович Римский-Корсаков, 19
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: Игорь Михайлович Римский-Корсаков
   display: Игорь Михайлович Римский-Корсаков
   birth_last: Римский-Корсаков

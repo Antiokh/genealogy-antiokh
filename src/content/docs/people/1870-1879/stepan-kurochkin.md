@@ -4,14 +4,17 @@ description: "Степан Курочкин, 1871–1937"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Степан Курочкин"
   display: "Степан Курочкин"
   birth_last: "Курочкин"
   aliases: []
 family:
   key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
+  label: "Kurochkin"
+  locale: und-Latn
+  localized:
+    "ru": "Курочкины"
 sex: M
 father: "unknown/mikhail-kurochkin-i500069.md"
 mother: "unknown/elena-kutaeva.md"

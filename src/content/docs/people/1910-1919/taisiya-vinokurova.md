@@ -4,6 +4,7 @@ description: "Таисия Винокурова, 1911–1979"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Таисия Буш"
   display: "Таисия Винокурова"
   birth_last: "Буш"

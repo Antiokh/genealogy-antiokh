@@ -4,6 +4,7 @@ description: "Елисавета Ботикова, ?–1939"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Елисавета Буш"
   display: "Елисавета Ботикова"
   birth_last: "Буш"

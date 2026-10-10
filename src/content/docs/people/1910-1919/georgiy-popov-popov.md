@@ -4,6 +4,7 @@ description: "Георгий Попов (Popov), 1914–?"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Георгий Попов (Popov)"
   display: "Георгий Попов (Popov)"
   birth_last: "Попов (Popov)"

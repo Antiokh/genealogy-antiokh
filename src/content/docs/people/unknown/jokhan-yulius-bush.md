@@ -4,14 +4,17 @@ description: "Jохан Юлиус Буш"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Jохан Юлиус Буш"
   display: "Jохан Юлиус Буш"
   birth_last: "Буш"
   aliases: []
 family:
   key: "bush"
-  label: "Буши"
-  locale: ru
+  label: "Bush"
+  locale: und-Latn
+  localized:
+    "ru": "Буши"
 sex: M
 father: null
 mother: null

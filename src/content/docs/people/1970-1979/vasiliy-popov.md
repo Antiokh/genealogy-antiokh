@@ -4,6 +4,7 @@ description: "Василий Попов, 1970–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Василий Попов"
   display: "Василий Попов"
   birth_last: "Попов"

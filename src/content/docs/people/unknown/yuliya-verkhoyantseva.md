@@ -4,6 +4,7 @@ description: "Юлия Верхоянцева"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Юлия Волкова"
   display: "Юлия Верхоянцева"
   birth_last: "Волкова"

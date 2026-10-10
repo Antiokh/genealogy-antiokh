@@ -4,6 +4,7 @@ description: "Татьяна Бескоровайная, 1961–"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Татьяна Бескоровайная"
   display: "Татьяна Бескоровайная"
   birth_last: "Бескоровайная"

@@ -4,6 +4,7 @@ description: "Татьяна Винокуров"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Татьяна Винокуров"
   display: "Татьяна Винокуров"
   birth_last: "Винокуров"

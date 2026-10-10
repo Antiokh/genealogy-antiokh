@@ -4,6 +4,7 @@ description: "Лилия Волкова"
 entity: person
 importManaged: true
 name:
+  locale: ru
   full: "Лилия Волкова"
   display: "Лилия Волкова"
   birth_last: "Волкова"
