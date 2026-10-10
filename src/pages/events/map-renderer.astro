@@ -1,0 +1,73 @@
+---
+import 'maplibre-gl/dist/maplibre-gl.css';
+import '../../styles/event-map-renderer.css';
+---
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Карта событий</title>
+    <style is:inline>
+      :root { --map-marker-accent: #3fb1ce; }
+      .maplibregl-marker svg [fill='#3FB1CE'],
+      .maplibregl-marker svg [fill='#3fb1ce'] {
+        fill: var(--map-marker-accent) !important;
+      }
+    </style>
+    <script is:inline>
+      (() => {
+        let theme = '';
+        let parentRoot = null;
+        try {
+          if (window.parent && window.parent !== window) {
+            parentRoot = window.parent.document.documentElement;
+            theme = parentRoot.dataset.theme || '';
+          }
+        } catch {}
+
+        if (theme !== 'light' && theme !== 'dark') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+
+        const syncAccent = () => {
+          if (!parentRoot) return;
+          const styles = window.parent.getComputedStyle(parentRoot);
+          const accent = styles.getPropertyValue('--sl-color-accent').trim()
+            || styles.getPropertyValue('--sl-color-accent-high').trim();
+          if (accent) document.documentElement.style.setProperty('--map-marker-accent', accent);
+        };
+
+        syncAccent();
+        if (parentRoot) {
+          new MutationObserver(syncAccent).observe(parentRoot, {
+            attributes: true,
+            attributeFilter: ['data-theme', 'class', 'style'],
+          });
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <main class="map-shell" data-map-shell>
+      <div class="map-canvas" data-map-canvas aria-label="Карта всех географически привязанных событий"></div>
+
+      <div class="event-range" data-range-control hidden aria-label="Фильтр событий по годам">
+        <output data-range-label>Временной интервал: загрузка…</output>
+        <div class="event-range__track" data-range-track>
+          <input data-range-from type="range" aria-label="Начальный год" />
+          <input data-range-to type="range" aria-label="Конечный год" />
+        </div>
+      </div>
+
+      <div class="map-status" data-map-status hidden aria-live="polite"></div>
+      <noscript>Для интерактивной карты требуется JavaScript.</noscript>
+    </main>
+
+    <script>
+      import '../../scripts/event-map-renderer';
+    </script>
+  </body>
+</html>
