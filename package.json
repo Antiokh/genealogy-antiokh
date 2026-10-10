@@ -4,14 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "astro dev",
-    "build": "astro build && node scripts/copy-demos.mjs",
+    "dev": "node scripts/build-genealogy.mjs && astro dev",
+    "build:data": "node scripts/build-genealogy.mjs",
+    "build": "npm run build:data && astro build && node scripts/copy-demos.mjs",
     "preview": "astro preview",
     "check": "astro check"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
-    "astro": "^7.3.8"
+    "astro": "^7.3.8",
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
