@@ -26,19 +26,27 @@ export default defineConfig({
         { label: 'Главная', link: '/' },
         {
           label: 'Люди',
-          autogenerate: { directory: 'people', collapsed: false },
+          items: [
+            { autogenerate: { directory: 'people', collapsed: false } },
+          ],
         },
         {
           label: 'События',
-          autogenerate: { directory: 'events', collapsed: false },
+          items: [
+            { autogenerate: { directory: 'events', collapsed: false } },
+          ],
         },
         {
           label: 'Места',
-          autogenerate: { directory: 'places', collapsed: true },
+          items: [
+            { autogenerate: { directory: 'places', collapsed: true } },
+          ],
         },
         {
           label: 'Источники',
-          autogenerate: { directory: 'sources', collapsed: true },
+          items: [
+            { autogenerate: { directory: 'sources', collapsed: true } },
+          ],
         },
       ],
     }),
