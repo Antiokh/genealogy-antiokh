@@ -1,16 +1,29 @@
 # Genealogy Library
 
-A repository-first genealogy library: people and their source data live in Git, while family trees and other views are generated from metadata at build time.
+A repository-first family-history encyclopedia. Canonical people, events and supporting entities live as readable Markdown/YAML in Git; Starlight turns the same files into the browsing interface, while family-tree renderers remain replaceable views over the data.
 
-The repository must remain useful independently of MyHeritage, Genotek, a specific visualization library, or even the current site generator.
+The repository must remain useful independently of MyHeritage, Genotek, a particular tree library, or even Starlight itself.
+
+## Current state
+
+The encyclopedia shell is built with Astro + Starlight and the current MyHeritage snapshot has been imported into canonical person pages.
+
+- 253 person records are published from the 2026-09-10 snapshot.
+- One MyHeritage media bucket (`Unassociated photos`) is deliberately not treated as a person.
+- Internal person IDs are stable `P......` identifiers.
+- MyHeritage `I......` values are retained only as external import identifiers.
+- Parents and partners are canonical ID relations; children and other reverse relations are derived.
+- People are grouped by birth decade, events by year.
+- Starlight generates navigation, search and sitemap from the same content tree.
+- Existing tree-renderer demos are preserved under `/demos/`; choosing a final renderer is intentionally deferred.
 
 ## Product direction
 
-The primary interface is for **reading, exploring, and sharing family history**, with occasional corrections and additions. This is not intended to become a full-time genealogy research workstation like Gramps.
+The primary interface is for **reading, exploring and sharing family history**, with occasional corrections and additions. It is not intended to become a full-time genealogy workstation like Gramps.
 
-Normal use should favor person pages, search, tree/pedigree exploration and other readable views. Import, reconciliation, conflict resolution and advanced editing are maintenance workflows that may be used only occasionally.
+Normal use should favor person pages, search, family context, events, sources, maps/timelines and tree/pedigree exploration. Import, reconciliation and conflict resolution are maintenance workflows.
 
-Git remains the source of truth and version history. Any editing wizard or import UI should ultimately produce transparent changes to ordinary repository files rather than introduce a second database.
+Git remains the source of truth. Any editor or import UI must end by changing ordinary repository files rather than creating a second database.
 
 Design notes:
 
@@ -18,291 +31,179 @@ Design notes:
 - [GEDCOM import and conflict strategy](docs/gedcom-import-conflicts.md)
 - [Charted Roots migration / compatibility contract](docs/charted-roots-migration-contract.md)
 
-## Core principles
+## Canonical content tree
 
-### 1. One person = one editable record
-
-People are stored as ordinary Markdown/MDX records with frontmatter. Photos and documents may live next to the person's record.
-
-The physical folder structure is **not** the family tree. Kinship is stored only through stable person IDs in metadata.
-
-### 2. Folders are only for finding records
-
-People are grouped by birth decade:
+Starlight reads canonical records directly from `src/content/docs/`.
 
 ```text
-src/content/people/
-├── 1870-1879/
-│   └── ivan-petrovich-nazarov/
-│       ├── index.md
-│       ├── portrait.jpg
-│       └── documents/
-├── 1880-1889/
-├── 1890-1899/
-├── ...
-├── 1980-1989/
-└── unknown/
+src/content/docs/
+├── people/
+│   ├── 1810-1819/
+│   ├── 1820-1829/
+│   ├── ...
+│   ├── 1980-1989/
+│   │   └── anton-nazarov.md
+│   ├── 2020-2029/
+│   └── unknown/
+├── events/
+│   ├── 1917/
+│   ├── 1941/
+│   ├── 1988/
+│   └── unknown/
+├── places/
+├── sources/
+└── _templates/
 ```
 
-An estimated birth year is sufficient for choosing the decade. If the date is later corrected and the person moves to another decade, no relationship should break.
+The directory structure is navigation, not identity. Moving a person to another decade after correcting a birth year must not break a relationship. Semantic links always use stable IDs.
 
-Events are grouped by the year in which the event occurred:
+## Person records
+
+One person is one Markdown record with frontmatter.
+
+```yaml
+---
+title: Иван Петрович Назаров
+entity: person
+id: P000251
+name: Иван Петрович Назаров
+sex: M
+birth:
+  year: 1877
+death:
+  year: 1948
+parents:
+  - P000134
+  - P000135
+partners:
+  - P000252
+sources: []
+external:
+  myheritage:
+    snapshot: "2026-09-10"
+    xref: "I500418"
+---
+```
+
+Do not manually maintain relations that can be derived from the graph. Children, siblings, grandparents, descendants and generations should be calculated from canonical forward relations.
+
+Imported person pages currently carry `importManaged: true`. The snapshot importer may rewrite those generated records. Before turning an imported page into a hand-maintained biography, remove that flag or change the importer workflow so generated and authored sections are separated.
+
+## Events and other entities
+
+Events are first-class records grouped by event year:
 
 ```text
-src/content/events/
+src/content/docs/events/
 ├── 1917/
 ├── 1941/
 ├── 1988/
-│   └── birth-anton-nazarov/
-│       └── index.md
-├── 2023/
+│   └── birth-anton-nazarov.md
 └── unknown/
 ```
 
-The event path is navigation only. Event participants, places, sources and other semantic links use stable IDs. Moving an event after correcting its date must not break references.
+Event participants, places and sources use stable IDs. Correcting a date may move an event between folders without changing its identity.
 
-Other first-class entity folders may be introduced as needed, including:
-
-```text
-src/content/
-├── people/
-├── events/
-├── places/
-├── sources/
-├── citations/
-└── evidence/
-```
-
-These folders represent domain entities, not application UI. Presentation/index structures similar to Obsidian Bases belong to the site/configuration layer rather than canonical content.
-
-Paths are human navigation only. They are never identifiers.
-
-### 3. Stable IDs, path-independent relationships
-
-A person has a permanent internal ID. Relationships reference IDs, never files or URLs.
-
-Example:
-
-```yaml
----
-id: P00251
-
-name:
-  first: Иван
-  patronymic: Петрович
-  last: Назаров
-
-sex: M
-
-birth:
-  year: 1877
-
-death:
-  year: 1948
-
-parents:
-  - P00134
-  - P00135
-
-partners:
-  - P00252
----
-```
-
-Derived relations such as children, siblings, grandparents, descendants and generations should not be maintained manually when they can be calculated from canonical relations.
-
-### 4. Stateless build
-
-Every build starts from zero and rebuilds the complete genealogy dataset from the current source files.
-
-Conceptually:
+The content schema already reserves first-class entity types for:
 
 ```text
-scan canonical records
+person
+ event
+place
+source
+citation
+evidence
+```
+
+Places, sources, citations and evidence still need their richer domain schemas and real records.
+
+## Stateless build
+
+Every build starts from repository files and can reconstruct the complete genealogy state:
+
+```text
+canonical Markdown/YAML
         ↓
-parse frontmatter
+parse + validate
         ↓
-validate IDs and references
+resolve stable IDs
         ↓
-construct genealogy graph from scratch
+construct neutral genealogy graph
         ↓
-generate datasets and site views
+Starlight pages / search / tree / pedigree / timeline / map
 ```
 
-No generated relationship state from a previous build is trusted.
+No generated relationship state from a previous build is authoritative.
 
-This allows records to be renamed or moved between time folders without affecting semantic links.
+A future neutral output such as `generated/genealogy.json` should be our own contract rather than the native data model of Family Chart, Topola or another renderer.
 
-## Canonical data and generated graph
+## MyHeritage snapshot import
 
-Person records are the source of truth for people. As first-class events, places, sources, citations and evidence are introduced, their own canonical records become source data as well.
-
-The build produces a neutral genealogy graph, for example:
+The current source snapshot is represented by the demo dataset under `demos/anton-family/`. The deterministic importer is:
 
 ```text
-generated/genealogy.json
+scripts/import-demo-snapshot.mjs
 ```
 
-The graph should be our own stable internal contract rather than the native format of any particular visualization library.
-
-Genealogy is better represented with both person and family/union nodes:
+Its stable external-to-internal mapping is persisted at:
 
 ```text
-PERSON ─┐
-        ├─ FAMILY ─→ CHILD
-PERSON ─┘
+imports/myheritage-2026/mapping.json
 ```
 
-This preserves marriages/partnerships and children from different unions without forcing a visualizer-specific model into the source files.
+The mapping prevents a repeated import from assigning new internal IDs to the same external people.
 
-Example generated shape:
+The GitHub Actions workflow `Import MyHeritage snapshot` is intentionally manual. Import is a maintenance action and must not silently rewrite canonical records whenever the repository changes.
 
-```json
-{
-  "schema": "genealogy-1",
-  "nodes": [
-    { "id": "P001", "type": "person" },
-    { "id": "P002", "type": "person" },
-    { "id": "F001", "type": "family" }
-  ],
-  "edges": [
-    { "source": "P001", "target": "F001", "type": "partner" },
-    { "source": "P002", "target": "F001", "type": "partner" },
-    { "source": "F001", "target": "P003", "type": "child" }
-  ]
-}
-```
+GEDCOM remains the intended interchange format for future general imports. GEDCOM identifiers are external identifiers, not our database keys.
 
-Exact schema is still to be designed before implementation.
+## Adding a person manually
 
-## GEDCOM
+1. Choose the person's birth decade, or `unknown`.
+2. Create `src/content/docs/people/<decade>/<person-slug>.md`.
+3. Start from `src/content/docs/_templates/person.md`.
+4. Assign a permanent internal ID.
+5. Fill in known dates and canonical relationship IDs.
+6. Commit the file.
 
-### Import
+A future Add Person wizard can automate these steps, but its output must remain an ordinary repository change.
 
-GEDCOM import is a first-class requirement because the initial genealogy already exists in external services.
+## Visualization
 
-The importer should:
+Tree visualization is an adapter concern, not a storage concern. Current experiments remain available under `demos/` and include Family Chart, BALKAN FamilyTreeJS 2 and Vue Flow + ELK.
 
-1. Read GEDCOM without making GEDCOM the internal storage model.
-2. Create/update canonical person records.
-3. Convert relationships to internal stable IDs.
-4. Preserve useful source identifiers such as GEDCOM XREFs as import metadata.
-5. Place people automatically into birth-decade folders.
-6. Place first-class imported events into event-year folders when they are represented separately.
-7. Handle unknown birth/event years through `unknown/`.
+The encyclopedia can therefore mature independently of the final tree renderer.
 
-Example source metadata:
-
-```yaml
-external:
-  gedcom:
-    - source: myheritage-2026
-      xref: "@I418@"
-```
-
-The external XREF is not the internal person ID.
-
-A mapping should be preserved for repeatable imports and duplicate prevention:
+## Implementation status
 
 ```text
-imports/
-└── myheritage-2026/
-    ├── original.ged
-    └── mapping.json
-```
-
-### Independence
-
-GEDCOM is an interchange format, not the database:
-
-```text
-MyHeritage / Genotek / other source
-                ↓
-             GEDCOM
-                ↓
-             importer
-                ↓
-      repository canonical records
-                ↓
-              build
-                ↓
-       neutral genealogy graph
-```
-
-A future GEDCOM export is desirable so data can leave this project just as easily as it enters it.
-
-## Planned views
-
-The site is planned around Astro + Starlight, but genealogy data must not depend on Astro.
-
-### Family tree
-
-Interactive family graph around a selected person, including lateral and descendant branches.
-
-The UI library should consume an adapter built from `genealogy.json`, not become part of the canonical schema.
-
-### Pedigree
-
-Ancestor-focused pedigree view.
-
-This requires the build step to derive the appropriate ancestor dataset from the complete genealogy graph.
-
-The reference person is a view parameter, not a property of the genealogy itself.
-
-### Person pages
-
-Each source record becomes an encyclopedia-style page containing biography, dates, relationships, photos, documents and sources.
-
-## Adding a person
-
-Adding records should not require understanding the repository internals.
-
-Initial version can be a documented template:
-
-```text
-1. Choose the person's birth decade.
-2. Create:
-   src/content/people/<decade>/<person-slug>/index.md
-3. Copy the person template.
-4. Fill in identity, dates and known relationship IDs.
-5. Commit the file.
-```
-
-Planned improvement: an **Add person wizard**.
-
-The wizard should collect the minimum data, determine the decade and path, generate the correct frontmatter, and then either:
-
-- create the file automatically through GitHub, or
-- open GitHub's file editor at the correct path with a generated template ready to paste/edit.
-
-The important constraint is that the result remains an ordinary repository file. The wizard is a convenience layer, not a separate database or CMS.
-
-## Initial implementation scope
-
-```text
-[ ] Define person frontmatter schema
-[ ] Define neutral genealogy graph schema
-[ ] Create person template
-[ ] Implement repository validator
-[ ] Implement GEDCOM importer
-[ ] Build genealogy.json from canonical records
-[ ] Add tree visualization adapter/view
-[ ] Add pedigree dataset/view
-[ ] Add person pages in Astro/Starlight
-[ ] Add simple "Add person" instructions/template
-[ ] Add interactive "Add person" wizard
-[ ] Consider first-class event/place/source/citation/evidence schemas
-[ ] Consider GEDCOM export
+[x] Astro + Starlight encyclopedia shell
+[x] Autogenerated People / Events / Places / Sources navigation
+[x] Extended genealogy frontmatter schema
+[x] Person authoring template
+[x] Deterministic MyHeritage snapshot importer
+[x] Stable external → internal person ID mapping
+[x] 253 imported person pages
+[x] Parent / partner canonical relations
+[x] Derived child links on generated pages
+[x] Full-text search with Pagefind
+[x] Sitemap
+[x] Preserve existing tree demos in production build
+[ ] Dedicated canonical relationship validator (duplicate IDs, dangling refs, cycles/edge cases)
+[ ] Neutral genealogy graph schema
+[ ] Generate `genealogy.json` from canonical records
+[ ] General GEDCOM importer and reconciliation workflow
+[ ] First-class event import
+[ ] Rich place/source/citation/evidence schemas
+[ ] Encyclopedia person-page component with portrait/facts/family/source layout
+[ ] Privacy/publication rules for living people
+[ ] Tree renderer adapter/view
+[ ] Pedigree view
+[ ] Timeline/map views
+[ ] Add Person wizard
+[ ] GEDCOM export
 ```
 
 ## Non-goals for the data model
 
-The repository structure should not encode:
-
-- paternal vs maternal branches;
-- a fixed generation number;
-- descendants as nested folders;
-- relationships through file paths;
-- assumptions specific to Topola, Family Chart or another renderer.
-
-All of these are views over the same genealogy graph.
+The canonical repository structure should not encode paternal vs maternal branches, a fixed generation number, descendants as nested folders, relationships through paths, or assumptions specific to any visualization library. Those are views over the same genealogy graph.
