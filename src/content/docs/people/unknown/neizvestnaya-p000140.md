@@ -1,0 +1,31 @@
+---
+title: "Неизвестная (P000140)"
+description: "Неизвестная (P000140)"
+entity: person
+importManaged: true
+id: P000140
+name: "Неизвестная (P000140)"
+displayName: "Неизвестная (P000140)"
+deceased: true
+sex: F
+parents: []
+partners:
+  - P000134
+sources: []
+external:
+  myheritage:
+    snapshot: "2026-09-10"
+    xref: "I500143"
+---
+
+## Семья
+
+**Родители:** —
+
+**Партнёры:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/)
+
+**Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-p000139/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-p000141/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-p000142/)
+
+## Биография
+
+Сведения пока не добавлены.

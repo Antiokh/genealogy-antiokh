@@ -1,0 +1,35 @@
+name: Import MyHeritage snapshot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+      - name: Generate people records
+        run: node scripts/import-demo-snapshot.mjs
+      - name: Install dependencies
+        run: npm install
+      - name: Validate content
+        run: npm run check
+      - name: Build site
+        run: npm run build
+      - name: Commit imported records
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add imports/myheritage-2026/mapping.json src/content/docs/people
+          if git diff --cached --quiet; then
+            echo "No import changes"
+            exit 0
+          fi
+          git commit -m "Import people from MyHeritage snapshot"
+          git push
