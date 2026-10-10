@@ -7,7 +7,7 @@
     "dev": "node scripts/build-genealogy.mjs && astro dev",
     "build:data": "node scripts/build-genealogy.mjs",
     "build": "npm run build:data && astro build && node scripts/copy-demos.mjs",
-    "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/enrich-person-names.mjs",
+    "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/enrich-person-names.mjs && node scripts/enrich-family-groups.mjs",
     "preview": "astro preview",
     "check": "astro check"
   },
