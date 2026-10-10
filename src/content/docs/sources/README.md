@@ -1,1 +1,9 @@
-Source records are reusable entities that can support facts about multiple people and events.
+---
+title: Правило записей источников
+draft: true
+entity: index
+sidebar:
+  hidden: true
+---
+
+Источники — переиспользуемые сущности, которые могут подтверждать факты о нескольких людях и событиях.
