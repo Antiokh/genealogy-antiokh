@@ -1,1 +1,9 @@
-Person records live under `<birth-decade>/` and retain stable IDs when dates are corrected or files move.
+---
+title: Правило путей людей
+draft: true
+entity: index
+sidebar:
+  hidden: true
+---
+
+Записи людей лежат в `<birth-decade>/` и сохраняют стабильные ID при исправлении дат или перемещении файлов.
