@@ -24,8 +24,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -42,7 +41,7 @@ external:
 
 **Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina/)
+**Партнёры:** —
 
 **Дети:** [Владимир Буш](/people/unknown/vladimir-bush/)
 

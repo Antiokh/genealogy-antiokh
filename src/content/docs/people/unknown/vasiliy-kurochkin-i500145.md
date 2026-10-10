@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "unknown/nikolay-kurochkin.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500143.md"
+mother: null
 born:
   known: false
   date: null
@@ -38,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500143/)
+**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/)
 
 **Партнёры:** [Зоя](/people/unknown/zoya-i500146/)
 

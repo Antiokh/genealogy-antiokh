@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "1890-1899/boris-bush.md"
-mother: "unknown/neizvestnaya-zhenshchina.md"
+mother: null
 born:
   known: false
   date: null
@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500032.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -38,9 +37,9 @@ external:
 
 ## Семья
 
-**Родители:** [Борис Буш](/people/1890-1899/boris-bush/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina/)
+**Родители:** [Борис Буш](/people/1890-1899/boris-bush/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500032/)
+**Партнёры:** —
 
 **Дети:** [Борис Буш](/people/unknown/boris-bush/), [Галина Буш](/people/unknown/galina-bush/)
 

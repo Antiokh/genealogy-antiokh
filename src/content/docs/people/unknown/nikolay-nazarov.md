@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "1920-1929/ivan-nazarov.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500194.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500194/)
+**Родители:** [Иван Назаров](/people/1920-1929/ivan-nazarov/)
 
 **Партнёры:** —
 

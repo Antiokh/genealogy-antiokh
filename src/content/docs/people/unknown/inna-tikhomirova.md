@@ -9,7 +9,7 @@ name:
   birth_last: "Тихомирова"
   aliases: []
 sex: F
-father: "unknown/neizvestnyy-muzhchina-i500123.md"
+father: null
 mother: "unknown/larisa-tikhomirova.md"
 born:
   known: false
@@ -38,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500123/), [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/)
+**Родители:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/)
 
 **Партнёры:** [Александр](/people/unknown/aleksandr/)
 

@@ -9,8 +9,8 @@ name:
   birth_last: "Попов"
   aliases: []
 sex: M
-father: "unknown/neizvestnyy-muzhchina-i500214.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500215.md"
+father: null
+mother: null
 born:
   known: false
   date: null
@@ -38,7 +38,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500214/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500215/)
+**Родители:** —
 
 **Партнёры:** [Мария](/people/unknown/mariya/)
 

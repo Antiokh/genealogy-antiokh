@@ -25,8 +25,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnyy-muzhchina-i500110.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -44,7 +43,7 @@ external:
 
 **Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
 
-**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500110/)
+**Партнёры:** —
 
 **Дети:** [Елена Примак](/people/unknown/elena-primak/)
 

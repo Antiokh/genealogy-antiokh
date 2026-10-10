@@ -10,7 +10,7 @@ name:
   aliases: []
 sex: M
 father: "1930-1939/viktor-popov.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500209.md"
+mother: null
 born:
   known: false
   date: null
@@ -37,7 +37,7 @@ external:
 
 ## Семья
 
-**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500209/)
+**Родители:** [Виктор Попов](/people/1930-1939/viktor-popov/)
 
 **Партнёры:** —
 

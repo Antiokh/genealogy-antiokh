@@ -12,7 +12,7 @@ name:
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWE4MTg5Yzc1NjdmZTkyY2ZjYzliZTAwZGE0Mzc1MWU1M2M0ZWE3YzY4MjA2MGNmM2IzOWExZTgwZGEwZTZkNjcmZT0xNzg5Njc1MjAw/129/852/4292/500203_056494a11638775d536e58_A.jpg"
 father: "1850-1859/petr-aleksandrovich-bartmer.md"
-mother: "unknown/neizvestnaya-zhenshchina-i500227.md"
+mother: null
 born:
   known: true
   date: 1884
@@ -45,7 +45,7 @@ external:
 
 ## Семья
 
-**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500227/)
+**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/)
 
 **Партнёры:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
 

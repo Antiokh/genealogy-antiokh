@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnyy-muzhchina.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -40,7 +39,7 @@ external:
 
 **Родители:** [Борис Винокуров](/people/unknown/boris-vinokurov/), [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/)
 
-**Партнёры:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina/)
+**Партнёры:** —
 
 **Дети:** [Екатерина](/people/unknown/ekaterina/)
 

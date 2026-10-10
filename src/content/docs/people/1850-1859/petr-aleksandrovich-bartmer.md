@@ -24,8 +24,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500227.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -42,7 +41,7 @@ external:
 
 **Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500227/)
+**Партнёры:** —
 
 **Дети:** [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/)
 

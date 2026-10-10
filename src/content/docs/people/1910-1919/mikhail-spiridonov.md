@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500158.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -41,7 +40,7 @@ external:
 
 **Родители:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/), [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500158/)
+**Партнёры:** —
 
 **Дети:** [Людмила Спиридонова](/people/unknown/lyudmila-spiridonova/), [Валентин Спиридонов](/people/unknown/valentin-spiridonov/)
 

@@ -8,7 +8,7 @@ name:
   display: "Мария"
   aliases: []
 sex: F
-father: "unknown/neizvestnyy-muzhchina-i500039.md"
+father: null
 mother: "unknown/ekaterina.md"
 born:
   known: true
@@ -36,7 +36,7 @@ external:
 
 ## Семья
 
-**Родители:** [Неизвестный мужчина](/people/unknown/neizvestnyy-muzhchina-i500039/), [Екатерина](/people/unknown/ekaterina/)
+**Родители:** [Екатерина](/people/unknown/ekaterina/)
 
 **Партнёры:** —
 

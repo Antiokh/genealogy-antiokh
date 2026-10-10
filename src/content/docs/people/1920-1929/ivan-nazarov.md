@@ -23,8 +23,7 @@ buried:
   known: false
   date: null
   place: null
-partners:
-  - person: "unknown/neizvestnaya-zhenshchina-i500194.md"
+partners: []
 occupation: []
 residence: []
 sources: []
@@ -41,7 +40,7 @@ external:
 
 **Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
 
-**Партнёры:** [Неизвестная женщина](/people/unknown/neizvestnaya-zhenshchina-i500194/)
+**Партнёры:** —
 
 **Дети:** [Николай Назаров](/people/unknown/nikolay-nazarov/)
 
