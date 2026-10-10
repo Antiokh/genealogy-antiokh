@@ -19,7 +19,7 @@ The repository must remain useful independently of MyHeritage, Genotek, a partic
 
 ## Product direction
 
-The primary interface is for reading, exploring and sharing family history, with occasional corrections and additions. Git is the source of truth. Any editor or import UI must end by changing ordinary repository files rather than creating a second database.
+The primary interface is for **reading, exploring and sharing family history**, with occasional corrections and additions. Git is the source of truth. Any editor or import UI must end by changing ordinary repository files rather than creating a second database.
 
 The frontmatter is intentionally useful as a small human-editable database: fields that are helpful for tables or analytics may live there even when a tree renderer does not need them.
 
@@ -248,3 +248,4 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 ## Visualization
 
 Visualization is a consumer of `genealogy.json`, not part of the canonical data model. A renderer should normally receive either one connected component or a component around a selected person rather than every encyclopedia record indiscriminately.
+
