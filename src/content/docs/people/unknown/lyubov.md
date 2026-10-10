@@ -8,6 +8,19 @@ name:
   full: "Любовь"
   display: "Любовь"
   aliases: []
+families:
+  - key: "lyubov"
+    label: "Любовьы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
+  - key: "vinokurov"
+    label: "Винокуровы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
 sex: F
 father: null
 mother: null

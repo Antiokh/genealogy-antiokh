@@ -9,12 +9,16 @@ name:
   display: "Jохан Юлиус Буш"
   birth_last: "Буш"
   aliases: []
-family:
-  key: "bush"
-  label: "Буши"
-  locale: ru
-  localized:
-    "und-Latn": "Bush"
+families:
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
 sex: M
 father: null
 mother: null

@@ -8,6 +8,13 @@ name:
   full: "Денис"
   display: "Денис"
   aliases: []
+families:
+  - key: "denis"
+    label: "Денисы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "1940-1949/aleksandr-kurochkin.md"
 mother: "unknown/natalya-i500073.md"

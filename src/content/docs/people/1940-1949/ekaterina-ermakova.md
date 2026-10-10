@@ -10,10 +10,21 @@ name:
   birth_last: "Руденская"
   married_last: "Ермакова"
   aliases: []
-family:
-  key: "ermakov"
-  label: "Ермаковы"
-  locale: ru
+families:
+  - key: "ermakov"
+    label: "Ермаковы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+  - key: "rudenskiy"
+    label: "Руденские"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTRiYzhhNzk3MzI2YTg2NzUxNmJkYWViN2RkZDlhMmQ5ZjUxNDcwZTY5NDk5MmViOGJmM2IzMzBiM2EyYzBiNDcmZT0xNzg5Njc1MjAw/129/852/4292/500224_3458426dcas153i9gheq12_A.jpg"
 father: null

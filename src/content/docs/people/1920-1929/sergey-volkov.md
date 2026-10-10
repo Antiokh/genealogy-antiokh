@@ -9,10 +9,14 @@ name:
   display: "Сергей Волков"
   birth_last: "Волков"
   aliases: []
-family:
-  key: "volkov"
-  label: "Волковы"
-  locale: ru
+families:
+  - key: "volkov"
+    label: "Волковы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

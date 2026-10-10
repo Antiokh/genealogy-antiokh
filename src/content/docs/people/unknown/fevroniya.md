@@ -8,6 +8,19 @@ name:
   full: "Феврония"
   display: "Феврония"
   aliases: []
+families:
+  - key: "fevroniya"
+    label: "Феврония"
+    locale: ru
+    roles:
+      - current
+    inferred: true
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
 sex: F
 father: null
 mother: null

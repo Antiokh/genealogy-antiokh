@@ -9,10 +9,14 @@ name:
   display: "Лариса Тихомирова"
   birth_last: "Тихомирова"
   aliases: []
-family:
-  key: "tikhomirov"
-  label: "Тихомировы"
-  locale: ru
+families:
+  - key: "tikhomirov"
+    label: "Тихомировы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: "unknown/aleksandr-tikhomirov.md"
 mother: "unknown/evdokiya-antonchenko.md"

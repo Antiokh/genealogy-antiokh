@@ -53,6 +53,8 @@ const familyGroup = z.union([
     label: z.string().optional(),
     locale: z.string().optional(),
     localized: z.record(z.string(), z.string()).optional(),
+    roles: z.array(z.string()).optional(),
+    inferred: z.boolean().optional(),
   }).passthrough(),
 ]);
 
@@ -89,7 +91,7 @@ export const collections = {
 
         // Canonical person fields.
         name: z.union([z.string(), structuredName]).optional(),
-        family: familyGroup.optional(),
+        families: z.array(familyGroup).optional(),
         sex: z.enum(['M', 'F', 'X', 'U']).optional(),
         photo: z.string().optional(),
         father: z.string().nullish(),
@@ -104,7 +106,8 @@ export const collections = {
         sources: z.array(z.string()).optional(),
         external: z.record(z.string(), z.unknown()).optional(),
 
-        // Transitional compatibility with the first imported snapshot.
+        // Transitional compatibility with earlier snapshots.
+        family: familyGroup.optional(),
         id: z.string().optional(),
         displayName: z.string().optional(),
         birthSurname: z.string().optional(),

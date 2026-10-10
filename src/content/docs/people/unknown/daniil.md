@@ -8,6 +8,13 @@ name:
   full: "Даниил"
   display: "Даниил"
   aliases: []
+families:
+  - key: "daniil"
+    label: "Даниилы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "unknown/dmitriy.md"
 mother: "unknown/yuliya-verkhoyantseva.md"

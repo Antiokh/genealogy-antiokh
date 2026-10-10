@@ -8,6 +8,19 @@ name:
   full: "Елизавета"
   display: "Елизавета"
   aliases: []
+families:
+  - key: "bezkorovaynyy"
+    label: "Безкоровайные"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "elizaveta"
+    label: "Елизаветаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

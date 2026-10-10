@@ -9,12 +9,16 @@ name:
   display: "Семён Назаров"
   birth_last: "Назаров"
   aliases: []
-family:
-  key: "nazarov"
-  label: "Назаровы"
-  locale: ru
-  localized:
-    "und-Latn": "Nazarov"
+families:
+  - key: "nazarov"
+    label: "Назаровы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Nazarov"
 sex: M
 father: "unknown/grigoriy-nazarov.md"
 mother: null

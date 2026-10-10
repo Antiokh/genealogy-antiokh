@@ -9,12 +9,16 @@ name:
   display: "Виктор Tatarintsev"
   birth_last: "Tatarintsev"
   aliases: []
-family:
-  key: "tatarintsev"
-  label: "Татаринцевы"
-  locale: ru
-  localized:
-    "und-Latn": "Tatarintsev"
+families:
+  - key: "tatarintsev"
+    label: "Татаринцевы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Tatarintsev"
 sex: M
 father: null
 mother: null

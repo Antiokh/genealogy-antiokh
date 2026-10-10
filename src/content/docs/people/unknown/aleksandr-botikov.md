@@ -9,10 +9,14 @@ name:
   display: "Александр Ботиков"
   birth_last: "Ботиков"
   aliases: []
-family:
-  key: "botikov"
-  label: "Ботиковы"
-  locale: ru
+families:
+  - key: "botikov"
+    label: "Ботиковы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

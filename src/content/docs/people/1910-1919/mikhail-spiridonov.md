@@ -9,10 +9,14 @@ name:
   display: "Михаил Спиридонов"
   birth_last: "Спиридонов"
   aliases: []
-family:
-  key: "spiridonov"
-  label: "Спиридоновы"
-  locale: ru
+families:
+  - key: "spiridonov"
+    label: "Спиридоновы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1880-1889/mikhail-spiridonov.md"
 mother: "unknown/nonna-vedzhnevetskaya.md"

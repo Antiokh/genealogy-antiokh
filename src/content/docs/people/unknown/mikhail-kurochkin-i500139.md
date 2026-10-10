@@ -9,12 +9,16 @@ name:
   display: "Михаил Курочкин"
   birth_last: "Курочкин"
   aliases: []
-family:
-  key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
-  localized:
-    "und-Latn": "Kurochkin"
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: M
 father: null
 mother: "unknown/anna-panteshkina.md"

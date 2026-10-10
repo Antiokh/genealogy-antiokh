@@ -8,6 +8,13 @@ name:
   full: "Яков"
   display: "Яков"
   aliases: []
+families:
+  - key: "yakov"
+    label: "Яковы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "unknown/grigoriy.md"
 mother: null

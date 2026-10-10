@@ -9,10 +9,20 @@ name:
   display: "Инна Тихомирова"
   birth_last: "Тихомирова"
   aliases: []
-family:
-  key: "tikhomirov"
-  label: "Тихомировы"
-  locale: ru
+families:
+  - key: "aleksandr"
+    label: "Александры"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "tikhomirov"
+    label: "Тихомировы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: null
 mother: "unknown/larisa-tikhomirova.md"

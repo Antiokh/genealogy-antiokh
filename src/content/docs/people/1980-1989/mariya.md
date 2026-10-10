@@ -8,6 +8,13 @@ name:
   full: "Мария"
   display: "Мария"
   aliases: []
+families:
+  - key: "mariya"
+    label: "Мария"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: "unknown/ekaterina.md"

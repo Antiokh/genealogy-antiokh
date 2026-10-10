@@ -9,10 +9,14 @@ name:
   display: "Ольга Толстихина"
   birth_last: "Толстихина"
   aliases: []
-family:
-  key: "tolstikhin"
-  label: "Толстихины"
-  locale: ru
+families:
+  - key: "tolstikhin"
+    label: "Толстихины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWEyMjY3ODYwNjMyMDU0NWY3YThjZDQ1NWYwNjljZDdiY2JkM2Q1OWNiODE4NGEyZjc1NDIxNDZlMzI3MDg5MDEmZT0xNzg5Njc1MjAw/129/852/4292/500144_5513316f10yj2601x6271f_A.jpg"
 father: "1880-1889/aleksey-tolstikhin.md"

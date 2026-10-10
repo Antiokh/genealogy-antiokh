@@ -9,10 +9,14 @@ name:
   display: "Рита Антонченко"
   birth_last: "Антонченко"
   aliases: []
-family:
-  key: "antonchenko"
-  label: "Антонченко"
-  locale: ru
+families:
+  - key: "antonchenko"
+    label: "Антонченко"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: "unknown/andrey-antonchenko.md"
 mother: "unknown/evdokiya-antonchenko.md"

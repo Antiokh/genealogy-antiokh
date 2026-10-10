@@ -9,12 +9,16 @@ name:
   display: "Andrian Kurochkin"
   birth_last: "Kurochkin"
   aliases: []
-family:
-  key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
-  localized:
-    "und-Latn": "Kurochkin"
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNjY2ZiYjgyMDZhNjBkODk5YmQyYWU1N2ZmY2ViY2ViZDA1N2JiOTIyNTA2YzJiNDVlNDdkOWM3OTUzOGI4OTEmZT0xNzg5Njc1MjAw/129/852/4292/500124_5387536c7218rz6gy40x16_A.jpg"
 father: "1940-1949/aleksandr-kurochkin.md"

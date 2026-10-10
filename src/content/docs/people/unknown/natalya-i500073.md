@@ -8,6 +8,21 @@ name:
   full: "Наталья"
   display: "Наталья"
   aliases: []
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "natalya"
+    label: "Наталья"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

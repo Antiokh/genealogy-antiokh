@@ -10,12 +10,23 @@ name:
   birth_last: "Ермакова"
   married_last: "Татаринцева"
   aliases: []
-family:
-  key: "tatarintsev"
-  label: "Татаринцевы"
-  locale: ru
-  localized:
-    "und-Latn": "Tatarintsev"
+families:
+  - key: "ermakov"
+    label: "Ермаковы"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+  - key: "tatarintsev"
+    label: "Татаринцевы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Tatarintsev"
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWRmMDRjY2VlZGM0NDYxNWIyOGM1Mjg3OTg2YWQ1NGFlNjlkM2JlMGFiNTg5M2RkYTM5Y2UzZmMyMTEyNmQwNGImZT0xNzg5Njc1MjAw/129/852/4292/500222_80742363yo9w511c8a5d0b_A.jpg"
 father: "1930-1939/ivan-ermakov.md"

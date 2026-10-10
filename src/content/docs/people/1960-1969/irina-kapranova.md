@@ -9,10 +9,20 @@ name:
   display: "Ирина Капранова"
   birth_last: "Капранова"
   aliases: []
-family:
-  key: "kapranov"
-  label: "Капрановы"
-  locale: ru
+families:
+  - key: "kapranov"
+    label: "Капрановы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+  - key: "valeriy"
+    label: "Валерие"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTU1OWZmYzgzZjJmNzdiZGY3NjhmODA1MWZlNTVjZjIzODViMDk2YjczNzhiY2RiYTc3ODNhNDFjMTBkODE4N2EmZT0xNzg5Njc1MjAw/129/852/4292/500081_494514l21zdbfja66sb1fz_A.jpg"
 father: "unknown/gennadiy-i500084.md"

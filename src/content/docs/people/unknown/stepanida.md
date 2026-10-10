@@ -8,6 +8,19 @@ name:
   full: "Степанида"
   display: "Степанида"
   aliases: []
+families:
+  - key: "bezkorovaynyy"
+    label: "Безкоровайные"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "stepanida"
+    label: "Степанидаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/vasiliy-lavrinenko.md"
 mother: null

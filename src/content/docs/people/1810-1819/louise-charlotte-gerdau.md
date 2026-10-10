@@ -9,10 +9,14 @@ name:
   display: "Louise Charlotte Gerdau"
   birth_last: "Gerdau"
   aliases: []
-family:
-  key: "gerdau"
-  label: "Gerdau"
-  locale: und-Latn
+families:
+  - key: "gerdau"
+    label: "Gerdau"
+    locale: und-Latn
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

@@ -8,6 +8,21 @@ name:
   full: "Людмила"
   display: "Людмила"
   aliases: []
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
+  - key: "lyudmila"
+    label: "Людмилаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWFiNzhhODIzZGUzMmI1OTg5NzhhMjY1NjVlZmMzYWJlNTdmMjk2MzY3ODYzMzcwNTM4ODYzODc1NTJmNzYxODEmZT0xNzg5Njc1MjAw/129/852/4292/500053_2700921f1kx682c321pfyf_A.jpg"
 father: null

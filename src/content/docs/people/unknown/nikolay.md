@@ -8,6 +8,13 @@ name:
   full: "Николай"
   display: "Николай"
   aliases: []
+families:
+  - key: "nikolay"
+    label: "Николайы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: "1920-1929/anna-nazarova.md"

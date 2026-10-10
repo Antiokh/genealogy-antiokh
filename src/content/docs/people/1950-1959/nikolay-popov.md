@@ -9,10 +9,14 @@ name:
   display: "Николай Попов"
   birth_last: "Попов"
   aliases: []
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: "1920-1929/aleksandr-popov.md"
 mother: "1930-1939/polina-mikhaylovna-popova.md"

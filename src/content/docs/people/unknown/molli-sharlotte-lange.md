@@ -9,10 +9,22 @@ name:
   display: "Молли Шарлотте Ланге"
   birth_last: "Ланге"
   aliases: []
-family:
-  key: "lange"
-  label: "Ланге"
-  locale: ru
+families:
+  - key: "bush"
+    label: "Буши"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Bush"
+  - key: "lange"
+    label: "Ланге"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

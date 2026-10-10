@@ -10,10 +10,21 @@ name:
   birth_last: "Iso-Kamula"
   married_last: "Teljebo"
   aliases: []
-family:
-  key: "teljebo"
-  label: "Teljebo"
-  locale: und-Latn
+families:
+  - key: "iso-kamula"
+    label: "Iso-Kamula"
+    locale: und-Latn
+    roles:
+      - birth
+    inferred: true
+  - key: "teljebo"
+    label: "Teljebo"
+    locale: und-Latn
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
 sex: F
 father: null
 mother: null

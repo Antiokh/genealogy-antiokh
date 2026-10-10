@@ -29,9 +29,12 @@ const metadata = new Map();
 for (const filePath of await walk(PEOPLE_ROOT)) {
   const data = frontmatter(await readFile(filePath, 'utf8'));
   if (data.entity !== 'person') continue;
-  metadata.set(refFor(filePath), {
-    ...(data.family ? { family: data.family } : {}),
-  });
+  const families = Array.isArray(data.families)
+    ? data.families
+    : data.family
+      ? [data.family]
+      : [];
+  metadata.set(refFor(filePath), { families });
 }
 
 async function augment(filename, arrayKey) {

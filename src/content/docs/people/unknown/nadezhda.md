@@ -8,6 +8,13 @@ name:
   full: "Надежда"
   display: "Надежда"
   aliases: []
+families:
+  - key: "nadezhda"
+    label: "Надеждаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/vadim-vinokurov.md"
 mother: "unknown/irina.md"

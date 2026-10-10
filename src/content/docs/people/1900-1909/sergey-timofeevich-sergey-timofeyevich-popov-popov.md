@@ -12,10 +12,14 @@ name:
   first: Сергей
   middle: Тимофеевич
   last: Попов (Popov)
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: unknown/timofey-popov.md
 mother: unknown/fevroniya.md

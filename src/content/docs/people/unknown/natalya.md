@@ -8,6 +8,19 @@ name:
   full: "Наталья"
   display: "Наталья"
   aliases: []
+families:
+  - key: "bezkorovaynyy"
+    label: "Безкоровайные"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "natalya"
+    label: "Наталья"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

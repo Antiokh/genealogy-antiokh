@@ -12,12 +12,16 @@ name:
   first: Пётр
   middle: Михайлович
   last: Курочкин
-family:
-  key: "kurochkin"
-  label: "Курочкины"
-  locale: ru
-  localized:
-    "und-Latn": "Kurochkin"
+families:
+  - key: "kurochkin"
+    label: "Курочкины"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Kurochkin"
 sex: M
 photo: https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTYwMjJiNjgzNjU1ZmJiYzQ0ZDk2ZWMxODk2ZWQyNWM5NGY1NGZlNThjMGVmMDdmYTZlMDE2MzAwMTg4NmQ2ZjImZT0xNzg5Njc1MjAw/129/852/4292/500067_46458781w5e9604afjf1af_A.jpg
 father: unknown/mikhail-kurochkin-i500069.md

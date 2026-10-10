@@ -9,10 +9,14 @@ name:
   display: "Клавдия Попова"
   birth_last: "Попова"
   aliases: []
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"

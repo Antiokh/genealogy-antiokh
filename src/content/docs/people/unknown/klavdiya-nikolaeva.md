@@ -9,10 +9,20 @@ name:
   display: "Клавдия Николаева"
   birth_last: "Николаева"
   aliases: []
-family:
-  key: "nikolaev"
-  label: "Николаевы"
-  locale: ru
+families:
+  - key: "kapranov"
+    label: "Капрановы"
+    locale: ru
+    roles:
+      - partner
+    inferred: true
+  - key: "nikolaev"
+    label: "Николаевы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: F
 father: null
 mother: null

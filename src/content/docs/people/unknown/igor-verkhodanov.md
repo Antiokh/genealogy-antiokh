@@ -9,10 +9,14 @@ name:
   display: "Игорь Верходанов"
   birth_last: "Верходанов"
   aliases: []
-family:
-  key: "verkhodanov"
-  label: "Верходановы"
-  locale: ru
+families:
+  - key: "verkhodanov"
+    label: "Верходановы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

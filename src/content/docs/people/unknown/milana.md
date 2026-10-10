@@ -8,6 +8,13 @@ name:
   full: "Милана"
   display: "Милана"
   aliases: []
+families:
+  - key: "milana"
+    label: "Миланаы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: F
 father: "unknown/mikhail.md"
 mother: "unknown/liliya-volkova.md"

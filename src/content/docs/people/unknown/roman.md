@@ -8,6 +8,13 @@ name:
   full: "Роман"
   display: "Роман"
   aliases: []
+families:
+  - key: "roman"
+    label: "Романы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "unknown/vladimir.md"
 mother: "unknown/elena-primak.md"

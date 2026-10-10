@@ -13,10 +13,21 @@ name:
   first: Полина
   middle: Михайловна
   last: Попова
-family:
-  key: "popov"
-  label: "Поповы"
-  locale: ru
+families:
+  - key: "pismenskiy"
+    label: "Письменские"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
+  - key: "popov"
+    label: "Поповы"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
 sex: F
 father: null
 mother: null

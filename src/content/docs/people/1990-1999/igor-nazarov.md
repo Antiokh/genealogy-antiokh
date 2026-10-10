@@ -9,12 +9,16 @@ name:
   display: "Игорь Назаров"
   birth_last: "Назаров"
   aliases: []
-family:
-  key: "nazarov"
-  label: "Назаровы"
-  locale: ru
-  localized:
-    "und-Latn": "Nazarov"
+families:
+  - key: "nazarov"
+    label: "Назаровы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
+    localized:
+      "und-Latn": "Nazarov"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTE2YjUzODg3MWQ2NWMxYzBhMjZjMGZhNGI5MDQ5MjdlYjQ1MWVhMDcyYjNjYzZmMTY4MDBmNTgyZDM3YzZkOGImZT0xNzg5Njc1MjAw/129/852/4292/500130_9748700w8v16l966212709_A.jpg"
 father: "1960-1969/vladislav-nazarov.md"

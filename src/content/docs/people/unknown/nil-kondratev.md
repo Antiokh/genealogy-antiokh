@@ -9,10 +9,14 @@ name:
   display: "Нил Кондратьев"
   birth_last: "Кондратьев"
   aliases: []
-family:
-  key: "kondratev"
-  label: "Кондратьевы"
-  locale: ru
+families:
+  - key: "kondratev"
+    label: "Кондратьевы"
+    locale: ru
+    roles:
+      - birth
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

@@ -8,6 +8,13 @@ name:
   full: "Геннадий"
   display: "Геннадий"
   aliases: []
+families:
+  - key: "gennadiy"
+    label: "Геннадие"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: "1900-1909/mikhail-bezkorovaynyy.md"
 mother: "unknown/natalya.md"

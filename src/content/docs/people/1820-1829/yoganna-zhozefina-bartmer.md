@@ -10,12 +10,23 @@ name:
   birth_last: "Thorsell Торселл"
   married_last: "Bartmer"
   aliases: []
-family:
-  key: "bartmer"
-  label: "Бартмеры"
-  locale: ru
-  localized:
-    "und-Latn": "Bartmer"
+families:
+  - key: "bartmer"
+    label: "Бартмеры"
+    locale: ru
+    roles:
+      - current
+      - marriage
+      - partner
+    inferred: true
+    localized:
+      "und-Latn": "Bartmer"
+  - key: "thorsell-torsell"
+    label: "Thorsell Торселлы"
+    locale: ru
+    roles:
+      - birth
+    inferred: true
 sex: F
 father: null
 mother: null

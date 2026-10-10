@@ -8,6 +8,13 @@ name:
   full: "Сергей"
   display: "Сергей"
   aliases: []
+families:
+  - key: "sergey"
+    label: "Сергейы"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 father: null
 mother: null

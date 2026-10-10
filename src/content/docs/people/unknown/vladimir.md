@@ -8,6 +8,13 @@ name:
   full: "Владимир"
   display: "Владимир"
   aliases: []
+families:
+  - key: "vladimir"
+    label: "Владимиры"
+    locale: ru
+    roles:
+      - current
+    inferred: true
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTA5NjkxZDg0NWJjMzIwZWZlNzg2MjQ4MzhlMjc2MDkxYmVjOTJiYjBkNGFmMmJiOGZjNzk2ODZmYTMyNDIwYjgmZT0xNzg5Njc1MjAw/129/852/4292/500162_6752845d11l0c369d61329_A.jpg"
 father: null
