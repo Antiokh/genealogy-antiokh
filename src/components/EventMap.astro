@@ -158,7 +158,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       const rangeLabel = root.querySelector<HTMLOutputElement>('[data-range-label]');
       if (!canvas || !fromInput || !toInput || !rangeLabel || !rangeControl || !rangeTrack) continue;
 
-      const mapCanvas = canvas;
       const fromControl = fromInput;
       const toControl = toInput;
       const output = rangeLabel;
@@ -187,7 +186,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
       });
 
       const map = new maplibregl.Map({
-        container: mapCanvas,
+        container: canvas,
         style: mapStyleUrls[currentTheme],
         center: [30, 52],
         zoom: 2.5,
@@ -195,20 +194,24 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         renderWorldCopies: false,
       });
 
-      function fitOverview() {
+      function fitOverview(animate = true) {
         const features = filteredCollection().features;
         if (!features.length) return;
         if (features.length === 1) {
-          map.easeTo({ center: features[0].geometry.coordinates, zoom: Math.max(map.getZoom(), 7) });
+          map.easeTo({ center: features[0].geometry.coordinates, zoom: Math.min(map.getMaxZoom(), 14), duration: animate ? 300 : 0 });
           return;
         }
         const bounds = new maplibregl.LngLatBounds();
         for (const feature of features) bounds.extend(feature.geometry.coordinates);
-        map.fitBounds(bounds, { padding: 52, maxZoom: 10, duration: 450 });
+        map.fitBounds(bounds, {
+          padding: { top: 82, right: 48, bottom: 58, left: 48 },
+          maxZoom: Math.min(map.getMaxZoom(), 12.2),
+          duration: animate ? 350 : 0,
+        });
       }
 
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-      map.addControl(new HomeControl(fitOverview), 'top-right');
+      map.addControl(new HomeControl(() => fitOverview(true)), 'top-right');
       map.addControl(new maplibregl.FullscreenControl({ container: root }), 'top-right');
       map.addControl(new maplibregl.GeolocateControl({
         positionOptions: { enableHighAccuracy: true },
@@ -228,6 +231,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
           clusterMaxZoom: 13,
           clusterRadius: 44,
         });
+
+        // First-release genealogy markers: intentionally not inherited from RSLive.
         map.addLayer({
           id: clusterLayer,
           type: 'circle',
@@ -294,7 +299,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         addEventLayers();
         updateRange();
         collapseAttribution();
-        fitOverview();
+        fitOverview(false);
       });
       map.once('idle', collapseAttribution);
 
@@ -311,26 +316,26 @@ import 'maplibre-gl/dist/maplibre-gl.css';
         const feature = event.features?.[0] as unknown as EventFeature | undefined;
         if (!feature || feature.geometry.type !== 'Point') return;
 
-        const container = document.createElement('div');
-        container.className = 'genealogy-map-popup rslive-map-popup';
+        const wrapper = document.createElement('div');
+        wrapper.className = 'rslive-map-popup';
 
-        const title = document.createElement('strong');
-        title.textContent = feature.properties.eventTitle;
-        container.append(title);
+        const name = document.createElement('strong');
+        name.textContent = feature.properties.eventTitle;
+        wrapper.append(name);
 
         const details = document.createElement('p');
         const date = eventDateLabel(feature);
         details.textContent = [date, feature.properties.placeLabel].filter(Boolean).join('\n');
-        container.append(details);
+        wrapper.append(details);
 
         const link = document.createElement('a');
         link.href = feature.properties.eventUrl;
         link.textContent = 'Открыть событие';
-        container.append(link);
+        wrapper.append(link);
 
-        new maplibregl.Popup({ maxWidth: 'min(22rem, 80vw)', offset: 12 })
+        new maplibregl.Popup({ maxWidth: '22rem', offset: 12 })
           .setLngLat(feature.geometry.coordinates)
-          .setDOMContent(container)
+          .setDOMContent(wrapper)
           .addTo(map);
       });
 
@@ -394,6 +399,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     overflow: hidden;
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 0.75rem;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     color-scheme: light;
   }
 
@@ -422,11 +428,11 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 
   .event-map-period {
     position: absolute;
-    z-index: 8;
-    top: calc(max(0.45rem, env(safe-area-inset-top)) + 10px);
+    z-index: 4;
+    top: max(0.65rem, env(safe-area-inset-top));
     left: 0;
     width: min(72vw, 30rem);
-    padding: 0.55rem 0.8rem 0.6rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
+    padding: 0.55rem 0.8rem 0.55rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
     border: 1px solid var(--map-panel-border);
     border-left: 0;
     border-radius: 0 0.7rem 0.7rem 0;
@@ -435,13 +441,12 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     color: var(--map-panel-fg);
     backdrop-filter: blur(8px);
   }
-
   .event-map-period[hidden] { display: none; }
 
   .event-map-period output {
     display: block;
-    margin-bottom: 0.25rem;
-    font-size: 0.8rem;
+    margin-bottom: 0.45rem;
+    font-size: 0.9rem;
     font-weight: 700;
     font-variant-numeric: tabular-nums;
     line-height: 1.2;
@@ -482,21 +487,9 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     background: transparent;
     pointer-events: none;
   }
-
-  .event-map-range input[type='range']::-webkit-slider-runnable-track {
-    height: 4px;
-    border: 0;
-    background: transparent;
-  }
-
-  .event-map-range input[type='range']::-moz-range-track {
-    height: 4px;
-    border: 0;
-    background: transparent;
-  }
-
+  .event-map-range input[type='range']::-webkit-slider-runnable-track { height: 4px; border: 0; background: transparent; }
+  .event-map-range input[type='range']::-moz-range-track { height: 4px; border: 0; background: transparent; }
   .event-map-range input[type='range']::-moz-range-progress { background: transparent; }
-
   .event-map-range input[type='range']::-webkit-slider-thumb {
     width: 18px;
     height: 18px;
@@ -509,7 +502,6 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     box-shadow: 0 1px 3px rgb(15 23 42 / 32%);
     pointer-events: auto;
   }
-
   .event-map-range input[type='range']::-moz-range-thumb {
     width: 18px;
     height: 18px;
@@ -523,15 +515,38 @@ import 'maplibre-gl/dist/maplibre-gl.css';
   .event-map-shell :global(.maplibregl-ctrl-top-left),
   .event-map-shell :global(.maplibregl-ctrl-top-right),
   .event-map-shell :global(.maplibregl-ctrl-bottom-left),
-  .event-map-shell :global(.maplibregl-ctrl-bottom-right) {
-    z-index: 6;
+  .event-map-shell :global(.maplibregl-ctrl-bottom-right) { z-index: 6; }
+
+  .event-map-shell :global(.maplibregl-popup-content) {
+    border: 1px solid var(--map-panel-border);
+    border-radius: 0.65rem;
+    background: var(--map-popup-bg);
+    color: var(--map-popup-fg);
+    box-shadow: 0 5px 20px rgb(15 23 42 / 24%);
   }
+  .event-map-shell :global(.maplibregl-popup-anchor-top .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-top-left .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-top-right .maplibregl-popup-tip) { border-bottom-color: var(--map-popup-bg); }
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip),
+  .event-map-shell :global(.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip) { border-top-color: var(--map-popup-bg); }
+  .event-map-shell :global(.maplibregl-popup-anchor-left .maplibregl-popup-tip) { border-right-color: var(--map-popup-bg); }
+  .event-map-shell :global(.maplibregl-popup-anchor-right .maplibregl-popup-tip) { border-left-color: var(--map-popup-bg); }
+  .event-map-shell :global(.maplibregl-popup-close-button) {
+    padding: 0.25rem 0.5rem;
+    color: var(--map-popup-fg);
+    font-size: 1.15rem;
+  }
+
+  .event-map-shell :global(.rslive-map-popup) { display: grid; gap: 0.42rem; min-width: min(15rem, 70vw); }
+  .event-map-shell :global(.rslive-map-popup strong) { font-size: 0.92rem; line-height: 1.2; }
+  .event-map-shell :global(.rslive-map-popup p) { margin: 0; white-space: pre-wrap; font-size: 0.8rem; line-height: 1.35; }
+  .event-map-shell :global(.rslive-map-popup a) { color: var(--map-link); font-size: 0.78rem; }
 
   .event-map-shell :global(.maplibregl-ctrl-top-right) {
     top: max(0.45rem, env(safe-area-inset-top));
     right: max(0.4rem, env(safe-area-inset-right));
   }
-
   .event-map-shell :global(.maplibregl-ctrl-group) {
     overflow: hidden;
     border: 1px solid var(--map-control-border);
@@ -539,61 +554,30 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     background: var(--map-control-bg) !important;
     box-shadow: 0 2px 9px rgb(15 23 42 / 16%);
   }
-
   .event-map-shell :global(.maplibregl-ctrl-group button) {
-    display: block;
-    width: 29px !important;
-    height: 29px !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    border: 0 !important;
     background-color: var(--map-control-bg) !important;
     color: var(--map-control-fg) !important;
-    line-height: 0;
   }
-
   .event-map-shell :global(.maplibregl-ctrl-group button:hover),
-  .event-map-shell :global(.maplibregl-ctrl-group button:focus-visible) {
-    background-color: var(--map-control-hover) !important;
-  }
+  .event-map-shell :global(.maplibregl-ctrl-group button:focus-visible) { background-color: var(--map-control-hover) !important; }
+  .event-map-shell :global(.maplibregl-ctrl-group button + button) { border-top-color: var(--map-control-border) !important; }
 
-  .event-map-shell :global(.maplibregl-ctrl-group button + button) {
-    border-top: 1px solid var(--map-control-border) !important;
-  }
-
-  .event-map-shell :global(.rslive-map-home) {
-    display: grid !important;
-    place-items: center;
-  }
-
-  .event-map-shell :global(.rslive-map-overview-icon) {
-    width: 20px;
-    height: 20px;
-    fill: currentColor;
-  }
+  .event-map-shell :global(.rslive-map-home) { display: grid !important; place-items: center; }
+  .event-map-shell :global(.rslive-map-overview-icon) { width: 20px; height: 20px; fill: currentColor; }
 
   :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-group .maplibregl-ctrl-icon),
-  :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-attrib-button) {
-    filter: invert(1) brightness(1.35);
-  }
+  :global(html[data-theme='dark']) .event-map-shell :global(.maplibregl-ctrl-attrib-button) { filter: invert(1) brightness(1.35); }
 
-  /* Same quiet bottom utility layout used by the RSLive map renderer. */
-  .event-map-shell :global(.maplibregl-ctrl-bottom-right) {
-    left: 0;
-    right: auto;
-  }
-
+  .event-map-shell :global(.maplibregl-ctrl-bottom-right) { left: 0; right: auto; }
   .event-map-shell :global(.maplibregl-ctrl-bottom-right .maplibregl-ctrl-attrib) {
     margin: 0 0 max(0.55rem, env(safe-area-inset-bottom)) max(0.55rem, env(safe-area-inset-left));
   }
-
   .event-map-shell :global(.maplibregl-ctrl-attrib) {
     border: 1px solid var(--map-control-border);
     background: color-mix(in srgb, var(--map-control-bg) 92%, transparent) !important;
     color: var(--map-control-fg);
     backdrop-filter: blur(8px);
   }
-
   .event-map-shell :global(.maplibregl-ctrl-attrib a) { color: var(--map-link); }
 
   .event-map-shell :global(.maplibregl-ctrl-bottom-left .maplibregl-ctrl-scale) {
@@ -610,81 +594,10 @@ import 'maplibre-gl/dist/maplibre-gl.css';
     opacity: 0.82;
   }
 
-  .event-map-shell :global(.maplibregl-ctrl-attrib.maplibregl-compact:not(.maplibregl-compact-show) .maplibregl-ctrl-attrib-inner) {
-    display: none !important;
-  }
-
-  .event-map-shell :global(.maplibregl-popup) {
-    z-index: 7;
-    max-width: min(22rem, 80vw) !important;
-  }
-
-  .event-map-shell :global(.maplibregl-popup-content) {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    border: 1px solid var(--map-panel-border);
-    border-radius: 0.65rem;
-    background: var(--map-popup-bg);
-    color: var(--map-popup-fg);
-    box-shadow: 0 5px 20px rgb(15 23 42 / 24%);
-  }
-
-  .event-map-shell :global(.maplibregl-popup-anchor-top .maplibregl-popup-tip),
-  .event-map-shell :global(.maplibregl-popup-anchor-top-left .maplibregl-popup-tip),
-  .event-map-shell :global(.maplibregl-popup-anchor-top-right .maplibregl-popup-tip) {
-    border-bottom-color: var(--map-popup-bg);
-  }
-
-  .event-map-shell :global(.maplibregl-popup-anchor-bottom .maplibregl-popup-tip),
-  .event-map-shell :global(.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip),
-  .event-map-shell :global(.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip) {
-    border-top-color: var(--map-popup-bg);
-  }
-
-  .event-map-shell :global(.maplibregl-popup-anchor-left .maplibregl-popup-tip) { border-right-color: var(--map-popup-bg); }
-  .event-map-shell :global(.maplibregl-popup-anchor-right .maplibregl-popup-tip) { border-left-color: var(--map-popup-bg); }
-
-  .event-map-shell :global(.maplibregl-popup-close-button) {
-    padding: 0.25rem 0.5rem;
-    color: var(--map-popup-fg);
-    font-size: 1.15rem;
-  }
-
-  .event-map-shell :global(.rslive-map-popup) {
-    display: grid;
-    gap: 0.42rem;
-    min-width: min(15rem, 70vw);
-  }
-
-  .event-map-shell :global(.rslive-map-popup strong) {
-    padding-right: 1rem;
-    font-size: 0.92rem;
-    line-height: 1.2;
-  }
-
-  .event-map-shell :global(.rslive-map-popup p) {
-    margin: 0;
-    white-space: pre-wrap;
-    color: var(--map-panel-muted);
-    font-size: 0.8rem;
-    line-height: 1.35;
-  }
-
-  .event-map-shell :global(.rslive-map-popup a) {
-    color: var(--map-link);
-    font-size: 0.78rem;
-    font-weight: 700;
-    text-decoration: none;
-  }
-
-  .event-map-shell :global(.rslive-map-popup a:hover) { text-decoration: underline; }
+  .event-map-shell :global(.maplibregl-ctrl-attrib.maplibregl-compact:not(.maplibregl-compact-show) .maplibregl-ctrl-attrib-inner) { display: none !important; }
 
   .event-map-shell:fullscreen,
-  .event-map-shell:-webkit-full-screen {
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
-  }
+  .event-map-shell:-webkit-full-screen { width: 100vw; height: 100vh; min-height: 100vh; }
 
   @media (max-width: 40rem) {
     .event-map-canvas { min-height: 26rem; }
