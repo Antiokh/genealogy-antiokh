@@ -1,1 +1,9 @@
-Event records live under `<year>/` and retain stable IDs when dates are corrected or files move.
+---
+title: Правило путей событий
+draft: true
+entity: index
+sidebar:
+  hidden: true
+---
+
+Записи событий лежат в `<year>/` и сохраняют стабильные ID при исправлении дат или перемещении файлов.
