@@ -1,0 +1,23 @@
+---
+import Default from '@astrojs/starlight/components/Footer.astro';
+import EventSeq from './EventSeq.astro';
+import PersonPlacesMap from './PersonPlacesMap.astro';
+
+const route = Astro.locals.starlightRoute;
+
+const isPerson = route.entry.data.entity === 'person' && route.id.startsWith('people/');
+const isPlace = route.entry.data.entity === 'place' && route.id.startsWith('places/');
+
+const personRef = isPerson
+  ? `${route.id.replace(/^people\//, '').replace(/\/$/, '')}.md`
+  : null;
+const placeRef = isPlace
+  ? `${route.id.replace(/^places\//, '').replace(/\/$/, '')}.md`
+  : null;
+---
+
+{personRef && <EventSeq subject="person" subjectRef={personRef} heading="Хронология" />}
+{personRef && <PersonPlacesMap personRef={personRef} />}
+{placeRef && <EventSeq subject="place" subjectRef={placeRef} heading="Хронология места" />}
+
+<Default />
