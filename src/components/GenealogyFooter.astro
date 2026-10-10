@@ -1,6 +1,7 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
 import EventSeq from './EventSeq.astro';
+import PersonGallery from './PersonGallery.astro';
 import PersonPlacesMap from './PersonPlacesMap.astro';
 
 const route = Astro.locals.starlightRoute;
@@ -16,6 +17,7 @@ const placeRef = isPlace
   : null;
 ---
 
+{personRef && <PersonGallery personRef={personRef} />}
 {personRef && <EventSeq subject="person" subjectRef={personRef} heading="Хронология" />}
 {personRef && <PersonPlacesMap personRef={personRef} />}
 {placeRef && <EventSeq subject="place" subjectRef={placeRef} heading="Хронология места" />}
