@@ -1,0 +1,239 @@
+---
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import 'photoswipe/style.css';
+
+interface Props {
+  personRef: string;
+}
+
+const { personRef } = Astro.props;
+const docs = await getCollection('docs');
+const person = docs.find((entry) => entry.data.entity === 'person' && entry.id === `people/${personRef.replace(/\.mdx?$/i, '')}`);
+const portraitRef = person?.data.portrait;
+
+function subjectMatches(value: unknown): boolean {
+  if (typeof value === 'string') return value === personRef;
+  if (!value || typeof value !== 'object' || !('person' in value)) return false;
+  return (value as { person?: string }).person === personRef;
+}
+
+function dateKey(value: unknown): number {
+  if (typeof value === 'number') return value * 10000;
+  if (typeof value === 'string') {
+    const match = value.match(/^(\d{4})(?:-(\d{2}))?(?:-(\d{2}))?/);
+    if (match) return Number(match[1]) * 10000 + Number(match[2] ?? 0) * 100 + Number(match[3] ?? 0);
+  }
+  if (value && typeof value === 'object' && 'year' in value) {
+    const item = value as { year?: number; month?: number; day?: number };
+    if (item.year) return item.year * 10000 + (item.month ?? 0) * 100 + (item.day ?? 0);
+  }
+  return Number.MAX_SAFE_INTEGER;
+}
+
+function dateLabel(value: unknown): string | undefined {
+  if (typeof value === 'number') return String(value);
+  if (typeof value === 'string') return value;
+  if (value && typeof value === 'object') {
+    const item = value as { year?: number; month?: number; day?: number; text?: string; circa?: boolean };
+    if (item.text) return item.text;
+    if (!item.year) return undefined;
+    const result = [item.day, item.month, item.year].filter(Boolean).join('.');
+    return item.circa ? `ок. ${result}` : result;
+  }
+  return undefined;
+}
+
+const media = docs
+  .filter((entry) => entry.data.entity === 'media' && entry.data.image && entry.data.subjects?.some(subjectMatches))
+  .sort((a, b) => {
+    const aRef = `${a.id.replace(/^media\//, '')}.md`;
+    const bRef = `${b.id.replace(/^media\//, '')}.md`;
+    if (aRef === portraitRef && bRef !== portraitRef) return -1;
+    if (bRef === portraitRef && aRef !== portraitRef) return 1;
+    return dateKey(a.data.date) - dateKey(b.data.date) || a.data.title.localeCompare(b.data.title, 'ru');
+  });
+---
+
+{media.length > 0 && (
+  <section class="person-gallery-section" aria-labelledby="person-gallery-heading">
+    <h2 id="person-gallery-heading">Фотографии</h2>
+    <div class="person-gallery" data-pswp-gallery>
+      {media.map((entry) => {
+        const image = entry.data.image;
+        if (!image) return null;
+        const isRemote = typeof image === 'string';
+        const src = isRemote ? image : image.src;
+        const width = isRemote ? entry.data.width : image.width;
+        const height = isRemote ? entry.data.height : image.height;
+        const canLightbox = Boolean(width && height);
+        const caption = entry.data.caption || entry.data.title;
+        const date = dateLabel(entry.data.date);
+        const alt = entry.data.alt || caption;
+
+        return (
+          <figure class="person-gallery-item">
+            <a
+              href={src}
+              data-pswp-width={canLightbox ? width : undefined}
+              data-pswp-height={canLightbox ? height : undefined}
+              data-pswp-caption={canLightbox ? caption : undefined}
+              target={canLightbox ? undefined : '_blank'}
+              rel={canLightbox ? undefined : 'noreferrer'}
+              aria-label={`Открыть: ${caption}`}
+            >
+              {isRemote ? (
+                <img src={src} alt={alt} loading="lazy" decoding="async" />
+              ) : (
+                <Image
+                  src={image}
+                  alt={alt}
+                  widths={[320, 480, 720]}
+                  sizes="(max-width: 36rem) 75vw, (max-width: 72rem) 33vw, 260px"
+                  loading="lazy"
+                />
+              )}
+            </a>
+            <figcaption>
+              <span>{caption}</span>
+              {date && <time>{date}</time>}
+            </figcaption>
+          </figure>
+        );
+      })}
+    </div>
+  </section>
+)}
+
+<script>
+  async function initPhotoSwipe() {
+    const galleries = [...document.querySelectorAll<HTMLElement>('[data-pswp-gallery]')]
+      .filter((gallery) => gallery.dataset.pswpReady !== 'true' && gallery.querySelector('a[data-pswp-width]'));
+    if (!galleries.length) return;
+
+    const { default: PhotoSwipeLightbox } = await import('photoswipe/lightbox');
+
+    for (const gallery of galleries) {
+      const lightbox = new PhotoSwipeLightbox({
+        gallery,
+        children: 'a[data-pswp-width]',
+        pswpModule: () => import('photoswipe'),
+        wheelToZoom: true,
+        bgOpacity: 0.94,
+      });
+
+      lightbox.on('uiRegister', () => {
+        lightbox.pswp?.ui?.registerElement({
+          name: 'genealogy-caption',
+          order: 9,
+          isButton: false,
+          appendTo: 'root',
+          html: '',
+          onInit: (element, pswp) => {
+            const update = () => {
+              const anchor = pswp.currSlide?.data.element as HTMLElement | undefined;
+              element.textContent = anchor?.dataset.pswpCaption ?? '';
+              element.hidden = !element.textContent;
+            };
+            pswp.on('change', update);
+            update();
+          },
+        });
+      });
+
+      lightbox.init();
+      gallery.dataset.pswpReady = 'true';
+    }
+  }
+
+  initPhotoSwipe();
+  document.addEventListener('astro:page-load', initPhotoSwipe);
+</script>
+
+<style>
+  .person-gallery-section {
+    margin-top: 2.75rem;
+  }
+
+  .person-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .person-gallery-item {
+    min-width: 0;
+    margin: 0;
+  }
+
+  .person-gallery-item a {
+    display: block;
+    overflow: hidden;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.65rem;
+    background: var(--sl-color-gray-6);
+  }
+
+  .person-gallery-item img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    transition: transform 160ms ease;
+  }
+
+  .person-gallery-item a:hover img,
+  .person-gallery-item a:focus-visible img {
+    transform: scale(1.025);
+  }
+
+  .person-gallery-item figcaption {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: space-between;
+    margin-top: 0.4rem;
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-sm);
+    line-height: 1.35;
+  }
+
+  .person-gallery-item figcaption span {
+    min-width: 0;
+  }
+
+  .person-gallery-item time {
+    flex: none;
+    color: var(--sl-color-gray-4);
+    font-variant-numeric: tabular-nums;
+  }
+
+  :global(.pswp__genealogy-caption) {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    padding: 2.5rem 1rem 1rem;
+    background: linear-gradient(transparent, rgb(0 0 0 / 0.72));
+    color: white;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    text-align: center;
+    pointer-events: none;
+  }
+
+  @media (max-width: 36rem) {
+    .person-gallery {
+      display: flex;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.5rem;
+      overscroll-behavior-inline: contain;
+    }
+
+    .person-gallery-item {
+      flex: 0 0 min(78vw, 19rem);
+      scroll-snap-align: start;
+    }
+  }
+</style>

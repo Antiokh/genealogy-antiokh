@@ -31,6 +31,7 @@ families:
       "und-Latn": "Bush"
 sex: M
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWNhZTk2OWQ0YzYyZjBiM2Q1NDM4YzJhMWU5OWJjZWVjMjZlOWE1YWM1NjEwZWY1ZmE2MjQ0MGUwOWYwYzFjOWUmZT0xNzg5Njc1MjAw/129/852/4292/500079_6730726wvaz1l6e64faf11_A.jpg"
+portrait: "1880-1889/vladimir-bush-portrait.md"
 father: "1850-1859/woldemar-carl-chrostopher-bush.md"
 mother: "1860-1869/elizaveta-olga-busch.md"
 born:

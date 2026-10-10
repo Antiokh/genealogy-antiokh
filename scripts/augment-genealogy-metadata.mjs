@@ -34,7 +34,10 @@ for (const filePath of await walk(PEOPLE_ROOT)) {
     : data.family
       ? [data.family]
       : [];
-  metadata.set(refFor(filePath), { families });
+  metadata.set(refFor(filePath), {
+    families,
+    ...(data.portrait ? { portrait: data.portrait } : {}),
+  });
 }
 
 async function augment(filename, arrayKey) {
