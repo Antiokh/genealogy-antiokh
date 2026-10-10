@@ -1,1 +1,9 @@
-Place records are reusable entities referenced by stable IDs from events and biographies.
+---
+title: Правило записей мест
+draft: true
+entity: index
+sidebar:
+  hidden: true
+---
+
+Места — переиспользуемые сущности, на которые события и биографии ссылаются по стабильным ID.
