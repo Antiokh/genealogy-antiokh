@@ -17,28 +17,24 @@
     <main class="tree-shell">
       <div id="BalkanTree" class="tree-canvas"></div>
       <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS 2…</div>
-      <div class="tree-controls">
-        <button id="collapse" disabled>Свернуть</button>
-        <button id="expand" disabled>Развернуть</button>
-      </div>
     </main>
     <script type="module" is:inline>
       import { toBalkanFamilyTree2Data } from '/tree/renderer-adapters.js';
       import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
+      import { scopeTreeDataset, treeRenderContext, reportTreeScope } from '/tree/scope.js';
 
       const status = document.getElementById('status');
-      const collapseButton = document.getElementById('collapse');
-      const expandButton = document.getElementById('expand');
       let tree = null;
       let family = null;
+      let focusId = null;
       let currentTheme = 'light';
 
       const redrawForTheme = (theme) => {
         currentTheme = theme;
-        if (!tree || !family) return;
+        if (!tree || !family || !focusId) return;
         tree.mode = theme;
-        tree.draw(family.root, null, () => tree.fit());
+        tree.draw(focusId, null, () => tree.fit());
       };
       startThemeBridge(redrawForTheme);
 
@@ -77,7 +73,12 @@
       try {
         const [response, loaded] = await Promise.all([fetch('/generated/tree.json'), loadLibrary()]);
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
-        family = await response.json();
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        family = scopeTreeDataset(sourceFamily, context.person, context.depth);
+        focusId = family.focus || family.people[0]?.id;
+        reportTreeScope(family);
+
         const FamilyTree2 = loaded.FamilyTree2;
         const template = FamilyTree2.createTemplate('genealogyPersonCard', 'base');
         configureTemplate(template);
@@ -98,14 +99,11 @@
         tree.templateName = 'genealogyPersonCard';
         tree.mode = currentTheme;
         tree.onLoaded(() => {
-          tree.fit(); collapseButton.disabled = false; expandButton.disabled = false;
-          status.textContent = `BALKAN 2 · вертикальная настройка · ${family.summary.people} людей`;
+          tree.fit();
+          const total = family.scope?.totalPeople || family.summary.people;
+          status.textContent = `BALKAN 2 · ${family.summary.people} из ${total} людей`;
         });
-        tree.addFamilyMembers(toBalkanFamilyTree2Data(family)).draw(family.root);
-
-        const leafIds = family.people.filter((person) => !family.families.some((unit) => unit.partners.includes(person.id))).map((person) => person.id);
-        collapseButton.addEventListener('click', () => { tree.collapsedIds = leafIds; tree.draw(family.root, null, () => tree.fit()); });
-        expandButton.addEventListener('click', () => { tree.collapsedIds = []; tree.draw(family.root, null, () => tree.fit()); });
+        tree.addFamilyMembers(toBalkanFamilyTree2Data(family)).draw(focusId);
       } catch (error) {
         console.error(error);
         status.textContent = `BALKAN: ${error?.message || error}`;
