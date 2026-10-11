@@ -28,6 +28,7 @@ export default defineConfig({
       },
       components: {
         Header: './src/components/GenealogyHeader.astro',
+        ThemeSelect: './src/components/GenealogyThemeSwitch.astro',
         PageTitle: './src/components/GenealogyPageTitle.astro',
         Footer: './src/components/GenealogyFooter.astro',
       },

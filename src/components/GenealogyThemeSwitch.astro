@@ -1,0 +1,240 @@
+---
+---
+
+<button
+  class="theme-switch"
+  type="button"
+  role="slider"
+  aria-valuemin="0"
+  aria-valuemax="2"
+  aria-valuenow="1"
+  aria-label="Автоматическая тема"
+  title="Автоматическая тема"
+  data-theme-switch
+  data-theme-label-light="Светлая тема"
+  data-theme-label-auto="Автоматическая тема"
+  data-theme-label-dark="Тёмная тема"
+>
+  <span class="theme-switch__track-icon theme-switch__track-icon--sun" aria-hidden="true"></span>
+  <span class="theme-switch__track-icon theme-switch__track-icon--auto" aria-hidden="true"></span>
+  <span class="theme-switch__track-icon theme-switch__track-icon--moon" aria-hidden="true"></span>
+  <span class="theme-switch__check">
+    <span class="theme-switch__icon">
+      <span class="theme-switch__sun" aria-hidden="true"></span>
+      <span class="theme-switch__auto" aria-hidden="true"></span>
+      <span class="theme-switch__moon" aria-hidden="true"></span>
+    </span>
+  </span>
+  <span class="sr-only" data-theme-switch-label>Автоматическая тема</span>
+</button>
+
+<script>
+  type Theme = 'auto' | 'dark' | 'light';
+  type DisplayTheme = 'dark' | 'light';
+  type ThemeProviderWindow = Window & {
+    StarlightThemeProvider?: {
+      updatePickers(theme?: Theme): void;
+    };
+  };
+
+  const storageKey = 'starlight-theme';
+  const modes: Theme[] = ['light', 'auto', 'dark'];
+
+  function preferredTheme(): DisplayTheme {
+    return matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  }
+
+  function storedTheme(): Theme {
+    const stored = localStorage.getItem(storageKey);
+    return stored === 'light' || stored === 'dark' ? stored : 'auto';
+  }
+
+  function displayTheme(): DisplayTheme {
+    return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
+  }
+
+  function label(button: Element, theme: Theme): string {
+    if (theme === 'light') return button.getAttribute('data-theme-label-light') || 'Светлая тема';
+    if (theme === 'dark') return button.getAttribute('data-theme-label-dark') || 'Тёмная тема';
+    return button.getAttribute('data-theme-label-auto') || 'Автоматическая тема';
+  }
+
+  function setTheme(theme: Theme): void {
+    document.documentElement.dataset.theme = theme === 'auto' ? preferredTheme() : theme;
+    localStorage.setItem(storageKey, theme === 'auto' ? '' : theme);
+    (window as ThemeProviderWindow).StarlightThemeProvider?.updatePickers(theme);
+    updateSwitches();
+  }
+
+  function updateSwitches(): void {
+    const mode = storedTheme();
+    const position = modes.indexOf(mode);
+    document.querySelectorAll<HTMLElement>('[data-theme-switch]').forEach((button) => {
+      const currentLabel = label(button, mode);
+      button.setAttribute('data-theme-mode', mode);
+      button.setAttribute('data-display-theme', displayTheme());
+      button.setAttribute('aria-valuenow', String(position));
+      button.setAttribute('aria-valuetext', currentLabel);
+      button.setAttribute('aria-label', currentLabel);
+      button.setAttribute('title', currentLabel);
+      button.querySelector('[data-theme-switch-label]')?.replaceChildren(currentLabel);
+    });
+  }
+
+  updateSwitches();
+  document.addEventListener('astro:page-load', updateSwitches);
+
+  matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
+    if (storedTheme() === 'auto') {
+      document.documentElement.dataset.theme = preferredTheme();
+      updateSwitches();
+    }
+  });
+
+  document.addEventListener('click', (event) => {
+    const button = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-theme-switch]') : null;
+    if (!button) return;
+    const rect = button.getBoundingClientRect();
+    const ratio = (event instanceof MouseEvent ? event.clientX - rect.left : rect.width / 2) / rect.width;
+    const index = Math.max(0, Math.min(2, Math.floor(ratio * 3)));
+    setTheme(modes[index]);
+  });
+
+  document.addEventListener('keydown', (event) => {
+    const button = event.target instanceof Element ? event.target.closest<HTMLElement>('[data-theme-switch]') : null;
+    if (!button) return;
+    const current = modes.indexOf(storedTheme());
+    if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      setTheme(modes[Math.max(0, current - 1)]);
+    }
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      setTheme(modes[Math.min(2, current + 1)]);
+    }
+    if (event.key === 'Home') {
+      event.preventDefault();
+      setTheme('light');
+    }
+    if (event.key === 'End') {
+      event.preventDefault();
+      setTheme('dark');
+    }
+  });
+</script>
+
+<style>
+  .theme-switch {
+    position: relative;
+    display: block;
+    flex-shrink: 0;
+    width: 58px;
+    height: 22px;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 11px;
+    padding: 0;
+    background: var(--sl-color-bg);
+    cursor: pointer;
+    transition: border-color 0.25s;
+  }
+
+  .theme-switch:hover {
+    border-color: var(--sl-color-accent);
+  }
+
+  .theme-switch__track-icon {
+    position: absolute;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    background: var(--sl-color-gray-3);
+    opacity: 0.75;
+  }
+
+  .theme-switch__track-icon--sun {
+    left: 7px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch__track-icon--auto {
+    left: 24px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='14' height='9' x='5' y='4' rx='2'/%3E%3Cpath d='M8 20h8M12 13v7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='14' height='9' x='5' y='4' rx='2'/%3E%3Cpath d='M8 20h8M12 13v7'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch__track-icon--moon {
+    right: 7px;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch__check {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: var(--sl-color-gray-6);
+    box-shadow: inset 0 0 0 1px var(--sl-color-gray-5), var(--sl-shadow-sm);
+    transition: transform 0.25s;
+  }
+
+  .theme-switch[data-theme-mode='auto'] .theme-switch__check {
+    transform: translateX(19px);
+  }
+
+  .theme-switch[data-theme-mode='dark'] .theme-switch__check {
+    transform: translateX(38px);
+  }
+
+  .theme-switch__icon {
+    position: relative;
+    display: block;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .theme-switch__sun,
+  .theme-switch__auto,
+  .theme-switch__moon {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 12px;
+    height: 12px;
+    background: var(--sl-color-white);
+    transition: opacity 0.25s;
+  }
+
+  .theme-switch__sun {
+    opacity: 1;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='4'/%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch__auto {
+    opacity: 0;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='14' height='9' x='5' y='4' rx='2'/%3E%3Cpath d='M8 20h8M12 13v7'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Crect width='14' height='9' x='5' y='4' rx='2'/%3E%3Cpath d='M8 20h8M12 13v7'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch__moon {
+    opacity: 0;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24'%3E%3Cpath d='M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'/%3E%3C/svg%3E") center / contain no-repeat;
+  }
+
+  .theme-switch[data-theme-mode='auto'] .theme-switch__sun,
+  .theme-switch[data-theme-mode='dark'] .theme-switch__sun {
+    opacity: 0;
+  }
+
+  .theme-switch[data-theme-mode='auto'] .theme-switch__auto,
+  .theme-switch[data-theme-mode='dark'] .theme-switch__moon {
+    opacity: 1;
+  }
+</style>
