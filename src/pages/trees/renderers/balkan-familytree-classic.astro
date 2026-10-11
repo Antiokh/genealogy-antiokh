@@ -112,8 +112,7 @@
 
         const updateScopeStatus = () => {
           if (!tree) return;
-          const visiblePeople = (tree.visibleNodeIds || []).filter((id) => sourcePeopleIds.has(id)).length;
-          const count = visiblePeople || totalPeople;
+          const count = (tree.visibleNodeIds || []).filter((id) => sourcePeopleIds.has(id)).length;
           status.textContent = `BALKAN classic · ${count} из ${totalPeople} людей`;
           reportTreeScope({
             focus: focusId,
@@ -157,6 +156,7 @@
           partnerChildrenSplitSeparation: 24,
           scaleInitial: FamilyTree.match.boundary,
           enableSearch: false,
+          lazyLoading: false,
           nodeMouseClick: FamilyTree.action.none,
           roots: [initialRootId],
           nodeBinding: { html:'cardHtml' },
