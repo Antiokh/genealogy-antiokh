@@ -2,13 +2,15 @@
 title: "Лесозаводск"
 description: "Город Лесозаводск Приморского края"
 entity: place
-placeType: city
-coordinates:
-  lat: 45.46534
-  lon: 133.40475
-region: "Приморский край"
+kind: city
+label: "Лесозаводск"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Lesozavodsk"
+geo:
+  latitude: 45.46534
+  longitude: 133.40475
+  precision: city
 ---
 
 В 1942 году часть, в которой служил Николай Петрович Курочкин, находилась в районе станции Лесозаводск; после подготовки подразделение было отправлено на западный фронт.
