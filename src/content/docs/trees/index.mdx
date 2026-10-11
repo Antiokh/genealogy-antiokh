@@ -5,8 +5,9 @@ sidebar:
   order: 4
 ---
 
-Все варианты ниже строятся из одного generated-файла `genealogy-tree-1` и используют один `genealogy-person-card`.
+Все варианты ниже строятся из одного `/generated/tree.json` и используют один `genealogy-person-card`.
 
 - [Family Chart](./family-chart/) — компактный genealogy-specific движок и лучший текущий кандидат по читаемости поколений.
-- [BALKAN FamilyTreeJS 2](./balkan-familytree2/) — genealogy-specific движок с нативными spouse/parent pair relations.
+- [BALKAN FamilyTreeJS 2](./balkan-familytree2/) — новый focus-centric движок; на этой странице дополнительно тестируем максимально вертикальную настройку через template separations.
+- [BALKAN FamilyTreeJS classic](./balkan-familytree-classic/) — тот же граф, но со штатными `orientation.top` + `layout.normal`: поколения сверху вниз, партнёры рядом.
 - [Vue Flow + ELK](./vue-flow-elk/) — явные union-узлы и наиболее точное сохранение нашей модели данных.
