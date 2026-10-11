@@ -90,6 +90,7 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
       <div class={`person-portrait__frame${personDeceased ? ' is-deceased' : ''}`}>
         {localPortrait ? (
           <Image
+            class="person-portrait__image"
             src={localPortrait}
             alt={portraitAlt}
             widths={[144, 216, 320]}
@@ -146,13 +147,15 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
   .person-portrait__frame {
     position: relative;
     overflow: hidden;
+    width: 100%;
+    aspect-ratio: 4 / 5;
     border-radius: 0.75rem;
   }
 
-  .person-portrait img {
+  .person-portrait :global(.person-portrait__image) {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 5;
+    height: 100%;
     object-fit: cover;
     border: 1px solid var(--sl-color-gray-5);
     border-radius: 0.75rem;
@@ -160,7 +163,7 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
     box-shadow: 0 0.2rem 0.8rem color-mix(in srgb, var(--sl-color-black) 12%, transparent);
   }
 
-  .person-portrait__frame.is-deceased img {
+  .person-portrait__frame.is-deceased :global(.person-portrait__image) {
     filter: grayscale(1);
   }
 
@@ -176,7 +179,7 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
     pointer-events: none;
   }
 
-  .person-portrait img.is-placeholder {
+  .person-portrait :global(.person-portrait__image.is-placeholder) {
     object-fit: contain;
     object-position: 50% 50% !important;
     padding: clamp(1rem, 3vw, 1.8rem);
