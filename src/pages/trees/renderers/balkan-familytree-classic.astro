@@ -110,7 +110,6 @@
           scaleInitial: FamilyTree.match.boundary,
           enableSearch: false,
           nodeBinding: { html:'cardHtml' },
-          nodes,
         });
 
         tree.on('render-link', (sender, args) => {
@@ -125,9 +124,14 @@
           args.html += relationIcon(relation, x, y);
         });
 
-        tree.draw?.(FamilyTree.action.update, null, () => {
-          if (family.root) tree.center?.(family.root);
+        let initialFocusApplied = false;
+        tree.onInit(() => {
+          if (initialFocusApplied || !family.root) return;
+          initialFocusApplied = true;
+          requestAnimationFrame(() => tree.center?.(family.root));
         });
+
+        tree.load(nodes);
         status.textContent = `BALKAN classic · сверху вниз · ${family.summary.people} людей · ${family.summary.families} союзов`;
       } catch (error) {
         console.error(error);
