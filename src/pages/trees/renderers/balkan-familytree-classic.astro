@@ -66,6 +66,27 @@
         </g>`;
       }
 
+      function treeControlIcon(state = 'up') {
+        const accent = 'var(--tree-accent, var(--sl-color-accent))';
+        const background = 'var(--tree-background, var(--sl-color-bg))';
+        const badge = state === 'expand'
+          ? `<circle cx="23" cy="22" r="6" fill="${accent}" stroke="${background}" stroke-width="1.5"/>
+             <path d="M20 22h6M23 19v6" fill="none" stroke="${background}" stroke-width="1.8" stroke-linecap="round"/>`
+          : state === 'collapse'
+            ? `<circle cx="23" cy="22" r="6" fill="${accent}" stroke="${background}" stroke-width="1.5"/>
+               <path d="M20 22h6" fill="none" stroke="${background}" stroke-width="1.8" stroke-linecap="round"/>`
+            : '';
+
+        return `<g class="genealogy-tree-control genealogy-tree-control-${state}">
+          <circle cx="15" cy="15" r="14" fill="${background}" stroke="${accent}" stroke-width="1.7"/>
+          <path d="M15 8v5M9 13h12M9 13v4M21 13v4" fill="none" stroke="${accent}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="15" cy="7" r="2.2" fill="${accent}"/>
+          <circle cx="9" cy="19" r="2.2" fill="${accent}"/>
+          <circle cx="21" cy="19" r="2.2" fill="${accent}"/>
+          ${badge}
+        </g>`;
+      }
+
       try {
         const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { treeRenderContext, reportTreeScope }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
@@ -92,6 +113,10 @@
         FamilyTree.templates.genealogy.html = `<foreignObject x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}">{val}</foreignObject>`;
         FamilyTree.templates.genealogy.defs = '';
         FamilyTree.templates.genealogy.ripple = { radius:0, color:'none', rect:null };
+        FamilyTree.templates.genealogy.expandCollapseSize = 30;
+        FamilyTree.templates.genealogy.plus = treeControlIcon('expand');
+        FamilyTree.templates.genealogy.minus = treeControlIcon('collapse');
+        FamilyTree.templates.genealogy.up = `<g transform="translate(${(PERSON_CARD_WIDTH - 30) / 2}, -15)">${treeControlIcon('up')}</g>`;
         FamilyTree.templates.genealogy_male = Object.assign({}, FamilyTree.templates.genealogy);
         FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
 
@@ -176,7 +201,7 @@
           if (target instanceof Element && target.closest('.genealogy-person-link')) return false;
 
           const id = args?.node?.id;
-          if (!id || id === focusId) return false;
+          if (!id) return false;
 
           const data = nodeDataById.get(id);
           const visible = new Set(tree.visibleNodeIds || []);
