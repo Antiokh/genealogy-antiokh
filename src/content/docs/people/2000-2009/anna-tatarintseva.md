@@ -47,6 +47,9 @@ partners:
   - person: "1980-1989/anton-nazarov.md"
     married:
       date: "2023-01-21"
+    divorced:
+      known: true
+      date: "2026-02-10"
 occupation: []
 residence: []
 sources: []
