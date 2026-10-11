@@ -121,6 +121,7 @@ export function renderTreeStatus(status, {
   visiblePeople,
   totalPeople,
   onFocus,
+  onExpandAll,
 } = {}) {
   if (!status || !globalThis.document) return;
   status.classList.remove('error');
@@ -134,15 +135,19 @@ export function renderTreeStatus(status, {
   if (typeof onFocus === 'function') focusButton.addEventListener('click', onFocus);
   else focusButton.disabled = true;
 
-  const totalText = document.createElement('span');
-  totalText.className = 'tree-status__total';
-  totalText.textContent = `${totalPeople ?? 0} людей`;
-  totalText.title = 'Полное раскрытие временно отключено для production-рендерера';
+  const totalButton = document.createElement('button');
+  totalButton.type = 'button';
+  totalButton.className = 'tree-status__action tree-status__total';
+  totalButton.textContent = `${totalPeople ?? 0} людей`;
+  totalButton.title = 'Раскрыть всё дерево';
+  totalButton.setAttribute('aria-label', `Раскрыть всё дерево: ${totalButton.textContent}`);
+  if (typeof onExpandAll === 'function') totalButton.addEventListener('click', onExpandAll);
+  else totalButton.disabled = true;
 
   status.replaceChildren(
     focusButton,
     document.createTextNode(` · ${visiblePeople ?? 0} из `),
-    totalText,
+    totalButton,
   );
 }
 
