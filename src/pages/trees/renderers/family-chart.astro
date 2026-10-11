@@ -31,13 +31,19 @@
       import { toFamilyChartData } from '/tree/renderer-adapters.js';
       import { personCardElementHtml } from '/tree/person-card.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
+      import { scopeTreeDataset, treeRenderContext, reportTreeScope } from '/tree/scope.js';
 
       startThemeBridge();
       const status = document.getElementById('status');
       try {
         const response = await fetch('/generated/tree.json');
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
-        const family = await response.json();
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        const family = scopeTreeDataset(sourceFamily, context.person, context.depth);
+        const focusId = family.focus || family.people[0]?.id;
+        reportTreeScope(family);
+
         const data = toFamilyChartData(family);
         const chart = f3.createChart('#FamilyChart', data)
           .setTransitionTime(0)
@@ -52,8 +58,9 @@
             deceased:Boolean(p.deceased), photo:p.photo || ''
           })}</div>`;
         });
-        chart.updateTree({ initial:true, main_id:family.root });
-        status.textContent = `Family Chart · ${family.summary.people} людей · ${family.summary.families} союзов`;
+        chart.updateTree({ initial:true, main_id:focusId });
+        const total = family.scope?.totalPeople || family.summary.people;
+        status.textContent = `Family Chart · ${family.summary.people} из ${total} людей`;
       } catch (error) {
         console.error(error);
         status.textContent = `Family Chart: ${error?.message || error}`;
