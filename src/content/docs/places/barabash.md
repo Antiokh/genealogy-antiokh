@@ -2,13 +2,15 @@
 title: "Барабаш"
 description: "Село Барабаш Хасанского района Приморского края"
 entity: place
-placeType: village
-coordinates:
-  lat: 43.18989
-  lon: 131.49611
-region: "Приморский край, Хасанский район"
+kind: village
+label: "Барабаш"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Barabash"
+geo:
+  latitude: 43.18989
+  longitude: 131.49611
+  precision: city
 ---
 
 В 1942 году, после призыва, Николай Петрович Курочкин оказался в пограничной зоне у Барабаша; в воспоминаниях он упоминает санитарную часть и строительство оборонительных сооружений на границе.

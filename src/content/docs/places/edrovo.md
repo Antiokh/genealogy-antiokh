@@ -2,13 +2,15 @@
 title: "Едрово"
 description: "Село Едрово Валдайского района Новгородской области"
 entity: place
-placeType: village
-coordinates:
-  lat: 57.9131
-  lon: 33.6203
-region: "Новгородская область, Валдайский район"
+kind: village
+label: "Едрово"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Yedrovo"
+geo:
+  latitude: 57.9131
+  longitude: 33.6203
+  precision: city
 ---
 
 Едрово — село в Валдайском районе Новгородской области. В воспоминаниях Николая Петровича Курочкина это главное место истории его родительской семьи, детства и возвращения после войны.

@@ -2,13 +2,15 @@
 title: "Мариинск"
 description: "Город Мариинск Кемеровской области"
 entity: place
-placeType: city
-coordinates:
-  lat: 56.2167
-  lon: 87.75
-region: "Кемеровская область"
+kind: city
+label: "Мариинск"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Mariinsk"
+geo:
+  latitude: 56.2167
+  longitude: 87.75
+  precision: city
 ---
 
 В Мариинске Николай Петрович Курочкин преподавал в сельскохозяйственном техникуме с 1934 года, познакомился с Валентиной Спиридоновой и в начале января 1935 года зарегистрировал с ней брак.

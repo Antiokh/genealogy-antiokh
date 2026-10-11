@@ -1,31 +1,31 @@
 ---
-title: "Эмилия Бескоровайная"
-description: "Эмилия Бескоровайная, 1935–2024"
+title: "Эмилия Николаевна Бескоровайная"
+description: "Эмилия Николаевна Бескоровайная (Курочкина), 1935–2024"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Эмилия Курочкина"
-  display: "Эмилия Бескоровайная"
+  full: "Эмилия Николаевна Курочкина"
+  display: "Эмилия Николаевна Бескоровайная"
+  first: "Эмилия"
+  middle: "Николаевна"
+  last: "Бескоровайная"
   birth_last: "Курочкина"
   married_last: "Бескоровайная"
-  aliases: []
+  aliases:
+    - "Эмма"
 families:
   - key: "beskorovaynyy"
     label: "Бескоровайные"
     locale: ru
-    roles:
-      - current
-      - marriage
-      - partner
+    roles: [current, marriage, partner]
     inferred: true
     localized:
       "und-Latn": "Beskorovaynyy"
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
+    roles: [birth]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -47,28 +47,29 @@ buried:
   place: null
 partners:
   - person: "1930-1939/vladimir-beskorovaynyi.md"
-occupation: []
+occupation:
+  - "преподаватель"
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500004"
 ---
 
-**Годы жизни:** 1935–2024
-**Фамилия при рождении:** Курочкина
-**Фамилия после брака:** Бескоровайная
-**Имя в исходных данных:** Эмилия Курочкина
+**Годы жизни:** 1935–2024  
+**Фамилия при рождении:** Курочкина  
+**Семейное имя:** Эмма.
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
-
-**Партнёры:** [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/)
-
-**Дети:** [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/)
+Родители — [Николай Петрович Курочкин](/people/1900-1909/nikolay-kurochkin/) и [Валентина Спиридонова (Курочкина)](/people/1910-1919/valentina-kurochkina/). Супруг — [Владимир Бескоровайный](/people/1930-1939/vladimir-beskorovaynyi/). Дочь — [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/).
 
 ## Биография
 
-Сведения пока не добавлены.
+По воспоминаниям отца, Эмилия окончила школу с серебряной медалью, затем Ленинградский институт точной механики и оптики. В дальнейшем работала старшим преподавателем Тульского политехнического института.
+
+В записи 1996 года Николай Петрович отмечал, что Эмма уже была пенсионеркой, но продолжала работать; её супруг Владимир также был пенсионером. Их дочь Татьяна получила в Москве трёхкомнатную квартиру как семья с ребёнком-инвалидом; у Татьяны было двое сыновей, и отец упоминал финансовые трудности семьи.
+
+Отчество восстановлено по установленной родственной связи с отцом Николаем Петровичем.

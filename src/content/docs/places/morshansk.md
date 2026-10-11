@@ -2,13 +2,15 @@
 title: "Моршанск"
 description: "Город Моршанск Тамбовской области"
 entity: place
-placeType: city
-coordinates:
-  lat: 53.45
-  lon: 41.8
-region: "Тамбовская область"
+kind: city
+label: "Моршанск"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Morshansk"
+geo:
+  latitude: 53.45
+  longitude: 41.8
+  precision: city
 ---
 
 После ранения в 1942 году Николай Петрович Курочкин проходил лечение во фронтовом госпитале в Моршанске, откуда был отправлен дальше в тыловой госпиталь на Урал.
