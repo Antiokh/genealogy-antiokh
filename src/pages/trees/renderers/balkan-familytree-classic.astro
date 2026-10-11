@@ -20,16 +20,17 @@
     <script>
       // @ts-nocheck
       import FamilyTree from '@balkangraph/familytree.js';
-      import { toBalkanFamilyTreeData } from '/tree/renderer-adapters.js';
-      import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
-      import { startThemeBridge } from '/tree/theme-bridge.js';
 
       const status = document.getElementById('status');
-      let currentTheme = 'light';
-      startThemeBridge((theme) => { currentTheme = theme; });
-
       try {
-        const response = await fetch('/generated/tree.json');
+        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, response] = await Promise.all([
+          import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
+          import(/* @vite-ignore */ '/tree/person-card.js'),
+          import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          fetch('/generated/tree.json'),
+        ]);
+        let currentTheme = 'light';
+        startThemeBridge((theme) => { currentTheme = theme; });
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const family = await response.json();
 
@@ -43,7 +44,7 @@
         FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
 
         const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
-        const tree = new FamilyTree(document.getElementById('BalkanClassic'), {
+        new FamilyTree(document.getElementById('BalkanClassic'), {
           mode: currentTheme,
           template: 'genealogy',
           orientation: FamilyTree.orientation.top,
@@ -56,15 +57,10 @@
           partnerChildrenSplitSeparation: 24,
           scaleInitial: FamilyTree.match.boundary,
           enableSearch: false,
-          mouseScrool: FamilyTree.action.zoom,
           nodeBinding: { html:'cardHtml' },
           nodes,
         });
 
-        tree.on('render-link', (sender, args) => {
-          if (args?.html) args.html = args.html.replace(/stroke="[^"]*"/g, 'stroke="var(--tree-edge)"');
-        });
-        tree.draw?.(FamilyTree.action.init);
         status.textContent = `BALKAN classic · сверху вниз · ${family.summary.people} людей · ${family.summary.families} союзов`;
       } catch (error) {
         console.error(error);
