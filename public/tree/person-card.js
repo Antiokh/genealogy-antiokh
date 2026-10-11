@@ -121,6 +121,7 @@ export class GenealogyPersonCard extends HTMLElement {
     const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;
     const avatar = `<div class="avatar ${sex}${deceased ? ' deceased' : ''}" aria-hidden="true">
       <span class="avatar-initials">${esc(initials(name))}</span>
+      <img class="avatar-placeholder" src="/tree/person-placeholder.svg" alt="" draggable="false">
       ${photo ? `<img class="avatar-photo" src="${esc(photo)}" alt="" draggable="false">` : ''}
       <span class="avatar-shield"></span>
     </div>`;
@@ -163,14 +164,21 @@ export class GenealogyPersonCard extends HTMLElement {
         }
         .avatar.male { --avatar-accent:color-mix(in srgb, var(--sl-color-accent, #6b8cff) 68%, #6f93a8); }
         .avatar.female { --avatar-accent:color-mix(in srgb, var(--sl-color-accent, #6b8cff) 55%, #c47e91); }
-        .avatar-initials { position:relative; z-index:1; }
+        .avatar-initials { position:relative; z-index:0; opacity:0; }
+        .avatar-initials.visible { opacity:1; }
+        .avatar-placeholder {
+          position:absolute; z-index:1; width:31px; height:31px; object-fit:contain;
+          opacity:.78; pointer-events:none; user-select:none; -webkit-user-drag:none;
+        }
         .avatar-photo {
           position:absolute; z-index:2; inset:1px; width:42px; height:42px; border-radius:50%;
           object-fit:cover; opacity:0; transition:opacity .12s ease-out; user-select:none; -webkit-user-drag:none;
         }
         .avatar-photo.loaded { opacity:1; }
         .avatar.deceased .avatar-photo { filter:grayscale(1); }
-        .avatar.deceased .avatar-initials { filter:grayscale(1); opacity:.72; }
+        .avatar.deceased .avatar-placeholder { filter:grayscale(1); opacity:.62; }
+        .avatar.deceased .avatar-initials { filter:grayscale(1); }
+        .avatar.deceased .avatar-initials.visible { opacity:.72; }
         .avatar.deceased::after {
           content:''; position:absolute; z-index:3; right:-8px; bottom:8px; width:38px; height:5px;
           background:#000;
@@ -239,12 +247,23 @@ export class GenealogyPersonCard extends HTMLElement {
       }));
     });
 
+    const placeholder = this.shadowRoot.querySelector('.avatar-placeholder');
+    const initialsFallback = this.shadowRoot.querySelector('.avatar-initials');
+    if (placeholder) {
+      const useInitials = () => {
+        placeholder.remove();
+        initialsFallback?.classList.add('visible');
+      };
+      placeholder.addEventListener('error', useInitials, { once:true });
+      if (placeholder.complete && placeholder.naturalWidth === 0) useInitials();
+    }
+
     const image = this.shadowRoot.querySelector('.avatar-photo');
     if (image) {
       const showPhoto = () => image.classList.add('loaded');
       const useFallback = () => image.remove();
-      image.addEventListener('load', showPhoto, { once: true });
-      image.addEventListener('error', useFallback, { once: true });
+      image.addEventListener('load', showPhoto, { once:true });
+      image.addEventListener('error', useFallback, { once:true });
       if (image.complete) image.naturalWidth > 0 ? showPhoto() : useFallback();
     }
   }
