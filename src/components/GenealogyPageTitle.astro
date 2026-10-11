@@ -125,12 +125,29 @@ function personLink(ref: string): { href: string; label: string } {
   };
 }
 
-function placeLabel(ref: unknown, fallback?: string): string | undefined {
-  if (fallback) return fallback;
-  if (typeof ref !== 'string' || !ref) return undefined;
-  const normalized = ref.replace(/^\/?places\//, '').replace(/\.mdx?$/i, '');
-  const entry = placeEntries.find((item) => item.id === `places/${normalized}`);
-  return entry?.data.label || entry?.data.title || normalized;
+function personParentRefs(entry: (typeof personEntries)[number]): string[] {
+  return [entry.data.father, entry.data.mother, ...(entry.data.parents || [])]
+    .map(normalizePersonRef)
+    .filter((value): value is string => Boolean(value));
+}
+
+function normalizePlaceRef(value: unknown): string | undefined {
+  if (typeof value !== 'string' || !value.trim()) return undefined;
+  return value
+    .trim()
+    .replace(/^\/?places\//, '')
+    .replace(/^\.\//, '')
+    .replace(/\.mdx?$/i, '');
+}
+
+function placeInfo(ref: unknown, fallback?: string): { href?: string; label: string } | undefined {
+  const normalized = normalizePlaceRef(ref);
+  if (!normalized && !fallback) return undefined;
+  const entry = normalized ? placeEntries.find((item) => item.id === `places/${normalized}`) : undefined;
+  return {
+    href: normalized ? `/places/${normalized}/` : undefined,
+    label: fallback || entry?.data.label || entry?.data.title || normalized || '',
+  };
 }
 
 function relationDate(event: unknown): string | undefined {
@@ -139,11 +156,21 @@ function relationDate(event: unknown): string | undefined {
   return formatDate(record.date);
 }
 
-function relationPlace(event: unknown): string | undefined {
+function relationPlace(event: unknown): { href?: string; label: string } | undefined {
   if (!event || typeof event !== 'object') return undefined;
   const record = event as Record<string, unknown>;
   const explicit = typeof record.placeLabel === 'string' ? record.placeLabel : undefined;
-  return placeLabel(record.place, explicit);
+  return placeInfo(record.place, explicit);
+}
+
+function dateRange(from: unknown, to: unknown): string | undefined {
+  const fromLabel = formatDate(from);
+  const toLabel = formatDate(to);
+  if (fromLabel && toLabel && fromLabel === toLabel) return fromLabel;
+  if (fromLabel && toLabel) return `${fromLabel}–${toLabel}`;
+  if (fromLabel) return `с ${fromLabel}`;
+  if (toLabel) return `до ${toLabel}`;
+  return undefined;
 }
 
 const explicitDirectPortrait = explicitPortraitIsLegacyMedia ? undefined : explicitPortrait;
@@ -181,6 +208,13 @@ const givenName = structuredGiven
 const birthSurname = nameRecord?.birth_last;
 const surnameNote = birthSurname && surname && birthSurname !== surname ? `урожд. ${birthSurname}` : undefined;
 
+const localizedNames = nameRecord?.localized
+  ? Object.values(nameRecord.localized).map((item) => item.display || [item.first, item.middle, item.last].filter(Boolean).join(' ')).filter(Boolean)
+  : [];
+const alternateNames = [...new Set([...(nameRecord?.aliases || []), ...localizedNames]
+  .map((value) => String(value).trim())
+  .filter((value) => value && value !== fullPersonLabel && value !== `${givenName} ${surname || ''}`.trim()))];
+
 const portraitAlt = (usingLegacyMediaPortrait ? portraitEntry?.data.alt : undefined) || fullPersonLabel || route.entry.data.title || '';
 const subject = usingLegacyMediaPortrait
   ? portraitEntry?.data.subjects?.find((value) => {
@@ -192,19 +226,32 @@ const focal = typeof subject === 'object' ? subject?.focal : undefined;
 const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%';
 
 const born = route.entry.data.born;
+const buried = route.entry.data.buried;
 const birthDate = formatDate(born?.date);
 const deathDate = formatDate(died?.date);
-const birthPlace = placeLabel(born?.place, born?.placeLabel);
-const lifeLine = personDeceased
-  ? [birthDate || '?', deathDate || '?'].join(' – ')
-  : birthDate
-    ? `род. ${birthDate}${birthPlace ? ` (${birthPlace})` : ''}`
-    : undefined;
+const burialDate = formatDate(buried?.date);
+const birthPlace = placeInfo(born?.place, born?.placeLabel);
+const deathPlace = placeInfo(died?.place, died?.placeLabel);
+const burialPlace = placeInfo(buried?.place, buried?.placeLabel);
 
 const parentRefs = [route.entry.data.father, route.entry.data.mother, ...(route.entry.data.parents || [])]
   .map(normalizePersonRef)
   .filter((value): value is string => Boolean(value));
-const parentLinks = [...new Set(parentRefs)].map(personLink);
+const uniqueParentRefs = [...new Set(parentRefs)];
+const parentLinks = uniqueParentRefs.map(personLink);
+
+const ownRef = normalizePersonRef(personRef);
+const ownParentSet = new Set(uniqueParentRefs);
+const siblingEntries = ownParentSet.size > 0
+  ? personEntries.filter((entry) => {
+      const ref = normalizePersonRef(personRefForEntry(entry));
+      if (!ref || ref === ownRef) return false;
+      return personParentRefs(entry).some((parentRef) => ownParentSet.has(parentRef));
+    })
+  : [];
+const siblingLinks = siblingEntries
+  .sort((a, b) => (dateYear(a.data.born?.date) ?? 9999) - (dateYear(b.data.born?.date) ?? 9999))
+  .map((entry) => personLink(personRefForEntry(entry)));
 
 const partnerItems = (route.entry.data.partners || []).map((partner) => {
   const person = typeof partner === 'string' ? partner : partner.person;
@@ -214,24 +261,39 @@ const partnerItems = (route.entry.data.partners || []).map((partner) => {
   const marriedPlace = typeof partner === 'object' ? relationPlace(partner.married) : undefined;
   const divorced = typeof partner === 'object' ? relationDate(partner.divorced) : undefined;
   const details = [
-    married ? `брак ${married}${marriedPlace ? ` (${marriedPlace})` : ''}` : undefined,
+    married ? `брак ${married}${marriedPlace ? ` (${marriedPlace.label})` : ''}` : undefined,
     divorced ? `развод ${divorced}` : undefined,
   ].filter(Boolean).join('; ');
   return { ...personLink(ref), details };
 }).filter((value): value is NonNullable<typeof value> => Boolean(value));
 
 const childEntries = personRef
-  ? personEntries.filter((entry) => {
-      const data = entry.data;
-      const refs = [data.father, data.mother, ...(data.parents || [])]
-        .map(normalizePersonRef)
-        .filter(Boolean);
-      return refs.includes(normalizePersonRef(personRef));
-    })
+  ? personEntries.filter((entry) => personParentRefs(entry).includes(ownRef || ''))
   : [];
 const childLinks = childEntries
   .sort((a, b) => (dateYear(a.data.born?.date) ?? 9999) - (dateYear(b.data.born?.date) ?? 9999))
   .map((entry) => personLink(personRefForEntry(entry)));
+
+const occupations = route.entry.data.occupation || [];
+const residences = (route.entry.data.residence || []).map((item) => ({
+  place: placeInfo(item.place, item.label),
+  range: dateRange(item.from, item.to),
+}));
+const researchInterests = route.entry.data.researchInterests || [];
+const courses = route.entry.data.courses || [];
+const works = (route.entry.data.works || []).map((work) => {
+  const details = [work.year, work.publication, work.imprint].filter(Boolean).join(', ');
+  return details ? `${work.title} — ${details}` : work.title;
+});
+const archives = (route.entry.data.archives || []).map((archive) => {
+  const details = [
+    archive.fund ? `ф. ${archive.fund}` : undefined,
+    archive.units ? `${archive.units} ед.` : undefined,
+    archive.dates,
+  ].filter(Boolean).join(', ');
+  return details ? `${archive.repository} — ${details}` : archive.repository;
+});
+const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || works.length > 0 || archives.length > 0;
 ---
 
 {isPerson ? (
@@ -242,14 +304,26 @@ const childLinks = childEntries
         <span class="person-name-given">{givenName}</span>
       </h1>
       {surnameNote && <div class="person-name-note">{surnameNote}</div>}
-      {lifeLine && <div class="person-life-line">{lifeLine}</div>}
+      <div class="person-life-line">
+        {personDeceased ? (
+          <>{birthDate || '?'} – {deathDate || '?'}</>
+        ) : (birthDate || birthPlace) ? (
+          <>род. {birthDate || '?'}{birthPlace && <> ({birthPlace.href ? <a href={birthPlace.href}>{birthPlace.label}</a> : birthPlace.label})</>}</>
+        ) : null}
+      </div>
 
-      {(parentLinks.length > 0 || partnerItems.length > 0 || childLinks.length > 0) && (
+      {(parentLinks.length > 0 || siblingLinks.length > 0 || partnerItems.length > 0 || childLinks.length > 0) && (
         <dl class="person-relations">
           {parentLinks.length > 0 && (
             <div class="person-relation-row">
               <dt>Родители</dt>
               <dd>{parentLinks.map((item, index) => <><a href={item.href}>{item.label}</a>{index < parentLinks.length - 1 ? ', ' : ''}</>)}</dd>
+            </div>
+          )}
+          {siblingLinks.length > 0 && (
+            <div class="person-relation-row">
+              <dt>Братья / сёстры</dt>
+              <dd>{siblingLinks.map((item, index) => <><a href={item.href}>{item.label}</a>{index < siblingLinks.length - 1 ? ', ' : ''}</>)}</dd>
             </div>
           )}
           {partnerItems.length > 0 && (
@@ -276,7 +350,92 @@ const childLinks = childEntries
           )}
         </dl>
       )}
+
+      {(alternateNames.length > 0 || occupations.length > 0 || residences.length > 0 || (personDeceased && (birthPlace || deathPlace)) || burialDate || burialPlace) && (
+        <dl class="person-facts">
+          {alternateNames.length > 0 && (
+            <div class="person-relation-row">
+              <dt>Также</dt>
+              <dd>{alternateNames.join(', ')}</dd>
+            </div>
+          )}
+          {personDeceased && birthPlace && (
+            <div class="person-relation-row">
+              <dt>Рождение</dt>
+              <dd>{birthPlace.href ? <a href={birthPlace.href}>{birthPlace.label}</a> : birthPlace.label}</dd>
+            </div>
+          )}
+          {personDeceased && deathPlace && (
+            <div class="person-relation-row">
+              <dt>Смерть</dt>
+              <dd>{deathPlace.href ? <a href={deathPlace.href}>{deathPlace.label}</a> : deathPlace.label}</dd>
+            </div>
+          )}
+          {(burialDate || burialPlace) && (
+            <div class="person-relation-row">
+              <dt>Погребение</dt>
+              <dd>
+                {burialDate}{burialDate && burialPlace ? ', ' : ''}
+                {burialPlace && (burialPlace.href ? <a href={burialPlace.href}>{burialPlace.label}</a> : burialPlace.label)}
+              </dd>
+            </div>
+          )}
+          {occupations.length > 0 && (
+            <div class="person-relation-row">
+              <dt>Занятия</dt>
+              <dd>{occupations.join(', ')}</dd>
+            </div>
+          )}
+          {residences.length > 0 && (
+            <div class="person-relation-row">
+              <dt>Места жизни</dt>
+              <dd>
+                {residences.map((item, index) => (
+                  <>
+                    {item.place ? (item.place.href ? <a href={item.place.href}>{item.place.label}</a> : item.place.label) : '—'}
+                    {item.range && <small class="person-inline-note"> {item.range}</small>}
+                    {index < residences.length - 1 ? '; ' : ''}
+                  </>
+                ))}
+              </dd>
+            </div>
+          )}
+        </dl>
+      )}
+
+      {hasExtendedFacts && (
+        <details class="person-more">
+          <summary>Дополнительные сведения</summary>
+          <dl class="person-facts person-facts--inside">
+            {researchInterests.length > 0 && (
+              <div class="person-relation-row">
+                <dt>Интересы</dt>
+                <dd>{researchInterests.join('; ')}</dd>
+              </div>
+            )}
+            {courses.length > 0 && (
+              <div class="person-relation-row">
+                <dt>Курсы</dt>
+                <dd>{courses.join('; ')}</dd>
+              </div>
+            )}
+            {works.length > 0 && (
+              <div class="person-relation-row">
+                <dt>Работы</dt>
+                <dd>{works.join('; ')}</dd>
+              </div>
+            )}
+            {archives.length > 0 && (
+              <div class="person-relation-row">
+                <dt>Архивы</dt>
+                <dd>{archives.join('; ')}</dd>
+              </div>
+            )}
+          </dl>
+        </details>
+      )}
     </div>
+
     <figure class="person-portrait">
       <div class={`person-portrait__frame${personDeceased ? ' is-deceased' : ''}`}>
         {localPortrait ? (
@@ -343,7 +502,9 @@ const childLinks = childEntries
   .person-name-given {
     display: block;
     min-width: 0;
+    overflow: hidden;
     white-space: nowrap;
+    text-overflow: ellipsis;
     font-size: 1em;
   }
 
@@ -354,13 +515,15 @@ const childLinks = childEntries
   }
 
   .person-life-line {
+    min-height: 1.45em;
     margin-top: 1rem;
     color: var(--sl-color-gray-2);
     font-size: 1.02rem;
     font-weight: 600;
   }
 
-  .person-relations {
+  .person-relations,
+  .person-facts {
     display: grid;
     gap: 0.42rem;
     margin: 1rem 0 0;
@@ -368,9 +531,20 @@ const childLinks = childEntries
     line-height: 1.45;
   }
 
+  .person-facts {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--sl-color-hairline);
+  }
+
+  .person-facts--inside {
+    margin-top: 0.7rem;
+    padding-top: 0;
+    border-top: 0;
+  }
+
   .person-relation-row {
     display: grid;
-    grid-template-columns: 5.2rem minmax(0, 1fr);
+    grid-template-columns: 6.2rem minmax(0, 1fr);
     gap: 0.55rem;
     margin: 0;
   }
@@ -390,6 +564,29 @@ const childLinks = childEntries
     margin-top: 0.05rem;
     color: var(--sl-color-gray-3);
     font-size: var(--sl-text-xs);
+  }
+
+  .person-inline-note {
+    color: var(--sl-color-gray-3);
+    font-size: var(--sl-text-xs);
+    white-space: nowrap;
+  }
+
+  .person-more {
+    margin-top: 0.9rem;
+    color: var(--sl-color-gray-2);
+    font-size: var(--sl-text-sm);
+  }
+
+  .person-more summary {
+    width: fit-content;
+    cursor: pointer;
+    color: var(--sl-color-gray-3);
+    font-weight: 600;
+  }
+
+  .person-more[open] summary {
+    color: var(--sl-color-text-accent);
   }
 
   .person-portrait {
@@ -466,14 +663,15 @@ const childLinks = childEntries
       font-size: var(--sl-text-sm);
     }
 
-    .person-relations {
+    .person-relations,
+    .person-facts {
       gap: 0.32rem;
       margin-top: 0.75rem;
       font-size: var(--sl-text-xs);
     }
 
     .person-relation-row {
-      grid-template-columns: 4.2rem minmax(0, 1fr);
+      grid-template-columns: 5.1rem minmax(0, 1fr);
       gap: 0.4rem;
     }
 
