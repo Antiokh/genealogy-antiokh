@@ -66,16 +66,21 @@
       }
 
       try {
-        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, response] = await Promise.all([
+        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { scopeTreeDataset, treeRenderContext, reportTreeScope }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          import(/* @vite-ignore */ '/tree/scope.js'),
           fetch('/generated/tree.json'),
         ]);
         let currentTheme = 'light';
         startThemeBridge((theme) => { currentTheme = theme; });
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
-        const family = await response.json();
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        const family = scopeTreeDataset(sourceFamily, context.person, context.depth);
+        const focusId = family.focus || family.people[0]?.id;
+        reportTreeScope(family);
 
         FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
         FamilyTree.templates.genealogy.size = [PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT];
@@ -113,10 +118,7 @@
         });
 
         tree.on('render-link', (sender, args) => {
-          // FamilyTree classic injects a generic #dot for some partner-parent junctions.
-          // It carries no relationship semantics, so remove it in favour of explicit icons.
           args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
-
           if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
           const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
           const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
@@ -126,13 +128,14 @@
 
         let initialFocusApplied = false;
         tree.onInit(() => {
-          if (initialFocusApplied || !family.root) return;
+          if (initialFocusApplied || !focusId) return;
           initialFocusApplied = true;
-          requestAnimationFrame(() => tree.center?.(family.root));
+          requestAnimationFrame(() => tree.center?.(focusId));
         });
 
         tree.load(nodes);
-        status.textContent = `BALKAN classic · сверху вниз · ${family.summary.people} людей · ${family.summary.families} союзов`;
+        const total = family.scope?.totalPeople || family.summary.people;
+        status.textContent = `BALKAN classic · ${family.summary.people} из ${total} людей`;
       } catch (error) {
         console.error(error);
         status.textContent = `BALKAN classic: ${error?.message || error}`;
