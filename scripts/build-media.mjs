@@ -130,10 +130,14 @@ for (const item of media.values()) {
   });
 }
 
+// A same-basename `people/.../person.webp` portrait is convention-based and is
+// deliberately outside the media graph. During transition, old `portrait: *.md`
+// references still validate as media records; direct image overrides do not.
 for (const [personRef, person] of people) {
-  if (!person.data.portrait) continue;
-  if (!media.has(person.data.portrait)) {
-    errors.push(`${personRef}: unresolved portrait reference ${JSON.stringify(person.data.portrait)}`);
+  const portrait = person.data.portrait;
+  if (typeof portrait !== 'string' || !/\.mdx?$/i.test(portrait)) continue;
+  if (!media.has(portrait)) {
+    errors.push(`${personRef}: unresolved legacy portrait media reference ${JSON.stringify(portrait)}`);
   }
 }
 
