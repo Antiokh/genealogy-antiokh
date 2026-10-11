@@ -1,4 +1,5 @@
 import { buildKinshipLabels } from '/tree/kinship.js';
+import { enrichKinshipLabels } from '/tree/kinship-extended.js';
 
 export const PERSON_CARD_WIDTH = 240;
 export const PERSON_CARD_HEIGHT = 108;
@@ -60,7 +61,8 @@ function loadKinshipLabels() {
       })
       .then((family) => {
         const focusId = new URLSearchParams(globalThis.location?.search || '').get('person') || '';
-        return buildKinshipLabels(family, focusId);
+        const labels = buildKinshipLabels(family, focusId);
+        return enrichKinshipLabels(family, focusId, labels);
       })
       .catch((error) => {
         console.warn('Could not calculate kinship labels', error);
