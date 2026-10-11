@@ -34,7 +34,7 @@ const shouldShowBirthSurname = (name, birthSurname) => {
 
 export class GenealogyPersonCard extends HTMLElement {
   static get observedAttributes() {
-    return ['person-id', 'name', 'years', 'sex', 'deceased', 'photo', 'birth-surname'];
+    return ['person-id', 'name', 'url', 'years', 'sex', 'deceased', 'photo', 'birth-surname'];
   }
 
   constructor() {
@@ -47,6 +47,7 @@ export class GenealogyPersonCard extends HTMLElement {
 
   render() {
     const name = this.getAttribute('name') || 'Unknown person';
+    const url = this.getAttribute('url') || '';
     const years = this.getAttribute('years') || '';
     const personId = this.getAttribute('person-id') || '';
     const sex = normalizeSex(this.getAttribute('sex'));
@@ -54,6 +55,10 @@ export class GenealogyPersonCard extends HTMLElement {
     const photo = this.getAttribute('photo') || '';
     const birthSurname = this.getAttribute('birth-surname') || '';
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
+    const nameClass = `name${nameSizeClass(name)}`;
+    const nameHtml = url
+      ? `<a class="${nameClass}" href="${esc(url)}" target="_top">${esc(name)}</a>`
+      : `<div class="${nameClass}">${esc(name)}</div>`;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -100,9 +105,11 @@ export class GenealogyPersonCard extends HTMLElement {
         .avatar-shield { position:absolute; z-index:5; inset:0; border-radius:50%; }
         .text { min-width:0; align-self:center; }
         .name {
-          font-size:14px; line-height:1.14; font-weight:650; color:var(--sl-color-text, #1f2937);
+          display:inline; font-size:14px; line-height:1.14; font-weight:650; color:var(--sl-color-text, #1f2937);
           white-space:normal; overflow:visible; overflow-wrap:anywhere; word-break:normal; hyphens:auto;
+          text-decoration:none;
         }
+        a.name:hover, a.name:focus-visible { color:var(--sl-color-text-accent, var(--sl-color-accent, #6b8cff)); text-decoration:underline; }
         .name-long { font-size:13px; line-height:1.12; }
         .name-xlong { font-size:12px; line-height:1.1; }
         .name-xxlong { font-size:11px; line-height:1.08; }
@@ -119,11 +126,14 @@ export class GenealogyPersonCard extends HTMLElement {
           <span class="avatar-shield"></span>
         </div>
         <div class="text">
-          <div class="name${nameSizeClass(name)}">${esc(name)}</div>
+          ${nameHtml}
           ${showBirthSurname ? `<div class="birth-surname">при рожд. ${esc(birthSurname)}</div>` : ''}
           <div class="years">${esc(years)}</div>
         </div>
       </article>`;
+
+    const nameLink = this.shadowRoot.querySelector('a.name');
+    nameLink?.addEventListener('click', (event) => event.stopPropagation());
 
     const image = this.shadowRoot.querySelector('.avatar-photo');
     if (image) {
@@ -142,6 +152,7 @@ if (!customElements.get('genealogy-person-card')) {
 
 export function personCardElementHtml(person) {
   const deceasedAttribute = person.deceased ? '\n    deceased' : '';
+  const urlAttribute = person.url ? `\n    url="${esc(person.url)}"` : '';
   const photoAttribute = person.photo ? `\n    photo="${esc(person.photo)}"` : '';
   const birthSurnameAttribute = person.birthSurname ? `\n    birth-surname="${esc(person.birthSurname)}"` : '';
   const displayName = person.cardName || person.name || 'Unknown person';
@@ -151,6 +162,6 @@ export function personCardElementHtml(person) {
     person-id="${esc(person.id || '')}"
     name="${esc(displayName)}"
     years="${esc(person.years || '')}"
-    sex="${esc(person.sex || '')}"${deceasedAttribute}${photoAttribute}${birthSurnameAttribute}
+    sex="${esc(person.sex || '')}"${deceasedAttribute}${urlAttribute}${photoAttribute}${birthSurnameAttribute}
   ></genealogy-person-card>`;
 }
