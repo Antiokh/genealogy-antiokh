@@ -15,7 +15,7 @@
   <body>
     <main class="tree-shell">
       <div id="BalkanClassic" class="tree-canvas"></div>
-      <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS classic…</div>
+      <div id="status" class="tree-status">Загрузка семейного дерева…</div>
     </main>
     <script>
       // @ts-nocheck
@@ -66,8 +66,29 @@
         </g>`;
       }
 
+      function treeControlIcon(state = 'up') {
+        const accent = 'var(--tree-accent, var(--sl-color-accent))';
+        const background = 'var(--tree-background, var(--sl-color-bg))';
+        const badge = state === 'expand'
+          ? `<circle cx="23" cy="22" r="6" fill="${accent}" stroke="${background}" stroke-width="1.5"/>
+             <path d="M20 22h6M23 19v6" fill="none" stroke="${background}" stroke-width="1.8" stroke-linecap="round"/>`
+          : state === 'collapse'
+            ? `<circle cx="23" cy="22" r="6" fill="${accent}" stroke="${background}" stroke-width="1.5"/>
+               <path d="M20 22h6" fill="none" stroke="${background}" stroke-width="1.8" stroke-linecap="round"/>`
+            : '';
+
+        return `<g class="genealogy-tree-control genealogy-tree-control-${state}">
+          <circle cx="15" cy="15" r="14" fill="${background}" stroke="${accent}" stroke-width="1.7"/>
+          <path d="M15 8v5M9 13h12M9 13v4M21 13v4" fill="none" stroke="${accent}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="15" cy="7" r="2.2" fill="${accent}"/>
+          <circle cx="9" cy="19" r="2.2" fill="${accent}"/>
+          <circle cx="21" cy="19" r="2.2" fill="${accent}"/>
+          ${badge}
+        </g>`;
+      }
+
       try {
-        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope }, response] = await Promise.all([
+        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
@@ -80,8 +101,13 @@
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const sourceFamily = await response.json();
         const context = treeRenderContext();
-        const expansion = createTreeExpansionState(sourceFamily, context.person);
-        const focusId = expansion.focusId;
+        const requestedFocus = context.person;
+        const focusId = sourceFamily.people?.some((person) => person.id === requestedFocus)
+          ? requestedFocus
+          : sourceFamily.people?.[0]?.id || '';
+        const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
+        const focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
+        const sourcePeopleIds = new Set((sourceFamily.people || []).map((person) => person.id));
 
         FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
         FamilyTree.templates.genealogy.size = [PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT];
@@ -89,6 +115,10 @@
         FamilyTree.templates.genealogy.html = `<foreignObject x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}">{val}</foreignObject>`;
         FamilyTree.templates.genealogy.defs = '';
         FamilyTree.templates.genealogy.ripple = { radius:0, color:'none', rect:null };
+        FamilyTree.templates.genealogy.expandCollapseSize = 30;
+        FamilyTree.templates.genealogy.plus = treeControlIcon('expand');
+        FamilyTree.templates.genealogy.minus = treeControlIcon('collapse');
+        FamilyTree.templates.genealogy.up = `<g transform="translate(${(PERSON_CARD_WIDTH - 30) / 2}, -15)">${treeControlIcon('up')}</g>`;
         FamilyTree.templates.genealogy_male = Object.assign({}, FamilyTree.templates.genealogy);
         FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
 
@@ -101,57 +131,132 @@
           }
         }
 
-        const renderFamily = (family, anchorId = focusId) => {
-          tree?.destroy?.();
-          canvas.replaceChildren();
+        const nodes = toBalkanFamilyTreeData(sourceFamily, personCardElementHtml);
+        const nodeDataById = new Map(nodes.map((node) => [node.id, node]));
+        const focusNodeData = nodeDataById.get(focusId);
+        const initialRootId = focusNodeData?.fid || focusNodeData?.mid || focusId;
+        const totalPeople = sourceFamily.people?.length || nodes.length;
+        const rootCandidateIds = new Set(nodes.filter((node) => !node.fid && !node.mid).map((node) => node.id));
+        const allRootIds = nodes
+          .filter((node) => rootCandidateIds.has(node.id))
+          .filter((node) => !(node.pids || []).some((pid) => rootCandidateIds.has(pid) && String(pid).localeCompare(String(node.id)) < 0))
+          .map((node) => node.id);
+        if (!allRootIds.length && initialRootId) allRootIds.push(initialRootId);
 
-          const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
-          tree = new FamilyTree(canvas, {
-            mode: currentTheme,
-            template: 'genealogy',
-            orientation: FamilyTree.orientation.top,
-            layout: FamilyTree.layout.normal,
-            align: FamilyTree.align.orientation,
-            levelSeparation: 86,
-            siblingSeparation: 28,
-            subtreeSeparation: 42,
-            partnerNodeSeparation: 18,
-            partnerChildrenSplitSeparation: 24,
-            scaleInitial: FamilyTree.match.boundary,
-            enableSearch: false,
-            nodeMouseClick: FamilyTree.action.none,
-            nodeBinding: { html:'cardHtml' },
+        function centerOnFocus() {
+          if (!tree || !focusId) return;
+          tree.center(focusId, { rippleId:focusId, vertical:false, horizontal:false }, updateScopeStatus);
+        }
+
+        function expandAll() {
+          if (!tree || !allRootIds.length) return;
+          tree.changeRoots(focusId, allRootIds, () => {
+            const expandRoot = (index) => {
+              if (index >= allRootIds.length) {
+                tree.fit(updateScopeStatus);
+                return;
+              }
+              tree.expand(allRootIds[index], 'all', () => expandRoot(index + 1));
+            };
+            expandRoot(0);
           });
+        }
 
-          tree.on('render-link', (sender, args) => {
-            args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
-            if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
-            const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
-            const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
-            const y = (Number(args.p.ya) + Number(args.p.yd)) / 2;
-            args.html += relationIcon(relation, x, y);
+        function updateScopeStatus() {
+          if (!tree) return;
+          const count = (tree.visibleNodeIds || []).filter((id) => sourcePeopleIds.has(id)).length;
+          renderTreeStatus(status, {
+            focusName,
+            visiblePeople:count,
+            totalPeople,
+            onFocus:centerOnFocus,
+            onExpandAll:expandAll,
           });
-
-          tree.onNodeClick((args) => {
-            const target = args?.event?.target;
-            if (target instanceof Element && target.closest('.genealogy-person-link')) return false;
-            const id = args?.node?.id;
-            if (!id || id === focusId) return false;
-            requestAnimationFrame(() => renderFamily(expansion.toggle(id), id));
-            return false;
+          reportTreeScope({
+            focus: focusId,
+            scope: {
+              people: count,
+              totalPeople,
+              hasMore: count < totalPeople,
+              expanded: [],
+            },
           });
+        }
 
-          tree.onInit(() => {
-            const targetId = family.people.some((person) => person.id === anchorId) ? anchorId : focusId;
-            if (!targetId) return;
-            requestAnimationFrame(() => tree?.center?.(targetId));
+        const focusCollapseOptions = () => ({
+          parentState: FamilyTree.COLLAPSE_PARENT_NEIGHBORS,
+          childrenState: FamilyTree.COLLAPSE_SUB_CHILDRENS,
+          rippleId: focusId,
+          vertical: false,
+          horizontal: false,
+        });
+
+        const resetToFocus = (fit = false) => {
+          if (!tree || !focusId) return;
+          tree.changeRoots(focusId, [initialRootId], () => {
+            tree.center(focusId, focusCollapseOptions(), () => {
+              if (fit) tree.fit(updateScopeStatus);
+              else updateScopeStatus();
+            });
           });
-
-          tree.load(nodes);
-          reportTreeScope(family);
-          const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `BALKAN classic · ${family.summary.people} из ${total} людей`;
         };
+
+        tree = new FamilyTree(canvas, {
+          mode: currentTheme,
+          template: 'genealogy',
+          orientation: FamilyTree.orientation.top,
+          layout: FamilyTree.layout.normal,
+          align: FamilyTree.align.orientation,
+          levelSeparation: 86,
+          siblingSeparation: 28,
+          subtreeSeparation: 42,
+          partnerNodeSeparation: 18,
+          partnerChildrenSplitSeparation: 24,
+          scaleInitial: FamilyTree.match.boundary,
+          enableSearch: false,
+          lazyLoading: false,
+          nodeMouseClick: FamilyTree.action.none,
+          roots: [initialRootId],
+          nodeBinding: { html:'cardHtml' },
+        });
+
+        tree.on('render-link', (sender, args) => {
+          args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
+          if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
+          const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
+          const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
+          const y = (Number(args.p.ya) + Number(args.p.yd)) / 2;
+          args.html += relationIcon(relation, x, y);
+        });
+
+        tree.onNodeClick((args) => {
+          const target = args?.event?.target;
+          if (target instanceof Element && target.closest('.genealogy-person-link')) return false;
+
+          const id = args?.node?.id;
+          if (!id) return false;
+
+          const data = nodeDataById.get(id);
+          const visible = new Set(tree.visibleNodeIds || []);
+          const parentIds = [data?.fid, data?.mid].filter(Boolean);
+          const hiddenParentId = parentIds.find((parentId) => !visible.has(parentId));
+
+          if (hiddenParentId) {
+            tree.changeRoots(id, [hiddenParentId], updateScopeStatus);
+            return false;
+          }
+
+          const node = tree.getNode(id);
+          const childIds = node?.childrenIds || [];
+          const collapsedIds = childIds.filter((childId) => tree.getNode(childId)?.collapsed);
+          if (collapsedIds.length) tree.expand(id, collapsedIds, updateScopeStatus);
+          else if (childIds.length) tree.collapse(id, childIds, updateScopeStatus);
+          return false;
+        });
+
+        tree.on('redraw', () => requestAnimationFrame(updateScopeStatus));
+        tree.onInit(() => requestAnimationFrame(() => resetToFocus(true)));
+        tree.load(nodes);
 
         window.addEventListener('message', (event) => {
           if (event.origin !== window.location.origin || event.source !== window.parent) return;
@@ -159,12 +264,10 @@
           switch (event.data.command) {
             case 'zoom-in': tree?.zoom?.(true, undefined, true); break;
             case 'zoom-out': tree?.zoom?.(false, undefined, true); break;
-            case 'fit': tree?.fit?.(); break;
-            case 'focus': tree?.center?.(focusId); break;
+            case 'fit': tree?.fit?.(updateScopeStatus); break;
+            case 'focus': resetToFocus(false); break;
           }
         });
-
-        renderFamily(expansion.snapshot());
       } catch (error) {
         console.error(error);
         status.textContent = `BALKAN classic: ${error?.message || error}`;
