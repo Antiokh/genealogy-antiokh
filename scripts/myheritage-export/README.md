@@ -4,10 +4,11 @@ Repeatable tooling used to export and preserve data from an authorized MyHeritag
 
 ## Contents
 
-- `userscript/` — Tampermonkey exporter **v0.3.7** archived losslessly as gzip/base64 chunks, plus `restore_userscript.py`. Restored source is 80,877 bytes, SHA-256 `885a8f374909d895f2a9d7d5a4d20f28cb51d35603c2f8f04c15c655a8e401c8`.
+- `userscript/MyHeritage-Tree-Exporter-v0.3.7.zip` — final Tampermonkey exporter archive. It contains the exact v0.3.7 userscript used on 2026-10-11. ZIP SHA-256: `4edbd6279e801ca868796697a7a9940cb0272394ef2edb74f670ac5bcac98c11`; userscript SHA-256: `885a8f374909d895f2a9d7d5a4d20f28cb51d35603c2f8f04c15c655a8e401c8`.
 - `cdp/` — independent Chrome DevTools Protocol / Playwright capture and crawler (`capture.cjs`, `crawler.cjs`, `payload.cjs`, package metadata). Useful as a second implementation for validation and for retaining raw MyHeritage JSON responses.
 - `pack/pack_myheritage.py` — repo packer: browser-download dedupe, SHA-256 image dedupe, WebP q65 derivative generation, normalized relative image links, manifest generation. Raw JSON is kept unchanged.
 - `pack/organize-mhx-downloads.ps1` — simple helper for organizing `MHX__*` browser downloads.
+- `compare_exports.py` — compares userscript and CDP snapshots by stable person/photo IDs and helps choose archival photo masters.
 
 ## Data policy
 
