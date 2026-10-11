@@ -145,7 +145,7 @@ export const collections = {
         name: z.union([z.string(), structuredName]).optional(),
         families: z.array(familyGroup).optional(),
         sex: z.enum(['M', 'F', 'X', 'U']).optional(),
-        portrait: z.string().nullish(),
+        portrait: z.union([image(), z.string()]).nullish(),
         photo: z.string().optional(),
         father: z.string().nullish(),
         mother: z.string().nullish(),
