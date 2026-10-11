@@ -104,10 +104,12 @@ The legacy imported `photo` URL remains temporarily supported as the final rende
 
 Portrait resolution order is:
 
-1. explicit `portrait` override, when present;
-2. legacy `portrait: *.md` media reference, during transition;
-3. same-basename local `person.webp`;
+1. explicit direct `portrait` image/URL override, when present;
+2. same-basename local `person.webp`;
+3. legacy `portrait: *.md` media reference, during transition;
 4. legacy imported `photo` URL.
+
+This order means adding `foo.webp` beside `foo.md` automatically migrates an old card to the new convention even if a legacy portrait-media reference has not yet been removed.
 
 Local portrait files are preferred because Astro reads their dimensions, fingerprints them and can emit responsive optimized assets at build time. Remote URLs remain dependent on the remote host and may block hotlinking or server downloads.
 
