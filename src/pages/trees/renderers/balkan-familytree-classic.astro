@@ -22,6 +22,7 @@
       import FamilyTree from '@balkangraph/familytree.js';
 
       const status = document.getElementById('status');
+      const canvas = document.getElementById('BalkanClassic');
       const pairKey = (a, b) => [String(a), String(b)].sort().join('|');
       const xml = (value) => String(value ?? '')
         .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
@@ -74,13 +75,15 @@
           fetch('/generated/tree.json'),
         ]);
         let currentTheme = 'light';
+        let tree = null;
         startThemeBridge((theme) => { currentTheme = theme; });
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const sourceFamily = await response.json();
         const context = treeRenderContext();
-        const family = scopeTreeDataset(sourceFamily, context.person, context.depth);
-        const focusId = family.focus || family.people[0]?.id;
-        reportTreeScope(family);
+        const focusId = (sourceFamily.people || []).some((person) => person.id === context.person)
+          ? context.person
+          : sourceFamily.focus || sourceFamily.people?.[0]?.id;
+        let currentDepth = context.depth;
 
         FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
         FamilyTree.templates.genealogy.size = [PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT];
@@ -92,51 +95,67 @@
         FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
 
         const relationByPair = new Map();
-        for (const unit of family.families) {
-          for (let i = 0; i < unit.partners.length; i += 1) {
-            for (let j = i + 1; j < unit.partners.length; j += 1) {
+        for (const unit of sourceFamily.families || []) {
+          for (let i = 0; i < (unit.partners || []).length; i += 1) {
+            for (let j = i + 1; j < (unit.partners || []).length; j += 1) {
               relationByPair.set(pairKey(unit.partners[i], unit.partners[j]), unit.relation || { kind:'parents' });
             }
           }
         }
 
-        const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
-        const tree = new FamilyTree(document.getElementById('BalkanClassic'), {
-          mode: currentTheme,
-          template: 'genealogy',
-          orientation: FamilyTree.orientation.top,
-          layout: FamilyTree.layout.normal,
-          align: FamilyTree.align.orientation,
-          levelSeparation: 86,
-          siblingSeparation: 28,
-          subtreeSeparation: 42,
-          partnerNodeSeparation: 18,
-          partnerChildrenSplitSeparation: 24,
-          scaleInitial: FamilyTree.match.boundary,
-          enableSearch: false,
-          nodeMouseClick: FamilyTree.action.none,
-          nodeBinding: { html:'cardHtml' },
+        const renderDepth = (depth) => {
+          currentDepth = depth;
+          const family = scopeTreeDataset(sourceFamily, focusId, currentDepth);
+          tree?.destroy?.();
+          canvas.replaceChildren();
+
+          const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
+          tree = new FamilyTree(canvas, {
+            mode: currentTheme,
+            template: 'genealogy',
+            orientation: FamilyTree.orientation.top,
+            layout: FamilyTree.layout.normal,
+            align: FamilyTree.align.orientation,
+            levelSeparation: 86,
+            siblingSeparation: 28,
+            subtreeSeparation: 42,
+            partnerNodeSeparation: 18,
+            partnerChildrenSplitSeparation: 24,
+            scaleInitial: FamilyTree.match.boundary,
+            enableSearch: false,
+            nodeMouseClick: FamilyTree.action.none,
+            nodeBinding: { html:'cardHtml' },
+          });
+
+          tree.on('render-link', (sender, args) => {
+            args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
+            if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
+            const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
+            const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
+            const y = (Number(args.p.ya) + Number(args.p.yd)) / 2;
+            args.html += relationIcon(relation, x, y);
+          });
+
+          tree.onInit(() => {
+            if (!focusId) return;
+            requestAnimationFrame(() => tree?.center?.(focusId));
+          });
+
+          tree.load(nodes);
+          reportTreeScope(family);
+          const total = family.scope?.totalPeople || sourceFamily.people?.length || family.summary.people;
+          status.textContent = `BALKAN classic · ${family.summary.people} из ${total} людей`;
+        };
+
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin || event.source !== window.parent) return;
+          if (event.data?.type !== 'genealogy:tree-depth') return;
+          const depth = Math.max(0, Math.floor(Number(event.data.depth) || 0));
+          if (depth === currentDepth) return;
+          renderDepth(depth);
         });
 
-        tree.on('render-link', (sender, args) => {
-          args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
-          if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
-          const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
-          const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
-          const y = (Number(args.p.ya) + Number(args.p.yd)) / 2;
-          args.html += relationIcon(relation, x, y);
-        });
-
-        let initialFocusApplied = false;
-        tree.onInit(() => {
-          if (initialFocusApplied || !focusId) return;
-          initialFocusApplied = true;
-          requestAnimationFrame(() => tree.center?.(focusId));
-        });
-
-        tree.load(nodes);
-        const total = family.scope?.totalPeople || family.summary.people;
-        status.textContent = `BALKAN classic · ${family.summary.people} из ${total} людей`;
+        renderDepth(currentDepth);
       } catch (error) {
         console.error(error);
         status.textContent = `BALKAN classic: ${error?.message || error}`;
