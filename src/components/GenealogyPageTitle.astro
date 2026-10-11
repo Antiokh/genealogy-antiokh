@@ -36,6 +36,20 @@ function isImageMetadata(value: unknown): value is ImageMetadata {
   );
 }
 
+function dateYear(value: unknown): number | undefined {
+  if (typeof value === 'number' && Number.isFinite(value)) return Math.trunc(value);
+  if (typeof value === 'string') {
+    const match = value.match(/(?:^|\D)(\d{4})(?:\D|$)/);
+    return match ? Number(match[1]) : undefined;
+  }
+  if (!value || typeof value !== 'object') return undefined;
+  const record = value as Record<string, unknown>;
+  if (typeof record.year === 'number' && Number.isFinite(record.year)) return Number(record.year);
+  if (record.date !== undefined) return dateYear(record.date);
+  if (record.text !== undefined) return dateYear(record.text);
+  return undefined;
+}
+
 const explicitDirectPortrait = explicitPortraitIsLegacyMedia ? undefined : explicitPortrait;
 const usingLegacyMediaPortrait = !explicitDirectPortrait && !conventionalPortrait && Boolean(portraitEntry?.data.image);
 const portraitImage = (
@@ -48,6 +62,8 @@ const localPortrait = isImageMetadata(portraitImage) ? portraitImage : undefined
 const portraitSrc = typeof portraitImage === 'string' ? portraitImage : localPortrait?.src;
 const portraitWidth = localPortrait?.width ?? (usingLegacyMediaPortrait ? portraitEntry?.data.width : undefined);
 const portraitHeight = localPortrait?.height ?? (usingLegacyMediaPortrait ? portraitEntry?.data.height : undefined);
+const died = route.entry.data.died;
+const personDeceased = isPerson && (died?.known === true || Boolean(dateYear(died)));
 
 const personName = route.entry.data.name;
 const personLabel = typeof personName === 'string'
@@ -71,29 +87,32 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
   <div class="person-title-row">
     <div class="person-title-copy"><Default /></div>
     <figure class="person-portrait">
-      {localPortrait ? (
-        <Image
-          src={localPortrait}
-          alt={portraitAlt}
-          widths={[144, 216, 320]}
-          sizes="(max-width: 36rem) 104px, 168px"
-          loading="eager"
-          decoding="async"
-          style={`object-position:${objectPosition}`}
-        />
-      ) : (
-        <img
-          class={portraitSrc ? 'person-portrait__image' : 'person-portrait__image is-placeholder'}
-          src={portraitSrc || portraitPlaceholderSrc}
-          alt={portraitSrc ? portraitAlt : ''}
-          width={portraitWidth}
-          height={portraitHeight}
-          loading="eager"
-          decoding="async"
-          style={`object-position:${objectPosition}`}
-          onerror="this.onerror=null;this.src='/tree/person-placeholder.svg';this.alt='';this.classList.add('is-placeholder');this.closest('figure')?.querySelector('figcaption')?.setAttribute('hidden','')"
-        />
-      )}
+      <div class={`person-portrait__frame${personDeceased ? ' is-deceased' : ''}`}>
+        {localPortrait ? (
+          <Image
+            src={localPortrait}
+            alt={portraitAlt}
+            widths={[144, 216, 320]}
+            sizes="(max-width: 36rem) 104px, 168px"
+            loading="eager"
+            decoding="async"
+            style={`object-position:${objectPosition}`}
+          />
+        ) : (
+          <img
+            class={portraitSrc ? 'person-portrait__image' : 'person-portrait__image is-placeholder'}
+            src={portraitSrc || portraitPlaceholderSrc}
+            alt={portraitSrc ? portraitAlt : ''}
+            width={portraitWidth}
+            height={portraitHeight}
+            loading="eager"
+            decoding="async"
+            style={`object-position:${objectPosition}`}
+            onerror="this.onerror=null;this.src='/tree/person-placeholder.svg';this.alt='';this.classList.add('is-placeholder');this.closest('figure')?.querySelector('figcaption')?.setAttribute('hidden','')"
+          />
+        )}
+        {personDeceased && <span class="person-portrait__mourning-ribbon" aria-hidden="true"></span>}
+      </div>
       {usingLegacyMediaPortrait && portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
     </figure>
   </div>
@@ -124,6 +143,12 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
     margin: 0.35rem 0 0;
   }
 
+  .person-portrait__frame {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+  }
+
   .person-portrait img {
     display: block;
     width: 100%;
@@ -133,6 +158,22 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
     border-radius: 0.75rem;
     background: var(--sl-color-gray-6);
     box-shadow: 0 0.2rem 0.8rem color-mix(in srgb, var(--sl-color-black) 12%, transparent);
+  }
+
+  .person-portrait__frame.is-deceased img {
+    filter: grayscale(1);
+  }
+
+  .person-portrait__mourning-ribbon {
+    position: absolute;
+    z-index: 3;
+    right: -10%;
+    bottom: 12%;
+    width: 48%;
+    height: 0.55rem;
+    background: rgba(10, 10, 10, 0.96);
+    transform: rotate(-42deg);
+    pointer-events: none;
   }
 
   .person-portrait img.is-placeholder {
@@ -169,6 +210,10 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
 
     .person-portrait {
       margin-top: 0.65rem;
+    }
+
+    .person-portrait__mourning-ribbon {
+      height: 0.42rem;
     }
   }
 </style>
