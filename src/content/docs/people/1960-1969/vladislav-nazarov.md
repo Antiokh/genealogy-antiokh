@@ -39,6 +39,8 @@ partners:
   - person: "1960-1969/tatyana-beskorovaynaya.md"
     married:
       date: "1988-08-08"
+    divorced:
+      known: true
 occupation: []
 residence: []
 sources: []
