@@ -1,14 +1,9 @@
 ---
-import config from 'virtual:starlight/user-config';
-
-import LanguageSelect from 'virtual:starlight/components/LanguageSelect';
-import Search from 'virtual:starlight/components/Search';
-import SiteTitle from 'virtual:starlight/components/SiteTitle';
-import SocialIcons from 'virtual:starlight/components/SocialIcons';
-import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
-
-const shouldRenderSearch =
-  config.pagefind || config.components.Search !== '@astrojs/starlight/components/Search.astro';
+import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
+import Search from '@astrojs/starlight/components/Search.astro';
+import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
+import ThemeSelect from '@astrojs/starlight/components/ThemeSelect.astro';
 ---
 
 <div class="header">
@@ -17,7 +12,7 @@ const shouldRenderSearch =
   </div>
 
   <div class="sl-flex print:hidden">
-    {shouldRenderSearch && <Search />}
+    <Search />
   </div>
 
   <div class="sl-hidden md:sl-flex print:hidden right-group">
@@ -47,17 +42,19 @@ const shouldRenderSearch =
 </button>
 
 <script>
+  type Panel = 'sidebar' | 'toc';
+
   const sidebarStorageKey = 'genealogy-session-hide-sidebar';
   const tocStorageKey = () => `genealogy-hide-toc:${window.location.pathname}`;
 
-  function panelTitle(panel, hidden) {
+  function panelTitle(panel: Panel, hidden: boolean) {
     if (panel === 'sidebar') return hidden ? 'Показать меню' : 'Скрыть меню';
     return hidden ? 'Показать оглавление' : 'Скрыть оглавление';
   }
 
-  function setPanel(panel, hidden, persist = true) {
+  function setPanel(panel: Panel, hidden: boolean, persist = true) {
     document.documentElement.classList.toggle(`genealogy-hide-${panel}`, hidden);
-    document.querySelectorAll(`[data-panel-toggle="${panel}"]`).forEach((button) => {
+    document.querySelectorAll<HTMLElement>(`[data-panel-toggle="${panel}"]`).forEach((button) => {
       button.setAttribute('aria-pressed', hidden ? 'false' : 'true');
       button.setAttribute('aria-label', panelTitle(panel, hidden));
       button.setAttribute('title', panelTitle(panel, hidden));
@@ -68,12 +65,12 @@ const shouldRenderSearch =
   }
 
   function bindPanelToggles() {
-    document.querySelectorAll('[data-panel-toggle]').forEach((button) => {
+    document.querySelectorAll<HTMLElement>('[data-panel-toggle]').forEach((button) => {
       if (button.dataset.panelToggleBound === '1') return;
       button.dataset.panelToggleBound = '1';
       button.addEventListener('click', () => {
-        const panel = button.dataset.panelToggle;
-        if (!panel) return;
+        const panel = button.dataset.panelToggle as Panel | undefined;
+        if (panel !== 'sidebar' && panel !== 'toc') return;
         const hidden = document.documentElement.classList.contains(`genealogy-hide-${panel}`);
         setPanel(panel, !hidden);
       });
