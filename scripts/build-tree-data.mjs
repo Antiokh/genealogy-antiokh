@@ -41,6 +41,12 @@ function relationDate(value) {
   return '';
 }
 
+function relationKnown(value) {
+  if (!value) return false;
+  if (typeof value === 'object' && value.known === false) return false;
+  return true;
+}
+
 const people = nodes.map((node) => ({
   id: node.ref,
   url: node.url,
@@ -71,6 +77,12 @@ function ensureUnion(values) {
       partners,
       children: new Set(),
       labels: new Set(),
+      relation: {
+        kind: 'parents',
+        explicit: false,
+        married: '',
+        divorced: '',
+      },
     });
   }
   return unionByKey.get(key);
@@ -86,10 +98,22 @@ for (const edge of edges) {
   if (edge.type !== 'partner') continue;
   const union = ensureUnion([edge.source, edge.target]);
   if (!union) continue;
+
   const married = relationDate(edge.married);
   const divorced = relationDate(edge.divorced);
+  const marriedKnown = relationKnown(edge.married);
+  const divorcedKnown = relationKnown(edge.divorced);
+
+  union.relation = {
+    kind: divorcedKnown ? 'divorced' : marriedKnown ? 'married' : 'partner',
+    explicit: true,
+    married,
+    divorced,
+  };
+
   if (married && divorced) union.labels.add(`${married}–${divorced}`);
   else if (married) union.labels.add(married);
+  else if (divorced) union.labels.add(divorced);
 }
 
 const families = [...unionByKey.values()]
@@ -99,6 +123,7 @@ const families = [...unionByKey.values()]
     partners: union.partners,
     children: [...union.children].sort(),
     label: [...union.labels][0] || '',
+    relation: union.relation,
   }));
 
 const familyMembershipCount = new Map(people.map((person) => [person.id, 0]));
