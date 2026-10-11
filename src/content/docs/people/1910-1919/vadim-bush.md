@@ -46,17 +46,6 @@ external:
     xref: "I500010"
 ---
 
-**Годы жизни:** 1912–1941
-**Фамилия при рождении:** Буш
-
-## Семья
-
-**Родители:** [Vladimir Bush](/people/1880-1889/vladimir-bush/), [Вера Буш](/people/1880-1889/vera-bush/)
-
-**Партнёры:** [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/)
-
-**Дети:** [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/)
-
 ## Биография
 
 Сведения пока не добавлены.

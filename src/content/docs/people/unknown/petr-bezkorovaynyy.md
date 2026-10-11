@@ -43,16 +43,6 @@ external:
     xref: "I500046"
 ---
 
-**Фамилия при рождении:** Безкоровайный
-
-## Семья
-
-**Родители:** [Трофим Безкоровайный](/people/unknown/trofim-bezkorovaynyy/)
-
-**Партнёры:** [Степанида](/people/unknown/stepanida/)
-
-**Дети:** [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/), [Михаил Безкоровайный](/people/1900-1909/mikhail-bezkorovaynyy/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -45,17 +45,6 @@ external:
     xref: "I500048"
 ---
 
-**Годы жизни:** 1907–1956
-**Фамилия при рождении:** Безкоровайный
-
-## Семья
-
-**Родители:** [Пётр Безкоровайный](/people/unknown/petr-bezkorovaynyy/), [Степанида](/people/unknown/stepanida/)
-
-**Партнёры:** [Елизавета](/people/unknown/elizaveta/), [Наталья](/people/unknown/natalya/)
-
-**Дети:** [Геннадий](/people/unknown/gennadiy/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -44,16 +44,6 @@ external:
     xref: "I500137"
 ---
 
-**Фамилия при рождении:** Курочкин
-
-## Семья
-
-**Родители:** [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500069/), [Елена Кутаева](/people/unknown/elena-kutaeva/)
-
-**Партнёры:** —
-
-**Дети:** [Александр Курочкин](/people/unknown/aleksandr-kurochkin-i500142/), [Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500144/), [Василий Курочкин](/people/unknown/vasiliy-kurochkin-i500145/)
-
 ## Биография
 
 Сведения пока не добавлены.

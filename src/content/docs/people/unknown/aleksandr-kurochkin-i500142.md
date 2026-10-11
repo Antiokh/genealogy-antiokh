@@ -44,16 +44,6 @@ external:
     xref: "I500142"
 ---
 
-**Фамилия при рождении:** Курочкин
-
-## Семья
-
-**Родители:** [Николай Курочкин](/people/unknown/nikolay-kurochkin/)
-
-**Партнёры:** —
-
-**Дети:** [Иван Курочкин](/people/unknown/ivan-kurochkin-i500148/), [Валентина Курочкина](/people/unknown/valentina-kurochkina-i500150/)
-
 ## Биография
 
 Сведения пока не добавлены.

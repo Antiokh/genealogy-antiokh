@@ -42,14 +42,6 @@ external:
     xref: "I500084"
 ---
 
-## Семья
-
-**Родители:** [Василий Капранов](/people/unknown/vasiliy-kapranov/), [Клавдия Николаева](/people/unknown/klavdiya-nikolaeva/)
-
-**Партнёры:** [Галина Капранова](/people/1940-1949/galina-kapranova/)
-
-**Дети:** [Ирина Капранова](/people/1960-1969/irina-kapranova/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -43,16 +43,6 @@ external:
     xref: "I500133"
 ---
 
-**Фамилия при рождении:** Верходанов
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Лариса Волкова](/people/unknown/larisa-volkova/)
-
-**Дети:** [Лилия Волкова](/people/unknown/liliya-volkova/), [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/)
-
 ## Биография
 
 Сведения пока не добавлены.

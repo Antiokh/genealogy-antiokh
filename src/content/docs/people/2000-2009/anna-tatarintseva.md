@@ -62,18 +62,6 @@ external:
     profileId: 1500224
 ---
 
-**Годы жизни:** 2001–  
-**Дата рождения:** 11 июля 2001 года  
-**Фамилия при рождении:** Tatarintseva
-
-## Семья
-
-**Родители:** [Сергей Tatarintsev](/people/1960-1969/sergey-tatarintsev/), [Татьяна Татаринцева](/people/1960-1969/tatyana-tatarintseva/)
-
-**Партнёры:** [Антон Назаров](/people/1980-1989/anton-nazarov/)
-
-**Дети:** [Leonard Nazarov](/people/2020-2029/leonard-nazarov/)
-
 ## Биография
 
 Расширенная выгрузка MyHeritage уточняет дату рождения: 11 июля 2001 года.

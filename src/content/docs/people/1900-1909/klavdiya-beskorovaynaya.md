@@ -70,19 +70,6 @@ external:
     xref: "I500009"
 ---
 
-**Годы жизни:** 1908–1994
-**Фамилия при рождении:** Безкоровайная
-**Фамилия после брака:** Бескоровайная
-**Имя в исходных данных:** Клавдия Безкоровайная
-
-## Семья
-
-**Родители:** [Пётр Безкоровайный](/people/unknown/petr-bezkorovaynyy/), [Степанида](/people/unknown/stepanida/)
-
-**Партнёры:** [Вадим Буш](/people/1910-1919/vadim-bush/), [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/), [Георгий Бескоровайный](/people/unknown/georgiy-beskorovaynyy/)
-
-**Дети:** [Vladimir Beskorovaynyi](/people/1930-1939/vladimir-beskorovaynyi/), [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
-
 ## Биография
 
 Сведения пока не добавлены.

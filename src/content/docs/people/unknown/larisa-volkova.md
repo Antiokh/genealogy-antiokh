@@ -50,16 +50,6 @@ external:
     xref: "I500131"
 ---
 
-**Фамилия при рождении:** Волкова
-
-## Семья
-
-**Родители:** [Сергей Волков](/people/1920-1929/sergey-volkov/), [Тамара Курочкина](/people/1920-1929/tamara-kurochkina/)
-
-**Партнёры:** [Игорь Верходанов](/people/unknown/igor-verkhodanov/)
-
-**Дети:** [Лилия Волкова](/people/unknown/liliya-volkova/), [Юлия Верхоянцева](/people/unknown/yuliya-verkhoyantseva/)
-
 ## Биография
 
 Сведения пока не добавлены.

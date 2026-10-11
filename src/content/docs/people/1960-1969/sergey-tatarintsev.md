@@ -46,17 +46,6 @@ external:
     xref: "I500229"
 ---
 
-**Годы жизни:** 1964–
-**Фамилия при рождении:** Tatarintsev
-
-## Семья
-
-**Родители:** [Виктор Tatarintsev](/people/unknown/viktor-tatarintsev/), [Наталья Tatarintsev](/people/unknown/natalya-tatarintsev/)
-
-**Партнёры:** [Татьяна Татаринцева](/people/1960-1969/tatyana-tatarintseva/)
-
-**Дети:** [Екатерина Зорина](/people/1980-1989/ekaterina-zorina/), [Anna Tatarintseva](/people/2000-2009/anna-tatarintseva/)
-
 ## Биография
 
 Сведения пока не добавлены.

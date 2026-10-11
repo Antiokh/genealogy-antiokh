@@ -42,17 +42,6 @@ external:
     xref: "I500094"
 ---
 
-**Годы жизни:** 1912–1942
-**Фамилия при рождении:** Спиридонов
-
-## Семья
-
-**Родители:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/), [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
-
-**Партнёры:** —
-
-**Дети:** [Людмила Спиридонова](/people/unknown/lyudmila-spiridonova/), [Валентин Спиридонов](/people/unknown/valentin-spiridonov/)
-
 ## Биография
 
 Сведения пока не добавлены.

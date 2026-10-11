@@ -40,14 +40,6 @@ external:
     xref: "I500217"
 ---
 
-## Семья
-
-**Родители:** —
-
-**Партнёры:** —
-
-**Дети:** [Фёкла](/people/unknown/fekla/), [Мария](/people/unknown/mariya/), [Василиса](/people/unknown/vasilisa/), [Яков](/people/unknown/yakov/)
-
 ## Биография
 
 Сведения пока не добавлены.

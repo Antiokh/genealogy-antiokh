@@ -47,14 +47,6 @@ external:
     xref: "I500047"
 ---
 
-## Семья
-
-**Родители:** [Василий Лавриненко](/people/unknown/vasiliy-lavrinenko/)
-
-**Партнёры:** [Пётр Безкоровайный](/people/unknown/petr-bezkorovaynyy/)
-
-**Дети:** [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/), [Михаил Безкоровайный](/people/1900-1909/mikhail-bezkorovaynyy/)
-
 ## Биография
 
 Сведения пока не добавлены.

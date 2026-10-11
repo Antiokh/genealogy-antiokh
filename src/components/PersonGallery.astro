@@ -100,7 +100,7 @@ const media = docs
               </span>
             </a>
             <figcaption>
-              <span>{caption}</span>
+              <span title={caption}>{caption}</span>
               {date && <time>{date}</time>}
             </figcaption>
           </figure>
@@ -126,6 +126,40 @@ const media = docs
         wheelToZoom: true,
         bgOpacity: 0.94,
       });
+
+      let hasHistoryEntry = false;
+      let closingFromHistory = false;
+
+      const onPopState = () => {
+        if (!hasHistoryEntry || !lightbox.pswp) return;
+        hasHistoryEntry = false;
+        closingFromHistory = true;
+        lightbox.pswp.close();
+      };
+
+      lightbox.on('beforeOpen', () => {
+        if (hasHistoryEntry) return;
+        history.pushState(
+          { ...(history.state ?? {}), genealogyLightbox: true },
+          '',
+          window.location.href,
+        );
+        hasHistoryEntry = true;
+      });
+
+      lightbox.on('close', () => {
+        if (hasHistoryEntry && !closingFromHistory) {
+          hasHistoryEntry = false;
+          history.back();
+        }
+        closingFromHistory = false;
+      });
+
+      lightbox.on('destroy', () => {
+        window.removeEventListener('popstate', onPopState);
+      });
+
+      window.addEventListener('popstate', onPopState);
 
       lightbox.on('uiRegister', () => {
         lightbox.pswp?.ui?.registerElement({
@@ -250,7 +284,12 @@ const media = docs
   }
 
   .person-gallery-item figcaption span {
+    display: block;
+    flex: 1 1 auto;
     min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .person-gallery-item time {
@@ -279,6 +318,10 @@ const media = docs
 
     .person-gallery-item figcaption {
       display: block;
+    }
+
+    .person-gallery-item figcaption span {
+      width: 100%;
     }
 
     .person-gallery-item time {

@@ -47,17 +47,6 @@ external:
     xref: "I500014"
 ---
 
-**Годы жизни:** 1906–1984
-**Фамилия при рождении:** Попова
-
-## Семья
-
-**Родители:** [Григорий Попов](/people/unknown/grigoriy-popov/), [Мария](/people/unknown/mariya/)
-
-**Партнёры:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/)
-
-**Дети:** [Александр Попов](/people/1920-1929/aleksandr-popov/), [Петр Попов](/people/1920-1929/petr-popov/), [Иван Попов](/people/1930-1939/ivan-popov/), [Клавдия Попова](/people/1930-1939/klavdiya-popova/), [Мария Назарова](/people/1930-1939/mariya-nazarova/), [Виктор Попов](/people/1930-1939/viktor-popov/), [Зоя Попова](/people/1930-1939/zoya-popova/), [Василий Попов](/people/1940-1949/vasiliy-popov/)
-
 ## Биография
 
 Сведения пока не добавлены.

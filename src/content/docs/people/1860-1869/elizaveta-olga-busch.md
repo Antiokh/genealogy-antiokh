@@ -65,19 +65,6 @@ external:
     xref: "I500021"
 ---
 
-**Годы жизни:** 1860–1933
-**Фамилия при рождении:** Bartmer
-**Фамилия после брака:** Busch
-**Имя в исходных данных:** Елизавета-Ольга Bartmer
-
-## Семья
-
-**Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
-
-**Партнёры:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/)
-
-**Дети:** [Мария Буш](/people/1880-1889/mariya-bush/), [Vladimir Bush](/people/1880-1889/vladimir-bush/), [Борис Буш](/people/1890-1899/boris-bush/), [Елисавета Ботикова](/people/unknown/elisaveta-botikova/), [Георгий Буш](/people/unknown/georgiy-bush/)
-
 ## Биография
 
 Сведения пока не добавлены.
