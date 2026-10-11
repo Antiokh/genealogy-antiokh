@@ -1,14 +1,25 @@
 ---
-title: "Jохан Юлиус Буш"
-description: "Jохан Юлиус Буш"
+title: "Johann Julius Adolf Busch"
+description: "Johann Julius Adolf Busch (Юлий Адольфович Буш), 1823–1896"
 entity: person
-importManaged: true
+importManaged: false
 name:
-  locale: ru
-  full: "Jохан Юлиус Буш"
-  display: "Jохан Юлиус Буш"
-  birth_last: "Буш"
-  aliases: []
+  locale: und-Latn
+  full: "Johann Julius Adolf Busch"
+  display: "Johann Julius Adolf Busch"
+  first: "Johann Julius"
+  middle: "Adolf"
+  last: "Busch"
+  birth_last: "Busch"
+  localized:
+    ru:
+      first: "Юлий"
+      middle: "Адольфович"
+      last: "Буш"
+      display: "Юлий Адольфович Буш"
+  aliases:
+    - "Jохан Юлиус Буш"
+    - "Юлий Адольфович Буш"
 families:
   - key: "bush"
     label: "Буши"
@@ -18,34 +29,44 @@ families:
       - current
     inferred: true
     localized:
-      "und-Latn": "Bush"
+      "und-Latn": "Busch"
 sex: M
 father: null
 mother: null
 born:
-  known: false
-  date: null
+  known: true
+  date: "1823-05-27"
   place: null
 died:
   known: true
-  date: null
-  place: null
+  date: "1896-02-26"
+  place: "saint-petersburg.md"
+  placeLabel: "Санкт-Петербург"
 buried:
   known: false
   date: null
   place: null
 partners:
   - person: "unknown/molli-sharlotte-lange.md"
-occupation: []
+occupation:
+  - "купец 2-й гильдии"
+  - "владелец алебастрового завода и бань"
 residence: []
-sources: []
+sources:
+  - "amburger-johann-julius-adolf-busch.md"
+  - "ligovka-busch-family.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500222"
+  amburger:
+    record: "1374"
+    index: "1400"
 ---
 
-**Фамилия при рождении:** Буш
+**Годы жизни:** 1823–1896
+
+**Имя в исходном GEDCOM:** Jохан Юлиус Буш
 
 ## Семья
 
@@ -57,4 +78,4 @@ external:
 
 ## Биография
 
-Сведения пока не добавлены.
+Запись MyHeritage `I500222` содержала только имя `Jохан Юлиус Буш` и связь с Woldemar. Идентификация с Johann Julius Adolf Busch / Юлием Адольфовичем Бушем подтверждается двумя независимыми наборами данных: Erik-Amburger-Datenbank фиксирует Johann Julius Adolf Busch (1823–1896), а история дома на Лиговке называет Юлия Адольфовича Буша и перечисляет его сыновей, в том числе Владимира Юльевича. В той же базе Amburger отдельно присутствует Woldemar / Vladimir Jul., купец 1855 года рождения, что согласуется с Woldemar из канонического дерева.
