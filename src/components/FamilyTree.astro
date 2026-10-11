@@ -5,7 +5,6 @@ interface Props {
   personRef: string;
   renderer?: Renderer;
   priority?: Renderer[];
-  initialDepth?: number;
   showRendererSelector?: boolean;
   heading?: string;
 }
@@ -20,42 +19,55 @@ const {
   personRef,
   renderer,
   priority = ['balkan-classic', 'family-chart', 'vue-flow'],
-  initialDepth = 1,
   showRendererSelector = true,
   heading = 'Семейное дерево',
 } = Astro.props;
 
-const normalizedInitialDepth = Math.max(0, Math.floor(initialDepth));
 const selectedRenderer = renderer && rendererMeta[renderer] ? renderer : priority.find((item) => rendererMeta[item]) || 'balkan-classic';
+const canSelectRenderer = showRendererSelector && !renderer;
 const instanceId = `family-tree-${personRef.replace(/[^a-z0-9_-]+/gi, '-')}`;
-const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}&depth=${normalizedInitialDepth}`;
+const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}`;
 ---
 
-<section id={instanceId} class="family-tree" data-person={personRef} data-depth={normalizedInitialDepth}>
+<section id={instanceId} class="family-tree" data-person={personRef}>
   <div class="family-tree__header">
     <h2>{heading}</h2>
-    <div class="family-tree__controls" aria-label="Управление семейным деревом">
-      {showRendererSelector && (
-        <label class="family-tree__renderer">
-          <span>Рендерер</span>
-          <select data-tree-renderer>
-            {(Object.entries(rendererMeta) as [Renderer, { label: string; src: string }][]).map(([key, meta]) => (
-              <option value={key} data-src={meta.src} selected={key === selectedRenderer}>{meta.label}</option>
-            ))}
-          </select>
-        </label>
-      )}
-      <button type="button" data-tree-nearest disabled>Ближайшие</button>
-      <button type="button" data-tree-expand>Раскрыть ещё</button>
-      <button type="button" data-tree-fullscreen aria-label="Открыть семейное дерево на весь экран">На весь экран</button>
-    </div>
+    {canSelectRenderer && (
+      <label class="family-tree__renderer">
+        <span>Рендерер</span>
+        <select data-tree-renderer>
+          {(Object.entries(rendererMeta) as [Renderer, { label: string; src: string }][]).map(([key, meta]) => (
+            <option value={key} data-src={meta.src} selected={key === selectedRenderer}>{meta.label}</option>
+          ))}
+        </select>
+      </label>
+    )}
   </div>
-  <div class="family-tree__frame">
+
+  <div class="family-tree__frame" data-tree-fullscreen-target>
     <iframe data-tree-frame src={initialSrc} title={`${heading}: ${rendererMeta[selectedRenderer].label}`} loading="lazy"></iframe>
+
+    <div class="family-tree__map-controls" aria-label="Навигация по семейному дереву">
+      <div class="family-tree__control-group">
+        <button type="button" data-tree-command="zoom-in" title="Увеличить" aria-label="Увеличить">+</button>
+        <button type="button" data-tree-command="zoom-out" title="Уменьшить" aria-label="Уменьшить">−</button>
+      </div>
+      <div class="family-tree__control-group">
+        <button type="button" data-tree-command="focus" title="Вернуться к текущему человеку" aria-label="Вернуться к текущему человеку">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.1"/><path d="M6.8 19c.5-3.4 2.2-5.2 5.2-5.2s4.7 1.8 5.2 5.2"/><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/></svg>
+        </button>
+        <button type="button" data-tree-command="fit" title="Показать всё раскрытое дерево" aria-label="Показать всё раскрытое дерево">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+        </button>
+        <button type="button" data-tree-fullscreen title="На весь экран" aria-label="Открыть семейное дерево на весь экран">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+        </button>
+      </div>
+    </div>
   </div>
 </section>
 
-<script is:inline define:vars={{ instanceId, personRef, normalizedInitialDepth }}>
+<script is:inline define:vars={{ instanceId, personRef }}>
   (() => {
     const root = document.getElementById(instanceId);
     if (!root || root.dataset.ready === '1') return;
@@ -63,91 +75,144 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
 
     const frame = root.querySelector('[data-tree-frame]');
     const renderer = root.querySelector('[data-tree-renderer]');
-    const nearest = root.querySelector('[data-tree-nearest]');
-    const expand = root.querySelector('[data-tree-expand]');
+    const fullscreenTarget = root.querySelector('[data-tree-fullscreen-target]');
     const fullscreen = root.querySelector('[data-tree-fullscreen]');
-    const baseDepth = Math.max(0, Math.floor(Number(normalizedInitialDepth) || 0));
-    let depth = baseDepth;
+    const commandButtons = root.querySelectorAll('[data-tree-command]');
 
     const rendererSrc = () => renderer?.selectedOptions?.[0]?.dataset.src || frame?.src?.split('?')[0] || '';
-    const updateButtons = () => {
-      root.dataset.depth = String(depth);
-      if (nearest) nearest.disabled = depth <= baseDepth;
-    };
-    const postDepth = () => {
-      frame?.contentWindow?.postMessage({ type:'genealogy:tree-depth', depth }, window.location.origin);
-    };
     const reloadRenderer = () => {
       if (!frame) return;
-      const base = rendererSrc();
-      const params = new URLSearchParams({ person: personRef, depth: String(depth) });
-      frame.src = `${base}?${params.toString()}`;
-      if (expand) expand.disabled = false;
-      updateButtons();
+      frame.src = `${rendererSrc()}?person=${encodeURIComponent(personRef)}`;
     };
-    const setDepth = (nextDepth) => {
-      depth = Math.max(baseDepth, Math.floor(Number(nextDepth) || baseDepth));
-      if (expand) expand.disabled = false;
-      updateButtons();
-      postDepth();
-    };
-
     renderer?.addEventListener('change', reloadRenderer);
-    frame?.addEventListener('load', postDepth);
-    nearest?.addEventListener('click', () => setDepth(baseDepth));
-    expand?.addEventListener('click', () => setDepth(depth + 1));
 
-    const leaveFullscreen = () => root.classList.remove('is-fullscreen');
+    const postCommand = (command) => {
+      frame?.contentWindow?.postMessage({ type:'genealogy:tree-command', command }, window.location.origin);
+    };
+    commandButtons.forEach((button) => {
+      button.addEventListener('click', () => postCommand(button.dataset.treeCommand));
+    });
+
+    const leaveFallbackFullscreen = () => fullscreenTarget?.classList.remove('is-fullscreen');
     fullscreen?.addEventListener('click', async () => {
-      if (document.fullscreenElement === root) {
+      if (!fullscreenTarget) return;
+      if (document.fullscreenElement === fullscreenTarget) {
         await document.exitFullscreen?.();
         return;
       }
-      if (root.requestFullscreen) {
-        try { await root.requestFullscreen(); return; } catch {}
+      if (fullscreenTarget.requestFullscreen) {
+        try { await fullscreenTarget.requestFullscreen(); return; } catch {}
       }
-      root.classList.toggle('is-fullscreen');
+      fullscreenTarget.classList.toggle('is-fullscreen');
     });
     document.addEventListener('fullscreenchange', () => {
-      if (document.fullscreenElement !== root) leaveFullscreen();
+      if (document.fullscreenElement !== fullscreenTarget) leaveFallbackFullscreen();
     });
     document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape' && root.classList.contains('is-fullscreen')) leaveFullscreen();
+      if (event.key === 'Escape') leaveFallbackFullscreen();
     });
-
-    window.addEventListener('message', (event) => {
-      if (event.origin !== window.location.origin || event.source !== frame?.contentWindow) return;
-      if (event.data?.type !== 'genealogy:tree-scope') return;
-      const scope = event.data.scope;
-      if (expand && scope) expand.disabled = !scope.hasMore;
-    });
-    updateButtons();
   })();
 </script>
 
 <style>
-  .family-tree { margin-top: 1.5rem; }
+  .family-tree {
+    --tree-control-bg: var(--sl-color-bg-nav, var(--sl-color-bg));
+    --tree-control-hover: var(--sl-color-gray-6, var(--sl-color-bg-inline-code));
+    --tree-control-fg: var(--sl-color-text);
+    --tree-control-border: var(--sl-color-gray-5);
+    margin-top: 1.5rem;
+  }
   .family-tree__header { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:.65rem; }
   .family-tree__header h2 { margin:0; font-size:var(--sl-text-h3); }
-  .family-tree__controls { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:.45rem; }
-  .family-tree__controls button, .family-tree__renderer select {
-    min-height:2rem; border:1px solid var(--sl-color-gray-5); border-radius:.5rem; background:var(--sl-color-bg-nav);
-    color:var(--sl-color-text); font:inherit; font-size:.8rem; padding:.35rem .6rem;
-  }
-  .family-tree__controls button:not(:disabled), .family-tree__renderer select { cursor:pointer; }
-  .family-tree__controls button:disabled { opacity:.45; }
-  .family-tree__renderer { display:flex; align-items:center; gap:.4rem; }
+  .family-tree__renderer { display:flex; align-items:center; gap:.45rem; }
   .family-tree__renderer span { font-size:.75rem; color:var(--sl-color-gray-2); }
-  .family-tree__frame { overflow:hidden; border:1px solid var(--sl-color-gray-5); border-radius:.75rem; background:var(--sl-color-bg); }
-  .family-tree__frame iframe { display:block; width:100%; height:min(58vh, 36rem); min-height:25rem; border:0; background:var(--sl-color-bg); }
-  .family-tree:fullscreen, .family-tree.is-fullscreen { background:var(--sl-color-bg); padding:.75rem; }
-  .family-tree:fullscreen .family-tree__frame, .family-tree.is-fullscreen .family-tree__frame { height:calc(100dvh - 4.5rem); }
-  .family-tree:fullscreen .family-tree__frame iframe, .family-tree.is-fullscreen .family-tree__frame iframe { height:100%; min-height:0; }
-  .family-tree.is-fullscreen { position:fixed; inset:0; z-index:10000; margin:0; }
-  @media (max-width: 40rem) {
+  .family-tree__renderer select {
+    min-height:2rem;
+    border:1px solid var(--tree-control-border);
+    border-radius:.5rem;
+    background:var(--tree-control-bg);
+    color:var(--tree-control-fg);
+    font:inherit;
+    font-size:.8rem;
+    padding:.35rem .6rem;
+    cursor:pointer;
+  }
+
+  .family-tree__frame {
+    position:relative;
+    overflow:hidden;
+    border:1px solid var(--sl-color-gray-5);
+    border-radius:.75rem;
+    background:var(--sl-color-bg);
+  }
+  .family-tree__frame iframe {
+    display:block;
+    width:100%;
+    height:min(58vh, 36rem);
+    min-height:25rem;
+    border:0;
+    background:var(--sl-color-bg);
+  }
+
+  .family-tree__map-controls {
+    position:absolute;
+    z-index:8;
+    top:max(.45rem, env(safe-area-inset-top));
+    right:max(.4rem, env(safe-area-inset-right));
+    display:grid;
+    gap:.45rem;
+    pointer-events:none;
+  }
+  .family-tree__control-group {
+    overflow:hidden;
+    border:1px solid var(--tree-control-border);
+    border-radius:.55rem;
+    background:var(--tree-control-bg);
+    box-shadow:0 2px 9px rgb(15 23 42 / 16%);
+    pointer-events:auto;
+  }
+  .family-tree__control-group button {
+    display:grid;
+    place-items:center;
+    width:29px;
+    height:29px;
+    margin:0;
+    padding:0;
+    border:0;
+    background:var(--tree-control-bg);
+    color:var(--tree-control-fg);
+    font:700 20px/1 system-ui, sans-serif;
+    cursor:pointer;
+  }
+  .family-tree__control-group button + button { border-top:1px solid var(--tree-control-border); }
+  .family-tree__control-group button:hover,
+  .family-tree__control-group button:focus-visible { background:var(--tree-control-hover); }
+  .family-tree__control-group svg {
+    width:19px;
+    height:19px;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.8;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+  .family-tree__control-group svg circle { fill:none; }
+
+  .family-tree__frame:fullscreen,
+  .family-tree__frame.is-fullscreen {
+    width:100vw;
+    height:100dvh;
+    border:0;
+    border-radius:0;
+    background:var(--sl-color-bg);
+  }
+  .family-tree__frame:fullscreen iframe,
+  .family-tree__frame.is-fullscreen iframe { height:100%; min-height:0; }
+  .family-tree__frame.is-fullscreen { position:fixed; inset:0; z-index:10000; }
+
+  @media (max-width:40rem) {
     .family-tree__header { align-items:stretch; flex-direction:column; }
-    .family-tree__controls { justify-content:flex-start; }
-    .family-tree__renderer { width:100%; justify-content:space-between; }
+    .family-tree__renderer { justify-content:space-between; }
     .family-tree__renderer select { flex:1; max-width:15rem; }
     .family-tree__frame iframe { height:55vh; min-height:22rem; }
   }
