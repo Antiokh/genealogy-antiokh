@@ -27,6 +27,7 @@ export default defineConfig({
         baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
       },
       components: {
+        Header: './src/components/GenealogyHeader.astro',
         PageTitle: './src/components/GenealogyPageTitle.astro',
         Footer: './src/components/GenealogyFooter.astro',
       },
