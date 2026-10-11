@@ -8,6 +8,7 @@
     "build:data": "node scripts/build-genealogy.mjs && node scripts/augment-genealogy-metadata.mjs && node scripts/build-tree-data.mjs && node scripts/build-events-places.mjs && node scripts/build-media.mjs",
     "build": "npm run build:data && astro build && node scripts/copy-demos.mjs",
     "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/apply-reconciled-relations.mjs && node scripts/enrich-person-names.mjs && node scripts/enrich-family-groups.mjs",
+    "import:myheritage": "node scripts/import-myheritage-profiles.mjs && node scripts/import-myheritage-media.mjs",
     "preview": "astro preview",
     "check": "astro check"
   },
