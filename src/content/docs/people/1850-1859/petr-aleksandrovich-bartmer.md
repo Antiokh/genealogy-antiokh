@@ -38,10 +38,12 @@ buried:
   known: false
   date: null
   place: null
-partners: []
+partners:
+  - person: unknown/sofiya-konstantinovna-bartmer.md
 occupation: []
 residence: []
-sources: []
+sources:
+  - myheritage-2026-relation-text.md
 external:
   myheritage:
     snapshot: 2026-09-10
@@ -55,7 +57,7 @@ external:
 
 **Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Партнёры:** —
+**Партнёры:** [София Константиновна Бартмер](/people/unknown/sofiya-konstantinovna-bartmer/)
 
 **Дети:** [Евгения Петровна Римская-Корсакова](/people/1880-1889/evgeniya-petrovna-rimskaya-korsakova/)
 
