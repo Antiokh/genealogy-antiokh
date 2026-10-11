@@ -110,14 +110,16 @@ export class GenealogyPersonCard extends HTMLElement {
     const url = this.getAttribute('url') || '';
     const years = this.getAttribute('years') || '';
     const personId = this.getAttribute('person-id') || '';
+    const focusId = new URLSearchParams(globalThis.location?.search || '').get('person') || '';
+    const isFocus = Boolean(personId && focusId && personId === focusId);
     const sex = normalizeSex(this.getAttribute('sex'));
     const deceased = this.hasAttribute('deceased');
     const photo = this.getAttribute('photo') || '';
     const birthSurname = this.getAttribute('birth-surname') || '';
     const branchState = this.getAttribute('branch-state') || '';
     const relationship = this._relationship;
-    const relationshipLabel = typeof relationship === 'string' ? relationship : relationship?.label || '';
-    const relationshipTitle = typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel;
+    const relationshipLabel = isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.label || '');
+    const relationshipTitle = isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel);
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
     const nameClass = `name${nameSizeClass(name)}`;
     const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;
@@ -149,6 +151,9 @@ export class GenealogyPersonCard extends HTMLElement {
           background:color-mix(in srgb, var(--sl-color-bg-nav, #fff) 96%, transparent);
           box-shadow:0 2px 9px color-mix(in srgb, var(--sl-color-black, #000) 10%, transparent);
           text-align:left;
+        }
+        .card.focus {
+          border:2px solid var(--tree-accent, var(--sl-color-accent, #6b8cff));
         }
         .avatar-link {
           display:block; width:44px; height:44px; border-radius:50%; text-decoration:none;
@@ -224,7 +229,7 @@ export class GenealogyPersonCard extends HTMLElement {
         .branch-badge { fill:var(--tree-accent, var(--sl-color-accent)); stroke:var(--tree-background, var(--sl-color-bg)); stroke-width:1.5; }
         .branch-badge-mark path { fill:none; stroke:var(--tree-background, var(--sl-color-bg)); stroke-width:1.8; stroke-linecap:round; }
       </style>
-      <article class="card" data-person-id="${esc(personId)}">
+      <article class="card${isFocus ? ' focus' : ''}" data-person-id="${esc(personId)}">
         ${relationshipLabel ? `<div class="relationship" title="${esc(relationshipTitle)}">${esc(relationshipLabel)}</div>` : ''}
         ${avatarHtml}
         <div class="text">
