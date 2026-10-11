@@ -21,7 +21,7 @@ The 2026 MyHeritage graph contains one non-technical two-person component outsid
 
 Their family record has Louise as `WIFE` and Georg as `CHIL`, but no `HUSB`. Louise also has a marriage event dated approximately 1833–1834 while Georg was born on 16 July 1832. This does not identify Georg's father and is not enough to connect the Gerdau/Büsch component to the main Büsch/Busch branch. No bridge is asserted until a source names that parent or spouse.
 
-The GEDCOM source metadata points to FamilySearch person IDs `176977591` (Louise) and `176977619` (Georg). These identifiers are preserved here as research leads; they do not themselves establish the missing parent link. The Erik-Amburger name index independently corroborates a Luise Charlotte Gerdau in St Petersburg, but the public index entry inspected does not establish her parents or Georg's father.
+Louise's GEDCOM source is MyHeritage's **FamilySearch Family Tree** collection and uses MyHeritage collection item ID `176977591`. This is an `itemId` in the MyHeritage URL, not a standard FamilySearch PID. Georg's source is different: a MyHeritage Smart Match to Tatiana Soundakova's **Тёмкина Web Site**, tree `44907651-3`; the GEDCOM does not provide a FamilySearch item ID for Georg. These source identifiers are preserved as research leads, but neither establishes the missing father. The Erik-Amburger name index independently corroborates a Luise Charlotte Gerdau in St Petersburg, but the public index entry inspected does not establish her parents or Georg's father.
 
 ### Büsch/Busch research leads
 
