@@ -1,261 +1,151 @@
 # Tree visualization decision
 
-This document records the current visualization shortlist for Genealogy Library.
+This document records the current renderer shortlist for Genealogy Library. The detailed interaction/history contract extracted from the BALKAN work lives in [`tree-renderer-behavior-contract.md`](./tree-renderer-behavior-contract.md) and is the source of truth for what every renderer must reproduce.
 
-The current scope is intentionally narrow: **family trees only**. Pedigree/fan/timeline/map views can be evaluated later.
+The scope is family trees only. Pedigree/fan/timeline/map views can be evaluated separately.
 
 ## Hard requirements
 
-A renderer is only a candidate if it can plausibly satisfy all three requirements:
+A renderer remains a candidate only if it can satisfy all of these on the real genealogy:
 
-1. **Expand/collapse** — users must be able to hide/show branches without rebuilding the page manually.
-2. **Correct multi-partner genealogy** — one person may have multiple marriages/partnerships, and children must belong to the correct union rather than merely to one structural parent.
-3. **Reusable custom person card** — the visual card must be fully ours and embeddable as the same reusable UI component inside and outside the tree, not a renderer-specific imitation.
+1. Expand/collapse must be understandable and usable on mobile.
+2. Multiple marriages/partnerships must preserve the correct parent pair for every child.
+3. The exact shared `genealogy-person-card` must remain renderer-independent.
+4. The complete real tree (currently 232 people) must be displayable without a free-tier/node-count ceiling.
+5. Genealogy Library owns visual semantics: theme tokens, kinship badge, avatar navigation, mourning ribbon, union icons, status/focus controls.
 
-Visual polish, load time, licensing, implementation weight and generation-level readability are comparison criteria after those three requirements are met.
+Performance, licensing, implementation weight and generation readability are comparison criteria after correctness.
 
-## Canonical visualization model
+## Canonical model
 
-The canonical genealogy remains renderer-independent:
+The canonical graph remains renderer-independent:
 
 ```text
 people + families/unions
         ↓
-view projection
+visibility / collapse state
         ↓
 renderer adapter
-```
-
-A union is an explicit semantic object even if a particular renderer hides its visual node:
-
-```text
-P1 ─┐
-    F1
-P2 ─┘
-     │
-  children
-```
-
-A second partnership creates a different family/union record. This is non-negotiable because it prevents children from being attached to the wrong partner relationship.
-
-The renderer spike uses one neutral input shape:
-
-```js
-{
-  root: 'P3',
-  people: [
-    {
-      id: 'P3',
-      name: 'Daniel Morgan',
-      years: '1973–',
-      sex: 'M',
-      deceased: false,
-      photo: ''
-    }
-  ],
-  families: [
-    {
-      id: 'F4',
-      partners: ['P3', 'P4'],
-      children: ['P6', 'P7'],
-      label: '1998–2010'
-    }
-  ]
-}
-```
-
-`demos/renderer-adapters.js` is the single projection layer from this neutral shape to renderer-specific input. The renderer demos no longer hand-build relationships independently.
-
-### Family Chart projection
-
-Family Chart wants person-centric records:
-
-```js
-{
-  id: 'P3',
-  data: { gender: 'M', name: 'Daniel Morgan', years: '1973–' },
-  rels: {
-    parents: ['P1', 'P2'],
-    spouses: ['P4', 'P5'],
-    children: ['P6', 'P7', 'P8']
-  }
-}
-```
-
-All relations are made bidirectional by the adapter. This format is simple, but it flattens union context: the renderer sees spouses and children at person level rather than a persistent `family -> children` edge. That is why multi-spouse placement remains Family Chart's main correctness risk.
-
-### BALKAN FamilyTreeJS 2 projection
-
-FamilyTreeJS 2 wants family-member records:
-
-```js
-{
-  id: 'P6',
-  name: 'Nina Morgan',
-  sexOrGender: 'female',
-  fatherId: 'P3',
-  motherId: 'P4',
-  spouseIds: [],
-  childIds: []
-}
-```
-
-The adapter also forwards PersonCard fields such as `years`, `sex`, `deceased` and `photo`. For ordinary mother/father families this projection retains the actual parent pair directly, which is stronger than Family Chart's flattened spouse/child representation.
-
-The remaining question for BALKAN is layout semantics rather than relationship storage: its current focus-centric layout may place relatives of the same generation at different vertical levels. Real-data testing must establish whether this can be made readable enough without replacing the layout engine.
-
-### Vue Flow + ELK projection
-
-Vue Flow + ELK receives the neutral model almost literally as a graph:
-
-```text
-person P3 -> family F4 <- person P4
-                    |
-                    +-> person P6
-                    +-> person P7
-```
-
-Persons and families are separate nodes; partner-to-family and family-to-child links are explicit edges. This preserves union semantics exactly and therefore remains the correctness/control fallback when genealogy-specific renderers cannot produce acceptable geometry.
-
-## Shared PersonCard contract
-
-The visualization spike has one card implementation:
-
-```text
-demos/person-card.js
         ↓
-genealogy-person-card
-        ├── Family Chart
-        ├── BALKAN FamilyTreeJS 2
-        ├── Vue Flow + ELK
-        └── standalone person-card.html
+renderer
 ```
 
-Every renderer must host this exact component or an eventual production equivalent with the same component boundary. Separate renderer-specific card markup is not acceptable for comparison because it makes visual and integration cost impossible to compare fairly.
+A union is always an explicit semantic object in the canonical data even when a renderer flattens it visually:
 
-The current demo implementation is a Web Component so it can be embedded independently of a framework. That does not force the production site to use Web Components permanently; it establishes the architectural requirement that the person card belongs to Genealogy Library, not to the tree library.
+```text
+person P1 -> union F1 <- person P2
+                     |
+                     +-> children
+```
 
-If a renderer cannot render, size, interact with or event-bind the shared component cleanly, that is a renderer limitation and counts against the candidate.
+This is non-negotiable because a person can have multiple partnerships and children must stay attached to the correct union.
 
-### PersonCard visual semantics
+## Shared behavior baseline
 
-Sex and life/death status are represented on the avatar rather than by coloring the whole card:
+PR #28 originally used BALKAN FamilyTreeJS to establish the product behavior. That behavior is now renderer-independent and is documented in `tree-renderer-behavior-contract.md`:
 
-- male avatar: muted blue outline;
-- female avatar: muted rose outline;
-- unknown/unspecified sex: neutral outline;
-- deceased person: avatar image is desaturated and a narrow black diagonal mourning ribbon is drawn across the avatar;
-- when there is no photo, the initials fallback uses the same outline/ribbon state so the status remains visible;
-- the rest of the card stays neutral and renderer-independent.
+- focused initial view rather than a permanently filtered data source;
+- visible tree `+ / −` branch controls;
+- card-body branch interaction while avatar/photo remains the only page link;
+- shared PersonCard and neutral portrait fallback;
+- black mourning ribbon in every theme;
+- kinship/affinity label relative to the focused person;
+- union icons for marriage, divorce, partnership and neutral co-parenting;
+- top-left `<focus> · N из M людей` status;
+- clicking the focus name centers without changing branch state;
+- clicking the total count expands/shows all;
+- common zoom, fit and focus commands;
+- shared theme variables rather than renderer hard-coded colors.
 
-The `photo` value belongs to PersonCard data. The tree renderer must not implement separate image or memorial styling.
+## Active candidates
 
-## Active shortlist
+### Family Chart 0.9 — genealogy-specific, MIT
 
-### Family Chart — current front-runner for generation readability
+Strengths:
 
-Repository: `donatso/family-chart`.
-
-Why it remains strong:
-
-- genealogy-specific;
-- built-in family-tree interaction;
-- branch expansion/collapse behavior;
-- accepts custom HTML card rendering;
-- can host the shared PersonCard;
+- compact genealogy-specific renderer;
+- good generation readability in the current demo;
+- accepts the exact shared PersonCard;
 - MIT licensed;
-- relatively small integration surface;
-- its vertical hierarchy currently reads more naturally as generations than the BALKAN focus-centric demo.
+- relatively small integration surface.
 
-Blocking issue:
+Current implementation in PR #28 now has the same visible branch controls, status actions and relation-icon language as the BALKAN reference.
 
-Its current multi-spouse layout can place children under the wrong couple. This is a correctness problem, not a cosmetic issue. Family Chart remains viable only if the layout can be fixed or adapted without replacing most of the engine.
+Main risk: Family Chart flattens union context into person-level parents/spouses/children. Correct placement for multiple spouses and their separate children must therefore be verified on real data. Union icons are positioned as an overlay between visible partner cards because the renderer has no persistent explicit union node in its public data shape.
 
-The demo disables transition animations and explicitly neutralizes the library's own card background, border, shadow and pseudo-elements so only the shared PersonCard is visible.
+Its current collapse implementation is application-owned projected visibility followed by renderer rebuild/re-layout, not verified native hidden-node state. That difference is part of the comparison.
 
-### BALKAN FamilyTreeJS 2 — working finalist
+### Vue Flow + ELK — explicit union graph, maximum control
 
-BALKAN now runs successfully in the browser demo and remains a strong fit:
+Strengths:
 
-- genealogy-specific rather than a generic org-chart projection;
-- native spouse relationships (`spouseIds`);
-- parent/child relationships are explicit, including mother/father pairs and child lists;
-- multiple spouses are supported directly;
-- children can be attached to the actual parent pair;
-- collapse state is part of the public API through `collapsedIds`;
-- templates support arbitrary HTML via `template.html`;
-- the exact shared PersonCard renders inside its node template.
+- preserves canonical union nodes exactly;
+- arbitrary custom Vue nodes host the exact shared PersonCard;
+- marriage/divorce/partner icon is the actual union node rather than an overlay;
+- multiple partnerships and child-per-union semantics are explicit;
+- zoom/pan are handled by Vue Flow;
+- layout and rendering are replaceable independently.
 
-Current blocker: the default layout is focus-centric. Parents/in-laws can be placed beside rather than strictly above their children, so generations are not guaranteed to share a horizontal level. Real-data testing must show whether template/layout settings can make this sufficiently readable.
-
-Primary strategic risk remains proprietary/commercial licensing.
-
-### Vue Flow + ELK — third/fallback candidate
-
-Repositories: `bcakmakoglu/vue-flow` and `kieler/elkjs`.
-
-Why it remains:
-
-- arbitrary graph semantics, including explicit family nodes;
-- arbitrary component nodes;
-- the same PersonCard can be hosted directly inside a custom node;
-- zoom/pan and selection are solved;
-- renderer and layout engine remain replaceable independently.
+PR #28 now gives it the same branch controls, status actions, theme semantics and kinship cards as the reference behavior.
 
 Risks:
 
-- branch collapse must be implemented in our graph projection/state;
-- genealogy-specific layout tuning is ours;
-- two libraries and more runtime/conceptual weight;
-- easy to overbuild a browse-first site.
+- collapse/visibility remains application-owned;
+- ELK re-layout is required after visible-scope changes;
+- two libraries and more implementation/runtime weight;
+- `@vue-flow/core` is MIT, while `elkjs` uses EPL-2.0, so redistribution obligations are different from a pure-MIT stack.
 
-This is the correctness/control fallback, not the preferred answer while one of the genealogy-specific renderers remains workable.
+Architecturally this is currently the cleaner candidate for complex multi-partner genealogy because unions remain first-class nodes.
 
-## Rejected candidates
+## Reference only: BALKAN FamilyTreeJS classic
 
-The following are no longer active implementation candidates:
+BALKAN was useful for establishing the interaction model because it supports native root changes and native `expand` / `collapse`. PR #28 changed it from destroy/recreate filtered projections to one full node graph and native collapse state.
 
-| Candidate | Reason for rejection |
-| --- | --- |
-| ApexTree | strict nested hierarchy; only one structural parent path |
-| treeSpider | strict `id + parentId` hierarchy; demo also failed to load reliably |
-| d3-org-chart | secondary spouse connections do not participate in layout; one structural parent remains |
-| DHTMLX Diagram org chart | partner nodes cannot themselves be parents, preventing clean child-per-union semantics |
-| JSCharting Org | multiple-parent geometry worked in principle, but its HTML annotation layer rendered the shared Web Component markup as text; supporting it would require a renderer-specific card |
-| Topola | genealogy semantics are useful, but production visual design is too rigid/dated for this product |
-| Custom SVG demo | not a library candidate; removed after extracting the renderer-independent PersonCard baseline |
+However, expanding the real genealogy exposed a 200-person limitation in the free BALKAN usage path while the current tree contains 232 people. That makes it unsuitable for the project's free/open-source production requirement.
 
-Rejected renderers may still be used as design or implementation references. They should not receive more demo/integration work unless their underlying model changes.
+Do not treat BALKAN as a finalist. Keep it only as a behavioral/reference renderer unless the node limit and licensing constraints change under acceptable terms.
 
 ## Current comparison
 
-| Candidate | Collapse | Multiple marriages / correct parent pair | Exact shared card | Generation readability | Current status |
-| --- | --- | --- | --- | --- | --- |
-| Family Chart | yes | native relations, but known multi-spouse layout risk | yes | good in current demo | **finalist / working** |
-| BALKAN FamilyTreeJS 2 | yes | native parent pair | yes | focus-centric; must be tested/tuned | **finalist / working** |
-| Vue Flow + ELK | ours | exact through explicit union nodes | yes | entirely under our control | third/fallback; heavier implementation |
+| Candidate | Collapse implementation | Union correctness | Shared card | 232 people | License / dependency note | Status |
+| --- | --- | --- | --- | --- | --- | --- |
+| Family Chart | app-owned scope + rebuild | flattened model; must verify multi-spouse layout | yes | to test | MIT | active candidate |
+| Vue Flow + ELK | app-owned scope + ELK re-layout | exact explicit union nodes | yes | to test | Vue Flow MIT; ELK.js EPL-2.0 | active candidate |
+| BALKAN classic | native | strong | yes | **blocked at 200 in free path** | proprietary/commercial constraints | reference only |
 
-## Real-data testing
+## Real-data test checklist
 
-Renderer comparison should use the same neutral real-data snapshot and the same root person. Renderer-specific payloads must be generated through `renderer-adapters.js`, not edited by hand.
+Both active candidates must be tested with the same `tree.json`, focused person and card component. At minimum verify:
 
-Real genealogy fixtures must not be committed accidentally to the public repository. `.gitignore` excludes `demos/private-data/` and `*.private.json` / `*.private.js`. A deliberate decision is required before any living-relative data is published through Pages.
-
-The remaining candidates should be judged on:
-
+- all 232 people via expand-all;
 - multiple marriages with children from each union;
 - half-siblings;
-- missing/unknown parent;
-- spouse ancestry;
+- unknown/missing parent;
+- spouse ancestry and affinity labels;
 - pedigree collapse;
 - wide collateral branches;
-- roughly 250 people;
-- parents never being visually below their children;
-- people of the same generation staying roughly aligned where possible;
-- mobile interaction;
-- expand/collapse latency;
-- initial load time;
-- clean embedding of the exact same person-card component;
-- ability for card click/hover/actions to remain owned by Genealogy Library rather than the renderer.
+- parents not rendered visually below their children;
+- reasonable generation alignment;
+- mobile pan/zoom/fit/focus;
+- branch-toggle latency;
+- expand-all latency;
+- stable union icons while navigating;
+- no renderer-specific fork of PersonCard.
 
-The goal is not the most capable graph library. The goal is the smallest maintainable renderer that handles family geometry correctly, feels fast, and lets Genealogy Library own the visual language.
+The renderer pages record their latest rebuild/layout time in the status element's `title` and `data-render-ms` to make side-by-side performance checks easier without adding debug text to the visible UI.
+
+## Rejected candidates
+
+These remain rejected unless their underlying data/layout model changes:
+
+| Candidate | Reason |
+| --- | --- |
+| ApexTree | strict nested hierarchy; one structural parent path |
+| treeSpider | strict `id + parentId` hierarchy |
+| d3-org-chart | secondary spouse connections do not participate in layout |
+| DHTMLX Diagram org chart | partner nodes cannot cleanly represent child-per-union semantics |
+| JSCharting Org | shared Web Component card could not be embedded cleanly |
+| Topola | genealogy semantics useful, but production visual design too rigid for this product |
+| Custom SVG demo | reference/prototype rather than a maintained renderer library |
+
+The goal is not the most capable graph library. It is the smallest maintainable renderer that keeps family geometry correct, stays fast on the real tree, has acceptable licensing, and lets Genealogy Library own the visual language.
