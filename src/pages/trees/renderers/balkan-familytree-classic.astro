@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BALKAN FamilyTreeJS classic</title>
+    <link rel="stylesheet" href="/tree/renderer.css" />
+    <style is:global>
+      #BalkanClassic { width:100%; height:100%; background:var(--sl-color-bg); }
+      #BalkanClassic > svg { background:var(--sl-color-bg) !important; }
+      #BalkanClassic [data-l-id] > path,
+      #BalkanClassic [data-link-id] > path { stroke:var(--tree-edge) !important; }
+    </style>
+  </head>
+  <body>
+    <main class="tree-shell">
+      <div id="BalkanClassic" class="tree-canvas"></div>
+      <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS classic…</div>
+    </main>
+    <script>
+      // @ts-nocheck
+      import FamilyTree from '@balkangraph/familytree.js';
+
+      const status = document.getElementById('status');
+      const canvas = document.getElementById('BalkanClassic');
+      const pairKey = (a, b) => [String(a), String(b)].sort().join('|');
+      const xml = (value) => String(value ?? '')
+        .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;').replaceAll("'", '&apos;');
+
+      function relationTitle(relation) {
+        if (relation?.kind === 'divorced') {
+          if (relation.divorced && relation.married) return `Брак ${relation.married} · развод ${relation.divorced}`;
+          if (relation.divorced) return `Развод · ${relation.divorced}`;
+          return relation.married ? `Развод · брак ${relation.married}, дата развода не указана` : 'Развод';
+        }
+        if (relation?.kind === 'married') return relation.married ? `Брак · ${relation.married}` : 'Брак';
+        if (relation?.kind === 'partner') return 'Партнёрство';
+        return 'Родители · статус союза не указан';
+      }
+
+      function relationIcon(relation, x, y) {
+        const kind = relation?.kind || 'parents';
+        const title = xml(relationTitle(relation));
+        const background = '<rect x="-14" y="-11" width="28" height="22" rx="11" fill="var(--sl-color-bg)"/>';
+
+        if (kind === 'married' || kind === 'divorced') {
+          const stroke = kind === 'divorced' ? 'var(--tree-danger)' : 'var(--sl-color-accent)';
+          const slash = kind === 'divorced'
+            ? `<line x1="-10" y1="9" x2="10" y2="-9" stroke="${stroke}" stroke-width="2" stroke-linecap="round"/>`
+            : '';
+          return `<g class="genealogy-relation-icon relation-${kind}" transform="translate(${x} ${y})" pointer-events="none">
+            <title>${title}</title>${background}
+            <circle cx="-3.5" cy="0" r="5" fill="none" stroke="${stroke}" stroke-width="1.7"/>
+            <circle cx="3.5" cy="0" r="5" fill="none" stroke="${stroke}" stroke-width="1.7"/>
+            ${slash}
+          </g>`;
+        }
+
+        const stroke = kind === 'partner' ? 'var(--sl-color-accent)' : 'var(--sl-color-gray-3)';
+        return `<g class="genealogy-relation-icon relation-${kind}" transform="translate(${x} ${y})" pointer-events="none">
+          <title>${title}</title>${background}
+          <circle cx="-4.2" cy="-3.2" r="2.7" fill="none" stroke="${stroke}" stroke-width="1.6"/>
+          <circle cx="4.2" cy="-3.2" r="2.7" fill="none" stroke="${stroke}" stroke-width="1.6"/>
+          <path d="M-10 7c.3-4.2 2.2-6.2 5.8-6.2S1.3 2.8 1.6 7M-1.6 7c.3-4.2 2.2-6.2 5.8-6.2S9.7 2.8 10 7" fill="none" stroke="${stroke}" stroke-width="1.6" stroke-linecap="round"/>
+        </g>`;
+      }
+
+      try {
+        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope }, response] = await Promise.all([
+          import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
+          import(/* @vite-ignore */ '/tree/person-card.js'),
+          import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          import(/* @vite-ignore */ '/tree/scope.js'),
+          fetch('/generated/tree.json'),
+        ]);
+        let currentTheme = 'light';
+        let tree = null;
+        startThemeBridge((theme) => { currentTheme = theme; });
+        if (!response.ok) throw new Error(`tree.json: ${response.status}`);
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        const expansion = createTreeExpansionState(sourceFamily, context.person);
+        const focusId = expansion.focusId;
+
+        FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
+        FamilyTree.templates.genealogy.size = [PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT];
+        FamilyTree.templates.genealogy.node = `<rect x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}" fill="transparent" stroke="transparent"></rect>`;
+        FamilyTree.templates.genealogy.html = `<foreignObject x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}">{val}</foreignObject>`;
+        FamilyTree.templates.genealogy.defs = '';
+        FamilyTree.templates.genealogy.ripple = { radius:0, color:'none', rect:null };
+        FamilyTree.templates.genealogy_male = Object.assign({}, FamilyTree.templates.genealogy);
+        FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
+
+        const relationByPair = new Map();
+        for (const unit of sourceFamily.families || []) {
+          for (let i = 0; i < (unit.partners || []).length; i += 1) {
+            for (let j = i + 1; j < (unit.partners || []).length; j += 1) {
+              relationByPair.set(pairKey(unit.partners[i], unit.partners[j]), unit.relation || { kind:'parents' });
+            }
+          }
+        }
+
+        const renderFamily = (family, anchorId = focusId) => {
+          tree?.destroy?.();
+          canvas.replaceChildren();
+
+          const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
+          tree = new FamilyTree(canvas, {
+            mode: currentTheme,
+            template: 'genealogy',
+            orientation: FamilyTree.orientation.top,
+            layout: FamilyTree.layout.normal,
+            align: FamilyTree.align.orientation,
+            levelSeparation: 86,
+            siblingSeparation: 28,
+            subtreeSeparation: 42,
+            partnerNodeSeparation: 18,
+            partnerChildrenSplitSeparation: 24,
+            scaleInitial: FamilyTree.match.boundary,
+            enableSearch: false,
+            nodeMouseClick: FamilyTree.action.none,
+            nodeBinding: { html:'cardHtml' },
+          });
+
+          tree.on('render-link', (sender, args) => {
+            args.html = String(args.html || '').replace(/<use\b[^>]*(?:xlink:href|href)=["']#dot["'][^>]*\/?>(?:<\/use>)?/gi, '');
+            if (!args.cnode?.isPartner || !args.node?.id || !args.cnode?.id || !args.p) return;
+            const relation = relationByPair.get(pairKey(args.node.id, args.cnode.id)) || { kind:'parents' };
+            const x = (Number(args.p.xa) + Number(args.p.xd)) / 2;
+            const y = (Number(args.p.ya) + Number(args.p.yd)) / 2;
+            args.html += relationIcon(relation, x, y);
+          });
+
+          tree.onNodeClick((args) => {
+            const target = args?.event?.target;
+            if (target instanceof Element && target.closest('.genealogy-person-link')) return false;
+            const id = args?.node?.id;
+            if (!id || id === focusId) return false;
+            requestAnimationFrame(() => renderFamily(expansion.toggle(id), id));
+            return false;
+          });
+
+          tree.onInit(() => {
+            const targetId = family.people.some((person) => person.id === anchorId) ? anchorId : focusId;
+            if (!targetId) return;
+            requestAnimationFrame(() => tree?.center?.(targetId));
+          });
+
+          tree.load(nodes);
+          reportTreeScope(family);
+          const total = sourceFamily.people?.length || family.summary.people;
+          status.textContent = `BALKAN classic · ${family.summary.people} из ${total} людей`;
+        };
+
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin || event.source !== window.parent) return;
+          if (event.data?.type !== 'genealogy:tree-command') return;
+          switch (event.data.command) {
+            case 'zoom-in': tree?.zoom?.(true, undefined, true); break;
+            case 'zoom-out': tree?.zoom?.(false, undefined, true); break;
+            case 'fit': tree?.fit?.(); break;
+            case 'focus': tree?.center?.(focusId); break;
+          }
+        });
+
+        renderFamily(expansion.snapshot());
+      } catch (error) {
+        console.error(error);
+        status.textContent = `BALKAN classic: ${error?.message || error}`;
+        status.classList.add('error');
+      }
+    </script>
+  </body>
+</html>

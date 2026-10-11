@@ -1,0 +1,167 @@
+export const PERSON_CARD_WIDTH = 240;
+export const PERSON_CARD_HEIGHT = 108;
+
+const esc = (value) => String(value ?? '')
+  .replaceAll('&', '&amp;')
+  .replaceAll('<', '&lt;')
+  .replaceAll('>', '&gt;')
+  .replaceAll('"', '&quot;')
+  .replaceAll("'", '&#039;');
+
+const initials = (name) => String(name || '?')
+  .trim().split(/\s+/).filter(Boolean).map((part) => part[0]).slice(0, 2).join('') || '?';
+
+const normalizeSex = (value) => {
+  const sex = String(value || '').toUpperCase();
+  if (sex === 'M' || sex === 'MALE') return 'male';
+  if (sex === 'F' || sex === 'FEMALE') return 'female';
+  return 'unknown';
+};
+
+const nameSizeClass = (name) => {
+  const length = String(name || '').trim().length;
+  if (length > 58) return ' name-xxlong';
+  if (length > 44) return ' name-xlong';
+  if (length > 30) return ' name-long';
+  return '';
+};
+
+const shouldShowBirthSurname = (name, birthSurname) => {
+  const surname = String(birthSurname || '').trim();
+  if (!surname) return false;
+  return !String(name || '').trim().toLocaleLowerCase().endsWith(surname.toLocaleLowerCase());
+};
+
+export class GenealogyPersonCard extends HTMLElement {
+  static get observedAttributes() {
+    return ['person-id', 'name', 'url', 'years', 'sex', 'deceased', 'photo', 'birth-surname'];
+  }
+
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+  }
+
+  connectedCallback() { this.render(); }
+  attributeChangedCallback() { if (this.isConnected) this.render(); }
+
+  render() {
+    const name = this.getAttribute('name') || 'Unknown person';
+    const url = this.getAttribute('url') || '';
+    const years = this.getAttribute('years') || '';
+    const personId = this.getAttribute('person-id') || '';
+    const sex = normalizeSex(this.getAttribute('sex'));
+    const deceased = this.hasAttribute('deceased');
+    const photo = this.getAttribute('photo') || '';
+    const birthSurname = this.getAttribute('birth-surname') || '';
+    const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
+    const nameClass = `name${nameSizeClass(name)}`;
+    const nameHtml = url
+      ? `<a class="${nameClass}" href="${esc(url)}" target="_top">${esc(name)}</a>`
+      : `<div class="${nameClass}">${esc(name)}</div>`;
+
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display:block; width:${PERSON_CARD_WIDTH}px; height:${PERSON_CARD_HEIGHT}px;
+          font-family:var(--sl-font-system, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
+          color:var(--sl-color-text, #1f2937);
+        }
+        * { box-sizing:border-box; }
+        .card {
+          width:100%; height:100%; display:grid; grid-template-columns:44px minmax(0,1fr);
+          gap:10px; align-items:center; padding:8px 12px;
+          border-radius:14px; border:1px solid var(--sl-color-gray-5, #d7dde4);
+          background:color-mix(in srgb, var(--sl-color-bg-nav, #fff) 96%, transparent);
+          box-shadow:0 2px 9px color-mix(in srgb, var(--sl-color-black, #000) 10%, transparent);
+          text-align:left;
+        }
+        .avatar {
+          --avatar-accent:var(--sl-color-accent, #6b8cff);
+          position:relative; width:44px; height:44px; display:grid; place-items:center;
+          overflow:hidden; border-radius:50%; background:var(--sl-color-gray-6, #eef0f3);
+          color:var(--sl-color-gray-2, #4b5563); font-size:12px; font-weight:700;
+          letter-spacing:.02em; user-select:none;
+        }
+        .avatar.male { --avatar-accent:color-mix(in srgb, var(--sl-color-accent, #6b8cff) 68%, #6f93a8); }
+        .avatar.female { --avatar-accent:color-mix(in srgb, var(--sl-color-accent, #6b8cff) 55%, #c47e91); }
+        .avatar-initials { position:relative; z-index:1; }
+        .avatar-photo {
+          position:absolute; z-index:2; inset:1px; width:42px; height:42px; border-radius:50%;
+          object-fit:cover; opacity:0; transition:opacity .12s ease-out; user-select:none; -webkit-user-drag:none;
+        }
+        .avatar-photo.loaded { opacity:1; }
+        .avatar.deceased .avatar-photo { filter:grayscale(1); }
+        .avatar.deceased .avatar-initials { filter:grayscale(1); opacity:.72; }
+        .avatar.deceased::after {
+          content:''; position:absolute; z-index:3; right:-8px; bottom:8px; width:38px; height:5px;
+          background:color-mix(in srgb, var(--sl-color-text, #111) 88%, transparent);
+          transform:rotate(-42deg); pointer-events:none;
+        }
+        .avatar::before {
+          content:''; position:absolute; z-index:4; inset:0; border:2px solid var(--avatar-accent);
+          border-radius:50%; pointer-events:none;
+        }
+        .avatar-shield { position:absolute; z-index:5; inset:0; border-radius:50%; }
+        .text { min-width:0; align-self:center; }
+        .name {
+          display:inline; font-size:14px; line-height:1.14; font-weight:650; color:var(--sl-color-text, #1f2937);
+          white-space:normal; overflow:visible; overflow-wrap:anywhere; word-break:normal; hyphens:auto;
+          text-decoration:none;
+        }
+        a.name:hover, a.name:focus-visible { color:var(--sl-color-text-accent, var(--sl-color-accent, #6b8cff)); text-decoration:underline; }
+        .name-long { font-size:13px; line-height:1.12; }
+        .name-xlong { font-size:12px; line-height:1.1; }
+        .name-xxlong { font-size:11px; line-height:1.08; }
+        .birth-surname {
+          margin-top:3px; font-size:10.5px; line-height:1.1; color:var(--sl-color-text-accent, var(--sl-color-accent, #6b8cff));
+          white-space:normal; overflow-wrap:anywhere;
+        }
+        .years { margin-top:4px; font-size:11.5px; line-height:1.1; color:var(--sl-color-gray-3, #667085); white-space:nowrap; }
+      </style>
+      <article class="card" data-person-id="${esc(personId)}">
+        <div class="avatar ${sex}${deceased ? ' deceased' : ''}" aria-hidden="true">
+          <span class="avatar-initials">${esc(initials(name))}</span>
+          ${photo ? `<img class="avatar-photo" src="${esc(photo)}" alt="" draggable="false">` : ''}
+          <span class="avatar-shield"></span>
+        </div>
+        <div class="text">
+          ${nameHtml}
+          ${showBirthSurname ? `<div class="birth-surname">при рожд. ${esc(birthSurname)}</div>` : ''}
+          <div class="years">${esc(years)}</div>
+        </div>
+      </article>`;
+
+    const nameLink = this.shadowRoot.querySelector('a.name');
+    nameLink?.addEventListener('click', (event) => event.stopPropagation());
+
+    const image = this.shadowRoot.querySelector('.avatar-photo');
+    if (image) {
+      const showPhoto = () => image.classList.add('loaded');
+      const useFallback = () => image.remove();
+      image.addEventListener('load', showPhoto, { once: true });
+      image.addEventListener('error', useFallback, { once: true });
+      if (image.complete) image.naturalWidth > 0 ? showPhoto() : useFallback();
+    }
+  }
+}
+
+if (!customElements.get('genealogy-person-card')) {
+  customElements.define('genealogy-person-card', GenealogyPersonCard);
+}
+
+export function personCardElementHtml(person) {
+  const deceasedAttribute = person.deceased ? '\n    deceased' : '';
+  const urlAttribute = person.url ? `\n    url="${esc(person.url)}"` : '';
+  const photoAttribute = person.photo ? `\n    photo="${esc(person.photo)}"` : '';
+  const birthSurnameAttribute = person.birthSurname ? `\n    birth-surname="${esc(person.birthSurname)}"` : '';
+  const displayName = person.cardName || person.name || 'Unknown person';
+
+  return `<genealogy-person-card
+    style="display:block;width:${PERSON_CARD_WIDTH}px;height:${PERSON_CARD_HEIGHT}px"
+    person-id="${esc(person.id || '')}"
+    name="${esc(displayName)}"
+    years="${esc(person.years || '')}"
+    sex="${esc(person.sex || '')}"${deceasedAttribute}${urlAttribute}${photoAttribute}${birthSurnameAttribute}
+  ></genealogy-person-card>`;
+}

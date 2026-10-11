@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vue Flow + ELK</title>
+    <link rel="stylesheet" href="/tree/renderer.css" />
+    <style is:global>
+      #app, .vue-flow { width:100%; height:100%; }
+      .vue-flow { background:var(--sl-color-bg); color:var(--sl-color-text); }
+      .vue-flow__node-person, .vue-flow__node-family { border:0; background:transparent; padding:0; box-shadow:none; }
+      .vue-flow__node-person { width:240px; height:108px; }
+      .vue-flow__node-family { width:18px; height:18px; }
+      .vue-flow__handle { width:1px !important; height:1px !important; min-width:1px; min-height:1px; opacity:0; border:0; }
+      .vue-flow__edge-path { stroke:var(--tree-edge); stroke-width:1.35; }
+      .person-node-wrap { width:240px; height:108px; position:relative; }
+      .union-wrap { width:18px; height:18px; position:relative; display:grid; place-items:center; }
+    </style>
+  </head>
+  <body>
+    <main class="tree-shell">
+      <div id="app" class="tree-canvas"></div>
+      <div id="status" class="tree-status">Раскладка Vue Flow + ELK…</div>
+    </main>
+    <script>
+      // @ts-nocheck
+      import { createApp, defineComponent, h, markRaw } from 'vue';
+      import { VueFlow, Handle, Position, useVueFlow } from '@vue-flow/core';
+      import '@vue-flow/core/dist/style.css';
+      import '@vue-flow/core/dist/theme-default.css';
+      import ELK from 'elkjs/lib/elk.bundled.js';
+
+      const status = document.getElementById('status');
+      const appRoot = document.getElementById('app');
+      try {
+        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope }, response] = await Promise.all([
+          import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
+          import(/* @vite-ignore */ '/tree/person-card.js'),
+          import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          import(/* @vite-ignore */ '/tree/scope.js'),
+          fetch('/generated/tree.json'),
+        ]);
+        startThemeBridge();
+        if (!response.ok) throw new Error(`tree.json: ${response.status}`);
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        const expansion = createTreeExpansionState(sourceFamily, context.person);
+        const focusId = expansion.focusId;
+        let mountedApp = null;
+        let flowApi = null;
+        let visibleNodes = [];
+        let renderVersion = 0;
+        const elk = new ELK();
+
+        const PersonNode = markRaw(defineComponent({
+          props:['data'],
+          setup(props) {
+            const onClick = (event) => {
+              const target = event.target;
+              if (target instanceof Element && target.closest('.genealogy-person-link')) return;
+              window.dispatchEvent(new CustomEvent('genealogy:toggle-person', { detail:props.data?.id }));
+            };
+            return () => h('div', { class:'person-node-wrap', onClick }, [
+              h(Handle, { type:'target', position:Position.Top }),
+              h('div', { innerHTML:personCardElementHtml(props.data) }),
+              h(Handle, { type:'source', position:Position.Bottom }),
+            ]);
+          }
+        }));
+        const FamilyNode = markRaw(defineComponent({
+          props:['data'],
+          setup(props) {
+            return () => h('div', { class:'union-wrap' }, [
+              h(Handle, { type:'target', position:Position.Top }),
+              h('div', { class:'union-dot' }),
+              props.data?.label ? h('div', { class:'union-label' }, props.data.label) : null,
+              h(Handle, { type:'source', position:Position.Bottom }),
+            ]);
+          }
+        }));
+
+        const renderFamily = async (family) => {
+          const version = ++renderVersion;
+          status.textContent = 'Раскладка Vue Flow + ELK…';
+          const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
+            personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT
+          });
+          const graph = await elk.layout({
+            id:'root',
+            layoutOptions:{
+              'elk.algorithm':'layered', 'elk.direction':'DOWN', 'elk.spacing.nodeNode':'36',
+              'elk.layered.spacing.nodeNodeBetweenLayers':'96', 'elk.edgeRouting':'ORTHOGONAL',
+              'elk.layered.considerModelOrder.strategy':'NODES_AND_EDGES'
+            },
+            children:rawNodes.map((n) => ({ id:n.id, width:n.width, height:n.height })),
+            edges:rawEdges.map((e) => ({ id:e.id, sources:[e.source], targets:[e.target] }))
+          });
+          if (version !== renderVersion) return;
+          const positions = Object.fromEntries((graph.children || []).map((n) => [n.id, { x:n.x || 0, y:n.y || 0 }]));
+          const nodes = rawNodes.map((n) => ({ id:n.id, type:n.type, data:n.data, position:positions[n.id] || {x:0,y:0} }));
+          const edges = rawEdges.map((e) => ({ ...e, type:'smoothstep', style:{ stroke:'var(--tree-edge)', strokeWidth:1.35 } }));
+          visibleNodes = nodes;
+
+          mountedApp?.unmount?.();
+          appRoot.replaceChildren();
+          flowApi = null;
+          const App = defineComponent({
+            setup() {
+              flowApi = useVueFlow();
+              return () => h(VueFlow, {
+                nodes,
+                edges,
+                nodeTypes:{ person:PersonNode, family:FamilyNode },
+                fitViewOnInit:true,
+                minZoom:0.08,
+                maxZoom:2,
+                nodesDraggable:false,
+                nodesConnectable:false,
+                elementsSelectable:false,
+              });
+            }
+          });
+          mountedApp = createApp(App);
+          mountedApp.mount('#app');
+          reportTreeScope(family);
+          const total = sourceFamily.people?.length || family.summary.people;
+          status.textContent = `Vue Flow + ELK · ${family.summary.people} из ${total} людей`;
+        };
+
+        window.addEventListener('genealogy:toggle-person', (event) => {
+          const id = event.detail;
+          if (!id || id === focusId) return;
+          renderFamily(expansion.toggle(id));
+        });
+
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin || event.source !== window.parent || !flowApi) return;
+          if (event.data?.type !== 'genealogy:tree-command') return;
+          switch (event.data.command) {
+            case 'zoom-in': flowApi.zoomIn?.({ duration:180 }); break;
+            case 'zoom-out': flowApi.zoomOut?.({ duration:180 }); break;
+            case 'fit': flowApi.fitView?.({ padding:0.18, duration:220 }); break;
+            case 'focus': {
+              const node = visibleNodes.find((item) => item.id === focusId);
+              if (node) flowApi.setCenter?.(node.position.x + PERSON_CARD_WIDTH / 2, node.position.y + PERSON_CARD_HEIGHT / 2, { zoom:1, duration:220 });
+              break;
+            }
+          }
+        });
+
+        await renderFamily(expansion.snapshot());
+      } catch (error) {
+        console.error(error);
+        status.textContent = `Vue Flow + ELK: ${error?.message || error}`;
+        status.classList.add('error');
+      }
+    </script>
+  </body>
+</html>
