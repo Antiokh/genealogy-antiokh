@@ -1,30 +1,46 @@
 ---
 import Default from '@astrojs/starlight/components/PageTitle.astro';
+import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 
 const route = Astro.locals.starlightRoute;
 const isPerson = route.entry.data.entity === 'person' && route.id.startsWith('people/');
 const personRef = isPerson ? `${route.id.replace(/^people\//, '').replace(/\/$/, '')}.md` : null;
 
+const portraitAssets = import.meta.glob('/src/content/docs/people/**/*.webp', {
+  eager: true,
+  import: 'default',
+});
+const conventionalPortrait = isPerson
+  ? portraitAssets[`/src/content/docs/${route.id.replace(/\/$/, '')}.webp`]
+  : undefined;
+
+const explicitPortrait = route.entry.data.portrait;
+const explicitPortraitIsLegacyMedia = typeof explicitPortrait === 'string' && /\.mdx?$/i.test(explicitPortrait);
 let portraitEntry;
-if (isPerson && route.entry.data.portrait) {
-  const portraitStem = String(route.entry.data.portrait).replace(/\.mdx?$/i, '');
+if (isPerson && explicitPortraitIsLegacyMedia) {
+  const portraitStem = explicitPortrait.replace(/\.mdx?$/i, '');
   const docs = await getCollection('docs');
   portraitEntry = docs.find((entry) => entry.data.entity === 'media' && entry.id === `media/${portraitStem}`);
 }
 
-const portraitImage = portraitEntry?.data.image;
+const explicitDirectPortrait = explicitPortraitIsLegacyMedia ? undefined : explicitPortrait;
+const portraitImage = explicitDirectPortrait || portraitEntry?.data.image || conventionalPortrait || route.entry.data.photo;
+const portraitIsLocal = Boolean(
+  portraitImage && typeof portraitImage === 'object' && 'src' in portraitImage,
+);
 const portraitSrc = typeof portraitImage === 'string'
   ? portraitImage
-  : portraitImage && typeof portraitImage === 'object' && 'src' in portraitImage
+  : portraitIsLocal
     ? portraitImage.src
-    : route.entry.data.photo;
-const portraitWidth = typeof portraitImage === 'object' && portraitImage && 'width' in portraitImage
+    : undefined;
+const portraitWidth = portraitIsLocal
   ? portraitImage.width
   : portraitEntry?.data.width;
-const portraitHeight = typeof portraitImage === 'object' && portraitImage && 'height' in portraitImage
+const portraitHeight = portraitIsLocal
   ? portraitImage.height
   : portraitEntry?.data.height;
+
 const personName = route.entry.data.name;
 const personLabel = typeof personName === 'string'
   ? personName
@@ -45,15 +61,27 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
   <div class="person-title-row">
     <div class="person-title-copy"><Default /></div>
     <figure class="person-portrait">
-      <img
-        src={portraitSrc}
-        alt={portraitAlt}
-        width={portraitWidth}
-        height={portraitHeight}
-        loading="eager"
-        decoding="async"
-        style={`object-position:${objectPosition}`}
-      />
+      {portraitIsLocal ? (
+        <Image
+          src={portraitImage}
+          alt={portraitAlt}
+          widths={[144, 216, 320]}
+          sizes="(max-width: 36rem) 104px, 168px"
+          loading="eager"
+          decoding="async"
+          style={`object-position:${objectPosition}`}
+        />
+      ) : (
+        <img
+          src={portraitSrc}
+          alt={portraitAlt}
+          width={portraitWidth}
+          height={portraitHeight}
+          loading="eager"
+          decoding="async"
+          style={`object-position:${objectPosition}`}
+        />
+      )}
       {portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
     </figure>
   </div>
