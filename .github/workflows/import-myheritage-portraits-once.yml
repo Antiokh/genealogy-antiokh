@@ -1,4 +1,4 @@
-name: Import MyHeritage portraits once
+name: Attach MyHeritage person portraits once
 
 on:
   push:
@@ -18,34 +18,16 @@ jobs:
           ref: fix/myheritage-person-portraits
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
+          node-version: '22.19.0'
+          cache: npm
 
-      - name: Install Pillow
-        run: python -m pip install --disable-pip-version-check pillow
+      - name: Install dependencies
+        run: npm install
 
-      - name: Fetch saved MyHeritage tree snapshot
-        shell: bash
-        run: |
-          set -euo pipefail
-          curl --fail --location --silent --show-error \
-            'https://raw.githubusercontent.com/Antiokh/obsidian/main/antiokh/Work%20Ideas/MyHeritage%20Exporter/myheritage-export-cdp/tree.json' \
-            --output /tmp/myheritage-tree.json
-          python - <<'PY'
-          import json
-          p = '/tmp/myheritage-tree.json'
-          data = json.load(open(p, encoding='utf-8-sig'))
-          cards = data.get('data', {}).get('personCards', [])
-          print(f'Loaded {len(cards)} MyHeritage person cards')
-          PY
-
-      - name: Localize person portraits
-        run: >-
-          python scripts/import-myheritage-portraits.py
-          --tree-json /tmp/myheritage-tree.json
-          --quality 65
-          --max-edge 1024
+      - name: Attach imported media to people
+        run: node scripts/attach-myheritage-portraits.mjs
 
       - name: Commit generated portraits
         shell: bash
@@ -53,10 +35,10 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/content/docs/people imports/myheritage-2026/portrait-import-report.json
+          git add src/content/docs/people imports/myheritage-2026/portrait-attachment-report.json
           if git diff --cached --quiet; then
             echo "No portrait changes to commit."
             exit 0
           fi
-          git commit -m "Import MyHeritage person portraits [portraits-generated]"
+          git commit -m "Attach MyHeritage media as person portraits [portraits-generated]"
           git push origin HEAD:fix/myheritage-person-portraits
