@@ -106,7 +106,7 @@ export class GenealogyPersonCard extends HTMLElement {
   }
 
   render() {
-    const name = this.getAttribute('name') || '';
+    const name = this.getAttribute('name') || 'Unknown person';
     const url = this.getAttribute('url') || '';
     const years = this.getAttribute('years') || '';
     const personId = this.getAttribute('person-id') || '';
@@ -122,7 +122,7 @@ export class GenealogyPersonCard extends HTMLElement {
     const relationshipTitle = isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel);
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
     const nameClass = `name${nameSizeClass(name)}`;
-    const nameHtml = name ? `<div class="${nameClass}">${esc(name)}</div>` : '';
+    const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;
     const avatar = `<div class="avatar ${sex}${deceased ? ' deceased' : ''}" aria-hidden="true">
       <span class="avatar-initials">${esc(initials(name))}</span>
       <img class="avatar-placeholder" src="/tree/person-placeholder.svg" alt="" draggable="false">
@@ -130,10 +130,10 @@ export class GenealogyPersonCard extends HTMLElement {
       <span class="avatar-shield"></span>
     </div>`;
     const avatarHtml = url
-      ? `<a class="avatar-link genealogy-person-link" href="${esc(url)}" target="_top" aria-label="${esc(name ? `Открыть страницу: ${name}` : 'Открыть страницу человека')}">${avatar}</a>`
+      ? `<a class="avatar-link genealogy-person-link" href="${esc(url)}" target="_top" aria-label="Открыть страницу: ${esc(name)}">${avatar}</a>`
       : avatar;
     const branchHtml = branchState === 'expand' || branchState === 'collapse'
-      ? `<button class="branch-control branch-${branchState}" type="button" title="${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}" aria-label="${esc(`${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}${name ? `: ${name}` : ''}`)}">${branchIcon(branchState)}</button>`
+      ? `<button class="branch-control branch-${branchState}" type="button" title="${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}" aria-label="${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}: ${esc(name)}">${branchIcon(branchState)}</button>`
       : '';
 
     this.shadowRoot.innerHTML = `
@@ -286,7 +286,7 @@ export function personCardElementHtml(person, { branchState = '' } = {}) {
   const photoAttribute = person.photo ? `\n    photo="${esc(person.photo)}"` : '';
   const birthSurnameAttribute = person.birthSurname ? `\n    birth-surname="${esc(person.birthSurname)}"` : '';
   const branchAttribute = branchState ? `\n    branch-state="${esc(branchState)}"` : '';
-  const displayName = person.cardName || person.name || '';
+  const displayName = person.cardName || person.name || 'Unknown person';
 
   return `<genealogy-person-card
     style="display:block;width:${PERSON_CARD_WIDTH}px;height:${PERSON_CARD_HEIGHT}px"
