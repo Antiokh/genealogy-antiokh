@@ -47,6 +47,8 @@ partners:
   - person: "1960-1969/vladislav-nazarov.md"
     married:
       date: "1988-08-08"
+    divorced:
+      known: true
 occupation: []
 residence: []
 sources: []
