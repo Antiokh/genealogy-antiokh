@@ -1,6 +1,7 @@
 ---
 import Default from '@astrojs/starlight/components/Footer.astro';
 import EventSeq from './EventSeq.astro';
+import FamilyTree from './FamilyTree.astro';
 import PersonGallery from './PersonGallery.astro';
 import PersonPlacesMap from './PersonPlacesMap.astro';
 
@@ -20,6 +21,7 @@ const placeRef = isPlace
 {personRef && <PersonGallery personRef={personRef} />}
 {personRef && <EventSeq subject="person" subjectRef={personRef} heading="Хронология" />}
 {personRef && <PersonPlacesMap personRef={personRef} />}
+{personRef && <FamilyTree personRef={personRef} />}
 {placeRef && <EventSeq subject="place" subjectRef={placeRef} heading="Хронология места" />}
 
 <Default />
