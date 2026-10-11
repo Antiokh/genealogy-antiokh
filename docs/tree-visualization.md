@@ -93,7 +93,7 @@ Risks:
 - collapse/visibility remains application-owned;
 - ELK re-layout is required after visible-scope changes;
 - two libraries and more implementation/runtime weight;
-- `@vue-flow/core` is MIT, while `elkjs` uses EPL-2.0, so redistribution obligations are different from a pure-MIT stack.
+- `@vue-flow/core` is MIT; the pinned `elkjs` 0.12.0 package declares `EPL-2.0 OR GPL-3.0-or-later`, so it is open-source but not a pure-MIT dependency stack.
 
 Architecturally this is currently the cleaner candidate for complex multi-partner genealogy because unions remain first-class nodes.
 
@@ -110,7 +110,7 @@ Do not treat BALKAN as a finalist. Keep it only as a behavioral/reference render
 | Candidate | Collapse implementation | Union correctness | Shared card | 232 people | License / dependency note | Status |
 | --- | --- | --- | --- | --- | --- | --- |
 | Family Chart | app-owned scope + rebuild | flattened model; must verify multi-spouse layout | yes | to test | MIT | active candidate |
-| Vue Flow + ELK | app-owned scope + ELK re-layout | exact explicit union nodes | yes | to test | Vue Flow MIT; ELK.js EPL-2.0 | active candidate |
+| Vue Flow + ELK | app-owned scope + ELK re-layout | exact explicit union nodes | yes | to test | Vue Flow MIT; ELK.js 0.12 `EPL-2.0 OR GPL-3.0-or-later` | active candidate |
 | BALKAN classic | native | strong | yes | **blocked at 200 in free path** | proprietary/commercial constraints | reference only |
 
 ## Real-data test checklist
