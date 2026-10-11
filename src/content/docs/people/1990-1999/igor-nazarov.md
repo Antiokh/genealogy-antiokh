@@ -1,6 +1,6 @@
 ---
 title: "Игорь Назаров"
-description: "Игорь Назаров, 1994–"
+description: "Игорь Назаров, род. 7 октября 1994 года в Москве"
 entity: person
 importManaged: true
 name:
@@ -25,8 +25,9 @@ father: "1960-1969/vladislav-nazarov.md"
 mother: "1960-1969/tatyana-beskorovaynaya.md"
 born:
   known: true
-  date: 1994
-  place: null
+  date: "1994-10-07"
+  place: "moscow.md"
+  placeLabel: "Москва"
 died:
   known: false
   date: null
@@ -38,14 +39,19 @@ buried:
 partners: []
 occupation: []
 residence: []
-sources: []
+sources:
+  - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
+    extendedSnapshot: "2026-10-11"
     xref: "I500008"
+    profileId: 1500008
 ---
 
-**Годы жизни:** 1994–
+**Годы жизни:** 1994–  
+**Дата рождения:** 7 октября 1994 года  
+**Место рождения:** [Москва](/places/moscow/)  
 **Фамилия при рождении:** Назаров
 
 ## Семья
@@ -58,4 +64,6 @@ external:
 
 ## Биография
 
-Сведения пока не добавлены.
+Расширенная выгрузка MyHeritage уточняет дату и место рождения: 7 октября 1994 года, Москва.
+
+Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).

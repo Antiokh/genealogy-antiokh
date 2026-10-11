@@ -1,6 +1,6 @@
 ---
 title: "Семен Назаров"
-description: "Семен Назаров, 1935–2010"
+description: "Семен Назаров, 22 июля 1935 — 3 июля 2010"
 entity: person
 importManaged: true
 name:
@@ -25,12 +25,14 @@ father: "unknown/semen-nazarov.md"
 mother: "unknown/anastasiya.md"
 born:
   known: true
-  date: 1935
+  date: "1935-07-22"
   place: null
+  placeLabel: "с. Щеголево, Чапаевский район, Рязанская область, Россия"
 died:
   known: true
-  date: 2010
-  place: null
+  date: "2010-07-03"
+  place: "moscow.md"
+  placeLabel: "Москва"
 buried:
   known: false
   date: null
@@ -39,14 +41,21 @@ partners:
   - person: "1930-1939/mariya-nazarova.md"
 occupation: []
 residence: []
-sources: []
+sources:
+  - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
+    extendedSnapshot: "2026-10-11"
     xref: "I500007"
+    profileId: 1500007
 ---
 
-**Годы жизни:** 1935–2010
+**Годы жизни:** 1935–2010  
+**Дата рождения:** 22 июля 1935 года  
+**Место рождения:** с. Щеголево, Чапаевский район, Рязанская область  
+**Дата смерти:** 3 июля 2010 года  
+**Место смерти:** [Москва](/places/moscow/)  
 **Фамилия при рождении:** Назаров
 
 ## Семья
@@ -59,4 +68,6 @@ external:
 
 ## Биография
 
-Сведения пока не добавлены.
+Расширенная выгрузка MyHeritage уточняет полные даты жизни и места: родился 22 июля 1935 года в селе Щеголево Чапаевского района Рязанской области; умер 3 июля 2010 года в Москве.
+
+Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).
