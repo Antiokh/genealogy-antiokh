@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>BALKAN FamilyTreeJS classic</title>
+    <link rel="stylesheet" href="/tree/renderer.css" />
+    <style is:global>
+      #BalkanClassic { width:100%; height:100%; background:var(--sl-color-bg); }
+      #BalkanClassic > svg { background:var(--sl-color-bg) !important; }
+      #BalkanClassic [data-l-id] path,
+      #BalkanClassic [data-link-id] path { stroke:var(--tree-edge) !important; }
+    </style>
+  </head>
+  <body>
+    <main class="tree-shell">
+      <div id="BalkanClassic" class="tree-canvas"></div>
+      <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS classic…</div>
+    </main>
+    <script>
+      // @ts-nocheck
+      import FamilyTree from '@balkangraph/familytree.js';
+      import { toBalkanFamilyTreeData } from '/tree/renderer-adapters.js';
+      import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
+      import { startThemeBridge } from '/tree/theme-bridge.js';
+
+      const status = document.getElementById('status');
+      let currentTheme = 'light';
+      startThemeBridge((theme) => { currentTheme = theme; });
+
+      try {
+        const response = await fetch('/generated/tree.json');
+        if (!response.ok) throw new Error(`tree.json: ${response.status}`);
+        const family = await response.json();
+
+        FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
+        FamilyTree.templates.genealogy.size = [PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT];
+        FamilyTree.templates.genealogy.node = `<rect x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}" fill="transparent" stroke="transparent"></rect>`;
+        FamilyTree.templates.genealogy.html = `<foreignObject x="0" y="0" width="${PERSON_CARD_WIDTH}" height="${PERSON_CARD_HEIGHT}">{val}</foreignObject>`;
+        FamilyTree.templates.genealogy.defs = '';
+        FamilyTree.templates.genealogy.ripple = { radius:0, color:'none', rect:null };
+        FamilyTree.templates.genealogy_male = Object.assign({}, FamilyTree.templates.genealogy);
+        FamilyTree.templates.genealogy_female = Object.assign({}, FamilyTree.templates.genealogy);
+
+        const nodes = toBalkanFamilyTreeData(family, personCardElementHtml);
+        const tree = new FamilyTree(document.getElementById('BalkanClassic'), {
+          mode: currentTheme,
+          template: 'genealogy',
+          orientation: FamilyTree.orientation.top,
+          layout: FamilyTree.layout.normal,
+          align: FamilyTree.align.orientation,
+          levelSeparation: 86,
+          siblingSeparation: 28,
+          subtreeSeparation: 42,
+          partnerNodeSeparation: 18,
+          partnerChildrenSplitSeparation: 24,
+          scaleInitial: FamilyTree.match.boundary,
+          enableSearch: false,
+          mouseScrool: FamilyTree.action.zoom,
+          nodeBinding: { html:'cardHtml' },
+          nodes,
+        });
+
+        tree.on('render-link', (sender, args) => {
+          if (args?.html) args.html = args.html.replace(/stroke="[^"]*"/g, 'stroke="var(--tree-edge)"');
+        });
+        tree.draw?.(FamilyTree.action.init);
+        status.textContent = `BALKAN classic · сверху вниз · ${family.summary.people} людей · ${family.summary.families} союзов`;
+      } catch (error) {
+        console.error(error);
+        status.textContent = `BALKAN classic: ${error?.message || error}`;
+        status.classList.add('error');
+      }
+    </script>
+  </body>
+</html>
