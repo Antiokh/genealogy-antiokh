@@ -84,8 +84,12 @@ export function createTreeExpansionState(family, focusId) {
     canExpand(id) {
       return (adjacency.get(id)?.size || 0) > 0;
     },
+    branchState(id) {
+      if ((adjacency.get(id)?.size || 0) === 0) return '';
+      return expanded.has(id) ? 'collapse' : 'expand';
+    },
     toggle(id) {
-      if (!id || id === resolvedFocus || !adjacency.has(id)) return snapshot();
+      if (!id || !adjacency.has(id)) return snapshot();
       showAll = false;
       if (expanded.has(id)) expanded.delete(id);
       else expanded.add(id);
