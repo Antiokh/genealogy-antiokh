@@ -39,6 +39,9 @@ partners:
   - person: "2000-2009/anna-tatarintseva.md"
     married:
       date: "2023-01-21"
+    divorced:
+      known: true
+      date: "2026-02-10"
 occupation: []
 residence: []
 sources: []
