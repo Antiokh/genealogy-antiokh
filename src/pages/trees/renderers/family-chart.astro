@@ -35,32 +35,50 @@
 
       startThemeBridge();
       const status = document.getElementById('status');
+      const canvas = document.getElementById('FamilyChart');
       try {
         const response = await fetch('/generated/tree.json');
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const sourceFamily = await response.json();
         const context = treeRenderContext();
-        const family = scopeTreeDataset(sourceFamily, context.person, context.depth);
-        const focusId = family.focus || family.people[0]?.id;
-        reportTreeScope(family);
+        const focusId = (sourceFamily.people || []).some((person) => person.id === context.person)
+          ? context.person
+          : sourceFamily.focus || sourceFamily.people?.[0]?.id;
+        let currentDepth = context.depth;
 
-        const data = toFamilyChartData(family);
-        const chart = f3.createChart('#FamilyChart', data)
-          .setTransitionTime(0)
-          .setCardXSpacing(286)
-          .setCardYSpacing(148);
-        chart.setCardHtml().setCardInnerHtmlCreator((d) => {
-          const p = d.data.data;
-          const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
-          return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
-            id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
-            marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
-            deceased:Boolean(p.deceased), photo:p.photo || ''
-          })}</div>`;
+        const renderDepth = (depth) => {
+          currentDepth = depth;
+          const family = scopeTreeDataset(sourceFamily, focusId, currentDepth);
+          const data = toFamilyChartData(family);
+          canvas.replaceChildren();
+          const chart = f3.createChart('#FamilyChart', data)
+            .setTransitionTime(0)
+            .setCardXSpacing(286)
+            .setCardYSpacing(148);
+          chart.setCardHtml().setCardInnerHtmlCreator((d) => {
+            const p = d.data.data;
+            const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
+            return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
+              id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
+              marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
+              deceased:Boolean(p.deceased), photo:p.photo || ''
+            })}</div>`;
+          });
+          chart.updateTree({ initial:true, main_id:focusId });
+          reportTreeScope(family);
+          const total = family.scope?.totalPeople || sourceFamily.people?.length || family.summary.people;
+          status.textContent = `Family Chart · ${family.summary.people} из ${total} людей`;
+        };
+
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin || event.source !== window.parent) return;
+          if (event.data?.type !== 'genealogy:tree-depth') return;
+          const depth = Math.max(0, Math.floor(Number(event.data.depth) || 0));
+          if (depth === currentDepth) return;
+          renderDepth(depth);
         });
-        chart.updateTree({ initial:true, main_id:focusId });
-        const total = family.scope?.totalPeople || family.summary.people;
-        status.textContent = `Family Chart · ${family.summary.people} из ${total} людей`;
+
+        renderDepth(currentDepth);
       } catch (error) {
         console.error(error);
         status.textContent = `Family Chart: ${error?.message || error}`;
