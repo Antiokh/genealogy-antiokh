@@ -37,10 +37,15 @@ buried:
   known: false
   date: null
   place: null
-partners: []
+partners:
+  - person: unknown/elizaveta-nikolaevna-bartmer.md
+    married:
+      date: 1886
 occupation: []
 residence: []
-sources: []
+sources:
+  - myheritage-2026-relation-text.md
+  - vgd-spb-metric-index-bartmer.md
 external:
   myheritage:
     snapshot: 2026-09-10
@@ -53,7 +58,7 @@ external:
 
 **Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Партнёры:** —
+**Партнёры:** [Елизавета Николаевна Бартмер](/people/unknown/elizaveta-nikolaevna-bartmer/)
 
 **Дети:** —
 
