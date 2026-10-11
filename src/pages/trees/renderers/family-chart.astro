@@ -53,7 +53,7 @@
           const p = d.data.data;
           const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
           return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
-            id:d.data.id, name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
+            id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
             marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
             deceased:Boolean(p.deceased), photo:p.photo || ''
           })}</div>`;
