@@ -32,15 +32,20 @@
 
       const status = document.getElementById('status');
       try {
-        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, response] = await Promise.all([
+        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { scopeTreeDataset, treeRenderContext, reportTreeScope }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          import(/* @vite-ignore */ '/tree/scope.js'),
           fetch('/generated/tree.json'),
         ]);
         startThemeBridge();
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
-        const family = await response.json();
+        const sourceFamily = await response.json();
+        const context = treeRenderContext();
+        const family = scopeTreeDataset(sourceFamily, context.person, context.depth);
+        reportTreeScope(family);
+
         const elk = new ELK();
         const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
           personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT
@@ -96,7 +101,8 @@
           }
         });
         createApp(App).mount('#app');
-        status.textContent = `Vue Flow + ELK · ${family.summary.people} людей · ${family.summary.families} союзов`;
+        const total = family.scope?.totalPeople || family.summary.people;
+        status.textContent = `Vue Flow + ELK · ${family.summary.people} из ${total} людей`;
       } catch (error) {
         console.error(error);
         status.textContent = `Vue Flow + ELK: ${error?.message || error}`;
