@@ -4,8 +4,28 @@ import path from 'node:path';
 const GRAPH_PATH = path.resolve('public/generated/genealogy.json');
 const OUTPUT_PATH = path.resolve('public/generated/tree.json');
 
+const TECHNICAL_PLACEHOLDER_NAMES = new Set([
+  'unknown',
+  'unknown person',
+  'unknown man',
+  'unknown woman',
+  'неизвестный',
+  'неизвестный человек',
+  'неизвестный мужчина',
+  'неизвестная',
+  'неизвестная женщина',
+]);
+
+function isTechnicalPlaceholder(node) {
+  const name = String(node?.displayName || node?.title || '').trim();
+  if (!name || /^I\d+$/i.test(name)) return true;
+  return TECHNICAL_PLACEHOLDER_NAMES.has(name.toLowerCase());
+}
+
 const graph = JSON.parse(await readFile(GRAPH_PATH, 'utf8'));
-const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
+const rawNodes = Array.isArray(graph.nodes) ? graph.nodes : [];
+const nodes = rawNodes.filter((node) => !isTechnicalPlaceholder(node));
+const excludedTechnicalPlaceholders = rawNodes.length - nodes.length;
 const edges = Array.isArray(graph.edges) ? graph.edges : [];
 const byRef = new Map(nodes.map((node) => [node.ref, node]));
 
@@ -95,6 +115,7 @@ for (const node of nodes) {
 
 for (const edge of edges) {
   if (edge.type !== 'partner') continue;
+  if (!byRef.has(edge.source) || !byRef.has(edge.target)) continue;
   const union = ensureUnion([edge.source, edge.target]);
   if (!union) continue;
 
@@ -163,6 +184,7 @@ const output = {
     parentFamilies: families.filter((family) => family.children.length > 0).length,
     partnerOnlyFamilies: families.filter((family) => family.children.length === 0 && family.partners.length > 1).length,
     multiPartnerPeople: [...familyMembershipCount.values()].filter((count) => count > 1).length,
+    excludedTechnicalPlaceholders,
     components: graph.summary?.components ?? graph.components?.length ?? 0,
   },
   people,
@@ -170,4 +192,7 @@ const output = {
 };
 
 await writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
-console.log(`Built tree data: ${output.summary.people} people, ${output.summary.families} unions, ${output.summary.multiPartnerPeople} people in multiple partner unions.`);
+const excludedSuffix = excludedTechnicalPlaceholders
+  ? `, ${excludedTechnicalPlaceholders} technical placeholder(s) excluded`
+  : '';
+console.log(`Built tree data: ${output.summary.people} people, ${output.summary.families} unions, ${output.summary.multiPartnerPeople} people in multiple partner unions${excludedSuffix}.`);
