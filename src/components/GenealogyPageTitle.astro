@@ -51,10 +51,10 @@ function dateYear(value: unknown): number | undefined {
 }
 
 const explicitDirectPortrait = explicitPortraitIsLegacyMedia ? undefined : explicitPortrait;
-const usingLegacyMediaPortrait = !explicitDirectPortrait && !conventionalPortrait && Boolean(portraitEntry?.data.image);
+const usingLegacyMediaPortrait = !conventionalPortrait && !explicitDirectPortrait && Boolean(portraitEntry?.data.image);
 const portraitImage = (
-  explicitDirectPortrait
-  || conventionalPortrait
+  conventionalPortrait
+  || explicitDirectPortrait
   || portraitEntry?.data.image
   || route.entry.data.photo
 ) as string | ImageMetadata | undefined;

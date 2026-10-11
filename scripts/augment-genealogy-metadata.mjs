@@ -103,13 +103,13 @@ for (const filePath of await walk(PEOPLE_ROOT)) {
 
   let photo;
 
-  if (explicitPortrait && !explicitPortraitIsLegacyMedia) {
-    photo = await resolveLocalOrRemoteImage(explicitPortrait, filePath, ref);
+  const conventionalPortraitPath = filePath.replace(/\.(md|mdx)$/i, '.webp');
+  if (await fileExists(conventionalPortraitPath)) {
+    photo = await copyPortraitAsset(conventionalPortraitPath, ref);
   }
 
-  const conventionalPortraitPath = filePath.replace(/\.(md|mdx)$/i, '.webp');
-  if (!photo && await fileExists(conventionalPortraitPath)) {
-    photo = await copyPortraitAsset(conventionalPortraitPath, ref);
+  if (!photo && explicitPortrait && !explicitPortraitIsLegacyMedia) {
+    photo = await resolveLocalOrRemoteImage(explicitPortrait, filePath, ref);
   }
 
   if (!photo && explicitPortraitIsLegacyMedia) {

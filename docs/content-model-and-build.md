@@ -94,7 +94,7 @@ src/content/docs/people/1880-1889/vladimir-bush.webp
 
 No frontmatter field is required. Starlight detects the matching `.webp` automatically and renders it beside the page title. Keeping the same basename also reuses the uniqueness already present in person filenames, including existing suffixes used for namesakes.
 
-An explicit `portrait` field exists only as an override for unusual cases, for example a differently named local image or a temporary remote URL:
+An explicit `portrait` field exists as a fallback for unusual cases where no same-basename local WebP is available, for example a differently named local image or a temporary remote URL:
 
 ```yaml
 portrait: ./vladimir-bush-special.webp
@@ -104,12 +104,12 @@ The legacy imported `photo` URL remains temporarily supported as the final rende
 
 Portrait resolution order is:
 
-1. explicit direct `portrait` image/URL override, when present;
-2. same-basename local `person.webp`;
+1. same-basename local `person.webp`, when present;
+2. explicit direct `portrait` image/URL fallback;
 3. legacy `portrait: *.md` media reference, during transition;
 4. legacy imported `photo` URL.
 
-This order means adding `foo.webp` beside `foo.md` automatically migrates an old card to the new convention even if a legacy portrait-media reference has not yet been removed.
+The same-basename WebP is canonical when it exists. This means adding `foo.webp` beside `foo.md` automatically migrates both the person page and generated tree cards to the local portrait even if older `portrait` or `photo` metadata has not yet been removed.
 
 Local portrait files are preferred because Astro reads their dimensions, fingerprints them and can emit responsive optimized assets at build time. Remote URLs remain dependent on the remote host and may block hotlinking or server downloads.
 
@@ -178,7 +178,7 @@ Store only facts that an editor or importer actually knows:
 
 - names and surnames;
 - sex;
-- an optional same-basename portrait asset or explicit portrait override;
+- an optional same-basename portrait asset or explicit portrait fallback;
 - media records and the people/places/events they depict;
 - father and mother;
 - explicit additional/unknown parents when necessary;
