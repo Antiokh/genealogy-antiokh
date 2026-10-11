@@ -38,7 +38,6 @@ name:
   aliases: []
 
 sex: M
-portrait: 1980-1989/anton-nazarov-portrait.md
 
 father: 1960-1969/vladislav-nazarov.md
 mother: 1960-1969/tatyana-beskorovaynaya.md
@@ -82,9 +81,43 @@ external:
 
 The schema may contain more factual fields when useful for tables and analytics. Normalization is not a goal by itself; editability is.
 
-## Media and photographs
+## Portraits, media and photographs
 
-A photograph is a first-class record, not an array copied into every person page. Media records live under:
+### Main portrait
+
+The ordinary main portrait is an asset of the person page, not a separate media entity. By convention it is a WebP file next to the Markdown record with the same basename:
+
+```text
+src/content/docs/people/1880-1889/vladimir-bush.md
+src/content/docs/people/1880-1889/vladimir-bush.webp
+```
+
+No frontmatter field is required. Starlight detects the matching `.webp` automatically and renders it beside the page title. Keeping the same basename also reuses the uniqueness already present in person filenames, including existing suffixes used for namesakes.
+
+An explicit `portrait` field exists only as an override for unusual cases, for example a differently named local image or a temporary remote URL:
+
+```yaml
+portrait: ./vladimir-bush-special.webp
+```
+
+The legacy imported `photo` URL remains temporarily supported as the final rendering fallback. Existing old `portrait: *.md` references to media records are also read during transition, but new curated person records should not create media records merely to hold a main portrait.
+
+Portrait resolution order is:
+
+1. explicit direct `portrait` image/URL override, when present;
+2. same-basename local `person.webp`;
+3. legacy `portrait: *.md` media reference, during transition;
+4. legacy imported `photo` URL.
+
+This order means adding `foo.webp` beside `foo.md` automatically migrates an old card to the new convention even if a legacy portrait-media reference has not yet been removed.
+
+Local portrait files are preferred because Astro reads their dimensions, fingerprints them and can emit responsive optimized assets at build time. Remote URLs remain dependent on the remote host and may block hotlinking or server downloads.
+
+### Media records and galleries
+
+A photograph becomes a first-class `media` record when it has its own identity or context: for example a group photograph, historical scene, event photograph, document/scan, or an image that belongs to several people, a place or an event.
+
+Media records live under:
 
 ```text
 src/content/docs/media/
@@ -131,27 +164,13 @@ media -> subjects[]
        person -> media[]
 ```
 
-The same media record may also reference a place and one or more events, allowing future place/event galleries to use the same source without duplication.
+The same media record may also reference a place and one or more events, allowing place/event galleries to use the same source without duplication.
 
-### Main portrait
+The standalone main portrait is deliberately not part of this media graph. If an image that happens to be used as a portrait also needs historical metadata, multiple subjects, a place/event relation or source-level treatment, it can instead be modeled as media and selected explicitly as a legacy/exceptional portrait.
 
-The main photograph is an editorial choice and therefore belongs on the person record as one direct reference:
+PhotoSwipe is used for derived media galleries. It is enabled only when real image dimensions are available. Local Astro assets provide them automatically; a remote media record can provide explicit `width` and `height` if those values are known. Unknown dimensions fall back to a normal link instead of inventing geometry.
 
-```yaml
-portrait: 1880-1889/vladimir-bush-portrait.md
-```
-
-`portrait` points to a media record relative to the `media/` root. It does not duplicate the image path itself.
-
-The legacy `photo` string remains temporarily supported as a rendering fallback for imported records. New curated records should use `portrait` plus a media record.
-
-### Local vs remote images
-
-Local image files are preferred. Astro reads their real dimensions and can generate responsive optimized variants at build time. Remote URLs are accepted for transition/provenance, but they remain dependent on the remote host and may block hotlinking or server downloads.
-
-PhotoSwipe is enabled only when real image dimensions are available. Local Astro assets provide them automatically; a remote media record can provide explicit `width` and `height` if those values are known. Unknown dimensions fall back to a normal link instead of inventing geometry.
-
-Optional `subjects[].focal` coordinates are normalized from `0` to `1` and identify where a particular person is located within a group image. They can be used for portrait cropping without creating duplicate derivative source files.
+Optional `subjects[].focal` coordinates are normalized from `0` to `1` and identify where a particular person is located within a group image.
 
 ## What is stored and what is derived
 
@@ -159,7 +178,7 @@ Store only facts that an editor or importer actually knows:
 
 - names and surnames;
 - sex;
-- explicit main `portrait` selection;
+- an optional same-basename portrait asset or explicit portrait override;
 - media records and the people/places/events they depict;
 - father and mother;
 - explicit additional/unknown parents when necessary;
@@ -220,14 +239,14 @@ public/generated/media.json
 public/generated/media-index.json
 ```
 
-`media-index.json` contains reverse indexes by person, place and event so consumers do not need to duplicate those lists in source records.
+`media-index.json` contains reverse indexes by person, place and event so consumers do not need to duplicate those lists in source records. Main portrait files are not included in `media-index.json` because they belong directly to person pages rather than the media relation graph.
 
 Generated files are ignored by Git. They are rebuilt from zero every time and copied into the static site through Astro's `public/` directory.
 
 ## Validation
 
-The build fails for broken person references or self-references. Media validation additionally fails for broken `portrait`, media subject, place, event or source references.
+The build fails for broken person references or self-references. Media validation additionally fails for broken media subject, place, event or source references. Transitional `portrait: *.md` values are still checked as legacy media references; direct portrait image overrides are validated by Astro's content schema.
 
 During migration the genealogy builder also understands the first snapshot's legacy `P...` references so the repository can move to content refs incrementally.
 
-The final canonical form is path-based frontmatter. Legacy `P...` IDs and direct person `photo` URLs are transitional only.
+The final canonical form is path-based frontmatter. Legacy `P...` IDs, direct person `photo` URLs and portrait-as-media records are transitional only.
