@@ -29,8 +29,9 @@
 
       function relationTitle(relation) {
         if (relation?.kind === 'divorced') {
-          const dates = [relation.married, relation.divorced].filter(Boolean).join('–');
-          return dates ? `Развод · ${dates}` : 'Развод';
+          if (relation.divorced && relation.married) return `Брак ${relation.married} · развод ${relation.divorced}`;
+          if (relation.divorced) return `Развод · ${relation.divorced}`;
+          return relation.married ? `Развод · брак ${relation.married}, дата развода не указана` : 'Развод';
         }
         if (relation?.kind === 'married') return relation.married ? `Брак · ${relation.married}` : 'Брак';
         if (relation?.kind === 'partner') return 'Партнёрство';
@@ -101,6 +102,7 @@
           orientation: FamilyTree.orientation.top,
           layout: FamilyTree.layout.normal,
           align: FamilyTree.align.orientation,
+          roots: family.root ? [family.root] : undefined,
           levelSeparation: 86,
           siblingSeparation: 28,
           subtreeSeparation: 42,
@@ -124,7 +126,9 @@
           args.html += relationIcon(relation, x, y);
         });
 
-        tree.draw?.(FamilyTree.action.update);
+        tree.draw?.(FamilyTree.action.update, null, () => {
+          if (family.root) tree.center?.(family.root);
+        });
         status.textContent = `BALKAN classic · сверху вниз · ${family.summary.people} людей · ${family.summary.families} союзов`;
       } catch (error) {
         console.error(error);
