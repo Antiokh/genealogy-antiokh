@@ -5,6 +5,9 @@ const esc = (value) => String(value ?? '')
   .replaceAll('"', '&quot;')
   .replaceAll("'", '&#039;');
 
+const PERSON_CARD_WIDTH = 240;
+const RELATION_ICON_SIZE = 26;
+
 export function relationTitle(relation) {
   if (relation?.kind === 'divorced') {
     if (relation.divorced && relation.married) return `Брак ${relation.married} · развод ${relation.divorced}`;
@@ -61,6 +64,14 @@ export function renderRelationOverlay(overlay, canvas, family) {
       .filter(([id]) => Boolean(id)),
   );
 
+  const referenceCard = [...cardById.values()].find((element) => {
+    const rect = element.getBoundingClientRect?.();
+    return rect?.width > 0;
+  });
+  const referenceRect = referenceCard?.getBoundingClientRect?.();
+  const zoomScale = referenceRect?.width > 0 ? referenceRect.width / PERSON_CARD_WIDTH : 1;
+  const iconSize = RELATION_ICON_SIZE * zoomScale;
+
   for (const unit of family.families || []) {
     const partners = (unit.partners || []).filter((id) => cardById.has(id));
     for (let i = 0; i < partners.length; i += 1) {
@@ -75,7 +86,9 @@ export function renderRelationOverlay(overlay, canvas, family) {
         item.className = 'genealogy-relation-overlay-item';
         item.style.left = `${x}px`;
         item.style.top = `${y}px`;
-        item.innerHTML = relationIconHtml(unit.relation || { kind:'parents' }, { size:26 });
+        item.style.width = `${iconSize}px`;
+        item.style.height = `${iconSize}px`;
+        item.innerHTML = relationIconHtml(unit.relation || { kind:'parents' }, { size:iconSize });
         overlay.append(item);
       }
     }

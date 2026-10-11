@@ -17,14 +17,14 @@ const rendererMeta: Record<Renderer, { label: string; src: string }> = {
 const {
   personRef,
   renderer,
-  priority = ['balkan-classic', 'family-chart'],
+  priority = ['family-chart', 'balkan-classic'],
   showRendererSelector = true,
   heading = 'Семейное дерево',
 } = Astro.props;
 
 const selectedRenderer = renderer && rendererMeta[renderer]
   ? renderer
-  : priority.find((item) => rendererMeta[item]) || 'balkan-classic';
+  : priority.find((item) => rendererMeta[item]) || 'family-chart';
 const canSelectRenderer = showRendererSelector && !renderer;
 const instanceId = `family-tree-${personRef.replace(/[^a-z0-9_-]+/gi, '-')}`;
 const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}`;
