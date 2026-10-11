@@ -34,6 +34,21 @@ const shouldShowBirthSurname = (name, birthSurname) => {
   return !String(name || '').trim().toLocaleLowerCase().endsWith(surname.toLocaleLowerCase());
 };
 
+const branchIcon = (state) => {
+  const badge = state === 'expand'
+    ? '<path d="M21 23h6M24 20v6"/>'
+    : '<path d="M21 23h6"/>';
+  return `<svg viewBox="0 0 30 30" width="30" height="30" aria-hidden="true">
+    <circle class="branch-bg" cx="15" cy="15" r="14"/>
+    <path class="branch-lines" d="M15 7v6M9 13h12M9 13v5M21 13v5"/>
+    <circle class="branch-node" cx="15" cy="7" r="2"/>
+    <circle class="branch-node" cx="9" cy="20" r="2"/>
+    <circle class="branch-node" cx="21" cy="20" r="2"/>
+    <circle class="branch-badge" cx="24" cy="23" r="6"/>
+    <g class="branch-badge-mark">${badge}</g>
+  </svg>`;
+};
+
 let kinshipLabelsPromise = null;
 
 function loadKinshipLabels() {
@@ -57,13 +72,13 @@ function loadKinshipLabels() {
 
 export class GenealogyPersonCard extends HTMLElement {
   static get observedAttributes() {
-    return ['person-id', 'name', 'url', 'years', 'sex', 'deceased', 'photo', 'birth-surname'];
+    return ['person-id', 'name', 'url', 'years', 'sex', 'deceased', 'photo', 'birth-surname', 'branch-state'];
   }
 
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
-    this._relationship = '';
+    this._relationship = null;
     this._relationshipFor = '';
   }
 
@@ -84,7 +99,7 @@ export class GenealogyPersonCard extends HTMLElement {
     this._relationshipFor = personId;
     const labels = await loadKinshipLabels();
     if (!this.isConnected || this.getAttribute('person-id') !== personId) return;
-    this._relationship = labels.get(personId) || '';
+    this._relationship = labels.get(personId) || null;
     this.render();
   }
 
@@ -97,7 +112,10 @@ export class GenealogyPersonCard extends HTMLElement {
     const deceased = this.hasAttribute('deceased');
     const photo = this.getAttribute('photo') || '';
     const birthSurname = this.getAttribute('birth-surname') || '';
-    const relationship = this._relationship || '';
+    const branchState = this.getAttribute('branch-state') || '';
+    const relationship = this._relationship;
+    const relationshipLabel = typeof relationship === 'string' ? relationship : relationship?.label || '';
+    const relationshipTitle = typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel;
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
     const nameClass = `name${nameSizeClass(name)}`;
     const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;
@@ -109,18 +127,21 @@ export class GenealogyPersonCard extends HTMLElement {
     const avatarHtml = url
       ? `<a class="avatar-link genealogy-person-link" href="${esc(url)}" target="_top" aria-label="Открыть страницу: ${esc(name)}">${avatar}</a>`
       : avatar;
+    const branchHtml = branchState === 'expand' || branchState === 'collapse'
+      ? `<button class="branch-control branch-${branchState}" type="button" title="${branchState === 'expand' ? 'Раскрыть ветку' : 'Свернуть ветку'}" aria-label="${branchState === 'expand' ? 'Раскрыть ветку' : 'Свернуть ветку'}: ${esc(name)}">${branchIcon(branchState)}</button>`
+      : '';
 
     this.shadowRoot.innerHTML = `
       <style>
         :host {
-          display:block; width:${PERSON_CARD_WIDTH}px; height:${PERSON_CARD_HEIGHT}px;
+          display:block; width:${PERSON_CARD_WIDTH}px; height:${PERSON_CARD_HEIGHT}px; overflow:visible;
           font-family:var(--sl-font-system, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
           color:var(--sl-color-text, #1f2937);
         }
         * { box-sizing:border-box; }
         .card {
           position:relative; width:100%; height:100%; display:grid; grid-template-columns:44px minmax(0,1fr);
-          gap:10px; align-items:center; padding:8px 12px;
+          gap:10px; align-items:center; padding:8px 12px; overflow:visible;
           border-radius:14px; border:1px solid var(--sl-color-gray-5, #d7dde4);
           background:color-mix(in srgb, var(--sl-color-bg-nav, #fff) 96%, transparent);
           box-shadow:0 2px 9px color-mix(in srgb, var(--sl-color-black, #000) 10%, transparent);
@@ -180,19 +201,43 @@ export class GenealogyPersonCard extends HTMLElement {
           font-size:9.5px; line-height:1.1; font-weight:600; text-align:right;
           pointer-events:none;
         }
+        .branch-control {
+          appearance:none; position:absolute; z-index:9; left:50%; bottom:-15px; width:30px; height:30px;
+          transform:translateX(-50%); padding:0; border:0; border-radius:50%; background:transparent;
+          color:inherit; cursor:pointer; display:block;
+        }
+        .branch-control:focus-visible { outline:2px solid var(--tree-accent, var(--sl-color-accent)); outline-offset:2px; }
+        .branch-control svg { display:block; overflow:visible; }
+        .branch-bg { fill:var(--tree-background, var(--sl-color-bg)); stroke:var(--tree-accent, var(--sl-color-accent)); stroke-width:1.7; }
+        .branch-lines { fill:none; stroke:var(--tree-accent, var(--sl-color-accent)); stroke-width:1.7; stroke-linecap:round; stroke-linejoin:round; }
+        .branch-node { fill:var(--tree-accent, var(--sl-color-accent)); }
+        .branch-badge { fill:var(--tree-accent, var(--sl-color-accent)); stroke:var(--tree-background, var(--sl-color-bg)); stroke-width:1.5; }
+        .branch-badge-mark path { fill:none; stroke:var(--tree-background, var(--sl-color-bg)); stroke-width:1.8; stroke-linecap:round; }
       </style>
       <article class="card" data-person-id="${esc(personId)}">
-        ${relationship ? `<div class="relationship" title="${esc(relationship)}">${esc(relationship)}</div>` : ''}
+        ${relationshipLabel ? `<div class="relationship" title="${esc(relationshipTitle)}">${esc(relationshipLabel)}</div>` : ''}
         ${avatarHtml}
         <div class="text">
           ${nameHtml}
           ${showBirthSurname ? `<div class="birth-surname">при рожд. ${esc(birthSurname)}</div>` : ''}
           <div class="years">${esc(years)}</div>
         </div>
+        ${branchHtml}
       </article>`;
 
     const avatarLink = this.shadowRoot.querySelector('.avatar-link');
     avatarLink?.addEventListener('click', (event) => event.stopPropagation());
+
+    const branchControl = this.shadowRoot.querySelector('.branch-control');
+    branchControl?.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.dispatchEvent(new CustomEvent('genealogy:toggle-person', {
+        bubbles:true,
+        composed:true,
+        detail:personId,
+      }));
+    });
 
     const image = this.shadowRoot.querySelector('.avatar-photo');
     if (image) {
@@ -209,11 +254,12 @@ if (!customElements.get('genealogy-person-card')) {
   customElements.define('genealogy-person-card', GenealogyPersonCard);
 }
 
-export function personCardElementHtml(person) {
+export function personCardElementHtml(person, { branchState = '' } = {}) {
   const deceasedAttribute = person.deceased ? '\n    deceased' : '';
   const urlAttribute = person.url ? `\n    url="${esc(person.url)}"` : '';
   const photoAttribute = person.photo ? `\n    photo="${esc(person.photo)}"` : '';
   const birthSurnameAttribute = person.birthSurname ? `\n    birth-surname="${esc(person.birthSurname)}"` : '';
+  const branchAttribute = branchState ? `\n    branch-state="${esc(branchState)}"` : '';
   const displayName = person.cardName || person.name || 'Unknown person';
 
   return `<genealogy-person-card
@@ -221,6 +267,6 @@ export function personCardElementHtml(person) {
     person-id="${esc(person.id || '')}"
     name="${esc(displayName)}"
     years="${esc(person.years || '')}"
-    sex="${esc(person.sex || '')}"${deceasedAttribute}${urlAttribute}${photoAttribute}${birthSurnameAttribute}
+    sex="${esc(person.sex || '')}"${deceasedAttribute}${urlAttribute}${photoAttribute}${birthSurnameAttribute}${branchAttribute}
   ></genealogy-person-card>`;
 }
