@@ -52,19 +52,6 @@ external:
     xref: "I500107"
 ---
 
-**Годы жизни:** 1993–
-**Фамилия при рождении:** Teljebo
-**Фамилия после брака:** Karika
-**Имя в исходных данных:** Angelica Kristina Teljebo
-
-## Семья
-
-**Родители:** [Gösta Ingvar Teljebo](/people/1950-1959/gosta-ingvar-teljebo/), [Larisa Teljebo](/people/1960-1969/larisa-teljebo/)
-
-**Партнёры:** [Sebastian Karika](/people/1990-1999/sebastian-karika/)
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

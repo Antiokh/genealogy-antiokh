@@ -48,17 +48,6 @@ external:
     xref: "I500020"
 ---
 
-**Годы жизни:** 1855–1904
-**Фамилия при рождении:** Bush
-
-## Семья
-
-**Родители:** [Jохан Юлиус Буш](/people/unknown/jokhan-yulius-bush/), [Молли Шарлотте Ланге](/people/unknown/molli-sharlotte-lange/)
-
-**Партнёры:** [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
-
-**Дети:** [Мария Буш](/people/1880-1889/mariya-bush/), [Vladimir Bush](/people/1880-1889/vladimir-bush/), [Борис Буш](/people/1890-1899/boris-bush/), [Елисавета Ботикова](/people/unknown/elisaveta-botikova/), [Георгий Буш](/people/unknown/georgiy-bush/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -42,16 +42,6 @@ external:
     xref: "I500068"
 ---
 
-**Фамилия при рождении:** Кондратьев
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** —
-
-**Дети:** [Александра Кондратьева](/people/unknown/aleksandra-kondrateva/), [Иван Кондратьев](/people/unknown/ivan-kondratev/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
-
 ## Биография
 
 Сведения пока не добавлены.

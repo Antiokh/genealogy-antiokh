@@ -60,19 +60,6 @@ external:
     xref: I500226
 ---
 
-**Годы жизни:** 1884–1929
-**Фамилия при рождении:** Бартмер
-**Фамилия после брака:** Римская-Корсакова
-**Имя в исходных данных:** Евгения Петровна Бартмер
-
-## Семья
-
-**Родители:** [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [София Константиновна Бартмер](/people/unknown/sofiya-konstantinovna-bartmer/)
-
-**Партнёры:** [Михаил Николаевич Римский-Корсаков](/people/1870-1879/mikhail-nikolaevich-rimskiy-korsakov/)
-
-**Дети:** [Георгий Михайлович Римский-Корсаков](/people/1900-1909/georgiy-mikhaylovich-rimskiy-korsakov/), [Игорь Михайлович Римский-Корсаков](/people/1910-1919/igor-mikhaylovich-rimskiy-korsakov/), [Ольга Михайловна Фаворская](/people/1910-1919/olga-mikhaylovna-favorskaya/)
-
 ## Биография
 
 Сведения пока не добавлены.

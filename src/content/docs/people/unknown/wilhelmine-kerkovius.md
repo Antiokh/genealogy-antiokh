@@ -47,14 +47,6 @@ external:
     relationTextRef: "I500169"
 ---
 
-## Семья
-
-**Родители:** [Albert Karl Adolf Lobeck](/people/unknown/albert-karl-adolf-lobeck/), [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/)
-
-**Партнёры:** —
-
-**Дети:** —
-
 ## Биография
 
 Восстановлена из текстовой части Record Match Оттилии-Марии, где прямо указана как её ребёнок: `Wilhelmine Kerkovius (Lobeck)`.

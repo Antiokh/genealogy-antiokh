@@ -50,16 +50,6 @@ external:
     xref: "I500134"
 ---
 
-**Фамилия при рождении:** Волкова
-
-## Семья
-
-**Родители:** [Игорь Верходанов](/people/unknown/igor-verkhodanov/), [Лариса Волкова](/people/unknown/larisa-volkova/)
-
-**Партнёры:** [Михаил](/people/unknown/mikhail/)
-
-**Дети:** [Милана](/people/unknown/milana/)
-
 ## Биография
 
 Сведения пока не добавлены.

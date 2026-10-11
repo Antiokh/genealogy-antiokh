@@ -42,16 +42,6 @@ external:
     xref: "I500121"
 ---
 
-**Фамилия при рождении:** Тихомирова
-
-## Семья
-
-**Родители:** [Александр Тихомиров](/people/unknown/aleksandr-tikhomirov/), [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
-
-**Партнёры:** —
-
-**Дети:** [Инна Тихомирова](/people/unknown/inna-tikhomirova/)
-
 ## Биография
 
 Сведения пока не добавлены.
