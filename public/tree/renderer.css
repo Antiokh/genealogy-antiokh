@@ -69,8 +69,20 @@ body { overflow:hidden; background:var(--sl-color-bg); color:var(--sl-color-text
 }
 .tree-controls button:hover { background:var(--sl-color-gray-7); }
 .tree-controls button:disabled { opacity:.5; cursor:default; }
+.relation-overlay {
+  position:absolute; z-index:22; inset:0; pointer-events:none; overflow:hidden;
+}
+.genealogy-relation-overlay-item {
+  position:absolute; width:28px; height:28px; transform:translate(-50%, -50%);
+  display:grid; place-items:center; pointer-events:none;
+}
+.genealogy-relation-icon {
+  display:inline-grid; place-items:center; width:var(--relation-size, 28px); height:var(--relation-size, 28px);
+  line-height:0; pointer-events:none;
+}
+.genealogy-relation-icon svg { display:block; overflow:visible; }
 .union-dot { width:12px; height:12px; border:2px solid var(--tree-union); border-radius:50%; background:var(--sl-color-bg); }
 .union-label {
-  position:absolute; left:50%; top:16px; transform:translateX(-50%); white-space:nowrap;
+  position:absolute; left:50%; top:30px; transform:translateX(-50%); white-space:nowrap;
   color:var(--sl-color-gray-3); font-size:9px;
 }
