@@ -7,6 +7,7 @@ import type { ImageMetadata } from 'astro';
 const route = Astro.locals.starlightRoute;
 const isPerson = route.entry.data.entity === 'person' && route.id.startsWith('people/');
 const personRef = isPerson ? `${route.id.replace(/^people\//, '').replace(/\/$/, '')}.md` : null;
+const portraitPlaceholderSrc = '/tree/person-placeholder.svg';
 
 const portraitAssets = import.meta.glob('/src/content/docs/people/**/*.webp', {
   eager: true,
@@ -66,7 +67,7 @@ const focal = typeof subject === 'object' ? subject?.focal : undefined;
 const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%';
 ---
 
-{isPerson && portraitSrc ? (
+{isPerson ? (
   <div class="person-title-row">
     <div class="person-title-copy"><Default /></div>
     <figure class="person-portrait">
@@ -82,13 +83,15 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
         />
       ) : (
         <img
-          src={portraitSrc}
-          alt={portraitAlt}
+          class={portraitSrc ? 'person-portrait__image' : 'person-portrait__image is-placeholder'}
+          src={portraitSrc || portraitPlaceholderSrc}
+          alt={portraitSrc ? portraitAlt : ''}
           width={portraitWidth}
           height={portraitHeight}
           loading="eager"
           decoding="async"
           style={`object-position:${objectPosition}`}
+          onerror="this.onerror=null;this.src='/tree/person-placeholder.svg';this.alt='';this.classList.add('is-placeholder');this.closest('figure')?.querySelector('figcaption')?.setAttribute('hidden','')"
         />
       )}
       {usingLegacyMediaPortrait && portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
@@ -123,6 +126,14 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
     border-radius: 0.75rem;
     background: var(--sl-color-gray-6);
     box-shadow: 0 0.2rem 0.8rem color-mix(in srgb, var(--sl-color-black) 12%, transparent);
+  }
+
+  .person-portrait img.is-placeholder {
+    object-fit: contain;
+    object-position: 50% 50% !important;
+    padding: clamp(1rem, 3vw, 1.8rem);
+    background: color-mix(in srgb, var(--sl-color-gray-6) 88%, var(--sl-color-bg));
+    box-shadow: none;
   }
 
   .person-portrait figcaption {
