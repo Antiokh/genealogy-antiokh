@@ -149,19 +149,29 @@ export function renderTreeStatus(status, {
   if (typeof onFocus === 'function') focusButton.addEventListener('click', onFocus);
   else focusButton.disabled = true;
 
-  const totalButton = document.createElement('button');
-  totalButton.type = 'button';
-  totalButton.className = 'tree-status__action tree-status__total';
-  totalButton.textContent = `${totalPeople ?? 0} людей`;
-  totalButton.title = 'Раскрыть всё дерево';
-  totalButton.setAttribute('aria-label', `Раскрыть всё дерево: ${totalButton.textContent}`);
-  if (typeof onExpandAll === 'function') totalButton.addEventListener('click', onExpandAll);
-  else totalButton.disabled = true;
+  const isBalkan = globalThis.location?.pathname?.includes('/balkan-familytree-classic');
+  let totalControl;
+  if (!isBalkan && typeof onExpandAll === 'function') {
+    const totalButton = document.createElement('button');
+    totalButton.type = 'button';
+    totalButton.className = 'tree-status__action tree-status__total';
+    totalButton.textContent = `${totalPeople ?? 0} людей`;
+    totalButton.title = 'Раскрыть всё дерево';
+    totalButton.setAttribute('aria-label', `Раскрыть всё дерево: ${totalButton.textContent}`);
+    totalButton.addEventListener('click', onExpandAll);
+    totalControl = totalButton;
+  } else {
+    const totalText = document.createElement('span');
+    totalText.className = 'tree-status__total';
+    totalText.textContent = `${totalPeople ?? 0} людей`;
+    if (isBalkan) totalText.title = 'Полное раскрытие отключено из-за лимита BALKAN free mode';
+    totalControl = totalText;
+  }
 
   status.replaceChildren(
     focusButton,
     document.createTextNode(` · ${visiblePeople ?? 0} из `),
-    totalButton,
+    totalControl,
   );
 }
 
