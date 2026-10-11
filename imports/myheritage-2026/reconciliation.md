@@ -29,6 +29,18 @@ The placeholder `I500222` (`Jохан Юлиус Буш`), father of Woldemar Ca
 
 A plausible candidate around the detached Gerdau/Büsch component is **Agathon Büsch (1801–1873)**: he was born in Wolmar and later served as a physician and state councillor in St Petersburg. Those two locations overlap unusually well with Louise Charlotte Gerdau (from Wolmar, later St Petersburg), and his surname matches Georg. However, no source inspected so far directly names Agathon as Louise's spouse or Georg's father. He therefore remains a research lead only; no edge is added.
 
+## Records anonymized in the latest snapshot
+
+The 2026 GEDCOM contains 20 individual records whose `NAME` is empty (`//`). Nineteen of them were already unnamed in every earlier MyHeritage snapshot in which they occur. One record is different:
+
+- `I500096` is **Василий Веждевенский** in the snapshots dated 2022-02-15, 2023-05-11 and 2023-11-25, but becomes `NAME //` in the 2026 snapshot.
+- Its XREF, `_UID 61FD665AA4A50B35565879C306564A2B`, sex, death flag and `FAMS @F500041@` remain stable.
+- `F500041` is also stable across all four snapshots and always contains `HUSB @I500096@` plus `CHIL @I500057@`.
+
+The name and relationship are therefore restored canonically: Василий Веждевенский is recorded as the father of Нонна Веджневецкая (`I500057`). This is a recovery from version history of the same external record, not a fuzzy identity merge.
+
+The remaining 19 unnamed 2026 records are not assigned invented identities. Some have family context, but neither the older MyHeritage snapshots nor the checked Genotek export provide enough identifying evidence to name them safely.
+
 ## Relations recovered from embedded source text
 
 MyHeritage also stores relationship prose inside individual `SOUR/DATA/TEXT` blocks. The snapshot importer previously ignored this layer completely.
@@ -40,13 +52,13 @@ Applied to the canonical graph:
 - **Wilhelmine Kerkovius (Lobeck)** is explicitly named as Ottilia-Maria's child in the same Record Match.
 - **Елизавета Николаевна Бартмер (Бёттхер)** is named as Apollinarius/Apollo Bartmer's wife in the Record Match and independently corroborated by the published index of St Petersburg metric records for their 1886 marriage.
 
-The reconciliation is declarative in `reconciled-relations.json` and reapplied by `scripts/apply-reconciled-relations.mjs` after every snapshot import. Supplemental external-to-canonical mappings recovered from source text are kept in the reconciliation ledger and are merged into `mapping.json` by that step; the base snapshot mapping remains a faithful projection of the explicit demo snapshot.
+The reconciliation is declarative in `reconciled-relations.json` and reapplied by `scripts/apply-reconciled-relations.mjs` after every snapshot import. Supplemental external-to-canonical mappings recovered from source text or snapshot history are kept in the reconciliation ledger and are merged into `mapping.json` by that step; the base snapshot mapping remains a faithful projection of the explicit demo snapshot.
 
 ## Claims kept pending rather than promoted to canonical relations
 
 The following source-text claims are preserved for research but are not asserted as canonical relationships yet:
 
-- Alexander-Eduard Bartmer's parents: **Georg Friedrich Bartmer (Bahrtmer)** and **Anna Maria Bartmer (Heinicke)**. The names come from one embedded match and need identity disambiguation before assigning parent IDs.
+- Alexander-Eduard Bartmer's alleged parents: **Georg Friedrich Bartmer (Bahrtmer)** and **Anna Maria Bartmer (Heinicke)**. The claim comes from one embedded Record Match. The obvious Georg Friedrich Bartmer candidate in the Erik-Amburger index is recorded as 29 May 1768–1792, whereas Alexander-Eduard was born in 1812, so that candidate cannot be his father. A different same-name Georg Friedrich would need independent identification before any parent link is created.
 - Peter Alexandrovich Bartmer's additional children: **Andrey Petrovich Bartmer** and **Sergey Petrovich Bartmer**. They appear in source prose but not in explicit family `F500079`.
 - Otto Alexandrovich Bartmer's wife **Emilia-Anna-Christina Bartmer (Müller)** and children **Petr Ottovich Bartmer** and **Johanna-Amalia Bartmer**.
 - Apollinarius Bartmer's children **Nina Apollonovna Bartmer** and **Boris Apollinarievich Bartmer**. The spouse is corroborated independently; the children still need a second identifying source before new canonical people are created.
