@@ -22,32 +22,14 @@ jobs:
           from pathlib import Path
           p = Path('src/components/GenealogyPageTitle.astro')
           s = p.read_text()
-          old = '''  .person-portrait__mourning-ribbon {
-            position: absolute;
-            z-index: 3;
-            right: -10%;
-            bottom: 12%;
-            width: 48%;
-            height: 0.55rem;
-            background: rgba(10, 10, 10, 0.96);
-            transform: rotate(-42deg);
-            pointer-events: none;
-          }'''
-          new = '''  .person-portrait__mourning-ribbon {
-            position: absolute;
-            z-index: 3;
-            right: -18%;
-            bottom: 11%;
-            width: 82%;
-            height: 0.55rem;
-            background: rgba(10, 10, 10, 0.96);
-            transform: rotate(-42deg);
-            transform-origin: 50% 50%;
-            pointer-events: none;
-          }'''
-          if old not in s:
-              raise SystemExit('Expected mourning-ribbon block not found')
-          p.write_text(s.replace(old, new))
+          start = s.index('  .person-portrait__mourning-ribbon {')
+          end = s.index('\n  }', start) + len('\n  }')
+          block = s[start:end]
+          block = block.replace('right: -10%;', 'right: -18%;')
+          block = block.replace('bottom: 12%;', 'bottom: 11%;')
+          block = block.replace('width: 48%;', 'width: 82%;')
+          block = block.replace('transform: rotate(-42deg);', 'transform: rotate(-42deg);\n    transform-origin: 50% 50%;')
+          p.write_text(s[:start] + block + s[end:])
           PY
       - name: Commit fix
         run: |
