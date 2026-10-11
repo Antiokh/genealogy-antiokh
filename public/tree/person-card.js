@@ -1,3 +1,5 @@
+import { buildKinshipLabels } from '/tree/kinship.js';
+
 export const PERSON_CARD_WIDTH = 240;
 export const PERSON_CARD_HEIGHT = 108;
 
@@ -32,6 +34,27 @@ const shouldShowBirthSurname = (name, birthSurname) => {
   return !String(name || '').trim().toLocaleLowerCase().endsWith(surname.toLocaleLowerCase());
 };
 
+let kinshipLabelsPromise = null;
+
+function loadKinshipLabels() {
+  if (!kinshipLabelsPromise) {
+    kinshipLabelsPromise = fetch('/generated/tree.json')
+      .then((response) => {
+        if (!response.ok) throw new Error(`tree.json: ${response.status}`);
+        return response.json();
+      })
+      .then((family) => {
+        const focusId = new URLSearchParams(globalThis.location?.search || '').get('person') || '';
+        return buildKinshipLabels(family, focusId);
+      })
+      .catch((error) => {
+        console.warn('Could not calculate kinship labels', error);
+        return new Map();
+      });
+  }
+  return kinshipLabelsPromise;
+}
+
 export class GenealogyPersonCard extends HTMLElement {
   static get observedAttributes() {
     return ['person-id', 'name', 'url', 'years', 'sex', 'deceased', 'photo', 'birth-surname'];
@@ -40,10 +63,30 @@ export class GenealogyPersonCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this._relationship = '';
+    this._relationshipFor = '';
   }
 
-  connectedCallback() { this.render(); }
-  attributeChangedCallback() { if (this.isConnected) this.render(); }
+  connectedCallback() {
+    this.render();
+    this.loadRelationship();
+  }
+
+  attributeChangedCallback(name) {
+    if (!this.isConnected) return;
+    this.render();
+    if (name === 'person-id') this.loadRelationship();
+  }
+
+  async loadRelationship() {
+    const personId = this.getAttribute('person-id') || '';
+    if (!personId || this._relationshipFor === personId) return;
+    this._relationshipFor = personId;
+    const labels = await loadKinshipLabels();
+    if (!this.isConnected || this.getAttribute('person-id') !== personId) return;
+    this._relationship = labels.get(personId) || '';
+    this.render();
+  }
 
   render() {
     const name = this.getAttribute('name') || 'Unknown person';
@@ -54,11 +97,18 @@ export class GenealogyPersonCard extends HTMLElement {
     const deceased = this.hasAttribute('deceased');
     const photo = this.getAttribute('photo') || '';
     const birthSurname = this.getAttribute('birth-surname') || '';
+    const relationship = this._relationship || '';
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
     const nameClass = `name${nameSizeClass(name)}`;
-    const nameHtml = url
-      ? `<a class="${nameClass}" href="${esc(url)}" target="_top">${esc(name)}</a>`
-      : `<div class="${nameClass}">${esc(name)}</div>`;
+    const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;
+    const avatar = `<div class="avatar ${sex}${deceased ? ' deceased' : ''}" aria-hidden="true">
+      <span class="avatar-initials">${esc(initials(name))}</span>
+      ${photo ? `<img class="avatar-photo" src="${esc(photo)}" alt="" draggable="false">` : ''}
+      <span class="avatar-shield"></span>
+    </div>`;
+    const avatarHtml = url
+      ? `<a class="avatar-link genealogy-person-link" href="${esc(url)}" target="_top" aria-label="Открыть страницу: ${esc(name)}">${avatar}</a>`
+      : avatar;
 
     this.shadowRoot.innerHTML = `
       <style>
@@ -69,12 +119,19 @@ export class GenealogyPersonCard extends HTMLElement {
         }
         * { box-sizing:border-box; }
         .card {
-          width:100%; height:100%; display:grid; grid-template-columns:44px minmax(0,1fr);
+          position:relative; width:100%; height:100%; display:grid; grid-template-columns:44px minmax(0,1fr);
           gap:10px; align-items:center; padding:8px 12px;
           border-radius:14px; border:1px solid var(--sl-color-gray-5, #d7dde4);
           background:color-mix(in srgb, var(--sl-color-bg-nav, #fff) 96%, transparent);
           box-shadow:0 2px 9px color-mix(in srgb, var(--sl-color-black, #000) 10%, transparent);
           text-align:left;
+        }
+        .avatar-link {
+          display:block; width:44px; height:44px; border-radius:50%; text-decoration:none;
+          outline:none;
+        }
+        .avatar-link:focus-visible {
+          outline:2px solid var(--sl-color-accent, #6b8cff); outline-offset:3px;
         }
         .avatar {
           --avatar-accent:var(--sl-color-accent, #6b8cff);
@@ -95,7 +152,7 @@ export class GenealogyPersonCard extends HTMLElement {
         .avatar.deceased .avatar-initials { filter:grayscale(1); opacity:.72; }
         .avatar.deceased::after {
           content:''; position:absolute; z-index:3; right:-8px; bottom:8px; width:38px; height:5px;
-          background:color-mix(in srgb, var(--sl-color-text, #111) 88%, transparent);
+          background:#000;
           transform:rotate(-42deg); pointer-events:none;
         }
         .avatar::before {
@@ -107,9 +164,7 @@ export class GenealogyPersonCard extends HTMLElement {
         .name {
           display:inline; font-size:14px; line-height:1.14; font-weight:650; color:var(--sl-color-text, #1f2937);
           white-space:normal; overflow:visible; overflow-wrap:anywhere; word-break:normal; hyphens:auto;
-          text-decoration:none;
         }
-        a.name:hover, a.name:focus-visible { color:var(--sl-color-text-accent, var(--sl-color-accent, #6b8cff)); text-decoration:underline; }
         .name-long { font-size:13px; line-height:1.12; }
         .name-xlong { font-size:12px; line-height:1.1; }
         .name-xxlong { font-size:11px; line-height:1.08; }
@@ -118,13 +173,17 @@ export class GenealogyPersonCard extends HTMLElement {
           white-space:normal; overflow-wrap:anywhere;
         }
         .years { margin-top:4px; font-size:11.5px; line-height:1.1; color:var(--sl-color-gray-3, #667085); white-space:nowrap; }
+        .relationship {
+          position:absolute; z-index:6; top:6px; right:9px; max-width:58%;
+          overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+          color:var(--sl-color-text-accent, var(--sl-color-accent, #6b8cff));
+          font-size:9.5px; line-height:1.1; font-weight:600; text-align:right;
+          pointer-events:none;
+        }
       </style>
       <article class="card" data-person-id="${esc(personId)}">
-        <div class="avatar ${sex}${deceased ? ' deceased' : ''}" aria-hidden="true">
-          <span class="avatar-initials">${esc(initials(name))}</span>
-          ${photo ? `<img class="avatar-photo" src="${esc(photo)}" alt="" draggable="false">` : ''}
-          <span class="avatar-shield"></span>
-        </div>
+        ${relationship ? `<div class="relationship" title="${esc(relationship)}">${esc(relationship)}</div>` : ''}
+        ${avatarHtml}
         <div class="text">
           ${nameHtml}
           ${showBirthSurname ? `<div class="birth-surname">при рожд. ${esc(birthSurname)}</div>` : ''}
@@ -132,8 +191,8 @@ export class GenealogyPersonCard extends HTMLElement {
         </div>
       </article>`;
 
-    const nameLink = this.shadowRoot.querySelector('a.name');
-    nameLink?.addEventListener('click', (event) => event.stopPropagation());
+    const avatarLink = this.shadowRoot.querySelector('.avatar-link');
+    avatarLink?.addEventListener('click', (event) => event.stopPropagation());
 
     const image = this.shadowRoot.querySelector('.avatar-photo');
     if (image) {
