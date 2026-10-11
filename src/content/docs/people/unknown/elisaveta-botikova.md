@@ -63,19 +63,6 @@ external:
     xref: "I500024"
 ---
 
-**Годы жизни:** ?–1939
-**Фамилия при рождении:** Буш
-**Фамилия после брака:** Ботикова
-**Имя в исходных данных:** Елисавета Буш
-
-## Семья
-
-**Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
-
-**Партнёры:** [Александр Ботиков](/people/unknown/aleksandr-botikov/), [Шестрем](/people/unknown/shestrem/)
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -54,19 +54,6 @@ external:
     xref: "I500106"
 ---
 
-**Годы жизни:** 1965–
-**Фамилия при рождении:** Михалец
-**Фамилия после брака:** Teljebo
-**Имя в исходных данных:** Larisa Михалец
-
-## Семья
-
-**Родители:** [Пётр Mikhalets](/people/unknown/petr-mikhalets/), [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
-
-**Партнёры:** [Gösta Ingvar Teljebo](/people/1950-1959/gosta-ingvar-teljebo/)
-
-**Дети:** [Angelica Kristina Karika](/people/1990-1999/angelica-kristina-karika/)
-
 ## Биография
 
 Сведения пока не добавлены.

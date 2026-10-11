@@ -44,17 +44,6 @@ external:
     xref: "I500181"
 ---
 
-**Годы жизни:** 1926–?
-**Фамилия при рождении:** Назаров
-
-## Семья
-
-**Родители:** [Семён Назаров](/people/unknown/semen-nazarov/), [Анастасия](/people/unknown/anastasiya/)
-
-**Партнёры:** —
-
-**Дети:** [Евгений Назаров](/people/unknown/evgeniy-nazarov/), [Вячеслав Назаров](/people/unknown/vyacheslav-nazarov/)
-
 ## Биография
 
 Сведения пока не добавлены.

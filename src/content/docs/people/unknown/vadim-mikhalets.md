@@ -45,16 +45,6 @@ external:
     xref: "I500105"
 ---
 
-**Фамилия при рождении:** Mikhalets
-
-## Семья
-
-**Родители:** [Пётр Mikhalets](/people/unknown/petr-mikhalets/), [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
-
-**Партнёры:** —
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

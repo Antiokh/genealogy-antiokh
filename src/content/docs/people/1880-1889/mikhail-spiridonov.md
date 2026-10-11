@@ -44,17 +44,6 @@ external:
     xref: "I500056"
 ---
 
-**Годы жизни:** 1887–1915
-**Фамилия при рождении:** Спиридонов
-
-## Семья
-
-**Родители:** [Иван Спиридонов](/people/unknown/ivan-spiridonov/)
-
-**Партнёры:** [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
-
-**Дети:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Елена Литошко](/people/1900-1909/elena-litoshko/), [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/), [Александр Спиридонов](/people/unknown/aleksandr-spiridonov/)
-
 ## Биография
 
 Сведения пока не добавлены.

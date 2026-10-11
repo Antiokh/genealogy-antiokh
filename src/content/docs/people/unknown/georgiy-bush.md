@@ -45,17 +45,6 @@ external:
     xref: "I500027"
 ---
 
-**Годы жизни:** ?–1978
-**Фамилия при рождении:** Буш
-
-## Семья
-
-**Родители:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/)
-
-**Партнёры:** —
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

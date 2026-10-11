@@ -47,14 +47,6 @@ external:
     xref: "I500043"
 ---
 
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Вадим Винокуров](/people/unknown/vadim-vinokurov/)
-
-**Дети:** [Елена](/people/unknown/elena/), [Надежда](/people/unknown/nadezhda/)
-
 ## Биография
 
 Сведения пока не добавлены.

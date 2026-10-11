@@ -56,19 +56,6 @@ external:
     xref: "I500167"
 ---
 
-**Годы жизни:** 1850–1878
-**Фамилия при рождении:** Bartmer Бартмер
-**Фамилия после брака:** Lobeck
-**Имя в исходных данных:** Йоганна-Мария Bartmer Бартмер
-
-## Семья
-
-**Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
-
-**Партнёры:** [Albert Karl Adolf Lobeck](/people/unknown/albert-karl-adolf-lobeck/)
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.
