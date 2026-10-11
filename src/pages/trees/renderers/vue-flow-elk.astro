@@ -5,11 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Vue Flow + ELK</title>
     <link rel="stylesheet" href="/tree/renderer.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vue-flow/core@1.48.2/dist/style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vue-flow/core@1.48.2/dist/theme-default.css" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@3/dist/vue.global.prod.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@vue-flow/core@1.48.2/dist/vue-flow-core.iife.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/elkjs@0.12.0/lib/elk.bundled.js"></script>
     <style is:global>
       #app, .vue-flow { width:100%; height:100%; }
       .vue-flow { background:var(--sl-color-bg); color:var(--sl-color-text); }
@@ -27,21 +22,25 @@
       <div id="app" class="tree-canvas"></div>
       <div id="status" class="tree-status">Раскладка Vue Flow + ELK…</div>
     </main>
-    <script type="module" is:inline>
-      // @ts-nocheck
-      import { toVueFlowElkData } from '/tree/renderer-adapters.js';
-      import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
-      import { startThemeBridge } from '/tree/theme-bridge.js';
+    <script>
+      import { createApp, defineComponent, h, markRaw } from 'vue';
+      import { VueFlow, Handle, Position } from '@vue-flow/core';
+      import '@vue-flow/core/dist/style.css';
+      import '@vue-flow/core/dist/theme-default.css';
+      import ELK from 'elkjs/lib/elk.bundled.js';
 
-      startThemeBridge();
       const status = document.getElementById('status');
       try {
-        const response = await fetch('/generated/tree.json');
+        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, response] = await Promise.all([
+          import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
+          import(/* @vite-ignore */ '/tree/person-card.js'),
+          import(/* @vite-ignore */ '/tree/theme-bridge.js'),
+          fetch('/generated/tree.json'),
+        ]);
+        startThemeBridge();
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const family = await response.json();
-        const { createApp, ref } = window.Vue;
-        const { VueFlow, Handle, Position } = window.VueFlowCore;
-        const elk = new window.ELK();
+        const elk = new ELK();
         const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
           personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT
         });
@@ -55,31 +54,47 @@
           children:rawNodes.map((n) => ({ id:n.id, width:n.width, height:n.height })),
           edges:rawEdges.map((e) => ({ id:e.id, sources:[e.source], targets:[e.target] }))
         });
-        const positions = Object.fromEntries(graph.children.map((n) => [n.id, { x:n.x || 0, y:n.y || 0 }]));
-        const nodes = ref(rawNodes.map((n) => ({ id:n.id, type:n.type, data:n.data, position:positions[n.id] })));
-        const edges = ref(rawEdges.map((e) => ({ ...e, type:'smoothstep', style:{ stroke:'var(--tree-edge)', strokeWidth:1.35 } })));
-        createApp({
-          components:{ VueFlow, Handle },
-          setup() { return { nodes, edges, Position, personCardElementHtml }; },
-          template:`
-            <vue-flow :nodes="nodes" :edges="edges" :fit-view-on-init="true" :min-zoom="0.08" :max-zoom="2" :nodes-draggable="false">
-              <template #node-person="{ data }">
-                <div class="person-node-wrap">
-                  <handle type="target" :position="Position.Top"></handle>
-                  <div v-html="personCardElementHtml(data)"></div>
-                  <handle type="source" :position="Position.Bottom"></handle>
-                </div>
-              </template>
-              <template #node-family="{ data }">
-                <div class="union-wrap">
-                  <handle type="target" :position="Position.Top"></handle>
-                  <div class="union-dot"></div>
-                  <div v-if="data.label" class="union-label">{{ data.label }}</div>
-                  <handle type="source" :position="Position.Bottom"></handle>
-                </div>
-              </template>
-            </vue-flow>`
-        }).mount('#app');
+        const positions = Object.fromEntries((graph.children || []).map((n) => [n.id, { x:n.x || 0, y:n.y || 0 }]));
+        const nodes = rawNodes.map((n) => ({ id:n.id, type:n.type, data:n.data, position:positions[n.id] || {x:0,y:0} }));
+        const edges = rawEdges.map((e) => ({ ...e, type:'smoothstep', style:{ stroke:'var(--tree-edge)', strokeWidth:1.35 } }));
+
+        const PersonNode = markRaw(defineComponent({
+          props:['data'],
+          setup(props) {
+            return () => h('div', { class:'person-node-wrap' }, [
+              h(Handle, { type:'target', position:Position.Top }),
+              h('div', { innerHTML:personCardElementHtml(props.data) }),
+              h(Handle, { type:'source', position:Position.Bottom }),
+            ]);
+          }
+        }));
+        const FamilyNode = markRaw(defineComponent({
+          props:['data'],
+          setup(props) {
+            return () => h('div', { class:'union-wrap' }, [
+              h(Handle, { type:'target', position:Position.Top }),
+              h('div', { class:'union-dot' }),
+              props.data?.label ? h('div', { class:'union-label' }, props.data.label) : null,
+              h(Handle, { type:'source', position:Position.Bottom }),
+            ]);
+          }
+        }));
+        const App = defineComponent({
+          setup() {
+            return () => h(VueFlow, {
+              nodes,
+              edges,
+              nodeTypes:{ person:PersonNode, family:FamilyNode },
+              fitViewOnInit:true,
+              minZoom:0.08,
+              maxZoom:2,
+              nodesDraggable:false,
+              nodesConnectable:false,
+              elementsSelectable:false,
+            });
+          }
+        });
+        createApp(App).mount('#app');
         status.textContent = `Vue Flow + ELK · ${family.summary.people} людей · ${family.summary.families} союзов`;
       } catch (error) {
         console.error(error);
