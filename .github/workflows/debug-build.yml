@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - feat/starlight-panel-toggles-v2
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
