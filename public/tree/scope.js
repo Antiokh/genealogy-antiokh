@@ -1,9 +1,3 @@
-function normalizeDepth(value) {
-  if (value === 'all' || value === Infinity) return Infinity;
-  const parsed = Number(value);
-  return Number.isFinite(parsed) && parsed >= 0 ? Math.floor(parsed) : 1;
-}
-
 function buildAdjacency(family) {
   const adjacency = new Map((family.people || []).map((person) => [person.id, new Set()]));
   const link = (a, b) => {
@@ -25,31 +19,7 @@ function buildAdjacency(family) {
   return adjacency;
 }
 
-export function scopeTreeDataset(family, focusId, depth = 1) {
-  if (!focusId || !(family.people || []).some((person) => person.id === focusId)) {
-    return {
-      ...family,
-      focus: null,
-      scope: { depth: 'all', people: family.people?.length || 0, totalPeople: family.people?.length || 0, hasMore: false },
-    };
-  }
-
-  const maxDepth = normalizeDepth(depth);
-  const adjacency = buildAdjacency(family);
-  const distances = new Map([[focusId, 0]]);
-  const queue = [focusId];
-  while (queue.length) {
-    const current = queue.shift();
-    const distance = distances.get(current) || 0;
-    if (distance >= maxDepth) continue;
-    for (const neighbor of adjacency.get(current) || []) {
-      if (distances.has(neighbor)) continue;
-      distances.set(neighbor, distance + 1);
-      queue.push(neighbor);
-    }
-  }
-
-  const selected = new Set(distances.keys());
+function projectFamily(family, selected, focusId, expanded) {
   const people = (family.people || []).filter((person) => selected.has(person.id));
   const families = (family.families || []).map((unit) => ({
     ...unit,
@@ -70,20 +40,66 @@ export function scopeTreeDataset(family, focusId, depth = 1) {
       totalFamilies: family.families?.length || families.length,
     },
     scope: {
-      depth: maxDepth === Infinity ? 'all' : maxDepth,
       people: people.length,
       totalPeople: family.people?.length || people.length,
       hasMore: people.length < (family.people?.length || people.length),
+      expanded: [...expanded],
     },
+  };
+}
+
+export function createTreeExpansionState(family, focusId) {
+  const hasFocus = Boolean(focusId && (family.people || []).some((person) => person.id === focusId));
+  const resolvedFocus = hasFocus ? focusId : family.people?.[0]?.id || '';
+  const adjacency = buildAdjacency(family);
+  const expanded = new Set(resolvedFocus ? [resolvedFocus] : []);
+
+  const visibleIds = () => {
+    if (!resolvedFocus || !adjacency.has(resolvedFocus)) return new Set((family.people || []).map((person) => person.id));
+    const visible = new Set([resolvedFocus]);
+    const queue = [resolvedFocus];
+    const traversed = new Set();
+
+    while (queue.length) {
+      const current = queue.shift();
+      if (traversed.has(current) || !expanded.has(current)) continue;
+      traversed.add(current);
+      for (const neighbor of adjacency.get(current) || []) {
+        visible.add(neighbor);
+        if (expanded.has(neighbor) && !traversed.has(neighbor)) queue.push(neighbor);
+      }
+    }
+    return visible;
+  };
+
+  const snapshot = () => projectFamily(family, visibleIds(), resolvedFocus, expanded);
+
+  return {
+    focusId: resolvedFocus,
+    isExpanded(id) {
+      return expanded.has(id);
+    },
+    canExpand(id) {
+      return (adjacency.get(id)?.size || 0) > 0;
+    },
+    toggle(id) {
+      if (!id || id === resolvedFocus || !adjacency.has(id)) return snapshot();
+      if (expanded.has(id)) expanded.delete(id);
+      else expanded.add(id);
+      return snapshot();
+    },
+    reset() {
+      expanded.clear();
+      if (resolvedFocus) expanded.add(resolvedFocus);
+      return snapshot();
+    },
+    snapshot,
   };
 }
 
 export function treeRenderContext(search = globalThis.location?.search || '') {
   const params = new URLSearchParams(search);
-  return {
-    person: params.get('person') || '',
-    depth: params.get('depth') === 'all' ? 'all' : normalizeDepth(params.get('depth') || 1),
-  };
+  return { person: params.get('person') || '' };
 }
 
 export function reportTreeScope(family) {
