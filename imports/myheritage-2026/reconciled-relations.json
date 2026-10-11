@@ -1,11 +1,17 @@
 {
   "schema": "myheritage-reconciled-relations-1",
   "snapshot": "2026-09-10",
-  "evidence": "Relations recovered from GEDCOM SOUR/DATA/TEXT and cross-checked against FAM records and selected external indexes.",
+  "evidence": "Relations recovered from older GEDCOM snapshots and SOUR/DATA/TEXT, cross-checked against stable FAM records and selected external indexes.",
   "mapping": {
+    "I500096": "unknown/vasiliy-vezhdevenskiy.md",
     "I500227": "unknown/sofiya-konstantinovna-bartmer.md"
   },
   "overrides": [
+    {
+      "xref": "I500057",
+      "father": "unknown/vasiliy-vezhdevenskiy.md",
+      "sources": ["myheritage-snapshot-history.md"]
+    },
     {
       "xref": "I500167",
       "partners": [
@@ -58,6 +64,8 @@
     "unknown/albert-karl-adolf-lobeck.md",
     "unknown/sofiya-konstantinovna-bartmer.md",
     "unknown/wilhelmine-kerkovius.md",
-    "unknown/elizaveta-nikolaevna-bartmer.md"
+    "unknown/elizaveta-nikolaevna-bartmer.md",
+    "unknown/nonna-vedzhnevetskaya.md",
+    "unknown/vasiliy-vezhdevenskiy.md"
   ]
 }
