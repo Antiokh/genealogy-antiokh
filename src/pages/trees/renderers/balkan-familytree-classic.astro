@@ -88,7 +88,7 @@
       }
 
       try {
-        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { treeRenderContext, reportTreeScope }, response] = await Promise.all([
+        const [{ toBalkanFamilyTreeData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
@@ -136,11 +136,42 @@
         const focusNodeData = nodeDataById.get(focusId);
         const initialRootId = focusNodeData?.fid || focusNodeData?.mid || focusId;
         const totalPeople = sourceFamily.people?.length || nodes.length;
+        const rootCandidateIds = new Set(nodes.filter((node) => !node.fid && !node.mid).map((node) => node.id));
+        const allRootIds = nodes
+          .filter((node) => rootCandidateIds.has(node.id))
+          .filter((node) => !(node.pids || []).some((pid) => rootCandidateIds.has(pid) && String(pid).localeCompare(String(node.id)) < 0))
+          .map((node) => node.id);
+        if (!allRootIds.length && initialRootId) allRootIds.push(initialRootId);
 
-        const updateScopeStatus = () => {
+        function centerOnFocus() {
+          if (!tree || !focusId) return;
+          tree.center(focusId, { rippleId:focusId, vertical:false, horizontal:false }, updateScopeStatus);
+        }
+
+        function expandAll() {
+          if (!tree || !allRootIds.length) return;
+          tree.changeRoots(focusId, allRootIds, () => {
+            const expandRoot = (index) => {
+              if (index >= allRootIds.length) {
+                tree.fit(updateScopeStatus);
+                return;
+              }
+              tree.expand(allRootIds[index], 'all', () => expandRoot(index + 1));
+            };
+            expandRoot(0);
+          });
+        }
+
+        function updateScopeStatus() {
           if (!tree) return;
           const count = (tree.visibleNodeIds || []).filter((id) => sourcePeopleIds.has(id)).length;
-          status.textContent = `${focusName} · ${count} из ${totalPeople} людей`;
+          renderTreeStatus(status, {
+            focusName,
+            visiblePeople:count,
+            totalPeople,
+            onFocus:centerOnFocus,
+            onExpandAll:expandAll,
+          });
           reportTreeScope({
             focus: focusId,
             scope: {
@@ -150,7 +181,7 @@
               expanded: [],
             },
           });
-        };
+        }
 
         const focusCollapseOptions = () => ({
           parentState: FamilyTree.COLLAPSE_PARENT_NEIGHBORS,
