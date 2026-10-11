@@ -6,7 +6,6 @@
     <title>Family Chart</title>
     <link rel="stylesheet" href="/tree/renderer.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/family-chart@0.9.0/dist/styles/family-chart.css" />
-    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
     <style is:global>
       #FamilyChart { width:100%; height:100%; background:var(--tree-background); }
       #FamilyChart .card_cont { overflow:visible; filter:none !important; }
@@ -46,6 +45,7 @@
       let expansion = null;
       let currentFamily = null;
       let overlayFrame = 0;
+      let renderVersion = 0;
 
       const scheduleRelationOverlay = () => {
         cancelAnimationFrame(overlayFrame);
@@ -64,31 +64,52 @@
         const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
         focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
 
-        const centerOnFocus = () => {
-          if (!chart) return;
-          const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === focusId);
-          if (datum) f3.handlers.cardToMiddle({ datum, svg:chart.svg, svg_dim:chart.svg.getBoundingClientRect(), transition_time:220 });
+        const centerOnPerson = (id = focusId, transitionTime = 220) => {
+          if (!chart || !id) return;
+          const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === id || item?.id === id);
+          if (!datum) return;
+          f3.handlers.cardToMiddle({
+            datum,
+            svg:chart.svg,
+            svg_dim:chart.svg.getBoundingClientRect(),
+            transition_time:transitionTime,
+          });
           scheduleRelationOverlay();
         };
 
-        const renderFamily = (family) => {
+        const centerOnFocus = () => centerOnPerson(focusId);
+
+        const renderFamily = (family, { anchorId = focusId, fit = false } = {}) => {
+          const version = ++renderVersion;
           const startedAt = performance.now();
           currentFamily = family;
           const data = toFamilyChartData(family);
+          relationOverlay.replaceChildren();
           canvas.replaceChildren();
+
           chart = f3.createChart('#FamilyChart', data)
             .setTransitionTime(0)
             .setCardXSpacing(286)
             .setCardYSpacing(148);
-          chart.setCardHtml().setCardInnerHtmlCreator((d) => {
-            const p = d.data.data;
-            const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
-            return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
-              id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
-              marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
-              deceased:Boolean(p.deceased), photo:p.photo || ''
-            }, { branchState:expansion.branchState(d.data.id) })}</div>`;
-          });
+
+          chart.setCardHtml()
+            .setCardInnerHtmlCreator((d) => {
+              const p = d.data.data;
+              const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
+              return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
+                id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
+                marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
+                deceased:Boolean(p.deceased), photo:p.photo || ''
+              }, { branchState:expansion.branchState(d.data.id) })}</div>`;
+            })
+            .setOnCardClick((event, datum) => {
+              const id = datum?.data?.id || datum?.id;
+              if (!id || !expansion) return;
+              event?.preventDefault?.();
+              event?.stopPropagation?.();
+              renderFamily(expansion.toggle(id), { anchorId:id });
+            });
+
           chart.updateTree({ initial:true, main_id:focusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
@@ -97,29 +118,24 @@
             visiblePeople:family.summary.people,
             totalPeople:total,
             onFocus:centerOnFocus,
-            onExpandAll:() => renderFamily(expansion.expandAll()),
+            onExpandAll:() => renderFamily(expansion.expandAll(), { fit:true }),
           });
           const elapsed = Math.round(performance.now() - startedAt);
           status.title = `Family Chart · построение ${elapsed} мс · ${family.summary.people} человек`;
           status.dataset.renderMs = String(elapsed);
-          scheduleRelationOverlay();
-        };
 
-        canvas.addEventListener('click', (event) => {
-          const target = event.target;
-          if (!(target instanceof Element)) return;
-          const card = target.closest('.card');
-          if (!card || !expansion) return;
-          const datum = window.d3?.select(card)?.datum?.();
-          const id = datum?.data?.id || datum?.id;
-          if (!id) return;
-          renderFamily(expansion.toggle(id));
-        });
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            if (version !== renderVersion || !chart) return;
+            if (fit) chart.updateTree({ tree_position:'fit', transition_time:220 });
+            else centerOnPerson(anchorId, 0);
+            scheduleRelationOverlay();
+          }));
+        };
 
         window.addEventListener('genealogy:toggle-person', (event) => {
           const id = event.detail;
           if (!id || !expansion) return;
-          renderFamily(expansion.toggle(id));
+          renderFamily(expansion.toggle(id), { anchorId:id });
         });
 
         const overlayObserver = new MutationObserver(scheduleRelationOverlay);
