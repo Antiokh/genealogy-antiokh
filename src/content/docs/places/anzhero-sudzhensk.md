@@ -2,13 +2,15 @@
 title: "Анжеро-Судженск"
 description: "Город Анжеро-Судженск Кемеровской области"
 entity: place
-placeType: city
-coordinates:
-  lat: 56.083333
-  lon: 86.033333
-region: "Кемеровская область"
+kind: city
+label: "Анжеро-Судженск"
 country: "Россия"
-importManaged: false
+aliases:
+  - "Anzhero-Sudzhensk"
+geo:
+  latitude: 56.083333
+  longitude: 86.033333
+  precision: city
 ---
 
 Николай Петрович Курочкин с 1938 года руководил школой № 37 в Анжеро-Судженске; отсюда в апреле 1942 года был призван в армию и сюда вернулся после ранения.
