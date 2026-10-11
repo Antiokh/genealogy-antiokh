@@ -62,10 +62,12 @@ const media = docs
         const caption = entry.data.caption || entry.data.title;
         const date = dateLabel(entry.data.date);
         const alt = entry.data.alt || caption;
+        const orientation = width && height && height > width ? 'portrait' : 'landscape';
 
         return (
           <figure class="person-gallery-item">
             <a
+              class="person-gallery-mount"
               href={src}
               data-pswp-width={canLightbox ? width : undefined}
               data-pswp-height={canLightbox ? height : undefined}
@@ -74,17 +76,28 @@ const media = docs
               rel={canLightbox ? undefined : 'noreferrer'}
               aria-label={`Открыть: ${caption}`}
             >
-              {isRemote ? (
-                <img src={src} alt={alt} loading="lazy" decoding="async" />
-              ) : (
-                <Image
-                  src={image}
-                  alt={alt}
-                  widths={[320, 480, 720]}
-                  sizes="(max-width: 36rem) 75vw, (max-width: 72rem) 33vw, 260px"
-                  loading="lazy"
-                />
-              )}
+              <svg
+                class="person-gallery-mount-cross"
+                viewBox="0 0 100 100"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path d="M42 7h16v29h29v28H58v29H42V64H13V36h29Z" />
+              </svg>
+              <span class:list={['person-gallery-window', `is-${orientation}`]}>
+                {isRemote ? (
+                  <img class="person-gallery-photo" src={src} alt={alt} loading="lazy" decoding="async" />
+                ) : (
+                  <Image
+                    class="person-gallery-photo"
+                    src={image}
+                    alt={alt}
+                    widths={[320, 480, 720]}
+                    sizes="(max-width: 36rem) 45vw, (max-width: 72rem) 32vw, 260px"
+                    loading="lazy"
+                  />
+                )}
+              </span>
             </a>
             <figcaption>
               <span>{caption}</span>
@@ -149,7 +162,7 @@ const media = docs
 
   .person-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(12rem, 100%), 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem;
     margin-top: 1rem;
   }
@@ -159,25 +172,71 @@ const media = docs
     margin: 0;
   }
 
-  .person-gallery-item a {
-    display: block;
+  .person-gallery-mount {
+    position: relative;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    width: 100%;
+    aspect-ratio: 1;
     overflow: hidden;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.65rem;
+    border: 1px solid var(--sl-color-hairline);
+    border-radius: 0.7rem;
     background: var(--sl-color-gray-6);
+    color: var(--sl-color-hairline);
+    text-decoration: none;
   }
 
-  .person-gallery-item img {
+  .person-gallery-mount-cross {
+    position: absolute;
+    inset: 8%;
+    width: 84%;
+    height: 84%;
+    fill: currentColor;
+    opacity: 0.72;
+    pointer-events: none;
+  }
+
+  .person-gallery-window {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+    padding: clamp(3px, 0.55vw, 6px);
+    background: #000;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 0.9);
+  }
+
+  .person-gallery-window.is-landscape {
+    width: 78%;
+    aspect-ratio: 4 / 3;
+  }
+
+  .person-gallery-window.is-portrait {
+    width: 58.5%;
+    aspect-ratio: 3 / 4;
+  }
+
+  .person-gallery-photo {
     display: block;
     width: 100%;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
-    transition: transform 160ms ease;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+    object-fit: contain;
+    background: #000;
   }
 
-  .person-gallery-item a:hover img,
-  .person-gallery-item a:focus-visible img {
-    transform: scale(1.025);
+  .person-gallery-mount:hover,
+  .person-gallery-mount:focus-visible {
+    border-color: var(--sl-color-accent);
+  }
+
+  .person-gallery-mount:focus-visible {
+    outline: 2px solid var(--sl-color-accent);
+    outline-offset: 2px;
   }
 
   .person-gallery-item figcaption {
@@ -215,17 +274,16 @@ const media = docs
 
   @media (max-width: 36rem) {
     .person-gallery {
-      display: flex;
       gap: 0.75rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding-bottom: 0.5rem;
-      overscroll-behavior-inline: contain;
     }
 
-    .person-gallery-item {
-      flex: 0 0 min(78vw, 19rem);
-      scroll-snap-align: start;
+    .person-gallery-item figcaption {
+      display: block;
+    }
+
+    .person-gallery-item time {
+      display: block;
+      margin-top: 0.15rem;
     }
   }
 </style>
