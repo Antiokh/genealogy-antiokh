@@ -1,0 +1,14 @@
+{
+  "name": "myheritage-exporter",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Local MyHeritage family-tree exporter over Chrome CDP",
+  "scripts": {
+    "cdp": "node capture.cjs",
+    "crawl": "node crawler.cjs",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "playwright-core": "^1.55.0"
+  }
+}
