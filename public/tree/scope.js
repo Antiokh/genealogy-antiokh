@@ -74,6 +74,12 @@ export function createTreeExpansionState(family, focusId) {
     return visible;
   };
 
+  const hasHiddenNeighbor = (id, visible = visibleIds()) => {
+    const neighbors = adjacency.get(id);
+    if (!neighbors?.size) return false;
+    return [...neighbors].some((neighbor) => !visible.has(neighbor));
+  };
+
   const snapshot = () => projectFamily(family, visibleIds(), resolvedFocus, expanded);
 
   return {
@@ -82,17 +88,25 @@ export function createTreeExpansionState(family, focusId) {
       return expanded.has(id);
     },
     canExpand(id) {
-      return (adjacency.get(id)?.size || 0) > 0;
+      if (expanded.has(id)) return true;
+      return hasHiddenNeighbor(id);
     },
     branchState(id) {
-      if ((adjacency.get(id)?.size || 0) === 0) return '';
-      return expanded.has(id) ? 'collapse' : 'expand';
+      const neighbors = adjacency.get(id);
+      if (!neighbors?.size) return '';
+      if (expanded.has(id)) return 'collapse';
+      return hasHiddenNeighbor(id) ? 'expand' : '';
     },
     toggle(id) {
       if (!id || !adjacency.has(id)) return snapshot();
       showAll = false;
-      if (expanded.has(id)) expanded.delete(id);
-      else expanded.add(id);
+      if (expanded.has(id)) {
+        expanded.delete(id);
+      } else {
+        const visible = visibleIds();
+        if (!hasHiddenNeighbor(id, visible)) return snapshot();
+        expanded.add(id);
+      }
       return snapshot();
     },
     reset() {
@@ -121,6 +135,7 @@ export function renderTreeStatus(status, {
   visiblePeople,
   totalPeople,
   onFocus,
+  onExpandAll,
 } = {}) {
   if (!status || !globalThis.document) return;
   status.classList.remove('error');
@@ -134,15 +149,32 @@ export function renderTreeStatus(status, {
   if (typeof onFocus === 'function') focusButton.addEventListener('click', onFocus);
   else focusButton.disabled = true;
 
-  const totalText = document.createElement('span');
-  totalText.className = 'tree-status__total';
-  totalText.textContent = `${totalPeople ?? 0} людей`;
-  totalText.title = 'Полное раскрытие временно отключено для production-рендерера';
+  // Renderer capability: BALKAN free mode has a 200-person ceiling, so its
+  // total count remains display-only. Other renderers may opt into expand-all
+  // by supplying onExpandAll.
+  const isBalkan = globalThis.location?.pathname?.includes('/balkan-familytree-classic');
+  let totalControl;
+  if (!isBalkan && typeof onExpandAll === 'function') {
+    const totalButton = document.createElement('button');
+    totalButton.type = 'button';
+    totalButton.className = 'tree-status__action tree-status__total';
+    totalButton.textContent = `${totalPeople ?? 0} людей`;
+    totalButton.title = 'Раскрыть всё дерево';
+    totalButton.setAttribute('aria-label', `Раскрыть всё дерево: ${totalButton.textContent}`);
+    totalButton.addEventListener('click', onExpandAll);
+    totalControl = totalButton;
+  } else {
+    const totalText = document.createElement('span');
+    totalText.className = 'tree-status__total';
+    totalText.textContent = `${totalPeople ?? 0} людей`;
+    if (isBalkan) totalText.title = 'Полное раскрытие отключено из-за лимита BALKAN free mode';
+    totalControl = totalText;
+  }
 
   status.replaceChildren(
     focusButton,
     document.createTextNode(` · ${visiblePeople ?? 0} из `),
-    totalText,
+    totalControl,
   );
 }
 

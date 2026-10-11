@@ -1,6 +1,6 @@
 ---
 title: "Мария Назарова"
-description: "Мария Назарова, 1934–2022"
+description: "Мария Попова (Назарова), 23 ноября 1934 — 10 декабря 2022"
 entity: person
 importManaged: true
 name:
@@ -33,12 +33,14 @@ father: "1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov.md"
 mother: "1900-1909/efrosiniya-popova.md"
 born:
   known: true
-  date: 1934
+  date: "1934-11-23"
   place: null
+  placeLabel: "с. Дворики, Никифоровский р-н, Тамбовская обл., Россия"
 died:
   known: true
-  date: 2022
-  place: null
+  date: "2022-12-10"
+  place: "moscow.md"
+  placeLabel: "Москва"
 buried:
   known: false
   date: null
@@ -47,26 +49,18 @@ partners:
   - person: "1930-1939/semen-nazarov.md"
 occupation: []
 residence: []
-sources: []
+sources:
+  - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
+    extendedSnapshot: "2026-10-11"
     xref: "I500006"
+    profileId: 1500006
 ---
-
-**Годы жизни:** 1934–2022
-**Фамилия при рождении:** Попова
-**Фамилия после брака:** Назарова
-**Имя в исходных данных:** Мария Попова
-
-## Семья
-
-**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
-
-**Партнёры:** [Семен Назаров](/people/1930-1939/semen-nazarov/)
-
-**Дети:** [Любовь Ледовских](/people/1960-1969/lyubov-ledovskikh/), [Владислав Назаров](/people/1960-1969/vladislav-nazarov/)
 
 ## Биография
 
-Сведения пока не добавлены.
+Расширенная выгрузка MyHeritage уточняет полные даты жизни и место рождения Марии Поповой (Назаровой): 23 ноября 1934 года, село Дворики Никифоровского района Тамбовской области; умерла 10 декабря 2022 года в Москве.
+
+Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).

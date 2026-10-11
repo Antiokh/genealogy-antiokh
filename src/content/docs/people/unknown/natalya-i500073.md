@@ -49,14 +49,6 @@ external:
     xref: "I500073"
 ---
 
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/)
-
-**Дети:** [Andrian Kurochkin](/people/1980-1989/andrian-kurochkin/), [Денис](/people/unknown/denis/)
-
 ## Биография
 
 Сведения пока не добавлены.

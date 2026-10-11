@@ -50,14 +50,6 @@ external:
     xref: "I500154"
 ---
 
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Andrian Kurochkin](/people/1980-1989/andrian-kurochkin/)
-
-**Дети:** [Ульяна Курочкина](/people/unknown/ulyana-kurochkina/)
-
 ## Биография
 
 Сведения пока не добавлены.

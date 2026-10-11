@@ -1,12 +1,15 @@
 ---
-title: "Валентина Курочкина"
-description: "Валентина Курочкина, 1914–1981"
+title: "Валентина Михайловна Курочкина"
+description: "Валентина Михайловна Курочкина (Спиридонова), 1914–1981 — учительница, супруга Николая Петровича Курочкина"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Валентина Спиридонова"
-  display: "Валентина Курочкина"
+  full: "Валентина Михайловна Спиридонова"
+  display: "Валентина Михайловна Курочкина"
+  first: "Валентина"
+  middle: "Михайловна"
+  last: "Курочкина"
   birth_last: "Спиридонова"
   married_last: "Курочкина"
   aliases: []
@@ -14,18 +17,14 @@ families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - current
-      - marriage
-      - partner
+    roles: [current, marriage, partner]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
   - key: "spiridonov"
     label: "Спиридоновы"
     locale: ru
-    roles:
-      - birth
+    roles: [birth]
     inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPTFkMTY0NTczZWU4OWJlYjQ0ZWYxNmZjYjU4YzA4OGYyYWEyODVmYTRjNGFmNzQzZmZjNjg4OTIxMTJkZjlhMjImZT0xNzg5Njc1MjAw/129/852/4292/500071_137348060e1363cfr3f140_A.jpg"
@@ -33,11 +32,17 @@ father: "1880-1889/mikhail-spiridonov.md"
 mother: "unknown/nonna-vedzhnevetskaya.md"
 born:
   known: true
-  date: 1914
+  date:
+    year: 1914
+    month: 2
+    day: 14
   place: null
 died:
   known: true
-  date: 1981
+  date:
+    year: 1981
+    month: 5
+    day: 28
   place: null
 buried:
   known: false
@@ -45,28 +50,64 @@ buried:
   place: null
 partners:
   - person: "1900-1909/nikolay-kurochkin.md"
-occupation: []
-residence: []
-sources: []
+    married:
+      known: true
+      date:
+        year: 1935
+        month: 1
+        text: "в первых числах января 1935 г."
+      place: "mariinsk.md"
+      placeLabel: "Мариинск"
+occupation:
+  - "учительница начальных классов"
+  - "работница лесной промышленности"
+  - "преподавательница рукоделия"
+residence:
+  - place: "mariinsk.md"
+    label: "Мариинск"
+    from: 1934
+    to: 1935
+    notes: "Здесь познакомилась с Николаем Петровичем и вышла за него замуж."
+  - place: "novosibirsk.md"
+    label: "Новосибирск"
+    from: 1935
+    to: 1936
+    notes: "Период работы Николая в подсобном хозяйстве областной клинической больницы."
+  - place: "pisyanskaya-school-near-biysk.md"
+    label: "Писянская школа близ Бийска"
+    from: 1936
+    to: 1938
+    notes: "Учительница начальных классов; точное положение школы не установлено."
+  - place: "anzhero-sudzhensk.md"
+    label: "Анжеро-Судженск"
+    from: 1938
+    to: 1945
+    notes: "В годы войны работала в лесной промышленности ради рабочего продовольственного пайка."
+  - place: "edrovo.md"
+    label: "Едрово"
+    from: 1945
+    to: 1946
+    notes: "Учительница начальных классов в Едровской школе."
+  - place: "valdai.md"
+    label: "Валдай"
+    from: 1946
+    notes: "Помогала школьницам осваивать шитьё, вязание и изготовление кукол; позднее вела занятия по рукоделию."
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500055"
 ---
 
-**Годы жизни:** 1914–1981
-**Фамилия при рождении:** Спиридонова
-**Фамилия после брака:** Курочкина
-**Имя в исходных данных:** Валентина Спиридонова
-
-## Семья
-
-**Родители:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/), [Нонна Веджневецкая](/people/unknown/nonna-vedzhnevetskaya/)
-
-**Партнёры:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/)
-
-**Дети:** [Эмилия Бескоровайная](/people/1930-1939/emiliya-beskorovaynaya/), [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Галина Капранова](/people/1940-1949/galina-kapranova/), [Николай Курочкин](/people/1940-1949/nikolay-kurochkin/), [Владимир Курочкин](/people/1940-1949/vladimir-kurochkin/), [Лариса Примак](/people/unknown/larisa-primak/)
-
 ## Биография
 
-Сведения пока не добавлены.
+В Мариинске работала учительницей. В 1935–1936 годах семья находилась в Новосибирске в период работы Николая агрономом подсобного хозяйства областной больницы. В 1936–1938 годах в Писянской школе близ Бийска Валентина была учительницей начальных классов, а Николай — учителем биологии и затем директором.
+
+С 1938 года семья жила в Анжеро-Судженске. В годы Великой Отечественной войны, когда Николай находился в армии и затем лечился после ранения, Валентина работала в лесной промышленности, что давало семье рабочий продовольственный паёк.
+
+После возвращения семьи в Новгородскую область преподавала в Едрове. В Валдае активно помогала школьной работе мужа: учила девочек шить, вязать и делать кукол, позднее вела уроки и занятия по рукоделию, участвовала в общественном озеленении.
+
+Николай Петрович писал о знакомстве с ней как о любви с первого взгляда и подчёркивал, что их связь сохранилась на всю жизнь, несмотря на бытовые трудности и отдельные размолвки.
+
+Перенесла тяжёлый грипп с осложнениями на сердце и суставы; позднее тяжело болела. Умерла 28 мая 1981 года.

@@ -51,16 +51,6 @@ external:
     xref: "I500223"
 ---
 
-**Фамилия при рождении:** Ланге
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Jохан Юлиус Буш](/people/unknown/jokhan-yulius-bush/)
-
-**Дети:** [Woldemar Carl Chrostopher Bush](/people/1850-1859/woldemar-carl-chrostopher-bush/)
-
 ## Биография
 
 Сведения пока не добавлены.

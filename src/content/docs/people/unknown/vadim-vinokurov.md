@@ -45,16 +45,6 @@ external:
     xref: "I500040"
 ---
 
-**Фамилия при рождении:** Винокуров
-
-## Семья
-
-**Родители:** [Борис Винокуров](/people/unknown/boris-vinokurov/), [Таисия Винокурова](/people/1910-1919/taisiya-vinokurova/)
-
-**Партнёры:** [Ирина](/people/unknown/irina/), [Любовь](/people/unknown/lyubov/)
-
-**Дети:** [Елена](/people/unknown/elena/), [Игорь](/people/unknown/igor/), [Надежда](/people/unknown/nadezhda/)
-
 ## Биография
 
 Сведения пока не добавлены.

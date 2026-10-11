@@ -45,17 +45,6 @@ external:
     xref: "I500259"
 ---
 
-**Годы жизни:** 1920–2002
-**Фамилия при рождении:** Teljebo (född Välivaara)
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Inkeri Helvi Kyllikki Teljebo](/people/1920-1929/inkeri-helvi-kyllikki-teljebo/)
-
-**Дети:** [Gösta Ingvar Teljebo](/people/1950-1959/gosta-ingvar-teljebo/), [Lars Yngve Erik Teljebo](/people/1950-1959/lars-yngve-erik-teljebo/), [Bernt Ingemar Teljebo](/people/1960-1969/bernt-ingemar-teljebo/)
-
 ## Биография
 
 Сведения пока не добавлены.

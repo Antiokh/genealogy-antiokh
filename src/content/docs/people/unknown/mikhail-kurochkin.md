@@ -1,21 +1,23 @@
 ---
-title: "Михаил Курочкин"
-description: "Михаил Курочкин, ?–1944"
+title: "Михаил Петрович Курочкин"
+description: "Михаил Петрович Курочкин, ?–1944"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Михаил Курочкин"
-  display: "Михаил Курочкин"
+  full: "Михаил Петрович Курочкин"
+  display: "Михаил Петрович Курочкин"
+  first: "Михаил"
+  middle: "Петрович"
+  last: "Курочкин"
   birth_last: "Курочкин"
-  aliases: []
+  aliases:
+    - "Миша"
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -37,24 +39,22 @@ buried:
 partners: []
 occupation: []
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500065"
 ---
 
-**Годы жизни:** ?–1944
-**Фамилия при рождении:** Курочкин
+**Год смерти по MyHeritage:** 1944.
 
 ## Семья
 
-**Родители:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
+Родители — [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/) и [Ольга Ниловна Курочкина](/people/unknown/olga-kurochkina/).
 
-**Партнёры:** —
+## Расхождение источников
 
-**Дети:** —
+В автобиографии Николая Петровича говорится, что брат Миша умер **летом 1941 года**. MyHeritage указывает **1944 год**; поскольку данные MyHeritage в этом дереве опираются на архивную работу, 1944 сохранён как канонический год смерти, а 1941 — как семейная версия, требующая проверки.
 
-## Биография
-
-Сведения пока не добавлены.
+Отчество восстановлено по подтверждённой родственной связи с отцом Петром Михайловичем Курочкиным.

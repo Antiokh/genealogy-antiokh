@@ -43,17 +43,6 @@ external:
     xref: "I500108"
 ---
 
-**Годы жизни:** 1958–
-**Фамилия при рождении:** Teljebo
-
-## Семья
-
-**Родители:** [Yngve Edvin Teljebo (född Välivaara)](/people/1920-1929/yngve-edvin-teljebo-fodd-valivaara/), [Inkeri Helvi Kyllikki Teljebo](/people/1920-1929/inkeri-helvi-kyllikki-teljebo/)
-
-**Партнёры:** [Larisa Teljebo](/people/1960-1969/larisa-teljebo/)
-
-**Дети:** [Angelica Kristina Karika](/people/1990-1999/angelica-kristina-karika/)
-
 ## Биография
 
 Сведения пока не добавлены.

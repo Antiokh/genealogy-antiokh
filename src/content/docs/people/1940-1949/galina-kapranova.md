@@ -1,12 +1,15 @@
 ---
-title: "Галина Капранова"
-description: "Галина Капранова, 1941–"
+title: "Галина Николаевна Капранова"
+description: "Галина Николаевна Капранова (Курочкина), 1941–"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Галина Курочкина"
-  display: "Галина Капранова"
+  full: "Галина Николаевна Курочкина"
+  display: "Галина Николаевна Капранова"
+  first: "Галина"
+  middle: "Николаевна"
+  last: "Капранова"
   birth_last: "Курочкина"
   married_last: "Капранова"
   aliases: []
@@ -14,21 +17,17 @@ families:
   - key: "gennadiy"
     label: "Геннадие"
     locale: ru
-    roles:
-      - partner
+    roles: [partner]
     inferred: true
   - key: "kapranov"
     label: "Капрановы"
     locale: ru
-    roles:
-      - current
-      - marriage
+    roles: [current, marriage]
     inferred: true
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
+    roles: [birth]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -52,26 +51,18 @@ partners:
   - person: "unknown/gennadiy-i500084.md"
 occupation: []
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500083"
 ---
 
-**Годы жизни:** 1941–
-**Фамилия при рождении:** Курочкина
-**Фамилия после брака:** Капранова
-**Имя в исходных данных:** Галина Курочкина
-
-## Семья
-
-**Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
-
-**Партнёры:** [Геннадий](/people/unknown/gennadiy-i500084/)
-
-**Дети:** [Ирина Капранова](/people/1960-1969/irina-kapranova/)
-
 ## Биография
 
-Сведения пока не добавлены.
+По воспоминаниям отца, Галина окончила Ленинградский институт мясной и молочной промышленности. После института получила распределение в Казахстан, позднее была переведена в Тульскую область.
+
+В поздние годы вместе с мужем Геннадием регулярно помогала Николаю Петровичу; в записи 1996 года он отмечал, что они оба уже пенсионеры, но продолжают работать и примерно раз в месяц приезжают к нему. Также помогали дочери Ирине, жившей в Выползово.
+
+Отчество восстановлено по установленной родственной связи с отцом Николаем Петровичем.

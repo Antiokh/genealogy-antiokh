@@ -24,9 +24,11 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/src/content/docs/',
+        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
       },
       components: {
+        Header: './src/components/GenealogyHeader.astro',
+        ThemeSelect: './src/components/GenealogyThemeSwitch.astro',
         PageTitle: './src/components/GenealogyPageTitle.astro',
         Footer: './src/components/GenealogyFooter.astro',
       },

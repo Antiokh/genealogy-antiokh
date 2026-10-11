@@ -46,16 +46,6 @@ external:
     xref: "I500093"
 ---
 
-**Фамилия при рождении:** Mikhalets
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Evgenia Mikhalets](/people/unknown/evgenia-mikhalets/)
-
-**Дети:** [Larisa Teljebo](/people/1960-1969/larisa-teljebo/), [Вадим Mikhalets](/people/unknown/vadim-mikhalets/)
-
 ## Биография
 
 Сведения пока не добавлены.

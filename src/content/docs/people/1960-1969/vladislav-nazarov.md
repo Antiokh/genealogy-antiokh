@@ -1,6 +1,6 @@
 ---
 title: "Владислав Назаров"
-description: "Владислав Назаров, 1965–"
+description: "Владислав Назаров, род. 25 мая 1965 года в Москве"
 entity: person
 importManaged: true
 name:
@@ -25,8 +25,9 @@ father: "1930-1939/semen-nazarov.md"
 mother: "1930-1939/mariya-nazarova.md"
 born:
   known: true
-  date: 1965
-  place: null
+  date: "1965-05-25"
+  place: "moscow.md"
+  placeLabel: "Москва"
 died:
   known: false
   date: null
@@ -38,29 +39,25 @@ buried:
 partners:
   - person: "1960-1969/tatyana-beskorovaynaya.md"
     married:
+      known: true
       date: "1988-08-08"
     divorced:
       known: true
+      date: "2007-06-13"
 occupation: []
 residence: []
-sources: []
+sources:
+  - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
+    extendedSnapshot: "2026-10-11"
     xref: "I500003"
+    profileId: 1500003
 ---
-
-**Годы жизни:** 1965–
-**Фамилия при рождении:** Назаров
-
-## Семья
-
-**Родители:** [Семен Назаров](/people/1930-1939/semen-nazarov/), [Мария Назарова](/people/1930-1939/mariya-nazarova/)
-
-**Партнёры:** [Татьяна Бескоровайная](/people/1960-1969/tatyana-beskorovaynaya/)
-
-**Дети:** [Anton Nazarov](/people/1980-1989/anton-nazarov/), [Игорь Назаров](/people/1990-1999/igor-nazarov/)
 
 ## Биография
 
-Сведения пока не добавлены.
+Расширенная выгрузка MyHeritage уточняет полную дату и место рождения Владислава Назарова, а также дату развода. Другие биографические сведения пока не добавлены.
+
+Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).

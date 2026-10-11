@@ -52,16 +52,6 @@ external:
     xref: I500171
 ---
 
-**Фамилия при рождении:** Бартмер
-
-## Семья
-
-**Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
-
-**Партнёры:** [Елизавета Николаевна Бартмер](/people/unknown/elizaveta-nikolaevna-bartmer/)
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

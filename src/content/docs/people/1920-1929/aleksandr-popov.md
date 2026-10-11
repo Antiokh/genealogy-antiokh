@@ -43,17 +43,6 @@ external:
     xref: "I500198"
 ---
 
-**Годы жизни:** 1928–2008
-**Фамилия при рождении:** Попов
-
-## Семья
-
-**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
-
-**Партнёры:** [Полина Михайловна Попова](/people/1930-1939/polina-mikhaylovna-popova/)
-
-**Дети:** [Анатолий Попов](/people/1950-1959/anatoliy-popov/), [Николай Попов](/people/1950-1959/nikolay-popov/)
-
 ## Биография
 
 Сведения пока не добавлены.

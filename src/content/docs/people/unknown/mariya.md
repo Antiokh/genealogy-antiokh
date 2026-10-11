@@ -47,14 +47,6 @@ external:
     xref: "I500213"
 ---
 
-## Семья
-
-**Родители:** [Григорий](/people/unknown/grigoriy/)
-
-**Партнёры:** [Григорий Попов](/people/unknown/grigoriy-popov/)
-
-**Дети:** [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
-
 ## Биография
 
 Сведения пока не добавлены.

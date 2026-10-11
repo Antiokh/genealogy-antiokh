@@ -1,0 +1,2055 @@
+{
+  "generatedAt": "2026-10-11T14:53:13.923Z",
+  "source": "Antiokh/obsidian/antiokh/Work Ideas/MyHeritage Exporter",
+  "manifestMappings": {
+    "photoIds": 174,
+    "uniqueWebpPayloads": 170,
+    "invalid": []
+  },
+  "webp": {
+    "quality": 65,
+    "backend": "pillow",
+    "uniquePayloadsInManifest": 170,
+    "importedPayloads": 170,
+    "importedBytes": 5053324
+  },
+  "jpegVsWebpComparable": {
+    "payloads": 103,
+    "jpegBytes": 5760728,
+    "webpBytes": 2895356,
+    "savingsBytes": 2865372,
+    "savingsPercent": 49.74,
+    "webpSmaller": 103,
+    "jpegSmallerOrEqual": 0
+  },
+  "unresolvedOwners": [],
+  "unresolvedPhotoIds": [
+    "1500003",
+    "1500005",
+    "1500007",
+    "1500013",
+    "1500021",
+    "1500022",
+    "1500023",
+    "1500026",
+    "1500028",
+    "1500030",
+    "1500032",
+    "1500034",
+    "1500036",
+    "1500038",
+    "1500040",
+    "1500042",
+    "1500044",
+    "1500056",
+    "1500066",
+    "1500068",
+    "1500070",
+    "1500074",
+    "1500076",
+    "1500078",
+    "1500092",
+    "1500110",
+    "1500112",
+    "1500118",
+    "1500127",
+    "1500133",
+    "1500136",
+    "1500139",
+    "1500141",
+    "1500143",
+    "1500163",
+    "1500164",
+    "1500166",
+    "1500171",
+    "1500173",
+    "1500175",
+    "1500177",
+    "1500179",
+    "1500187",
+    "1500188",
+    "1500190",
+    "1500192",
+    "1500193",
+    "1500201",
+    "1500207",
+    "1500208",
+    "1500209",
+    "1500245",
+    "1500258",
+    "1500278",
+    "1500286",
+    "1500310",
+    "1500312",
+    "1500313",
+    "1500314",
+    "1500315",
+    "1500320",
+    "1500324"
+  ],
+  "imported": [
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500001.md",
+      "image": "src/content/docs/media/myheritage/photo-1500001.webp",
+      "sourcePhotoIds": [
+        "1500001"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 10784,
+      "jpegBytes": 31064
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500003.md",
+      "image": "src/content/docs/media/myheritage/photo-1500003.webp",
+      "sourcePhotoIds": [
+        "1500003"
+      ],
+      "subjects": [],
+      "webpBytes": 40832,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500005.md",
+      "image": "src/content/docs/media/myheritage/photo-1500005.webp",
+      "sourcePhotoIds": [
+        "1500005"
+      ],
+      "subjects": [],
+      "webpBytes": 60762,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500007.md",
+      "image": "src/content/docs/media/myheritage/photo-1500007.webp",
+      "sourcePhotoIds": [
+        "1500007"
+      ],
+      "subjects": [],
+      "webpBytes": 11384,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500009.md",
+      "image": "src/content/docs/media/myheritage/photo-1500009.webp",
+      "sourcePhotoIds": [
+        "1500009"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md"
+      ],
+      "webpBytes": 24432,
+      "jpegBytes": 43020
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500011.md",
+      "image": "src/content/docs/media/myheritage/photo-1500011.webp",
+      "sourcePhotoIds": [
+        "1500011"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 14818,
+      "jpegBytes": 43274
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500013.md",
+      "image": "src/content/docs/media/myheritage/photo-1500013.webp",
+      "sourcePhotoIds": [
+        "1500013"
+      ],
+      "subjects": [],
+      "webpBytes": 15976,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500015.md",
+      "image": "src/content/docs/media/myheritage/photo-1500015.webp",
+      "sourcePhotoIds": [
+        "1500015"
+      ],
+      "subjects": [
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 36700,
+      "jpegBytes": 72485
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500017.md",
+      "image": "src/content/docs/media/myheritage/photo-1500017.webp",
+      "sourcePhotoIds": [
+        "1500017"
+      ],
+      "subjects": [
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 31490,
+      "jpegBytes": 65532
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500019.md",
+      "image": "src/content/docs/media/myheritage/photo-1500019.webp",
+      "sourcePhotoIds": [
+        "1500019"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md"
+      ],
+      "webpBytes": 30684,
+      "jpegBytes": 59926
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500021.md",
+      "image": "src/content/docs/media/myheritage/photo-1500021.webp",
+      "sourcePhotoIds": [
+        "1500021"
+      ],
+      "subjects": [],
+      "webpBytes": 12586,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500022.md",
+      "image": "src/content/docs/media/myheritage/photo-1500022.webp",
+      "sourcePhotoIds": [
+        "1500022"
+      ],
+      "subjects": [],
+      "webpBytes": 133770,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500023.md",
+      "image": "src/content/docs/media/myheritage/photo-1500023.webp",
+      "sourcePhotoIds": [
+        "1500023"
+      ],
+      "subjects": [],
+      "webpBytes": 414842,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500026.md",
+      "image": "src/content/docs/media/myheritage/photo-1500026.webp",
+      "sourcePhotoIds": [
+        "1500026"
+      ],
+      "subjects": [],
+      "webpBytes": 18184,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500028.md",
+      "image": "src/content/docs/media/myheritage/photo-1500028.webp",
+      "sourcePhotoIds": [
+        "1500028"
+      ],
+      "subjects": [],
+      "webpBytes": 22354,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500030.md",
+      "image": "src/content/docs/media/myheritage/photo-1500030.webp",
+      "sourcePhotoIds": [
+        "1500030"
+      ],
+      "subjects": [],
+      "webpBytes": 25778,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500032.md",
+      "image": "src/content/docs/media/myheritage/photo-1500032.webp",
+      "sourcePhotoIds": [
+        "1500032"
+      ],
+      "subjects": [],
+      "webpBytes": 13050,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500034.md",
+      "image": "src/content/docs/media/myheritage/photo-1500034.webp",
+      "sourcePhotoIds": [
+        "1500034"
+      ],
+      "subjects": [],
+      "webpBytes": 10700,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500036.md",
+      "image": "src/content/docs/media/myheritage/photo-1500036.webp",
+      "sourcePhotoIds": [
+        "1500036"
+      ],
+      "subjects": [],
+      "webpBytes": 49896,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500038.md",
+      "image": "src/content/docs/media/myheritage/photo-1500038.webp",
+      "sourcePhotoIds": [
+        "1500038"
+      ],
+      "subjects": [],
+      "webpBytes": 34346,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500040.md",
+      "image": "src/content/docs/media/myheritage/photo-1500040.webp",
+      "sourcePhotoIds": [
+        "1500040"
+      ],
+      "subjects": [],
+      "webpBytes": 22510,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500042.md",
+      "image": "src/content/docs/media/myheritage/photo-1500042.webp",
+      "sourcePhotoIds": [
+        "1500042"
+      ],
+      "subjects": [],
+      "webpBytes": 8676,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500044.md",
+      "image": "src/content/docs/media/myheritage/photo-1500044.webp",
+      "sourcePhotoIds": [
+        "1500044"
+      ],
+      "subjects": [],
+      "webpBytes": 14308,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500046.md",
+      "image": "src/content/docs/media/myheritage/photo-1500046.webp",
+      "sourcePhotoIds": [
+        "1500046"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md"
+      ],
+      "webpBytes": 22004,
+      "jpegBytes": 50816
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500048.md",
+      "image": "src/content/docs/media/myheritage/photo-1500048.webp",
+      "sourcePhotoIds": [
+        "1500048"
+      ],
+      "subjects": [
+        "1940-1949/aleksandr-kurochkin.md"
+      ],
+      "webpBytes": 26326,
+      "jpegBytes": 55647
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500050.md",
+      "image": "src/content/docs/media/myheritage/photo-1500050.webp",
+      "sourcePhotoIds": [
+        "1500050"
+      ],
+      "subjects": [
+        "1940-1949/vladimir-kurochkin.md"
+      ],
+      "webpBytes": 18360,
+      "jpegBytes": 43344
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500052.md",
+      "image": "src/content/docs/media/myheritage/photo-1500052.webp",
+      "sourcePhotoIds": [
+        "1500052"
+      ],
+      "subjects": [
+        "unknown/lyudmila.md"
+      ],
+      "webpBytes": 21146,
+      "jpegBytes": 51698
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500054.md",
+      "image": "src/content/docs/media/myheritage/photo-1500054.webp",
+      "sourcePhotoIds": [
+        "1500054"
+      ],
+      "subjects": [
+        "unknown/vladislav-kurochkin.md"
+      ],
+      "webpBytes": 18870,
+      "jpegBytes": 44666
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500056.md",
+      "image": "src/content/docs/media/myheritage/photo-1500056.webp",
+      "sourcePhotoIds": [
+        "1500056"
+      ],
+      "subjects": [],
+      "webpBytes": 23570,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500058.md",
+      "image": "src/content/docs/media/myheritage/photo-1500058.webp",
+      "sourcePhotoIds": [
+        "1500058"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md",
+        "1940-1949/vasiliy-popov.md",
+        "1960-1969/lyubov-ledovskikh.md",
+        "unknown/sofya-popova.md"
+      ],
+      "webpBytes": 30928,
+      "jpegBytes": 50433
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500060.md",
+      "image": "src/content/docs/media/myheritage/photo-1500060.webp",
+      "sourcePhotoIds": [
+        "1500060"
+      ],
+      "subjects": [
+        "1980-1989/dmitriy-ledovskikh.md"
+      ],
+      "webpBytes": 48572,
+      "jpegBytes": 68019
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500062.md",
+      "image": "src/content/docs/media/myheritage/photo-1500062.webp",
+      "sourcePhotoIds": [
+        "1500062"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md"
+      ],
+      "webpBytes": 11700,
+      "jpegBytes": 29954
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500064.md",
+      "image": "src/content/docs/media/myheritage/photo-1500064.webp",
+      "sourcePhotoIds": [
+        "1500064"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 16710,
+      "jpegBytes": 41356
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500066.md",
+      "image": "src/content/docs/media/myheritage/photo-1500066.webp",
+      "sourcePhotoIds": [
+        "1500066"
+      ],
+      "subjects": [],
+      "webpBytes": 25216,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500068.md",
+      "image": "src/content/docs/media/myheritage/photo-1500068.webp",
+      "sourcePhotoIds": [
+        "1500068"
+      ],
+      "subjects": [],
+      "webpBytes": 12508,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500070.md",
+      "image": "src/content/docs/media/myheritage/photo-1500070.webp",
+      "sourcePhotoIds": [
+        "1500070"
+      ],
+      "subjects": [],
+      "webpBytes": 13484,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500072.md",
+      "image": "src/content/docs/media/myheritage/photo-1500072.webp",
+      "sourcePhotoIds": [
+        "1500072"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md"
+      ],
+      "webpBytes": 18528,
+      "jpegBytes": 42716
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500074.md",
+      "image": "src/content/docs/media/myheritage/photo-1500074.webp",
+      "sourcePhotoIds": [
+        "1500074"
+      ],
+      "subjects": [],
+      "webpBytes": 20520,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500076.md",
+      "image": "src/content/docs/media/myheritage/photo-1500076.webp",
+      "sourcePhotoIds": [
+        "1500076"
+      ],
+      "subjects": [],
+      "webpBytes": 16590,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500078.md",
+      "image": "src/content/docs/media/myheritage/photo-1500078.webp",
+      "sourcePhotoIds": [
+        "1500078"
+      ],
+      "subjects": [],
+      "webpBytes": 16826,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500080.md",
+      "image": "src/content/docs/media/myheritage/photo-1500080.webp",
+      "sourcePhotoIds": [
+        "1500080"
+      ],
+      "subjects": [
+        "1960-1969/irina-kapranova.md"
+      ],
+      "webpBytes": 25960,
+      "jpegBytes": 57614
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500082.md",
+      "image": "src/content/docs/media/myheritage/photo-1500082.webp",
+      "sourcePhotoIds": [
+        "1500082"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 24578,
+      "jpegBytes": 53045
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500084.md",
+      "image": "src/content/docs/media/myheritage/photo-1500084.webp",
+      "sourcePhotoIds": [
+        "1500084"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 24110,
+      "jpegBytes": 54745
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500086.md",
+      "image": "src/content/docs/media/myheritage/photo-1500086.webp",
+      "sourcePhotoIds": [
+        "1500086"
+      ],
+      "subjects": [
+        "1940-1949/aleksandr-kurochkin.md"
+      ],
+      "webpBytes": 16508,
+      "jpegBytes": 42910
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500090.md",
+      "image": "src/content/docs/media/myheritage/photo-1500090.webp",
+      "sourcePhotoIds": [
+        "1500090"
+      ],
+      "subjects": [
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 18674,
+      "jpegBytes": 36031
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500092.md",
+      "image": "src/content/docs/media/myheritage/photo-1500092.webp",
+      "sourcePhotoIds": [
+        "1500092"
+      ],
+      "subjects": [],
+      "webpBytes": 49354,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500094.md",
+      "image": "src/content/docs/media/myheritage/photo-1500094.webp",
+      "sourcePhotoIds": [
+        "1500094"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 83342,
+      "jpegBytes": 124168
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500098.md",
+      "image": "src/content/docs/media/myheritage/photo-1500098.webp",
+      "sourcePhotoIds": [
+        "1500098"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md",
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 39550,
+      "jpegBytes": 76631
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500100.md",
+      "image": "src/content/docs/media/myheritage/photo-1500100.webp",
+      "sourcePhotoIds": [
+        "1500100"
+      ],
+      "subjects": [
+        "1940-1949/galina-kapranova.md",
+        "unknown/evgeniy.md",
+        "unknown/gennadiy-i500084.md"
+      ],
+      "webpBytes": 28694,
+      "jpegBytes": 44684
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500105.md",
+      "image": "src/content/docs/media/myheritage/photo-1500105.webp",
+      "sourcePhotoIds": [
+        "1500105"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md",
+        "1940-1949/aleksandr-kurochkin.md",
+        "1940-1949/galina-kapranova.md",
+        "1940-1949/vladimir-kurochkin.md",
+        "1960-1969/irina-kapranova.md",
+        "unknown/elena-primak.md",
+        "unknown/valeriy.md"
+      ],
+      "webpBytes": 24092,
+      "jpegBytes": 42535
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500110.md",
+      "image": "src/content/docs/media/myheritage/photo-1500110.webp",
+      "sourcePhotoIds": [
+        "1500110"
+      ],
+      "subjects": [],
+      "webpBytes": 14816,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500112.md",
+      "image": "src/content/docs/media/myheritage/photo-1500112.webp",
+      "sourcePhotoIds": [
+        "1500112"
+      ],
+      "subjects": [],
+      "webpBytes": 15052,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500118.md",
+      "image": "src/content/docs/media/myheritage/photo-1500118.webp",
+      "sourcePhotoIds": [
+        "1500118"
+      ],
+      "subjects": [],
+      "webpBytes": 20988,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500123.md",
+      "image": "src/content/docs/media/myheritage/photo-1500123.webp",
+      "sourcePhotoIds": [
+        "1500123"
+      ],
+      "subjects": [
+        "1980-1989/andrian-kurochkin.md"
+      ],
+      "webpBytes": 45460,
+      "jpegBytes": 79589
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500125.md",
+      "image": "src/content/docs/media/myheritage/photo-1500125.webp",
+      "sourcePhotoIds": [
+        "1500125"
+      ],
+      "subjects": [
+        "unknown/natalya-i500154.md"
+      ],
+      "webpBytes": 60296,
+      "jpegBytes": 94338
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500127.md",
+      "image": "src/content/docs/media/myheritage/photo-1500127.webp",
+      "sourcePhotoIds": [
+        "1500127"
+      ],
+      "subjects": [],
+      "webpBytes": 72106,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500129.md",
+      "image": "src/content/docs/media/myheritage/photo-1500129.webp",
+      "sourcePhotoIds": [
+        "1500129"
+      ],
+      "subjects": [
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 40052,
+      "jpegBytes": 64414
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500131.md",
+      "image": "src/content/docs/media/myheritage/photo-1500131.webp",
+      "sourcePhotoIds": [
+        "1500131"
+      ],
+      "subjects": [
+        "1970-1979/yuliya.md"
+      ],
+      "webpBytes": 8720,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500133.md",
+      "image": "src/content/docs/media/myheritage/photo-1500133.webp",
+      "sourcePhotoIds": [
+        "1500133"
+      ],
+      "subjects": [],
+      "webpBytes": 15538,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500136.md",
+      "image": "src/content/docs/media/myheritage/photo-1500136.webp",
+      "sourcePhotoIds": [
+        "1500136"
+      ],
+      "subjects": [],
+      "webpBytes": 9860,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500139.md",
+      "image": "src/content/docs/media/myheritage/photo-1500139.webp",
+      "sourcePhotoIds": [
+        "1500139"
+      ],
+      "subjects": [],
+      "webpBytes": 12532,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500141.md",
+      "image": "src/content/docs/media/myheritage/photo-1500141.webp",
+      "sourcePhotoIds": [
+        "1500141"
+      ],
+      "subjects": [],
+      "webpBytes": 15020,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500143.md",
+      "image": "src/content/docs/media/myheritage/photo-1500143.webp",
+      "sourcePhotoIds": [
+        "1500143"
+      ],
+      "subjects": [],
+      "webpBytes": 9414,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500151.md",
+      "image": "src/content/docs/media/myheritage/photo-1500151.webp",
+      "sourcePhotoIds": [
+        "1500151"
+      ],
+      "subjects": [
+        "unknown/larisa-primak.md"
+      ],
+      "webpBytes": 12454,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500153.md",
+      "image": "src/content/docs/media/myheritage/photo-1500153.webp",
+      "sourcePhotoIds": [
+        "1500153"
+      ],
+      "subjects": [
+        "unknown/larisa-primak.md"
+      ],
+      "webpBytes": 22252,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500155.md",
+      "image": "src/content/docs/media/myheritage/photo-1500155.webp",
+      "sourcePhotoIds": [
+        "1500155"
+      ],
+      "subjects": [
+        "unknown/elena-primak.md"
+      ],
+      "webpBytes": 44210,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500157.md",
+      "image": "src/content/docs/media/myheritage/photo-1500157.webp",
+      "sourcePhotoIds": [
+        "1500157"
+      ],
+      "subjects": [
+        "1970-1979/yuliya.md"
+      ],
+      "webpBytes": 57634,
+      "jpegBytes": 85844
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500159.md",
+      "image": "src/content/docs/media/myheritage/photo-1500159.webp",
+      "sourcePhotoIds": [
+        "1500159"
+      ],
+      "subjects": [
+        "1970-1979/yuliya.md"
+      ],
+      "webpBytes": 32982,
+      "jpegBytes": 65541
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500161.md",
+      "image": "src/content/docs/media/myheritage/photo-1500161.webp",
+      "sourcePhotoIds": [
+        "1500161"
+      ],
+      "subjects": [
+        "unknown/vladimir.md"
+      ],
+      "webpBytes": 8702,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500163.md",
+      "image": "src/content/docs/media/myheritage/photo-1500163.webp",
+      "sourcePhotoIds": [
+        "1500163"
+      ],
+      "subjects": [],
+      "webpBytes": 23892,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500164.md",
+      "image": "src/content/docs/media/myheritage/photo-1500164.webp",
+      "sourcePhotoIds": [
+        "1500164"
+      ],
+      "subjects": [],
+      "webpBytes": 7594,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500166.md",
+      "image": "src/content/docs/media/myheritage/photo-1500166.webp",
+      "sourcePhotoIds": [
+        "1500166"
+      ],
+      "subjects": [],
+      "webpBytes": 19244,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500171.md",
+      "image": "src/content/docs/media/myheritage/photo-1500171.webp",
+      "sourcePhotoIds": [
+        "1500171"
+      ],
+      "subjects": [],
+      "webpBytes": 10666,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500173.md",
+      "image": "src/content/docs/media/myheritage/photo-1500173.webp",
+      "sourcePhotoIds": [
+        "1500173"
+      ],
+      "subjects": [],
+      "webpBytes": 9164,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500175.md",
+      "image": "src/content/docs/media/myheritage/photo-1500175.webp",
+      "sourcePhotoIds": [
+        "1500175"
+      ],
+      "subjects": [],
+      "webpBytes": 9254,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500176.md",
+      "image": "src/content/docs/media/myheritage/photo-1500176.webp",
+      "sourcePhotoIds": [
+        "1500176"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 10928,
+      "jpegBytes": 29655
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500177.md",
+      "image": "src/content/docs/media/myheritage/photo-1500177.webp",
+      "sourcePhotoIds": [
+        "1500177"
+      ],
+      "subjects": [],
+      "webpBytes": 30278,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500179.md",
+      "image": "src/content/docs/media/myheritage/photo-1500179.webp",
+      "sourcePhotoIds": [
+        "1500179"
+      ],
+      "subjects": [],
+      "webpBytes": 30406,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500181.md",
+      "image": "src/content/docs/media/myheritage/photo-1500181.webp",
+      "sourcePhotoIds": [
+        "1500181"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md"
+      ],
+      "webpBytes": 31378,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500184.md",
+      "image": "src/content/docs/media/myheritage/photo-1500184.webp",
+      "sourcePhotoIds": [
+        "1500184"
+      ],
+      "subjects": [
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 17414,
+      "jpegBytes": 42293
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500187.md",
+      "image": "src/content/docs/media/myheritage/photo-1500187.webp",
+      "sourcePhotoIds": [
+        "1500187"
+      ],
+      "subjects": [],
+      "webpBytes": 31466,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500188.md",
+      "image": "src/content/docs/media/myheritage/photo-1500188.webp",
+      "sourcePhotoIds": [
+        "1500188"
+      ],
+      "subjects": [],
+      "webpBytes": 8060,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500190.md",
+      "image": "src/content/docs/media/myheritage/photo-1500190.webp",
+      "sourcePhotoIds": [
+        "1500190"
+      ],
+      "subjects": [],
+      "webpBytes": 23860,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500192.md",
+      "image": "src/content/docs/media/myheritage/photo-1500192.webp",
+      "sourcePhotoIds": [
+        "1500192"
+      ],
+      "subjects": [],
+      "webpBytes": 58530,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500193.md",
+      "image": "src/content/docs/media/myheritage/photo-1500193.webp",
+      "sourcePhotoIds": [
+        "1500193"
+      ],
+      "subjects": [],
+      "webpBytes": 58706,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500195.md",
+      "image": "src/content/docs/media/myheritage/photo-1500195.webp",
+      "sourcePhotoIds": [
+        "1500195"
+      ],
+      "subjects": [
+        "1880-1889/mikhail-spiridonov.md"
+      ],
+      "webpBytes": 13270,
+      "jpegBytes": 37224
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500197.md",
+      "image": "src/content/docs/media/myheritage/photo-1500197.webp",
+      "sourcePhotoIds": [
+        "1500197"
+      ],
+      "subjects": [
+        "2000-2009/anna-tatarintseva.md"
+      ],
+      "webpBytes": 15656,
+      "jpegBytes": 34157
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500199.md",
+      "image": "src/content/docs/media/myheritage/photo-1500199.webp",
+      "sourcePhotoIds": [
+        "1500199"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 42078,
+      "jpegBytes": 81722
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500201.md",
+      "image": "src/content/docs/media/myheritage/photo-1500201.webp",
+      "sourcePhotoIds": [
+        "1500201"
+      ],
+      "subjects": [],
+      "webpBytes": 988,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500204.md",
+      "image": "src/content/docs/media/myheritage/photo-1500204.webp",
+      "sourcePhotoIds": [
+        "1500204",
+        "1500218"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md",
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 18408,
+      "jpegBytes": 43583
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500205.md",
+      "image": "src/content/docs/media/myheritage/photo-1500205.webp",
+      "sourcePhotoIds": [
+        "1500205"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 20298,
+      "jpegBytes": 45866
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500207.md",
+      "image": "src/content/docs/media/myheritage/photo-1500207.webp",
+      "sourcePhotoIds": [
+        "1500207",
+        "1500208"
+      ],
+      "subjects": [],
+      "webpBytes": 506,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500209.md",
+      "image": "src/content/docs/media/myheritage/photo-1500209.webp",
+      "sourcePhotoIds": [
+        "1500209"
+      ],
+      "subjects": [],
+      "webpBytes": 18694,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500210.md",
+      "image": "src/content/docs/media/myheritage/photo-1500210.webp",
+      "sourcePhotoIds": [
+        "1500210"
+      ],
+      "subjects": [
+        "2000-2009/anna-tatarintseva.md"
+      ],
+      "webpBytes": 29216,
+      "jpegBytes": 60250
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500211.md",
+      "image": "src/content/docs/media/myheritage/photo-1500211.webp",
+      "sourcePhotoIds": [
+        "1500211"
+      ],
+      "subjects": [
+        "2000-2009/anna-tatarintseva.md"
+      ],
+      "webpBytes": 29174,
+      "jpegBytes": 60264
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500213.md",
+      "image": "src/content/docs/media/myheritage/photo-1500213.webp",
+      "sourcePhotoIds": [
+        "1500213"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 15954,
+      "jpegBytes": 38540
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500215.md",
+      "image": "src/content/docs/media/myheritage/photo-1500215.webp",
+      "sourcePhotoIds": [
+        "1500215"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 21868,
+      "jpegBytes": 52766
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500216.md",
+      "image": "src/content/docs/media/myheritage/photo-1500216.webp",
+      "sourcePhotoIds": [
+        "1500216"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 24518,
+      "jpegBytes": 56208
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500219.md",
+      "image": "src/content/docs/media/myheritage/photo-1500219.webp",
+      "sourcePhotoIds": [
+        "1500219",
+        "1500221"
+      ],
+      "subjects": [
+        "1960-1969/sergey-tatarintsev.md",
+        "1960-1969/tatyana-tatarintseva.md"
+      ],
+      "webpBytes": 37120,
+      "jpegBytes": 54848
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500223.md",
+      "image": "src/content/docs/media/myheritage/photo-1500223.webp",
+      "sourcePhotoIds": [
+        "1500223"
+      ],
+      "subjects": [
+        "1940-1949/ekaterina-ermakova.md"
+      ],
+      "webpBytes": 14460,
+      "jpegBytes": 39116
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500225.md",
+      "image": "src/content/docs/media/myheritage/photo-1500225.webp",
+      "sourcePhotoIds": [
+        "1500225"
+      ],
+      "subjects": [
+        "1930-1939/ivan-ermakov.md"
+      ],
+      "webpBytes": 10508,
+      "jpegBytes": 31486
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500227.md",
+      "image": "src/content/docs/media/myheritage/photo-1500227.webp",
+      "sourcePhotoIds": [
+        "1500227"
+      ],
+      "subjects": [
+        "1980-1989/ekaterina-zorina.md"
+      ],
+      "webpBytes": 48510,
+      "jpegBytes": 92034
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500229.md",
+      "image": "src/content/docs/media/myheritage/photo-1500229.webp",
+      "sourcePhotoIds": [
+        "1500229",
+        "1500235"
+      ],
+      "subjects": [
+        "2020-2029/timofey-zorin.md",
+        "unknown/dmitriy-zorin.md"
+      ],
+      "webpBytes": 29586,
+      "jpegBytes": 66333
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500231.md",
+      "image": "src/content/docs/media/myheritage/photo-1500231.webp",
+      "sourcePhotoIds": [
+        "1500231"
+      ],
+      "subjects": [
+        "2000-2009/sofiya-zorina.md"
+      ],
+      "webpBytes": 37714,
+      "jpegBytes": 78434
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500233.md",
+      "image": "src/content/docs/media/myheritage/photo-1500233.webp",
+      "sourcePhotoIds": [
+        "1500233"
+      ],
+      "subjects": [
+        "2010-2019/polina-zorina.md"
+      ],
+      "webpBytes": 18706,
+      "jpegBytes": 50298
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500237.md",
+      "image": "src/content/docs/media/myheritage/photo-1500237.webp",
+      "sourcePhotoIds": [
+        "1500237"
+      ],
+      "subjects": [
+        "2000-2009/elizaveta-kurochkina.md"
+      ],
+      "webpBytes": 20760,
+      "jpegBytes": 37861
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500239.md",
+      "image": "src/content/docs/media/myheritage/photo-1500239.webp",
+      "sourcePhotoIds": [
+        "1500239"
+      ],
+      "subjects": [
+        "unknown/elena-i500079.md"
+      ],
+      "webpBytes": 17528,
+      "jpegBytes": 37967
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500242.md",
+      "image": "src/content/docs/media/myheritage/photo-1500242.webp",
+      "sourcePhotoIds": [
+        "1500242"
+      ],
+      "subjects": [
+        "unknown/vladislav-kurochkin.md"
+      ],
+      "webpBytes": 13376,
+      "jpegBytes": 28910
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500243.md",
+      "image": "src/content/docs/media/myheritage/photo-1500243.webp",
+      "sourcePhotoIds": [
+        "1500243"
+      ],
+      "subjects": [
+        "unknown/vladislav-kurochkin.md"
+      ],
+      "webpBytes": 15688,
+      "jpegBytes": 48073
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500245.md",
+      "image": "src/content/docs/media/myheritage/photo-1500245.webp",
+      "sourcePhotoIds": [
+        "1500245"
+      ],
+      "subjects": [],
+      "webpBytes": 38172,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500258.md",
+      "image": "src/content/docs/media/myheritage/photo-1500258.webp",
+      "sourcePhotoIds": [
+        "1500258"
+      ],
+      "subjects": [],
+      "webpBytes": 9486,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500259.md",
+      "image": "src/content/docs/media/myheritage/photo-1500259.webp",
+      "sourcePhotoIds": [
+        "1500259"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 22964,
+      "jpegBytes": 44854
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500261.md",
+      "image": "src/content/docs/media/myheritage/photo-1500261.webp",
+      "sourcePhotoIds": [
+        "1500261"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md",
+        "2000-2009/anna-tatarintseva.md",
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 23062,
+      "jpegBytes": 44691
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500262.md",
+      "image": "src/content/docs/media/myheritage/photo-1500262.webp",
+      "sourcePhotoIds": [
+        "1500262"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md",
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 64254,
+      "jpegBytes": 91667
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500263.md",
+      "image": "src/content/docs/media/myheritage/photo-1500263.webp",
+      "sourcePhotoIds": [
+        "1500263"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 28704,
+      "jpegBytes": 44756
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500265.md",
+      "image": "src/content/docs/media/myheritage/photo-1500265.webp",
+      "sourcePhotoIds": [
+        "1500265"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md",
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 45448,
+      "jpegBytes": 72070
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500266.md",
+      "image": "src/content/docs/media/myheritage/photo-1500266.webp",
+      "sourcePhotoIds": [
+        "1500266"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 12906,
+      "jpegBytes": 34882
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500268.md",
+      "image": "src/content/docs/media/myheritage/photo-1500268.webp",
+      "sourcePhotoIds": [
+        "1500268"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 10962,
+      "jpegBytes": 31192
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500270.md",
+      "image": "src/content/docs/media/myheritage/photo-1500270.webp",
+      "sourcePhotoIds": [
+        "1500270"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 11972,
+      "jpegBytes": 33605
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500272.md",
+      "image": "src/content/docs/media/myheritage/photo-1500272.webp",
+      "sourcePhotoIds": [
+        "1500272"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 17740,
+      "jpegBytes": 40818
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500274.md",
+      "image": "src/content/docs/media/myheritage/photo-1500274.webp",
+      "sourcePhotoIds": [
+        "1500274"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 24456,
+      "jpegBytes": 54165
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500276.md",
+      "image": "src/content/docs/media/myheritage/photo-1500276.webp",
+      "sourcePhotoIds": [
+        "1500276"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 26098,
+      "jpegBytes": 53488
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500278.md",
+      "image": "src/content/docs/media/myheritage/photo-1500278.webp",
+      "sourcePhotoIds": [
+        "1500278"
+      ],
+      "subjects": [],
+      "webpBytes": 11996,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500281.md",
+      "image": "src/content/docs/media/myheritage/photo-1500281.webp",
+      "sourcePhotoIds": [
+        "1500281"
+      ],
+      "subjects": [
+        "1930-1939/semen-nazarov.md",
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md",
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 21532,
+      "jpegBytes": 52919
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500282.md",
+      "image": "src/content/docs/media/myheritage/photo-1500282.webp",
+      "sourcePhotoIds": [
+        "1500282"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 16396,
+      "jpegBytes": 43599
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500283.md",
+      "image": "src/content/docs/media/myheritage/photo-1500283.webp",
+      "sourcePhotoIds": [
+        "1500283"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md",
+        "1960-1969/vladislav-nazarov.md"
+      ],
+      "webpBytes": 17270,
+      "jpegBytes": 37681
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500284.md",
+      "image": "src/content/docs/media/myheritage/photo-1500284.webp",
+      "sourcePhotoIds": [
+        "1500284"
+      ],
+      "subjects": [
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 19480,
+      "jpegBytes": 49112
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500285.md",
+      "image": "src/content/docs/media/myheritage/photo-1500285.webp",
+      "sourcePhotoIds": [
+        "1500285"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md"
+      ],
+      "webpBytes": 20142,
+      "jpegBytes": 40205
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500286.md",
+      "image": "src/content/docs/media/myheritage/photo-1500286.webp",
+      "sourcePhotoIds": [
+        "1500286"
+      ],
+      "subjects": [],
+      "webpBytes": 99158,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500287.md",
+      "image": "src/content/docs/media/myheritage/photo-1500287.webp",
+      "sourcePhotoIds": [
+        "1500287"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md"
+      ],
+      "webpBytes": 110034,
+      "jpegBytes": 140071
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500289.md",
+      "image": "src/content/docs/media/myheritage/photo-1500289.webp",
+      "sourcePhotoIds": [
+        "1500289"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 39912,
+      "jpegBytes": 75857
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500290.md",
+      "image": "src/content/docs/media/myheritage/photo-1500290.webp",
+      "sourcePhotoIds": [
+        "1500290"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 14204,
+      "jpegBytes": 41635
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500291.md",
+      "image": "src/content/docs/media/myheritage/photo-1500291.webp",
+      "sourcePhotoIds": [
+        "1500291"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 18094,
+      "jpegBytes": 48662
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500292.md",
+      "image": "src/content/docs/media/myheritage/photo-1500292.webp",
+      "sourcePhotoIds": [
+        "1500292"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 13572,
+      "jpegBytes": 41171
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500293.md",
+      "image": "src/content/docs/media/myheritage/photo-1500293.webp",
+      "sourcePhotoIds": [
+        "1500293"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 15670,
+      "jpegBytes": 44888
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500294.md",
+      "image": "src/content/docs/media/myheritage/photo-1500294.webp",
+      "sourcePhotoIds": [
+        "1500294"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 16062,
+      "jpegBytes": 46741
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500295.md",
+      "image": "src/content/docs/media/myheritage/photo-1500295.webp",
+      "sourcePhotoIds": [
+        "1500295"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 19680,
+      "jpegBytes": 49972
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500296.md",
+      "image": "src/content/docs/media/myheritage/photo-1500296.webp",
+      "sourcePhotoIds": [
+        "1500296"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 10826,
+      "jpegBytes": 32289
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500297.md",
+      "image": "src/content/docs/media/myheritage/photo-1500297.webp",
+      "sourcePhotoIds": [
+        "1500297"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 27828,
+      "jpegBytes": 61496
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500298.md",
+      "image": "src/content/docs/media/myheritage/photo-1500298.webp",
+      "sourcePhotoIds": [
+        "1500298"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 41046,
+      "jpegBytes": 80365
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500299.md",
+      "image": "src/content/docs/media/myheritage/photo-1500299.webp",
+      "sourcePhotoIds": [
+        "1500299"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 27680,
+      "jpegBytes": 63515
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500300.md",
+      "image": "src/content/docs/media/myheritage/photo-1500300.webp",
+      "sourcePhotoIds": [
+        "1500300"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 22666,
+      "jpegBytes": 42997
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500301.md",
+      "image": "src/content/docs/media/myheritage/photo-1500301.webp",
+      "sourcePhotoIds": [
+        "1500301"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 19538,
+      "jpegBytes": 53077
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500302.md",
+      "image": "src/content/docs/media/myheritage/photo-1500302.webp",
+      "sourcePhotoIds": [
+        "1500302"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 44932,
+      "jpegBytes": 86233
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500303.md",
+      "image": "src/content/docs/media/myheritage/photo-1500303.webp",
+      "sourcePhotoIds": [
+        "1500303"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 37372,
+      "jpegBytes": 72940
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500304.md",
+      "image": "src/content/docs/media/myheritage/photo-1500304.webp",
+      "sourcePhotoIds": [
+        "1500304"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 16746,
+      "jpegBytes": 48779
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500305.md",
+      "image": "src/content/docs/media/myheritage/photo-1500305.webp",
+      "sourcePhotoIds": [
+        "1500305"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 15608,
+      "jpegBytes": 46325
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500306.md",
+      "image": "src/content/docs/media/myheritage/photo-1500306.webp",
+      "sourcePhotoIds": [
+        "1500306"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md",
+        "1960-1969/vladislav-nazarov.md",
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 13098,
+      "jpegBytes": 30092
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500307.md",
+      "image": "src/content/docs/media/myheritage/photo-1500307.webp",
+      "sourcePhotoIds": [
+        "1500307"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md"
+      ],
+      "webpBytes": 11928,
+      "jpegBytes": 38477
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500308.md",
+      "image": "src/content/docs/media/myheritage/photo-1500308.webp",
+      "sourcePhotoIds": [
+        "1500308"
+      ],
+      "subjects": [
+        "1900-1909/nikolay-kurochkin.md",
+        "1960-1969/tatyana-beskorovaynaya.md",
+        "1980-1989/anton-nazarov.md",
+        "1990-1999/igor-nazarov.md"
+      ],
+      "webpBytes": 18586,
+      "jpegBytes": 37915
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500309.md",
+      "image": "src/content/docs/media/myheritage/photo-1500309.webp",
+      "sourcePhotoIds": [
+        "1500309"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 20380,
+      "jpegBytes": 48654
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500310.md",
+      "image": "src/content/docs/media/myheritage/photo-1500310.webp",
+      "sourcePhotoIds": [
+        "1500310"
+      ],
+      "subjects": [],
+      "webpBytes": 23236,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500311.md",
+      "image": "src/content/docs/media/myheritage/photo-1500311.webp",
+      "sourcePhotoIds": [
+        "1500311"
+      ],
+      "subjects": [
+        "1980-1989/anton-nazarov.md"
+      ],
+      "webpBytes": 22542,
+      "jpegBytes": 56833
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500312.md",
+      "image": "src/content/docs/media/myheritage/photo-1500312.webp",
+      "sourcePhotoIds": [
+        "1500312"
+      ],
+      "subjects": [],
+      "webpBytes": 29000,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500313.md",
+      "image": "src/content/docs/media/myheritage/photo-1500313.webp",
+      "sourcePhotoIds": [
+        "1500313"
+      ],
+      "subjects": [],
+      "webpBytes": 11854,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500314.md",
+      "image": "src/content/docs/media/myheritage/photo-1500314.webp",
+      "sourcePhotoIds": [
+        "1500314"
+      ],
+      "subjects": [],
+      "webpBytes": 41236,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500315.md",
+      "image": "src/content/docs/media/myheritage/photo-1500315.webp",
+      "sourcePhotoIds": [
+        "1500315"
+      ],
+      "subjects": [],
+      "webpBytes": 95984,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500316.md",
+      "image": "src/content/docs/media/myheritage/photo-1500316.webp",
+      "sourcePhotoIds": [
+        "1500316"
+      ],
+      "subjects": [
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 86266,
+      "jpegBytes": 120374
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500317.md",
+      "image": "src/content/docs/media/myheritage/photo-1500317.webp",
+      "sourcePhotoIds": [
+        "1500317"
+      ],
+      "subjects": [
+        "1900-1909/efrosiniya-popova.md",
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 95030,
+      "jpegBytes": 127587
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500319.md",
+      "image": "src/content/docs/media/myheritage/photo-1500319.webp",
+      "sourcePhotoIds": [
+        "1500319"
+      ],
+      "subjects": [
+        "1900-1909/efrosiniya-popova.md",
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 83068,
+      "jpegBytes": 118168
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500320.md",
+      "image": "src/content/docs/media/myheritage/photo-1500320.webp",
+      "sourcePhotoIds": [
+        "1500320"
+      ],
+      "subjects": [],
+      "webpBytes": 28740,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500322.md",
+      "image": "src/content/docs/media/myheritage/photo-1500322.webp",
+      "sourcePhotoIds": [
+        "1500322"
+      ],
+      "subjects": [
+        "1900-1909/efrosiniya-popova.md"
+      ],
+      "webpBytes": 29104,
+      "jpegBytes": 62510
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500324.md",
+      "image": "src/content/docs/media/myheritage/photo-1500324.webp",
+      "sourcePhotoIds": [
+        "1500324"
+      ],
+      "subjects": [],
+      "webpBytes": 26734,
+      "jpegBytes": null
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500326.md",
+      "image": "src/content/docs/media/myheritage/photo-1500326.webp",
+      "sourcePhotoIds": [
+        "1500326"
+      ],
+      "subjects": [
+        "1900-1909/efrosiniya-popova.md",
+        "1930-1939/mariya-nazarova.md",
+        "1930-1939/semen-nazarov.md"
+      ],
+      "webpBytes": 58006,
+      "jpegBytes": 76056
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500328.md",
+      "image": "src/content/docs/media/myheritage/photo-1500328.webp",
+      "sourcePhotoIds": [
+        "1500328"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 15618,
+      "jpegBytes": 41641
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500329.md",
+      "image": "src/content/docs/media/myheritage/photo-1500329.webp",
+      "sourcePhotoIds": [
+        "1500329"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 9632,
+      "jpegBytes": 29161
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500330.md",
+      "image": "src/content/docs/media/myheritage/photo-1500330.webp",
+      "sourcePhotoIds": [
+        "1500330"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 36840,
+      "jpegBytes": 73246
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500331.md",
+      "image": "src/content/docs/media/myheritage/photo-1500331.webp",
+      "sourcePhotoIds": [
+        "1500331"
+      ],
+      "subjects": [
+        "2020-2029/leonard-nazarov.md"
+      ],
+      "webpBytes": 36904,
+      "jpegBytes": 98597
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500333.md",
+      "image": "src/content/docs/media/myheritage/photo-1500333.webp",
+      "sourcePhotoIds": [
+        "1500333"
+      ],
+      "subjects": [
+        "1960-1969/vladislav-nazarov.md"
+      ],
+      "webpBytes": 15352,
+      "jpegBytes": 42034
+    },
+    {
+      "file": "src/content/docs/media/myheritage/photo-1500335.md",
+      "image": "src/content/docs/media/myheritage/photo-1500335.webp",
+      "sourcePhotoIds": [
+        "1500335"
+      ],
+      "subjects": [
+        "1960-1969/tatyana-beskorovaynaya.md"
+      ],
+      "webpBytes": 21424,
+      "jpegBytes": 48739
+    }
+  ]
+}
