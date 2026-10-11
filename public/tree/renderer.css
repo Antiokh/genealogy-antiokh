@@ -11,6 +11,8 @@
   --sl-color-gray-6:#eaecf0;
   --sl-color-gray-7:#f2f4f7;
   --sl-color-black:#111318;
+  --tree-background:var(--sl-color-bg);
+  --tree-accent:var(--sl-color-accent);
   --tree-edge:var(--sl-color-gray-4);
   --tree-union:var(--sl-color-accent);
   --tree-danger:var(--sl-color-red-high, #d84f4f);
