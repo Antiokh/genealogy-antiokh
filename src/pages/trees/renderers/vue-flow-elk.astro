@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="/tree/renderer.css" />
     <style is:global>
       #app, .vue-flow { width:100%; height:100%; }
-      .vue-flow { background:var(--sl-color-bg); color:var(--sl-color-text); }
+      .vue-flow { background:var(--tree-background); color:var(--sl-color-text); }
       .vue-flow__node-person, .vue-flow__node-family { border:0; background:transparent; padding:0; box-shadow:none; }
-      .vue-flow__node-person { width:240px; height:108px; }
-      .vue-flow__node-family { width:18px; height:18px; }
+      .vue-flow__node-person { width:240px; height:108px; overflow:visible; }
+      .vue-flow__node-family { width:28px; height:28px; overflow:visible; }
       .vue-flow__handle { width:1px !important; height:1px !important; min-width:1px; min-height:1px; opacity:0; border:0; }
       .vue-flow__edge-path { stroke:var(--tree-edge); stroke-width:1.35; }
-      .person-node-wrap { width:240px; height:108px; position:relative; }
-      .union-wrap { width:18px; height:18px; position:relative; display:grid; place-items:center; }
+      .person-node-wrap { width:240px; height:108px; position:relative; overflow:visible; }
+      .union-wrap { width:28px; height:28px; position:relative; display:grid; place-items:center; overflow:visible; }
     </style>
   </head>
   <body>
@@ -33,9 +33,10 @@
       const status = document.getElementById('status');
       const appRoot = document.getElementById('app');
       try {
-        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
+        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { relationIconHtml }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
+          import(/* @vite-ignore */ '/tree/relation-ui.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
           import(/* @vite-ignore */ '/tree/scope.js'),
           fetch('/generated/tree.json'),
@@ -64,13 +65,11 @@
           props:['data'],
           setup(props) {
             const onClick = (event) => {
-              const target = event.target;
-              if (target instanceof Element && target.closest('.genealogy-person-link')) return;
               window.dispatchEvent(new CustomEvent('genealogy:toggle-person', { detail:props.data?.id }));
             };
             return () => h('div', { class:'person-node-wrap', onClick }, [
               h(Handle, { type:'target', position:Position.Top }),
-              h('div', { innerHTML:personCardElementHtml(props.data) }),
+              h('div', { innerHTML:personCardElementHtml(props.data, { branchState:expansion.branchState(props.data?.id) }) }),
               h(Handle, { type:'source', position:Position.Bottom }),
             ]);
           }
@@ -80,7 +79,7 @@
           setup(props) {
             return () => h('div', { class:'union-wrap' }, [
               h(Handle, { type:'target', position:Position.Top }),
-              h('div', { class:'union-dot' }),
+              h('div', { innerHTML:relationIconHtml(props.data?.relation || { kind:'parents' }, { size:28 }) }),
               props.data?.label ? h('div', { class:'union-label' }, props.data.label) : null,
               h(Handle, { type:'source', position:Position.Bottom }),
             ]);
@@ -89,9 +88,10 @@
 
         const renderFamily = async (family) => {
           const version = ++renderVersion;
+          const startedAt = performance.now();
           status.textContent = 'Раскладка семейного дерева…';
           const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
-            personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT
+            personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT, familySize:28
           });
           const graph = await elk.layout({
             id:'root',
@@ -120,7 +120,7 @@
                 edges,
                 nodeTypes:{ person:PersonNode, family:FamilyNode },
                 fitViewOnInit:true,
-                minZoom:0.08,
+                minZoom:0.04,
                 maxZoom:2,
                 nodesDraggable:false,
                 nodesConnectable:false,
@@ -139,11 +139,14 @@
             onFocus:centerOnFocus,
             onExpandAll:() => renderFamily(expansion.expandAll()),
           });
+          const elapsed = Math.round(performance.now() - startedAt);
+          status.title = `Vue Flow + ELK · раскладка ${elapsed} мс · ${family.summary.people} человек`;
+          status.dataset.renderMs = String(elapsed);
         };
 
         window.addEventListener('genealogy:toggle-person', (event) => {
           const id = event.detail;
-          if (!id || id === focusId) return;
+          if (!id) return;
           renderFamily(expansion.toggle(id));
         });
 
