@@ -46,7 +46,7 @@ export class GenealogyPersonCard extends HTMLElement {
   attributeChangedCallback() { if (this.isConnected) this.render(); }
 
   render() {
-    const name = this.getAttribute('name') || '';
+    const name = this.getAttribute('name') || 'Unknown person';
     const years = this.getAttribute('years') || '';
     const personId = this.getAttribute('person-id') || '';
     const sex = normalizeSex(this.getAttribute('sex'));
@@ -118,7 +118,7 @@ export class GenealogyPersonCard extends HTMLElement {
           <span class="avatar-shield"></span>
         </div>
         <div class="text">
-          ${name ? `<div class="name${nameSizeClass(name)}">${esc(name)}</div>` : ''}
+          <div class="name${nameSizeClass(name)}">${esc(name)}</div>
           ${showBirthSurname ? `<div class="birth-surname">при рожд. ${esc(birthSurname)}</div>` : ''}
           <div class="years">${esc(years)}</div>
         </div>
@@ -143,7 +143,7 @@ export function personCardElementHtml(person) {
   const deceasedAttribute = person.deceased ? '\n    deceased' : '';
   const photoAttribute = person.photo ? `\n    photo="${esc(person.photo)}"` : '';
   const birthSurnameAttribute = person.birthSurname ? `\n    birth-surname="${esc(person.birthSurname)}"` : '';
-  const displayName = person.cardName || person.name || '';
+  const displayName = person.cardName || person.name || 'Unknown person';
 
   return `<genealogy-person-card
     style="display:block;width:${PERSON_CARD_WIDTH}px;height:${PERSON_CARD_HEIGHT}px"
