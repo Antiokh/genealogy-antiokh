@@ -24,7 +24,7 @@ export default defineConfig({
         },
       ],
       editLink: {
-        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/src/content/docs/',
+        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
       },
       components: {
         PageTitle: './src/components/GenealogyPageTitle.astro',
