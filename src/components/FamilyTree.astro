@@ -56,9 +56,13 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
         <button type="button" data-tree-command="focus" title="Вернуться к текущему человеку" aria-label="Вернуться к текущему человеку">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="9" r="3.1"/><path d="M6.8 19c.5-3.4 2.2-5.2 5.2-5.2s4.7 1.8 5.2 5.2"/><path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/></svg>
         </button>
+      </div>
+      <div class="family-tree__control-group">
         <button type="button" data-tree-command="fit" title="Показать всё раскрытое дерево" aria-label="Показать всё раскрытое дерево">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7" cy="8" r="2.1"/><circle cx="16.5" cy="7" r="1.8"/><circle cx="13" cy="16" r="2.3"/></svg>
         </button>
+      </div>
+      <div class="family-tree__control-group">
         <button type="button" data-tree-fullscreen title="На весь экран" aria-label="Открыть семейное дерево на весь экран">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5"/></svg>
         </button>
@@ -196,7 +200,8 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
     stroke-linecap:round;
     stroke-linejoin:round;
   }
-  .family-tree__control-group svg circle { fill:none; }
+  .family-tree__control-group svg circle { fill:currentColor; stroke:none; }
+  .family-tree__control-group [data-tree-command='focus'] circle { fill:none; stroke:currentColor; }
 
   .family-tree__frame:fullscreen,
   .family-tree__frame.is-fullscreen {
