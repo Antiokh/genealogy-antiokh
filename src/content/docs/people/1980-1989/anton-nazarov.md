@@ -28,7 +28,7 @@ families:
     localized:
       "und-Latn": "Nazarov"
 sex: M
-photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWY0NjJmZTY3YjBkODEwYzhjOWU3OWUyMmNmYTAyNjI1M2RlMjZiODgzN2M0ODZiOGIxMTViNzZiMDQwYWJhNTImZT0xNzg5Njc1MjAw/129/852/4292/500214_453825id5197e67ocf193j_A.jpg"
+portrait: "https://raw.githubusercontent.com/Antiokh/obsidian/main/antiokh/Work%20Ideas/MyHeritage%20Exporter/myheritage-export-userscript/photos/1500001.webp"
 father: "1960-1969/vladislav-nazarov.md"
 mother: "1960-1969/tatyana-beskorovaynaya.md"
 born:
