@@ -39,10 +39,15 @@ buried:
   known: false
   date: null
   place: null
-partners: []
+partners:
+  - person: "unknown/albert-karl-adolf-lobeck.md"
+    married:
+      date: "1879-08-05"
+      placeLabel: "Санкт-Петербург"
 occupation: []
 residence: []
-sources: []
+sources:
+  - "myheritage-2026-relation-text.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -58,9 +63,9 @@ external:
 
 **Родители:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/), [Йоганна-Жозефина Bartmer](/people/1820-1829/yoganna-zhozefina-bartmer/)
 
-**Партнёры:** —
+**Партнёры:** [Albert Karl Adolf Lobeck](/people/unknown/albert-karl-adolf-lobeck/)
 
-**Дети:** —
+**Дети:** [Wilhelmine Kerkovius](/people/unknown/wilhelmine-kerkovius/)
 
 ## Биография
 
