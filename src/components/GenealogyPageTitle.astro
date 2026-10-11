@@ -36,16 +36,17 @@ function isImageMetadata(value: unknown): value is ImageMetadata {
 }
 
 const explicitDirectPortrait = explicitPortraitIsLegacyMedia ? undefined : explicitPortrait;
+const usingLegacyMediaPortrait = !explicitDirectPortrait && !conventionalPortrait && Boolean(portraitEntry?.data.image);
 const portraitImage = (
   explicitDirectPortrait
-  || portraitEntry?.data.image
   || conventionalPortrait
+  || portraitEntry?.data.image
   || route.entry.data.photo
 ) as string | ImageMetadata | undefined;
 const localPortrait = isImageMetadata(portraitImage) ? portraitImage : undefined;
 const portraitSrc = typeof portraitImage === 'string' ? portraitImage : localPortrait?.src;
-const portraitWidth = localPortrait?.width ?? portraitEntry?.data.width;
-const portraitHeight = localPortrait?.height ?? portraitEntry?.data.height;
+const portraitWidth = localPortrait?.width ?? (usingLegacyMediaPortrait ? portraitEntry?.data.width : undefined);
+const portraitHeight = localPortrait?.height ?? (usingLegacyMediaPortrait ? portraitEntry?.data.height : undefined);
 
 const personName = route.entry.data.name;
 const personLabel = typeof personName === 'string'
@@ -53,12 +54,14 @@ const personLabel = typeof personName === 'string'
   : personName && typeof personName === 'object'
     ? personName.display || personName.full
     : route.entry.data.title;
-const portraitAlt = portraitEntry?.data.alt || personLabel || route.entry.data.title || '';
+const portraitAlt = (usingLegacyMediaPortrait ? portraitEntry?.data.alt : undefined) || personLabel || route.entry.data.title || '';
 
-const subject = portraitEntry?.data.subjects?.find((value) => {
-  if (!personRef) return false;
-  return typeof value === 'string' ? value === personRef : value.person === personRef;
-});
+const subject = usingLegacyMediaPortrait
+  ? portraitEntry?.data.subjects?.find((value) => {
+      if (!personRef) return false;
+      return typeof value === 'string' ? value === personRef : value.person === personRef;
+    })
+  : undefined;
 const focal = typeof subject === 'object' ? subject?.focal : undefined;
 const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%';
 ---
@@ -88,7 +91,7 @@ const objectPosition = focal ? `${focal.x * 100}% ${focal.y * 100}%` : '50% 35%'
           style={`object-position:${objectPosition}`}
         />
       )}
-      {portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
+      {usingLegacyMediaPortrait && portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
     </figure>
   </div>
 ) : (
