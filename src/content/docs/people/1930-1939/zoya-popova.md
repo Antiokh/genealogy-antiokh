@@ -42,17 +42,6 @@ external:
     xref: "I500204"
 ---
 
-**Годы жизни:** 1936–?
-**Фамилия при рождении:** Попова
-
-## Семья
-
-**Родители:** [Сергей Тимофеевич (Sergey Timofeyevich) Попов (Popov)](/people/1900-1909/sergey-timofeevich-sergey-timofeyevich-popov-popov/), [Ефросиния Попова](/people/1900-1909/efrosiniya-popova/)
-
-**Партнёры:** —
-
-**Дети:** —
-
 ## Биография
 
 Сведения пока не добавлены.

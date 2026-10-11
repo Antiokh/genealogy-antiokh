@@ -43,16 +43,6 @@ external:
     xref: "I500119"
 ---
 
-**Фамилия при рождении:** Тихомиров
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Евдокия Антонченко](/people/unknown/evdokiya-antonchenko/)
-
-**Дети:** [Лариса Тихомирова](/people/unknown/larisa-tikhomirova/), [Юрий Тихомиров](/people/unknown/yuriy-tikhomirov/)
-
 ## Биография
 
 Сведения пока не добавлены.

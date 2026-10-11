@@ -56,19 +56,6 @@ external:
     xref: "I500232"
 ---
 
-**Годы жизни:** 1986–
-**Фамилия при рождении:** Tatarintseva
-**Фамилия после брака:** Зорина
-**Имя в исходных данных:** Екатерина Tatarintseva
-
-## Семья
-
-**Родители:** [Сергей Tatarintsev](/people/1960-1969/sergey-tatarintsev/), [Татьяна Татаринцева](/people/1960-1969/tatyana-tatarintseva/)
-
-**Партнёры:** [Дмитрий Зорин](/people/unknown/dmitriy-zorin/)
-
-**Дети:** [София Зорина](/people/2000-2009/sofiya-zorina/), [Полина Зорина](/people/2010-2019/polina-zorina/), [Тимофей Зорин](/people/2020-2029/timofey-zorin/)
-
 ## Биография
 
 Сведения пока не добавлены.

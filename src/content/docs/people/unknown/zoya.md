@@ -49,14 +49,6 @@ external:
     xref: "I500115"
 ---
 
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Василий Курочкин](/people/unknown/vasiliy-kurochkin/)
-
-**Дети:** [Юрий Курочкин](/people/unknown/yuriy-kurochkin/)
-
 ## Биография
 
 Сведения пока не добавлены.

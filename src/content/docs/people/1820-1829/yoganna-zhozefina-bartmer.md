@@ -53,19 +53,6 @@ external:
     xref: "I500166"
 ---
 
-**Годы жизни:** 1825–1892
-**Фамилия при рождении:** Thorsell Торселл
-**Фамилия после брака:** Bartmer
-**Имя в исходных данных:** Йоганна-Жозефина Thorsell Торселл
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Александр-Эдуард Бартмер](/people/1810-1819/aleksandr-eduard-bartmer/)
-
-**Дети:** [Оттилия-Мария Lobeck](/people/1850-1859/ottiliya-mariya-lobeck/), [Петр Александрович Бартмер](/people/1850-1859/petr-aleksandrovich-bartmer/), [Йоганна-Мария Lobeck](/people/1850-1859/yoganna-mariya-lobeck/), [Елизавета-Ольга Busch](/people/1860-1869/elizaveta-olga-busch/), [Аполлинарий Александрович Бартмер](/people/unknown/apollinariy-aleksandrovich-bartmer/), [Эльвина-Шарлотта Бурмейстер](/people/unknown/elvina-sharlotta-burmeyster/), [Эммелина-Леонтина Викстрём](/people/unknown/emmelina-leontina-vikstrem/), [Отто Александрович Бартмер](/people/unknown/otto-aleksandrovich-bartmer/)
-
 ## Биография
 
 Сведения пока не добавлены.

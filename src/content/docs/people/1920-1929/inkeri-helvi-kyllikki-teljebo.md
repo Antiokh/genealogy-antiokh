@@ -53,19 +53,6 @@ external:
     xref: "I500260"
 ---
 
-**Годы жизни:** 1927–2004
-**Фамилия при рождении:** Iso-Kamula
-**Фамилия после брака:** Teljebo
-**Имя в исходных данных:** Inkeri Helvi Kyllikki Iso-Kamula
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Yngve Edvin Teljebo (född Välivaara)](/people/1920-1929/yngve-edvin-teljebo-fodd-valivaara/)
-
-**Дети:** [Gösta Ingvar Teljebo](/people/1950-1959/gosta-ingvar-teljebo/), [Lars Yngve Erik Teljebo](/people/1950-1959/lars-yngve-erik-teljebo/), [Bernt Ingemar Teljebo](/people/1960-1969/bernt-ingemar-teljebo/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -46,17 +46,6 @@ external:
     xref: "I500074"
 ---
 
-**Годы жизни:** 1981–
-**Фамилия при рождении:** Kurochkin
-
-## Семья
-
-**Родители:** [Александр Курочкин](/people/1940-1949/aleksandr-kurochkin/), [Наталья](/people/unknown/natalya-i500073/)
-
-**Партнёры:** [Наталья](/people/unknown/natalya-i500154/)
-
-**Дети:** [Ульяна Курочкина](/people/unknown/ulyana-kurochkina/)
-
 ## Биография
 
 Сведения пока не добавлены.

@@ -50,16 +50,6 @@ external:
     xref: "I500057"
 ---
 
-**Фамилия при рождении:** Веджневецкая
-
-## Семья
-
-**Родители:** —
-
-**Партнёры:** [Михаил Спиридонов](/people/1880-1889/mikhail-spiridonov/)
-
-**Дети:** [Клавдия Толстихина](/people/1890-1899/klavdiya-tolstikhina/), [Елена Литошко](/people/1900-1909/elena-litoshko/), [Михаил Спиридонов](/people/1910-1919/mikhail-spiridonov/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/), [Александр Спиридонов](/people/unknown/aleksandr-spiridonov/)
-
 ## Биография
 
 Сведения пока не добавлены.

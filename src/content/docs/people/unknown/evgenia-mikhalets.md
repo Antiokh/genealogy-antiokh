@@ -56,18 +56,6 @@ external:
     xref: "I500092"
 ---
 
-**Фамилия при рождении:** Бескоровайная
-**Фамилия после брака:** Mikhalets
-**Имя в исходных данных:** Evgenia Бескоровайная
-
-## Семья
-
-**Родители:** [Александр Резяпкин](/people/unknown/aleksandr-rezyapkin/), [Клавдия Бескоровайная](/people/1900-1909/klavdiya-beskorovaynaya/)
-
-**Партнёры:** [Пётр Mikhalets](/people/unknown/petr-mikhalets/)
-
-**Дети:** [Larisa Teljebo](/people/1960-1969/larisa-teljebo/), [Вадим Mikhalets](/people/unknown/vadim-mikhalets/)
-
 ## Биография
 
 Сведения пока не добавлены.

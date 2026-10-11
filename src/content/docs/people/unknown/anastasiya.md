@@ -49,14 +49,6 @@ external:
     xref: "I500174"
 ---
 
-## Семья
-
-**Родители:** [Егор](/people/unknown/egor/)
-
-**Партнёры:** [Семён Назаров](/people/unknown/semen-nazarov/)
-
-**Дети:** [Анна Назарова](/people/1920-1929/anna-nazarova/), [Иван Назаров](/people/1920-1929/ivan-nazarov/), [Мария Назарова](/people/1920-1929/mariya-nazarova/), [Николай Назаров](/people/1920-1929/nikolay-nazarov/), [Сергей Назаров](/people/1920-1929/sergey-nazarov/), [Александра Назарова](/people/1930-1939/aleksandra-nazarova/), [Семен Назаров](/people/1930-1939/semen-nazarov/), [Василий Назаров](/people/1930-1939/vasiliy-nazarov/)
-
 ## Биография
 
 Сведения пока не добавлены.
