@@ -24,7 +24,7 @@
   <body>
     <main class="tree-shell">
       <div id="FamilyChart" class="tree-canvas f3"></div>
-      <div id="status" class="tree-status">Загрузка Family Chart…</div>
+      <div id="status" class="tree-status">Загрузка семейного дерева…</div>
     </main>
     <script type="module" is:inline>
       import * as f3 from 'https://esm.sh/family-chart@0.9.0';
@@ -38,6 +38,7 @@
       const canvas = document.getElementById('FamilyChart');
       let chart = null;
       let focusId = '';
+      let focusName = '';
       let expansion = null;
 
       try {
@@ -47,6 +48,8 @@
         const context = treeRenderContext();
         expansion = createTreeExpansionState(sourceFamily, context.person);
         focusId = expansion.focusId;
+        const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
+        focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
 
         const renderFamily = (family) => {
           const data = toFamilyChartData(family);
@@ -67,7 +70,7 @@
           chart.updateTree({ initial:true, main_id:focusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `Family Chart · ${family.summary.people} из ${total} людей`;
+          status.textContent = `${focusName} · ${family.summary.people} из ${total} людей`;
         };
 
         canvas.addEventListener('click', (event) => {
