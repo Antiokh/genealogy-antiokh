@@ -11,7 +11,7 @@ aliases:
 geo:
   latitude: 54.155546
   longitude: 36.549152
-  precision: settlement
+  precision: representative
 ---
 
 Суворово — деревня в Суворовском районе Тульской области, рядом с городом Суворовом и Черепетским водохранилищем.
