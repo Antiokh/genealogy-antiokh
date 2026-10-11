@@ -53,11 +53,24 @@ for (const file of (await walk(peopleRoot)).filter((file) => file.endsWith('.md'
 
 const photoIdToLocal = manifest.photoIdToLocal || {};
 const groups = new Map();
-for (const [photoId, local] of Object.entries(photoIdToLocal)) {
-  const basename = path.basename(local);
-  if (!basename.toLowerCase().endsWith('.webp')) continue;
-  if (!groups.has(basename)) groups.set(basename, []);
-  groups.get(basename).push(String(photoId));
+const invalidManifestMappings = [];
+
+for (const [photoId, outputs] of Object.entries(photoIdToLocal)) {
+  // pack_myheritage.py intentionally stores photoIdToLocal as id -> list[str]:
+  // one MyHeritage photo ID can point at more than one distinct payload.
+  const locals = Array.isArray(outputs) ? outputs : [outputs];
+  for (const local of locals) {
+    if (typeof local !== 'string') {
+      invalidManifestMappings.push({ photoId: String(photoId), value: local });
+      continue;
+    }
+
+    const basename = path.basename(local);
+    if (!basename.toLowerCase().endsWith('.webp')) continue;
+
+    if (!groups.has(basename)) groups.set(basename, new Set());
+    groups.get(basename).add(String(photoId));
+  }
 }
 
 await fs.rm(mediaRoot, { recursive: true, force: true });
@@ -73,7 +86,8 @@ let comparablePayloads = 0;
 let webpSmaller = 0;
 let jpegSmallerOrEqual = 0;
 
-for (const [webpBasename, photoIds] of [...groups.entries()].sort(([a], [b]) => a.localeCompare(b, 'en', { numeric: true }))) {
+for (const [webpBasename, photoIdSet] of [...groups.entries()].sort(([a], [b]) => a.localeCompare(b, 'en', { numeric: true }))) {
+  const photoIds = [...photoIdSet].sort((a, b) => Number(a) - Number(b));
   const sourceWebp = path.join(userscriptRoot, 'photos', webpBasename);
   try {
     await fs.access(sourceWebp);
@@ -147,6 +161,11 @@ const savingsBytes = jpegBytes - webpBytesComparable;
 const report = {
   generatedAt: new Date().toISOString(),
   source: 'Antiokh/obsidian/antiokh/Work Ideas/MyHeritage Exporter',
+  manifestMappings: {
+    photoIds: Object.keys(photoIdToLocal).length,
+    uniqueWebpPayloads: groups.size,
+    invalid: invalidManifestMappings,
+  },
   webp: {
     quality: manifest.imageQuality ?? null,
     backend: manifest.imageBackend ?? null,
@@ -170,10 +189,11 @@ const report = {
 
 await fs.writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 
+console.log(`Manifest: ${report.manifestMappings.photoIds} photo IDs -> ${report.manifestMappings.uniqueWebpPayloads} unique WebP payloads.`);
 console.log(`Imported ${imported.length} unique WebP media payloads.`);
 console.log(`Mapped ${new Set(imported.flatMap((item) => item.subjects)).size} people as subjects.`);
 console.log(`Comparable JPEG/WebP payloads: ${comparablePayloads}.`);
 if (jpegBytes) {
   console.log(`JPEG ${jpegBytes} bytes -> WebP ${webpBytesComparable} bytes (${report.jpegVsWebpComparable.savingsPercent}% saved).`);
 }
-console.log(`Unresolved owners: ${report.unresolvedOwners.length}; unresolved photo IDs: ${report.unresolvedPhotoIds.length}.`);
+console.log(`Invalid manifest mappings: ${invalidManifestMappings.length}; unresolved owners: ${report.unresolvedOwners.length}; unresolved photo IDs: ${report.unresolvedPhotoIds.length}.`);
