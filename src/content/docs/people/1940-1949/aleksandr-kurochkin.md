@@ -1,21 +1,22 @@
 ---
-title: "Александр Курочкин"
-description: "Александр Курочкин, 1946–2009"
+title: "Александр Николаевич Курочкин"
+description: "Александр Николаевич Курочкин, 1946–2009"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Александр Курочкин"
-  display: "Александр Курочкин"
+  full: "Александр Николаевич Курочкин"
+  display: "Александр Николаевич Курочкин"
+  first: "Александр"
+  middle: "Николаевич"
+  last: "Курочкин"
   birth_last: "Курочкин"
   aliases: []
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -37,9 +38,12 @@ buried:
   place: null
 partners:
   - person: "unknown/natalya-i500073.md"
-occupation: []
+occupation:
+  - "гидролог"
+  - "инженер"
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -47,16 +51,15 @@ external:
 ---
 
 **Годы жизни:** 1946–2009
-**Фамилия при рождении:** Курочкин
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
-
-**Партнёры:** [Наталья](/people/unknown/natalya-i500073/)
-
-**Дети:** [Andrian Kurochkin](/people/1980-1989/andrian-kurochkin/), [Денис](/people/unknown/denis/)
+Родители — [Николай Петрович Курочкин](/people/1900-1909/nikolay-kurochkin/) и [Валентина Спиридонова (Курочкина)](/people/1910-1919/valentina-kurochkina/). Супруга — [Наталья](/people/unknown/natalya-i500073/). Дети — Андриан и Денис.
 
 ## Биография
 
-Сведения пока не добавлены.
+По воспоминаниям отца, Александр родился в 1946 году. Окончил вечернюю школу, затем Тульский политехнический институт. После института вместо предложенной работы в институте выбрал военную службу. Позднее работал гидрологом в Валдае.
+
+В записи 1996 года Николай Петрович указывает, что Александр работал инженером в Рощино. Его сын Денис учился в сельскохозяйственном техникуме, Андриан — в вечерней школе и ездил в поездки.
+
+Отчество восстановлено по установленной родственной связи с отцом Николаем Петровичем.
