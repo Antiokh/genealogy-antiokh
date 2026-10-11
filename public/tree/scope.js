@@ -149,6 +149,9 @@ export function renderTreeStatus(status, {
   if (typeof onFocus === 'function') focusButton.addEventListener('click', onFocus);
   else focusButton.disabled = true;
 
+  // Renderer capability: BALKAN free mode has a 200-person ceiling, so its
+  // total count remains display-only. Other renderers may opt into expand-all
+  // by supplying onExpandAll.
   const isBalkan = globalThis.location?.pathname?.includes('/balkan-familytree-classic');
   let totalControl;
   if (!isBalkan && typeof onExpandAll === 'function') {
