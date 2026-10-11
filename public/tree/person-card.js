@@ -102,7 +102,7 @@ export class GenealogyPersonCard extends HTMLElement {
         .avatar.deceased .avatar-initials.visible { opacity:.72; }
         .avatar.deceased::after {
           content:''; position:absolute; z-index:3; right:-8px; bottom:8px; width:38px; height:5px;
-          background:color-mix(in srgb, var(--sl-color-text, #111) 88%, transparent);
+          background:rgba(10,10,10,.96);
           transform:rotate(-42deg); pointer-events:none;
         }
         .avatar::before {
