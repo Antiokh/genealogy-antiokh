@@ -33,7 +33,7 @@
       const status = document.getElementById('status');
       const appRoot = document.getElementById('app');
       try {
-        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope }, response] = await Promise.all([
+        const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
           import(/* @vite-ignore */ '/tree/person-card.js'),
           import(/* @vite-ignore */ '/tree/theme-bridge.js'),
@@ -53,6 +53,12 @@
         let visibleNodes = [];
         let renderVersion = 0;
         const elk = new ELK();
+
+        const centerOnFocus = () => {
+          if (!flowApi) return;
+          const node = visibleNodes.find((item) => item.id === focusId);
+          if (node) flowApi.setCenter?.(node.position.x + PERSON_CARD_WIDTH / 2, node.position.y + PERSON_CARD_HEIGHT / 2, { zoom:1, duration:220 });
+        };
 
         const PersonNode = markRaw(defineComponent({
           props:['data'],
@@ -126,7 +132,13 @@
           mountedApp.mount('#app');
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `${focusName} · ${family.summary.people} из ${total} людей`;
+          renderTreeStatus(status, {
+            focusName,
+            visiblePeople:family.summary.people,
+            totalPeople:total,
+            onFocus:centerOnFocus,
+            onExpandAll:() => renderFamily(expansion.expandAll()),
+          });
         };
 
         window.addEventListener('genealogy:toggle-person', (event) => {
@@ -142,11 +154,7 @@
             case 'zoom-in': flowApi.zoomIn?.({ duration:180 }); break;
             case 'zoom-out': flowApi.zoomOut?.({ duration:180 }); break;
             case 'fit': flowApi.fitView?.({ padding:0.18, duration:220 }); break;
-            case 'focus': {
-              const node = visibleNodes.find((item) => item.id === focusId);
-              if (node) flowApi.setCenter?.(node.position.x + PERSON_CARD_WIDTH / 2, node.position.y + PERSON_CARD_HEIGHT / 2, { zoom:1, duration:220 });
-              break;
-            }
+            case 'focus': centerOnFocus(); break;
           }
         });
 
