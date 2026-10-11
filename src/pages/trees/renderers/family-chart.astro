@@ -31,7 +31,7 @@
       import { toFamilyChartData } from '/tree/renderer-adapters.js';
       import { personCardElementHtml } from '/tree/person-card.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
-      import { createTreeExpansionState, treeRenderContext, reportTreeScope } from '/tree/scope.js';
+      import { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus } from '/tree/scope.js';
 
       startThemeBridge();
       const status = document.getElementById('status');
@@ -50,6 +50,12 @@
         focusId = expansion.focusId;
         const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
         focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
+
+        const centerOnFocus = () => {
+          if (!chart) return;
+          const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === focusId);
+          if (datum) f3.handlers.cardToMiddle({ datum, svg:chart.svg, svg_dim:chart.svg.getBoundingClientRect(), transition_time:220 });
+        };
 
         const renderFamily = (family) => {
           const data = toFamilyChartData(family);
@@ -70,7 +76,13 @@
           chart.updateTree({ initial:true, main_id:focusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `${focusName} · ${family.summary.people} из ${total} людей`;
+          renderTreeStatus(status, {
+            focusName,
+            visiblePeople:family.summary.people,
+            totalPeople:total,
+            onFocus:centerOnFocus,
+            onExpandAll:() => renderFamily(expansion.expandAll()),
+          });
         };
 
         canvas.addEventListener('click', (event) => {
@@ -97,11 +109,9 @@
             case 'fit':
               chart.updateTree({ tree_position:'fit', transition_time:220 });
               break;
-            case 'focus': {
-              const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === focusId);
-              if (datum) f3.handlers.cardToMiddle({ datum, svg:chart.svg, svg_dim:chart.svg.getBoundingClientRect(), transition_time:220 });
+            case 'focus':
+              centerOnFocus();
               break;
-            }
           }
         });
 
