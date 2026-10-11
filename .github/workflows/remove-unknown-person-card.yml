@@ -1,0 +1,65 @@
+name: Remove Unknown person card fallback
+
+on:
+  push:
+    branches:
+      - fix/remove-unknown-person-card
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: fix/remove-unknown-person-card
+      - name: Remove visible fallback and validate
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          const files = ['public/tree/person-card.js', 'demos/person-card.js'];
+          for (const file of files) {
+            let s = fs.readFileSync(file, 'utf8');
+            s = s.replace("const name = this.getAttribute('name') || 'Unknown person';", "const name = this.getAttribute('name') || '';");
+            s = s.replace("const displayName = person.cardName || person.name || 'Unknown person';", "const displayName = person.cardName || person.name || '';");
+
+            if (file === 'public/tree/person-card.js') {
+              s = s.replace(
+                "    const nameHtml = `<div class=\"${nameClass}\">${esc(name)}</div>`;",
+                "    const nameHtml = name ? `<div class=\"${nameClass}\">${esc(name)}</div>` : '';"
+              );
+              s = s.replace(
+                "      ? `<a class=\"avatar-link genealogy-person-link\" href=\"${esc(url)}\" target=\"_top\" aria-label=\"Открыть страницу: ${esc(name)}\">${avatar}</a>`",
+                "      ? `<a class=\"avatar-link genealogy-person-link\" href=\"${esc(url)}\" target=\"_top\" aria-label=\"${esc(name ? `Открыть страницу: ${name}` : 'Открыть страницу человека')}\">${avatar}</a>`"
+              );
+              s = s.replace(
+                "      ? `<button class=\"branch-control branch-${branchState}\" type=\"button\" title=\"${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}\" aria-label=\"${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}: ${esc(name)}\">${branchIcon(branchState)}</button>`",
+                "      ? `<button class=\"branch-control branch-${branchState}\" type=\"button\" title=\"${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}\" aria-label=\"${esc(`${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}${name ? `: ${name}` : ''}`)}\">${branchIcon(branchState)}</button>`"
+              );
+            } else {
+              s = s.replace(
+                "          <div class=\"name${nameSizeClass(name)}\">${esc(name)}</div>",
+                "          ${name ? `<div class=\"name${nameSizeClass(name)}\">${esc(name)}</div>` : ''}"
+              );
+            }
+
+            if (s.includes('Unknown person')) throw new Error(`${file}: fallback still present`);
+            fs.writeFileSync(file, s);
+          }
+          NODE
+
+          npm install
+          npm run check
+          npm run build
+          git diff --check
+
+          rm .github/workflows/remove-unknown-person-card.yml
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/tree/person-card.js demos/person-card.js .github/workflows/remove-unknown-person-card.yml
+          git commit -m "Hide Unknown person fallback in tree cards"
+          git push origin HEAD:fix/remove-unknown-person-card
