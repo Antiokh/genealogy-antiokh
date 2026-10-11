@@ -26,6 +26,7 @@ export function toFamilyChartData(family) {
     return {
       id: person.id,
       data: {
+        url: person.url || '',
         gender: person.sex || '',
         sex: person.sex || '',
         deceased: Boolean(person.deceased),
@@ -40,47 +41,6 @@ export function toFamilyChartData(family) {
       rels: rels[person.id],
     };
   });
-}
-
-export function toBalkanFamilyTree2Data(family) {
-  const byId = Object.fromEntries(family.people.map((person) => [person.id, person]));
-  const members = Object.fromEntries(family.people.map((person) => [person.id, {
-    id: person.id,
-    name: person.cardName || person.name || person.id,
-    birthSurname: person.birthSurname || '',
-    marriedSurname: person.marriedSurname || '',
-    years: person.years || '',
-    sex: person.sex || '',
-    deceased: Boolean(person.deceased),
-    photo: person.photo || '',
-    ...(person.sex === 'M' ? { sexOrGender: 'male' } : person.sex === 'F' ? { sexOrGender: 'female' } : {}),
-    spouseIds: [],
-    childIds: [],
-  }]));
-
-  for (const unit of family.families) {
-    const partners = unit.partners.filter((id) => members[id]);
-    for (let i = 0; i < partners.length; i += 1) {
-      for (let j = i + 1; j < partners.length; j += 1) {
-        const a = partners[i];
-        const b = partners[j];
-        if (!members[a].spouseIds.includes(b)) members[a].spouseIds.push(b);
-        if (!members[b].spouseIds.includes(a)) members[b].spouseIds.push(a);
-      }
-    }
-    for (const childId of unit.children) {
-      const child = members[childId];
-      if (!child) continue;
-      for (const parentId of partners) {
-        if (!members[parentId].childIds.includes(childId)) members[parentId].childIds.push(childId);
-      }
-      const fatherId = partners.find((id) => byId[id]?.sex === 'M');
-      const motherId = partners.find((id) => byId[id]?.sex === 'F');
-      if (fatherId) child.fatherId = fatherId;
-      if (motherId) child.motherId = motherId;
-    }
-  }
-  return Object.values(members);
 }
 
 export function toBalkanFamilyTreeData(family, personCardElementHtml) {
