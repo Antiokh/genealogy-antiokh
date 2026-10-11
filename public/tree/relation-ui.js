@@ -80,15 +80,23 @@ export function renderRelationSvg(canvas, family) {
     const targetId = link.target?.data?.id;
     if (!sourceId || !targetId) continue;
 
-    let point;
-    try {
-      point = path.getPointAtLength(path.getTotalLength() / 2);
-    } catch {
-      const points = Array.isArray(link.d) ? link.d : [];
-      if (points.length < 2) continue;
-      const first = points[0];
-      const last = points[points.length - 1];
-      point = { x:(first[0] + last[0]) / 2, y:(first[1] + last[1]) / 2 };
+    let point = null;
+    const spouseDatum = [link.target, link.source].find((datum) => Number.isFinite(datum?.sx));
+    const pairY = Number.isFinite(link.source?.y) ? link.source.y : link.target?.y;
+    if (spouseDatum && Number.isFinite(pairY)) {
+      point = { x:spouseDatum.sx, y:pairY };
+    }
+
+    if (!point) {
+      try {
+        point = path.getPointAtLength(path.getTotalLength() / 2);
+      } catch {
+        const points = Array.isArray(link.d) ? link.d : [];
+        if (points.length < 2) continue;
+        const first = points[0];
+        const last = points[points.length - 1];
+        point = { x:(first[0] + last[0]) / 2, y:(first[1] + last[1]) / 2 };
+      }
     }
 
     const relation = relationByPair.get(pairKey(sourceId, targetId)) || { kind:'parents' };
