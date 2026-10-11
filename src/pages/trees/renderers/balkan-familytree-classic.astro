@@ -15,7 +15,7 @@
   <body>
     <main class="tree-shell">
       <div id="BalkanClassic" class="tree-canvas"></div>
-      <div id="status" class="tree-status">Загрузка BALKAN FamilyTreeJS classic…</div>
+      <div id="status" class="tree-status">Загрузка семейного дерева…</div>
     </main>
     <script>
       // @ts-nocheck
@@ -105,6 +105,8 @@
         const focusId = sourceFamily.people?.some((person) => person.id === requestedFocus)
           ? requestedFocus
           : sourceFamily.people?.[0]?.id || '';
+        const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
+        const focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
         const sourcePeopleIds = new Set((sourceFamily.people || []).map((person) => person.id));
 
         FamilyTree.templates.genealogy = Object.assign({}, FamilyTree.templates.base);
@@ -138,7 +140,7 @@
         const updateScopeStatus = () => {
           if (!tree) return;
           const count = (tree.visibleNodeIds || []).filter((id) => sourcePeopleIds.has(id)).length;
-          status.textContent = `BALKAN classic · ${count} из ${totalPeople} людей`;
+          status.textContent = `${focusName} · ${count} из ${totalPeople} людей`;
           reportTreeScope({
             focus: focusId,
             scope: {
