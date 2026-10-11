@@ -1,14 +1,15 @@
 ---
 title: Генеалогические деревья
-description: Сравнение движков на одном актуальном графе и одной карточке человека.
+description: Текущий production-рендерер и экспериментальные варианты семейного дерева.
 sidebar:
   order: 4
 ---
 
-Все варианты ниже строятся из одного `/generated/tree.json` и используют один `genealogy-person-card`. Полный граф загружается в renderer один раз. На первом экране раскрыт только текущий человек, поэтому видны его непосредственные родители, партнёры и дети; дальнейшие ветви раскрываются и сворачиваются кликом по карточкам без повторной загрузки данных.
+Все деревья строятся из одного `/generated/tree.json` и используют общий `genealogy-person-card`.
 
-- [Family Chart](./family-chart/) — компактный genealogy-specific движок и лучший текущий кандидат по читаемости поколений.
-- [BALKAN FamilyTreeJS classic](./balkan-familytree-classic/) — поколения сверху вниз, партнёры рядом; встроенный details-view отключён, имя ведёт в карточку человека энциклопедии.
-- [Vue Flow + ELK](./vue-flow-elk/) — явные union-узлы и наиболее точное сохранение нашей модели данных.
+- [BALKAN FamilyTreeJS classic](./balkan-familytree-classic/) — текущий production-рендерер. Он остаётся основным, пока альтернативы не подтвердят корректную геометрию и поведение на реальном дереве.
+- [Family Chart](./family-chart/) — экспериментальный genealogy-specific кандидат. Он ещё требует исправлений поведения и не считается production-ready.
 
-Встроенный `FamilyTree` использует одинаковый map-like navigation UI для renderer'ов: zoom, возврат к текущему человеку, fit bounds и fullscreen. Переключатель renderer'а остаётся снаружи canvas и показывается только если renderer не задан компоненту явно.
+Vue Flow + ELK исключён из активных кандидатов и больше не предлагается пользователю как renderer.
+
+Встроенный `FamilyTree` в production использует BALKAN и общий map-like navigation UI: zoom, возврат к текущему человеку, fit bounds и fullscreen. Экспериментальные renderer'ы проверяются отдельно в preview-ветках.
