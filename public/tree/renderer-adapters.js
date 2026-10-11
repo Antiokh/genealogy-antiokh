@@ -83,6 +83,45 @@ export function toBalkanFamilyTree2Data(family) {
   return Object.values(members);
 }
 
+export function toBalkanFamilyTreeData(family, personCardElementHtml) {
+  const byId = Object.fromEntries(family.people.map((person) => [person.id, person]));
+  const nodes = Object.fromEntries(family.people.map((person) => [person.id, {
+    id: person.id,
+    name: person.cardName || person.name || person.id,
+    gender: person.sex === 'M' ? 'male' : person.sex === 'F' ? 'female' : undefined,
+    pids: [],
+    cardHtml: personCardElementHtml(person),
+  }]));
+
+  for (const unit of family.families) {
+    const partners = unit.partners.filter((id) => nodes[id]);
+    for (let i = 0; i < partners.length; i += 1) {
+      for (let j = i + 1; j < partners.length; j += 1) {
+        const a = partners[i];
+        const b = partners[j];
+        if (!nodes[a].pids.includes(b)) nodes[a].pids.push(b);
+        if (!nodes[b].pids.includes(a)) nodes[b].pids.push(a);
+      }
+    }
+
+    const maleParent = partners.find((id) => byId[id]?.sex === 'M');
+    const femaleParent = partners.find((id) => byId[id]?.sex === 'F');
+    const remaining = partners.filter((id) => id !== maleParent && id !== femaleParent);
+
+    for (const childId of unit.children) {
+      const child = nodes[childId];
+      if (!child) continue;
+      if (maleParent) child.fid = maleParent;
+      if (femaleParent) child.mid = femaleParent;
+      if (!child.fid && remaining[0]) child.fid = remaining[0];
+      if (!child.mid && remaining.find((id) => id !== child.fid)) child.mid = remaining.find((id) => id !== child.fid);
+      if (!child.fid && !child.mid && partners[0]) child.fid = partners[0];
+    }
+  }
+
+  return Object.values(nodes);
+}
+
 export function toVueFlowElkData(family, { personWidth = 240, personHeight = 108, familySize = 18 } = {}) {
   const nodes = [
     ...family.people.map((person) => ({ id: person.id, type: 'person', width: personWidth, height: personHeight, data: { ...person } })),
