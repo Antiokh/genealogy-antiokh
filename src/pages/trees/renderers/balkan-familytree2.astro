@@ -5,7 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>BALKAN FamilyTreeJS 2</title>
     <link rel="stylesheet" href="/tree/renderer.css" />
-    <style is:global>#BalkanTree { width:100%; height:100%; background:var(--sl-color-bg); }</style>
+    <style is:global>
+      #BalkanTree { width:100%; height:100%; background:var(--sl-color-bg); }
+      #BalkanTree > svg { background-color:var(--sl-color-bg) !important; }
+      #BalkanTree [data-link-id] path { stroke:var(--tree-edge) !important; }
+      #BalkanTree .bft2-button > circle,
+      #BalkanTree [data-button^="expcoll"] > circle { fill:var(--sl-color-bg-nav) !important; stroke:var(--sl-color-gray-5) !important; }
+    </style>
   </head>
   <body>
     <main class="tree-shell">
@@ -21,10 +27,20 @@
       import { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT } from '/tree/person-card.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
 
-      startThemeBridge();
       const status = document.getElementById('status');
       const collapseButton = document.getElementById('collapse');
       const expandButton = document.getElementById('expand');
+      let tree = null;
+      let family = null;
+      let currentTheme = 'light';
+
+      const redrawForTheme = (theme) => {
+        currentTheme = theme;
+        if (!tree || !family) return;
+        tree.mode = theme;
+        tree.draw(family.root, null, () => tree.fit());
+      };
+      startThemeBridge(redrawForTheme);
 
       const loadScript = (url) => new Promise((resolve, reject) => {
         const script = document.createElement('script');
@@ -61,40 +77,29 @@
       try {
         const [response, loaded] = await Promise.all([fetch('/generated/tree.json'), loadLibrary()]);
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
-        const family = await response.json();
+        family = await response.json();
         const FamilyTree2 = loaded.FamilyTree2;
         const template = FamilyTree2.createTemplate('genealogyPersonCard', 'base');
         configureTemplate(template);
-        for (const type of ['focus','spouse','parent','child','childInLaw','sibling','parentSibling','parentInLaw','pibling','stepParent']) {
-          configureTemplate(template.nodes?.[type]);
-        }
-        if (template.separations) {
-          Object.assign(template.separations, {
-            focusSide:34, parentSide:34, parentNeighbor:34, childSide:34, childNeighbor:34,
-            spouseNeighbor:30, parentLevel:148, childLevel:148
-          });
-        }
-        const tree = new FamilyTree2(document.getElementById('BalkanTree'));
+        for (const type of ['focus','spouse','parent','child','childInLaw','sibling','parentSibling','parentInLaw','pibling','stepParent']) configureTemplate(template.nodes?.[type]);
+        if (template.separations) Object.assign(template.separations, {
+          focusSide:34, parentSide:34, parentNeighbor:34, childSide:34, childNeighbor:34,
+          spouseNeighbor:30, parentLevel:148, childLevel:148
+        });
+        tree = new FamilyTree2(document.getElementById('BalkanTree'));
         tree.readOnly = true;
         tree.navigationBar = false;
         tree.templateName = 'genealogyPersonCard';
+        tree.mode = currentTheme;
         tree.onLoaded(() => {
           tree.fit(); collapseButton.disabled = false; expandButton.disabled = false;
           status.textContent = `BALKAN · ${family.summary.people} людей · ${family.summary.families} союзов`;
         });
         tree.addFamilyMembers(toBalkanFamilyTree2Data(family)).draw(family.root);
 
-        const leafIds = family.people
-          .filter((person) => !family.families.some((unit) => unit.partners.includes(person.id)))
-          .map((person) => person.id);
-        collapseButton.addEventListener('click', () => {
-          tree.collapsedIds = leafIds;
-          tree.draw(family.root, null, () => tree.fit());
-        });
-        expandButton.addEventListener('click', () => {
-          tree.collapsedIds = [];
-          tree.draw(family.root, null, () => tree.fit());
-        });
+        const leafIds = family.people.filter((person) => !family.families.some((unit) => unit.partners.includes(person.id))).map((person) => person.id);
+        collapseButton.addEventListener('click', () => { tree.collapsedIds = leafIds; tree.draw(family.root, null, () => tree.fit()); });
+        expandButton.addEventListener('click', () => { tree.collapsedIds = []; tree.draw(family.root, null, () => tree.fit()); });
       } catch (error) {
         console.error(error);
         status.textContent = `BALKAN: ${error?.message || error}`;
