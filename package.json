@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
+    "@balkangraph/familytree.js": "1.9.51",
     "@vue-flow/core": "1.48.2",
     "astro": "^7.3.8",
     "elkjs": "0.12.0",
