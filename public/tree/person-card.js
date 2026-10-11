@@ -131,7 +131,7 @@ export class GenealogyPersonCard extends HTMLElement {
       ? `<a class="avatar-link genealogy-person-link" href="${esc(url)}" target="_top" aria-label="Открыть страницу: ${esc(name)}">${avatar}</a>`
       : avatar;
     const branchHtml = branchState === 'expand' || branchState === 'collapse'
-      ? `<button class="branch-control branch-${branchState}" type="button" title="${branchState === 'expand' ? 'Раскрыть ветку' : 'Свернуть ветку'}" aria-label="${branchState === 'expand' ? 'Раскрыть ветку' : 'Свернуть ветку'}: ${esc(name)}">${branchIcon(branchState)}</button>`
+      ? `<button class="branch-control branch-${branchState}" type="button" title="${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}" aria-label="${branchState === 'expand' ? 'Раскрыть связи' : 'Свернуть связи'}: ${esc(name)}">${branchIcon(branchState)}</button>`
       : '';
 
     this.shadowRoot.innerHTML = `
@@ -212,8 +212,8 @@ export class GenealogyPersonCard extends HTMLElement {
           pointer-events:none;
         }
         .branch-control {
-          appearance:none; position:absolute; z-index:9; left:50%; bottom:-15px; width:30px; height:30px;
-          transform:translateX(-50%); padding:0; border:0; border-radius:50%; background:transparent;
+          appearance:none; position:absolute; z-index:9; left:-12px; top:-12px; width:30px; height:30px;
+          padding:0; border:0; border-radius:50%; background:transparent;
           color:inherit; cursor:pointer; display:block;
         }
         .branch-control:focus-visible { outline:2px solid var(--tree-accent, var(--sl-color-accent)); outline-offset:2px; }
