@@ -98,7 +98,8 @@ export class GenealogyPersonCard extends HTMLElement {
         .avatar-photo.loaded { opacity:1; }
         .avatar.deceased .avatar-photo { filter:grayscale(1); }
         .avatar.deceased .avatar-placeholder { filter:grayscale(1); opacity:.62; }
-        .avatar.deceased .avatar-initials { filter:grayscale(1); opacity:.72; }
+        .avatar.deceased .avatar-initials { filter:grayscale(1); }
+        .avatar.deceased .avatar-initials.visible { opacity:.72; }
         .avatar.deceased::after {
           content:''; position:absolute; z-index:3; right:-8px; bottom:8px; width:38px; height:5px;
           background:color-mix(in srgb, var(--sl-color-text, #111) 88%, transparent);
