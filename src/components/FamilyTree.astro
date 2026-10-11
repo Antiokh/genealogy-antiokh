@@ -1,32 +1,55 @@
 ---
+type Renderer = 'balkan-classic' | 'family-chart';
+
 interface Props {
   personRef: string;
+  renderer?: Renderer;
+  priority?: Renderer[];
+  showRendererSelector?: boolean;
   heading?: string;
 }
 
+const rendererMeta: Record<Renderer, { label: string; src: string }> = {
+  'balkan-classic': { label: 'BALKAN classic', src: '/trees/renderers/balkan-familytree-classic/' },
+  'family-chart': { label: 'Family Chart', src: '/trees/renderers/family-chart/' },
+};
+
 const {
   personRef,
+  renderer,
+  priority = ['balkan-classic', 'family-chart'],
+  showRendererSelector = true,
   heading = 'Семейное дерево',
 } = Astro.props;
 
-const renderer = {
-  label: 'BALKAN classic',
-  src: '/trees/renderers/balkan-familytree-classic/',
-};
+const selectedRenderer = renderer && rendererMeta[renderer]
+  ? renderer
+  : priority.find((item) => rendererMeta[item]) || 'balkan-classic';
+const canSelectRenderer = showRendererSelector && !renderer;
 const instanceId = `family-tree-${personRef.replace(/[^a-z0-9_-]+/gi, '-')}`;
-const initialSrc = `${renderer.src}?person=${encodeURIComponent(personRef)}`;
+const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}`;
 ---
 
 <section id={instanceId} class="family-tree" data-person={personRef}>
   <div class="family-tree__header">
     <h2>{heading}</h2>
+    {canSelectRenderer && (
+      <label class="family-tree__renderer">
+        <span>Рендерер</span>
+        <select data-tree-renderer>
+          {(Object.entries(rendererMeta) as [Renderer, { label: string; src: string }][]).map(([key, meta]) => (
+            <option value={key} data-src={meta.src} selected={key === selectedRenderer}>{meta.label}</option>
+          ))}
+        </select>
+      </label>
+    )}
   </div>
 
   <div class="family-tree__frame" data-tree-fullscreen-target>
     <iframe
       data-tree-frame
       src={initialSrc}
-      title={`${heading}: ${renderer.label}`}
+      title={`${heading}: ${rendererMeta[selectedRenderer].label}`}
       loading="lazy"
     ></iframe>
 
@@ -54,13 +77,14 @@ const initialSrc = `${renderer.src}?person=${encodeURIComponent(personRef)}`;
   </div>
 </section>
 
-<script is:inline define:vars={{ instanceId }}>
+<script is:inline define:vars={{ instanceId, personRef }}>
   (() => {
     const root = document.getElementById(instanceId);
     if (!root || root.dataset.ready === '1') return;
     root.dataset.ready = '1';
 
     const frame = root.querySelector('[data-tree-frame]');
+    const renderer = root.querySelector('[data-tree-renderer]');
     const fullscreenTarget = root.querySelector('[data-tree-fullscreen-target]');
     const fullscreen = root.querySelector('[data-tree-fullscreen]');
     const commandButtons = root.querySelectorAll('[data-tree-command]');
@@ -95,8 +119,16 @@ const initialSrc = `${renderer.src}?person=${encodeURIComponent(personRef)}`;
       requestAnimationFrame(() => frame?.classList.add('is-ready'));
     };
 
+    const rendererSrc = () => renderer?.selectedOptions?.[0]?.dataset.src || frame?.src?.split('?')[0] || '';
+    const reloadRenderer = () => {
+      if (!frame) return;
+      frame.classList.remove('is-ready');
+      frame.src = `${rendererSrc()}?person=${encodeURIComponent(personRef)}`;
+    };
+
     frame?.addEventListener('load', revealFrame);
     if (frame?.contentDocument?.readyState === 'complete') revealFrame();
+    renderer?.addEventListener('change', reloadRenderer);
 
     const themeObserver = new MutationObserver(applyFrameTheme);
     themeObserver.observe(document.documentElement, {
@@ -142,6 +174,19 @@ const initialSrc = `${renderer.src}?person=${encodeURIComponent(personRef)}`;
   }
   .family-tree__header { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:.65rem; }
   .family-tree__header h2 { margin:0; font-size:var(--sl-text-h3); }
+  .family-tree__renderer { display:flex; align-items:center; gap:.45rem; }
+  .family-tree__renderer span { font-size:.75rem; color:var(--sl-color-gray-2); }
+  .family-tree__renderer select {
+    min-height:2rem;
+    border:1px solid var(--tree-control-border);
+    border-radius:.5rem;
+    background:var(--tree-control-bg);
+    color:var(--tree-control-fg);
+    font:inherit;
+    font-size:.8rem;
+    padding:.35rem .6rem;
+    cursor:pointer;
+  }
 
   .family-tree__frame {
     position:relative;
@@ -220,6 +265,9 @@ const initialSrc = `${renderer.src}?person=${encodeURIComponent(personRef)}`;
   .family-tree__frame.is-fullscreen { position:fixed; inset:0; z-index:10000; }
 
   @media (max-width:40rem) {
+    .family-tree__header { align-items:stretch; flex-direction:column; }
+    .family-tree__renderer { justify-content:space-between; }
+    .family-tree__renderer select { flex:1; max-width:15rem; }
     .family-tree__frame iframe { height:55vh; min-height:22rem; }
   }
 </style>

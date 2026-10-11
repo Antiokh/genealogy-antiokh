@@ -6,9 +6,8 @@
     <title>Family Chart</title>
     <link rel="stylesheet" href="/tree/renderer.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/family-chart@0.9.0/dist/styles/family-chart.css" />
-    <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
     <style is:global>
-      #FamilyChart { width:100%; height:100%; }
+      #FamilyChart { width:100%; height:100%; background:var(--tree-background); }
       #FamilyChart .card_cont { overflow:visible; filter:none !important; }
       #FamilyChart path.link { stroke:var(--tree-edge) !important; stroke-width:1.35px; }
       #FamilyChart div.card, #FamilyChart div.card.card-male, #FamilyChart div.card.card-female,
@@ -16,6 +15,7 @@
         width:240px !important; height:108px !important; min-height:108px !important; margin:0 !important;
         padding:0 !important; border:0 !important; border-radius:0 !important; outline:0 !important;
         background:transparent !important; box-shadow:none !important; filter:none !important; color:inherit !important;
+        overflow:visible !important;
       }
       #FamilyChart div.card::before, #FamilyChart div.card::after,
       #FamilyChart div.card-inner::before, #FamilyChart div.card-inner::after { display:none !important; content:none !important; }
@@ -24,21 +24,35 @@
   <body>
     <main class="tree-shell">
       <div id="FamilyChart" class="tree-canvas f3"></div>
-      <div id="status" class="tree-status">Загрузка Family Chart…</div>
+      <div id="relationOverlay" class="relation-overlay" aria-hidden="true"></div>
+      <div id="status" class="tree-status">Загрузка семейного дерева…</div>
     </main>
     <script type="module" is:inline>
       import * as f3 from 'https://esm.sh/family-chart@0.9.0';
       import { toFamilyChartData } from '/tree/renderer-adapters.js';
       import { personCardElementHtml } from '/tree/person-card.js';
+      import { renderRelationOverlay } from '/tree/relation-ui.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
-      import { createTreeExpansionState, treeRenderContext, reportTreeScope } from '/tree/scope.js';
+      import { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus } from '/tree/scope.js';
 
       startThemeBridge();
       const status = document.getElementById('status');
       const canvas = document.getElementById('FamilyChart');
+      const relationOverlay = document.getElementById('relationOverlay');
       let chart = null;
       let focusId = '';
+      let focusName = '';
       let expansion = null;
+      let currentFamily = null;
+      let overlayFrame = 0;
+      let renderVersion = 0;
+
+      const scheduleRelationOverlay = () => {
+        cancelAnimationFrame(overlayFrame);
+        overlayFrame = requestAnimationFrame(() => requestAnimationFrame(() => {
+          if (currentFamily) renderRelationOverlay(relationOverlay, canvas, currentFamily);
+        }));
+      };
 
       try {
         const response = await fetch('/generated/tree.json');
@@ -47,39 +61,91 @@
         const context = treeRenderContext();
         expansion = createTreeExpansionState(sourceFamily, context.person);
         focusId = expansion.focusId;
+        const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
+        focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
 
-        const renderFamily = (family) => {
+        const centerOnPerson = (id = focusId, transitionTime = 220) => {
+          if (!chart || !id) return;
+          const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === id || item?.id === id);
+          if (!datum) return;
+          f3.handlers.cardToMiddle({
+            datum,
+            svg:chart.svg,
+            svg_dim:chart.svg.getBoundingClientRect(),
+            transition_time:transitionTime,
+          });
+          scheduleRelationOverlay();
+        };
+
+        const centerOnFocus = () => centerOnPerson(focusId);
+
+        const renderFamily = (family, { anchorId = focusId, fit = false } = {}) => {
+          const version = ++renderVersion;
+          const startedAt = performance.now();
+          currentFamily = family;
           const data = toFamilyChartData(family);
+          relationOverlay.replaceChildren();
           canvas.replaceChildren();
+
           chart = f3.createChart('#FamilyChart', data)
             .setTransitionTime(0)
             .setCardXSpacing(286)
             .setCardYSpacing(148);
-          chart.setCardHtml().setCardInnerHtmlCreator((d) => {
-            const p = d.data.data;
-            const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
-            return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
-              id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
-              marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
-              deceased:Boolean(p.deceased), photo:p.photo || ''
-            })}</div>`;
-          });
+
+          chart.setCardHtml()
+            .setCardInnerHtmlCreator((d) => {
+              const p = d.data.data;
+              const sourceName = [p['first name'], p['last name']].filter(Boolean).join(' ');
+              return `<div class="card-inner genealogy-card-host">${personCardElementHtml({
+                id:d.data.id, url:p.url || '', name:sourceName, cardName:p.cardName || '', birthSurname:p.birthSurname || '',
+                marriedSurname:p.marriedSurname || '', years:p.years || '', sex:p.sex || p.gender || '',
+                deceased:Boolean(p.deceased), photo:p.photo || ''
+              }, { branchState:expansion.branchState(d.data.id) })}</div>`;
+            })
+            .setOnCardClick((event, datum) => {
+              const id = datum?.data?.id || datum?.id;
+              if (!id || !expansion) return;
+              event?.preventDefault?.();
+              event?.stopPropagation?.();
+              renderFamily(expansion.toggle(id), { anchorId:id });
+            });
+
           chart.updateTree({ initial:true, main_id:focusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `Family Chart · ${family.summary.people} из ${total} людей`;
+          renderTreeStatus(status, {
+            focusName,
+            visiblePeople:family.summary.people,
+            totalPeople:total,
+            onFocus:centerOnFocus,
+            onExpandAll:() => renderFamily(expansion.expandAll(), { fit:true }),
+          });
+          const elapsed = Math.round(performance.now() - startedAt);
+          status.title = `Family Chart · построение ${elapsed} мс · ${family.summary.people} человек`;
+          status.dataset.renderMs = String(elapsed);
+
+          requestAnimationFrame(() => requestAnimationFrame(() => {
+            if (version !== renderVersion || !chart) return;
+            if (fit) chart.updateTree({ tree_position:'fit', transition_time:220 });
+            else centerOnPerson(anchorId, 0);
+            scheduleRelationOverlay();
+          }));
         };
 
-        canvas.addEventListener('click', (event) => {
-          const target = event.target;
-          if (!(target instanceof Element) || target.closest('.genealogy-person-link')) return;
-          const card = target.closest('.card');
-          if (!card || !expansion) return;
-          const datum = window.d3?.select(card)?.datum?.();
-          const id = datum?.data?.id || datum?.id;
-          if (!id || id === focusId) return;
-          renderFamily(expansion.toggle(id));
+        window.addEventListener('genealogy:toggle-person', (event) => {
+          const id = event.detail;
+          if (!id || !expansion) return;
+          renderFamily(expansion.toggle(id), { anchorId:id });
         });
+
+        const overlayObserver = new MutationObserver(scheduleRelationOverlay);
+        overlayObserver.observe(canvas, { subtree:true, attributes:true, attributeFilter:['transform', 'style'] });
+        window.addEventListener('resize', scheduleRelationOverlay, { passive:true });
+        canvas.addEventListener('wheel', scheduleRelationOverlay, { passive:true });
+        canvas.addEventListener('pointermove', (event) => {
+          if (event.buttons) scheduleRelationOverlay();
+        }, { passive:true });
+        canvas.addEventListener('pointerup', scheduleRelationOverlay, { passive:true });
 
         window.addEventListener('message', (event) => {
           if (event.origin !== window.location.origin || event.source !== window.parent || !chart) return;
@@ -87,18 +153,19 @@
           switch (event.data.command) {
             case 'zoom-in':
               f3.handlers.manualZoom({ amount:1.2, svg:chart.svg, transition_time:180 });
+              scheduleRelationOverlay();
               break;
             case 'zoom-out':
               f3.handlers.manualZoom({ amount:0.8, svg:chart.svg, transition_time:180 });
+              scheduleRelationOverlay();
               break;
             case 'fit':
               chart.updateTree({ tree_position:'fit', transition_time:220 });
+              scheduleRelationOverlay();
               break;
-            case 'focus': {
-              const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === focusId);
-              if (datum) f3.handlers.cardToMiddle({ datum, svg:chart.svg, svg_dim:chart.svg.getBoundingClientRect(), transition_time:220 });
+            case 'focus':
+              centerOnFocus();
               break;
-            }
           }
         });
 
