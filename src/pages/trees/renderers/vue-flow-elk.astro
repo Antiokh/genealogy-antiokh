@@ -24,14 +24,13 @@
     </main>
     <script>
       // @ts-nocheck
-      import { createApp, defineComponent, h, markRaw } from 'vue';
+      import { createApp, defineComponent, h, markRaw, nextTick, ref } from 'vue';
       import { VueFlow, Handle, Position, useVueFlow } from '@vue-flow/core';
       import '@vue-flow/core/dist/style.css';
       import '@vue-flow/core/dist/theme-default.css';
       import ELK from 'elkjs/lib/elk.bundled.js';
 
       const status = document.getElementById('status');
-      const appRoot = document.getElementById('app');
       try {
         const [{ toVueFlowElkData }, { personCardElementHtml, PERSON_CARD_WIDTH, PERSON_CARD_HEIGHT }, { relationIconHtml }, { startThemeBridge }, { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus }, response] = await Promise.all([
           import(/* @vite-ignore */ '/tree/renderer-adapters.js'),
@@ -49,22 +48,30 @@
         const focusId = expansion.focusId;
         const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
         const focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
-        let mountedApp = null;
+        const graphNodes = ref([]);
+        const graphEdges = ref([]);
         let flowApi = null;
         let visibleNodes = [];
         let renderVersion = 0;
         const elk = new ELK();
 
-        const centerOnFocus = () => {
-          if (!flowApi) return;
-          const node = visibleNodes.find((item) => item.id === focusId);
-          if (node) flowApi.setCenter?.(node.position.x + PERSON_CARD_WIDTH / 2, node.position.y + PERSON_CARD_HEIGHT / 2, { zoom:1, duration:220 });
+        const centerOnPerson = (id = focusId, duration = 220) => {
+          if (!flowApi || !id) return;
+          const node = visibleNodes.find((item) => item.id === id);
+          if (!node) return;
+          flowApi.setCenter?.(
+            node.position.x + PERSON_CARD_WIDTH / 2,
+            node.position.y + PERSON_CARD_HEIGHT / 2,
+            { zoom:Math.min(1, flowApi.getViewport?.().zoom || 1), duration },
+          );
         };
+
+        const centerOnFocus = () => centerOnPerson(focusId);
 
         const PersonNode = markRaw(defineComponent({
           props:['data'],
           setup(props) {
-            const onClick = (event) => {
+            const onClick = () => {
               window.dispatchEvent(new CustomEvent('genealogy:toggle-person', { detail:props.data?.id }));
             };
             return () => h('div', { class:'person-node-wrap', onClick }, [
@@ -74,6 +81,7 @@
             ]);
           }
         }));
+
         const FamilyNode = markRaw(defineComponent({
           props:['data'],
           setup(props) {
@@ -86,68 +94,94 @@
           }
         }));
 
-        const renderFamily = async (family) => {
+        const App = defineComponent({
+          setup() {
+            flowApi = useVueFlow();
+            return () => h(VueFlow, {
+              nodes:graphNodes.value,
+              edges:graphEdges.value,
+              nodeTypes:{ person:PersonNode, family:FamilyNode },
+              fitViewOnInit:false,
+              minZoom:0.04,
+              maxZoom:2,
+              nodesDraggable:false,
+              nodesConnectable:false,
+              elementsSelectable:false,
+              elevateNodesOnSelect:false,
+            });
+          }
+        });
+        createApp(App).mount('#app');
+
+        const afterGraphPaint = () => new Promise((resolve) => {
+          requestAnimationFrame(() => requestAnimationFrame(resolve));
+        });
+
+        const renderFamily = async (family, { anchorId = focusId, fit = false, initial = false } = {}) => {
           const version = ++renderVersion;
           const startedAt = performance.now();
           status.textContent = 'Раскладка семейного дерева…';
           const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
-            personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT, familySize:28
+            personWidth:PERSON_CARD_WIDTH,
+            personHeight:PERSON_CARD_HEIGHT,
+            familySize:28,
           });
           const graph = await elk.layout({
             id:'root',
             layoutOptions:{
-              'elk.algorithm':'layered', 'elk.direction':'DOWN', 'elk.spacing.nodeNode':'36',
-              'elk.layered.spacing.nodeNodeBetweenLayers':'96', 'elk.edgeRouting':'ORTHOGONAL',
-              'elk.layered.considerModelOrder.strategy':'NODES_AND_EDGES'
+              'elk.algorithm':'layered',
+              'elk.direction':'DOWN',
+              'elk.spacing.nodeNode':'36',
+              'elk.layered.spacing.nodeNodeBetweenLayers':'96',
+              'elk.edgeRouting':'ORTHOGONAL',
+              'elk.layered.considerModelOrder.strategy':'NODES_AND_EDGES',
             },
             children:rawNodes.map((n) => ({ id:n.id, width:n.width, height:n.height })),
-            edges:rawEdges.map((e) => ({ id:e.id, sources:[e.source], targets:[e.target] }))
+            edges:rawEdges.map((e) => ({ id:e.id, sources:[e.source], targets:[e.target] })),
           });
           if (version !== renderVersion) return;
-          const positions = Object.fromEntries((graph.children || []).map((n) => [n.id, { x:n.x || 0, y:n.y || 0 }]));
-          const nodes = rawNodes.map((n) => ({ id:n.id, type:n.type, data:n.data, position:positions[n.id] || {x:0,y:0} }));
-          const edges = rawEdges.map((e) => ({ ...e, type:'smoothstep', style:{ stroke:'var(--tree-edge)', strokeWidth:1.35 } }));
-          visibleNodes = nodes;
 
-          mountedApp?.unmount?.();
-          appRoot.replaceChildren();
-          flowApi = null;
-          const App = defineComponent({
-            setup() {
-              flowApi = useVueFlow();
-              return () => h(VueFlow, {
-                nodes,
-                edges,
-                nodeTypes:{ person:PersonNode, family:FamilyNode },
-                fitViewOnInit:true,
-                minZoom:0.04,
-                maxZoom:2,
-                nodesDraggable:false,
-                nodesConnectable:false,
-                elementsSelectable:false,
-              });
-            }
-          });
-          mountedApp = createApp(App);
-          mountedApp.mount('#app');
+          const positions = Object.fromEntries((graph.children || []).map((n) => [n.id, { x:n.x || 0, y:n.y || 0 }]));
+          const nodes = rawNodes.map((n) => ({
+            id:n.id,
+            type:n.type,
+            data:n.data,
+            position:positions[n.id] || { x:0, y:0 },
+          }));
+          const edges = rawEdges.map((e) => ({
+            ...e,
+            type:'smoothstep',
+            style:{ stroke:'var(--tree-edge)', strokeWidth:1.35 },
+          }));
+
+          visibleNodes = nodes;
+          graphNodes.value = nodes;
+          graphEdges.value = edges;
           reportTreeScope(family);
+
           const total = sourceFamily.people?.length || family.summary.people;
           renderTreeStatus(status, {
             focusName,
             visiblePeople:family.summary.people,
             totalPeople:total,
             onFocus:centerOnFocus,
-            onExpandAll:() => renderFamily(expansion.expandAll()),
+            onExpandAll:() => renderFamily(expansion.expandAll(), { fit:true }),
           });
           const elapsed = Math.round(performance.now() - startedAt);
           status.title = `Vue Flow + ELK · раскладка ${elapsed} мс · ${family.summary.people} человек`;
           status.dataset.renderMs = String(elapsed);
+
+          await nextTick();
+          await afterGraphPaint();
+          if (version !== renderVersion || !flowApi) return;
+          if (fit || initial) flowApi.fitView?.({ padding:0.18, duration:initial ? 0 : 220 });
+          else centerOnPerson(anchorId, 0);
         };
 
         window.addEventListener('genealogy:toggle-person', (event) => {
           const id = event.detail;
           if (!id) return;
-          renderFamily(expansion.toggle(id));
+          renderFamily(expansion.toggle(id), { anchorId:id });
         });
 
         window.addEventListener('message', (event) => {
@@ -161,7 +195,7 @@
           }
         });
 
-        await renderFamily(expansion.snapshot());
+        await renderFamily(expansion.snapshot(), { initial:true, fit:true });
       } catch (error) {
         console.error(error);
         status.textContent = `Vue Flow + ELK: ${error?.message || error}`;
