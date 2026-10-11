@@ -20,7 +20,7 @@
   <body>
     <main class="tree-shell">
       <div id="app" class="tree-canvas"></div>
-      <div id="status" class="tree-status">Раскладка Vue Flow + ELK…</div>
+      <div id="status" class="tree-status">Раскладка семейного дерева…</div>
     </main>
     <script>
       // @ts-nocheck
@@ -46,6 +46,8 @@
         const context = treeRenderContext();
         const expansion = createTreeExpansionState(sourceFamily, context.person);
         const focusId = expansion.focusId;
+        const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
+        const focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
         let mountedApp = null;
         let flowApi = null;
         let visibleNodes = [];
@@ -81,7 +83,7 @@
 
         const renderFamily = async (family) => {
           const version = ++renderVersion;
-          status.textContent = 'Раскладка Vue Flow + ELK…';
+          status.textContent = 'Раскладка семейного дерева…';
           const { nodes:rawNodes, edges:rawEdges } = toVueFlowElkData(family, {
             personWidth:PERSON_CARD_WIDTH, personHeight:PERSON_CARD_HEIGHT
           });
@@ -124,7 +126,7 @@
           mountedApp.mount('#app');
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
-          status.textContent = `Vue Flow + ELK · ${family.summary.people} из ${total} людей`;
+          status.textContent = `${focusName} · ${family.summary.people} из ${total} людей`;
         };
 
         window.addEventListener('genealogy:toggle-person', (event) => {
