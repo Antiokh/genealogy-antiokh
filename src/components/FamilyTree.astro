@@ -1,0 +1,145 @@
+---
+type Renderer = 'balkan-classic' | 'family-chart' | 'balkan2' | 'vue-flow';
+
+interface Props {
+  personRef: string;
+  renderer?: Renderer;
+  priority?: Renderer[];
+  initialDepth?: number;
+  showRendererSelector?: boolean;
+  heading?: string;
+}
+
+const rendererMeta: Record<Renderer, { label: string; src: string }> = {
+  'balkan-classic': { label: 'BALKAN classic', src: '/trees/renderers/balkan-familytree-classic/' },
+  'family-chart': { label: 'Family Chart', src: '/trees/renderers/family-chart/' },
+  'balkan2': { label: 'BALKAN FamilyTreeJS 2', src: '/trees/renderers/balkan-familytree2/' },
+  'vue-flow': { label: 'Vue Flow + ELK', src: '/trees/renderers/vue-flow-elk/' },
+};
+
+const {
+  personRef,
+  renderer,
+  priority = ['balkan-classic', 'family-chart', 'balkan2', 'vue-flow'],
+  initialDepth = 1,
+  showRendererSelector = true,
+  heading = 'Семейное дерево',
+} = Astro.props;
+
+const selectedRenderer = renderer && rendererMeta[renderer] ? renderer : priority.find((item) => rendererMeta[item]) || 'balkan-classic';
+const instanceId = `family-tree-${personRef.replace(/[^a-z0-9_-]+/gi, '-')}`;
+const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}&depth=${Math.max(0, Math.floor(initialDepth))}`;
+---
+
+<section id={instanceId} class="family-tree" data-person={personRef} data-depth={Math.max(0, Math.floor(initialDepth))}>
+  <div class="family-tree__header">
+    <h2>{heading}</h2>
+    <div class="family-tree__controls" aria-label="Управление семейным деревом">
+      {showRendererSelector && (
+        <label class="family-tree__renderer">
+          <span>Рендерер</span>
+          <select data-tree-renderer>
+            {(Object.entries(rendererMeta) as [Renderer, { label: string; src: string }][]).map(([key, meta]) => (
+              <option value={key} data-src={meta.src} selected={key === selectedRenderer}>{meta.label}</option>
+            ))}
+          </select>
+        </label>
+      )}
+      <button type="button" data-tree-nearest disabled>Ближайшие</button>
+      <button type="button" data-tree-expand>Раскрыть ещё</button>
+      <button type="button" data-tree-fullscreen aria-label="Открыть семейное дерево на весь экран">На весь экран</button>
+    </div>
+  </div>
+  <div class="family-tree__frame">
+    <iframe data-tree-frame src={initialSrc} title={`${heading}: ${rendererMeta[selectedRenderer].label}`} loading="lazy"></iframe>
+  </div>
+</section>
+
+<script is:inline define:vars={{ instanceId, personRef, initialDepth }}>
+  (() => {
+    const root = document.getElementById(instanceId);
+    if (!root || root.dataset.ready === '1') return;
+    root.dataset.ready = '1';
+
+    const frame = root.querySelector('[data-tree-frame]');
+    const renderer = root.querySelector('[data-tree-renderer]');
+    const nearest = root.querySelector('[data-tree-nearest]');
+    const expand = root.querySelector('[data-tree-expand]');
+    const fullscreen = root.querySelector('[data-tree-fullscreen]');
+    let depth = Math.max(0, Math.floor(Number(initialDepth) || 1));
+
+    const rendererSrc = () => renderer?.selectedOptions?.[0]?.dataset.src || frame?.src?.split('?')[0] || '';
+    const refresh = () => {
+      if (!frame) return;
+      const base = rendererSrc();
+      const params = new URLSearchParams({ person: personRef, depth: String(depth) });
+      frame.src = `${base}?${params.toString()}`;
+      root.dataset.depth = String(depth);
+      if (nearest) nearest.disabled = depth <= Math.max(0, Math.floor(Number(initialDepth) || 1));
+      if (expand) expand.disabled = false;
+    };
+
+    renderer?.addEventListener('change', refresh);
+    nearest?.addEventListener('click', () => {
+      depth = Math.max(0, Math.floor(Number(initialDepth) || 1));
+      refresh();
+    });
+    expand?.addEventListener('click', () => {
+      depth += 1;
+      refresh();
+    });
+
+    const leaveFullscreen = () => root.classList.remove('is-fullscreen');
+    fullscreen?.addEventListener('click', async () => {
+      if (document.fullscreenElement === root) {
+        await document.exitFullscreen?.();
+        return;
+      }
+      if (root.requestFullscreen) {
+        try { await root.requestFullscreen(); return; } catch {}
+      }
+      root.classList.toggle('is-fullscreen');
+    });
+    document.addEventListener('fullscreenchange', () => {
+      if (document.fullscreenElement !== root) leaveFullscreen();
+    });
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && root.classList.contains('is-fullscreen')) leaveFullscreen();
+    });
+
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin || event.source !== frame?.contentWindow) return;
+      if (event.data?.type !== 'genealogy:tree-scope') return;
+      const scope = event.data.scope;
+      if (expand && scope) expand.disabled = !scope.hasMore;
+    });
+  })();
+</script>
+
+<style>
+  .family-tree { margin-top: 1.5rem; }
+  .family-tree__header { display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; margin-bottom:.65rem; }
+  .family-tree__header h2 { margin:0; font-size:var(--sl-text-h3); }
+  .family-tree__controls { display:flex; align-items:center; justify-content:flex-end; flex-wrap:wrap; gap:.45rem; }
+  .family-tree__controls button, .family-tree__renderer select {
+    min-height:2rem; border:1px solid var(--sl-color-gray-5); border-radius:.5rem; background:var(--sl-color-bg-nav);
+    color:var(--sl-color-text); font:inherit; font-size:.8rem; padding:.35rem .6rem;
+  }
+  .family-tree__controls button:not(:disabled), .family-tree__renderer select { cursor:pointer; }
+  .family-tree__controls button:disabled { opacity:.45; }
+  .family-tree__renderer { display:flex; align-items:center; gap:.4rem; }
+  .family-tree__renderer span { font-size:.75rem; color:var(--sl-color-gray-2); }
+  .family-tree__frame { overflow:hidden; border:1px solid var(--sl-color-gray-5); border-radius:.75rem; background:var(--sl-color-bg); }
+  .family-tree__frame iframe { display:block; width:100%; height:min(58vh, 36rem); min-height:25rem; border:0; background:var(--sl-color-bg); }
+  .family-tree:fullscreen, .family-tree.is-fullscreen { background:var(--sl-color-bg); padding:.75rem; }
+  .family-tree:fullscreen .family-tree__frame, .family-tree.is-fullscreen .family-tree__frame { height:calc(100dvh - 4.5rem); }
+  .family-tree:fullscreen .family-tree__frame iframe, .family-tree.is-fullscreen .family-tree__frame iframe { height:100%; min-height:0; }
+  .family-tree.is-fullscreen { position:fixed; inset:0; z-index:10000; margin:0; }
+  @media (max-width: 40rem) {
+    .family-tree__header { align-items:stretch; flex-direction:column; }
+    .family-tree__controls { justify-content:flex-start; }
+    .family-tree__renderer { width:100%; justify-content:space-between; }
+    .family-tree__renderer select { flex:1; max-width:15rem; }
+    .family-tree__frame iframe { height:55vh; min-height:22rem; }
+  }
+</style>
