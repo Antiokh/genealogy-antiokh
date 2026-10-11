@@ -1,0 +1,63 @@
+{
+  "schema": "myheritage-reconciled-relations-1",
+  "snapshot": "2026-09-10",
+  "evidence": "Relations recovered from GEDCOM SOUR/DATA/TEXT and cross-checked against FAM records and selected external indexes.",
+  "mapping": {
+    "I500227": "unknown/sofiya-konstantinovna-bartmer.md"
+  },
+  "overrides": [
+    {
+      "xref": "I500167",
+      "partners": [
+        {
+          "person": "unknown/albert-karl-adolf-lobeck.md",
+          "married": { "date": { "year": 1871, "month": 9, "circa": true } }
+        }
+      ],
+      "sources": ["myheritage-2026-relation-text.md"]
+    },
+    {
+      "xref": "I500168",
+      "partners": [
+        { "person": "unknown/sofiya-konstantinovna-bartmer.md" }
+      ],
+      "sources": ["myheritage-2026-relation-text.md"]
+    },
+    {
+      "xref": "I500169",
+      "partners": [
+        {
+          "person": "unknown/albert-karl-adolf-lobeck.md",
+          "married": { "date": "1879-08-05", "placeLabel": "Санкт-Петербург" }
+        }
+      ],
+      "sources": ["myheritage-2026-relation-text.md"]
+    },
+    {
+      "xref": "I500171",
+      "partners": [
+        {
+          "person": "unknown/elizaveta-nikolaevna-bartmer.md",
+          "married": { "date": 1886 }
+        }
+      ],
+      "sources": ["myheritage-2026-relation-text.md", "vgd-spb-metric-index-bartmer.md"]
+    },
+    {
+      "xref": "I500226",
+      "mother": "unknown/sofiya-konstantinovna-bartmer.md",
+      "sources": ["myheritage-2026-relation-text.md"]
+    }
+  ],
+  "refreshFamilySections": [
+    "1850-1859/yoganna-mariya-lobeck.md",
+    "1850-1859/petr-aleksandrovich-bartmer.md",
+    "1850-1859/ottiliya-mariya-lobeck.md",
+    "unknown/apollinariy-aleksandrovich-bartmer.md",
+    "1880-1889/evgeniya-petrovna-rimskaya-korsakova.md",
+    "unknown/albert-karl-adolf-lobeck.md",
+    "unknown/sofiya-konstantinovna-bartmer.md",
+    "unknown/wilhelmine-kerkovius.md",
+    "unknown/elizaveta-nikolaevna-bartmer.md"
+  ]
+}
