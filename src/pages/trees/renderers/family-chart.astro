@@ -24,35 +24,24 @@
   <body>
     <main class="tree-shell">
       <div id="FamilyChart" class="tree-canvas f3"></div>
-      <div id="relationOverlay" class="relation-overlay" aria-hidden="true"></div>
       <div id="status" class="tree-status">Загрузка семейного дерева…</div>
     </main>
     <script type="module" is:inline>
       import * as f3 from 'https://esm.sh/family-chart@0.9.0';
       import { toFamilyChartData } from '/tree/renderer-adapters.js';
       import { personCardElementHtml } from '/tree/person-card.js';
-      import { renderRelationOverlay } from '/tree/relation-ui.js';
+      import { renderRelationSvg } from '/tree/relation-ui.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
       import { createTreeExpansionState, treeRenderContext, reportTreeScope, renderTreeStatus } from '/tree/scope.js';
 
       startThemeBridge();
       const status = document.getElementById('status');
       const canvas = document.getElementById('FamilyChart');
-      const relationOverlay = document.getElementById('relationOverlay');
       let chart = null;
       let focusId = '';
       let focusName = '';
       let expansion = null;
-      let currentFamily = null;
-      let overlayFrame = 0;
       let renderVersion = 0;
-
-      const scheduleRelationOverlay = () => {
-        cancelAnimationFrame(overlayFrame);
-        overlayFrame = requestAnimationFrame(() => requestAnimationFrame(() => {
-          if (currentFamily) renderRelationOverlay(relationOverlay, canvas, currentFamily);
-        }));
-      };
 
       try {
         const response = await fetch('/generated/tree.json');
@@ -74,7 +63,6 @@
             svg_dim:chart.svg.getBoundingClientRect(),
             transition_time:transitionTime,
           });
-          scheduleRelationOverlay();
         };
 
         const centerOnFocus = () => centerOnPerson(focusId);
@@ -82,9 +70,7 @@
         const renderFamily = (family, { anchorId = focusId, fit = false } = {}) => {
           const version = ++renderVersion;
           const startedAt = performance.now();
-          currentFamily = family;
           const data = toFamilyChartData(family);
-          relationOverlay.replaceChildren();
           canvas.replaceChildren();
 
           chart = f3.createChart('#FamilyChart', data)
@@ -126,9 +112,9 @@
 
           requestAnimationFrame(() => requestAnimationFrame(() => {
             if (version !== renderVersion || !chart) return;
+            renderRelationSvg(canvas, family);
             if (fit) chart.updateTree({ tree_position:'fit', transition_time:220 });
             else centerOnPerson(anchorId, 0);
-            scheduleRelationOverlay();
           }));
         };
 
@@ -138,30 +124,18 @@
           renderFamily(expansion.toggle(id), { anchorId:id });
         });
 
-        const overlayObserver = new MutationObserver(scheduleRelationOverlay);
-        overlayObserver.observe(canvas, { subtree:true, attributes:true, attributeFilter:['transform', 'style'] });
-        window.addEventListener('resize', scheduleRelationOverlay, { passive:true });
-        canvas.addEventListener('wheel', scheduleRelationOverlay, { passive:true });
-        canvas.addEventListener('pointermove', (event) => {
-          if (event.buttons) scheduleRelationOverlay();
-        }, { passive:true });
-        canvas.addEventListener('pointerup', scheduleRelationOverlay, { passive:true });
-
         window.addEventListener('message', (event) => {
           if (event.origin !== window.location.origin || event.source !== window.parent || !chart) return;
           if (event.data?.type !== 'genealogy:tree-command') return;
           switch (event.data.command) {
             case 'zoom-in':
               f3.handlers.manualZoom({ amount:1.2, svg:chart.svg, transition_time:180 });
-              scheduleRelationOverlay();
               break;
             case 'zoom-out':
               f3.handlers.manualZoom({ amount:0.8, svg:chart.svg, transition_time:180 });
-              scheduleRelationOverlay();
               break;
             case 'fit':
               chart.updateTree({ tree_position:'fit', transition_time:220 });
-              scheduleRelationOverlay();
               break;
             case 'focus':
               centerOnFocus();
