@@ -9,8 +9,6 @@ interface Props {
 
 const { personRef } = Astro.props;
 const docs = await getCollection('docs');
-const person = docs.find((entry) => entry.data.entity === 'person' && entry.id === `people/${personRef.replace(/\.mdx?$/i, '')}`);
-const portraitRef = person?.data.portrait;
 
 function subjectMatches(value: unknown): boolean {
   if (typeof value === 'string') return value === personRef;
@@ -46,13 +44,7 @@ function dateLabel(value: unknown): string | undefined {
 
 const media = docs
   .filter((entry) => entry.data.entity === 'media' && entry.data.image && entry.data.subjects?.some(subjectMatches))
-  .sort((a, b) => {
-    const aRef = `${a.id.replace(/^media\//, '')}.md`;
-    const bRef = `${b.id.replace(/^media\//, '')}.md`;
-    if (aRef === portraitRef && bRef !== portraitRef) return -1;
-    if (bRef === portraitRef && aRef !== portraitRef) return 1;
-    return dateKey(a.data.date) - dateKey(b.data.date) || a.data.title.localeCompare(b.data.title, 'ru');
-  });
+  .sort((a, b) => dateKey(a.data.date) - dateKey(b.data.date) || a.data.title.localeCompare(b.data.title, 'ru'));
 ---
 
 {media.length > 0 && (
