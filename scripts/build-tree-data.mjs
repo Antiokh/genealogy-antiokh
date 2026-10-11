@@ -3,7 +3,6 @@ import path from 'node:path';
 
 const GRAPH_PATH = path.resolve('public/generated/genealogy.json');
 const OUTPUT_PATH = path.resolve('public/generated/tree.json');
-const PREFERRED_ROOT = '1980-1989/anton-nazarov.md';
 
 const graph = JSON.parse(await readFile(GRAPH_PATH, 'utf8'));
 const nodes = Array.isArray(graph.nodes) ? graph.nodes : [];
@@ -155,13 +154,9 @@ if (errors.length) {
   process.exit(1);
 }
 
-const largestComponent = [...(graph.components || [])].sort((a, b) => (b.size || 0) - (a.size || 0))[0];
-const root = byRef.has(PREFERRED_ROOT) ? PREFERRED_ROOT : largestComponent?.members?.[0] || people[0]?.id;
-
 const output = {
-  schema: 'genealogy-tree-1',
+  schema: 'genealogy-tree-2',
   sourceGraph: graph.schema,
-  root,
   summary: {
     people: people.length,
     families: families.length,
@@ -175,4 +170,4 @@ const output = {
 };
 
 await writeFile(OUTPUT_PATH, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
-console.log(`Built tree data: ${output.summary.people} people, ${output.summary.families} unions, ${output.summary.multiPartnerPeople} people in multiple partner unions; root=${root}.`);
+console.log(`Built tree data: ${output.summary.people} people, ${output.summary.families} unions, ${output.summary.multiPartnerPeople} people in multiple partner unions.`);
