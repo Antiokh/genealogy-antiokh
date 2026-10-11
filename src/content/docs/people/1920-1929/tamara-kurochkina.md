@@ -1,29 +1,29 @@
 ---
-title: "Тамара Курочкина"
-description: "Тамара Курочкина, 1928–2024"
+title: "Тамара Петровна Курочкина"
+description: "Тамара Петровна Курочкина, 1928–2024"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Тамара Курочкина"
-  display: "Тамара Курочкина"
+  full: "Тамара Петровна Курочкина"
+  display: "Тамара Петровна Курочкина"
+  first: "Тамара"
+  middle: "Петровна"
+  last: "Курочкина"
   birth_last: "Курочкина"
   aliases: []
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
   - key: "volkov"
     label: "Волковы"
     locale: ru
-    roles:
-      - partner
+    roles: [partner]
     inferred: true
 sex: F
 photo: "https://sites-cf.mhcache.com/e/1/az1zaXRlc192MSZzPWZhNWNiYTFlMDUwZjQ1Mzg0MWY2ZjJlNmE5NDA1NmUwNDZiMWZmZmJhOWMxMWYyMGNjNWE0M2E2NDNkZjM5MzUmZT0xNzg5Njc1MjAw/129/852/4292/500288_731014c150wv2f7b76ab3y_A.jpg"
@@ -44,8 +44,12 @@ buried:
 partners:
   - person: "1920-1929/sergey-volkov.md"
 occupation: []
-residence: []
-sources: []
+residence:
+  - place: "edrovo.md"
+    label: "Едрово"
+    notes: "Вернулась в Едрово после освобождения Новгородской области."
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -53,16 +57,13 @@ external:
 ---
 
 **Годы жизни:** 1928–2024
-**Фамилия при рождении:** Курочкина
 
 ## Семья
 
-**Родители:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
+Родители — [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/) и [Ольга Ниловна Курочкина](/people/unknown/olga-kurochkina/). Супруг — [Сергей Волков](/people/1920-1929/sergey-volkov/). Дети — Лариса и Валерий Волковы.
 
-**Партнёры:** [Сергей Волков](/people/1920-1929/sergey-volkov/)
+## Военные годы
 
-**Дети:** [Лариса Волкова](/people/unknown/larisa-volkova/), [Валерий Волков](/people/unknown/valeriy-volkov/)
+По воспоминаниям Николая Петровича, Тамара в годы войны была школьницей. Вместе с матерью Ольгой Ниловной, сестрой Евдокией и братом Александром она эвакуировалась к семье Николая в Сибирь. После освобождения Новгородской области вернулась вместе с матерью и Евдокией в Едрово.
 
-## Биография
-
-Сведения пока не добавлены.
+Отчество восстановлено по подтверждённой родственной связи с отцом Петром Михайловичем Курочкиным.

@@ -1,21 +1,23 @@
 ---
-title: "Александр Курочкин"
-description: "Александр Курочкин"
+title: "Александр Петрович Курочкин"
+description: "Александр Петрович Курочкин, погиб в 1942 году под Воронежем по воспоминаниям брата"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Александр Курочкин"
-  display: "Александр Курочкин"
+  full: "Александр Петрович Курочкин"
+  display: "Александр Петрович Курочкин"
+  first: "Александр"
+  middle: "Петрович"
+  last: "Курочкин"
   birth_last: "Курочкин"
-  aliases: []
+  aliases:
+    - "Саша"
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -28,32 +30,32 @@ born:
   place: null
 died:
   known: true
-  date: null
-  place: null
+  date: 1942
+  place: "voronezh.md"
 buried:
   known: false
   date: null
   place: null
 partners: []
-occupation: []
+occupation:
+  - "военнослужащий"
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500063"
 ---
 
-**Фамилия при рождении:** Курочкин
-
 ## Семья
 
-**Родители:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
+Родители — [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/) и [Ольга Ниловна Курочкина](/people/unknown/olga-kurochkina/). В MyHeritage также связаны дети [Иван Курочкин](/people/unknown/ivan-kurochkin/) и [Валентина Курочкина](/people/unknown/valentina-kurochkina/).
 
-**Партнёры:** —
+## Великая Отечественная война
 
-**Дети:** [Иван Курочкин](/people/unknown/ivan-kurochkin/), [Валентина Курочкина](/people/unknown/valentina-kurochkina/)
+По воспоминаниям брата Николая Петровича, Александр был призван в армию, прошёл миномётное училище, затем был отправлен на фронт и **погиб в 1942 году под Воронежем**. MyHeritage не задаёт более точную дату смерти, поэтому 1942 год внесён как датировка из автобиографии.
 
-## Биография
+До отправки на фронт Александр вместе с матерью Ольгой Ниловной, сёстрами Евдокией и Тамарой находился в эвакуации у семьи Николая в Сибири.
 
-Сведения пока не добавлены.
+Отчество восстановлено по подтверждённой родственной связи с отцом Петром Михайловичем Курочкиным.

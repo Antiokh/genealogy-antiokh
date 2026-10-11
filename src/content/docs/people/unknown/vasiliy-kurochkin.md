@@ -1,21 +1,23 @@
 ---
-title: "Василий Курочкин"
-description: "Василий Курочкин"
+title: "Василий Петрович Курочкин"
+description: "Василий Петрович Курочкин"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Василий Курочкин"
-  display: "Василий Курочкин"
+  full: "Василий Петрович Курочкин"
+  display: "Василий Петрович Курочкин"
+  first: "Василий"
+  middle: "Петрович"
+  last: "Курочкин"
   birth_last: "Курочкин"
-  aliases: []
+  aliases:
+    - "Вася"
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -37,25 +39,23 @@ buried:
   place: null
 partners:
   - person: "unknown/zoya.md"
-occupation: []
+occupation:
+  - "военнослужащий авиационных мастерских"
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
     xref: "I500066"
 ---
 
-**Фамилия при рождении:** Курочкин
-
 ## Семья
 
-**Родители:** [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/), [Ольга Курочкина](/people/unknown/olga-kurochkina/)
+Родители — [Пётр Михайлович Курочкин](/people/1870-1879/petr-mikhaylovich-kurochkin/) и [Ольга Ниловна Курочкина](/people/unknown/olga-kurochkina/). Партнёр — [Зоя](/people/unknown/zoya/). Сын — [Юрий Курочкин](/people/unknown/yuriy-kurochkin/).
 
-**Партнёры:** [Зоя](/people/unknown/zoya/)
+## Великая Отечественная война
 
-**Дети:** [Юрий Курочкин](/people/unknown/yuriy-kurochkin/)
+По воспоминаниям брата Николая Петровича, Василий находился в армии на протяжении всей войны и служил в авиационных мастерских.
 
-## Биография
-
-Сведения пока не добавлены.
+Отчество восстановлено по подтверждённой родственной связи с отцом Петром Михайловичем Курочкиным.
