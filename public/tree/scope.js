@@ -53,8 +53,10 @@ export function createTreeExpansionState(family, focusId) {
   const resolvedFocus = hasFocus ? focusId : family.people?.[0]?.id || '';
   const adjacency = buildAdjacency(family);
   const expanded = new Set(resolvedFocus ? [resolvedFocus] : []);
+  let showAll = false;
 
   const visibleIds = () => {
+    if (showAll) return new Set((family.people || []).map((person) => person.id));
     if (!resolvedFocus || !adjacency.has(resolvedFocus)) return new Set((family.people || []).map((person) => person.id));
     const visible = new Set([resolvedFocus]);
     const queue = [resolvedFocus];
@@ -84,13 +86,21 @@ export function createTreeExpansionState(family, focusId) {
     },
     toggle(id) {
       if (!id || id === resolvedFocus || !adjacency.has(id)) return snapshot();
+      showAll = false;
       if (expanded.has(id)) expanded.delete(id);
       else expanded.add(id);
       return snapshot();
     },
     reset() {
+      showAll = false;
       expanded.clear();
       if (resolvedFocus) expanded.add(resolvedFocus);
+      return snapshot();
+    },
+    expandAll() {
+      showAll = true;
+      expanded.clear();
+      for (const id of adjacency.keys()) expanded.add(id);
       return snapshot();
     },
     snapshot,
@@ -100,6 +110,41 @@ export function createTreeExpansionState(family, focusId) {
 export function treeRenderContext(search = globalThis.location?.search || '') {
   const params = new URLSearchParams(search);
   return { person: params.get('person') || '' };
+}
+
+export function renderTreeStatus(status, {
+  focusName,
+  visiblePeople,
+  totalPeople,
+  onFocus,
+  onExpandAll,
+} = {}) {
+  if (!status || !globalThis.document) return;
+  status.classList.remove('error');
+
+  const focusButton = document.createElement('button');
+  focusButton.type = 'button';
+  focusButton.className = 'tree-status__action tree-status__focus';
+  focusButton.textContent = focusName || 'Семейное дерево';
+  focusButton.title = 'Центрировать по человеку';
+  focusButton.setAttribute('aria-label', `Центрировать по человеку: ${focusButton.textContent}`);
+  if (typeof onFocus === 'function') focusButton.addEventListener('click', onFocus);
+  else focusButton.disabled = true;
+
+  const totalButton = document.createElement('button');
+  totalButton.type = 'button';
+  totalButton.className = 'tree-status__action tree-status__total';
+  totalButton.textContent = `${totalPeople ?? 0} людей`;
+  totalButton.title = 'Раскрыть всё дерево';
+  totalButton.setAttribute('aria-label', `Раскрыть всё дерево: ${totalButton.textContent}`);
+  if (typeof onExpandAll === 'function') totalButton.addEventListener('click', onExpandAll);
+  else totalButton.disabled = true;
+
+  status.replaceChildren(
+    focusButton,
+    document.createTextNode(` · ${visiblePeople ?? 0} из `),
+    totalButton,
+  );
 }
 
 export function reportTreeScope(family) {
