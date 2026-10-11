@@ -1,5 +1,5 @@
 ---
-type Renderer = 'balkan-classic' | 'family-chart' | 'balkan2' | 'vue-flow';
+type Renderer = 'balkan-classic' | 'family-chart' | 'vue-flow';
 
 interface Props {
   personRef: string;
@@ -13,14 +13,13 @@ interface Props {
 const rendererMeta: Record<Renderer, { label: string; src: string }> = {
   'balkan-classic': { label: 'BALKAN classic', src: '/trees/renderers/balkan-familytree-classic/' },
   'family-chart': { label: 'Family Chart', src: '/trees/renderers/family-chart/' },
-  'balkan2': { label: 'BALKAN FamilyTreeJS 2', src: '/trees/renderers/balkan-familytree2/' },
   'vue-flow': { label: 'Vue Flow + ELK', src: '/trees/renderers/vue-flow-elk/' },
 };
 
 const {
   personRef,
   renderer,
-  priority = ['balkan-classic', 'family-chart', 'balkan2', 'vue-flow'],
+  priority = ['balkan-classic', 'family-chart', 'vue-flow'],
   initialDepth = 1,
   showRendererSelector = true,
   heading = 'Семейное дерево',
