@@ -1,21 +1,22 @@
 ---
-title: "Владимир Курочкин"
-description: "Владимир Курочкин, 1949–2019"
+title: "Владимир Николаевич Курочкин"
+description: "Владимир Николаевич Курочкин, 1949–2019"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Владимир Курочкин"
-  display: "Владимир Курочкин"
+  full: "Владимир Николаевич Курочкин"
+  display: "Владимир Николаевич Курочкин"
+  first: "Владимир"
+  middle: "Николаевич"
+  last: "Курочкин"
   birth_last: "Курочкин"
   aliases: []
 families:
   - key: "kurochkin"
     label: "Курочкины"
     locale: ru
-    roles:
-      - birth
-      - current
+    roles: [birth, current]
     inferred: true
     localized:
       "und-Latn": "Kurochkin"
@@ -37,9 +38,11 @@ buried:
   place: null
 partners:
   - person: "unknown/lyudmila.md"
-occupation: []
+occupation:
+  - "мастер газовых установок"
 residence: []
-sources: []
+sources:
+  - "kurochkin-np-o-zhizni-o-sebe-2003.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -47,16 +50,15 @@ external:
 ---
 
 **Годы жизни:** 1949–2019
-**Фамилия при рождении:** Курочкин
 
 ## Семья
 
-**Родители:** [Николай Курочкин](/people/1900-1909/nikolay-kurochkin/), [Валентина Курочкина](/people/1910-1919/valentina-kurochkina/)
-
-**Партнёры:** [Людмила](/people/unknown/lyudmila/)
-
-**Дети:** [Владислав Курочкин](/people/unknown/vladislav-kurochkin/)
+Родители — [Николай Петрович Курочкин](/people/1900-1909/nikolay-kurochkin/) и [Валентина Спиридонова (Курочкина)](/people/1910-1919/valentina-kurochkina/). Супруга — [Людмила](/people/unknown/lyudmila/). Сын — [Владислав Курочкин](/people/unknown/vladislav-kurochkin/).
 
 ## Биография
 
-Сведения пока не добавлены.
+По воспоминаниям отца, Владимир родился в 1949 году и поступил в железнодорожный институт. Учёба была прервана службой в армии, после которой он вернулся и окончил институт.
+
+В записи 1996 года Николай Петрович пишет, что Владимир уже был пенсионером, но продолжал работать мастером по газовым установкам. Людмила также работала; семью он характеризовал как материально обеспеченную. Их сын Владислав после окончания института и года армейской службы работал в налоговой инспекции.
+
+Отчество восстановлено по установленной родственной связи с отцом Николаем Петровичем.
