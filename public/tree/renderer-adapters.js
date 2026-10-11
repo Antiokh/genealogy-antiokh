@@ -82,10 +82,21 @@ export function toBalkanFamilyTreeData(family, personCardElementHtml) {
   return Object.values(nodes);
 }
 
-export function toVueFlowElkData(family, { personWidth = 240, personHeight = 108, familySize = 18 } = {}) {
+export function toVueFlowElkData(family, { personWidth = 240, personHeight = 108, familySize = 28 } = {}) {
   const nodes = [
     ...family.people.map((person) => ({ id: person.id, type: 'person', width: personWidth, height: personHeight, data: { ...person } })),
-    ...family.families.map((unit) => ({ id: unit.id, type: 'family', width: familySize, height: familySize, data: { label: unit.label || '' } })),
+    ...family.families.map((unit) => ({
+      id: unit.id,
+      type: 'family',
+      width: familySize,
+      height: familySize,
+      data: {
+        label: unit.label || '',
+        relation: unit.relation || { kind:'parents' },
+        partners: [...(unit.partners || [])],
+        children: [...(unit.children || [])],
+      },
+    })),
   ];
   const edges = [];
   for (const unit of family.families) {
