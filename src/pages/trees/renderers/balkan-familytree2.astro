@@ -83,8 +83,14 @@
         configureTemplate(template);
         for (const type of ['focus','spouse','parent','child','childInLaw','sibling','parentSibling','parentInLaw','pibling','stepParent']) configureTemplate(template.nodes?.[type]);
         if (template.separations) Object.assign(template.separations, {
-          focusSide:34, parentSide:34, parentNeighbor:34, childSide:34, childNeighbor:34,
-          spouseNeighbor:30, parentLevel:148, childLevel:148
+          focusSide:18,
+          parentSide:18,
+          parentNeighbor:18,
+          childSide:18,
+          childNeighbor:18,
+          spouseNeighbor:12,
+          parentLevel:180,
+          childLevel:180
         });
         tree = new FamilyTree2(document.getElementById('BalkanTree'));
         tree.readOnly = true;
@@ -93,7 +99,7 @@
         tree.mode = currentTheme;
         tree.onLoaded(() => {
           tree.fit(); collapseButton.disabled = false; expandButton.disabled = false;
-          status.textContent = `BALKAN · ${family.summary.people} людей · ${family.summary.families} союзов`;
+          status.textContent = `BALKAN 2 · вертикальная настройка · ${family.summary.people} людей`;
         });
         tree.addFamilyMembers(toBalkanFamilyTree2Data(family)).draw(family.root);
 
