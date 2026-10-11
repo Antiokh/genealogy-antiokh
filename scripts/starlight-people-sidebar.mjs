@@ -219,7 +219,7 @@ export function buildPeopleSidebar() {
   if (ungrouped.length) {
     const fallbackCollator = collator('ru');
     groups.push({
-      label: 'Без семейной группы',
+      label: 'Фамилия неизвестна',
       collapsed: true,
       items: ungrouped
         .sort((a, b) => fallbackCollator.compare(a.label, b.label))
