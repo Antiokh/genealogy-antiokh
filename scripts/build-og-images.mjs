@@ -1,4 +1,5 @@
 import { Resvg } from '@resvg/resvg-js';
+import sharp from 'sharp';
 import { createHash } from 'node:crypto';
 import { access, copyFile, mkdir, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import path from 'node:path';
@@ -7,10 +8,13 @@ import YAML from 'yaml';
 const PEOPLE_ROOT = path.resolve('src/content/docs/people');
 const PUBLIC_ROOT = path.resolve('public');
 const OUTPUT_ROOT = path.join(PUBLIC_ROOT, 'generated/og');
+const GENERATED_PEOPLE = path.join(PUBLIC_ROOT, 'generated/people.json');
 const PORTRAIT_ROOT = path.join(PUBLIC_ROOT, 'generated/portraits');
+const PORTRAIT_PLACEHOLDER = path.join(PUBLIC_ROOT, 'tree/person-placeholder.svg');
 const CACHE_ROOT = path.resolve('node_modules/.astro/genealogy-og');
-const WIDE_BACKGROUND = path.resolve('src/assets/og/family-tree-wide.jpg');
-const SQUARE_BACKGROUND = path.resolve('src/assets/og/family-tree-square.jpg');
+const REMOTE_CACHE_ROOT = path.join(CACHE_ROOT, 'remote');
+const WIDE_BACKGROUND = path.resolve('docs/Stitched Leather Family Tree Book Cover.webp');
+const SQUARE_BACKGROUND = path.resolve('docs/Emblematic Tree Leather Book Cover.webp');
 
 function toPosix(value) {
   return value.split(path.sep).join('/');
@@ -77,8 +81,15 @@ function yearOf(value) {
     const match = value.match(/(?:^|\D)(\d{4})(?:\D|$)/);
     return match ? Number(match[1]) : undefined;
   }
-  if (value && typeof value === 'object' && Number.isFinite(value.year)) return Math.trunc(value.year);
+  if (!value || typeof value !== 'object') return undefined;
+  if (Number.isFinite(value.year)) return Math.trunc(value.year);
+  if (value.date !== undefined) return yearOf(value.date);
+  if (value.text !== undefined) return yearOf(value.text);
   return undefined;
+}
+
+function isDeceased(data) {
+  return data.died?.known === true || Boolean(yearOf(data.died));
 }
 
 function lifeYears(data) {
@@ -102,48 +113,144 @@ function personName(data) {
   return { surname, given, display };
 }
 
-function mimeFor(filePath) {
-  switch (path.extname(filePath).toLowerCase()) {
-    case '.png': return 'image/png';
-    case '.webp': return 'image/webp';
-    case '.gif': return 'image/gif';
-    case '.jpg':
-    case '.jpeg': return 'image/jpeg';
-    default: return 'application/octet-stream';
+function pngDataUri(bytes) {
+  return `data:image/png;base64,${bytes.toString('base64')}`;
+}
+
+function parseDataUri(value) {
+  const match = String(value).match(/^data:[^;,]+;base64,(.+)$/s);
+  return match ? Buffer.from(match[1], 'base64') : undefined;
+}
+
+async function fetchRemoteBytes(url) {
+  const digest = createHash('sha256').update(url).digest('hex');
+  const cachePath = path.join(REMOTE_CACHE_ROOT, digest);
+  if (await exists(cachePath)) return readFile(cachePath);
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        accept: 'image/avif,image/webp,image/png,image/jpeg,image/*,*/*;q=0.8',
+        'user-agent': 'genealogy-library-og-builder/1.0',
+      },
+      signal: AbortSignal.timeout(8000),
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const bytes = Buffer.from(await response.arrayBuffer());
+    if (!bytes.length) throw new Error('empty response');
+    await mkdir(REMOTE_CACHE_ROOT, { recursive: true });
+    await writeFile(cachePath, bytes);
+    return bytes;
+  } catch (error) {
+    console.warn(`OG portrait fetch skipped for ${url}: ${error instanceof Error ? error.message : error}`);
+    return undefined;
   }
 }
 
-async function dataUri(filePath) {
-  const bytes = await readFile(filePath);
-  return `data:${mimeFor(filePath)};base64,${bytes.toString('base64')}`;
+async function bytesForImage(value) {
+  if (typeof value !== 'string' || !value.trim()) return undefined;
+  const image = value.trim();
+  if (image.startsWith('data:')) return parseDataUri(image);
+  if (/^https?:\/\//i.test(image)) return fetchRemoteBytes(image);
+  if (image.startsWith('/')) {
+    const candidate = path.join(PUBLIC_ROOT, image.replace(/^\/+/, ''));
+    if (await exists(candidate)) return readFile(candidate);
+  }
+  return undefined;
 }
 
-async function resolvePortrait(personRef, data) {
+async function projectedPeople() {
+  if (!(await exists(GENERATED_PEOPLE))) return new Map();
+  const data = JSON.parse(await readFile(GENERATED_PEOPLE, 'utf8'));
+  return new Map((data.people ?? []).map((person) => [person.ref, person]));
+}
+
+async function resolvePortraitBytes(personRef, data, projected) {
+  const projectedPhoto = projected?.photo;
+  if (typeof projectedPhoto === 'string' && projectedPhoto.trim()) {
+    const bytes = await bytesForImage(projectedPhoto);
+    if (bytes) return bytes;
+  }
+
   const stem = personRef.replace(/\.(md|mdx)$/i, '');
   for (const extension of ['.webp', '.jpg', '.jpeg', '.png']) {
-    const candidate = path.join(PORTRAIT_ROOT, `${stem}${extension}`);
-    if (await exists(candidate)) return dataUri(candidate);
+    const generated = path.join(PORTRAIT_ROOT, `${stem}${extension}`);
+    if (await exists(generated)) return readFile(generated);
+
+    const source = path.join(PEOPLE_ROOT, `${stem}${extension}`);
+    if (await exists(source)) return readFile(source);
   }
 
-  if (typeof data.photo === 'string' && data.photo.startsWith('/')) {
-    const candidate = path.join(PUBLIC_ROOT, data.photo.replace(/^\/+/, ''));
-    if (await exists(candidate)) return dataUri(candidate);
-  }
-
-  return '';
+  if (typeof data.photo === 'string') return bytesForImage(data.photo);
+  return undefined;
 }
 
-function portraitMarkup(uri, x, y, width, height, clipId) {
+function clamp(value, min, max) {
+  return Math.min(max, Math.max(min, value));
+}
+
+async function rasterPortrait(bytes, width, height, { deceased = false, placeholder = false } = {}) {
+  let image = sharp(bytes, { failOn: 'none' }).rotate();
+
+  if (placeholder) {
+    image = image.resize({
+      width,
+      height,
+      fit: 'contain',
+      background: { r: 26, g: 14, b: 9, alpha: 0 },
+    });
+  } else {
+    const metadata = await image.metadata();
+    if (metadata.width && metadata.height) {
+      const sourceRatio = metadata.width / metadata.height;
+      const targetRatio = width / height;
+      if (sourceRatio > targetRatio) {
+        const cropWidth = Math.max(1, Math.round(metadata.height * targetRatio));
+        const left = Math.round(clamp(metadata.width * 0.5 - cropWidth / 2, 0, metadata.width - cropWidth));
+        image = image.extract({ left, top: 0, width: cropWidth, height: metadata.height });
+      } else if (sourceRatio < targetRatio) {
+        const cropHeight = Math.max(1, Math.round(metadata.width / targetRatio));
+        const top = Math.round(clamp(metadata.height * 0.35 - cropHeight / 2, 0, metadata.height - cropHeight));
+        image = image.extract({ left: 0, top, width: metadata.width, height: cropHeight });
+      }
+    }
+    image = image.resize(width, height, { fit: 'fill' });
+  }
+
+  if (deceased) image = image.grayscale();
+  return image.png().toBuffer();
+}
+
+async function rasterBackground(filePath, width, height) {
+  return sharp(await readFile(filePath), { failOn: 'none' })
+    .rotate()
+    .resize(width, height, { fit: 'cover', position: 'centre' })
+    .modulate({ brightness: 0.82, saturation: 0.78 })
+    .png()
+    .toBuffer();
+}
+
+function portraitMarkup(uri, x, y, width, height, clipId, deceased) {
   if (!uri) return '';
+  const ribbonWidth = Math.round(width * 0.86);
+  const ribbonHeight = Math.max(15, Math.round(width * 0.05));
+  const ribbonX = Math.round(x + width * 0.34);
+  const ribbonY = Math.round(y + height * 0.79);
+  const ribbonCx = Math.round(ribbonX + ribbonWidth / 2);
+  const ribbonCy = Math.round(ribbonY + ribbonHeight / 2);
+
   return `
   <defs>
     <clipPath id="${clipId}"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="24"/></clipPath>
   </defs>
   <rect x="${x - 7}" y="${y - 7}" width="${width + 14}" height="${height + 14}" rx="29" fill="#1a0e09" stroke="#c49a58" stroke-width="4"/>
-  <image href="${uri}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="xMidYMid slice" clip-path="url(#${clipId})"/>`;
+  <g clip-path="url(#${clipId})">
+    <image href="${uri}" x="${x}" y="${y}" width="${width}" height="${height}" preserveAspectRatio="none"/>
+    ${deceased ? `<rect x="${ribbonX}" y="${ribbonY}" width="${ribbonWidth}" height="${ribbonHeight}" rx="${Math.round(ribbonHeight / 2)}" fill="#090909" opacity="0.97" transform="rotate(-42 ${ribbonCx} ${ribbonCy})"/>` : ''}
+  </g>`;
 }
 
-function wideSvg({ background, portrait, data }) {
+function wideSvg({ background, portrait, data, deceased = false }) {
   const { surname, given, display } = personName(data);
   const years = lifeYears(data);
   const hasPortrait = Boolean(portrait);
@@ -167,22 +274,22 @@ function wideSvg({ background, portrait, data }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <linearGradient id="shade" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#120907" stop-opacity="0.48"/>
-      <stop offset="0.42" stop-color="#120907" stop-opacity="0.58"/>
-      <stop offset="1" stop-color="#120907" stop-opacity="0.82"/>
+      <stop offset="0" stop-color="#120907" stop-opacity="0.34"/>
+      <stop offset="0.42" stop-color="#120907" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#120907" stop-opacity="0.86"/>
     </linearGradient>
   </defs>
-  <image href="${background}" x="0" y="0" width="1200" height="630" preserveAspectRatio="xMidYMid slice"/>
-  <rect width="1200" height="630" fill="#160b07" opacity="0.30"/>
+  <image href="${background}" x="0" y="0" width="1200" height="630" preserveAspectRatio="none"/>
+  <rect width="1200" height="630" fill="#160b07" opacity="0.20"/>
   <rect width="1200" height="630" fill="url(#shade)"/>
-  ${portraitMarkup(portrait, 96, 122, 320, 386, 'portrait-wide')}
+  ${portraitMarkup(portrait, 96, 122, 320, 386, 'portrait-wide', deceased)}
   <text x="${textX}" y="126" font-family="DejaVu Sans" font-size="25" font-weight="700" fill="#d4b170" letter-spacing="1.4">СЕМЕЙНАЯ ЭНЦИКЛОПЕДИЯ</text>
   ${text}
   ${years ? `<text x="${textX}" y="${yearsY}" font-family="DejaVu Sans" font-size="35" font-weight="500" fill="#d9bd89">${escapeXml(years)}</text>` : ''}
 </svg>`;
 }
 
-function squareSvg({ background, portrait, data }) {
+function squareSvg({ background, portrait, data, deceased = false }) {
   const { surname, given, display } = personName(data);
   const years = lifeYears(data);
   const hasPortrait = Boolean(portrait);
@@ -202,15 +309,15 @@ function squareSvg({ background, portrait, data }) {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
   <defs>
     <linearGradient id="shade-square" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#120907" stop-opacity="0.46"/>
-      <stop offset="0.38" stop-color="#120907" stop-opacity="0.60"/>
-      <stop offset="1" stop-color="#120907" stop-opacity="0.84"/>
+      <stop offset="0" stop-color="#120907" stop-opacity="0.32"/>
+      <stop offset="0.38" stop-color="#120907" stop-opacity="0.57"/>
+      <stop offset="1" stop-color="#120907" stop-opacity="0.86"/>
     </linearGradient>
   </defs>
-  <image href="${background}" x="0" y="0" width="1080" height="1080" preserveAspectRatio="xMidYMid slice"/>
-  <rect width="1080" height="1080" fill="#160b07" opacity="0.32"/>
+  <image href="${background}" x="0" y="0" width="1080" height="1080" preserveAspectRatio="none"/>
+  <rect width="1080" height="1080" fill="#160b07" opacity="0.22"/>
   <rect width="1080" height="1080" fill="url(#shade-square)"/>
-  ${portraitMarkup(portrait, 82, 330, 300, 390, 'portrait-square')}
+  ${portraitMarkup(portrait, 82, 330, 300, 390, 'portrait-square', deceased)}
   <text x="${textX}" y="250" font-family="DejaVu Sans" font-size="24" font-weight="700" fill="#d4b170" letter-spacing="1.2">СЕМЕЙНАЯ ЭНЦИКЛОПЕДИЯ</text>
   ${text}
   ${years ? `<text x="${textX}" y="${yearsY}" font-family="DejaVu Sans" font-size="36" font-weight="500" fill="#d9bd89">${escapeXml(years)}</text>` : ''}
@@ -231,10 +338,14 @@ async function renderCached(svg, outputPath) {
   await copyFile(cachePath, outputPath);
 }
 
-const [wideBackground, squareBackground] = await Promise.all([
-  dataUri(WIDE_BACKGROUND),
-  dataUri(SQUARE_BACKGROUND),
+const [wideBackgroundBytes, squareBackgroundBytes, placeholderBytes, projectedByRef] = await Promise.all([
+  rasterBackground(WIDE_BACKGROUND, 1200, 630),
+  rasterBackground(SQUARE_BACKGROUND, 1080, 1080),
+  readFile(PORTRAIT_PLACEHOLDER),
+  projectedPeople(),
 ]);
+const wideBackground = pngDataUri(wideBackgroundBytes);
+const squareBackground = pngDataUri(squareBackgroundBytes);
 
 await rm(OUTPUT_ROOT, { recursive: true, force: true });
 
@@ -246,21 +357,34 @@ await renderCached(wideSvg({ background: wideBackground, portrait: '', data: def
 await renderCached(squareSvg({ background: squareBackground, portrait: '', data: defaultData }), path.join(OUTPUT_ROOT, 'index-square.png'));
 
 let generated = 0;
+let resolvedPortraits = 0;
 for (const filePath of await walk(PEOPLE_ROOT)) {
   const data = parseFrontmatter(await readFile(filePath, 'utf8'));
   if (data.entity !== 'person') continue;
   const personRef = toPosix(path.relative(PEOPLE_ROOT, filePath));
-  const portrait = await resolvePortrait(personRef, data);
+  const projected = projectedByRef.get(personRef);
+  const deceased = isDeceased(data);
+  const portraitBytes = await resolvePortraitBytes(personRef, data, projected);
+  const isPlaceholder = !portraitBytes;
+  if (portraitBytes) resolvedPortraits += 1;
+
+  const [widePortraitBytes, squarePortraitBytes] = await Promise.all([
+    rasterPortrait(portraitBytes || placeholderBytes, 320, 386, { deceased, placeholder: isPlaceholder }),
+    rasterPortrait(portraitBytes || placeholderBytes, 300, 390, { deceased, placeholder: isPlaceholder }),
+  ]);
+  const widePortrait = pngDataUri(widePortraitBytes);
+  const squarePortrait = pngDataUri(squarePortraitBytes);
   const outputStem = personRef.replace(/\.(md|mdx)$/i, '');
+
   await renderCached(
-    wideSvg({ background: wideBackground, portrait, data }),
+    wideSvg({ background: wideBackground, portrait: widePortrait, data, deceased }),
     path.join(OUTPUT_ROOT, 'people', `${outputStem}.png`),
   );
   await renderCached(
-    squareSvg({ background: squareBackground, portrait, data }),
+    squareSvg({ background: squareBackground, portrait: squarePortrait, data, deceased }),
     path.join(OUTPUT_ROOT, 'people', `${outputStem}-square.png`),
   );
   generated += 1;
 }
 
-console.log(`Generated OG images for ${generated} person record(s).`);
+console.log(`Generated OG images for ${generated} person record(s); resolved ${resolvedPortraits} portrait(s).`);
