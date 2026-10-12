@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Default from '@astrojs/starlight/components/Footer.astro';
 import EventSeq from './EventSeq.astro';
 import FamilyTree from './FamilyTree.astro';
@@ -16,12 +17,69 @@ const personRef = isPerson
 const placeRef = isPlace
   ? `${route.id.replace(/^places\//, '').replace(/\/$/, '')}.md`
   : null;
+
+function partnerRef(value: unknown): string | undefined {
+  if (typeof value === 'string') return value;
+  if (!value || typeof value !== 'object' || !('person' in value)) return undefined;
+  const person = (value as { person?: unknown }).person;
+  return typeof person === 'string' ? person : undefined;
+}
+
+const docs = personRef ? await getCollection('docs') : [];
+const hasDirectRelations = Boolean(
+  personRef
+  && (
+    route.entry.data.father
+    || route.entry.data.mother
+    || route.entry.data.parents?.length
+    || route.entry.data.partners?.length
+  ),
+);
+const hasReverseRelations = personRef
+  ? docs.some((entry) => {
+      if (entry.data.entity !== 'person') return false;
+      const parentRefs = [entry.data.father, entry.data.mother, ...(entry.data.parents ?? [])];
+      if (parentRefs.includes(personRef)) return true;
+      return entry.data.partners?.some((partner) => partnerRef(partner) === personRef) ?? false;
+    })
+  : false;
+const hasRelations = hasDirectRelations || hasReverseRelations;
 ---
 
 {personRef && <PersonGallery personRef={personRef} />}
-{personRef && <EventSeq subject="person" subjectRef={personRef} heading="Хронология" />}
+{personRef && <EventSeq subject="person" subjectRef={personRef} heading="Лента событий" />}
 {personRef && <PersonPlacesMap personRef={personRef} />}
-{personRef && <FamilyTree personRef={personRef} />}
+{personRef && hasRelations && <FamilyTree personRef={personRef} heading="Родственные связи" />}
 {placeRef && <EventSeq subject="place" subjectRef={placeRef} heading="Хронология места" />}
 
 <Default />
+
+<script>
+  function eventAnchorFromHref(href: string): string | undefined {
+    const eventId = href.replace(/^\/+/, '').replace(/\/+$/, '');
+    if (!eventId.startsWith('events/')) return undefined;
+    return `timeline-${eventId
+      .replace(/^events\//, '')
+      .replace(/[^a-z0-9_-]+/gi, '-')
+      .replace(/^-+|-+$/g, '')}`;
+  }
+
+  function assignEventAnchors() {
+    for (const article of document.querySelectorAll<HTMLElement>('.event-seq-event')) {
+      const link = article.querySelector<HTMLAnchorElement>('h3 a[href^="/events/"]');
+      if (!link) continue;
+      const id = eventAnchorFromHref(link.getAttribute('href') ?? '');
+      if (id) article.id = id;
+    }
+
+    const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
+    if (!hash) return;
+    const target = document.getElementById(hash);
+    if (target?.classList.contains('event-seq-event')) {
+      requestAnimationFrame(() => target.scrollIntoView());
+    }
+  }
+
+  assignEventAnchors();
+  document.addEventListener('astro:page-load', assignEventAnchors);
+</script>
