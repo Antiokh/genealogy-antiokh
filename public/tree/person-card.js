@@ -35,6 +35,8 @@ const shouldShowBirthSurname = (name, birthSurname) => {
   return !String(name || '').trim().toLocaleLowerCase().endsWith(surname.toLocaleLowerCase());
 };
 
+const isOverviewMode = () => new URLSearchParams(globalThis.location?.search || '').get('overview') === '1';
+
 const branchIcon = (state) => {
   const badge = state === 'expand'
     ? '<path d="M21 23h6M24 20v6"/>'
@@ -86,16 +88,17 @@ export class GenealogyPersonCard extends HTMLElement {
 
   connectedCallback() {
     this.render();
-    this.loadRelationship();
+    if (!isOverviewMode()) this.loadRelationship();
   }
 
   attributeChangedCallback(name) {
     if (!this.isConnected) return;
     this.render();
-    if (name === 'person-id') this.loadRelationship();
+    if (name === 'person-id' && !isOverviewMode()) this.loadRelationship();
   }
 
   async loadRelationship() {
+    if (isOverviewMode()) return;
     const personId = this.getAttribute('person-id') || '';
     if (!personId || this._relationshipFor === personId) return;
     this._relationshipFor = personId;
@@ -110,7 +113,8 @@ export class GenealogyPersonCard extends HTMLElement {
     const url = this.getAttribute('url') || '';
     const years = this.getAttribute('years') || '';
     const personId = this.getAttribute('person-id') || '';
-    const focusId = new URLSearchParams(globalThis.location?.search || '').get('person') || '';
+    const overviewMode = isOverviewMode();
+    const focusId = overviewMode ? '' : new URLSearchParams(globalThis.location?.search || '').get('person') || '';
     const isFocus = Boolean(personId && focusId && personId === focusId);
     const sex = normalizeSex(this.getAttribute('sex'));
     const deceased = this.hasAttribute('deceased');
@@ -118,8 +122,8 @@ export class GenealogyPersonCard extends HTMLElement {
     const birthSurname = this.getAttribute('birth-surname') || '';
     const branchState = this.getAttribute('branch-state') || '';
     const relationship = this._relationship;
-    const relationshipLabel = isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.label || '');
-    const relationshipTitle = isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel);
+    const relationshipLabel = overviewMode || isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.label || '');
+    const relationshipTitle = overviewMode || isFocus ? '' : (typeof relationship === 'string' ? relationship : relationship?.title || relationshipLabel);
     const showBirthSurname = shouldShowBirthSurname(name, birthSurname);
     const nameClass = `name${nameSizeClass(name)}`;
     const nameHtml = `<div class="${nameClass}">${esc(name)}</div>`;

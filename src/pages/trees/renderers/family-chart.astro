@@ -38,6 +38,7 @@
       const status = document.getElementById('status');
       const canvas = document.getElementById('FamilyChart');
       let chart = null;
+      let layoutFocusId = '';
       let focusId = '';
       let focusName = '';
       let expansion = null;
@@ -48,13 +49,14 @@
         if (!response.ok) throw new Error(`tree.json: ${response.status}`);
         const sourceFamily = await response.json();
         const context = treeRenderContext();
-        const expandAllOnLoad = new URLSearchParams(window.location.search).get('all') === '1';
+        const overviewMode = context.overviewMode;
         expansion = createTreeExpansionState(sourceFamily, context.person);
-        focusId = expansion.focusId;
+        layoutFocusId = expansion.focusId;
+        focusId = overviewMode ? '' : layoutFocusId;
         const focusPerson = sourceFamily.people?.find((person) => person.id === focusId);
         focusName = focusPerson?.cardName || focusPerson?.name || focusId || 'Семейное дерево';
 
-        const centerOnPerson = (id = focusId, transitionTime = 220) => {
+        const centerOnPerson = (id = layoutFocusId, transitionTime = 220) => {
           if (!chart || !id) return;
           const datum = chart.store.getTree()?.data?.find((item) => item?.data?.id === id || item?.id === id);
           if (!datum) return;
@@ -66,9 +68,11 @@
           });
         };
 
-        const centerOnFocus = () => centerOnPerson(focusId);
+        const centerOnFocus = () => {
+          if (!overviewMode) centerOnPerson(focusId);
+        };
 
-        const renderFamily = (family, { anchorId = focusId, fit = false } = {}) => {
+        const renderFamily = (family, { anchorId = layoutFocusId, fit = false } = {}) => {
           const version = ++renderVersion;
           const startedAt = performance.now();
           const data = toFamilyChartData(family);
@@ -97,15 +101,16 @@
               renderFamily(expansion.toggle(id), { anchorId:id });
             });
 
-          chart.updateTree({ initial:true, main_id:focusId });
+          chart.updateTree({ initial:true, main_id:layoutFocusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;
           renderTreeStatus(status, {
             focusName,
             visiblePeople:family.summary.people,
             totalPeople:total,
-            onFocus:centerOnFocus,
-            onExpandAll:expandAll,
+            onFocus:overviewMode ? undefined : centerOnFocus,
+            onExpandAll:overviewMode ? undefined : expandAll,
+            overviewMode,
           });
           const elapsed = Math.round(performance.now() - startedAt);
           status.title = `Family Chart · построение ${elapsed} мс · ${family.summary.people} человек`;
@@ -114,7 +119,7 @@
           requestAnimationFrame(() => requestAnimationFrame(() => {
             if (version !== renderVersion || !chart) return;
             renderRelationSvg(canvas, family);
-            if (fit) chart.updateTree({ tree_position:'fit', transition_time:220 });
+            if (fit || overviewMode) chart.updateTree({ tree_position:'fit', transition_time:220 });
             else centerOnPerson(anchorId, 0);
           }));
         };
@@ -141,7 +146,7 @@
               chart.updateTree({ tree_position:'fit', transition_time:220 });
               break;
             case 'focus':
-              centerOnFocus();
+              if (!overviewMode) centerOnFocus();
               break;
             case 'expand-all':
               expandAll();
@@ -149,7 +154,7 @@
           }
         });
 
-        if (expandAllOnLoad) expandAll();
+        if (overviewMode) expandAll();
         else renderFamily(expansion.snapshot());
       } catch (error) {
         console.error(error);

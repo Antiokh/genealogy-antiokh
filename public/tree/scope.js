@@ -127,7 +127,10 @@ export function createTreeExpansionState(family, focusId) {
 
 export function treeRenderContext(search = globalThis.location?.search || '') {
   const params = new URLSearchParams(search);
-  return { person: params.get('person') || '' };
+  return {
+    person: params.get('person') || '',
+    overviewMode: params.get('overview') === '1',
+  };
 }
 
 export function renderTreeStatus(status, {
@@ -136,9 +139,18 @@ export function renderTreeStatus(status, {
   totalPeople,
   onFocus,
   onExpandAll,
+  overviewMode = false,
 } = {}) {
   if (!status || !globalThis.document) return;
   status.classList.remove('error');
+
+  if (overviewMode) {
+    const totalText = document.createElement('span');
+    totalText.className = 'tree-status__total';
+    totalText.textContent = `${totalPeople ?? visiblePeople ?? 0} людей в дереве`;
+    status.replaceChildren(totalText);
+    return;
+  }
 
   const focusButton = document.createElement('button');
   focusButton.type = 'button';
