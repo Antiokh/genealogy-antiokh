@@ -11,6 +11,8 @@ date:
 importance: major
 participants:
   - "1910-1919/vadim-bush.md"
+places:
+  - "vozhael.md"
 sources:
   - "myheritage-extended-export-2026-10-11.md"
   - "ustvymlag-19-july-1941-context.md"
