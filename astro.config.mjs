@@ -11,7 +11,7 @@ export default defineConfig({
       title: 'Семейная энциклопедия',
       description: 'Люди, события, места и источники семейной истории',
       routeMiddleware: './src/routeData.ts',
-      customCss: ['./src/styles/genealogy.css'],
+      customCss: ['./src/styles/genealogy.css', './src/styles/photo-album.css'],
       locales: {
         root: {
           label: 'Русский',
