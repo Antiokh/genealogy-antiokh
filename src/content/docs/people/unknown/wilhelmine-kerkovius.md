@@ -49,4 +49,4 @@ external:
 
 ## Биография
 
-Восстановлена из текстовой части Record Match Оттилии-Марии, где прямо указана как её ребёнок: `Wilhelmine Kerkovius (Lobeck)`.
+В записи об Оттилии-Марии Wilhelmine Kerkovius (Lobeck) прямо указана как её ребёнок.
