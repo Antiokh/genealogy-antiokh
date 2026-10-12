@@ -30,7 +30,11 @@ const selectedRenderer = renderer && rendererMeta[renderer]
 const canSelectRenderer = showRendererSelector && !renderer;
 const instanceKey = personRef || 'all';
 const instanceId = `family-tree-${instanceKey.replace(/[^a-z0-9_-]+/gi, '-')}`;
-const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}`;
+const rendererQuery = new URLSearchParams();
+if (personRef) rendererQuery.set('person', personRef);
+if (expandAllOnLoad) rendererQuery.set('all', '1');
+const initialQuery = rendererQuery.toString();
+const initialSrc = `${rendererMeta[selectedRenderer].src}${initialQuery ? `?${initialQuery}` : ''}`;
 ---
 
 <section id={instanceId} class="family-tree" data-person={personRef} data-expand-all={expandAllOnLoad ? 'true' : undefined}>
@@ -132,7 +136,6 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
 
     const revealFrame = () => {
       applyFrameTheme();
-      if (expandAllOnLoad) postCommand('expand-all');
       requestAnimationFrame(() => requestAnimationFrame(showFrame));
     };
 
@@ -141,7 +144,11 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
       if (!frame) return;
       frame.classList.remove('is-ready');
       frame.style.visibility = 'hidden';
-      frame.src = `${rendererSrc()}?person=${encodeURIComponent(personRef)}`;
+      const query = new URLSearchParams();
+      if (personRef) query.set('person', personRef);
+      if (expandAllOnLoad) query.set('all', '1');
+      const suffix = query.toString();
+      frame.src = `${rendererSrc()}${suffix ? `?${suffix}` : ''}`;
     };
 
     frame?.addEventListener('load', revealFrame);
