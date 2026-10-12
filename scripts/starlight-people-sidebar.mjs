@@ -37,6 +37,35 @@ function readFrontmatter(filePath) {
   return raw ? (YAML.parse(raw) ?? {}) : {};
 }
 
+function nonEmptyString(value) {
+  return typeof value === 'string' ? value.trim() : '';
+}
+
+export function personSurname(data) {
+  if (!data?.name || typeof data.name !== 'object') return '';
+  return nonEmptyString(data.name.last)
+    || nonEmptyString(data.name.birth_last)
+    || nonEmptyString(data.name.married_last);
+}
+
+/**
+ * Public navigation is intentionally narrower than the genealogy graph.
+ *
+ * Hard exclusions:
+ * - import-managed records are implementation/import data, not catalog entries;
+ * - records without a structured surname are too weakly identified for the menu.
+ *
+ * `public: false` is an explicit editorial opt-out. Existing curated records predate
+ * the flag, so an omitted `public` value remains visible for backwards compatibility.
+ * `public: true` documents publication intent but never overrides the two hard gates.
+ */
+export function isPublicCatalogPerson(data) {
+  if (data?.entity !== 'person') return false;
+  if (data.importManaged === true) return false;
+  if (!personSurname(data)) return false;
+  return data.public !== false;
+}
+
 function localizedName(data, locale) {
   if (!locale || !data.name || typeof data.name !== 'object') return undefined;
   return data.name.localized?.[locale];
@@ -129,7 +158,7 @@ function collectPersonPages(directory, relative = '') {
     if (/^index\.mdx?$/i.test(entry.name) && !relative) continue;
 
     const data = readFrontmatter(absolute);
-    if (data.entity !== 'person') continue;
+    if (!isPublicCatalogPerson(data)) continue;
     const slug = nextRelative.replace(/\.mdx?$/i, '').replace(/\/index$/i, '');
     const families = familyInfos(data);
     const label = personLabel(data, absolute);
@@ -219,7 +248,7 @@ export function buildPeopleSidebar() {
   if (ungrouped.length) {
     const fallbackCollator = collator('ru');
     groups.push({
-      label: 'Фамилия неизвестна',
+      label: 'Без семейной группы',
       collapsed: true,
       items: ungrouped
         .sort((a, b) => fallbackCollator.compare(a.label, b.label))

@@ -140,6 +140,7 @@ export const collections = {
           'media',
         ]).optional(),
         importManaged: z.boolean().optional(),
+        public: z.boolean().optional(),
 
         // Canonical person fields.
         name: z.union([z.string(), structuredName]).optional(),
