@@ -50,3 +50,14 @@ html[data-theme='dark'] .person-portrait::after {
 .person-gallery-mount-cross {
   display: none !important;
 }
+
+/* In the album light theme --sl-color-bg-nav is deliberately the dark leather
+   header. Tree controls are content controls, so they belong on paper instead. */
+html[data-theme='light'] .family-tree {
+  --tree-control-bg: var(--genea-surface) !important;
+  --tree-control-hover: var(--genea-paper-deep) !important;
+}
+
+html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
+  background: var(--genea-paper-high) !important;
+}
