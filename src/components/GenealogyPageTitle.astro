@@ -651,17 +651,38 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
       gap: 0.9rem;
     }
 
+    .person-title-copy {
+      display: contents;
+    }
+
+    .person-name-heading,
+    .person-name-note,
+    .person-life-line {
+      grid-column: 1;
+      min-width: 0;
+    }
+
     .person-name-heading {
       font-size: clamp(1.8rem, 7.5vw, 2.15rem);
     }
 
     .person-name-given {
+      overflow: visible;
+      white-space: normal;
+      text-overflow: clip;
+      overflow-wrap: anywhere;
       font-size: 0.92em;
     }
 
     .person-life-line {
       margin-top: 0.75rem;
       font-size: var(--sl-text-sm);
+    }
+
+    .person-relations,
+    .person-facts,
+    .person-more {
+      grid-column: 1 / -1;
     }
 
     .person-relations,
@@ -677,6 +698,8 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
     }
 
     .person-portrait {
+      grid-column: 2;
+      grid-row: 1 / span 3;
       margin-top: 0.65rem;
     }
 
