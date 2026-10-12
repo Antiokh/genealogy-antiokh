@@ -10,6 +10,7 @@ export default defineConfig({
     starlight({
       title: 'Семейная энциклопедия',
       description: 'Люди, события, места и источники семейной истории',
+      routeMiddleware: './src/routeData.ts',
       locales: {
         root: {
           label: 'Русский',
