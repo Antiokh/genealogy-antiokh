@@ -1,0 +1,61 @@
+/* Album-page polish: parchment overscroll and RSLive-style panel motion. */
+
+/* Rubber-band / overscroll should reveal more paper, not the leather cover. */
+html[data-theme='light'],
+html[data-theme='light'] body {
+  background: var(--genea-paper-high) !important;
+}
+
+@media (min-width: 50rem) {
+  .sidebar-pane {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  html.genealogy-hide-sidebar .sidebar-pane {
+    transform: translateX(-100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (min-width: 72rem) {
+  .right-sidebar-container {
+    display: block !important;
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  html.genealogy-hide-toc .right-sidebar-container {
+    display: block !important;
+    transform: translateX(100%);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @media (min-width: 50rem) {
+    .sidebar-pane {
+      transition:
+        transform 0.26s ease,
+        opacity 0.2s ease,
+        visibility 0.26s ease;
+      will-change: transform, opacity;
+    }
+  }
+
+  @media (min-width: 72rem) {
+    .right-sidebar-container {
+      transition:
+        transform 0.24s ease,
+        opacity 0.2s ease,
+        visibility 0.24s ease;
+      will-change: transform, opacity;
+    }
+  }
+}
