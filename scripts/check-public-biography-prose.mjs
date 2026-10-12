@@ -1,63 +1,91 @@
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 
-const PEOPLE_ROOT = path.resolve('src/content/docs/people');
-
-async function walk(directory) {
-  const out = [];
-  for (const entry of await readdir(directory, { withFileTypes: true })) {
-    const full = path.join(directory, entry.name);
-    if (entry.isDirectory()) out.push(...await walk(full));
-    else if (entry.isFile() && /\.mdx?$/i.test(entry.name)) out.push(full);
-  }
-  return out;
-}
-
-function bodyOnly(content) {
-  const match = content.match(/^---\s*\r?\n[\s\S]*?\r?\n---(?:\r?\n|$)/);
-  return match ? content.slice(match[0].length) : content;
-}
+const ROOT = 'src/content/docs/people';
 
 const forbidden = [
-  ['frontmatter', /\bfrontmatter\b/iu],
-  ['article/card self-reference', /\b(?:в\s+этой|в\s+данной)\s+карточк\w*/iu],
-  ['main-text composition note', /\bв\s+основном\s+тексте\b/iu],
-  ['structured-data commentary', /\bструктурированн\w*\s+(?:событ\w*|данн\w*)/iu],
-  ['cross-card editorial note', /\bразнес\w*\s+(?:по|в)\s+[^.\n]{0,80}карточк\w*/iu],
-  ['project-internal status note', /\bв\s+проекте\s+(?:отмеч\w*|сохран\w*|зафиксир\w*)/iu],
-  ['project event-model note', /\bсобытийн\w*\s+модел\w*\s+проект\w*/iu],
-  ['confidence bookkeeping', /\b(?:пониженн\w*|низк\w*)\s+уверенн\w*/iu],
-  ['analytics/storage note', /\b(?:табличн\w*\s+аналитик\w*|для\s+[^.\n]{0,60}аналитик\w*)/iu],
-  ['editorial omission rationale', /\bнецелесообразно\s+(?:механически\s+)?перечисл\w*/iu],
-  ['source-strength bookkeeping', /\b(?:источников\w*|документальн\w*)\s+опор\w*/iu],
+  {
+    id: 'technical-representation',
+    test: /\b(?:frontmatter|yaml|schema|structured field|structured data|mapping|import\w*|renderer|record|data model|residence|events?\/|place card)\b/iu,
+  },
+  {
+    id: 'article-or-card-self-reference',
+    test: /(?<![\p{L}\p{N}_])(?:стать|карточк|страниц)[\p{L}-]*(?![\p{L}\p{N}_])[^.\n]{0,90}(?<![\p{L}\p{N}_])(?:содерж|опис|состоит|построен|построена|включ|охватыва)/iu,
+  },
+  {
+    id: 'editorial-placement',
+    test: /(?<![\p{L}\p{N}_])(?:сохранено|сохранён|сохранена|сохраняется|вынесено|перенесено|разнесено|размещено|оставлено)(?![\p{L}\p{N}_])[^.\n]{0,110}(?<![\p{L}\p{N}_])(?:для|в|ниже|отдельн|аналитик|таблиц|карточ|frontmatter)/iu,
+  },
+  {
+    id: 'editorial-selection',
+    test: /(?<![\p{L}\p{N}_])(?:нецелесообразно|не будем|не следует|в статье|в карточке)(?![\p{L}\p{N}_])[^.\n]{0,120}(?<![\p{L}\p{N}_])(?:перечисл|повтор|размещ|сохраня|привод)/iu,
+  },
+  {
+    id: 'composition-commentary',
+    test: /(?<![\p{L}\p{N}_])(?:материал статьи|структура статьи|состав статьи|наполнение статьи)(?![\p{L}\p{N}_])/iu,
+  },
+  {
+    id: 'research-workflow',
+    test: /(?<![\p{L}\p{N}_])(?:требует дополнительной проверки|требует архивной проверки|предмет дальнейшего поиска|поиск продолжается|ещё предстоит (?:найти|установить|проверить|уточнить)|пока не (?:найден|найдена|найдено|установлен|установлена|подтверждён|подтверждена|нормализован|нормализована))(?![\p{L}\p{N}_])/iu,
+  },
+  {
+    id: 'confidence-bookkeeping',
+    test: /(?<![\p{L}\p{N}_])(?:уровень уверенности|базовая уверенность|confidence|reconciliation|сверка источников|каноническ[\p{L}-]*)(?![\p{L}\p{N}_])/iu,
+  },
 ];
 
+/** Return all Markdown and MDX files under a directory. */
+async function markdownFiles(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+  for (const entry of entries) {
+    const full = path.join(directory, entry.name);
+    if (entry.isDirectory()) files.push(...await markdownFiles(full));
+    else if (entry.isFile() && /\.mdx?$/i.test(entry.name)) files.push(full);
+  }
+  return files;
+}
+
+/** Return the published Markdown body and its character offset in the original file. */
+function publicBody(content) {
+  if (!content.startsWith('---\n')) return { body: content, offset: 0 };
+  const end = content.indexOf('\n---\n', 4);
+  if (end < 0) return { body: content, offset: 0 };
+  const offset = end + 5;
+  return { body: content.slice(offset), offset };
+}
+
+/** Convert a zero-based character index into a one-based source line number. */
+function lineNumber(content, index) {
+  return content.slice(0, index).split('\n').length;
+}
+
 const violations = [];
-for (const file of await walk(PEOPLE_ROOT)) {
-  const body = bodyOnly(await readFile(file, 'utf8'));
-  const lines = body.split(/\r?\n/);
-  for (let index = 0; index < lines.length; index += 1) {
-    for (const [label, pattern] of forbidden) {
-      if (pattern.test(lines[index])) {
-        violations.push({
-          file: path.relative(process.cwd(), file),
-          line: index + 1,
-          label,
-          text: lines[index].trim(),
-        });
-      }
-      pattern.lastIndex = 0;
+
+for (const file of await markdownFiles(ROOT)) {
+  const raw = await readFile(file, 'utf8');
+  const { body, offset } = publicBody(raw);
+
+  for (const rule of forbidden) {
+    const flags = rule.test.flags.includes('g') ? rule.test.flags : `${rule.test.flags}g`;
+    const regex = new RegExp(rule.test.source, flags);
+    for (const match of body.matchAll(regex)) {
+      violations.push({
+        file,
+        line: lineNumber(raw, offset + (match.index ?? 0)),
+        rule: rule.id,
+        text: match[0].replace(/\s+/g, ' ').slice(0, 180),
+      });
     }
   }
 }
 
 if (violations.length) {
-  console.error('Public biography prose contains repository/editorial meta-commentary:');
+  console.error('Public biography prose contains internal editorial/meta commentary:');
   for (const item of violations) {
-    console.error(`- ${item.file}:${item.line} [${item.label}] ${item.text}`);
+    console.error(`- ${item.file}:${item.line} [${item.rule}] ${item.text}`);
   }
-  console.error('\nPerson-page Markdown bodies must contain only reader-facing biographical prose.');
   process.exit(1);
 }
 
-console.log('Public biography prose guard passed.');
+console.log('Public biography prose check passed.');
