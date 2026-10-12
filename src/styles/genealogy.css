@@ -29,8 +29,9 @@ html[data-theme='light'] {
   --genea-highlight: rgb(255 255 255 / 88%);
   --genea-shadow-color: rgb(49 32 24 / 10%);
 
-  --sl-color-white: #fffdf9;
-  --sl-color-black: #160b07;
+  /* Starlight names these semantically: white = foreground, black = background. */
+  --sl-color-white: #2b1a12;
+  --sl-color-black: #fffdf9;
   --sl-color-bg: var(--genea-bg);
   --sl-color-bg-nav: var(--genea-surface-high);
   --sl-color-bg-sidebar: var(--genea-sidebar);
@@ -223,6 +224,31 @@ html[data-theme='light'] :is(.card, .pagination-links a) {
   box-shadow:
     0 5px 16px var(--genea-shadow-color),
     inset 0 1px 0 var(--genea-highlight) !important;
+}
+
+/* This component originally used Starlight's semantic "black" as a literal shadow. */
+.person-portrait__frame {
+  box-shadow: 0 0.2rem 0.8rem var(--genea-shadow-color) !important;
+}
+
+/* Keep the dark-leather search field as an intentional brand element in light mode. */
+@media (min-width: 50rem) {
+  html[data-theme='light'] site-search button[data-open-modal] {
+    border-color: #5a3a2b;
+    background: #24130c;
+    color: #c8b6a8;
+    box-shadow: 0 4px 14px rgb(49 32 24 / 12%);
+  }
+
+  html[data-theme='light'] site-search button[data-open-modal]:hover {
+    border-color: var(--genea-copper);
+    color: #fff8f0;
+  }
+
+  html[data-theme='light'] site-search button[data-open-modal] > kbd {
+    background: #eadfd4;
+    color: #5d473b;
+  }
 }
 
 html[data-theme='light'] .person-places {
