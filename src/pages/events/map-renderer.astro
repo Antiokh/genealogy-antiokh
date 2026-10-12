@@ -11,7 +11,7 @@ import '../../styles/event-map-theme.css';
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Карта событий</title>
     <style is:inline>
-      :root { --map-marker-accent: #a95728; }
+      :root { --map-marker-accent: #4e2818; }
       .maplibregl-marker svg [fill='#3FB1CE'],
       .maplibregl-marker svg [fill='#3fb1ce'] {
         fill: var(--map-marker-accent) !important;
@@ -36,9 +36,8 @@ import '../../styles/event-map-theme.css';
         const syncAccent = () => {
           if (!parentRoot) return;
           const styles = window.parent.getComputedStyle(parentRoot);
-          const accent = styles.getPropertyValue('--sl-color-accent').trim()
-            || styles.getPropertyValue('--sl-color-accent-high').trim();
-          if (accent) document.documentElement.style.setProperty('--map-marker-accent', accent);
+          const leather = styles.getPropertyValue('--genea-leather').trim();
+          if (leather) document.documentElement.style.setProperty('--map-marker-accent', leather);
         };
 
         syncAccent();
