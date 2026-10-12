@@ -41,10 +41,14 @@ buried:
   place: null
 partners: []
 occupation: []
-residence: []
+residence:
+  - place: "novocherkassk.md"
+    label: "Новочеркасск, Ростовская область"
+    from: "2025-01-16"
 sources:
   - "serbia-birth-leonard-nazarov-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
+  - "anton-nazarov-personal-history.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -55,9 +59,12 @@ external:
 
 ## Биография
 
-Леонард Назаров родился 18 сентября 2023 года. Международная сербская выписка о рождении указывает местом рождения **Белград** и называет родителями Антона Назарова и Анну Татаринцеву. Выписка выдана матичной службой Beograd-Zemun; расширенная выгрузка MyHeritage уточняет место до Земуна.
+Леонард Назаров родился 18 сентября 2023 года в Земуне, Белград, в семье [Антона Назарова](/people/1980-1989/anton-nazarov/) и [Анны Татаринцевой](/people/2000-2009/anna-tatarintseva/).
+
+С **16 января 2025 года** Леонард живёт в [Новочеркасске](/places/novocherkassk/) Ростовской области вместе с матерью.
 
 ## Источники
 
 - [Международная выписка о рождении, Сербия](/sources/serbia-birth-leonard-nazarov-2023/)
 - [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)
+- [Личная биографическая хронология Антона Назарова](/sources/anton-nazarov-personal-history/)

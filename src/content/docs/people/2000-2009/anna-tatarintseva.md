@@ -59,10 +59,14 @@ partners:
       known: true
       date: "2026-02-10"
 occupation: []
-residence: []
+residence:
+  - place: "novocherkassk.md"
+    label: "Новочеркасск, Ростовская область"
+    from: "2025-01-16"
 sources:
   - "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
+  - "anton-nazarov-personal-history.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -73,11 +77,14 @@ external:
 
 ## Биография
 
-Анна Татаринцева родилась 11 июля 2001 года в Ставрополе. Эти дата и место рождения указаны в международной сербской выписке о браке.
+Анна Татаринцева родилась 11 июля 2001 года в Ставрополе.
 
-21 января 2023 года Анна и [Антон Назаров](/people/1980-1989/anton-nazarov/) зарегистрировали брак в Белграде. В выписке после регистрации у Анны сохранена фамилия Tatarintseva.
+21 января 2023 года Анна и [Антон Назаров](/people/1980-1989/anton-nazarov/) зарегистрировали брак в Белграде. После регистрации брака Анна сохранила фамилию Татаринцева.
+
+С **16 января 2025 года** Анна живёт в [Новочеркасске](/places/novocherkassk/) Ростовской области вместе с сыном [Леонардом Назаровым](/people/2020-2029/leonard-nazarov/).
 
 ## Источники
 
 - [Международная выписка о браке, Сербия](/sources/serbia-marriage-anton-nazarov-anna-tatarintseva-2023/)
 - [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)
+- [Личная биографическая хронология Антона Назарова](/sources/anton-nazarov-personal-history/)
