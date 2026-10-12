@@ -269,6 +269,18 @@ for (const event of events) {
     line-height: var(--sl-line-height-headings);
   }
 
+  .event-seq-event a,
+  .event-seq-event a:visited {
+    color: var(--sl-color-text-accent);
+    text-decoration-color: color-mix(in srgb, var(--sl-color-accent) 55%, transparent);
+    text-underline-offset: 0.18em;
+  }
+
+  .event-seq-event a:hover,
+  .event-seq-event a:focus-visible {
+    color: var(--sl-color-accent-high);
+  }
+
   .event-seq-event p {
     margin: 0.45rem 0 0;
   }
