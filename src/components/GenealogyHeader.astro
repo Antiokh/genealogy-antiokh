@@ -190,6 +190,19 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       cursor: pointer;
     }
 
+    /* On the warm album paper, Starlight's default gray-3 ToC links are
+       technically accessible but look washed out at this small size. */
+    :global(html[data-theme='light'] .right-sidebar a),
+    :global(html[data-theme='light'] .right-sidebar a:visited) {
+      color: var(--sl-color-gray-2);
+    }
+
+    :global(html[data-theme='light'] .right-sidebar a:hover),
+    :global(html[data-theme='light'] .right-sidebar a:focus-visible),
+    :global(html[data-theme='light'] .right-sidebar a[aria-current]) {
+      color: var(--sl-color-text-accent);
+    }
+
     :global(:root.genealogy-hide-toc[data-has-toc]) .toc-restore { display: flex; }
     :global(:root:not([data-has-toc])) .panel-toggle-toc { display: none; }
 
