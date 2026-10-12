@@ -51,6 +51,7 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
       src={initialSrc}
       title={`${heading}: ${rendererMeta[selectedRenderer].label}`}
       loading="lazy"
+      style="visibility:hidden"
     ></iframe>
 
     <div class="family-tree__map-controls" aria-label="Навигация по семейному дереву">
@@ -116,13 +117,18 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
 
     const revealFrame = () => {
       applyFrameTheme();
-      requestAnimationFrame(() => frame?.classList.add('is-ready'));
+      requestAnimationFrame(() => {
+        if (!frame) return;
+        frame.style.visibility = 'visible';
+        frame.classList.add('is-ready');
+      });
     };
 
     const rendererSrc = () => renderer?.selectedOptions?.[0]?.dataset.src || frame?.src?.split('?')[0] || '';
     const reloadRenderer = () => {
       if (!frame) return;
       frame.classList.remove('is-ready');
+      frame.style.visibility = 'hidden';
       frame.src = `${rendererSrc()}?person=${encodeURIComponent(personRef)}`;
     };
 
