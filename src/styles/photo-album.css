@@ -61,3 +61,10 @@ html[data-theme='light'] .family-tree {
 html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
   background: var(--genea-paper-high) !important;
 }
+
+/* Standard MapLibre pins should follow the album's leather color instead of
+   keeping the library's default cyan marker fill. */
+.person-places .maplibregl-marker svg [fill='#3FB1CE'],
+.person-places .maplibregl-marker svg [fill='#3fb1ce'] {
+  fill: var(--genea-leather) !important;
+}
