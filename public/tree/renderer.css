@@ -1,38 +1,37 @@
 :root {
+  color-scheme:light dark;
   --sl-color-bg:#fff;
+  --sl-color-bg:light-dark(#fff, #111318);
   --sl-color-bg-nav:#f7f7f8;
+  --sl-color-bg-nav:light-dark(#f7f7f8, #191c22);
   --sl-color-text:#24272d;
+  --sl-color-text:light-dark(#24272d, #e8eaf0);
   --sl-color-text-accent:#4f64d8;
+  --sl-color-text-accent:light-dark(#4f64d8, #aebcff);
   --sl-color-accent:#6077ff;
   --sl-color-gray-2:#4c5564;
+  --sl-color-gray-2:light-dark(#4c5564, #c9ced8);
   --sl-color-gray-3:#687386;
+  --sl-color-gray-3:light-dark(#687386, #a8b0bf);
   --sl-color-gray-4:#98a2b3;
+  --sl-color-gray-4:light-dark(#98a2b3, #737d8f);
   --sl-color-gray-5:#d0d5dd;
+  --sl-color-gray-5:light-dark(#d0d5dd, #465064);
   --sl-color-gray-6:#eaecf0;
+  --sl-color-gray-6:light-dark(#eaecf0, #2b313d);
   --sl-color-gray-7:#f2f4f7;
+  --sl-color-gray-7:light-dark(#f2f4f7, #20252e);
   --sl-color-black:#111318;
+  --sl-color-black:light-dark(#111318, #000);
   --tree-background:var(--sl-color-bg);
   --tree-accent:var(--sl-color-accent);
   --tree-edge:var(--sl-color-gray-4);
   --tree-union:var(--sl-color-accent);
   --tree-danger:var(--sl-color-red-high, #d84f4f);
   font-family:var(--sl-font-system, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif);
-  color-scheme:light;
 }
-html[data-theme='dark'] {
-  --sl-color-bg:#111318;
-  --sl-color-bg-nav:#191c22;
-  --sl-color-text:#e8eaf0;
-  --sl-color-text-accent:#aebcff;
-  --sl-color-gray-2:#c9ced8;
-  --sl-color-gray-3:#a8b0bf;
-  --sl-color-gray-4:#737d8f;
-  --sl-color-gray-5:#465064;
-  --sl-color-gray-6:#2b313d;
-  --sl-color-gray-7:#20252e;
-  --sl-color-black:#000;
-  color-scheme:dark;
-}
+html[data-theme='light'] { color-scheme:light; }
+html[data-theme='dark'] { color-scheme:dark; }
 * { box-sizing:border-box; }
 html, body, .tree-shell, .tree-canvas { width:100%; height:100%; margin:0; }
 html, body { min-height:100vh; }
