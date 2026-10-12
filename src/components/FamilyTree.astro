@@ -2,11 +2,12 @@
 type Renderer = 'balkan-classic' | 'family-chart';
 
 interface Props {
-  personRef: string;
+  personRef?: string;
   renderer?: Renderer;
   priority?: Renderer[];
   showRendererSelector?: boolean;
   heading?: string;
+  expandAllOnLoad?: boolean;
 }
 
 const rendererMeta: Record<Renderer, { label: string; src: string }> = {
@@ -15,22 +16,24 @@ const rendererMeta: Record<Renderer, { label: string; src: string }> = {
 };
 
 const {
-  personRef,
+  personRef = '',
   renderer,
   priority = ['family-chart', 'balkan-classic'],
   showRendererSelector = true,
   heading = 'Семейное дерево',
+  expandAllOnLoad = false,
 } = Astro.props;
 
 const selectedRenderer = renderer && rendererMeta[renderer]
   ? renderer
   : priority.find((item) => rendererMeta[item]) || 'family-chart';
 const canSelectRenderer = showRendererSelector && !renderer;
-const instanceId = `family-tree-${personRef.replace(/[^a-z0-9_-]+/gi, '-')}`;
+const instanceKey = personRef || 'all';
+const instanceId = `family-tree-${instanceKey.replace(/[^a-z0-9_-]+/gi, '-')}`;
 const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComponent(personRef)}`;
 ---
 
-<section id={instanceId} class="family-tree" data-person={personRef}>
+<section id={instanceId} class="family-tree" data-person={personRef} data-expand-all={expandAllOnLoad ? 'true' : undefined}>
   <div class="family-tree__header">
     <h2>{heading}</h2>
     {canSelectRenderer && (
@@ -78,7 +81,7 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
   </div>
 </section>
 
-<script is:inline define:vars={{ instanceId, personRef }}>
+<script is:inline define:vars={{ instanceId, personRef, expandAllOnLoad }}>
   (() => {
     const root = document.getElementById(instanceId);
     if (!root || root.dataset.ready === '1') return;
@@ -115,13 +118,22 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
       } catch {}
     };
 
-    const revealFrame = () => {
-      applyFrameTheme();
+    const showFrame = () => {
       requestAnimationFrame(() => {
         if (!frame) return;
         frame.style.visibility = 'visible';
         frame.classList.add('is-ready');
       });
+    };
+
+    const postCommand = (command) => {
+      frame?.contentWindow?.postMessage({ type:'genealogy:tree-command', command }, window.location.origin);
+    };
+
+    const revealFrame = () => {
+      applyFrameTheme();
+      if (expandAllOnLoad) postCommand('expand-all');
+      requestAnimationFrame(() => requestAnimationFrame(showFrame));
     };
 
     const rendererSrc = () => renderer?.selectedOptions?.[0]?.dataset.src || frame?.src?.split('?')[0] || '';
@@ -142,9 +154,6 @@ const initialSrc = `${rendererMeta[selectedRenderer].src}?person=${encodeURIComp
       attributeFilter: ['data-theme', 'class', 'style'],
     });
 
-    const postCommand = (command) => {
-      frame?.contentWindow?.postMessage({ type:'genealogy:tree-command', command }, window.location.origin);
-    };
     commandButtons.forEach((button) => {
       button.addEventListener('click', () => postCommand(button.dataset.treeCommand));
     });
