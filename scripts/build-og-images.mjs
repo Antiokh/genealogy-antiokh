@@ -10,7 +10,6 @@ const PUBLIC_ROOT = path.resolve('public');
 const OUTPUT_ROOT = path.join(PUBLIC_ROOT, 'generated/og');
 const GENERATED_PEOPLE = path.join(PUBLIC_ROOT, 'generated/people.json');
 const PORTRAIT_ROOT = path.join(PUBLIC_ROOT, 'generated/portraits');
-const PORTRAIT_PLACEHOLDER = path.join(PUBLIC_ROOT, 'tree/person-placeholder.svg');
 const CACHE_ROOT = path.resolve('node_modules/.astro/genealogy-og');
 const REMOTE_CACHE_ROOT = path.join(CACHE_ROOT, 'remote');
 const WIDE_BACKGROUND = path.resolve('docs/Stitched Leather Family Tree Book Cover.webp');
@@ -189,33 +188,23 @@ function clamp(value, min, max) {
   return Math.min(max, Math.max(min, value));
 }
 
-async function rasterPortrait(bytes, width, height, { deceased = false, placeholder = false } = {}) {
+async function rasterPortrait(bytes, width, height, { deceased = false } = {}) {
   let image = sharp(bytes, { failOn: 'none' }).rotate();
-
-  if (placeholder) {
-    image = image.resize({
-      width,
-      height,
-      fit: 'contain',
-      background: { r: 26, g: 14, b: 9, alpha: 0 },
-    });
-  } else {
-    const metadata = await image.metadata();
-    if (metadata.width && metadata.height) {
-      const sourceRatio = metadata.width / metadata.height;
-      const targetRatio = width / height;
-      if (sourceRatio > targetRatio) {
-        const cropWidth = Math.max(1, Math.round(metadata.height * targetRatio));
-        const left = Math.round(clamp(metadata.width * 0.5 - cropWidth / 2, 0, metadata.width - cropWidth));
-        image = image.extract({ left, top: 0, width: cropWidth, height: metadata.height });
-      } else if (sourceRatio < targetRatio) {
-        const cropHeight = Math.max(1, Math.round(metadata.width / targetRatio));
-        const top = Math.round(clamp(metadata.height * 0.35 - cropHeight / 2, 0, metadata.height - cropHeight));
-        image = image.extract({ left: 0, top, width: metadata.width, height: cropHeight });
-      }
+  const metadata = await image.metadata();
+  if (metadata.width && metadata.height) {
+    const sourceRatio = metadata.width / metadata.height;
+    const targetRatio = width / height;
+    if (sourceRatio > targetRatio) {
+      const cropWidth = Math.max(1, Math.round(metadata.height * targetRatio));
+      const left = Math.round(clamp(metadata.width * 0.5 - cropWidth / 2, 0, metadata.width - cropWidth));
+      image = image.extract({ left, top: 0, width: cropWidth, height: metadata.height });
+    } else if (sourceRatio < targetRatio) {
+      const cropHeight = Math.max(1, Math.round(metadata.width / targetRatio));
+      const top = Math.round(clamp(metadata.height * 0.35 - cropHeight / 2, 0, metadata.height - cropHeight));
+      image = image.extract({ left: 0, top, width: metadata.width, height: cropHeight });
     }
-    image = image.resize(width, height, { fit: 'fill' });
   }
+  image = image.resize(width, height, { fit: 'fill' });
 
   if (deceased) image = image.grayscale();
   return image.png().toBuffer();
@@ -338,10 +327,9 @@ async function renderCached(svg, outputPath) {
   await copyFile(cachePath, outputPath);
 }
 
-const [wideBackgroundBytes, squareBackgroundBytes, placeholderBytes, projectedByRef] = await Promise.all([
+const [wideBackgroundBytes, squareBackgroundBytes, projectedByRef] = await Promise.all([
   rasterBackground(WIDE_BACKGROUND, 1200, 630),
   rasterBackground(SQUARE_BACKGROUND, 1080, 1080),
-  readFile(PORTRAIT_PLACEHOLDER),
   projectedPeople(),
 ]);
 const wideBackground = pngDataUri(wideBackgroundBytes);
@@ -365,15 +353,19 @@ for (const filePath of await walk(PEOPLE_ROOT)) {
   const projected = projectedByRef.get(personRef);
   const deceased = isDeceased(data);
   const portraitBytes = await resolvePortraitBytes(personRef, data, projected);
-  const isPlaceholder = !portraitBytes;
-  if (portraitBytes) resolvedPortraits += 1;
+  let widePortrait = '';
+  let squarePortrait = '';
 
-  const [widePortraitBytes, squarePortraitBytes] = await Promise.all([
-    rasterPortrait(portraitBytes || placeholderBytes, 320, 386, { deceased, placeholder: isPlaceholder }),
-    rasterPortrait(portraitBytes || placeholderBytes, 300, 390, { deceased, placeholder: isPlaceholder }),
-  ]);
-  const widePortrait = pngDataUri(widePortraitBytes);
-  const squarePortrait = pngDataUri(squarePortraitBytes);
+  if (portraitBytes) {
+    resolvedPortraits += 1;
+    const [widePortraitBytes, squarePortraitBytes] = await Promise.all([
+      rasterPortrait(portraitBytes, 320, 386, { deceased }),
+      rasterPortrait(portraitBytes, 300, 390, { deceased }),
+    ]);
+    widePortrait = pngDataUri(widePortraitBytes);
+    squarePortrait = pngDataUri(squarePortraitBytes);
+  }
+
   const outputStem = personRef.replace(/\.(md|mdx)$/i, '');
 
   await renderCached(

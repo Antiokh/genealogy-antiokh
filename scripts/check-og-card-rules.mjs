@@ -10,12 +10,24 @@ const required = [
   "fill=\"#090909\"",
   'image = image.grayscale()',
   'projectedPeople()',
+  'if (portraitBytes) {',
+  "let widePortrait = '';",
+  "let squarePortrait = '';",
+];
+
+const forbidden = [
+  'PORTRAIT_PLACEHOLDER',
+  'placeholderBytes',
+  'portraitBytes ||',
+  'placeholder: isPlaceholder',
 ];
 
 const missing = required.filter((needle) => !source.includes(needle));
-if (missing.length) {
+const presentForbidden = forbidden.filter((needle) => source.includes(needle));
+if (missing.length || presentForbidden.length) {
   console.error('OG portrait/theme rule regression detected:');
   for (const needle of missing) console.error(`- missing ${needle}`);
+  for (const needle of presentForbidden) console.error(`- forbidden ${needle}`);
   process.exit(1);
 }
 
