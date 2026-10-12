@@ -20,6 +20,7 @@ jobs:
         with:
           node-version: '22.19.0'
       - run: node scripts/cleanup-public-biography-prose.mjs
+      - run: node scripts/cleanup-public-biography-leftovers.mjs
       - name: Commit cleaned biographies
         run: |
           git config user.name "github-actions[bot]"
@@ -30,5 +31,3 @@ jobs:
             git push origin HEAD:automation/cleanup-public-prose-stage
           fi
       - run: node scripts/check-public-biography-prose.mjs
-
-# stage rerun 2
