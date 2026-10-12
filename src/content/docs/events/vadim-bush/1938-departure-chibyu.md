@@ -11,6 +11,8 @@ date:
 importance: major
 participants:
   - "1910-1919/vadim-bush.md"
+places:
+  - "ukhta.md"
 sources:
   - "komi-memory-vadim-bush.md"
 provenance:

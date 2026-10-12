@@ -30,12 +30,12 @@ mother: "1880-1889/vera-bush.md"
 born:
   known: true
   date: "1912-10-29"
-  place: null
+  place: "tartu.md"
   placeLabel: "Тарту, Эстония"
 died:
   known: true
   date: "1941-07-19"
-  place: null
+  place: "vozhael.md"
   placeLabel: "Вожаёль, Княжпогостский район, Коми АССР"
 buried:
   known: false
