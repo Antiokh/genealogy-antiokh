@@ -12,7 +12,7 @@ html[data-theme='light'] {
   --genea-bg: #ffffff;
   --genea-surface: #ffffff;
   --genea-surface-high: #ffffff;
-  --genea-sidebar: #f5f0ea;
+  --genea-sidebar: #ffffff;
   --genea-text: #2b1a12;
   --genea-muted: #6d5a4d;
   --genea-leather: #4e2818;
@@ -28,6 +28,9 @@ html[data-theme='light'] {
   --genea-shadow-color: rgb(49 32 24 / 9%);
   --genea-avatar-bg: #f1e9e1;
   --genea-avatar-fg: #8a5a3d;
+  --genea-scrollbar-track: #ffffff;
+  --genea-scrollbar-thumb: #c8b9ad;
+  --genea-scrollbar-thumb-hover: #9d7965;
 
   /* Starlight semantic scale: white = strongest foreground, black = deepest background. */
   --sl-color-white: #2b1a12;
@@ -73,6 +76,9 @@ html[data-theme='dark'] {
   --genea-shadow-color: rgb(0 0 0 / 34%);
   --genea-avatar-bg: #2b170d;
   --genea-avatar-fg: #c98a58;
+  --genea-scrollbar-track: #160a06;
+  --genea-scrollbar-thumb: #5c3725;
+  --genea-scrollbar-thumb-hover: #915936;
 
   --sl-color-white: #f8ecdc;
   --sl-color-black: #080301;
@@ -102,6 +108,36 @@ html[data-theme='dark'] body {
   background:
     radial-gradient(circle at 12% -5%, color-mix(in srgb, var(--genea-copper) 14%, transparent), transparent 32rem),
     var(--sl-color-bg);
+}
+
+/* Firefox and Chromium/WebKit scrollbars follow the active theme. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--genea-scrollbar-thumb) var(--genea-scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--genea-scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  min-height: 32px;
+  border: 2px solid var(--genea-scrollbar-track);
+  border-radius: 999px;
+  background: var(--genea-scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--genea-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--genea-scrollbar-track);
 }
 
 ::selection { background: color-mix(in srgb, var(--genea-copper) 32%, transparent); }
