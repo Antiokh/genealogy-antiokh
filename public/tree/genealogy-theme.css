@@ -1,31 +1,31 @@
 :root,
 html[data-theme='light'] {
   color-scheme: light;
-  --sl-color-white: #ffffff;
-  --sl-color-black: #160b07;
-  --sl-color-bg: #ffffff;
-  --sl-color-bg-nav: #ffffff;
-  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-white: #fffaf0;
+  --sl-color-black: #2b1a12;
+  --sl-color-bg: #f7efd9;
+  --sl-color-bg-nav: #fffaf0;
+  --sl-color-bg-sidebar: #f4ead0;
   --sl-color-text: #2b1a12;
-  --sl-color-text-accent: #7b351a;
-  --sl-color-accent-low: #f2dfd3;
+  --sl-color-text-accent: #773217;
+  --sl-color-accent-low: #ead6c1;
   --sl-color-accent: #984a24;
   --sl-color-accent-high: #642a14;
   --sl-color-gray-1: #3d2d24;
-  --sl-color-gray-2: #58483e;
-  --sl-color-gray-3: #75655a;
-  --sl-color-gray-4: #978a80;
-  --sl-color-gray-5: #cec5bd;
-  --sl-color-gray-6: #e9e3de;
-  --sl-color-gray-7: #f7f4f1;
-  --sl-color-hairline: rgb(78 40 24 / 21%);
+  --sl-color-gray-2: #59483c;
+  --sl-color-gray-3: #786655;
+  --sl-color-gray-4: #9b8975;
+  --sl-color-gray-5: #c8b99f;
+  --sl-color-gray-6: #e1d3b7;
+  --sl-color-gray-7: #efe4cc;
+  --sl-color-hairline: rgb(78 40 24 / 25%);
   --tree-background: var(--sl-color-bg);
   --tree-accent: var(--sl-color-accent);
-  --tree-edge: #978a80;
+  --tree-edge: #9b8975;
   --tree-union: var(--sl-color-accent);
-  --tree-scrollbar-track: #ffffff;
-  --tree-scrollbar-thumb: #c8b9ad;
-  --tree-scrollbar-thumb-hover: #9d7965;
+  --tree-scrollbar-track: #efe3ca;
+  --tree-scrollbar-thumb: #bca88f;
+  --tree-scrollbar-thumb-hover: #8e6a54;
 }
 
 html[data-theme='dark'] {
@@ -62,28 +62,15 @@ html[data-theme='dark'] {
   scrollbar-color: var(--tree-scrollbar-thumb) var(--tree-scrollbar-track);
 }
 
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--tree-scrollbar-track);
-}
-
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--tree-scrollbar-track); }
 *::-webkit-scrollbar-thumb {
   border: 2px solid var(--tree-scrollbar-track);
   border-radius: 999px;
   background: var(--tree-scrollbar-thumb);
 }
-
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--tree-scrollbar-thumb-hover);
-}
-
-*::-webkit-scrollbar-corner {
-  background: var(--tree-scrollbar-track);
-}
+*::-webkit-scrollbar-thumb:hover { background: var(--tree-scrollbar-thumb-hover); }
+*::-webkit-scrollbar-corner { background: var(--tree-scrollbar-track); }
 
 .tree-status,
 .tree-controls button {

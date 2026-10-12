@@ -1,0 +1,70 @@
+/* Photo treatment shared by the album-inspired light theme and dark theme. */
+
+/* The portrait itself already has its own frame. Keep the outer figure transparent
+   so it does not read as a second mat/frame around the image. */
+.person-portrait {
+  position: relative;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Photo corners sit directly on the portrait frame, like old album mounts. */
+.person-portrait::before,
+.person-portrait::after {
+  content: '';
+  position: absolute;
+  z-index: 5;
+  width: 1.7rem;
+  height: 1.7rem;
+  opacity: 0.94;
+  pointer-events: none;
+}
+
+.person-portrait::before {
+  top: -0.08rem;
+  left: -0.08rem;
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.person-portrait::after {
+  right: -0.08rem;
+  bottom: -0.08rem;
+  clip-path: polygon(100% 100%, 0 100%, 100% 0);
+}
+
+html[data-theme='light'] .person-portrait::before,
+html[data-theme='light'] .person-portrait::after {
+  background: var(--genea-leather);
+}
+
+html[data-theme='dark'] .person-portrait::before,
+html[data-theme='dark'] .person-portrait::after {
+  background: var(--genea-copper);
+  box-shadow: 0 0 0.75rem color-mix(in srgb, var(--genea-copper) 20%, transparent);
+}
+
+/* The old slide mount used a large plus-shaped backing plate behind the photo.
+   It competes with the image, so keep the clean slide frame and remove the cross. */
+.person-gallery-mount-cross {
+  display: none !important;
+}
+
+/* In the album light theme --sl-color-bg-nav is deliberately the dark leather
+   header. Tree controls are content controls, so they belong on paper instead. */
+html[data-theme='light'] .family-tree {
+  --tree-control-bg: var(--genea-surface) !important;
+  --tree-control-hover: var(--genea-paper-deep) !important;
+}
+
+html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
+  background: var(--genea-paper-high) !important;
+}
+
+/* Standard MapLibre pins should follow the album's leather color instead of
+   keeping the library's default cyan marker fill. */
+.person-places .maplibregl-marker svg [fill='#3FB1CE'],
+.person-places .maplibregl-marker svg [fill='#3fb1ce'] {
+  fill: var(--genea-leather) !important;
+}

@@ -2,7 +2,7 @@ const TOKENS = [
   '--sl-font-system',
   '--sl-color-accent-low', '--sl-color-accent', '--sl-color-accent-high',
   '--sl-color-gray-1', '--sl-color-gray-2', '--sl-color-gray-3', '--sl-color-gray-4', '--sl-color-gray-5', '--sl-color-gray-6', '--sl-color-gray-7',
-  '--sl-color-bg', '--sl-color-bg-nav', '--sl-color-bg-sidebar', '--sl-color-hairline', '--sl-color-text', '--sl-color-text-accent',
+  '--sl-color-bg', '--sl-color-hairline', '--sl-color-text', '--sl-color-text-accent',
 ];
 
 export function startThemeBridge(onChange) {
@@ -23,6 +23,17 @@ export function startThemeBridge(onChange) {
         const value = styles.getPropertyValue(token).trim();
         if (value) root.style.setProperty(token, value);
       }
+
+      // The site header intentionally uses --sl-color-bg-nav as the dark leather
+      // cover in the album light theme. Tree cards, however, need a content
+      // surface rather than the navigation/header surface, so bridge the
+      // genealogy surface tokens explicitly when they are available.
+      const surface = styles.getPropertyValue('--genea-surface').trim()
+        || styles.getPropertyValue('--sl-color-bg-nav').trim();
+      const sidebar = styles.getPropertyValue('--genea-sidebar').trim()
+        || styles.getPropertyValue('--sl-color-bg-sidebar').trim();
+      if (surface) root.style.setProperty('--sl-color-bg-nav', surface);
+      if (sidebar) root.style.setProperty('--sl-color-bg-sidebar', sidebar);
     }
     root.dataset.theme = theme;
     onChange?.(theme);
