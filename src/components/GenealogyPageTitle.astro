@@ -301,6 +301,7 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
     <div class="person-title-copy">
       <h1 class="person-name-heading">
         {surname && <span class="person-name-surname">{surname}</span>}
+        {surname && ' '}
         <span class="person-name-given">{givenName}</span>
       </h1>
       {surnameNote && <div class="person-name-note">{surnameNote}</div>}
