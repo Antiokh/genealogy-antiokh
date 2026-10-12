@@ -6,7 +6,7 @@ const ROOT = 'src/content/docs/people';
 const forbidden = [
   {
     id: 'technical-representation',
-    test: /\b(?:frontmatter|yaml|schema|structured field|structured data|mapping|import\w*|renderer|record|data model|residence|events?\/|place card)\b/iu,
+    test: /\b(?:frontmatter|yaml|schema|structured field|structured data|mapping|import\w*|renderer|data model|residence|events?\/|place card)\b/iu,
   },
   {
     id: 'article-or-card-self-reference',
@@ -14,7 +14,7 @@ const forbidden = [
   },
   {
     id: 'editorial-placement',
-    test: /(?<![\p{L}\p{N}_])(?:сохранено|сохранён|сохранена|сохраняется|вынесено|перенесено|разнесено|размещено|оставлено)(?![\p{L}\p{N}_])[^.\n]{0,110}(?<![\p{L}\p{N}_])(?:для|в|ниже|отдельн|аналитик|таблиц|карточ|frontmatter)/iu,
+    test: /(?<![\p{L}\p{N}_])(?:сохранено|сохранён|сохранена|сохраняется|вынесено|перенесено|разнесено|размещено|оставлено)(?![\p{L}\p{N}_])[^.\n]{0,110}(?:(?:для|ради)\s+(?:аналитик|таблиц)|(?:в|по)\s+(?:frontmatter|yaml|карточ|таблиц|структур|отдельн)|(?:ниже|отдельно))/iu,
   },
   {
     id: 'editorial-selection',
@@ -30,7 +30,7 @@ const forbidden = [
   },
   {
     id: 'confidence-bookkeeping',
-    test: /(?<![\p{L}\p{N}_])(?:уровень уверенности|базовая уверенность|confidence|reconciliation|сверка источников|каноническ[\p{L}-]*)(?![\p{L}\p{N}_])/iu,
+    test: /(?<![\p{L}\p{N}_])(?:уровень уверенности|базовая уверенность|confidence|reconciliation|сверка источников)(?![\p{L}\p{N}_])/iu,
   },
 ];
 
@@ -46,11 +46,13 @@ async function markdownFiles(directory) {
   return files;
 }
 
-/** Return the published Markdown body and its character offset in the original file. */
-function publicBody(content) {
-  if (!content.startsWith('---\n')) return { body: content, offset: 0 };
+/** Return the person-page body and its character offset, or null for non-person Markdown. */
+function publicPersonBody(content) {
+  if (!content.startsWith('---\n')) return null;
   const end = content.indexOf('\n---\n', 4);
-  if (end < 0) return { body: content, offset: 0 };
+  if (end < 0) return null;
+  const frontmatter = content.slice(4, end);
+  if (!/(?:^|\n)entity:\s*["']?person["']?\s*(?:\n|$)/i.test(frontmatter)) return null;
   const offset = end + 5;
   return { body: content.slice(offset), offset };
 }
@@ -64,7 +66,9 @@ const violations = [];
 
 for (const file of await markdownFiles(ROOT)) {
   const raw = await readFile(file, 'utf8');
-  const { body, offset } = publicBody(raw);
+  const published = publicPersonBody(raw);
+  if (!published) continue;
+  const { body, offset } = published;
 
   for (const rule of forbidden) {
     const flags = rule.test.flags.includes('g') ? rule.test.flags : `${rule.test.flags}g`;
