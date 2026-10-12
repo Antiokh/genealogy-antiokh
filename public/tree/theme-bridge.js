@@ -1,7 +1,6 @@
 const TOKENS = [
   '--sl-font-system',
   '--sl-color-accent-low', '--sl-color-accent', '--sl-color-accent-high',
-  '--sl-color-white', '--sl-color-black',
   '--sl-color-gray-1', '--sl-color-gray-2', '--sl-color-gray-3', '--sl-color-gray-4', '--sl-color-gray-5', '--sl-color-gray-6', '--sl-color-gray-7',
   '--sl-color-bg', '--sl-color-bg-nav', '--sl-color-bg-sidebar', '--sl-color-hairline', '--sl-color-text', '--sl-color-text-accent',
 ];
