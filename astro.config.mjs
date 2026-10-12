@@ -11,6 +11,7 @@ export default defineConfig({
       title: 'Семейная энциклопедия',
       description: 'Люди, события, места и источники семейной истории',
       routeMiddleware: './src/routeData.ts',
+      customCss: ['./src/styles/genealogy.css'],
       locales: {
         root: {
           label: 'Русский',
@@ -28,6 +29,7 @@ export default defineConfig({
         baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
       },
       components: {
+        Head: './src/components/GenealogyHead.astro',
         Header: './src/components/GenealogyHeader.astro',
         ThemeSelect: './src/components/GenealogyThemeSwitch.astro',
         PageTitle: './src/components/GenealogyPageTitle.astro',

@@ -1,3 +1,5 @@
+@import url('/tree/genealogy-theme.css');
+
 :root {
   color-scheme:light dark;
   --sl-color-bg:#fff;

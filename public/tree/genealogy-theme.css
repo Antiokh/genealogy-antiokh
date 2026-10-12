@@ -1,0 +1,93 @@
+:root,
+html[data-theme='light'] {
+  color-scheme: light;
+  --sl-color-white: #ffffff;
+  --sl-color-black: #160b07;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-text: #2b1a12;
+  --sl-color-text-accent: #7b351a;
+  --sl-color-accent-low: #f2dfd3;
+  --sl-color-accent: #984a24;
+  --sl-color-accent-high: #642a14;
+  --sl-color-gray-1: #3d2d24;
+  --sl-color-gray-2: #58483e;
+  --sl-color-gray-3: #75655a;
+  --sl-color-gray-4: #978a80;
+  --sl-color-gray-5: #cec5bd;
+  --sl-color-gray-6: #e9e3de;
+  --sl-color-gray-7: #f7f4f1;
+  --sl-color-hairline: rgb(78 40 24 / 21%);
+  --tree-background: var(--sl-color-bg);
+  --tree-accent: var(--sl-color-accent);
+  --tree-edge: #978a80;
+  --tree-union: var(--sl-color-accent);
+  --tree-scrollbar-track: #ffffff;
+  --tree-scrollbar-thumb: #c8b9ad;
+  --tree-scrollbar-thumb-hover: #9d7965;
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+  --sl-color-white: #f8ecdc;
+  --sl-color-black: #080301;
+  --sl-color-bg: #160a06;
+  --sl-color-bg-nav: #211109;
+  --sl-color-bg-sidebar: #1b0d08;
+  --sl-color-text: #f1e5d4;
+  --sl-color-text-accent: #e8ae70;
+  --sl-color-accent-low: #442211;
+  --sl-color-accent: #c66a32;
+  --sl-color-accent-high: #f0be82;
+  --sl-color-gray-1: #e8d9c6;
+  --sl-color-gray-2: #c2aa96;
+  --sl-color-gray-3: #9b806c;
+  --sl-color-gray-4: #725644;
+  --sl-color-gray-5: #513726;
+  --sl-color-gray-6: #2b170d;
+  --sl-color-gray-7: #211109;
+  --sl-color-hairline: rgb(216 164 85 / 30%);
+  --tree-background: var(--sl-color-bg);
+  --tree-accent: var(--sl-color-accent);
+  --tree-edge: #725644;
+  --tree-union: var(--sl-color-accent);
+  --tree-scrollbar-track: #160a06;
+  --tree-scrollbar-thumb: #5c3725;
+  --tree-scrollbar-thumb-hover: #915936;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--tree-scrollbar-thumb) var(--tree-scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--tree-scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid var(--tree-scrollbar-track);
+  border-radius: 999px;
+  background: var(--tree-scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--tree-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--tree-scrollbar-track);
+}
+
+.tree-status,
+.tree-controls button {
+  box-shadow:
+    0 4px 14px color-mix(in srgb, var(--sl-color-black) 16%, transparent),
+    inset 0 1px 0 color-mix(in srgb, var(--sl-color-white) 6%, transparent);
+}

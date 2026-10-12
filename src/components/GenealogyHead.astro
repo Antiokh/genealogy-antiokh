@@ -1,0 +1,44 @@
+---
+import DefaultHead from '@astrojs/starlight/components/Head.astro';
+
+const route = Astro.locals.starlightRoute;
+const site = Astro.site ?? new URL('https://genealogy-antiokh.pages.dev');
+const isPerson = route.entry.data.entity === 'person' && route.id.startsWith('people/');
+const personSlug = isPerson ? route.id.replace(/^people\//, '').replace(/\/$/, '') : '';
+const widePath = isPerson ? `/generated/og/people/${personSlug}.png` : '/generated/og/index.png';
+const squarePath = isPerson ? `/generated/og/people/${personSlug}-square.png` : '/generated/og/index-square.png';
+const wideUrl = new URL(widePath, site).href;
+const squareUrl = new URL(squarePath, site).href;
+const title = route.entry.data.title || 'Семейная энциклопедия';
+const head = route.head;
+
+for (let index = head.length - 1; index >= 0; index -= 1) {
+  const item = head[index];
+  if (item.tag !== 'meta' || !item.attrs) continue;
+  const property = 'property' in item.attrs ? item.attrs.property : undefined;
+  const name = 'name' in item.attrs ? item.attrs.name : undefined;
+  if (typeof property === 'string' && property.startsWith('og:image')) head.splice(index, 1);
+  else if (name === 'twitter:image' || name === 'twitter:image:alt') head.splice(index, 1);
+}
+
+const twitterCard = head.find((item) => item.tag === 'meta' && item.attrs && 'name' in item.attrs && item.attrs.name === 'twitter:card');
+if (twitterCard?.attrs) twitterCard.attrs.content = 'summary_large_image';
+else head.push({ tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } });
+
+head.push(
+  { tag: 'meta', attrs: { property: 'og:image', content: wideUrl } },
+  { tag: 'meta', attrs: { property: 'og:image:width', content: '1200' } },
+  { tag: 'meta', attrs: { property: 'og:image:height', content: '630' } },
+  { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' } },
+  { tag: 'meta', attrs: { property: 'og:image:alt', content: title } },
+  { tag: 'meta', attrs: { property: 'og:image', content: squareUrl } },
+  { tag: 'meta', attrs: { property: 'og:image:width', content: '1080' } },
+  { tag: 'meta', attrs: { property: 'og:image:height', content: '1080' } },
+  { tag: 'meta', attrs: { property: 'og:image:type', content: 'image/png' } },
+  { tag: 'meta', attrs: { property: 'og:image:alt', content: title } },
+  { tag: 'meta', attrs: { name: 'twitter:image', content: wideUrl } },
+  { tag: 'meta', attrs: { name: 'twitter:image:alt', content: title } },
+  { tag: 'link', attrs: { rel: 'image_src', href: squareUrl } },
+);
+---
+<DefaultHead />
