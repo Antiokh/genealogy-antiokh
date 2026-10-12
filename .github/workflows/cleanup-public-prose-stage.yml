@@ -1,0 +1,32 @@
+name: Cleanup public biography prose stage
+
+on:
+  push:
+    branches:
+      - automation/cleanup-public-prose-stage
+
+permissions:
+  contents: write
+
+jobs:
+  cleanup:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: automation/cleanup-public-prose-stage
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22.19.0'
+      - run: node scripts/cleanup-public-biography-prose.mjs
+      - name: Commit cleaned biographies
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/content/docs/people
+          if ! git diff --cached --quiet; then
+            git commit -m "Clean public biography prose"
+            git push origin HEAD:automation/cleanup-public-prose-stage
+          fi
+      - run: node scripts/check-public-biography-prose.mjs
