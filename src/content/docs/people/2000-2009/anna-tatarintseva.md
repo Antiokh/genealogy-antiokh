@@ -1,14 +1,18 @@
 ---
 title: "Anna Tatarintseva"
-description: "Anna Tatarintseva, born 11 July 2001"
+description: "Anna Tatarintseva, born 11 July 2001 in Stavropol"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: und-Latn
   full: "Anna Tatarintseva"
   display: "Anna Tatarintseva"
+  first: "Anna"
+  last: "Tatarintseva"
   birth_last: "Tatarintseva"
-  aliases: []
+  aliases:
+    - "Ana Tatarintseva"
+    - "Анна Татаринцева"
 families:
   - key: "nazarov"
     label: "Назаровы"
@@ -34,7 +38,8 @@ mother: "1960-1969/tatyana-tatarintseva.md"
 born:
   known: true
   date: "2001-07-11"
-  place: null
+  place: "stavropol.md"
+  placeLabel: "Ставрополь, Россия"
 died:
   known: false
   date: null
@@ -46,13 +51,17 @@ buried:
 partners:
   - person: "1980-1989/anton-nazarov.md"
     married:
+      known: true
       date: "2023-01-21"
+      place: "zvezdara.md"
+      placeLabel: "Белград, Звездара, Сербия"
     divorced:
       known: true
       date: "2026-02-10"
 occupation: []
 residence: []
 sources:
+  - "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
@@ -64,6 +73,11 @@ external:
 
 ## Биография
 
-Расширенная выгрузка MyHeritage уточняет дату рождения: 11 июля 2001 года.
+Анна Татаринцева родилась 11 июля 2001 года в Ставрополе. Эти дата и место рождения указаны в международной сербской выписке о браке.
 
-Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).
+21 января 2023 года Анна и [Антон Назаров](/people/1980-1989/anton-nazarov/) зарегистрировали брак в Белграде. В выписке после регистрации у Анны сохранена фамилия Tatarintseva.
+
+## Источники
+
+- [Международная выписка о браке, Сербия](/sources/serbia-marriage-anton-nazarov-anna-tatarintseva-2023/)
+- [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)
