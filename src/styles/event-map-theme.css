@@ -13,6 +13,9 @@ html[data-theme='light'] {
   --map-link: #7b351a;
   --map-range-track: #cec5bd;
   --map-range-active: #984a24;
+  --map-scrollbar-track: #ffffff;
+  --map-scrollbar-thumb: #c8b9ad;
+  --map-scrollbar-thumb-hover: #9d7965;
   color-scheme: light;
 }
 
@@ -30,7 +33,38 @@ html[data-theme='dark'] {
   --map-link: #e8ae70;
   --map-range-track: #513726;
   --map-range-active: #c66a32;
+  --map-scrollbar-track: #160a06;
+  --map-scrollbar-thumb: #5c3725;
+  --map-scrollbar-thumb-hover: #915936;
   color-scheme: dark;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--map-scrollbar-thumb) var(--map-scrollbar-track);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: var(--map-scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid var(--map-scrollbar-track);
+  border-radius: 999px;
+  background: var(--map-scrollbar-thumb);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--map-scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-corner {
+  background: var(--map-scrollbar-track);
 }
 
 .map-shell { background: #ffffff; }
