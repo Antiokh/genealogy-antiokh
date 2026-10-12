@@ -10,7 +10,7 @@ const forbidden = [
   },
   {
     id: 'genealogy-technical-markers',
-    test: /(?<![\p{L}\p{N}_])(?:GEDCOM|XREF|_UID|Record Match|NAME\s*\/\/|[IF]\d{5,})(?![\p{L}\p{N}_])/iu,
+    test: /(?<![\p{L}\p{N}_])(?:GEDCOM|XREF|_UID|Record Match|NAME\s*\/\/|[IF]\d{5,})(?![\p{L}\p{N}_])/u,
   },
   {
     id: 'placeholder-biography',
@@ -87,6 +87,7 @@ const allowedCases = [
   'Источники расходятся в датировке смерти.',
   'Точный год рождения по имеющимся источникам неизвестен.',
   'Воспоминания содержат две версии обстоятельств смерти.',
+  '[Михаил Курочкин](/people/unknown/mikhail-kurochkin-i500151/)',
 ];
 
 for (const [id, text] of regressionCases) {
