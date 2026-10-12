@@ -1,17 +1,17 @@
 :root,
 html[data-theme='light'] {
-  --map-popup-bg: #fffdf9;
+  --map-popup-bg: #ffffff;
   --map-popup-fg: #2b1a12;
-  --map-panel-bg: rgb(255 253 249 / 95%);
+  --map-panel-bg: rgb(255 255 255 / 96%);
   --map-panel-fg: #2b1a12;
   --map-panel-muted: #6d5a4d;
   --map-panel-border: rgb(78 40 24 / 20%);
-  --map-control-bg: #fffdf9;
-  --map-control-hover: #f0ece7;
+  --map-control-bg: #ffffff;
+  --map-control-hover: #f7f4f1;
   --map-control-fg: #2b1a12;
-  --map-control-border: #c9beb3;
-  --map-link: #6a3018;
-  --map-range-track: #c9beb3;
+  --map-control-border: #cec5bd;
+  --map-link: #7b351a;
+  --map-range-track: #cec5bd;
   --map-range-active: #984a24;
   color-scheme: light;
 }
@@ -33,21 +33,16 @@ html[data-theme='dark'] {
   color-scheme: dark;
 }
 
-.map-shell {
-  background: #f6f2eb;
-}
-
-html[data-theme='dark'] .map-shell {
-  background: #160a06;
-}
+.map-shell { background: #ffffff; }
+html[data-theme='dark'] .map-shell { background: #160a06; }
 
 .event-range,
 .map-status,
 .maplibregl-popup-content,
 .maplibregl-ctrl-group {
   box-shadow:
-    0 8px 24px rgb(49 32 24 / 11%),
-    inset 0 1px 0 rgb(255 255 255 / 12%);
+    0 8px 24px rgb(49 32 24 / 9%),
+    inset 0 1px 0 rgb(255 255 255 / 14%);
 }
 
 html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content, .maplibregl-ctrl-group) {
