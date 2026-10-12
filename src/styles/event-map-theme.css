@@ -1,21 +1,21 @@
 :root,
 html[data-theme='light'] {
-  --map-popup-bg: #ffffff;
+  --map-popup-bg: #fffaf0;
   --map-popup-fg: #2b1a12;
-  --map-panel-bg: rgb(255 255 255 / 96%);
+  --map-panel-bg: rgb(255 250 240 / 96%);
   --map-panel-fg: #2b1a12;
-  --map-panel-muted: #6d5a4d;
-  --map-panel-border: rgb(78 40 24 / 20%);
-  --map-control-bg: #ffffff;
-  --map-control-hover: #f7f4f1;
+  --map-panel-muted: #75604f;
+  --map-panel-border: rgb(78 40 24 / 22%);
+  --map-control-bg: #fffaf0;
+  --map-control-hover: #efe1c6;
   --map-control-fg: #2b1a12;
-  --map-control-border: #cec5bd;
-  --map-link: #7b351a;
-  --map-range-track: #cec5bd;
+  --map-control-border: #c8b99f;
+  --map-link: #773217;
+  --map-range-track: #c8b99f;
   --map-range-active: #984a24;
-  --map-scrollbar-track: #ffffff;
-  --map-scrollbar-thumb: #c8b9ad;
-  --map-scrollbar-thumb-hover: #9d7965;
+  --map-scrollbar-track: #efe3ca;
+  --map-scrollbar-thumb: #bca88f;
+  --map-scrollbar-thumb-hover: #8e6a54;
   color-scheme: light;
 }
 
@@ -44,30 +44,17 @@ html[data-theme='dark'] {
   scrollbar-color: var(--map-scrollbar-thumb) var(--map-scrollbar-track);
 }
 
-*::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-*::-webkit-scrollbar-track {
-  background: var(--map-scrollbar-track);
-}
-
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: var(--map-scrollbar-track); }
 *::-webkit-scrollbar-thumb {
   border: 2px solid var(--map-scrollbar-track);
   border-radius: 999px;
   background: var(--map-scrollbar-thumb);
 }
+*::-webkit-scrollbar-thumb:hover { background: var(--map-scrollbar-thumb-hover); }
+*::-webkit-scrollbar-corner { background: var(--map-scrollbar-track); }
 
-*::-webkit-scrollbar-thumb:hover {
-  background: var(--map-scrollbar-thumb-hover);
-}
-
-*::-webkit-scrollbar-corner {
-  background: var(--map-scrollbar-track);
-}
-
-.map-shell { background: #ffffff; }
+.map-shell { background: #f7efd9; }
 html[data-theme='dark'] .map-shell { background: #160a06; }
 
 .event-range,
@@ -75,8 +62,8 @@ html[data-theme='dark'] .map-shell { background: #160a06; }
 .maplibregl-popup-content,
 .maplibregl-ctrl-group {
   box-shadow:
-    0 8px 24px rgb(49 32 24 / 9%),
-    inset 0 1px 0 rgb(255 255 255 / 14%);
+    0 8px 24px rgb(49 32 24 / 11%),
+    inset 0 1px 0 rgb(255 255 255 / 18%);
 }
 
 html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content, .maplibregl-ctrl-group) {
