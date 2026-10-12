@@ -1,0 +1,206 @@
+:root {
+  --genea-red: #a94335;
+  --genea-green: #4f643b;
+  --genea-olive: #7f793a;
+  --genea-brass: #a9832f;
+  --genea-radius-card: 1rem;
+  --genea-shadow-sm: 0 2px 9px rgb(48 25 13 / 10%);
+  --genea-shadow-md: 0 10px 28px rgb(48 25 13 / 12%);
+}
+
+html[data-theme='light'] {
+  color-scheme: light;
+
+  --genea-bg: #f3ebdd;
+  --genea-surface: #faf3e7;
+  --genea-surface-high: #fff9f0;
+  --genea-sidebar: #ede1cf;
+  --genea-text: #2a170e;
+  --genea-muted: #735f50;
+  --genea-leather: #5a2b16;
+  --genea-copper: #a95728;
+  --genea-copper-text: #7a3519;
+  --genea-green: #4f643b;
+  --genea-olive: #7f793a;
+  --genea-brass: #a9832f;
+  --genea-red: #a94335;
+  --genea-line: rgb(90 43 22 / 18%);
+  --genea-line-strong: rgb(90 43 22 / 28%);
+  --genea-highlight: rgb(255 255 255 / 72%);
+  --genea-shadow-color: rgb(61 32 18 / 12%);
+
+  --sl-color-white: #fffaf3;
+  --sl-color-black: #1a0d08;
+  --sl-color-bg: var(--genea-bg);
+  --sl-color-bg-nav: var(--genea-surface-high);
+  --sl-color-bg-sidebar: var(--genea-sidebar);
+  --sl-color-text: var(--genea-text);
+  --sl-color-text-accent: var(--genea-copper-text);
+  --sl-color-accent-low: #ead2b8;
+  --sl-color-accent: var(--genea-copper);
+  --sl-color-accent-high: #6a2c15;
+  --sl-color-gray-1: #3a261b;
+  --sl-color-gray-2: #5f4a3c;
+  --sl-color-gray-3: #806b5b;
+  --sl-color-gray-4: #a99582;
+  --sl-color-gray-5: #cdbca7;
+  --sl-color-gray-6: #e4d7c5;
+  --sl-color-gray-7: #efe6d9;
+  --sl-color-hairline-light: var(--genea-line);
+  --sl-color-hairline: var(--genea-line-strong);
+}
+
+html[data-theme='dark'] {
+  color-scheme: dark;
+
+  --genea-bg: #160a06;
+  --genea-surface: #211109;
+  --genea-surface-high: #2b170d;
+  --genea-sidebar: #1b0d08;
+  --genea-text: #f1e5d4;
+  --genea-muted: #c2aa96;
+  --genea-leather: #3a1c10;
+  --genea-copper: #c66a32;
+  --genea-copper-text: #e8ae70;
+  --genea-green: #849565;
+  --genea-olive: #a39b59;
+  --genea-brass: #d0a447;
+  --genea-red: #d0604f;
+  --genea-line: rgb(216 164 85 / 18%);
+  --genea-line-strong: rgb(216 164 85 / 30%);
+  --genea-highlight: rgb(255 222 176 / 6%);
+  --genea-shadow-color: rgb(0 0 0 / 34%);
+
+  --sl-color-white: #f8ecdc;
+  --sl-color-black: #080301;
+  --sl-color-bg: var(--genea-bg);
+  --sl-color-bg-nav: var(--genea-surface);
+  --sl-color-bg-sidebar: var(--genea-sidebar);
+  --sl-color-text: var(--genea-text);
+  --sl-color-text-accent: var(--genea-copper-text);
+  --sl-color-accent-low: #442211;
+  --sl-color-accent: var(--genea-copper);
+  --sl-color-accent-high: #f0be82;
+  --sl-color-gray-1: #e8d9c6;
+  --sl-color-gray-2: #c2aa96;
+  --sl-color-gray-3: #9b806c;
+  --sl-color-gray-4: #725644;
+  --sl-color-gray-5: #513726;
+  --sl-color-gray-6: #2b170d;
+  --sl-color-gray-7: #211109;
+  --sl-color-hairline-light: var(--genea-line);
+  --sl-color-hairline: var(--genea-line-strong);
+}
+
+html {
+  background: var(--sl-color-bg);
+}
+
+body {
+  color: var(--sl-color-text);
+  background:
+    radial-gradient(circle at 12% -5%, color-mix(in srgb, var(--genea-copper) 14%, transparent), transparent 32rem),
+    var(--sl-color-bg);
+}
+
+::selection {
+  background: color-mix(in srgb, var(--genea-copper) 32%, transparent);
+}
+
+header.header {
+  border-bottom-color: var(--genea-line);
+  background: color-mix(in srgb, var(--sl-color-bg-nav) 90%, transparent);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.sidebar-pane {
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--sl-color-bg-sidebar) 92%, var(--genea-copper) 8%),
+      var(--sl-color-bg-sidebar));
+}
+
+.sidebar-content a {
+  color: var(--sl-color-gray-2);
+}
+
+.sidebar-content a:hover,
+.sidebar-content a[aria-current='page'] {
+  color: var(--sl-color-text-accent);
+}
+
+.sidebar-content a[aria-current='page'] {
+  background: color-mix(in srgb, var(--genea-copper) 10%, transparent);
+}
+
+.right-sidebar {
+  border-inline-start-color: var(--genea-line);
+}
+
+.sl-markdown-content a {
+  text-decoration-color: color-mix(in srgb, var(--genea-copper) 55%, transparent);
+  text-underline-offset: .18em;
+}
+
+.sl-markdown-content a:hover {
+  color: var(--sl-color-accent-high);
+}
+
+.card,
+.pagination-links a {
+  border-color: var(--genea-line);
+  background:
+    linear-gradient(145deg,
+      color-mix(in srgb, var(--genea-surface-high) 97%, var(--sl-color-white) 3%),
+      color-mix(in srgb, var(--genea-surface) 96%, var(--sl-color-black) 4%));
+  box-shadow:
+    0 10px 28px var(--genea-shadow-color),
+    inset 0 1px 0 var(--genea-highlight);
+}
+
+.card {
+  border-radius: var(--genea-radius-card);
+}
+
+.card:hover,
+.card:focus-within,
+.pagination-links a:hover,
+.pagination-links a:focus-visible {
+  border-color: color-mix(in srgb, var(--genea-copper) 48%, var(--genea-line));
+  box-shadow:
+    0 14px 34px color-mix(in srgb, var(--genea-shadow-color) 115%, transparent),
+    inset 0 1px 0 var(--genea-highlight);
+}
+
+.sl-markdown-content blockquote {
+  border-inline-start-color: var(--genea-brass);
+  background: color-mix(in srgb, var(--genea-surface) 74%, transparent);
+}
+
+.sl-markdown-content :is(code, kbd) {
+  border-color: var(--genea-line);
+}
+
+.sl-markdown-content table {
+  border-color: var(--genea-line);
+}
+
+.sl-markdown-content th {
+  background: color-mix(in srgb, var(--genea-surface) 88%, transparent);
+}
+
+.sl-markdown-content tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--genea-surface) 46%, transparent);
+}
+
+:is(.tree-embed, .event-map-embed, .person-map-canvas, .family-tree__frame) {
+  border-color: var(--genea-line-strong) !important;
+  box-shadow:
+    0 12px 30px var(--genea-shadow-color),
+    inset 0 1px 0 var(--genea-highlight);
+}
+
+:focus-visible {
+  outline-color: var(--sl-color-accent-high);
+}
