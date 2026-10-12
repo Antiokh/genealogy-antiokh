@@ -222,9 +222,9 @@ async function rasterBackground(filePath, width, height) {
 function portraitMarkup(uri, x, y, width, height, clipId, deceased) {
   if (!uri) return '';
   const ribbonWidth = Math.round(width * 0.86);
-  const ribbonHeight = Math.max(15, Math.round(width * 0.05));
-  const ribbonX = Math.round(x + width * 0.34);
-  const ribbonY = Math.round(y + height * 0.79);
+  const ribbonHeight = Math.max(30, Math.round(width * 0.10));
+  const ribbonX = Math.round(x + width * 0.46);
+  const ribbonY = Math.round(y + height * 0.88);
   const ribbonCx = Math.round(ribbonX + ribbonWidth / 2);
   const ribbonCy = Math.round(ribbonY + ribbonHeight / 2);
 
@@ -271,7 +271,7 @@ function wideSvg({ background, portrait, data, deceased = false }) {
   <image href="${background}" x="0" y="0" width="1200" height="630" preserveAspectRatio="none"/>
   <rect width="1200" height="630" fill="#160b07" opacity="0.20"/>
   <rect width="1200" height="630" fill="url(#shade)"/>
-  ${portraitMarkup(portrait, 96, 122, 320, 386, 'portrait-wide', deceased)}
+  ${portraitMarkup(portrait, 122, 122, 320, 386, 'portrait-wide', deceased)}
   <text x="${textX}" y="126" font-family="DejaVu Sans" font-size="25" font-weight="700" fill="#d4b170" letter-spacing="1.4">СЕМЕЙНАЯ ЭНЦИКЛОПЕДИЯ</text>
   ${text}
   ${years ? `<text x="${textX}" y="${yearsY}" font-family="DejaVu Sans" font-size="35" font-weight="500" fill="#d9bd89">${escapeXml(years)}</text>` : ''}
@@ -306,7 +306,7 @@ function squareSvg({ background, portrait, data, deceased = false }) {
   <image href="${background}" x="0" y="0" width="1080" height="1080" preserveAspectRatio="none"/>
   <rect width="1080" height="1080" fill="#160b07" opacity="0.22"/>
   <rect width="1080" height="1080" fill="url(#shade-square)"/>
-  ${portraitMarkup(portrait, 82, 330, 300, 390, 'portrait-square', deceased)}
+  ${portraitMarkup(portrait, 106, 330, 300, 390, 'portrait-square', deceased)}
   <text x="${textX}" y="250" font-family="DejaVu Sans" font-size="24" font-weight="700" fill="#d4b170" letter-spacing="1.2">СЕМЕЙНАЯ ЭНЦИКЛОПЕДИЯ</text>
   ${text}
   ${years ? `<text x="${textX}" y="${yearsY}" font-family="DejaVu Sans" font-size="36" font-weight="500" fill="#d9bd89">${escapeXml(years)}</text>` : ''}
