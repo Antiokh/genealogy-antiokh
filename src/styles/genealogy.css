@@ -169,7 +169,7 @@ header.header {
 .pagination-links a:focus-visible {
   border-color: color-mix(in srgb, var(--genea-copper) 48%, var(--genea-line));
   box-shadow:
-    0 14px 34px color-mix(in srgb, var(--genea-shadow-color) 115%, transparent),
+    0 14px 34px var(--genea-shadow-color),
     inset 0 1px 0 var(--genea-highlight);
 }
 
@@ -199,6 +199,41 @@ header.header {
   box-shadow:
     0 12px 30px var(--genea-shadow-color),
     inset 0 1px 0 var(--genea-highlight);
+}
+
+.family-tree__control-group {
+  border-color: var(--genea-line-strong) !important;
+  box-shadow:
+    0 5px 16px var(--genea-shadow-color),
+    inset 0 1px 0 var(--genea-highlight) !important;
+}
+
+html[data-theme='light'] .person-places {
+  --map-popup-bg: #fff9f0 !important;
+  --map-popup-fg: #2a170e !important;
+  --map-panel-border: rgb(90 43 22 / 24%) !important;
+  --map-control-bg: #fff9f0 !important;
+  --map-control-hover: #eadfd0 !important;
+  --map-control-fg: #2a170e !important;
+  --map-control-border: #cdbca7 !important;
+  --map-link: #7a3519 !important;
+}
+
+html[data-theme='dark'] .person-places {
+  --map-popup-bg: #2b170d !important;
+  --map-popup-fg: #f1e5d4 !important;
+  --map-panel-border: rgb(216 164 85 / 28%) !important;
+  --map-control-bg: #211109 !important;
+  --map-control-hover: #3a1c10 !important;
+  --map-control-fg: #f1e5d4 !important;
+  --map-control-border: #513726 !important;
+  --map-link: #e8ae70 !important;
+}
+
+.person-places :is(.maplibregl-ctrl-group, .maplibregl-popup-content) {
+  box-shadow:
+    0 8px 24px var(--genea-shadow-color),
+    inset 0 1px 0 var(--genea-highlight) !important;
 }
 
 :focus-visible {
