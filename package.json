@@ -10,7 +10,7 @@
     "import:snapshot": "node scripts/import-demo-snapshot.mjs && node scripts/apply-reconciled-relations.mjs && node scripts/enrich-person-names.mjs && node scripts/enrich-family-groups.mjs && node scripts/strip-person-derived-body.mjs",
     "import:myheritage": "node scripts/import-myheritage-profiles.mjs && node scripts/import-myheritage-media.mjs",
     "preview": "astro preview",
-    "check": "node --check scripts/import-myheritage-profiles.mjs && node --check scripts/import-myheritage-media.mjs && node --check scripts/strip-person-derived-body.mjs && node --check scripts/build-og-images.mjs && node scripts/check-public-biography-prose.mjs && node scripts/check-person-title-spacing.mjs && node scripts/check-public-person-catalog.mjs && node scripts/check-tree-overview-mode.mjs && astro check"
+    "check": "node --check scripts/import-myheritage-profiles.mjs && node --check scripts/import-myheritage-media.mjs && node --check scripts/strip-person-derived-body.mjs && node --check scripts/build-og-images.mjs && node scripts/check-og-card-rules.mjs && node scripts/check-public-biography-prose.mjs && node scripts/check-person-title-spacing.mjs && node scripts/check-public-person-catalog.mjs && node scripts/check-tree-overview-mode.mjs && astro check"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.42.6",
