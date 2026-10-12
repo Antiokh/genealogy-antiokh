@@ -1,27 +1,27 @@
 :root,
 html[data-theme='light'] {
   color-scheme: light;
-  --sl-color-white: #fffdf9;
+  --sl-color-white: #ffffff;
   --sl-color-black: #160b07;
-  --sl-color-bg: #f6f2eb;
-  --sl-color-bg-nav: #fffdf9;
-  --sl-color-bg-sidebar: #efe9e0;
+  --sl-color-bg: #ffffff;
+  --sl-color-bg-nav: #ffffff;
+  --sl-color-bg-sidebar: #f5f0ea;
   --sl-color-text: #2b1a12;
-  --sl-color-text-accent: #6a3018;
-  --sl-color-accent-low: #f1dfd0;
+  --sl-color-text-accent: #7b351a;
+  --sl-color-accent-low: #f2dfd3;
   --sl-color-accent: #984a24;
-  --sl-color-accent-high: #5b2613;
+  --sl-color-accent-high: #642a14;
   --sl-color-gray-1: #3d2d24;
   --sl-color-gray-2: #58483e;
   --sl-color-gray-3: #75655a;
-  --sl-color-gray-4: #95877c;
-  --sl-color-gray-5: #c9beb3;
-  --sl-color-gray-6: #e5dfd8;
-  --sl-color-gray-7: #f0ece7;
-  --sl-color-hairline: rgb(78 40 24 / 22%);
+  --sl-color-gray-4: #978a80;
+  --sl-color-gray-5: #cec5bd;
+  --sl-color-gray-6: #e9e3de;
+  --sl-color-gray-7: #f7f4f1;
+  --sl-color-hairline: rgb(78 40 24 / 21%);
   --tree-background: var(--sl-color-bg);
   --tree-accent: var(--sl-color-accent);
-  --tree-edge: #95877c;
+  --tree-edge: #978a80;
   --tree-union: var(--sl-color-accent);
 }
 
