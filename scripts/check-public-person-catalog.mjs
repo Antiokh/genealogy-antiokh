@@ -1,7 +1,12 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import YAML from 'yaml';
-import { buildPeopleSidebar, isPublicCatalogPerson, personSurname } from './starlight-people-sidebar.mjs';
+import {
+  buildPeopleSidebar,
+  isPublicCatalogPerson,
+  personSurname,
+  publicFamilyMembershipIssues,
+} from './starlight-people-sidebar.mjs';
 
 const peopleRoot = path.resolve('src/content/docs/people');
 
@@ -80,6 +85,12 @@ for (const test of behaviorCases) {
 
 if (personSurname({ name: { last: '  Буш  ' } }) !== 'Буш') {
   errors.push('personSurname must trim the structured surname');
+}
+
+for (const issue of publicFamilyMembershipIssues()) {
+  const file = path.relative(process.cwd(), issue.filePath);
+  const roles = issue.roles.length ? issue.roles.join(', ') : 'none';
+  errors.push(`${file}: incoherent inferred family ${JSON.stringify(issue.label)} (${issue.key}), roles=${roles}`);
 }
 
 const actualLinks = sidebarLinks(buildPeopleSidebar());
