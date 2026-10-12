@@ -1,0 +1,57 @@
+:root,
+html[data-theme='light'] {
+  --map-popup-bg: #fff9f0;
+  --map-popup-fg: #2a170e;
+  --map-panel-bg: rgb(255 249 240 / 94%);
+  --map-panel-fg: #2a170e;
+  --map-panel-muted: #735f50;
+  --map-panel-border: rgb(90 43 22 / 24%);
+  --map-control-bg: #fff9f0;
+  --map-control-hover: #eadfd0;
+  --map-control-fg: #2a170e;
+  --map-control-border: #cdbca7;
+  --map-link: #7a3519;
+  --map-range-track: #cdbca7;
+  --map-range-active: #a95728;
+  color-scheme: light;
+}
+
+html[data-theme='dark'] {
+  --map-popup-bg: #2b170d;
+  --map-popup-fg: #f1e5d4;
+  --map-panel-bg: rgb(33 17 9 / 94%);
+  --map-panel-fg: #f1e5d4;
+  --map-panel-muted: #c2aa96;
+  --map-panel-border: rgb(216 164 85 / 28%);
+  --map-control-bg: #211109;
+  --map-control-hover: #3a1c10;
+  --map-control-fg: #f1e5d4;
+  --map-control-border: #513726;
+  --map-link: #e8ae70;
+  --map-range-track: #513726;
+  --map-range-active: #c66a32;
+  color-scheme: dark;
+}
+
+.map-shell {
+  background: #f3ebdd;
+}
+
+html[data-theme='dark'] .map-shell {
+  background: #160a06;
+}
+
+.event-range,
+.map-status,
+.maplibregl-popup-content,
+.maplibregl-ctrl-group {
+  box-shadow:
+    0 8px 24px rgb(61 32 18 / 16%),
+    inset 0 1px 0 rgb(255 255 255 / 6%);
+}
+
+html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content, .maplibregl-ctrl-group) {
+  box-shadow:
+    0 10px 28px rgb(0 0 0 / 34%),
+    inset 0 1px 0 rgb(255 222 176 / 5%);
+}
