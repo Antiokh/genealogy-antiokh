@@ -1,16 +1,25 @@
 ---
-title: "Leonard Nazarov"
-description: "Leonard Nazarov, born 18 September 2023 in Belgrade"
+title: "Леонард Антонович Назаров"
+description: "Леонард Антонович Назаров, род. 18 сентября 2023 года в Земуне, Белград"
 entity: person
 importManaged: false
 name:
-  locale: und-Latn
-  full: "Leonard Nazarov"
-  display: "Leonard Nazarov"
-  first: "Leonard"
-  last: "Nazarov"
-  birth_last: "Nazarov"
+  locale: ru
+  full: "Леонард Антонович Назаров"
+  display: "Леонард Антонович Назаров"
+  first: "Леонард"
+  middle: "Антонович"
+  patronymic: "Антонович"
+  last: "Назаров"
+  birth_last: "Назаров"
+  localized:
+    "und-Latn":
+      first: "Leonard"
+      middle: "Antonovich"
+      last: "Nazarov"
+      display: "Leonard Antonovich Nazarov"
   aliases:
+    - "Leonard Nazarov"
     - "Леонард Назаров"
 families:
   - key: "nazarov"
@@ -59,7 +68,7 @@ external:
 
 ## Биография
 
-Леонард Назаров родился 18 сентября 2023 года в Земуне, Белград, в семье [Антона Назарова](/people/1980-1989/anton-nazarov/) и [Анны Татаринцевой](/people/2000-2009/anna-tatarintseva/).
+Леонард Антонович Назаров родился 18 сентября 2023 года в Земуне, Белград, в семье [Антона Назарова](/people/1980-1989/anton-nazarov/) и [Анны Татаринцевой](/people/2000-2009/anna-tatarintseva/).
 
 С **16 января 2025 года** Леонард живёт в [Новочеркасске](/places/novocherkassk/) Ростовской области вместе с матерью.
 
