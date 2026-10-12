@@ -44,3 +44,9 @@ html[data-theme='dark'] .person-portrait::after {
   background: var(--genea-copper);
   box-shadow: 0 0 0.75rem color-mix(in srgb, var(--genea-copper) 20%, transparent);
 }
+
+/* The old slide mount used a large plus-shaped backing plate behind the photo.
+   It competes with the image, so keep the clean slide frame and remove the cross. */
+.person-gallery-mount-cross {
+  display: none !important;
+}
