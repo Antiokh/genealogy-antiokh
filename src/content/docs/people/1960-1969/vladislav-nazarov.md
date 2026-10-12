@@ -1,12 +1,16 @@
 ---
-title: "Владислав Назаров"
-description: "Владислав Назаров, род. 25 мая 1965 года в Москве"
+title: "Владислав Семенович Назаров"
+description: "Владислав Семенович Назаров, род. 25 мая 1965 года в Москве"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: ru
-  full: "Владислав Назаров"
-  display: "Владислав Назаров"
+  full: "Владислав Семенович Назаров"
+  display: "Владислав Семенович Назаров"
+  first: "Владислав"
+  middle: "Семенович"
+  patronymic: "Семенович"
+  last: "Назаров"
   birth_last: "Назаров"
   aliases: []
 families:
@@ -40,13 +44,19 @@ partners:
   - person: "1960-1969/tatyana-beskorovaynaya.md"
     married:
       known: true
-      date: "1988-08-08"
+      date: "1988-07-22"
+      place: "moscow.md"
+      placeLabel: "Москва"
     divorced:
       known: true
-      date: "2007-06-13"
+      date: "2008-04-22"
+      place: "moscow.md"
+      placeLabel: "Москва"
 occupation: []
 residence: []
 sources:
+  - "civil-marriage-vladislav-nazarov-tatyana-beskorovaynaya-1988.md"
+  - "civil-divorce-vladislav-nazarov-tatyana-nazarova-2008.md"
   - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
@@ -58,6 +68,12 @@ external:
 
 ## Биография
 
-Владислав Назаров родился 25 мая 1965 года в Москве. 8 августа 1988 года он вступил в брак с [Татьяной Бескоровайной](/people/1960-1969/tatyana-beskorovaynaya/); брак был расторгнут 13 июня 2007 года.
+Владислав Семенович Назаров родился 25 мая 1965 года в Москве.
 
-Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).
+22 июля 1988 года в Москве он вступил в брак с [Татьяной Владимировной Бескоровайной](/people/1960-1969/tatyana-beskorovaynaya/). После регистрации брака Татьяна носила фамилию Назарова. Решение о расторжении брака было вынесено Кузьминским районным судом Москвы 15 февраля 2008 года; согласно свидетельству ЗАГС, брак прекратился 22 апреля 2008 года.
+
+## Источники
+
+- [Справка о заключении брака 1988 года](/sources/civil-marriage-vladislav-nazarov-tatyana-beskorovaynaya-1988/)
+- [Свидетельство о расторжении брака](/sources/civil-divorce-vladislav-nazarov-tatyana-nazarova-2008/)
+- [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)

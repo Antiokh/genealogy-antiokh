@@ -1,6 +1,6 @@
 ---
 title: "Брак Антона Назарова и Анны Татаринцевой"
-description: "21 января 2023 года Антон Назаров и Анна Татаринцева зарегистрировали брак в Звездаре, Белград"
+description: "21 января 2023 года Антон Назаров и Анна Татаринцева зарегистрировали брак в Белграде"
 entity: event
 kind: marriage
 date: "2023-01-21"
@@ -11,8 +11,12 @@ participants:
 places:
   - "zvezdara.md"
 sources:
+  - "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
   - "anton-nazarov-personal-history.md"
 provenance:
+  - source: "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
+    locator: "21.01.2023; Beograd; документ выдан Matična služba Beograd-Zvezdara"
+    confidence: high
   - source: "anton-nazarov-personal-history.md"
     locator: "Семейная хронология"
     confidence: high
@@ -20,4 +24,4 @@ sidebar:
   hidden: true
 ---
 
-21 января 2023 года Антон Владиславович Назаров и Анна Татаринцева зарегистрировали брак в городской общине Звездара в Белграде.
+21 января 2023 года Антон Владиславович Назаров и Анна Татаринцева зарегистрировали брак в Белграде. Международная выписка из книги браков указывает место как **Beograd** и выдана матичной службой **Beograd-Zvezdara**. После регистрации оба супруга сохранили свои фамилии.

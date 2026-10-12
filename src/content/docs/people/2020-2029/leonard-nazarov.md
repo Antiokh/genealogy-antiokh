@@ -1,14 +1,17 @@
 ---
 title: "Leonard Nazarov"
-description: "Leonard Nazarov, born 18 September 2023 in Zemun, Belgrade"
+description: "Leonard Nazarov, born 18 September 2023 in Belgrade"
 entity: person
-importManaged: true
+importManaged: false
 name:
   locale: und-Latn
   full: "Leonard Nazarov"
   display: "Leonard Nazarov"
+  first: "Leonard"
+  last: "Nazarov"
   birth_last: "Nazarov"
-  aliases: []
+  aliases:
+    - "Леонард Назаров"
 families:
   - key: "nazarov"
     label: "Назаровы"
@@ -40,6 +43,7 @@ partners: []
 occupation: []
 residence: []
 sources:
+  - "serbia-birth-leonard-nazarov-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
 external:
   myheritage:
@@ -51,6 +55,9 @@ external:
 
 ## Биография
 
-Расширенная выгрузка MyHeritage уточняет дату и место рождения: 18 сентября 2023 года, Земун, Белград, Сербия.
+Леонард Назаров родился 18 сентября 2023 года. Международная сербская выписка о рождении указывает местом рождения **Белград** и называет родителями Антона Назарова и Анну Татаринцеву. Выписка выдана матичной службой Beograd-Zemun; расширенная выгрузка MyHeritage уточняет место до Земуна.
 
-Источник: [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/).
+## Источники
+
+- [Международная выписка о рождении, Сербия](/sources/serbia-birth-leonard-nazarov-2023/)
+- [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)
