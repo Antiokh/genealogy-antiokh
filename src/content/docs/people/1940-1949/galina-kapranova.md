@@ -14,11 +14,6 @@ name:
   married_last: "Капранова"
   aliases: []
 families:
-  - key: "gennadiy"
-    label: "Геннадие"
-    locale: ru
-    roles: [partner]
-    inferred: true
   - key: "kapranov"
     label: "Капрановы"
     locale: ru
