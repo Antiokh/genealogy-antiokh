@@ -57,6 +57,17 @@ html[data-theme='dark'] {
   --tree-scrollbar-thumb-hover: #915936;
 }
 
+/* Do not let a renderer paint before theme-bridge.js has copied the resolved
+   parent theme. The outer FamilyTree iframe is hidden too, but this also makes
+   direct renderer loads and slower dynamic imports flash-free. */
+html:not([data-theme-ready='1']) body {
+  visibility: hidden;
+}
+
+html[data-theme-ready='1'] body {
+  visibility: visible;
+}
+
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--tree-scrollbar-thumb) var(--tree-scrollbar-track);
