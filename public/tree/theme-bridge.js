@@ -36,6 +36,12 @@ export function startThemeBridge(onChange) {
       if (sidebar) root.style.setProperty('--sl-color-bg-sidebar', sidebar);
     }
     root.dataset.theme = theme;
+    root.style.colorScheme = theme;
+
+    // Tree renderer pages can start painting before their dynamic modules finish
+    // loading (especially the BALKAN renderer). Reveal only after the resolved
+    // theme and bridged tokens are in place, so no legacy/default palette flashes.
+    root.dataset.themeReady = '1';
     onChange?.(theme);
   };
 
