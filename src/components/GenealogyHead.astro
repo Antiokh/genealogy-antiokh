@@ -41,4 +41,80 @@ head.push(
   { tag: 'link', attrs: { rel: 'image_src', href: squareUrl } },
 );
 ---
+
+<!-- Resolve the display theme before any visible content can paint. Starlight has
+     its own provider too, but doing this here also protects our custom palette
+     during full reloads and Astro document swaps. -->
+<script is:inline>
+  (() => {
+    let theme = '';
+    try {
+      const stored = localStorage.getItem('starlight-theme');
+      if (stored === 'light' || stored === 'dark') theme = stored;
+    } catch {}
+    if (!theme) theme = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.style.colorScheme = theme;
+  })();
+</script>
+
 <DefaultHead />
+
+<!-- Critical palette tokens are intentionally inline. Without them the first
+     paint can briefly use Starlight's blue/gray defaults while genealogy.css is
+     still being attached. Keep these values in sync with genealogy.css. -->
+<style is:inline>
+  :root {
+    color-scheme: light dark;
+    --sl-color-bg: light-dark(#fbf4df, #160a06);
+    --sl-color-bg-nav: light-dark(#2b160d, #211109);
+    --sl-color-bg-sidebar: light-dark(#f4ead0, #1b0d08);
+    --sl-color-text: light-dark(#2b1a12, #f1e5d4);
+    --sl-color-text-accent: light-dark(#773217, #e8ae70);
+    --sl-color-accent: light-dark(#984a24, #c66a32);
+    --sl-color-accent-high: light-dark(#642a14, #f0be82);
+    --sl-color-gray-2: light-dark(#59483c, #c2aa96);
+    --sl-color-gray-3: light-dark(#786655, #9b806c);
+    --sl-color-gray-5: light-dark(#c8b99f, #513726);
+    --sl-color-gray-6: light-dark(#e1d3b7, #2b170d);
+    --sl-color-gray-7: light-dark(#efe4cc, #211109);
+  }
+
+  html[data-theme='light'] {
+    color-scheme: light;
+    --sl-color-bg: #fbf4df;
+    --sl-color-bg-nav: #2b160d;
+    --sl-color-bg-sidebar: #f4ead0;
+    --sl-color-text: #2b1a12;
+    --sl-color-text-accent: #773217;
+    --sl-color-accent: #984a24;
+    --sl-color-accent-high: #642a14;
+    --sl-color-gray-2: #59483c;
+    --sl-color-gray-3: #786655;
+    --sl-color-gray-5: #c8b99f;
+    --sl-color-gray-6: #e1d3b7;
+    --sl-color-gray-7: #efe4cc;
+  }
+
+  html[data-theme='dark'] {
+    color-scheme: dark;
+    --sl-color-bg: #160a06;
+    --sl-color-bg-nav: #211109;
+    --sl-color-bg-sidebar: #1b0d08;
+    --sl-color-text: #f1e5d4;
+    --sl-color-text-accent: #e8ae70;
+    --sl-color-accent: #c66a32;
+    --sl-color-accent-high: #f0be82;
+    --sl-color-gray-2: #c2aa96;
+    --sl-color-gray-3: #9b806c;
+    --sl-color-gray-5: #513726;
+    --sl-color-gray-6: #2b170d;
+    --sl-color-gray-7: #211109;
+  }
+
+  html,
+  body {
+    background: var(--sl-color-bg);
+    color: var(--sl-color-text);
+  }
+</style>
