@@ -13,10 +13,12 @@ permissions:
 
 jobs:
   assemble-favicon:
-    if: github.ref_name == 'feat/add-family-favicon'
+    if: github.ref_name == 'feat/add-family-favicon' || github.head_ref == 'feat/add-family-favicon'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
       - name: Assemble favicon
         shell: bash
         run: |
@@ -30,7 +32,7 @@ jobs:
           git add public/favicon.svg
           git diff --cached --quiet && exit 0
           git commit -m "Add family tree favicon"
-          git push
+          git push origin HEAD:${GITHUB_HEAD_REF:-${GITHUB_REF_NAME}}
 
   build:
     runs-on: ubuntu-latest
