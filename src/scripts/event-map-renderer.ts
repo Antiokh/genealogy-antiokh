@@ -22,7 +22,7 @@ if (!(root instanceof HTMLElement)
 }
 
 const mapStyleUrls = {
-  dark: 'https://tiles.openfreemap.org/styles/fiord',
+  dark: 'https://raw.githubusercontent.com/gpxstudio/styles/main/osm.json',
   light: 'https://raw.githubusercontent.com/gpxstudio/styles/main/osm.json',
 };
 
