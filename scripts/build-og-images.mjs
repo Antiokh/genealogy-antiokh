@@ -8,10 +8,7 @@ import YAML from 'yaml';
 const PEOPLE_ROOT = path.resolve('src/content/docs/people');
 const PUBLIC_ROOT = path.resolve('public');
 const OUTPUT_ROOT = path.join(PUBLIC_ROOT, 'generated/og');
-const GENERATED_PEOPLE = path.join(PUBLIC_ROOT, 'generated/people.json');
-const PORTRAIT_ROOT = path.join(PUBLIC_ROOT, 'generated/portraits');
 const CACHE_ROOT = path.resolve('node_modules/.astro/genealogy-og');
-const REMOTE_CACHE_ROOT = path.join(CACHE_ROOT, 'remote');
 const WIDE_BACKGROUND = path.resolve('docs/Stitched Leather Family Tree Book Cover.webp');
 const SQUARE_BACKGROUND = path.resolve('docs/Emblematic Tree Leather Book Cover.webp');
 
@@ -116,72 +113,10 @@ function pngDataUri(bytes) {
   return `data:image/png;base64,${bytes.toString('base64')}`;
 }
 
-function parseDataUri(value) {
-  const match = String(value).match(/^data:[^;,]+;base64,(.+)$/s);
-  return match ? Buffer.from(match[1], 'base64') : undefined;
-}
-
-async function fetchRemoteBytes(url) {
-  const digest = createHash('sha256').update(url).digest('hex');
-  const cachePath = path.join(REMOTE_CACHE_ROOT, digest);
-  if (await exists(cachePath)) return readFile(cachePath);
-
-  try {
-    const response = await fetch(url, {
-      headers: {
-        accept: 'image/avif,image/webp,image/png,image/jpeg,image/*,*/*;q=0.8',
-        'user-agent': 'genealogy-library-og-builder/1.0',
-      },
-      signal: AbortSignal.timeout(8000),
-    });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    const bytes = Buffer.from(await response.arrayBuffer());
-    if (!bytes.length) throw new Error('empty response');
-    await mkdir(REMOTE_CACHE_ROOT, { recursive: true });
-    await writeFile(cachePath, bytes);
-    return bytes;
-  } catch (error) {
-    console.warn(`OG portrait fetch skipped for ${url}: ${error instanceof Error ? error.message : error}`);
-    return undefined;
-  }
-}
-
-async function bytesForImage(value) {
-  if (typeof value !== 'string' || !value.trim()) return undefined;
-  const image = value.trim();
-  if (image.startsWith('data:')) return parseDataUri(image);
-  if (/^https?:\/\//i.test(image)) return fetchRemoteBytes(image);
-  if (image.startsWith('/')) {
-    const candidate = path.join(PUBLIC_ROOT, image.replace(/^\/+/, ''));
-    if (await exists(candidate)) return readFile(candidate);
-  }
-  return undefined;
-}
-
-async function projectedPeople() {
-  if (!(await exists(GENERATED_PEOPLE))) return new Map();
-  const data = JSON.parse(await readFile(GENERATED_PEOPLE, 'utf8'));
-  return new Map((data.people ?? []).map((person) => [person.ref, person]));
-}
-
-async function resolvePortraitBytes(personRef, data, projected) {
-  const projectedPhoto = projected?.photo;
-  if (typeof projectedPhoto === 'string' && projectedPhoto.trim()) {
-    const bytes = await bytesForImage(projectedPhoto);
-    if (bytes) return bytes;
-  }
-
+async function resolvePortraitBytes(personRef) {
   const stem = personRef.replace(/\.(md|mdx)$/i, '');
-  for (const extension of ['.webp', '.jpg', '.jpeg', '.png']) {
-    const generated = path.join(PORTRAIT_ROOT, `${stem}${extension}`);
-    if (await exists(generated)) return readFile(generated);
-
-    const source = path.join(PEOPLE_ROOT, `${stem}${extension}`);
-    if (await exists(source)) return readFile(source);
-  }
-
-  if (typeof data.photo === 'string') return bytesForImage(data.photo);
-  return undefined;
+  const source = path.join(PEOPLE_ROOT, `${stem}.webp`);
+  return await exists(source) ? readFile(source) : undefined;
 }
 
 function clamp(value, min, max) {
@@ -327,10 +262,9 @@ async function renderCached(svg, outputPath) {
   await copyFile(cachePath, outputPath);
 }
 
-const [wideBackgroundBytes, squareBackgroundBytes, projectedByRef] = await Promise.all([
+const [wideBackgroundBytes, squareBackgroundBytes] = await Promise.all([
   rasterBackground(WIDE_BACKGROUND, 1200, 630),
   rasterBackground(SQUARE_BACKGROUND, 1080, 1080),
-  projectedPeople(),
 ]);
 const wideBackground = pngDataUri(wideBackgroundBytes);
 const squareBackground = pngDataUri(squareBackgroundBytes);
@@ -350,9 +284,8 @@ for (const filePath of await walk(PEOPLE_ROOT)) {
   const data = parseFrontmatter(await readFile(filePath, 'utf8'));
   if (data.entity !== 'person') continue;
   const personRef = toPosix(path.relative(PEOPLE_ROOT, filePath));
-  const projected = projectedByRef.get(personRef);
   const deceased = isDeceased(data);
-  const portraitBytes = await resolvePortraitBytes(personRef, data, projected);
+  const portraitBytes = await resolvePortraitBytes(personRef);
   let widePortrait = '';
   let squarePortrait = '';
 
@@ -379,4 +312,4 @@ for (const filePath of await walk(PEOPLE_ROOT)) {
   generated += 1;
 }
 
-console.log(`Generated OG images for ${generated} person record(s); resolved ${resolvedPortraits} portrait(s).`);
+console.log(`Generated OG images for ${generated} person record(s); resolved ${resolvedPortraits} local sidecar portrait(s).`);

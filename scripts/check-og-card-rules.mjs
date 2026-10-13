@@ -9,7 +9,9 @@ const required = [
   'function isDeceased(data)',
   "fill=\"#090909\"",
   'image = image.grayscale()',
-  'projectedPeople()',
+  'async function resolvePortraitBytes(personRef)',
+  "path.join(PEOPLE_ROOT, `${stem}.webp`)",
+  'const portraitBytes = await resolvePortraitBytes(personRef);',
   'if (portraitBytes) {',
   "let widePortrait = '';",
   "let squarePortrait = '';",
@@ -20,6 +22,14 @@ const forbidden = [
   'placeholderBytes',
   'portraitBytes ||',
   'placeholder: isPlaceholder',
+  'fetchRemoteBytes',
+  'REMOTE_CACHE_ROOT',
+  'projectedPeople()',
+  'projected?.photo',
+  'data.photo',
+  'PORTRAIT_ROOT',
+  'GENERATED_PEOPLE',
+  'await fetch(',
 ];
 
 const missing = required.filter((needle) => !source.includes(needle));
