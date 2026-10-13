@@ -229,17 +229,11 @@ function popupFor(group) {
 }
 
 function createPlacePopup(group) {
-  const popup = new maplibregl.Popup({
+  return new maplibregl.Popup({
     maxWidth: 'min(22rem, 80vw)',
     offset: 24,
     focusAfterOpen: false,
   }).setDOMContent(popupFor(group));
-
-  popup.on('open', () => {
-    const content = popup.getElement()?.querySelector('.maplibregl-popup-content');
-    if (content instanceof HTMLElement) content.style.border = '0';
-  });
-  return popup;
 }
 
 function clearMarkers() {
