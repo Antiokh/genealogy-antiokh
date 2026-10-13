@@ -15,6 +15,7 @@ export default defineConfig({
         './src/styles/genealogy.css',
         './src/styles/photo-album.css',
         './src/styles/panel-motion.css',
+        './src/styles/portrait-mourning.css',
       ],
       locales: {
         root: {

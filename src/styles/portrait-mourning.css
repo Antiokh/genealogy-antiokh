@@ -1,0 +1,11 @@
+.person-title-row .person-portrait__mourning-ribbon {
+  right: -36% !important;
+  bottom: 5.5% !important;
+  height: 1.1rem !important;
+}
+
+@media (max-width: 36rem) {
+  .person-title-row .person-portrait__mourning-ribbon {
+    height: 0.84rem !important;
+  }
+}
