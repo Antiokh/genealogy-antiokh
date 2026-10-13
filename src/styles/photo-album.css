@@ -8,7 +8,7 @@
   --genea-button-face: #f0e2bf;
   --genea-button-edge: #cbb487;
   --genea-button-hole: #4e2818;
-  --genea-button-thread: #8a5a3d;
+  --genea-button-thread: var(--genea-button-hole);
 }
 
 /* The portrait itself already has its own frame. Keep the outer figure transparent
@@ -170,7 +170,7 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
     inset 0 -1px 2px rgb(78 40 24 / 10%);
 }
 
-/* Closed menu: two neat horizontal stitches through the four holes. */
+/* Closed menu: two horizontal stitches run exactly from hole centre to hole centre. */
 .sl-menu-button::after {
   content: '';
   position: absolute;
@@ -183,18 +183,23 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
   border-radius: 50%;
   pointer-events: none;
   background:
-    linear-gradient(var(--genea-button-thread), var(--genea-button-thread)) 31% 31% / 38% 1.6px no-repeat,
-    linear-gradient(var(--genea-button-thread), var(--genea-button-thread)) 31% 69% / 38% 1.6px no-repeat;
-  filter: drop-shadow(0 0.5px 0 rgb(255 255 255 / 26%));
-  transition: background 0.2s ease, transform 0.2s ease;
+    linear-gradient(var(--genea-button-thread), var(--genea-button-thread)) center 31% / 38% 2.6px no-repeat,
+    linear-gradient(var(--genea-button-thread), var(--genea-button-thread)) center 69% / 38% 2.6px no-repeat;
+  filter: drop-shadow(0 0.5px 0 rgb(255 255 255 / 22%));
+  transition: background 0.2s ease;
 }
 
-/* Open menu: the same thread is crossed diagonally, like a sewn-on button. */
+/* Open menu: two equally thick diagonal stitches connect the opposite hole centres. */
 .sl-menu-button:has(~ :popover-open)::after {
   background:
-    linear-gradient(45deg, transparent 46%, var(--genea-button-thread) 47% 53%, transparent 54%) center / 58% 58% no-repeat,
-    linear-gradient(-45deg, transparent 46%, var(--genea-button-thread) 47% 53%, transparent 54%) center / 58% 58% no-repeat;
-  transform: translate(-50%, -50%) rotate(2deg);
+    linear-gradient(45deg,
+      transparent calc(50% - 1.3px),
+      var(--genea-button-thread) calc(50% - 1.3px) calc(50% + 1.3px),
+      transparent calc(50% + 1.3px)) center / 38% 38% no-repeat,
+    linear-gradient(-45deg,
+      transparent calc(50% - 1.3px),
+      var(--genea-button-thread) calc(50% - 1.3px) calc(50% + 1.3px),
+      transparent calc(50% + 1.3px)) center / 38% 38% no-repeat;
 }
 
 .sl-menu-button:has(~ :popover-open) {
