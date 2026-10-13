@@ -16,6 +16,7 @@ export default defineConfig({
         './src/styles/photo-album.css',
         './src/styles/panel-motion.css',
         './src/styles/portrait-mourning.css',
+        './src/styles/mobile-polish.css',
       ],
       locales: {
         root: {
@@ -36,7 +37,6 @@ export default defineConfig({
       components: {
         Head: './src/components/GenealogyHead.astro',
         Header: './src/components/GenealogyHeader.astro',
-        ThemeSelect: './src/components/GenealogyThemeSwitch.astro',
         PageTitle: './src/components/GenealogyPageTitle.astro',
         Footer: './src/components/GenealogyFooter.astro',
       },
