@@ -2,6 +2,7 @@
   right: -36% !important;
   bottom: 5.5% !important;
   height: 1.1rem !important;
+  z-index: 6 !important;
 }
 
 @media (max-width: 36rem) {
