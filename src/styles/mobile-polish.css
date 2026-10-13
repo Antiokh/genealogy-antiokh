@@ -1,0 +1,5 @@
+/* Small chrome polish kept separate from the main genealogy theme. */
+
+site-search button[data-open-modal] {
+  border-radius: 0.8rem !important;
+}
