@@ -71,3 +71,42 @@ html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content
     0 10px 28px rgb(0 0 0 / 34%),
     inset 0 1px 0 rgb(255 222 176 / 5%);
 }
+
+/* Popups should read like small album cards rather than stock MapLibre bubbles. */
+.maplibregl-popup-content {
+  padding: 1rem 3.25rem 1rem 1rem !important;
+  border: 1px solid var(--map-panel-border) !important;
+  border-radius: 1rem !important;
+  background: var(--map-popup-bg) !important;
+  color: var(--map-popup-fg) !important;
+}
+
+.rslive-map-popup strong {
+  display: block;
+  margin: 0;
+  color: var(--map-popup-fg);
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.maplibregl-popup-close-button {
+  top: 0.35rem !important;
+  right: 0.35rem !important;
+  display: grid !important;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0 !important;
+  border: 0;
+  border-radius: 999px;
+  background: transparent !important;
+  color: var(--map-popup-fg) !important;
+  font-size: 1.45rem !important;
+  line-height: 1 !important;
+  cursor: pointer;
+}
+
+.maplibregl-popup-close-button:hover,
+.maplibregl-popup-close-button:focus-visible {
+  background: var(--map-control-hover) !important;
+}
