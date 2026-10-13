@@ -74,12 +74,26 @@ html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content
 
 /* Popups should read like small album cards rather than stock MapLibre bubbles. */
 .maplibregl-popup-content {
+  position: relative;
+  z-index: 1;
   padding: 1rem 3.25rem 1rem 1rem !important;
   border: 1px solid var(--map-panel-border) !important;
   border-radius: 1rem !important;
   background: var(--map-popup-bg) !important;
   color: var(--map-popup-fg) !important;
 }
+
+/* Keep MapLibre's tip visually attached to the card. It must sit above the card
+   border, and corner-anchored popups lose only the radius touched by the tip. */
+.maplibregl-popup-tip {
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 1px 0 var(--map-panel-border));
+}
+.maplibregl-popup-anchor-top-left .maplibregl-popup-content { border-top-left-radius: 0 !important; }
+.maplibregl-popup-anchor-top-right .maplibregl-popup-content { border-top-right-radius: 0 !important; }
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-content { border-bottom-left-radius: 0 !important; }
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-content { border-bottom-right-radius: 0 !important; }
 
 .rslive-map-popup strong {
   display: block;
