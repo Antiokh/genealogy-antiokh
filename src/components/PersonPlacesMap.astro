@@ -69,8 +69,8 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   type MapTheme = 'dark' | 'light';
 
   const mapStyleUrls: Record<MapTheme, string> = {
-    dark: 'https://raw.githubusercontent.com/gpxstudio/styles/main/osm.json',
-    light: 'https://raw.githubusercontent.com/gpxstudio/styles/main/osm.json',
+    dark: 'https://tiles.openfreemap.org/styles/bright',
+    light: 'https://tiles.openfreemap.org/styles/bright',
   };
 
   function readMapTheme(): MapTheme {
