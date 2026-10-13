@@ -8,9 +8,6 @@ on:
       - feat/add-family-favicon
   pull_request:
 
-permissions:
-  contents: write
-
 jobs:
   assemble-favicon:
     if: github.ref_name == 'feat/add-family-favicon' || github.head_ref == 'feat/add-family-favicon'
