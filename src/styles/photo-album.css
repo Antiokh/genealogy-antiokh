@@ -1,5 +1,12 @@
 /* Photo treatment shared by the album-inspired light theme and dark theme. */
 
+:root {
+  /* Old album photo corners were often made from pale yellowed paper/card,
+     not from the same leather as the cover. Keep this material constant
+     across themes so it reads as a physical mount rather than UI chrome. */
+  --genea-photo-mount: #dfcea6;
+}
+
 /* The portrait itself already has its own frame. Keep the outer figure transparent
    so it does not read as a second mat/frame around the image. */
 .person-portrait {
@@ -18,7 +25,9 @@
   z-index: 5;
   width: 1.7rem;
   height: 1.7rem;
-  opacity: 0.94;
+  opacity: 0.96;
+  background: var(--genea-photo-mount);
+  filter: drop-shadow(0 1px 1px rgb(43 26 18 / 18%));
   pointer-events: none;
 }
 
@@ -32,17 +41,6 @@
   right: -0.08rem;
   bottom: -0.08rem;
   clip-path: polygon(100% 100%, 0 100%, 100% 0);
-}
-
-html[data-theme='light'] .person-portrait::before,
-html[data-theme='light'] .person-portrait::after {
-  background: var(--genea-leather);
-}
-
-html[data-theme='dark'] .person-portrait::before,
-html[data-theme='dark'] .person-portrait::after {
-  background: var(--genea-copper);
-  box-shadow: 0 0 0.75rem color-mix(in srgb, var(--genea-copper) 20%, transparent);
 }
 
 /* The old slide mount used a large plus-shaped backing plate behind the photo.
