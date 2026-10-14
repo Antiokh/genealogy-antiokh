@@ -20,7 +20,7 @@ jobs:
         shell: bash
         run: |
           cat tmp/favicon/part-*.b64 | base64 --decode | gzip --decompress > public/favicon.svg
-          test "$(sha256sum public/favicon.svg | cut -d' ' -f1)" = "d3fb4319c09b09d33d8b7e474611910ed1c579e46a1d62f4455b4764d04dc47c"
+          test "$(sha256sum public/favicon.svg | cut -d' ' -f1)" = "23ec4b3108e3a4c1423178964b13e614ecc06bc6f58a6cfe778bac2f9a1309f8"
       - name: Commit favicon
         shell: bash
         run: |
