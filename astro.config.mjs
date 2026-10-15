@@ -18,6 +18,10 @@ export default defineConfig({
         './src/styles/portrait-mourning.css',
         './src/styles/mobile-polish.css',
       ],
+      logo: {
+        src: '/favicon.svg',
+        alt: 'Семейная энциклопедия',
+      },
       locales: {
         root: {
           label: 'Русский',
