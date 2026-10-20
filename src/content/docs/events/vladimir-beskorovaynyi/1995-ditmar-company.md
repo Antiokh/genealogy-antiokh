@@ -9,8 +9,6 @@ timeline: false
 importance: standard
 participants:
   - "1930-1939/vladimir-beskorovaynyi.md"
-places:
-  - "korolyov.md"
 sources:
   - "ooo-ditmar-korolev-1995-2017.md"
 provenance:
