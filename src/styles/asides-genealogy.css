@@ -10,7 +10,7 @@
   --genea-aside-ink: #795138;
   --genea-aside-line: #aa8661;
   --genea-aside-body: #39291d;
-  --genea-aside-paper: #f8efdc;
+  --genea-aside-paper: #fffdf7;
   --genea-aside-category: "АРХИВНАЯ ЗАМЕТКА";
   --genea-aside-number: "01";
   position: relative;
@@ -182,22 +182,22 @@ html[data-theme="light"] .starlight-aside::after {
   pointer-events: none;
 }
 html[data-theme="light"] .starlight-aside--note {
-  --genea-aside-paper: #f8efdc;
+  --genea-aside-paper: #fffdf7;
   --genea-aside-ink: #795138;
   --genea-aside-line: #aa8661;
 }
 html[data-theme="light"] .starlight-aside--tip {
-  --genea-aside-paper: #f6f0df;
+  --genea-aside-paper: #fafcf2;
   --genea-aside-ink: #5a6541;
   --genea-aside-line: #919777;
 }
 html[data-theme="light"] .starlight-aside--caution {
-  --genea-aside-paper: #f8f0dd;
+  --genea-aside-paper: #fff9ee;
   --genea-aside-ink: #8e6d30;
   --genea-aside-line: #ae945a;
 }
 html[data-theme="light"] .starlight-aside--danger {
-  --genea-aside-paper: #f7eedb;
+  --genea-aside-paper: #fff8f1;
   --genea-aside-ink: #805343;
   --genea-aside-line: #ad8872;
 }
