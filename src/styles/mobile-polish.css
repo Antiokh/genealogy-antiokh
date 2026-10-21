@@ -3,3 +3,11 @@
 site-search button[data-open-modal] {
   border-radius: 0.8rem !important;
 }
+
+/* Mobile header: keep the site title, but not the decorative album logo.
+   The full logo stays visible on desktop; the mobile title remains a link. */
+@media (max-width: 49.99rem) {
+  .title-wrapper .site-title img {
+    display: none;
+  }
+}
