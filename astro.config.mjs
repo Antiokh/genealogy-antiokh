@@ -5,7 +5,8 @@ import { buildPeopleSidebar } from './scripts/starlight-people-sidebar.mjs';
 const peopleSidebar = buildPeopleSidebar();
 
 export default defineConfig({
-  site: 'https://genealogy-antiokh.pages.dev',
+  site: process.env.GENEALOGY_SITE_URL || 'https://genealogy-antiokh.pages.dev',
+  base: process.env.GENEALOGY_SITE_BASE || '/',
   integrations: [
     starlight({
       title: 'Семейная энциклопедия',
@@ -33,11 +34,11 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/Antiokh/genealogy-library',
+          href: 'https://github.com/Antiokh/genealogy-antiokh',
         },
       ],
       editLink: {
-        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
+        baseUrl: 'https://github.com/Antiokh/genealogy-antiokh/edit/main/',
       },
       components: {
         Head: './src/components/GenealogyHead.astro',
