@@ -19,7 +19,7 @@ export default defineConfig({
         './src/styles/mobile-polish.css',
       ],
       logo: {
-        src: '/favicon.svg',
+        src: './src/assets/generated-favicon.svg',
         alt: 'Семейная энциклопедия',
       },
       locales: {
