@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const partsDir = path.join(root, 'src', 'assets', 'favicon');
 const outputPath = path.join(root, 'public', 'favicon.svg');
+const logoAssetPath = path.join(root, 'src', 'assets', 'generated-favicon.svg');
 const expectedSha256 = '23ec4b3108e3a4c1423178964b13e614ecc06bc6f58a6cfe778bac2f9a1309f8';
 
 const partNames = (await readdir(partsDir))
@@ -25,6 +26,12 @@ if (actualSha256 !== expectedSha256) {
   throw new Error(`Favicon checksum mismatch: expected ${expectedSha256}, got ${actualSha256}`);
 }
 
-await mkdir(path.dirname(outputPath), { recursive: true });
-await writeFile(outputPath, svg);
-console.log(`Generated public/favicon.svg (${svg.length} bytes, sha256 ${actualSha256})`);
+await Promise.all([
+  mkdir(path.dirname(outputPath), { recursive: true }),
+  mkdir(path.dirname(logoAssetPath), { recursive: true }),
+]);
+await Promise.all([
+  writeFile(outputPath, svg),
+  writeFile(logoAssetPath, svg),
+]);
+console.log(`Generated public/favicon.svg and src/assets/generated-favicon.svg (${svg.length} bytes, sha256 ${actualSha256})`);
