@@ -4,6 +4,7 @@
  *
  * These selectors target Starlight's existing Markdown aside markup.
  * No custom remark renderer or content migration is required.
+ * Built-in Starlight Markdown asides keep their existing content and titles.
  */
 .starlight-aside {
   --genea-aside-ink: #795138;
