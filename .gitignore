@@ -9,3 +9,4 @@ node_modules/
 dist/
 public/generated/
 public/favicon.svg
+src/assets/generated-favicon.svg
