@@ -14,6 +14,7 @@ export default defineConfig({
       customCss: [
         './src/styles/genealogy.css',
         './src/styles/photo-album.css',
+        './src/styles/asides-genealogy.css',
         './src/styles/panel-motion.css',
         './src/styles/portrait-mourning.css',
         './src/styles/mobile-polish.css',

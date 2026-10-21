@@ -1,0 +1,300 @@
+/*
+ * Genealogy asides: perforated paper on the light album page,
+ * engraved bronze plates on the dark leather cover.
+ *
+ * These selectors target Starlight's existing Markdown aside markup.
+ * No custom remark renderer or content migration is required.
+ */
+.starlight-aside {
+  --genea-aside-ink: #795138;
+  --genea-aside-line: #aa8661;
+  --genea-aside-body: #39291d;
+  --genea-aside-paper: #f8efdc;
+  --genea-aside-category: "АРХИВНАЯ ЗАМЕТКА";
+  --genea-aside-number: "01";
+  position: relative;
+  isolation: isolate;
+  margin-block: 1.45rem;
+  padding: 1.55rem 1.65rem 1.7rem;
+  border-radius: 0;
+  color: var(--genea-aside-body);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* The title Starlight receives from :::note[Custom title] stays intact.
+   Its native icon is replaced by the same compact heraldic-style icon in
+   each theme. The short category line is generated before the title. */
+.starlight-aside .starlight-aside__title {
+  position: static;
+  display: block;
+  margin: 0 0 0.8rem;
+  color: var(--genea-aside-ink);
+  font: normal 1.375rem/1.26 Georgia, "Times New Roman", serif;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.starlight-aside .starlight-aside__title > .starlight-aside__icon {
+  display: none;
+}
+.starlight-aside .starlight-aside__title::before {
+  content: var(--genea-aside-category);
+  display: block;
+  min-height: 1.15rem;
+  margin-bottom: 0.42rem;
+  padding-inline: 1.45rem 2.2rem;
+  color: var(--genea-aside-ink);
+  font: 600 0.625rem/1.5 system-ui, sans-serif;
+  letter-spacing: 0.085em;
+  text-transform: uppercase;
+}
+.starlight-aside .starlight-aside__title::after {
+  content: var(--genea-aside-number);
+  position: absolute;
+  top: 1.57rem;
+  right: 1.7rem;
+  color: var(--genea-aside-ink);
+  font: italic 1rem/1 Georgia, "Times New Roman", serif;
+  opacity: 0.47;
+}
+.starlight-aside::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 1.58rem;
+  left: 1.67rem;
+  display: block;
+  width: 1.06rem;
+  height: 1.06rem;
+  background: var(--genea-aside-ink);
+  -webkit-mask: var(--genea-aside-icon) center / contain no-repeat;
+  mask: var(--genea-aside-icon) center / contain no-repeat;
+  transform: translateY(-1px);
+  pointer-events: none;
+}
+.starlight-aside .starlight-aside__content {
+  position: relative;
+  z-index: 1;
+  color: var(--genea-aside-body);
+  font: 0.95rem/1.7 Georgia, "Times New Roman", serif;
+}
+.starlight-aside .starlight-aside__content > :first-child { margin-top: 0; }
+.starlight-aside .starlight-aside__content > :last-child { margin-bottom: 0; }
+.starlight-aside .starlight-aside__content :is(p, li, strong, em) {
+  color: inherit;
+}
+.starlight-aside .starlight-aside__content a {
+  color: var(--genea-aside-ink);
+  text-decoration-color: var(--genea-aside-line);
+  text-underline-offset: 0.15em;
+}
+.starlight-aside .starlight-aside__content a:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* A quotation belongs directly on the archival material, not inside
+   a second generic gray/blue quote box. */
+.starlight-aside .starlight-aside__content blockquote {
+  margin: 0 0 0.95rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font-style: italic;
+  line-height: 1.85;
+}
+.starlight-aside .starlight-aside__content blockquote p {
+  margin: 0;
+  font: inherit;
+}
+.starlight-aside .starlight-aside__content blockquote + p {
+  margin-top: 0.9rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--genea-aside-line);
+  font-size: 0.84rem;
+}
+.starlight-aside .starlight-aside__content :is(code, kbd) {
+  border-color: var(--genea-aside-line);
+  background: color-mix(in srgb, var(--genea-aside-ink) 8%, transparent);
+  color: inherit;
+}
+.starlight-aside .starlight-aside__content :is(ul, ol) {
+  padding-inline-start: 1.25rem;
+}
+
+.starlight-aside--note {
+  --genea-aside-category: "АРХИВНАЯ ЗАМЕТКА";
+  --genea-aside-number: "01";
+  --genea-aside-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M12%206.5C9.3%204.8%206.5%204.3%203%204.8v13c3.7-.5%206.4.2%209%202.2%202.6-2%205.3-2.7%209-2.2v-13c-3.5-.5-6.3%200-9%201.7Z%22%2F%3E%3Cpath%20d%3D%22M12%206.5V20%22%2F%3E%3C%2Fsvg%3E");
+}
+.starlight-aside--tip {
+  --genea-aside-category: "ПОДСКАЗКА ИССЛЕДОВАТЕЛЯ";
+  --genea-aside-number: "02";
+  --genea-aside-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%226.5%22%20cy%3D%2211.5%22%20r%3D%224%22%2F%3E%3Ccircle%20cx%3D%2217.5%22%20cy%3D%2211.5%22%20r%3D%224%22%2F%3E%3Cpath%20d%3D%22M10.5%2011c1.1-1.1%201.9-1.1%203%200M2.6%209.3%201.5%207.5M21.4%209.3l1.1-1.8%22%2F%3E%3C%2Fsvg%3E");
+}
+.starlight-aside--caution {
+  --genea-aside-category: "ТРЕБУЕТ УТОЧНЕНИЯ";
+  --genea-aside-number: "03";
+  --genea-aside-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2212%22%20r%3D%229%22%2F%3E%3Cpath%20d%3D%22M9.3%209.1a2.8%202.8%200%200%201%205.5.6c0%202-2.8%202.4-2.8%204.4%22%2F%3E%3Ccircle%20cx%3D%2212%22%20cy%3D%2217.3%22%20r%3D%22.7%22%20fill%3D%22black%22%20stroke%3D%22none%22%2F%3E%3C%2Fsvg%3E");
+}
+.starlight-aside--danger {
+  --genea-aside-category: "РАСХОЖДЕНИЕ ИСТОЧНИКОВ";
+  --genea-aside-number: "04";
+  --genea-aside-icon: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Crect%20x%3D%222.5%22%20y%3D%224%22%20width%3D%228.5%22%20height%3D%2215.5%22%20rx%3D%221%22%2F%3E%3Crect%20x%3D%2213%22%20y%3D%224%22%20width%3D%228.5%22%20height%3D%2215.5%22%20rx%3D%221%22%2F%3E%3Cpath%20d%3D%22M5%208h3M5%2011h3M16%208h3M16%2011h3M10.5%2013h3M10.5%2016h3M13.5%2011.5l-3%206%22%2F%3E%3C%2Fsvg%3E");
+}
+
+/* Light: punched paper. The perforations are transparent mask cutouts,
+   not circles painted with an assumed background color. */
+html[data-theme="light"] .starlight-aside {
+  border: 0;
+  background: var(--genea-aside-paper);
+  box-shadow: none;
+  filter: none;
+  -webkit-mask-image:
+    radial-gradient(circle 6.5px at 50% 0, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 50% 100%, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 0 50%, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 100% 50%, transparent 6px, black 6.5px);
+  mask-image:
+    radial-gradient(circle 6.5px at 50% 0, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 50% 100%, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 0 50%, transparent 6px, black 6.5px),
+    radial-gradient(circle 6.5px at 100% 50%, transparent 6px, black 6.5px);
+  -webkit-mask-size: 17px 100%, 17px 100%, 100% 17px, 100% 17px;
+  mask-size: 17px 100%, 17px 100%, 100% 17px, 100% 17px;
+  -webkit-mask-position: left top, left bottom, left top, right top;
+  mask-position: left top, left bottom, left top, right top;
+  -webkit-mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  mask-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  -webkit-mask-composite: source-in, source-in, source-in;
+  mask-composite: intersect, intersect, intersect;
+}
+html[data-theme="light"] .starlight-aside::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0.42rem;
+  border: 1px solid var(--genea-aside-line);
+  outline: 1px solid color-mix(in srgb, var(--genea-aside-line) 32%, transparent);
+  outline-offset: -4px;
+  pointer-events: none;
+}
+html[data-theme="light"] .starlight-aside--note {
+  --genea-aside-paper: #f8efdc;
+  --genea-aside-ink: #795138;
+  --genea-aside-line: #aa8661;
+}
+html[data-theme="light"] .starlight-aside--tip {
+  --genea-aside-paper: #f6f0df;
+  --genea-aside-ink: #5a6541;
+  --genea-aside-line: #919777;
+}
+html[data-theme="light"] .starlight-aside--caution {
+  --genea-aside-paper: #f8f0dd;
+  --genea-aside-ink: #8e6d30;
+  --genea-aside-line: #ae945a;
+}
+html[data-theme="light"] .starlight-aside--danger {
+  --genea-aside-paper: #f7eedb;
+  --genea-aside-ink: #805343;
+  --genea-aside-line: #ad8872;
+}
+
+/* Dark: old engraved brass/bronze plates attached to leather. */
+html[data-theme="dark"] .starlight-aside {
+  --genea-aside-ink: #dec096;
+  --genea-aside-line: #977149;
+  --genea-aside-body: #f0e1cc;
+  --genea-metal: #4b3526;
+  --genea-metal-high: #69503a;
+  --genea-metal-low: #382318;
+  border: 1px solid var(--genea-aside-line);
+  border-radius: 5px;
+  background:
+    linear-gradient(160deg, rgb(241 200 136 / 10%), transparent 33%, rgb(12 5 2 / 19%) 90%),
+    repeating-linear-gradient(0deg, transparent 0 2px, rgb(255 229 174 / 1.3%) 2px 3px),
+    linear-gradient(150deg, var(--genea-metal-high), var(--genea-metal) 36%, var(--genea-metal-low));
+  box-shadow:
+    0 5px 12px rgb(8 3 1 / 55%),
+    inset 0 1px 0 rgb(226 184 129 / 35%),
+    inset 0 -2px 3px rgb(22 11 8 / 70%);
+}
+html[data-theme="dark"] .starlight-aside::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: 0.48rem;
+  border: 1px solid var(--genea-aside-line);
+  outline: 1px solid rgb(10 5 4 / 30%);
+  outline-offset: 2px;
+  border-radius: 1px;
+  background:
+    radial-gradient(circle at center, #b89462 0 2px, #4b2e1d 2.5px 3.5px, transparent 4.5px) top left / 10px 10px no-repeat,
+    radial-gradient(circle at center, #b89462 0 2px, #4b2e1d 2.5px 3.5px, transparent 4.5px) top right / 10px 10px no-repeat,
+    radial-gradient(circle at center, #b89462 0 2px, #4b2e1d 2.5px 3.5px, transparent 4.5px) bottom left / 10px 10px no-repeat,
+    radial-gradient(circle at center, #b89462 0 2px, #4b2e1d 2.5px 3.5px, transparent 4.5px) bottom right / 10px 10px no-repeat;
+  box-shadow: inset 0 1px 0 rgb(235 193 138 / 12%);
+  pointer-events: none;
+}
+html[data-theme="dark"] .starlight-aside--note {
+  --genea-metal: #4b3526;
+  --genea-metal-high: #69503a;
+  --genea-metal-low: #382318;
+  --genea-aside-ink: #dec096;
+  --genea-aside-line: #977149;
+}
+html[data-theme="dark"] .starlight-aside--tip {
+  --genea-metal: #3a382c;
+  --genea-metal-high: #53533f;
+  --genea-metal-low: #292820;
+  --genea-aside-ink: #d1d6a6;
+  --genea-aside-line: #858361;
+}
+html[data-theme="dark"] .starlight-aside--caution {
+  --genea-metal: #4e3e26;
+  --genea-metal-high: #6b5735;
+  --genea-metal-low: #392a19;
+  --genea-aside-ink: #f1d18e;
+  --genea-aside-line: #a88c57;
+}
+html[data-theme="dark"] .starlight-aside--danger {
+  --genea-metal: #4a3027;
+  --genea-metal-high: #644438;
+  --genea-metal-low: #362018;
+  --genea-aside-ink: #d7ad96;
+  --genea-aside-line: #91664f;
+}
+
+/* Tighten the tiny classification line on narrow screens. */
+@media (max-width: 40rem) {
+  .starlight-aside {
+    padding: 1.2rem 1.2rem 1.45rem;
+  }
+  .starlight-aside::before {
+    top: 1.24rem;
+    left: 1.25rem;
+  }
+  .starlight-aside .starlight-aside__title::after {
+    top: 1.28rem;
+    right: 1.3rem;
+  }
+  .starlight-aside .starlight-aside__title::before {
+    padding-inline-end: 1.8rem;
+    font-size: 0.575rem;
+    letter-spacing: 0.07em;
+  }
+  .starlight-aside .starlight-aside__title {
+    font-size: 1.3rem;
+  }
+  .starlight-aside .starlight-aside__content {
+    font-size: 0.9rem;
+  }
+}
+@media print {
+  .starlight-aside {
+    -webkit-mask-image: none !important;
+    mask-image: none !important;
+    box-shadow: none !important;
+  }
+}
