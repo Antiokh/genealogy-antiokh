@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "fc894b668e9cd778eac02ef8382481fc6052367c",
+  "commit": "d59ecd0b261d66da6eb3b0787e185c2b108e61cb",
   "files": [
     "public/tree/genealogy-theme.css",
     "public/tree/kinship-extended.js",
@@ -22,6 +22,7 @@
     "scripts/check-person-title-spacing.mjs",
     "scripts/check-tree-overview-mode.mjs",
     "scripts/copy-demos.mjs",
+    "scripts/generate-site-badges.mjs",
     "scripts/starlight-people-sidebar.mjs",
     "src/components/EventMap.astro",
     "src/components/EventSeq.astro",
