@@ -176,7 +176,6 @@ html[data-theme="light"] .starlight-aside::after {
   position: absolute;
   z-index: 0;
   inset: 0.42rem;
-  border: 1px solid var(--genea-aside-line);
   outline: 1px solid color-mix(in srgb, var(--genea-aside-line) 32%, transparent);
   outline-offset: -4px;
   pointer-events: none;
