@@ -11,7 +11,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: genealogy-pages
+  # Keep production publication independent from PR validation.
+  # PRs and non-main manual runs get their own ref-specific groups.
+  group: genealogy-pages-${{ github.ref == 'refs/heads/main' && 'publish' || github.ref }}
   cancel-in-progress: false
 
 jobs:
@@ -32,14 +34,14 @@ jobs:
           npm run check
           npm run build
       - name: Upload static output, not repository source
-        if: github.event_name != 'pull_request' && vars.ENABLE_GENEALOGY_GH_PAGES == 'true'
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.ENABLE_GENEALOGY_GH_PAGES == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
 
   deploy:
     name: Publish static mirror
-    if: github.event_name != 'pull_request' && vars.ENABLE_GENEALOGY_GH_PAGES == 'true'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main' && vars.ENABLE_GENEALOGY_GH_PAGES == 'true'
     needs: build
     permissions:
       pages: write
