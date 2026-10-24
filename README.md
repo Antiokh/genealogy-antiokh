@@ -42,7 +42,7 @@ The repository must remain useful independently of MyHeritage, Genotek, a partic
 ## Current state
 
 - Astro + Starlight encyclopedia shell.
-- 233 real person records imported from the 2026-09-10 MyHeritage snapshot; technical unknown-parent placeholders are excluded.
+- Initial person records were imported from the 2026-09-10 MyHeritage snapshot; technical unknown-parent placeholders are excluded. Current totals (including later additions) are shown in the live badges above.
 - People files remain grouped by birth decade; unknown birth year goes to `people/unknown/`.
 - The navigation is independent from the filesystem and groups people by explicit `families` metadata. One person may appear in several family groups.
 - Person-to-person authoring uses readable content refs such as `1960-1969/vladislav-nazarov.md`.
@@ -290,7 +290,7 @@ They are build artifacts and are not committed.
 
 Independent branches are separate connected components and may be rendered separately.
 
-The current imported dataset builds as 233 people: 232 connected, 1 unconnected, 354 edges and 2 connected components.
+The build recalculates people, family connections and graph statistics from the current corpus. Live entity counts are shown in the badges above and published as `/site-stats.json`; graph counts are generated in `public/generated/genealogy.json`.
 
 ## MyHeritage snapshot import
 
@@ -338,7 +338,7 @@ The GitHub Actions workflow `Import MyHeritage snapshot` remains manual because 
 
 ```text
 [x] Astro + Starlight encyclopedia shell
-[x] 233 real imported person pages
+[x] Real person pages; the current count is generated automatically
 [x] Path-based person references
 [x] Father / mother canonical forward relations
 [x] Explicit partner + marriage relations
