@@ -33,11 +33,11 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/Antiokh/genealogy-library',
+          href: 'https://github.com/Antiokh/genealogy-engine',
         },
       ],
       editLink: {
-        baseUrl: 'https://github.com/Antiokh/genealogy-library/edit/main/',
+        baseUrl: 'https://github.com/Antiokh/genealogy-antiokh/edit/main/',
       },
       components: {
         Head: './src/components/GenealogyHead.astro',
