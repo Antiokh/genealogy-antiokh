@@ -1,4 +1,35 @@
-# Genealogy Library
+# Genealogy Library — семейная энциклопедия и данные
+
+[![Engine CI](https://github.com/Antiokh/genealogy-engine/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Antiokh/genealogy-engine/actions/workflows/ci.yml)
+[![Открыть семейную энциклопедию](https://img.shields.io/badge/%D1%81%D0%B0%D0%B9%D1%82-tree.antiokh.ru-795138)](https://tree.antiokh.ru/)
+
+**Это репозиторий семейных записей и настроек публикации** сайта [«Семейная энциклопедия»](https://tree.antiokh.ru/). Универсальный программный движок вынесен в отдельный публичный репозиторий **[Antiokh/genealogy-engine](https://github.com/Antiokh/genealogy-engine)**.
+
+## Два репозитория: где что редактировать
+
+| | Семейные данные и сайт | Движок |
+| --- | --- | --- |
+| **Репозиторий** | **[Antiokh/genealogy-antiokh](https://github.com/Antiokh/genealogy-antiokh)** (вы здесь) | **[Antiokh/genealogy-engine](https://github.com/Antiokh/genealogy-engine)** |
+| **Здесь меняем** | Биографии, события, места, источники, фотографии, импорты, production-конфигурацию, хостинг | UI, CSS, темы, компоненты, родственные алгоритмы, карты, рендереры дерева, общие генераторы |
+| **Основные пути** | [`src/content/docs/`](src/content/docs/), [`imports/`](imports/), [`research/`](research/), [`astro.config.mjs`](astro.config.mjs) | [`src/components/`](https://github.com/Antiokh/genealogy-engine/tree/main/src/components), [`src/styles/`](https://github.com/Antiokh/genealogy-engine/tree/main/src/styles), [`scripts/`](https://github.com/Antiokh/genealogy-engine/tree/main/scripts) |
+| **Подробный README** | Этот документ: модель данных и работа с биографиями | **[README движка](https://github.com/Antiokh/genealogy-engine#readme)**: архитектура, сборка, разработка, CI |
+
+**Правило:** общие файлы движка в этом репозитории — автоматически поддерживаемая копия. Не редактируйте их здесь напрямую: внесите изменение в [`genealogy-engine`](https://github.com/Antiokh/genealogy-engine), проверьте PR и слейте его. После успешного Engine CI код автоматически попадёт сюда; изменения в семейных записях идут только в этом репозитории.
+
+Точный перечень зеркалируемых файлов: [`.genealogy-engine-managed.json`](.genealogy-engine-managed.json). Принципы и диагностика доставки: **[документация синхронизации](https://github.com/Antiokh/genealogy-engine/blob/main/docs/engine-content-sync.md)**. Правила для агентов: [AGENTS.md](AGENTS.md) здесь и [AGENTS.md движка](https://github.com/Antiokh/genealogy-engine/blob/main/AGENTS.md).
+
+### Путь изменений до сайта
+
+```text
+UI / общий код → genealogy-engine/main → Engine CI → sync-коммит сюда
+Биографии / источники ───────────────────────────────→ коммит сюда
+                                                       ↓
+                                       сборка сайта + Cloudflare Pages
+                                                       ↓
+                                             tree.antiokh.ru
+```
+
+## Об энциклопедии
 
 A repository-first family-history encyclopedia. People, events and supporting entities live as readable Markdown/YAML in Git; Starlight turns the same files into the browsing interface, while tables, analytics and family-tree renderers consume generated build data.
 
