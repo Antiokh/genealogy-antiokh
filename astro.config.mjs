@@ -34,7 +34,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/Antiokh/genealogy-antiokh',
+          href: 'https://github.com/Antiokh/genealogy-engine',
         },
       ],
       editLink: {
