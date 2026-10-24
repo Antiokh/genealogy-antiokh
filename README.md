@@ -2,6 +2,10 @@
 
 [![Engine CI](https://github.com/Antiokh/genealogy-engine/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Antiokh/genealogy-engine/actions/workflows/ci.yml)
 [![Открыть семейную энциклопедию](https://img.shields.io/badge/%D1%81%D0%B0%D0%B9%D1%82-tree.antiokh.ru-795138)](https://tree.antiokh.ru/)
+[![Люди](https://tree.antiokh.ru/badges/people.svg)](https://tree.antiokh.ru/people/)
+[![События](https://tree.antiokh.ru/badges/events.svg)](https://tree.antiokh.ru/events/)
+[![Места](https://tree.antiokh.ru/badges/places.svg)](https://tree.antiokh.ru/places/)
+[![Фото](https://tree.antiokh.ru/badges/photos.svg)](https://github.com/Antiokh/genealogy-antiokh/tree/main/src/content/docs/media)
 
 **Это репозиторий семейных записей и настроек публикации** сайта [«Семейная энциклопедия»](https://tree.antiokh.ru/). Универсальный программный движок вынесен в отдельный публичный репозиторий **[Antiokh/genealogy-engine](https://github.com/Antiokh/genealogy-engine)**.
 
