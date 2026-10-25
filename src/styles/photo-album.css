@@ -182,7 +182,13 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
    crossing (open-menu) stitches; the mobile trigger switches with popover. */
 .sl-menu-button,
 .toc-close {
+  /* Starlight's native mobile control is --sl-menu-button-size (2rem).
+     Give the ToC close control exactly the same outer diameter and shape. */
+  box-sizing: border-box;
+  width: var(--sl-menu-button-size) !important;
+  height: var(--sl-menu-button-size) !important;
   border: 1px solid var(--genea-button-edge) !important;
+  border-radius: 50% !important;
   padding: 0 !important;
   background: var(--genea-button-face) !important;
   color: transparent !important;
