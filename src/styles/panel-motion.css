@@ -46,11 +46,11 @@ html[data-theme='light'] body {
     transform: translateX(0);
   }
 
-  /* With a manually collapsed ToC, its fixed restore tab remains at the
-     right viewport edge. Reserve its width plus breathing room for portraits
-     and long text without constraining the mobile or auto-hidden layouts. */
+  /* When ToC is manually hidden, allow the fixed restore tab (~2.5rem)
+     plus a small gap without creating an asymmetric empty right margin.
+     Keep both reading gutters equal and slightly narrower than before. */
   html.genealogy-hide-toc[data-has-toc]:not(.genealogy-auto-hide-toc) .genealogy-columns .main-pane {
-    padding-inline-end: max(var(--genealogy-page-gutter), 3.75rem);
+    padding-inline: max(var(--genealogy-page-gutter), 3.125rem);
   }
 
   /* Shrink the FLEX COLUMN itself; transform-only hiding leaves a blank gutter. */

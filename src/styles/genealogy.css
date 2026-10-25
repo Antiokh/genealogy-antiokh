@@ -216,17 +216,16 @@ html[data-theme='light'] .sidebar-pane {
 }
 
 html[data-theme='light'] .main-pane {
+  /* Both paper edges use the same gradient and shadow, independent of the
+     collapsible side panels. Match the previously subtler right-hand edge. */
   background:
     linear-gradient(90deg,
-      #e1cfaa 0,
-      var(--genea-paper) 1.2rem,
-      var(--genea-paper-high) 3.2rem,
+      #eadfc7 0,
+      var(--genea-paper-high) 1.5rem,
       var(--genea-paper-high) calc(100% - 1.5rem),
       #eadfc7 100%);
-  /* The page, not either collapsible panel, owns both paper-edge shadows.
-     Inset shadows stay visible even when the reader fills the viewport. */
   box-shadow:
-    inset 18px 0 28px -20px rgb(68 38 20 / 22%),
+    inset 14px 0 24px -20px rgb(68 38 20 / 13%),
     inset -14px 0 24px -20px rgb(68 38 20 / 13%);
 }
 
