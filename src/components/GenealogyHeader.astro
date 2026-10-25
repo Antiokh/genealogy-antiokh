@@ -218,24 +218,21 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       cursor: pointer;
     }
 
-    /* Light: a subdued leather bookmark, borrowing its tones from the book
-       cover. No extra strip between the bookmark and the scrollbar. */
+    /* Match the selected left-menu entry, not the leather header.
+       Use genealogy palette tokens because Header's Starlight text tokens
+       are deliberately overridden for its dark navigation surface. */
     :global(html[data-theme='light']) .toc-restore {
-      border-color: color-mix(in srgb, var(--genea-brass) 26%, var(--genea-leather));
-      background: linear-gradient(
-        90deg,
-        var(--genea-leather) 0%,
-        var(--genea-cover-high) 100%
-      );
-      color: var(--sl-color-white);
+      border-color: var(--genea-line-strong);
+      background: var(--genea-selected-item-bg);
+      color: var(--genea-copper-text);
       box-shadow:
         -3px 0 8px rgb(43 22 13 / 8%),
-        inset 1px 0 0 color-mix(in srgb, var(--genea-brass) 16%, transparent);
+        inset 3px 0 0 rgb(152 74 36 / 55%);
     }
 
     :global(html[data-theme='light']) .toc-restore__arrow {
-      background: color-mix(in srgb, var(--genea-brass) 12%, var(--genea-leather));
-      color: var(--sl-color-text-accent);
+      background: color-mix(in srgb, var(--genea-copper) 12%, transparent);
+      color: var(--genea-copper-text);
     }
 
     /* Dark: keep the established leather palette and interaction states. */
@@ -265,8 +262,9 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
 
     :global(html[data-theme='light']) .toc-restore:hover,
     :global(html[data-theme='light']) .toc-restore:focus-visible {
-      border-color: var(--genea-brass);
-      color: var(--sl-color-text-accent);
+      border-color: var(--genea-copper);
+      color: var(--genea-copper-text);
+      background: color-mix(in srgb, var(--genea-copper) 18%, var(--genea-paper));
     }
 
     :global(html[data-theme='dark']) .toc-restore:hover,

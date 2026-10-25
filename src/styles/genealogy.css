@@ -33,11 +33,12 @@ html[data-theme='light'] {
   --genea-shadow-color: rgb(49 32 24 / 12%);
   --genea-avatar-bg: #eadabd;
   --genea-avatar-fg: #8a5a3d;
-  /* Soften the leather scrollbar on parchment. Blend the previous paper
-     tones with the dark-theme leather instead of using near-black tracks. */
-  --genea-scrollbar-track: color-mix(in srgb, #efe3ca 65%, #160a06);
-  --genea-scrollbar-thumb: color-mix(in srgb, #bca88f 40%, #5c3725);
-  --genea-scrollbar-thumb-hover: color-mix(in srgb, #8e6a54 35%, #915936);
+  /* Reuse the selected menu entry's paper/copper palette throughout the
+     light-theme inner scrollbars and the ToC restore tab. */
+  --genea-selected-item-bg: color-mix(in srgb, var(--genea-copper) 11%, var(--genea-paper));
+  --genea-scrollbar-track: var(--genea-selected-item-bg);
+  --genea-scrollbar-thumb: var(--genea-copper);
+  --genea-scrollbar-thumb-hover: var(--genea-copper-text);
 
   /* Starlight semantic scale: white = strongest foreground, black = deepest background. */
   --sl-color-white: #2b1a12;
@@ -146,6 +147,26 @@ html[data-theme='dark'] body {
 *::-webkit-scrollbar-thumb:hover { background: var(--genea-scrollbar-thumb-hover); }
 *::-webkit-scrollbar-corner { background: var(--genea-scrollbar-track); }
 
+/* The document scrollbar borders the dark navigation cover, not the paper
+   sidebar. Scope its colours to the root scrollbar so inner panes keep the
+   active-menu palette. Works with Firefox's scrollbar-color and WebKit. */
+html[data-theme='light'] {
+  scrollbar-color: var(--genea-leather) var(--genea-cover);
+}
+html[data-theme='light']::-webkit-scrollbar-track {
+  background: var(--genea-cover);
+}
+html[data-theme='light']::-webkit-scrollbar-thumb {
+  border-color: var(--genea-cover);
+  background: var(--genea-leather);
+}
+html[data-theme='light']::-webkit-scrollbar-thumb:hover {
+  background: var(--genea-copper);
+}
+html[data-theme='light']::-webkit-scrollbar-corner {
+  background: var(--genea-cover);
+}
+
 ::selection { background: color-mix(in srgb, var(--genea-copper) 32%, transparent); }
 
 header.header {
@@ -223,7 +244,7 @@ html[data-theme='dark'] .sidebar-pane {
   background: color-mix(in srgb, var(--genea-copper) 10%, transparent);
 }
 html[data-theme='light'] .sidebar-content a[aria-current='page'] {
-  background: rgb(152 74 36 / 11%);
+  background: var(--genea-selected-item-bg);
   box-shadow: inset 3px 0 0 rgb(152 74 36 / 55%);
 }
 html[data-theme='dark'] .sidebar-content a[aria-current='page'] {
