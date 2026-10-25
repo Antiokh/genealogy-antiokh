@@ -277,10 +277,12 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
 /* Same four-hole button and crossed stitches as the mobile menu, recoloured
    exclusively for the dark ToC so it becomes part of the navbar leather. */
 html[data-theme='dark'] .toc-close {
-  --genea-button-face: var(--sl-color-bg-nav);
-  --genea-button-disc-face: var(--sl-color-bg-nav);
-  --genea-button-edge: var(--sl-color-gray-5);
-  --genea-button-hole: var(--sl-color-gray-3);
+  /* Leather from the document scrollbar thumb, outlines and four holes from
+     its track. Leave stitched-thread colours and hover transition untouched. */
+  --genea-button-face: var(--genea-scrollbar-thumb);
+  --genea-button-disc-face: var(--genea-scrollbar-thumb);
+  --genea-button-edge: var(--genea-scrollbar-track);
+  --genea-button-hole: var(--genea-scrollbar-track);
   --genea-button-thread: var(--genea-muted);
   box-shadow:
     inset 0 1px 0 var(--genea-highlight),
@@ -288,7 +290,7 @@ html[data-theme='dark'] .toc-close {
 }
 
 html[data-theme='dark'] .toc-close::before {
-  border-color: var(--genea-line-strong);
+  border-color: var(--genea-scrollbar-track);
   box-shadow:
     inset 0 1px 2px var(--genea-highlight),
     inset 0 -1px 2px rgb(0 0 0 / 18%);

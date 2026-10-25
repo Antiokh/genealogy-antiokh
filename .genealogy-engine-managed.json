@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "3beff7c15be07ddcadd44e772b4c431b9dfaba95",
+  "commit": "9ed55c26efe9884eb937021543b5dbd92707d1da",
   "files": [
     "public/tree/genealogy-theme.css",
     "public/tree/kinship-extended.js",
