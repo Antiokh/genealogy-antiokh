@@ -38,8 +38,8 @@ html[data-theme='light'] {
   --genea-selected-item-bg: color-mix(in srgb, var(--genea-copper) 11%, var(--genea-paper));
   /* Matches the selected menu link's former 55%-opaque copper inset rule. */
   --genea-active-edge: color-mix(in srgb, var(--genea-copper) 55%, var(--genea-selected-item-bg));
-  --genea-scrollbar-track: var(--genea-selected-item-bg);
-  --genea-scrollbar-thumb: var(--genea-active-edge);
+  --genea-scrollbar-track: var(--genea-active-edge);
+  --genea-scrollbar-thumb: var(--genea-selected-item-bg);
   --genea-scrollbar-thumb-hover: var(--genea-copper-text);
 
   /* Starlight semantic scale: white = strongest foreground, black = deepest background. */
