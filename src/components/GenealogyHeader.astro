@@ -1,14 +1,20 @@
 ---
 import LanguageSelect from '@astrojs/starlight/components/LanguageSelect.astro';
 import Search from '@astrojs/starlight/components/Search.astro';
-import SiteTitle from '@astrojs/starlight/components/SiteTitle.astro';
+// Render the shared album medallion directly so it works with both demo and
+// publication configurations without changing the site's favicon setting.
 import SocialIcons from '@astrojs/starlight/components/SocialIcons.astro';
 import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
+
+const { siteTitle, siteTitleHref } = Astro.locals.starlightRoute;
 ---
 
 <div class="header">
   <div class="title-wrapper sl-flex">
-    <SiteTitle />
+    <a href={siteTitleHref} class="genealogy-site-title site-title sl-flex">
+      <img src="/textures/logo.webp" width="64" height="64" alt="" aria-hidden="true" decoding="async" />
+      <span translate="no">{siteTitle}</span>
+    </a>
   </div>
 
   <div class="sl-flex print:hidden">
@@ -114,6 +120,27 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
 </script>
 
 <style>
+  /* Match Starlight's title link semantics while using the shared oak medallion.
+     The link destination and localized title still come from Starlight route data. */
+  .genealogy-site-title {
+    align-items: center;
+    gap: var(--sl-nav-gap);
+    min-width: 0;
+    color: var(--sl-color-text-accent);
+    font-size: var(--sl-text-h4);
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .genealogy-site-title img {
+    display: block;
+    flex: none;
+    width: auto;
+    height: calc(var(--sl-nav-height) - 2 * var(--sl-nav-pad-y));
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .genealogy-site-title span { overflow: hidden; }
   @layer starlight.core {
     .header {
       display: flex;

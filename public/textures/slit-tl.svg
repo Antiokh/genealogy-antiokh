@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <g fill="none" stroke="white" stroke-linecap="round">
+    <!-- Two narrow strips of the album paper overlie the photograph. -->
+    <path d="M4 42 A38 38 0 0 0 42 4" stroke-width="6"/>
+    <path d="M4 53 A49 49 0 0 0 53 4" stroke-width="4"/>
+  </g>
+</svg>

@@ -464,6 +464,11 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
           />
         )}
         {personDeceased && <span class="person-portrait__mourning-ribbon" aria-hidden="true"></span>}
+        {/* Four individually mirrored bronze brackets; the ribbon retains higher z-index. */}
+        <span class="genea-photo-corner genea-photo-corner--tl" aria-hidden="true"></span>
+        <span class="genea-photo-corner genea-photo-corner--tr" aria-hidden="true"></span>
+        <span class="genea-photo-corner genea-photo-corner--bl" aria-hidden="true"></span>
+        <span class="genea-photo-corner genea-photo-corner--br" aria-hidden="true"></span>
       </div>
       {usingLegacyMediaPortrait && portraitEntry?.data.caption && <figcaption>{portraitEntry.data.caption}</figcaption>}
     </figure>
