@@ -37,6 +37,13 @@ html[data-theme='dark'] .person-portrait__frame .genea-photo-corner {
   display: block;
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 35%));
 }
+
+/* Antique metal corners need near-square portrait edges: the former 0.75rem
+   frame/image rounding clipped the outer rim and rivets of each bracket. */
+html[data-theme='dark'] .person-portrait__frame,
+html[data-theme='dark'] .person-portrait__image {
+  border-radius: 0.125rem;
+}
 .genea-photo-corner--tl,
 .genea-photo-corner--tr {
   top: 0;
