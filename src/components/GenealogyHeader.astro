@@ -36,8 +36,8 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
   </div>
 </div>
 
-<button class="toc-restore" type="button" data-panel-toggle="toc" aria-label="Показать оглавление" title="Показать оглавление">
-  <span aria-hidden="true">‹</span>
+<button class="toc-restore" type="button" data-panel-toggle="toc" aria-label="Показать оглавление" title="Показать оглавление" aria-pressed="false">
+  <span class="toc-restore__arrow" aria-hidden="true">‹</span>
   <span>Оглавление</span>
 </button>
 
@@ -46,6 +46,16 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
 
   const sidebarStorageKey = 'genealogy-session-hide-sidebar';
   const tocStorageKey = () => `genealogy-hide-toc:${window.location.pathname}`;
+
+  function readPreference(key: string, session = false) {
+    try { return (session ? sessionStorage : localStorage).getItem(key) === '1'; }
+    catch { return false; }
+  }
+
+  function savePreference(key: string, hidden: boolean, session = false) {
+    try { (session ? sessionStorage : localStorage).setItem(key, hidden ? '1' : '0'); }
+    catch { /* Storage may be blocked; controls must keep working. */ }
+  }
 
   function panelTitle(panel: Panel, hidden: boolean) {
     if (panel === 'sidebar') return hidden ? 'Показать меню' : 'Скрыть меню';
@@ -60,17 +70,32 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       button.setAttribute('title', panelTitle(panel, hidden));
     });
     if (!persist) return;
-    if (panel === 'sidebar') sessionStorage.setItem(sidebarStorageKey, hidden ? '1' : '0');
-    else localStorage.setItem(tocStorageKey(), hidden ? '1' : '0');
+    if (panel === 'sidebar') savePreference(sidebarStorageKey, hidden, true);
+    else savePreference(tocStorageKey(), hidden);
+  }
+
+  function hasEnoughTocSections() {
+    const toc = document.querySelector('starlight-toc');
+    return !!toc && [...toc.querySelectorAll('a[href^="#"]')]
+      .filter((link) => link.getAttribute('href') !== '#_top').length >= 2;
+  }
+
+  function syncAutoToc() {
+    const autoHidden = !hasEnoughTocSections();
+    document.documentElement.classList.toggle('genealogy-auto-hide-toc', autoHidden);
+    document.querySelectorAll<HTMLButtonElement>('[data-panel-toggle="toc"]').forEach((button) => {
+      button.disabled = autoHidden;
+    });
   }
 
   function bindPanelToggles() {
-    document.querySelectorAll<HTMLElement>('[data-panel-toggle]').forEach((button) => {
+    document.querySelectorAll<HTMLButtonElement>('[data-panel-toggle]').forEach((button) => {
       if (button.dataset.panelToggleBound === '1') return;
       button.dataset.panelToggleBound = '1';
       button.addEventListener('click', () => {
         const panel = button.dataset.panelToggle as Panel | undefined;
         if (panel !== 'sidebar' && panel !== 'toc') return;
+        if (panel === 'toc' && document.documentElement.classList.contains('genealogy-auto-hide-toc')) return;
         const hidden = document.documentElement.classList.contains(`genealogy-hide-${panel}`);
         setPanel(panel, !hidden);
       });
@@ -78,9 +103,10 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
   }
 
   function syncPanels() {
-    setPanel('sidebar', sessionStorage.getItem(sidebarStorageKey) === '1', false);
-    setPanel('toc', localStorage.getItem(tocStorageKey()) === '1', false);
+    setPanel('sidebar', readPreference(sidebarStorageKey, true), false);
+    setPanel('toc', readPreference(tocStorageKey()), false);
     bindPanelToggles();
+    syncAutoToc();
   }
 
   syncPanels();
@@ -175,19 +201,40 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       display: none;
       position: fixed;
       z-index: 20;
-      top: calc(var(--sl-nav-height) + 0.75rem);
+      top: 50%;
       right: 0;
-      gap: 0.35rem;
+      transform: translateY(-50%);
+      writing-mode: vertical-rl;
+      gap: 0.5rem;
       align-items: center;
       border: 1px solid var(--sl-color-gray-5);
       border-inline-end: 0;
-      border-radius: 0.5rem 0 0 0.5rem;
-      padding: 0.4rem 0.6rem;
-      background: var(--sl-color-bg-nav);
-      color: var(--sl-color-gray-2);
+      border-radius: 0.45rem 0 0 0.45rem;
+      padding: 0.75rem 0.4rem;
+      background: var(--genea-surface-high, var(--sl-color-bg));
+      color: var(--sl-color-text);
       font: inherit;
       font-size: 0.78rem;
       cursor: pointer;
+    }
+
+    .toc-restore:hover,
+    .toc-restore:focus-visible {
+      border-color: var(--sl-color-accent);
+      color: var(--sl-color-accent-high);
+    }
+
+    .toc-restore__arrow {
+      display: grid;
+      place-items: center;
+      width: 1.2rem;
+      height: 1.2rem;
+      border-radius: 999px;
+      background: var(--sl-color-gray-6);
+      color: var(--sl-color-accent-high);
+      font-size: 1rem;
+      line-height: 1;
+      writing-mode: horizontal-tb;
     }
 
     /* On the warm album paper, Starlight's default gray-3 ToC links are
@@ -203,8 +250,19 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       color: var(--sl-color-text-accent);
     }
 
-    :global(:root.genealogy-hide-toc[data-has-toc]) .toc-restore { display: flex; }
-    :global(:root:not([data-has-toc])) .panel-toggle-toc { display: none; }
+    :global(:root:not([data-has-toc])) .panel-toggle-toc,
+    :global(:root.genealogy-auto-hide-toc) .panel-toggle-toc { display: none; }
+
+    /* Desktop ToC is a fixed side column only at 72rem+. */
+    @media (max-width: 71.999rem) {
+      .panel-toggle-toc { display: none; }
+    }
+
+    @media (min-width: 72rem) {
+      :global(:root.genealogy-hide-toc[data-has-toc]:not(.genealogy-auto-hide-toc)) .toc-restore {
+        display: inline-flex;
+      }
+    }
 
     @media (min-width: 50rem) {
       :global(:root[data-has-sidebar]) { --__sidebar-pad: calc(2 * var(--sl-nav-pad-x)); }
@@ -225,12 +283,6 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       }
     }
 
-    @media (min-width: 72rem) {
-      :global(:root.genealogy-hide-toc .right-sidebar-container) { display: none; }
-      :global(:root.genealogy-hide-toc[data-has-sidebar][data-has-toc] .main-pane) {
-        --sl-content-margin-inline: auto;
-        width: 100%;
-      }
-    }
+
   }
 </style>

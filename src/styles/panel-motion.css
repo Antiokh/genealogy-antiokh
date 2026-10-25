@@ -1,12 +1,16 @@
-/* Album-page polish: parchment overscroll and RSLive-style panel motion. */
+/* Album-page polish: parchment overscroll and responsive reading space. */
 
-/* Rubber-band / overscroll should reveal more paper, not the leather cover. */
 html[data-theme='light'],
 html[data-theme='light'] body {
   background: var(--genea-paper-high) !important;
 }
 
+/* A hidden sidebar must return its allocated viewport width to the page. */
 @media (min-width: 50rem) {
+  html.genealogy-hide-sidebar {
+    --sl-content-inline-start: 0rem !important;
+  }
+
   .sidebar-pane {
     transform: translateX(0);
     opacity: 1;
@@ -19,22 +23,40 @@ html[data-theme='light'] body {
     visibility: hidden;
     pointer-events: none;
   }
+
+  /* Reclaiming the column isn't enough if Starlight retains the old
+     max-width on the article itself. The freed space becomes reading space. */
+  html.genealogy-hide-sidebar .main-pane {
+    --sl-content-width: 72rem;
+  }
 }
 
 @media (min-width: 72rem) {
-  .right-sidebar-container {
-    display: block !important;
-    transform: translateX(0);
+  .genealogy-columns .right-sidebar-container {
     opacity: 1;
     visibility: visible;
+    transform: translateX(0);
   }
 
-  html.genealogy-hide-toc .right-sidebar-container {
-    display: block !important;
-    transform: translateX(100%);
+  /* Shrink the FLEX COLUMN itself; transform-only hiding leaves a blank gutter. */
+  html:is(.genealogy-hide-toc, .genealogy-auto-hide-toc) .genealogy-columns .right-sidebar-container {
+    flex: 0 0 0 !important;
+    width: 0 !important;
+    min-width: 0 !important;
     opacity: 0;
     visibility: hidden;
+    transform: translateX(1.5rem);
     pointer-events: none;
+  }
+
+  /* One collapsed side gives the article up to 72rem; both sides up to
+     92rem. Available space still constrains it on smaller viewports. */
+  html:is(.genealogy-hide-toc, .genealogy-auto-hide-toc) .genealogy-columns .main-pane {
+    --sl-content-width: 72rem;
+  }
+
+  html.genealogy-hide-sidebar:is(.genealogy-hide-toc, .genealogy-auto-hide-toc) .genealogy-columns .main-pane {
+    --sl-content-width: 92rem;
   }
 }
 
@@ -45,17 +67,33 @@ html[data-theme='light'] body {
         transform 0.26s ease,
         opacity 0.2s ease,
         visibility 0.26s ease;
-      will-change: transform, opacity;
     }
   }
 
   @media (min-width: 72rem) {
-    .right-sidebar-container {
+    .genealogy-columns .right-sidebar-container {
       transition:
-        transform 0.24s ease,
+        flex-basis 0.26s ease,
+        width 0.26s ease,
+        transform 0.26s ease,
         opacity 0.2s ease,
-        visibility 0.24s ease;
-      will-change: transform, opacity;
+        visibility 0.26s ease;
     }
+
+    .main-frame,
+    .genealogy-columns .main-pane {
+      transition:
+        padding-inline-start 0.26s ease,
+        width 0.26s ease;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-pane,
+  .main-frame,
+  .genealogy-columns .main-pane,
+  .genealogy-columns .right-sidebar-container {
+    transition: none !important;
   }
 }

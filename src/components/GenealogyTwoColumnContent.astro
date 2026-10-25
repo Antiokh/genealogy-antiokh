@@ -1,0 +1,122 @@
+---
+/**
+ * Starlight TwoColumnContent override.
+ * The reading column actually reclaims the width of a collapsed ToC, while
+ * the open ToC stays pinned and scrolls independently on wide desktops.
+ */
+---
+
+<div class="lg:sl-flex genealogy-columns">
+  {
+    Astro.locals.starlightRoute.toc && (
+      <aside class="right-sidebar-container print:hidden">
+        <div class="right-sidebar">
+          <button
+            type="button"
+            class="toc-close"
+            data-panel-toggle="toc"
+            aria-label="Скрыть оглавление"
+            title="Скрыть оглавление"
+            aria-pressed="true"
+          >
+            <span aria-hidden="true"></span>
+          </button>
+          <slot name="right-sidebar" />
+        </div>
+      </aside>
+    )
+  }
+  <div class="main-pane">
+    <slot />
+  </div>
+</div>
+
+<style>
+  @layer starlight.core {
+    .main-pane {
+      isolation: isolate;
+      min-width: 0;
+    }
+
+    .toc-close {
+      display: none;
+    }
+
+    @media (min-width: 72rem) {
+      .genealogy-columns {
+        --genealogy-toc-column: clamp(14rem, 18vw, 18rem);
+        display: flex;
+        width: 100%;
+        min-width: 0;
+        align-items: stretch;
+      }
+
+      .genealogy-columns .right-sidebar-container {
+        order: 2;
+        flex: 0 0 var(--genealogy-toc-column);
+        width: var(--genealogy-toc-column);
+        min-width: 0;
+        align-self: stretch;
+        overflow: clip;
+      }
+
+      .genealogy-columns .right-sidebar {
+        position: sticky;
+        top: var(--sl-nav-height);
+        width: 100%;
+        height: calc(100vh - var(--sl-nav-height));
+        height: calc(100dvh - var(--sl-nav-height));
+        box-sizing: border-box;
+        overflow-x: hidden;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        border-inline-start: 1px solid var(--sl-color-hairline);
+        padding: 2.7rem 1rem 2rem;
+      }
+
+      .genealogy-columns .main-pane {
+        order: 1;
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+        --sl-content-margin-inline: auto;
+      }
+
+      .toc-close {
+        position: absolute;
+        top: 0.7rem;
+        right: 0.9rem;
+        z-index: 2;
+        display: grid;
+        place-items: center;
+        width: 1.7rem;
+        height: 1.7rem;
+        padding: 0;
+        border: 1px solid var(--sl-color-gray-5);
+        border-radius: 999px;
+        background: var(--sl-color-bg);
+        color: var(--sl-color-text);
+        cursor: pointer;
+      }
+
+      .toc-close > span {
+        width: 0.85rem;
+        height: 0.85rem;
+        background: currentColor;
+        -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='2.4' viewBox='0 0 24 24'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+        mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' stroke='currentColor' stroke-linecap='round' stroke-width='2.4' viewBox='0 0 24 24'%3E%3Cpath d='M18 6 6 18M6 6l12 12'/%3E%3C/svg%3E") center / contain no-repeat;
+      }
+
+      .toc-close:hover,
+      .toc-close:focus-visible {
+        color: var(--sl-color-accent-high);
+        border-color: var(--sl-color-accent);
+      }
+
+      :global(html.genealogy-hide-toc) .toc-close,
+      :global(html.genealogy-auto-hide-toc) .toc-close {
+        display: none;
+      }
+    }
+  }
+</style>

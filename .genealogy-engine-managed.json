@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "24d19a527e0f17c40898707c3b36fe29aa586661",
+  "commit": "0a852050b3436eb1a8719417efbab3aee3ece230",
   "files": [
     "public/tree/genealogy-theme.css",
     "public/tree/kinship-extended.js",
@@ -32,6 +32,7 @@
     "src/components/GenealogyHeader.astro",
     "src/components/GenealogyPageTitle.astro",
     "src/components/GenealogyThemeSwitch.astro",
+    "src/components/GenealogyTwoColumnContent.astro",
     "src/components/PersonGallery.astro",
     "src/components/PersonPlacesMap.astro",
     "src/components/TreeFrame.astro",
