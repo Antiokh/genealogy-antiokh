@@ -8,7 +8,9 @@
   --genea-button-face: #f0e2bf;
   --genea-button-edge: #cbb487;
   --genea-button-hole: #4e2818;
-  --genea-button-thread: var(--genea-button-hole);
+  /* The original stitching stays this brown even when a theme recolours
+     the buttonholes; do not bind the thread token to the hole token. */
+  --genea-button-thread: #4e2818;
 }
 
 /* The portrait itself already has its own frame. Keep the outer figure transparent
@@ -277,13 +279,12 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
 /* Same four-hole button and crossed stitches as the mobile menu, recoloured
    exclusively for the dark ToC so it becomes part of the navbar leather. */
 html[data-theme='dark'] .toc-close {
-  /* Leather from the document scrollbar thumb, outlines and four holes from
-     its track. Leave stitched-thread colours and hover transition untouched. */
+  /* Leather from the document scrollbar thumb, rim and holes from the
+     scrollbar track. Preserve the original dark brown stitches in all states. */
   --genea-button-face: var(--genea-scrollbar-thumb);
   --genea-button-disc-face: var(--genea-scrollbar-thumb);
   --genea-button-edge: var(--genea-scrollbar-track);
   --genea-button-hole: var(--genea-scrollbar-track);
-  --genea-button-thread: var(--genea-muted);
   box-shadow:
     inset 0 1px 0 var(--genea-highlight),
     0 1px 4px rgb(0 0 0 / 26%) !important;
@@ -298,10 +299,6 @@ html[data-theme='dark'] .toc-close::before {
 
 html[data-theme='dark'] .toc-close::after {
   filter: none;
-}
-
-html[data-theme='dark'] .toc-close:is(:hover, :focus-visible)::after {
-  color: var(--genea-text);
 }
 
 @media (prefers-reduced-motion: reduce) {
