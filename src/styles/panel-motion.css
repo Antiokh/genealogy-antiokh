@@ -24,6 +24,14 @@ html[data-theme='light'] body {
     pointer-events: none;
   }
 
+  /* Keep the page content clear of the inset paper shadow on both edges.
+     Padding belongs to the persistent reader, not collapsible panels. */
+  .genealogy-columns .main-pane {
+    --genealogy-page-gutter: clamp(1rem, 2vw, 2rem);
+    box-sizing: border-box;
+    padding-inline: var(--genealogy-page-gutter);
+  }
+
   /* Reclaiming the column isn't enough if Starlight retains the old
      max-width on the article itself. The freed space becomes reading space. */
   html.genealogy-hide-sidebar .main-pane {
@@ -36,6 +44,13 @@ html[data-theme='light'] body {
     opacity: 1;
     visibility: visible;
     transform: translateX(0);
+  }
+
+  /* With a manually collapsed ToC, its fixed restore tab remains at the
+     right viewport edge. Reserve its width plus breathing room for portraits
+     and long text without constraining the mobile or auto-hidden layouts. */
+  html.genealogy-hide-toc[data-has-toc]:not(.genealogy-auto-hide-toc) .genealogy-columns .main-pane {
+    padding-inline-end: max(var(--genealogy-page-gutter), 3.75rem);
   }
 
   /* Shrink the FLEX COLUMN itself; transform-only hiding leaves a blank gutter. */

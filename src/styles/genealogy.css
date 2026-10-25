@@ -226,8 +226,8 @@ html[data-theme='light'] .main-pane {
   /* The page, not either collapsible panel, owns both paper-edge shadows.
      Inset shadows stay visible even when the reader fills the viewport. */
   box-shadow:
-    inset 18px 0 28px -20px rgb(68 38 20 / 43%),
-    inset -14px 0 24px -20px rgb(68 38 20 / 26%);
+    inset 18px 0 28px -20px rgb(68 38 20 / 22%),
+    inset -14px 0 24px -20px rgb(68 38 20 / 13%);
 }
 
 html[data-theme='light'] .right-sidebar {
