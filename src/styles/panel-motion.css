@@ -31,18 +31,21 @@ html[data-theme='light'] body {
     ),
     linear-gradient(
       90deg,
-      #eadfc7 0,
-      var(--genea-paper-high) 1.5rem,
-      var(--genea-paper-high) calc(100% - 1.5rem),
-      #eadfc7 100%
-    ) !important;
+      rgb(234 223 199 / 77%) 0,
+      rgb(251 244 223 / 77%) 1.5rem,
+      rgb(251 244 223 / 77%) calc(100% - 1.5rem),
+      rgb(234 223 199 / 77%) 100%
+    ),
+    url('/textures/linen-paper.webp') !important;
   background-position:
     var(--sl-content-inline-start, 0rem) top,
-    var(--sl-content-inline-start, 0rem) top !important;
+    var(--sl-content-inline-start, 0rem) top,
+    0 0 !important;
   background-size:
     calc(100vw - var(--sl-content-inline-start, 0rem) - var(--genealogy-backdrop-toc-width)) 100vh,
-    calc(100vw - var(--sl-content-inline-start, 0rem) - var(--genealogy-backdrop-toc-width)) 100vh !important;
-  background-repeat: no-repeat !important;
+    calc(100vw - var(--sl-content-inline-start, 0rem) - var(--genealogy-backdrop-toc-width)) 100vh,
+    auto !important;
+  background-repeat: no-repeat, no-repeat, repeat !important;
   background-attachment: fixed !important;
 }
 

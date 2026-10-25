@@ -119,9 +119,13 @@ html[data-theme='light'] body {
 }
 
 html[data-theme='dark'] body {
-  background:
-    radial-gradient(circle at 12% -5%, color-mix(in srgb, var(--genea-copper) 14%, transparent), transparent 32rem),
-    var(--sl-color-bg);
+  /* Keep the existing warm glow, but reveal the repeating leather grain below. */
+  background-color: var(--sl-color-bg);
+  background-image:
+    radial-gradient(circle at 12% -5%, color-mix(in srgb, var(--genea-copper) 10%, transparent), transparent 32rem),
+    linear-gradient(rgb(22 10 6 / 65%), rgb(22 10 6 / 65%)),
+    url('/textures/dark-leather-tile.webp');
+  background-repeat: no-repeat, no-repeat, repeat;
 }
 
 /* Firefox and Chromium/WebKit scrollbars follow the active theme. */
@@ -191,13 +195,18 @@ html[data-theme='light'] header.header {
   --sl-color-gray-6: #422719;
   --sl-color-gray-7: #321b10;
   border-bottom-color: rgb(196 143 87 / 24%);
+  /* The existing cover gradient still defines the colour, with fine leather
+     grain beneath it rather than a large photographic pattern. */
   background:
-    linear-gradient(180deg, #321b10, #261209);
+    linear-gradient(180deg, rgb(50 27 16 / 78%), rgb(38 18 9 / 82%)),
+    url('/textures/light-leather-tile.webp') repeat;
   box-shadow: 0 0.35rem 1.2rem rgb(15 7 3 / 24%);
 }
 
 html[data-theme='dark'] header.header {
-  background: color-mix(in srgb, var(--sl-color-bg-nav) 90%, transparent);
+  background:
+    linear-gradient(180deg, rgb(33 17 9 / 77%), rgb(33 17 9 / 83%)),
+    url('/textures/dark-leather-tile.webp') repeat;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -205,39 +214,45 @@ html[data-theme='dark'] header.header {
 .sidebar-pane { background: var(--sl-color-bg-sidebar); }
 
 html[data-theme='light'] .sidebar-pane {
-  background:
+  background-color: var(--genea-paper);
+  background-image:
     linear-gradient(90deg,
-      var(--genea-paper-high) 0%,
-      var(--genea-paper) calc(100% - 1.4rem),
-      #d6c29b 100%);
+      rgb(251 244 223 / 77%) 0%,
+      rgb(244 234 208 / 77%) calc(100% - 1.4rem),
+      rgb(214 194 155 / 77%) 100%),
+    url('/textures/linen-paper.webp');
+  background-repeat: no-repeat, repeat;
   /* Keep only the menu's hairline. Its former deep inset shadow vanished
      when the menu was collapsed, making the page lose its book-like edge. */
   box-shadow: inset -1px 0 0 rgb(87 53 31 / 18%);
 }
 
 html[data-theme='light'] .main-pane {
-  /* Both paper edges use the same gradient and shadow, independent of the
-     collapsible side panels. Match the previously subtler right-hand edge. */
-  background:
+  /* Retain the book-like edge shading over a low-contrast linen-paper tile. */
+  background-color: var(--genea-paper-high);
+  background-image:
     linear-gradient(90deg,
-      #eadfc7 0,
-      var(--genea-paper-high) 1.5rem,
-      var(--genea-paper-high) calc(100% - 1.5rem),
-      #eadfc7 100%);
+      rgb(234 223 199 / 77%) 0,
+      rgb(251 244 223 / 77%) 1.5rem,
+      rgb(251 244 223 / 77%) calc(100% - 1.5rem),
+      rgb(234 223 199 / 77%) 100%),
+    url('/textures/linen-paper.webp');
+  background-repeat: no-repeat, repeat;
   box-shadow:
     inset 14px 0 24px -20px rgb(68 38 20 / 13%),
     inset -14px 0 24px -20px rgb(68 38 20 / 13%);
 }
 
 html[data-theme='light'] .right-sidebar {
-  background: var(--genea-paper-high);
+  background:
+    linear-gradient(rgb(251 244 223 / 77%), rgb(251 244 223 / 77%)),
+    url('/textures/linen-paper.webp') repeat;
 }
 
 html[data-theme='dark'] .sidebar-pane {
   background:
-    linear-gradient(180deg,
-      color-mix(in srgb, var(--sl-color-bg-sidebar) 92%, var(--genea-copper) 8%),
-      var(--sl-color-bg-sidebar));
+    linear-gradient(180deg, rgb(31 15 9 / 77%), rgb(27 13 8 / 83%)),
+    url('/textures/dark-leather-tile.webp') repeat;
 }
 
 .sidebar-content a { color: var(--sl-color-gray-2); }

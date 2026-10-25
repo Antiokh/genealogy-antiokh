@@ -1,7 +1,10 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "a35e501373c32979b44ec4d482c7b705313e674b",
+  "commit": "fd7410ff8f3ce48324d56aff593d1b328686a8c7",
   "files": [
+    "public/textures/dark-leather-tile.webp",
+    "public/textures/light-leather-tile.webp",
+    "public/textures/linen-paper.webp",
     "public/tree/genealogy-theme.css",
     "public/tree/kinship-extended.js",
     "public/tree/kinship.js",
