@@ -262,13 +262,9 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
       transparent calc(50% + 1.3px)) center / 38% 38% no-repeat;
 }
 
-.sl-menu-button:has(~ :popover-open),
-.toc-close {
-  background: var(--genea-button-face) !important;
-  box-shadow:
-    inset 0 2px 5px rgb(78 40 24 / 16%),
-    0 1px 4px rgb(43 26 18 / 18%) !important;
-}
+/* Keep the same cream face and outer shadow on both close controls.
+   The old pressed-state inset shadow looked like an extra dark gradient on
+   the light-theme ToC, even though the mobile button shared the rule. */
 
 .sl-menu-button:focus-visible,
 .toc-close:focus-visible {
