@@ -272,6 +272,12 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
   outline-offset: 3px;
 }
 
+/* Match the dark ToC's smooth thread-color hover using the main paper ink.
+   Apply to both light album buttons so the interaction remains consistent. */
+html[data-theme='light'] :is(.sl-menu-button, .toc-close):is(:hover, :focus-visible)::after {
+  color: var(--genea-text);
+}
+
 /* Same four-hole button and crossed stitches as the mobile menu, recoloured
    exclusively for the dark ToC so it becomes part of the navbar leather. */
 html[data-theme='dark'] .toc-close {
