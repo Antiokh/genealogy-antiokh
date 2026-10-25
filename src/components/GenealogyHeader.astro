@@ -198,11 +198,14 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
     }
 
     .toc-restore {
+      /* Leave space for a gradient seam that joins the browser scrollbar track. */
+      --genea-toc-edge-gap: 0.75rem;
+      --genea-toc-edge-color: var(--genea-scrollbar-track);
       display: none;
       position: fixed;
       z-index: 20;
       top: 50%;
-      right: 0;
+      right: var(--genea-toc-edge-gap);
       transform: translateY(-50%);
       writing-mode: vertical-rl;
       gap: 0.5rem;
@@ -218,8 +221,78 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       cursor: pointer;
     }
 
+    /* Decorative continuation: the tab no longer ends abruptly at a
+       differently coloured scrollbar gutter. Keep it outside the hit target. */
+    .toc-restore::after {
+      content: '';
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: calc(100% - 1px);
+      width: calc(var(--genea-toc-edge-gap) + 2px);
+      background: linear-gradient(
+        90deg,
+        var(--genea-toc-edge-color),
+        var(--genea-scrollbar-track)
+      );
+      pointer-events: none;
+    }
+
+    /* Light: the same warm paper gradient and inset edge as the left menu. */
+    :global(html[data-theme='light']) .toc-restore {
+      --genea-toc-edge-color: #d6c29b;
+      border-color: rgb(87 53 31 / 18%);
+      background: linear-gradient(
+        90deg,
+        var(--genea-paper-high) 0%,
+        var(--genea-paper) calc(100% - 0.95rem),
+        #d6c29b 100%
+      );
+      color: var(--sl-color-gray-2);
+      box-shadow:
+        inset -1px 0 0 rgb(87 53 31 / 18%),
+        inset -18px 0 28px -30px rgb(66 35 18 / 55%);
+    }
+
+    :global(html[data-theme='light']) .toc-restore__arrow {
+      background: rgb(152 74 36 / 10%);
+      color: var(--sl-color-text-accent);
+    }
+
+    /* Dark: transition from the leather-like tab into the dark scroll track. */
+    :global(html[data-theme='dark']) .toc-restore {
+      --genea-toc-edge-color: var(--genea-surface);
+      background: linear-gradient(
+        90deg,
+        var(--genea-surface-high) 0%,
+        var(--genea-surface) 100%
+      );
+      border-color: var(--sl-color-gray-5);
+      color: var(--sl-color-white);
+      box-shadow:
+        0 8px 20px rgb(0 0 0 / 22%),
+        inset 0 1px 0 rgb(255 222 176 / 5%);
+    }
+
+    :global(html[data-theme='dark']) .toc-restore__arrow {
+      background: color-mix(in srgb, var(--genea-copper) 14%, var(--sl-color-black));
+      color: var(--genea-copper-text);
+    }
+
     .toc-restore:hover,
     .toc-restore:focus-visible {
+      border-color: var(--sl-color-accent);
+      color: var(--sl-color-accent-high);
+    }
+
+    :global(html[data-theme='light']) .toc-restore:hover,
+    :global(html[data-theme='light']) .toc-restore:focus-visible {
+      border-color: rgb(152 74 36 / 42%);
+      color: var(--sl-color-text-accent);
+    }
+
+    :global(html[data-theme='dark']) .toc-restore:hover,
+    :global(html[data-theme='dark']) .toc-restore:focus-visible {
       border-color: var(--sl-color-accent);
       color: var(--sl-color-accent-high);
     }
