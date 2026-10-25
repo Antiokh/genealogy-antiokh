@@ -1,6 +1,7 @@
 .person-title-row .person-portrait__mourning-ribbon {
-  right: -36% !important;
-  bottom: 5.5% !important;
+  /* Pull the diagonal band inward, off the lower-right oak bracket. */
+  right: -23% !important;
+  bottom: 12% !important;
   height: 1.1rem !important;
   z-index: 6 !important;
 }
