@@ -198,14 +198,11 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
     }
 
     .toc-restore {
-      /* Leave space for a gradient seam that joins the browser scrollbar track. */
-      --genea-toc-edge-gap: 0.75rem;
-      --genea-toc-edge-color: var(--genea-scrollbar-track);
       display: none;
       position: fixed;
       z-index: 20;
       top: 50%;
-      right: var(--genea-toc-edge-gap);
+      right: 0;
       transform: translateY(-50%);
       writing-mode: vertical-rl;
       gap: 0.5rem;
@@ -221,48 +218,28 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       cursor: pointer;
     }
 
-    /* Decorative continuation: the tab no longer ends abruptly at a
-       differently coloured scrollbar gutter. Keep it outside the hit target. */
-    .toc-restore::after {
-      content: '';
-      position: absolute;
-      top: -1px;
-      bottom: -1px;
-      left: calc(100% - 1px);
-      width: calc(var(--genea-toc-edge-gap) + 2px);
-      background: linear-gradient(
-        90deg,
-        var(--genea-toc-edge-color),
-        var(--genea-scrollbar-track)
-      );
-      pointer-events: none;
-    }
-
-    /* Light pages use the album's dark leather cover at the exposed edge.
-       This control is inside Header, so the light-on-dark header color tokens
-       correctly match the leather, rather than the surrounding parchment. */
+    /* Light: a subdued leather bookmark, borrowing its tones from the book
+       cover. No extra strip between the bookmark and the scrollbar. */
     :global(html[data-theme='light']) .toc-restore {
-      --genea-toc-edge-color: var(--genea-cover);
-      border-color: color-mix(in srgb, var(--genea-brass) 42%, var(--genea-cover));
+      border-color: color-mix(in srgb, var(--genea-brass) 26%, var(--genea-leather));
       background: linear-gradient(
         90deg,
-        var(--genea-cover-high) 0%,
-        var(--genea-cover) 100%
+        var(--genea-leather) 0%,
+        var(--genea-cover-high) 100%
       );
       color: var(--sl-color-white);
       box-shadow:
-        -3px 0 10px rgb(43 22 13 / 10%),
-        inset 1px 0 0 color-mix(in srgb, var(--genea-brass) 24%, transparent);
+        -3px 0 8px rgb(43 22 13 / 8%),
+        inset 1px 0 0 color-mix(in srgb, var(--genea-brass) 16%, transparent);
     }
 
     :global(html[data-theme='light']) .toc-restore__arrow {
-      background: color-mix(in srgb, var(--genea-brass) 18%, var(--genea-cover));
+      background: color-mix(in srgb, var(--genea-brass) 12%, var(--genea-leather));
       color: var(--sl-color-text-accent);
     }
 
-    /* Dark: transition from the leather-like tab into the dark scroll track. */
+    /* Dark: keep the established leather palette and interaction states. */
     :global(html[data-theme='dark']) .toc-restore {
-      --genea-toc-edge-color: var(--genea-surface);
       background: linear-gradient(
         90deg,
         var(--genea-surface-high) 0%,
