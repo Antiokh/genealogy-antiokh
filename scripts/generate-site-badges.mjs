@@ -3,12 +3,15 @@
  * consumed by the genealogy site. Run AFTER npm run build:data and astro build.
  * These are build artifacts, not manually maintained counts.
  */
-import { mkdir, readFile, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 
 const outputDir = path.resolve('dist');
 const badgeDir = path.join(outputDir, 'badges');
 const generatedDir = path.resolve('public/generated');
+const contentRoot = path.resolve('src/content/docs');
+const photoExtensions = /\.(?:avif|gif|jpe?g|png|webp)$/i;
 
 async function readDataset(name, collection) {
   const filePath = path.join(generatedDir, `${name}.json`);
@@ -56,15 +59,41 @@ const [people, events, places, media] = await Promise.all([
   readDataset('media', 'media'),
 ]);
 
-// Media entries have a semantic mediaType; only photos are counted here.
-// Absence of mediaType defaults to photo in build-media.mjs.
-const photos = media.filter((record) => (record.mediaType ?? 'photo') === 'photo');
+// Count distinct local photographs, not media metadata records (which may point
+// to remote URLs), nor duplicated copies of an existing portrait in people/.
+// Ignore interface illustrations/logos outside the content's photo directories.
+async function collectPhotographs(directory) {
+  let entries;
+  try {
+    entries = await readdir(directory, { withFileTypes: true });
+  } catch (error) {
+    if (error?.code === 'ENOENT') return [];
+    throw error;
+  }
+  const photographs = [];
+  for (const entry of entries) {
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) photographs.push(...await collectPhotographs(fullPath));
+    else if (entry.isFile() && photoExtensions.test(entry.name)) photographs.push(fullPath);
+  }
+  return photographs;
+}
+
+const photoFiles = [
+  ...await collectPhotographs(path.join(contentRoot, 'media')),
+  ...await collectPhotographs(path.join(contentRoot, 'people')),
+];
+const distinctPhotos = new Set();
+for (const filePath of photoFiles) {
+  distinctPhotos.add(createHash('sha256').update(await readFile(filePath)).digest('hex'));
+}
+const photoRecords = media.filter((record) => (record.mediaType ?? 'photo') === 'photo').length;
 
 const counters = [
   { name: 'people', label: 'люди', count: people.length, color: '#0b7285' },
   { name: 'events', label: 'события', count: events.length, color: '#7048e8' },
   { name: 'places', label: 'места', count: places.length, color: '#2f9e44' },
-  { name: 'photos', label: 'фото', count: photos.length, color: '#b07643' },
+  { name: 'photos', label: 'фото', count: distinctPhotos.size, color: '#b07643' },
 ];
 
 await mkdir(badgeDir, { recursive: true });
@@ -74,7 +103,9 @@ for (const badge of counters) {
 
 await writeFile(path.join(outputDir, 'site-stats.json'), JSON.stringify({
   schema: 1,
-  countedFrom: 'public/generated/*.json',
+  countedFrom: 'public/generated/*.json and distinct content photo files',
+  photoFiles: photoFiles.length,
+  photoRecords,
   ...Object.fromEntries(counters.map(({ name, count }) => [name, count])),
 }, null, 2) + '\n', 'utf8');
 
