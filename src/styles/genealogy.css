@@ -36,8 +36,10 @@ html[data-theme='light'] {
   /* Reuse the selected menu entry's paper/copper palette throughout the
      light-theme inner scrollbars and the ToC restore tab. */
   --genea-selected-item-bg: color-mix(in srgb, var(--genea-copper) 11%, var(--genea-paper));
+  /* Matches the selected menu link's former 55%-opaque copper inset rule. */
+  --genea-active-edge: color-mix(in srgb, var(--genea-copper) 55%, var(--genea-selected-item-bg));
   --genea-scrollbar-track: var(--genea-selected-item-bg);
-  --genea-scrollbar-thumb: var(--genea-copper);
+  --genea-scrollbar-thumb: var(--genea-active-edge);
   --genea-scrollbar-thumb-hover: var(--genea-copper-text);
 
   /* Starlight semantic scale: white = strongest foreground, black = deepest background. */
@@ -245,7 +247,7 @@ html[data-theme='dark'] .sidebar-pane {
 }
 html[data-theme='light'] .sidebar-content a[aria-current='page'] {
   background: var(--genea-selected-item-bg);
-  box-shadow: inset 3px 0 0 rgb(152 74 36 / 55%);
+  box-shadow: inset 3px 0 0 var(--genea-active-edge);
 }
 html[data-theme='dark'] .sidebar-content a[aria-current='page'] {
   background: #0f0704;
