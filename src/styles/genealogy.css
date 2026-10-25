@@ -210,9 +210,9 @@ html[data-theme='light'] .sidebar-pane {
       var(--genea-paper-high) 0%,
       var(--genea-paper) calc(100% - 1.4rem),
       #d6c29b 100%);
-  box-shadow:
-    inset -1px 0 0 rgb(87 53 31 / 18%),
-    inset -18px 0 28px -30px rgb(66 35 18 / 70%);
+  /* Keep only the menu's hairline. Its former deep inset shadow vanished
+     when the menu was collapsed, making the page lose its book-like edge. */
+  box-shadow: inset -1px 0 0 rgb(87 53 31 / 18%);
 }
 
 html[data-theme='light'] .main-pane {
@@ -223,9 +223,11 @@ html[data-theme='light'] .main-pane {
       var(--genea-paper-high) 3.2rem,
       var(--genea-paper-high) calc(100% - 1.5rem),
       #eadfc7 100%);
+  /* The page, not either collapsible panel, owns both paper-edge shadows.
+     Inset shadows stay visible even when the reader fills the viewport. */
   box-shadow:
-    inset 18px 0 24px -28px rgb(68 38 20 / 64%),
-    inset -10px 0 20px -28px rgb(68 38 20 / 34%);
+    inset 18px 0 28px -20px rgb(68 38 20 / 43%),
+    inset -14px 0 24px -20px rgb(68 38 20 / 26%);
 }
 
 html[data-theme='light'] .right-sidebar {
