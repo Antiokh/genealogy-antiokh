@@ -73,7 +73,9 @@
         overflow-y: auto;
         scrollbar-width: thin;
         border-inline-start: 1px solid var(--sl-color-hairline);
-        padding: 2.7rem 1rem 2rem;
+        /* Starlight's PageSidebar adds its own 1rem top padding: leave this
+           at zero so the section title can share a row with our button. */
+        padding: 0 1rem 2rem;
       }
 
       .genealogy-columns .main-pane {
@@ -89,12 +91,23 @@
            and geometry are shared with Starlight's mobile menu in
            photo-album.css. Do not override its size or styling here. */
         position: absolute;
-        top: 0.65rem;
+        /* PageSidebar starts 1rem below the ToC top edge. Align the button
+           with the heading, not above it. */
+        top: 1rem;
         right: 0.75rem;
         z-index: 2;
         display: grid;
         place-items: center;
         cursor: pointer;
+      }
+
+      /* Same vertical centre as the 2rem button. Keep heading text clear of
+         the button at narrower desktop widths and in both themes. */
+      .genealogy-columns :global(.right-sidebar-panel #starlight__on-this-page) {
+        display: flex;
+        align-items: center;
+        min-height: var(--sl-menu-button-size);
+        padding-inline-end: calc(var(--sl-menu-button-size) + 0.5rem);
       }
 
       :global(html.genealogy-hide-toc) .toc-close,
