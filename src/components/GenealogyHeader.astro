@@ -238,24 +238,25 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
       pointer-events: none;
     }
 
-    /* Light: the same warm paper gradient and inset edge as the left menu. */
+    /* Light pages use the album's dark leather cover at the exposed edge.
+       This control is inside Header, so the light-on-dark header color tokens
+       correctly match the leather, rather than the surrounding parchment. */
     :global(html[data-theme='light']) .toc-restore {
-      --genea-toc-edge-color: #d6c29b;
-      border-color: rgb(87 53 31 / 18%);
+      --genea-toc-edge-color: var(--genea-cover);
+      border-color: color-mix(in srgb, var(--genea-brass) 42%, var(--genea-cover));
       background: linear-gradient(
         90deg,
-        var(--genea-paper-high) 0%,
-        var(--genea-paper) calc(100% - 0.95rem),
-        #d6c29b 100%
+        var(--genea-cover-high) 0%,
+        var(--genea-cover) 100%
       );
-      color: var(--sl-color-gray-2);
+      color: var(--sl-color-white);
       box-shadow:
-        inset -1px 0 0 rgb(87 53 31 / 18%),
-        inset -18px 0 28px -30px rgb(66 35 18 / 55%);
+        -3px 0 10px rgb(43 22 13 / 10%),
+        inset 1px 0 0 color-mix(in srgb, var(--genea-brass) 24%, transparent);
     }
 
     :global(html[data-theme='light']) .toc-restore__arrow {
-      background: rgb(152 74 36 / 10%);
+      background: color-mix(in srgb, var(--genea-brass) 18%, var(--genea-cover));
       color: var(--sl-color-text-accent);
     }
 
@@ -287,7 +288,7 @@ import GenealogyThemeSwitch from './GenealogyThemeSwitch.astro';
 
     :global(html[data-theme='light']) .toc-restore:hover,
     :global(html[data-theme='light']) .toc-restore:focus-visible {
-      border-color: rgb(152 74 36 / 42%);
+      border-color: var(--genea-brass);
       color: var(--sl-color-text-accent);
     }
 

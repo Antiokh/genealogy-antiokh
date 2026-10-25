@@ -33,9 +33,11 @@ html[data-theme='light'] {
   --genea-shadow-color: rgb(49 32 24 / 12%);
   --genea-avatar-bg: #eadabd;
   --genea-avatar-fg: #8a5a3d;
-  --genea-scrollbar-track: #efe3ca;
-  --genea-scrollbar-thumb: #bca88f;
-  --genea-scrollbar-thumb-hover: #8e6a54;
+  /* Keep the parchment page, but use the dark theme's leather scrollbar
+     palette so the recessed edge and ToC restore tab read as one surface. */
+  --genea-scrollbar-track: #160a06;
+  --genea-scrollbar-thumb: #5c3725;
+  --genea-scrollbar-thumb-hover: #915936;
 
   /* Starlight semantic scale: white = strongest foreground, black = deepest background. */
   --sl-color-white: #2b1a12;
