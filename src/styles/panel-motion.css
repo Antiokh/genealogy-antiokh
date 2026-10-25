@@ -84,7 +84,8 @@ html[data-theme='light'] body {
   .genealogy-columns .right-sidebar-container {
     opacity: 1;
     visibility: visible;
-    transform: translateX(0);
+    /* Do not transform this ancestor: even translateX(0) turns it into a
+       containing block for fixed descendants, breaking viewport anchoring. */
   }
 
   /* When ToC is manually hidden, allow the fixed restore tab (~2.5rem)
@@ -101,7 +102,6 @@ html[data-theme='light'] body {
     min-width: 0 !important;
     opacity: 0;
     visibility: hidden;
-    transform: translateX(1.5rem);
     pointer-events: none;
   }
 
@@ -131,7 +131,6 @@ html[data-theme='light'] body {
       transition:
         flex-basis 0.26s ease,
         width 0.26s ease,
-        transform 0.26s ease,
         opacity 0.2s ease,
         visibility 0.26s ease;
     }

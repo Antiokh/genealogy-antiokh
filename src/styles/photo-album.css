@@ -177,9 +177,11 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
   opacity: 0.95;
 }
 
-/* Starlight's mobile sidebar trigger used to be a generic hamburger. Keep its
-   native popover behaviour, but render it as a cream four-hole album button. */
-.sl-menu-button {
+/* The mobile sidebar trigger and the desktop ToC close button share the
+   same cream four-hole album button. The ToC close action always shows the
+   crossing (open-menu) stitches; the mobile trigger switches with popover. */
+.sl-menu-button,
+.toc-close {
   border: 1px solid var(--genea-button-edge) !important;
   padding: 0 !important;
   background: var(--genea-button-face) !important;
@@ -194,7 +196,8 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
   display: none !important;
 }
 
-.sl-menu-button::before {
+.sl-menu-button::before,
+.toc-close::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -216,7 +219,8 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
 }
 
 /* Closed menu: two horizontal stitches run exactly from hole centre to hole centre. */
-.sl-menu-button::after {
+.sl-menu-button::after,
+.toc-close::after {
   content: '';
   position: absolute;
   z-index: 2;
@@ -235,7 +239,8 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
 }
 
 /* Open menu: two equally thick diagonal stitches connect the opposite hole centres. */
-.sl-menu-button:has(~ :popover-open)::after {
+.sl-menu-button:has(~ :popover-open)::after,
+.toc-close::after {
   background:
     linear-gradient(45deg,
       transparent calc(50% - 1.3px),
@@ -247,14 +252,16 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
       transparent calc(50% + 1.3px)) center / 38% 38% no-repeat;
 }
 
-.sl-menu-button:has(~ :popover-open) {
+.sl-menu-button:has(~ :popover-open),
+.toc-close {
   background: var(--genea-button-face) !important;
   box-shadow:
     inset 0 2px 5px rgb(78 40 24 / 16%),
     0 1px 4px rgb(43 26 18 / 18%) !important;
 }
 
-.sl-menu-button:focus-visible {
+.sl-menu-button:focus-visible,
+.toc-close:focus-visible {
   outline: 2px solid var(--sl-color-accent) !important;
   outline-offset: 3px;
 }
