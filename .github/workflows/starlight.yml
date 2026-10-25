@@ -18,3 +18,42 @@ jobs:
       - run: npm install
       - run: npm run check
       - run: npm run build
+      - name: Save content badges for README
+        uses: actions/upload-artifact@v4
+        with:
+          name: genealogy-readme-badges
+          path: dist/badges/*.svg
+          if-no-files-found: error
+          retention-days: 1
+
+  refresh-readme-badges:
+    name: Refresh content counters in README
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: genealogy-readme-badges
+          path: badges
+      - name: Commit updated counters
+        run: |
+          git fetch origin main
+          if [ "$(git rev-parse origin/main)" != "$GITHUB_SHA" ]; then
+            echo "Main moved during the build; a newer run will refresh badges."
+            exit 0
+          fi
+          git add -- badges/people.svg badges/events.svg badges/places.svg badges/photos.svg
+          if git diff --cached --quiet; then
+            echo "README badges are already current."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "docs: update genealogy badges [skip ci]"
+          git push origin HEAD:main
