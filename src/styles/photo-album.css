@@ -123,6 +123,15 @@ html[data-theme='dark'] .person-gallery-window::after {
   filter: drop-shadow(0 1px 1px rgb(0 0 0 / 36%));
 }
 
+/* A restrained photo-card edge on dark leather: one solid displaced lip
+   and one soft cast shadow. The mount's original black keyline remains. */
+html[data-theme='dark'] .person-gallery-window {
+  box-shadow:
+    0 0 0 1px rgb(0 0 0 / 88%),
+    2px 3px 0 rgb(9 4 2 / 78%),
+    4px 7px 12px rgb(0 0 0 / 25%);
+}
+
 .person-gallery-window { --genea-stud-size: clamp(1rem, 2vw, 1.45rem); }
 
 /* Plain Markdown photos, including those linking to their full-resolution
@@ -141,6 +150,19 @@ html[data-theme='dark'] .person-gallery-window::after {
   overflow: hidden;
   --genea-slit-size: clamp(1.85rem, 3vw, 3.1rem);
   --genea-stud-size: clamp(1.15rem, 2vw, 1.65rem);
+}
+
+/* Match the same shallow thickness on photographs embedded in articles.
+   The image-only block already clips paper slits/studs to the photograph. */
+html[data-theme='dark'] .sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) {
+  box-shadow:
+    2px 3px 0 rgb(9 4 2 / 78%),
+    4px 7px 12px rgb(0 0 0 / 25%);
 }
 
 /* Starlight leaves Markdown images inline by default, which reserves a
