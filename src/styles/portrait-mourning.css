@@ -1,7 +1,7 @@
 .person-title-row .person-portrait__mourning-ribbon {
   /* Keep the diagonal within the portrait, clear of the lower-right hardware. */
   right: -15% !important;
-  bottom: 16% !important;
+  bottom: 12% !important;
   height: 1.1rem !important;
   z-index: 6 !important;
   transition: opacity 240ms ease;
