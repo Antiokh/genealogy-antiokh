@@ -143,6 +143,25 @@ html[data-theme='dark'] .person-gallery-window::after {
   --genea-stud-size: clamp(1.15rem, 2vw, 1.65rem);
 }
 
+/* Starlight leaves Markdown images inline by default, which reserves a
+   descender line box below a photo. Remove that gap so bottom paper slits
+   and bronze studs sit on the photo edge rather than on the paragraph edge.
+   Only image-only paragraphs/figures are affected. */
+.sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) > :is(img, picture, a),
+.sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) > :is(picture, a) :is(img, picture) {
+  display: block;
+}
+
 /* The frame class is repeated in selectors below for the Markdown-only case,
    where no wrapping div is inserted into the article content. */
 html[data-theme='light'] .sl-markdown-content :is(p, figure):is(
