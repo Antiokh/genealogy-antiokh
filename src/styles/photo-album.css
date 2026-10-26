@@ -13,6 +13,219 @@
   --genea-button-thread: #4e2818;
 }
 
+/* Album hardware: shared engine-controlled WebP assets live in public/textures.
+   Dark portraits use individual antique-brass oak brackets; the light theme
+   cuts paired curved paper slots into the corners of the image mount. */
+html .person-portrait::before,
+html .person-portrait::after {
+  display: none !important;
+}
+
+.person-portrait__frame .genea-photo-corner {
+  display: none;
+  position: absolute;
+  z-index: 2;
+  width: clamp(1.65rem, 32%, 3.5rem);
+  aspect-ratio: 1;
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+html[data-theme='dark'] .person-portrait__frame .genea-photo-corner {
+  display: block;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 35%));
+}
+
+/* Antique metal corners need near-square portrait edges: the former 0.75rem
+   frame/image rounding clipped the outer rim and rivets of each bracket. */
+html[data-theme='dark'] .person-portrait__frame,
+html[data-theme='dark'] .person-portrait__image {
+  border-radius: 0.125rem;
+}
+.genea-photo-corner--tl,
+.genea-photo-corner--tr {
+  top: 0;
+  background-image: url('/textures/tl-corner.webp');
+}
+.genea-photo-corner--bl,
+.genea-photo-corner--br {
+  bottom: 0;
+  background-image: url('/textures/ll-corner.webp');
+}
+.genea-photo-corner--tl,
+.genea-photo-corner--bl { left: 0; }
+.genea-photo-corner--tr,
+.genea-photo-corner--br { right: 0; transform: scaleX(-1); }
+
+/* Two equally thick quarter-arc paper bands per corner. The SVG strokes
+   extend beyond the image boundary, where the frame crops them cleanly.
+   Use the same linen-paper tile and 77% cream tint as the reading surface. */
+html[data-theme='light'] :is(
+  .person-portrait__frame,
+  .person-gallery-window
+)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(rgb(251 244 223 / 77%), rgb(251 244 223 / 77%)),
+    url('/textures/linen-paper.webp') repeat;
+  -webkit-mask-image:
+    url('/textures/slit-tl.svg'),
+    url('/textures/slit-tr.svg'),
+    url('/textures/slit-br.svg'),
+    url('/textures/slit-bl.svg');
+  mask-image:
+    url('/textures/slit-tl.svg'),
+    url('/textures/slit-tr.svg'),
+    url('/textures/slit-br.svg'),
+    url('/textures/slit-bl.svg');
+  -webkit-mask-position: left top, right top, right bottom, left bottom;
+  mask-position: left top, right top, right bottom, left bottom;
+  -webkit-mask-size: var(--genea-slit-size, 3rem);
+  mask-size: var(--genea-slit-size, 3rem);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  filter: drop-shadow(0 1px 0 rgb(61 38 21 / 65%));
+}
+
+.person-portrait__frame { --genea-slit-size: clamp(1.6rem, 3.5vw, 2.75rem); }
+.person-gallery-window { --genea-slit-size: clamp(1.8rem, 3vw, 2.7rem); }
+
+/* Archive/gallery images already have suitable wrappers; their overlays stay
+   inside the photo window and never intercept PhotoSwipe clicks. */
+.person-gallery-window::after {
+  pointer-events: none;
+}
+
+html[data-theme='dark'] .person-gallery-window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image:
+    url('/textures/button.webp'),
+    url('/textures/button.webp'),
+    url('/textures/button.webp'),
+    url('/textures/button.webp');
+  background-position:
+    left 0.15rem top 0.15rem,
+    right 0.15rem top 0.15rem,
+    right 0.15rem bottom 0.15rem,
+    left 0.15rem bottom 0.15rem;
+  background-size: var(--genea-stud-size, 1.55rem);
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 36%));
+}
+
+.person-gallery-window { --genea-stud-size: clamp(1rem, 2vw, 1.45rem); }
+
+/* Plain Markdown photos, including those linking to their full-resolution
+   source. Scope to image-only paragraphs/figures to avoid small inline icons,
+   diagrams, maps and unrelated interface images. */
+.sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  /* The curved paper strips finish outside the photo and clip at its edges. */
+  overflow: hidden;
+  --genea-slit-size: clamp(1.85rem, 3vw, 3.1rem);
+  --genea-stud-size: clamp(1.15rem, 2vw, 1.65rem);
+}
+
+/* Starlight leaves Markdown images inline by default, which reserves a
+   descender line box below a photo. Remove that gap so bottom paper slits
+   and bronze studs sit on the photo edge rather than on the paragraph edge.
+   Only image-only paragraphs/figures are affected. */
+.sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) > :is(img, picture, a),
+.sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+) > :is(picture, a) :is(img, picture) {
+  display: block;
+}
+
+/* The frame class is repeated in selectors below for the Markdown-only case,
+   where no wrapping div is inserted into the article content. */
+html[data-theme='light'] .sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(rgb(251 244 223 / 77%), rgb(251 244 223 / 77%)),
+    url('/textures/linen-paper.webp') repeat;
+  -webkit-mask-image:
+    url('/textures/slit-tl.svg'), url('/textures/slit-tr.svg'),
+    url('/textures/slit-br.svg'), url('/textures/slit-bl.svg');
+  mask-image:
+    url('/textures/slit-tl.svg'), url('/textures/slit-tr.svg'),
+    url('/textures/slit-br.svg'), url('/textures/slit-bl.svg');
+  -webkit-mask-position: left top, right top, right bottom, left bottom;
+  mask-position: left top, right top, right bottom, left bottom;
+  -webkit-mask-size: var(--genea-slit-size);
+  mask-size: var(--genea-slit-size);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  filter: drop-shadow(0 1px 0 rgb(61 38 21 / 65%));
+}
+html[data-theme='dark'] .sl-markdown-content :is(p, figure):is(
+  :has(> img:only-child),
+  :has(> picture:only-child),
+  :has(> a:only-child > img:only-child),
+  :has(> a:only-child > picture:only-child)
+)::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url('/textures/button.webp'), url('/textures/button.webp'),
+    url('/textures/button.webp'), url('/textures/button.webp');
+  background-position: left 0.2rem top 0.2rem, right 0.2rem top 0.2rem,
+    right 0.2rem bottom 0.2rem, left 0.2rem bottom 0.2rem;
+  background-size: var(--genea-stud-size);
+  background-repeat: no-repeat;
+  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 36%));
+}
+
+/* Keep printing and magnified PhotoSwipe images clean. */
+@media print {
+  .person-portrait__frame .genea-photo-corner,
+  .person-portrait__frame::after,
+  .person-gallery-window::after,
+  .sl-markdown-content :is(p, figure):is(
+    :has(> img:only-child),
+    :has(> picture:only-child),
+    :has(> a:only-child > img:only-child),
+    :has(> a:only-child > picture:only-child)
+  )::after {
+    display: none !important;
+  }
+}
+
 /* The portrait itself already has its own frame. Keep the outer figure transparent
    so it does not read as a second mat/frame around the image. */
 .person-portrait {

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <!-- Both curves share one centre (-12,-12), with a 12px radius difference.
+       Their endpoints run off-canvas so the photo frame clips them flush. -->
+  <g transform="translate(64 64) scale(-1 -1)" fill="none" stroke="white" stroke-width="6">
+    <path d="M-12 41 A53 53 0 0 0 41 -12"/>
+    <path d="M-12 53 A65 65 0 0 0 53 -12"/>
+  </g>
+</svg>

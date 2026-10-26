@@ -1,8 +1,33 @@
 .person-title-row .person-portrait__mourning-ribbon {
-  right: -36% !important;
-  bottom: 5.5% !important;
+  /* Keep the diagonal within the portrait, clear of the lower-right hardware. */
+  right: -15% !important;
+  bottom: 12% !important;
   height: 1.1rem !important;
   z-index: 6 !important;
+  transition: opacity 240ms ease;
+}
+
+.person-title-row .person-portrait__frame.is-deceased .person-portrait__image {
+  transition: filter 240ms ease;
+}
+
+/* Mouse/trackpad hover reveals the original colour and hides mourning fabric.
+   Do not latch this state on touchscreen taps or interfere with frame hardware. */
+@media (hover: hover) and (pointer: fine) {
+  .person-title-row .person-portrait__frame.is-deceased:hover .person-portrait__image {
+    filter: none;
+  }
+
+  .person-title-row .person-portrait__frame.is-deceased:hover .person-portrait__mourning-ribbon {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .person-title-row .person-portrait__mourning-ribbon,
+  .person-title-row .person-portrait__frame.is-deceased .person-portrait__image {
+    transition: none;
+  }
 }
 
 @media (max-width: 36rem) {
