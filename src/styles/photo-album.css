@@ -216,7 +216,12 @@ html[data-theme='dark'] .sl-markdown-content :is(p, figure):is(
   .person-portrait__frame .genea-photo-corner,
   .person-portrait__frame::after,
   .person-gallery-window::after,
-  .sl-markdown-content :is(p, figure)::after {
+  .sl-markdown-content :is(p, figure):is(
+    :has(> img:only-child),
+    :has(> picture:only-child),
+    :has(> a:only-child > img:only-child),
+    :has(> a:only-child > picture:only-child)
+  )::after {
     display: none !important;
   }
 }
