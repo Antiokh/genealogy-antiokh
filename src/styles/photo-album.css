@@ -59,8 +59,9 @@ html[data-theme='dark'] .person-portrait__image {
 .genea-photo-corner--tr,
 .genea-photo-corner--br { right: 0; transform: scaleX(-1); }
 
-/* Four paired, concentric quarter-arc cuts. Masks reveal existing linen paper
-   instead of placing a foreign solid-colour sticker over the photograph. */
+/* Two equally thick quarter-arc paper bands per corner. The SVG strokes
+   extend beyond the image boundary, where the frame crops them cleanly.
+   Use the same linen-paper tile and 77% cream tint as the reading surface. */
 html[data-theme='light'] :is(
   .person-portrait__frame,
   .person-gallery-window
@@ -71,7 +72,7 @@ html[data-theme='light'] :is(
   z-index: 2;
   pointer-events: none;
   background:
-    linear-gradient(rgb(251 244 223 / 68%), rgb(251 244 223 / 68%)),
+    linear-gradient(rgb(251 244 223 / 77%), rgb(251 244 223 / 77%)),
     url('/textures/linen-paper.webp') repeat;
   -webkit-mask-image:
     url('/textures/slit-tl.svg'),
@@ -136,6 +137,8 @@ html[data-theme='dark'] .person-gallery-window::after {
   position: relative;
   width: fit-content;
   max-width: 100%;
+  /* The curved paper strips finish outside the photo and clip at its edges. */
+  overflow: hidden;
   --genea-slit-size: clamp(1.85rem, 3vw, 3.1rem);
   --genea-stud-size: clamp(1.15rem, 2vw, 1.65rem);
 }
@@ -153,7 +156,7 @@ html[data-theme='light'] .sl-markdown-content :is(p, figure):is(
   inset: 0;
   z-index: 2;
   pointer-events: none;
-  background: linear-gradient(rgb(251 244 223 / 68%), rgb(251 244 223 / 68%)),
+  background: linear-gradient(rgb(251 244 223 / 77%), rgb(251 244 223 / 77%)),
     url('/textures/linen-paper.webp') repeat;
   -webkit-mask-image:
     url('/textures/slit-tl.svg'), url('/textures/slit-tr.svg'),
