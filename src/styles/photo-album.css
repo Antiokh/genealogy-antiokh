@@ -62,10 +62,7 @@ html[data-theme='dark'] .person-portrait__image {
 /* Two equally thick quarter-arc paper bands per corner. The SVG strokes
    extend beyond the image boundary, where the frame crops them cleanly.
    Use the same linen-paper tile and 77% cream tint as the reading surface. */
-html[data-theme='light'] :is(
-  .person-portrait__frame,
-  .person-gallery-window
-)::after {
+html[data-theme='light'] .person-portrait__frame::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -94,45 +91,10 @@ html[data-theme='light'] :is(
 }
 
 .person-portrait__frame { --genea-slit-size: clamp(1.6rem, 3.5vw, 2.75rem); }
-.person-gallery-window { --genea-slit-size: clamp(1.8rem, 3vw, 2.7rem); }
 
-/* Archive/gallery images already have suitable wrappers; their overlays stay
-   inside the photo window and never intercept PhotoSwipe clicks. */
-.person-gallery-window::after {
-  pointer-events: none;
-}
-
-html[data-theme='dark'] .person-gallery-window::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  background-image:
-    url('/textures/button.webp'),
-    url('/textures/button.webp'),
-    url('/textures/button.webp'),
-    url('/textures/button.webp');
-  background-position:
-    left 0.15rem top 0.15rem,
-    right 0.15rem top 0.15rem,
-    right 0.15rem bottom 0.15rem,
-    left 0.15rem bottom 0.15rem;
-  background-size: var(--genea-stud-size, 1.55rem);
-  background-repeat: no-repeat;
-  filter: drop-shadow(0 1px 1px rgb(0 0 0 / 36%));
-}
-
-/* A restrained photo-card edge on dark leather: one solid displaced lip
-   and one soft cast shadow. The mount's original black keyline remains. */
-html[data-theme='dark'] .person-gallery-window {
-  box-shadow:
-    0 0 0 1px rgb(0 0 0 / 88%),
-    2px 3px 0 rgb(9 4 2 / 78%),
-    4px 7px 12px rgb(0 0 0 / 25%);
-}
-
-.person-gallery-window { --genea-stud-size: clamp(1rem, 2vw, 1.45rem); }
+/* Slides and PhotoSwipe thumbnails deliberately use the gallery's native
+   clean black keyline without paper slits, metal studs, or an added lip.
+   Album hardware belongs only on portraits and article photographs. */
 
 /* Plain Markdown photos, including those linking to their full-resolution
    source. Scope to image-only paragraphs/figures to avoid small inline icons,
@@ -237,7 +199,6 @@ html[data-theme='dark'] .sl-markdown-content :is(p, figure):is(
 @media print {
   .person-portrait__frame .genea-photo-corner,
   .person-portrait__frame::after,
-  .person-gallery-window::after,
   .sl-markdown-content :is(p, figure):is(
     :has(> img:only-child),
     :has(> picture:only-child),
