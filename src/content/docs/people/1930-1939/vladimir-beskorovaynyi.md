@@ -71,7 +71,9 @@ occupation:
   - "инженер-приборостроитель"
   - "начальник отдела"
   - "изобретатель"
-residence: []
+residence:
+  - place: "korolev-kosmonavtov-2.md"
+    label: "Королёв, проспект Космонавтов, 2"
 works:
   - title: "Устройство для воспроизведения сигналов"
     year: 1970
@@ -101,6 +103,7 @@ works:
     publication: "Авторское свидетельство СССР № 1190402"
     imprint: "заявка 16.08.1984; опубликовано 07.11.1985"
 sources:
+  - "anton-nazarov-address-clarifications-2026.md"
   - "civil-birth-vladimir-beskorovaynyi-1936.md"
   - "civil-marriage-vladimir-beskorovaynyi-emilia-kurochkina-1959.md"
   - "myheritage-extended-export-2026-10-11.md"
@@ -186,7 +189,13 @@ external:
 
 Владимир Георгиевич умер 26 сентября 2017 года в Москве в возрасте 81 года.
 
+## Адрес в Королёве
+
+В Королёве Эмилия Николаевна и Владимир Георгиевич Бескоровайные жили на проспекте Космонавтов, в доме 2. Точные годы проживания не установлены.
+
 ## Источники
+
+- [Уточнение семейных адресов, 12 ноября 2026 года](/sources/anton-nazarov-address-clarifications-2026/).
 
 - [Справка о рождении Владимира Бескоровайного](/sources/civil-birth-vladimir-beskorovaynyi-1936/)
 - [Справка о браке Владимира Бескоровайного и Эмилии Курочкиной](/sources/civil-marriage-vladimir-beskorovaynyi-emilia-kurochkina-1959/)
