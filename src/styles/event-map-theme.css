@@ -87,6 +87,22 @@ html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content
    themed by event-map-renderer.css, as in RSLive. A rotated square clips
    outside the rounded card at bottom-left and bottom-right anchors. */
 
+/* Keep only the corner physically joined to the triangular pointer square.
+   Centre-anchored popups retain their normal rounded corners. */
+.maplibregl-popup-anchor-top-left .maplibregl-popup-content {
+  border-top-left-radius: 0 !important;
+}
+.maplibregl-popup-anchor-top-right .maplibregl-popup-content {
+  border-top-right-radius: 0 !important;
+}
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-content {
+  border-bottom-left-radius: 0 !important;
+}
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-content {
+  border-bottom-right-radius: 0 !important;
+}
+
+
 .rslive-map-popup strong {
   display: block;
   margin: 0;

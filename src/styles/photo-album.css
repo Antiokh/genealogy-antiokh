@@ -305,6 +305,22 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
 /* Retain MapLibre's native border triangle, coloured by PersonPlacesMap.
    The former rotated square overlapped rounded card corners on mobile. */
 
+/* Keep only the corner physically joined to the triangular pointer square.
+   Centre-anchored popups retain their normal rounded corners. */
+.person-places .maplibregl-popup-anchor-top-left .maplibregl-popup-content {
+  border-top-left-radius: 0 !important;
+}
+.person-places .maplibregl-popup-anchor-top-right .maplibregl-popup-content {
+  border-top-right-radius: 0 !important;
+}
+.person-places .maplibregl-popup-anchor-bottom-left .maplibregl-popup-content {
+  border-bottom-left-radius: 0 !important;
+}
+.person-places .maplibregl-popup-anchor-bottom-right .maplibregl-popup-content {
+  border-bottom-right-radius: 0 !important;
+}
+
+
 .person-places .maplibregl-popup-content strong {
   display: block;
   margin: 0;
