@@ -5,11 +5,13 @@ on:
     branches: [main]
     paths:
       - '.github/scripts/humanizer_pr_review.py'
+      - '.github/scripts/test_humanizer_pr_publish.cjs'
       - '.github/workflows/humanizer-*.yml'
       - 'docs/HUMANIZER_REVIEW.md'
   pull_request:
     paths:
       - '.github/scripts/humanizer_pr_review.py'
+      - '.github/scripts/test_humanizer_pr_publish.cjs'
       - '.github/workflows/humanizer-*.yml'
       - 'docs/HUMANIZER_REVIEW.md'
 
@@ -50,3 +52,5 @@ jobs:
           assert data['editor_count'] == 8
           print('Russian biography editorial contract: OK')
           PY
+      - name: Test inline review publication and main refresh
+        run: node .github/scripts/test_humanizer_pr_publish.cjs
