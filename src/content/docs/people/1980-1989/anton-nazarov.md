@@ -73,7 +73,10 @@ residence:
     to: 2022
   - place: "pyryeva-16.md"
     label: "Москва, ул. Пырьева, 16"
-    from: "1988-12-21"
+    from:
+      year: 1988
+      circa: true
+      text: "первый год жизни"
     to:
       year: 1990
       month: 1
