@@ -58,6 +58,16 @@ jobs:
               .map(file => file.filename);
             fs.writeFileSync('/tmp/humanizer-files.txt', mdx.join('\n'));
 
+      - name: Проверка наличия доверенного адаптера в базовой ветке
+        id: trusted
+        run: |
+          if test -f base/.github/scripts/humanizer_pr_review.py; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Первый PR подключает адаптер; отзыв начнёт работать после merge." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
       - name: Получение зафиксированной версии редколлегии
         run: |
           git init /tmp/humanizer_russian
@@ -68,6 +78,7 @@ jobs:
           python3 /tmp/humanizer_russian/scripts/lint.py --self-test
 
       - name: Проверка интеграции
+        if: steps.trusted.outputs.ready == 'true'
         run: |
           python3 base/.github/scripts/humanizer_pr_review.py \
             --humanizer-root /tmp/humanizer_russian \
@@ -85,6 +96,7 @@ jobs:
           PY
 
       - name: Формирование отзыва редколлегии
+        if: steps.trusted.outputs.ready == 'true'
         run: |
           python3 base/.github/scripts/humanizer_pr_review.py \
             --humanizer-root /tmp/humanizer_russian \
@@ -94,10 +106,11 @@ jobs:
             --output /tmp/humanizer-comment.md
 
       - name: Добавление отзыва в сводку запуска
+        if: steps.trusted.outputs.ready == 'true'
         run: cat /tmp/humanizer-comment.md >> "$GITHUB_STEP_SUMMARY"
 
       - name: Обновление комментария редколлегии
-        if: github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+        if: steps.trusted.outputs.ready == 'true' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         env:
           COMMENT_PATH: /tmp/humanizer-comment.md
