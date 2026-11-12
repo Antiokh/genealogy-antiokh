@@ -28,6 +28,10 @@ This repository is **the family encyclopedia's data, editorial, and deployment p
 - `scripts/check-public-person-catalog.mjs` belongs to this repository despite the synthetic engine having a counterpart; keep its real-family test cases here.
 - A change in `astro.config.mjs` or dependencies requested by a new engine feature needs a separate reviewed site change; those paths are not transferred automatically.
 
+## Russian-language editorial review
+
+Changed Russian biographical prose is reviewed in PRs by the pinned `Antiokh/humanizer_russian` editorial board. See [`docs/HUMANIZER_REVIEW.md`](docs/HUMANIZER_REVIEW.md). The check is advisory, reads the full visible text, and excludes YAML/frontmatter and code. Never let a style suggestion alter dates, relatives, testimony, personal intent, or the autobiography-as-primary-source rule. A human must check meaning and factual consistency independently.
+
 ## Required checks
 
 - For content changes, obey the existing editorial rules below; keep visible prose strictly biographical rather than describing editorial process.
