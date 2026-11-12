@@ -112,7 +112,8 @@ if (!eventResponse.ok || !peopleResponse.ok) {
 const dataset = await eventResponse.json();
 const peopleDataset = await peopleResponse.json();
 const peopleByRef = new Map((peopleDataset.people ?? []).map((person) => [person.ref, person]));
-const datedFeatures = (dataset.features ?? []).filter((feature) => Number.isFinite(feature.properties?.startYear));
+const allFeatures = dataset.features ?? [];
+const datedFeatures = allFeatures.filter((feature) => Number.isFinite(feature.properties?.startYear));
 const years = datedFeatures.flatMap((feature) => [
   Number(feature.properties.startYear),
   Number(feature.properties.endYear ?? feature.properties.startYear),
@@ -150,7 +151,15 @@ const map = new maplibregl.Map({
 });
 
 function filteredFeatures() {
-  return datedFeatures.filter((feature) => overlaps(feature, selectedFrom, selectedTo));
+  // Historical residences may have an exact mapped address but no surviving
+  // calendar year. Show them in the unfiltered overview without inventing a date.
+  // Hide them only when the reader explicitly narrows the year range.
+  const fullRange = selectedFrom === datasetMin && selectedTo === datasetMax;
+  return allFeatures.filter((feature) => (
+    Number.isFinite(feature.properties?.startYear)
+      ? overlaps(feature, selectedFrom, selectedTo)
+      : fullRange
+  ));
 }
 
 function placeGroups() {
