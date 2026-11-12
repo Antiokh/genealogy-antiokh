@@ -122,7 +122,7 @@ jobs:
               .filter(file =>
                 file.status !== 'removed' &&
                 file.filename.startsWith('src/content/docs/people/') &&
-                /\\.(md|mdx)$/.test(file.filename)
+                /\.(md|mdx)$/.test(file.filename)
               )
               .map(file => file.filename);
             fs.writeFileSync('/tmp/humanizer-files.txt', mdx.join('\n'));
@@ -170,13 +170,13 @@ jobs:
           GENERATE_OUTCOME: ${{ steps.generate.outcome }}
         run: |
           if [ "$TRUSTED_READY" = false ]; then
-            printf '%s\\n' \
+            printf '%s\n' \
               '<!-- editorial-pr-review -->' \
               '## 📝 Редакторская проверка' \
               '' \
               'Проверка недоступна: в текущей базовой ветке нет доверенного адаптера.' \
               > /tmp/humanizer-comment.md
-            printf '[]\\n' > /tmp/humanizer-inline.json
+            printf '[]\n' > /tmp/humanizer-inline.json
           elif [ "$BASE_OUTCOME" != success ] ||
              [ "$HEAD_OUTCOME" != success ] ||
              [ "$SELECTION_OUTCOME" != success ] ||
