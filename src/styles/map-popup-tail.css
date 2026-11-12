@@ -1,0 +1,137 @@
+/* One bordered, continuous silhouette: the tail paints ABOVE the popup card.
+   The outer triangle carries the 1px outline on its two exposed edges.
+   Its inner fill extends 2px into the card and masks the card's connecting
+   border; the third (joined) edge never receives an outline.
+
+   Preserve MapLibre's original tip footprint (10px / 20px) and all eight
+   anchor positions. The small -1px overlap avoids subpixel hairlines,
+   especially on the light album theme. */
+
+.maplibregl-popup .maplibregl-popup-tip {
+  position: relative;
+  z-index: 3;
+  flex: 0 0 auto;
+  border: 0 !important;
+  background: transparent !important;
+  filter: none !important;
+}
+
+.maplibregl-popup .maplibregl-popup-tip::before,
+.maplibregl-popup .maplibregl-popup-tip::after {
+  content: '';
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.maplibregl-popup .maplibregl-popup-tip::before {
+  inset: 0;
+  background: var(--map-panel-border);
+}
+
+.maplibregl-popup .maplibregl-popup-tip::after {
+  left: 0;
+  top: 0;
+  background: var(--map-popup-bg);
+}
+
+/* Retain native footprint so popup placement / marker offsets do not change. */
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip {
+  width: 20px !important;
+  height: 10px !important;
+  align-self: center;
+}
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip {
+  width: 10px !important;
+  height: 10px !important;
+}
+.maplibregl-popup-anchor-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-right .maplibregl-popup-tip {
+  width: 10px !important;
+  height: 20px !important;
+  align-self: center;
+}
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip { align-self: flex-start; }
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { align-self: flex-end; }
+
+/* Cover the popup's 1px border at the join, with the tail in front. */
+.maplibregl-popup-anchor-top .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { margin-bottom: -1px; }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { margin-top: -1px; }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { margin-right: -1px; }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { margin-left: -1px; }
+
+/* Top centre: two outlined diagonal sides, no lower border. */
+.maplibregl-popup-anchor-top .maplibregl-popup-tip::before,
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip::before {
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
+}
+.maplibregl-popup-anchor-top .maplibregl-popup-tip::after,
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip::after {
+  width: 100%;
+  height: calc(100% + 2px);
+  clip-path: polygon(
+    50% 2px,
+    1px calc(100% - 2px),
+    1px 100%,
+    calc(100% - 1px) 100%,
+    calc(100% - 1px) calc(100% - 2px)
+  );
+}
+
+/* Corner anchors: vertical outer edge and diagonal outer edge only. */
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip::before,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip::before,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip::before,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip::before {
+  clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+.maplibregl-popup-anchor-top-left .maplibregl-popup-tip::after,
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip::after,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip::after,
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip::after {
+  width: 100%;
+  height: calc(100% + 2px);
+  clip-path: polygon(
+    1px 2px,
+    1px calc(100% - 2px),
+    1px 100%,
+    calc(100% - 1px) 100%,
+    calc(100% - 1px) calc(100% - 2px)
+  );
+}
+
+/* Side anchors: the fill spills 2px horizontally into the popup border. */
+.maplibregl-popup-anchor-left .maplibregl-popup-tip::before,
+.maplibregl-popup-anchor-right .maplibregl-popup-tip::before {
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+.maplibregl-popup-anchor-left .maplibregl-popup-tip::after,
+.maplibregl-popup-anchor-right .maplibregl-popup-tip::after {
+  width: calc(100% + 2px);
+  height: 100%;
+  clip-path: polygon(
+    2px 50%,
+    calc(100% - 2px) 1px,
+    100% 1px,
+    100% calc(100% - 1px),
+    calc(100% - 2px) calc(100% - 1px)
+  );
+}
+
+/* Mirror the same tested shapes rather than maintain eight different paths.
+   The 2px fill overlap mirrors with each tail and always faces the card. */
+.maplibregl-popup-anchor-top-right .maplibregl-popup-tip,
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { transform: scaleX(-1); }
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
+.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip { transform: scaleY(-1); }
+.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { transform: scale(-1, -1); }

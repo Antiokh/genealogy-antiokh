@@ -302,8 +302,8 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
     inset 0 1px 0 var(--genea-highlight) !important;
 }
 
-/* Retain MapLibre's native border triangle, coloured by PersonPlacesMap.
-   The former rotated square overlapped rounded card corners on mobile. */
+/* The shared map-popup-tail.css draws a two-edge outlined triangle ABOVE this
+   card and masks the border at the join, in both light and dark themes. */
 
 /* Keep only the corner physically joined to the triangular pointer square.
    Centre-anchored popups retain their normal rounded corners. */

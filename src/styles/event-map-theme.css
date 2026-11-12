@@ -83,9 +83,8 @@ html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content
   color: var(--map-popup-fg) !important;
 }
 
-/* Keep the MapLibre triangle geometry: its directional border is already
-   themed by event-map-renderer.css, as in RSLive. A rotated square clips
-   outside the rounded card at bottom-left and bottom-right anchors. */
+/* The shared map-popup-tail.css overlays the outlined pointer on the card.
+   Its fill covers the joined border, without outlining the attached edge. */
 
 /* Keep only the corner physically joined to the triangular pointer square.
    Centre-anchored popups retain their normal rounded corners. */

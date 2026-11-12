@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "d0b41aa3d7335f0691d124b9a2f242d8a797f38e",
+  "commit": "74f351e1440cc6444fb371fe2258a523d3eb7f4a",
   "files": [
     "public/textures/button.webp",
     "public/textures/dark-leather-tile.webp",
@@ -60,6 +60,7 @@
     "src/styles/event-map-theme.css",
     "src/styles/genealogy.css",
     "src/styles/map-popup-shared.css",
+    "src/styles/map-popup-tail.css",
     "src/styles/mobile-polish.css",
     "src/styles/panel-motion.css",
     "src/styles/photo-album.css",
