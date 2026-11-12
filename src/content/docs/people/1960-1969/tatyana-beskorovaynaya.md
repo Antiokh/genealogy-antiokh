@@ -56,8 +56,8 @@ partners:
     married:
       known: true
       date: "1988-07-22"
-      place: "moscow.md"
-      placeLabel: "Москва"
+      place: "moscow-gagarinsky-zags.md"
+      placeLabel: "Октябрьский отдел ЗАГС, Москва"
     divorced:
       known: true
       date: "2008-04-22"
