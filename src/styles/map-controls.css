@@ -1,0 +1,63 @@
+/* Map controls and the built-in title tab follow RSLive's presentation.
+   This file is shared by the personal and full events maps. */
+.genealogy-map-title-tab {
+  position: absolute;
+  z-index: 8;
+  top: max(0.65rem, env(safe-area-inset-top));
+  left: 0;
+  max-width: calc(100% - 7.5rem);
+  padding: 0.55rem 0.8rem 0.55rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
+  border: 1px solid var(--map-panel-border);
+  border-left: 0;
+  border-radius: 0 0.7rem 0.7rem 0;
+  background: var(--map-panel-bg, var(--map-popup-bg));
+  box-shadow: 0 4px 18px rgb(15 23 42 / 14%);
+  color: var(--map-panel-fg, var(--map-popup-fg));
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+  pointer-events: none;
+  backdrop-filter: blur(8px);
+}
+.genealogy-map-title-tab[hidden] { display: none; }
+
+.genealogy-map-home { display: grid !important; place-items: center; }
+.genealogy-map-overview-icon {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.maplibregl-ctrl-top-right {
+  top: max(0.65rem, env(safe-area-inset-top));
+  right: max(0.55rem, env(safe-area-inset-right));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+.maplibregl-ctrl-top-right > .maplibregl-ctrl {
+  float: none;
+  clear: none;
+  margin: 0;
+}
+
+@media (max-width: 40rem) {
+  .genealogy-map-title-tab {
+    max-width: calc(100% - 6.5rem);
+    font-size: 0.82rem;
+  }
+}
+
+.person-map-canvas:fullscreen,
+.person-map-canvas:-webkit-full-screen {
+  box-sizing: border-box;
+  width: 100vw !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-height: none !important;
+  min-height: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+}

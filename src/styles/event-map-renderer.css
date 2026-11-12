@@ -44,7 +44,8 @@ html[data-theme='dark'] .map-shell { background: #172129; }
 .event-range {
   position: absolute;
   z-index: 8;
-  top: max(0.65rem, env(safe-area-inset-top));
+  /* Keep the year slider underneath the RSLive-style title tab, not behind it. */
+  top: max(3.55rem, calc(env(safe-area-inset-top) + 3.55rem));
   left: 0;
   width: min(72vw, 30rem);
   padding: 0.55rem 0.8rem 0.62rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
@@ -176,8 +177,6 @@ html[data-theme='dark'] .map-status.error { color: #fecaca; }
 .maplibregl-ctrl-group button:hover,
 .maplibregl-ctrl-group button:focus-visible { background-color: var(--map-control-hover) !important; }
 .maplibregl-ctrl-group button + button { border-top-color: var(--map-control-border) !important; }
-.rslive-map-home { display: grid !important; place-items: center; }
-.rslive-map-overview-icon { width: 20px; height: 20px; fill: currentColor; }
 html[data-theme='dark'] .maplibregl-ctrl-group .maplibregl-ctrl-icon,
 html[data-theme='dark'] .maplibregl-ctrl-attrib-button { filter: invert(1) brightness(1.35); }
 

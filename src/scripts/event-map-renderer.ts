@@ -1,6 +1,7 @@
 // @ts-nocheck
 import maplibregl from 'maplibre-gl';
 import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from './map-popup';
+import { MapOverviewControl } from './map-controls';
 
 const root = document.querySelector('[data-map-shell]');
 const canvas = document.querySelector('[data-map-canvas]');
@@ -35,44 +36,6 @@ function overlaps(feature, from, to) {
   const start = feature.properties.startYear;
   const end = feature.properties.endYear ?? start;
   return Number.isFinite(start) && Number.isFinite(end) && Number(start) <= to && Number(end) >= from;
-}
-
-function overviewIcon() {
-  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.setAttribute('viewBox', '0 0 24 24');
-  svg.setAttribute('aria-hidden', 'true');
-  svg.classList.add('rslive-map-overview-icon');
-  for (const [cx, cy, radius] of [[7, 8, 2.2], [16.5, 7, 1.8], [13, 16, 2.4]]) {
-    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    circle.setAttribute('cx', String(cx));
-    circle.setAttribute('cy', String(cy));
-    circle.setAttribute('r', String(radius));
-    svg.append(circle);
-  }
-  return svg;
-}
-
-class HomeControl {
-  constructor(onOverview) {
-    this.onOverview = onOverview;
-  }
-  onAdd() {
-    this.container = document.createElement('div');
-    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group';
-    this.button = document.createElement('button');
-    this.button.type = 'button';
-    this.button.className = 'rslive-map-home';
-    this.button.title = 'Показать все события';
-    this.button.setAttribute('aria-label', 'Показать все события');
-    this.button.append(overviewIcon());
-    this.button.addEventListener('click', this.onOverview);
-    this.container.append(this.button);
-    return this.container;
-  }
-  onRemove() {
-    this.button?.removeEventListener('click', this.onOverview);
-    this.container?.remove();
-  }
 }
 
 function collapseAttribution() {
@@ -219,7 +182,7 @@ mountMapLayerSwitch(root, allFeatures.length > 0, allPhotos.length > 0, (next) =
 });
 
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
-map.addControl(new HomeControl(() => fitOverview(true)), 'top-right');
+map.addControl(new MapOverviewControl(() => fitOverview(true), 'Показать все объекты'), 'top-right');
 map.addControl(new maplibregl.FullscreenControl({ container: root }), 'top-right');
 map.addControl(new maplibregl.GeolocateControl({
   positionOptions: { enableHighAccuracy: true },

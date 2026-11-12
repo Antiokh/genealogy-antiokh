@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "5f13c72c33891752a097d169b26fd0b4da24b43f",
+  "commit": "e84266bdafa343b427e12efb7fb9916b1dfd425d",
   "files": [
     "public/textures/button.webp",
     "public/textures/dark-leather-tile.webp",
@@ -54,12 +54,14 @@
     "src/pages/trees/renderers/family-chart.astro",
     "src/routeData.ts",
     "src/scripts/event-map-renderer.ts",
+    "src/scripts/map-controls.ts",
     "src/scripts/map-popup.ts",
     "src/scripts/unmarried-relationships.ts",
     "src/styles/asides-genealogy.css",
     "src/styles/event-map-renderer.css",
     "src/styles/event-map-theme.css",
     "src/styles/genealogy.css",
+    "src/styles/map-controls.css",
     "src/styles/map-popup-shared.css",
     "src/styles/map-popup-tail.css",
     "src/styles/mobile-polish.css",

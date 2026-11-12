@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles/map-popup-shared.css';
 import '../styles/map-popup-tail.css';
+import '../styles/map-controls.css';
 
 interface Props {
   personRef: string;
@@ -37,6 +38,16 @@ const hasPhotoPoint = docs.some((entry) => {
   const inferred = new Set((data.eventRefs ?? []).flatMap((ref) => eventByRef.get(ref)?.data.places ?? []));
   return inferred.size === 1 && placeRefs.has([...inferred][0]);
 });
+const person = docs.find((entry) =>
+  entry.data.entity === 'person' && entry.id === `people/${personRef.replace(/\.mdx?$/i, '')}`,
+);
+const structuredName = person?.data.name;
+const fullName = String(
+  typeof structuredName === 'string'
+    ? structuredName
+    : structuredName?.display || structuredName?.full || person?.data.displayName || person?.data.title || personRef,
+).trim();
+const mapTitle = `События жизни ${fullName}`;
 const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
 ---
 
@@ -44,13 +55,16 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   <section class="person-places" aria-labelledby={`${mapId}-heading`} data-person-places-map data-person-ref={personRef} data-event-refs={JSON.stringify([...relatedRefs])}>
     <h2 id={`${mapId}-heading`}>Места на карте</h2>
     <p class="map-note">Точки собраны из событий и фотографий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
-    <div id={mapId} class="person-map-canvas" aria-label="Карта мест, событий и фотографий, связанных с человеком"></div>
+    <div id={mapId} class="person-map-canvas" aria-label={mapTitle}>
+      <div class="genealogy-map-title-tab" data-map-title title={mapTitle}>{mapTitle}</div>
+    </div>
     <noscript>Для интерактивной карты требуется JavaScript.</noscript>
   </section>
 )}
 
 <script>
   import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from '../scripts/map-popup';
+  import { MapOverviewControl } from '../scripts/map-controls';
 
   type MapTheme = 'dark' | 'light';
 
@@ -152,17 +166,21 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
             .addTo(map));
         }
       };
-      const fitOverview = () => {
+      const fitOverview = (animate = false) => {
         const points = groups();
         if (!points.length) return;
         if (points.length === 1) {
-          map.easeTo({ center: points[0].coordinates, zoom: 8, duration: 0 });
+          map.easeTo({ center: points[0].coordinates, zoom: 8, duration: animate ? 350 : 0 });
           return;
         }
         const bounds = new maplibregl.LngLatBounds();
         for (const point of points) bounds.extend(point.coordinates);
-        map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
+        map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: animate ? 350 : 0 });
       };
+      // The overview fits the currently visible layer (events/photos) without changing filters.
+      map.addControl(new MapOverviewControl(() => fitOverview(true), 'Показать все места'), 'top-right');
+      map.addControl(new maplibregl.FullscreenControl({ container: canvas }), 'top-right');
+
       const removeSwitch = mountMapLayerSwitch(canvas, eventsForPerson.length > 0, photosForPerson.length > 0, (next: string) => {
         layerMode = next;
         renderMarkers();

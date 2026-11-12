@@ -4,6 +4,7 @@ import '../../styles/event-map-renderer.css';
 import '../../styles/event-map-theme.css';
 import '../../styles/map-popup-shared.css';
 import '../../styles/map-popup-tail.css';
+import '../../styles/map-controls.css';
 ---
 
 <!doctype html>
@@ -55,6 +56,7 @@ import '../../styles/map-popup-tail.css';
   <body>
     <main class="map-shell" data-map-shell>
       <div class="map-canvas" data-map-canvas aria-label="Карта всех географически привязанных событий"></div>
+      <div class="genealogy-map-title-tab" data-map-title title="Карта событий">Карта событий</div>
 
       <div class="event-range" data-range-control hidden aria-label="Фильтр событий по годам">
         <output data-range-label>Временной интервал: загрузка…</output>
