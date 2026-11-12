@@ -116,7 +116,9 @@ export function mountMapYearRange(
       fromInput.value = String(from);
       toInput.value = String(to);
     }
-    label.value = `Временной интервал: ${from === to ? from : `${from}–${to}`}`;
+    const years = from === to ? String(from) : `${from}–${to}`;
+    label.value = years;
+    label.setAttribute('aria-label', `Временной интервал: ${years}`);
     const span = Math.max(1, max - min);
     track.style.setProperty('--range-from', `${((from - min) / span) * 100}%`);
     track.style.setProperty('--range-to', `${((to - min) / span) * 100}%`);

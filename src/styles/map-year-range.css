@@ -1,29 +1,44 @@
-/* Shared dual-handle map slider for the full event map and person pages.
-   The top panels stack naturally, so long person names cannot overlap the slider. */
+/* Compact bottom dock, shared by personal and full-event maps. The title
+   remains at the top; the range avoids bottom-left scale/attribution and
+   bottom-right attribution. No absolute element is tied to title height. */
 .event-range {
-  position: relative;
-  z-index: 1;
-  width: min(72%, 30rem);
-  pointer-events: auto;
-  padding: 0.55rem 0.8rem 0.62rem max(0.8rem, calc(env(safe-area-inset-left) + 0.4rem));
+  position: absolute;
+  z-index: 8;
+  left: 50%;
+  bottom: max(0.65rem, env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  width: min(25rem, calc(100% - 7.5rem));
+  min-height: 2.75rem;
+  padding: 0.3rem 0.75rem;
   border: 1px solid var(--map-panel-border);
-  border-left: 0;
-  border-radius: 0 0.7rem 0.7rem 0;
+  border-radius: 0.72rem;
   background: var(--map-panel-bg);
   box-shadow: 0 4px 18px rgb(15 23 42 / 14%);
   color: var(--map-panel-fg);
   backdrop-filter: blur(8px);
+  pointer-events: auto;
 }
 .event-range[hidden] { display: none; }
 .event-range output {
   display: block;
-  margin-bottom: 0.3rem;
+  flex: 0 0 auto;
+  white-space: nowrap;
   font-size: 0.8rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   line-height: 1.2;
 }
-.event-range__track { --range-from: 0%; --range-to: 100%; position: relative; height: 1.25rem; }
+.event-range__track {
+  --range-from: 0%;
+  --range-to: 100%;
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 1.75rem;
+}
 .event-range__track::before {
   content: '';
   position: absolute;
@@ -40,9 +55,13 @@
 }
 .event-range__track input[type='range'] {
   position: absolute;
-  inset: 0;
+  top: 50%;
+  right: 0;
+  bottom: auto;
+  left: 0;
+  transform: translateY(-50%);
   width: 100%;
-  height: 1.25rem;
+  height: 1.75rem;
   margin: 0;
   appearance: none;
   -webkit-appearance: none;
@@ -75,6 +94,18 @@
 }
 
 
+/* Only the layer switch moves upward when the range exists. Hidden sliders
+   and maps with only undated records keep the original lower position. */
+.map-shell:has(.event-range:not([hidden])) .genealogy-map-layer-switch,
+.person-map-canvas:has(.event-range:not([hidden])) .genealogy-map-layer-switch {
+  bottom: calc(4.15rem + env(safe-area-inset-bottom));
+}
+
 @media (max-width: 40rem) {
-  .event-range { width: min(68%, 22rem); }
+  .event-range {
+    width: calc(100% - 6.5rem);
+    gap: 0.5rem;
+    padding-inline: 0.55rem;
+  }
+  .event-range output { font-size: 0.75rem; }
 }

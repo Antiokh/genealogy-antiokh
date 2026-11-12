@@ -1,21 +1,7 @@
 /* Map controls and the built-in title tab follow RSLive's presentation.
    This file is shared by the personal and full events maps. */
 
-/* Stacked overlays prevent a long personal name from covering the year slider.
-   Controls stay in the same place when the map enters fullscreen. */
-.genealogy-map-top-panels {
-  position: absolute;
-  z-index: 8;
-  top: max(0.65rem, env(safe-area-inset-top));
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.45rem;
-  width: 100%;
-  pointer-events: none;
-}
-.genealogy-map-top-panels > .genealogy-map-title-tab {
+.genealogy-map-title-tab {
   position: relative;
   top: auto;
   left: auto;

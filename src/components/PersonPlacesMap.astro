@@ -57,14 +57,12 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
     <h2 id={`${mapId}-heading`}>Места на карте</h2>
     <p class="map-note">Точки собраны из событий и фотографий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
     <div id={mapId} class="person-map-canvas" aria-label={mapTitle}>
-      <div class="genealogy-map-top-panels">
-        <div class="genealogy-map-title-tab" data-map-title title={mapTitle}>{mapTitle}</div>
-        <div class="event-range" data-range-control hidden aria-label="Фильтр событий и фотографий по годам">
-          <output data-range-label>Временной интервал: загрузка…</output>
-          <div class="event-range__track" data-range-track>
-            <input data-range-from type="range" aria-label="Начальный год" />
-            <input data-range-to type="range" aria-label="Конечный год" />
-          </div>
+      <div class="genealogy-map-title-tab" data-map-title title={mapTitle}>{mapTitle}</div>
+      <div class="event-range" data-range-control hidden aria-label="Фильтр событий и фотографий по годам">
+        <output data-range-label aria-label="Временной интервал">Загрузка…</output>
+        <div class="event-range__track" data-range-track>
+          <input data-range-from type="range" aria-label="Начальный год" />
+          <input data-range-to type="range" aria-label="Конечный год" />
         </div>
       </div>
     </div>
