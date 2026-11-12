@@ -140,9 +140,9 @@ jobs:
           assert data['mode'] == 'editorial_board'
           assert data['style'] == 'neutral'
           assert data['register'] == 'general'
-          assert data['evidence_request'] == 'auto'
+          assert data['frontmatter_excluded'] is True
+          assert data['scope'] == 'whole_article'
           assert len(data['libraries']) == 8
-          assert data['detected_rule'] == 'ILY-M01'
           print('Интеграция редколлегии: OK')
           PY
 
