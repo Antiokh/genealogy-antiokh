@@ -1,5 +1,6 @@
 // @ts-nocheck
 import maplibregl from 'maplibre-gl';
+import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from './map-popup';
 
 const root = document.querySelector('[data-map-shell]');
 const canvas = document.querySelector('[data-map-canvas]');
@@ -28,21 +29,6 @@ const mapStyleUrls = {
 
 function currentTheme() {
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-}
-
-function formatDateValue(value) {
-  if (typeof value === 'number') return String(value);
-  if (typeof value === 'string') return value;
-  if (!value || typeof value !== 'object') return '';
-  if (value.text) return value.text;
-  if (!value.year) return '';
-  return [value.day, value.month, value.year].filter(Boolean).join('.');
-}
-
-function eventDateLabel(feature) {
-  const start = formatDateValue(feature.properties.date);
-  const end = formatDateValue(feature.properties.endDate);
-  return end && end !== start ? `${start || '…'}–${end}` : start;
 }
 
 function overlaps(feature, from, to) {
@@ -98,48 +84,58 @@ function collapseAttribution() {
   if (button instanceof HTMLElement) button.setAttribute('aria-expanded', 'false');
 }
 
-const [eventResponse, peopleResponse] = await Promise.all([
+const [eventResponse, peopleResponse, photoResponse] = await Promise.all([
   fetch('/generated/places.geojson'),
   fetch('/generated/people.json'),
+  fetch('/events/map-media.json'),
 ]);
-if (!eventResponse.ok || !peopleResponse.ok) {
+if (!eventResponse.ok || !peopleResponse.ok || !photoResponse.ok) {
   status.hidden = false;
   status.classList.add('error');
   status.textContent = 'Не удалось загрузить данные карты.';
-  throw new Error(`Failed to load event map data: events=${eventResponse.status}, people=${peopleResponse.status}`);
+  throw new Error(`Failed to load map data: events=${eventResponse.status}, people=${peopleResponse.status}, photos=${photoResponse.status}`);
 }
 
 const dataset = await eventResponse.json();
 const peopleDataset = await peopleResponse.json();
+const photoDataset = await photoResponse.json();
 const peopleByRef = new Map((peopleDataset.people ?? []).map((person) => [person.ref, person]));
 const allFeatures = dataset.features ?? [];
+const allPhotos = photoDataset.photos ?? [];
 const datedFeatures = allFeatures.filter((feature) => Number.isFinite(feature.properties?.startYear));
-const years = datedFeatures.flatMap((feature) => [
-  Number(feature.properties.startYear),
-  Number(feature.properties.endYear ?? feature.properties.startYear),
-]).filter(Number.isFinite);
+const years = [
+  ...datedFeatures.flatMap((feature) => [
+    Number(feature.properties.startYear),
+    Number(feature.properties.endYear ?? feature.properties.startYear),
+  ]),
+  ...allPhotos.map((photo) => photo.year),
+].filter(Number.isFinite);
 
-if (!years.length) {
+if (!allFeatures.length && !allPhotos.length) {
   status.hidden = false;
-  status.textContent = 'Нет датированных событий для отображения.';
-  throw new Error('Event map has no dated features.');
+  status.textContent = 'Нет географически привязанных событий или фотографий.';
+  throw new Error('Event map has no georeferenced records.');
 }
 
-const datasetMin = Math.min(...years);
-const datasetMax = Math.max(...years);
+const hasDatedRange = years.length > 0;
+const datasetMin = hasDatedRange ? Math.min(...years) : 0;
+const datasetMax = hasDatedRange ? Math.max(...years) : 0;
 let selectedFrom = datasetMin;
 let selectedTo = datasetMax;
+let layerMode = 'all';
 let theme = currentTheme();
 const markers = [];
 
-for (const input of [rangeFrom, rangeTo]) {
-  input.min = String(datasetMin);
-  input.max = String(datasetMax);
-  input.step = '1';
+if (hasDatedRange) {
+  for (const input of [rangeFrom, rangeTo]) {
+    input.min = String(datasetMin);
+    input.max = String(datasetMax);
+    input.step = '1';
+  }
+  rangeFrom.value = String(datasetMin);
+  rangeTo.value = String(datasetMax);
 }
-rangeFrom.value = String(datasetMin);
-rangeTo.value = String(datasetMax);
-rangeControl.hidden = false;
+rangeControl.hidden = !hasDatedRange;
 
 const map = new maplibregl.Map({
   container: canvas,
@@ -150,99 +146,31 @@ const map = new maplibregl.Map({
   renderWorldCopies: false,
 });
 
+function isFullRange() {
+  return !hasDatedRange || (selectedFrom === datasetMin && selectedTo === datasetMax);
+}
+
 function filteredFeatures() {
-  // Historical residences may have an exact mapped address but no surviving
-  // calendar year. Show them in the unfiltered overview without inventing a date.
-  // Hide them only when the reader explicitly narrows the year range.
-  const fullRange = selectedFrom === datasetMin && selectedTo === datasetMax;
   return allFeatures.filter((feature) => (
     Number.isFinite(feature.properties?.startYear)
       ? overlaps(feature, selectedFrom, selectedTo)
-      : fullRange
+      : isFullRange()
+  ));
+}
+
+function filteredPhotos() {
+  return allPhotos.filter((photo) => (
+    Number.isFinite(photo.year)
+      ? photo.year >= selectedFrom && photo.year <= selectedTo
+      : isFullRange()
   ));
 }
 
 function placeGroups() {
-  const groups = new Map();
-  for (const feature of filteredFeatures()) {
-    const ref = feature.properties.placeRef;
-    if (!groups.has(ref)) {
-      groups.set(ref, {
-        ref,
-        label: feature.properties.placeLabel,
-        coordinates: feature.geometry.coordinates,
-        events: [],
-      });
-    }
-    groups.get(ref).events.push(feature);
-  }
-  return [...groups.values()].sort((a, b) => a.label.localeCompare(b.label, 'ru'));
-}
-
-function appendParticipants(row, feature) {
-  const refs = Array.isArray(feature.properties.participants) ? feature.properties.participants : [];
-  const participants = refs
-    .map((ref) => peopleByRef.get(ref) ?? { ref, displayName: ref, url: `/people/${String(ref).replace(/\.mdx?$/i, '')}/` })
-    .filter(Boolean);
-  if (!participants.length) return;
-
-  const actors = document.createElement('div');
-  actors.className = 'rslive-map-popup-event-date';
-  const prefix = document.createElement('span');
-  prefix.textContent = participants.length === 1 ? 'Участник: ' : 'Участники: ';
-  actors.append(prefix);
-
-  participants.forEach((person, index) => {
-    if (index > 0) actors.append(document.createTextNode(', '));
-    const personLink = document.createElement('a');
-    personLink.href = person.url;
-    personLink.target = '_top';
-    personLink.textContent = person.displayName || person.title || person.ref;
-    actors.append(personLink);
-  });
-  row.append(actors);
-}
-
-function popupFor(group) {
-  const wrapper = document.createElement('div');
-  wrapper.className = 'rslive-map-popup';
-
-  const name = document.createElement('strong');
-  name.textContent = group.label;
-  wrapper.append(name);
-
-  const list = document.createElement('div');
-  list.className = 'rslive-map-popup-events';
-  for (const feature of group.events) {
-    const row = document.createElement('div');
-    row.className = 'rslive-map-popup-event';
-
-    const date = eventDateLabel(feature);
-    if (date) {
-      const time = document.createElement('span');
-      time.className = 'rslive-map-popup-event-date';
-      time.textContent = date;
-      row.append(time);
-    }
-
-    const link = document.createElement('a');
-    link.href = feature.properties.eventUrl;
-    link.target = '_top';
-    link.textContent = feature.properties.eventTitle;
-    row.append(link);
-    appendParticipants(row, feature);
-    list.append(row);
-  }
-  wrapper.append(list);
-  return wrapper;
-}
-
-function createPlacePopup(group) {
-  return new maplibregl.Popup({
-    maxWidth: 'min(22rem, 80vw)',
-    offset: 24,
-    focusAfterOpen: false,
-  }).setDOMContent(popupFor(group));
+  return groupMapRecords(
+    layerMode === 'photos' ? [] : filteredFeatures(),
+    layerMode === 'events' ? [] : filteredPhotos(),
+  );
 }
 
 function clearMarkers() {
@@ -252,10 +180,17 @@ function clearMarkers() {
 function renderMarkers() {
   clearMarkers();
   for (const group of placeGroups()) {
+    const hasPhotos = group.photos.length > 0;
     markers.push(
-      new maplibregl.Marker()
+      new maplibregl.Marker(hasPhotos
+        ? { element: createPhotoMarkerElement(group), anchor: 'bottom' }
+        : undefined)
         .setLngLat(group.coordinates)
-        .setPopup(createPlacePopup(group))
+        .setPopup(new maplibregl.Popup({
+          maxWidth: 'min(22rem, 80vw)',
+          offset: hasPhotos ? 22 : 24,
+          focusAfterOpen: false,
+        }).setDOMContent(createMapPopupContent(group, peopleByRef)))
         .addTo(map),
     );
   }
@@ -277,6 +212,12 @@ function fitOverview(animate = true) {
   });
 }
 
+mountMapLayerSwitch(root, allFeatures.length > 0, allPhotos.length > 0, (next) => {
+  layerMode = next;
+  renderMarkers();
+  fitOverview(false);
+});
+
 map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
 map.addControl(new HomeControl(() => fitOverview(true)), 'top-right');
 map.addControl(new maplibregl.FullscreenControl({ container: root }), 'top-right');
@@ -288,6 +229,10 @@ map.addControl(new maplibregl.ScaleControl({ maxWidth: 90, unit: 'metric' }), 'b
 map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
 function updateRange() {
+  if (!hasDatedRange) {
+    renderMarkers();
+    return;
+  }
   let from = Number(rangeFrom.value);
   let to = Number(rangeTo.value);
   if (from > to) {

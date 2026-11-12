@@ -166,6 +166,7 @@ for (const event of eventRows) {
         eventUrl: event.url,
         eventTitle: event.title,
         kind: event.kind,
+        timeline: event.timeline,
         date: event.date,
         endDate: event.endDate,
         startYear: event.startYear,

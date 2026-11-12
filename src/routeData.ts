@@ -62,6 +62,21 @@ export const onRequest = defineRouteMiddleware(async (context) => {
       .map((entry) => `${entry.id.replace(/^places\//, '')}.md`),
   );
   const hasEventMap = events.some((event) => event.data.places?.some((place) => geoPlaceRefs.has(place)));
+  const eventRefs = new Set(events.map((entry) => `${entry.id.replace(/^events\//, '')}.md`));
+  const allEventsByRef = new Map(docs.filter((entry) => entry.data.entity === 'event')
+    .map((entry) => [`${entry.id.replace(/^events\//, '')}.md`, entry]));
+  const hasPhotoMap = docs.some((entry) => {
+    const media = entry.data;
+    if (media.entity !== 'media' || !media.image || media.draft === true || media.public === false) return false;
+    if (media.mediaType && media.mediaType !== 'photo') return false;
+    const related = media.subjects?.some((subject) => mediaSubjectMatches(subject, personRef))
+      || media.eventRefs?.some((ref) => eventRefs.has(ref));
+    if (!related) return false;
+    if (media.geo || (media.place && geoPlaceRefs.has(media.place))) return true;
+    if (media.place) return false;
+    const inferred = new Set((media.eventRefs ?? []).flatMap((ref) => allEventsByRef.get(ref)?.data.places ?? []));
+    return inferred.size === 1 && geoPlaceRefs.has([...inferred][0]);
+  });
 
   const person = route.entry.data;
   const hasDirectRelations = Boolean(
@@ -103,12 +118,12 @@ export const onRequest = defineRouteMiddleware(async (context) => {
     });
   }
 
-  if (hasEventMap) {
+  if (hasEventMap || hasPhotoMap) {
     const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
     generatedItems.push({
       depth: 2,
       slug: `${mapId}-heading`,
-      text: 'Карта событий',
+      text: 'Места на карте',
       children: [],
     });
   }

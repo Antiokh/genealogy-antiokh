@@ -83,34 +83,9 @@ html[data-theme='dark'] :is(.event-range, .map-status, .maplibregl-popup-content
   color: var(--map-popup-fg) !important;
 }
 
-/* Build the tip from the same paper and border as the card. A rotated square
-   overlaps the content by half its size; the content covers the inner half,
-   leaving a bordered triangle that is genuinely continuous with the balloon. */
-.maplibregl-popup-tip {
-  position: relative;
-  z-index: 0;
-  width: 1rem !important;
-  height: 1rem !important;
-  border: 1px solid var(--map-panel-border) !important;
-  background: var(--map-popup-bg) !important;
-  filter: none !important;
-  transform: rotate(45deg);
-}
-.maplibregl-popup-anchor-top .maplibregl-popup-tip,
-.maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
-.maplibregl-popup-anchor-top-right .maplibregl-popup-tip { margin-bottom: -0.5rem; }
-.maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
-.maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
-.maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { margin-top: -0.5rem; }
-.maplibregl-popup-anchor-left .maplibregl-popup-tip { margin-right: -0.5rem; }
-.maplibregl-popup-anchor-right .maplibregl-popup-tip { margin-left: -0.5rem; }
-
-/* When the tip is parked at a corner, that corner becomes square so the border
-   reads as one folded-paper outline instead of a triangle glued to a radius. */
-.maplibregl-popup-anchor-top-left .maplibregl-popup-content { border-top-left-radius: 0 !important; }
-.maplibregl-popup-anchor-top-right .maplibregl-popup-content { border-top-right-radius: 0 !important; }
-.maplibregl-popup-anchor-bottom-left .maplibregl-popup-content { border-bottom-left-radius: 0 !important; }
-.maplibregl-popup-anchor-bottom-right .maplibregl-popup-content { border-bottom-right-radius: 0 !important; }
+/* Keep the MapLibre triangle geometry: its directional border is already
+   themed by event-map-renderer.css, as in RSLive. A rotated square clips
+   outside the rounded card at bottom-left and bottom-right anchors. */
 
 .rslive-map-popup strong {
   display: block;

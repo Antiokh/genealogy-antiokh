@@ -302,34 +302,8 @@ html[data-theme='light'] :is(.family-tree__frame, .tree-embed) {
     inset 0 1px 0 var(--genea-highlight) !important;
 }
 
-/* Build the tip from the same paper and border as the card. The rotated square
-   overlaps the card by half, so the card masks its inner half and the visible
-   triangle shares a real border with the balloon instead of relying on shadow. */
-.person-places .maplibregl-popup-tip {
-  position: relative;
-  z-index: 0;
-  width: 1rem !important;
-  height: 1rem !important;
-  border: 1px solid var(--genea-line-strong) !important;
-  background: var(--genea-surface-high) !important;
-  filter: none !important;
-  transform: rotate(45deg);
-}
-.person-places .maplibregl-popup-anchor-top .maplibregl-popup-tip,
-.person-places .maplibregl-popup-anchor-top-left .maplibregl-popup-tip,
-.person-places .maplibregl-popup-anchor-top-right .maplibregl-popup-tip { margin-bottom: -0.5rem; }
-.person-places .maplibregl-popup-anchor-bottom .maplibregl-popup-tip,
-.person-places .maplibregl-popup-anchor-bottom-left .maplibregl-popup-tip,
-.person-places .maplibregl-popup-anchor-bottom-right .maplibregl-popup-tip { margin-top: -0.5rem; }
-.person-places .maplibregl-popup-anchor-left .maplibregl-popup-tip { margin-right: -0.5rem; }
-.person-places .maplibregl-popup-anchor-right .maplibregl-popup-tip { margin-left: -0.5rem; }
-
-/* If MapLibre moves the tip into a corner, flatten just that corner so the
-   outline remains one continuous folded-paper shape. */
-.person-places .maplibregl-popup-anchor-top-left .maplibregl-popup-content { border-top-left-radius: 0 !important; }
-.person-places .maplibregl-popup-anchor-top-right .maplibregl-popup-content { border-top-right-radius: 0 !important; }
-.person-places .maplibregl-popup-anchor-bottom-left .maplibregl-popup-content { border-bottom-left-radius: 0 !important; }
-.person-places .maplibregl-popup-anchor-bottom-right .maplibregl-popup-content { border-bottom-right-radius: 0 !important; }
+/* Retain MapLibre's native border triangle, coloured by PersonPlacesMap.
+   The former rotated square overlapped rounded card corners on mobile. */
 
 .person-places .maplibregl-popup-content strong {
   display: block;

@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import 'maplibre-gl/dist/maplibre-gl.css';
+import '../styles/map-popup-shared.css';
 
 interface Props {
   personRef: string;
@@ -8,64 +9,48 @@ interface Props {
 
 const { personRef } = Astro.props;
 const docs = await getCollection('docs');
-
-const placeByRef = new Map(
-  docs
-    .filter((entry) => entry.data.entity === 'place' && entry.id.startsWith('places/'))
-    .map((entry) => [`${entry.id.replace(/^places\//, '')}.md`, entry]),
-);
-
-const events = docs.filter((entry) => (
-  entry.data.entity === 'event'
+const placeRefs = new Set(docs
+  .filter((entry) => entry.data.entity === 'place' && Boolean(entry.data.geo))
+  .map((entry) => `${entry.id.replace(/^places\//, '')}.md`));
+const relatedEvents = docs.filter((entry) => entry.data.entity === 'event'
   && entry.data.timeline !== false
-  && entry.data.participants?.includes(personRef)
-));
+  && entry.data.participants?.includes(personRef));
+const relatedRefs = new Set(relatedEvents.map((entry) => `${entry.id.replace(/^events\//, '')}.md`));
+const eventByRef = new Map(docs.filter((entry) => entry.data.entity === 'event')
+  .map((entry) => [`${entry.id.replace(/^events\//, '')}.md`, entry]));
 
-const grouped = new Map<string, {
-  ref: string;
-  label: string;
-  latitude: number;
-  longitude: number;
-  precision?: string;
-  events: string[];
-}>();
-
-for (const event of events) {
-  for (const ref of event.data.places ?? []) {
-    const place = placeByRef.get(ref);
-    const geo = place?.data.geo;
-    if (!place || !geo) continue;
-    const existing = grouped.get(ref) ?? {
-      ref,
-      label: place.data.label ?? place.data.title ?? ref,
-      latitude: geo.latitude,
-      longitude: geo.longitude,
-      precision: geo.precision,
-      events: [],
-    };
-    existing.events.push(event.data.title);
-    grouped.set(ref, existing);
-  }
+function hasPhotoSubject(subject: unknown) {
+  if (typeof subject === 'string') return subject === personRef;
+  return Boolean(subject && typeof subject === 'object' && 'person' in subject
+    && (subject as { person: string }).person === personRef);
 }
 
-const points = [...grouped.values()].sort((a, b) => a.label.localeCompare(b.label, 'ru'));
+const hasEventPoint = relatedEvents.some((event) => event.data.places?.some((ref) => placeRefs.has(ref)));
+const hasPhotoPoint = docs.some((entry) => {
+  const data = entry.data;
+  if (data.entity !== 'media' || !data.image || data.draft === true || data.public === false) return false;
+  if (data.mediaType && data.mediaType !== 'photo') return false;
+  if (!data.subjects?.some(hasPhotoSubject) && !data.eventRefs?.some((ref) => relatedRefs.has(ref))) return false;
+  if (data.geo || (data.place && placeRefs.has(data.place))) return true;
+  if (data.place) return false;
+  const inferred = new Set((data.eventRefs ?? []).flatMap((ref) => eventByRef.get(ref)?.data.places ?? []));
+  return inferred.size === 1 && placeRefs.has([...inferred][0]);
+});
 const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
 ---
 
-{points.length > 0 && (
-  <section class="person-places" aria-labelledby={`${mapId}-heading`} data-person-places-map data-points={JSON.stringify(points)}>
+{(hasEventPoint || hasPhotoPoint) && (
+  <section class="person-places" aria-labelledby={`${mapId}-heading`} data-person-places-map data-person-ref={personRef} data-event-refs={JSON.stringify([...relatedRefs])}>
     <h2 id={`${mapId}-heading`}>Места на карте</h2>
-    <p class="map-note">Точки собраны из связанных событий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
-    <div id={mapId} class="person-map-canvas" aria-label="Карта мест, связанных с человеком"></div>
-    <noscript>
-      <ul>
-        {points.map((point) => <li>{point.label}</li>)}
-      </ul>
-    </noscript>
+    <p class="map-note">Точки собраны из событий и фотографий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
+    <div id={mapId} class="person-map-canvas" aria-label="Карта мест, событий и фотографий, связанных с человеком"></div>
+    <noscript>Для интерактивной карты требуется JavaScript.</noscript>
   </section>
 )}
 
 <script>
+  import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from '../scripts/map-popup';
+
   type MapTheme = 'dark' | 'light';
 
   const mapStyleUrls: Record<MapTheme, string> = {
@@ -82,7 +67,6 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   function collapseAttributionControl(root: HTMLElement) {
     const control = root.querySelector('.maplibregl-ctrl-attrib');
     if (!(control instanceof HTMLElement)) return;
-
     control.classList.add('maplibregl-compact');
     control.classList.remove('maplibregl-compact-show');
     const button = control.querySelector('.maplibregl-ctrl-attrib-button');
@@ -92,72 +76,111 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   async function initializePersonMaps() {
     const roots = document.querySelectorAll<HTMLElement>('[data-person-places-map]:not([data-map-ready])');
     if (!roots.length) return;
-
     const { default: maplibregl } = await import('maplibre-gl');
+    const [eventsResult, peopleResult, photosResult] = await Promise.all([
+      fetch('/generated/places.geojson'),
+      fetch('/generated/people.json'),
+      fetch('/events/map-media.json'),
+    ]);
+    if (!eventsResult.ok || !peopleResult.ok || !photosResult.ok) {
+      for (const root of roots) {
+        const canvas = root.querySelector<HTMLElement>('.person-map-canvas');
+        if (canvas) canvas.textContent = 'Не удалось загрузить данные карты.';
+      }
+      return;
+    }
+    const [eventData, peopleData, photoData] = await Promise.all([
+      eventsResult.json(), peopleResult.json(), photosResult.json(),
+    ]);
+    const peopleByRef = new Map((peopleData.people ?? []).map((person: any) => [person.ref, person]));
 
     for (const root of roots) {
       const canvas = root.querySelector<HTMLElement>('.person-map-canvas');
       if (!canvas) continue;
-      let points: Array<{ label: string; latitude: number; longitude: number; precision?: string; events: string[] }> = [];
+      const personRef = root.dataset.personRef;
+      let eventRefs: string[] = [];
       try {
-        points = JSON.parse(root.dataset.points ?? '[]');
+        eventRefs = JSON.parse(root.dataset.eventRefs ?? '[]');
       } catch {
         continue;
       }
-      if (!points.length) continue;
+      const eventsForPerson = (eventData.features ?? []).filter((feature: any) =>
+        feature.properties?.timeline !== false
+        && feature.properties?.participants?.includes(personRef));
+      const relevantRefs = new Set(eventRefs);
+      const photosForPerson = (photoData.photos ?? []).filter((photo: any) =>
+        photo.subjects?.includes(personRef)
+        || photo.eventRefs?.some((ref: string) => relevantRefs.has(ref)));
+
+      let layerMode = 'all';
+      const groups = () => groupMapRecords(
+        layerMode === 'photos' ? [] : eventsForPerson,
+        layerMode === 'events' ? [] : photosForPerson,
+      );
+      const initial = groups();
+      if (!initial.length) {
+        canvas.textContent = 'Нет географически привязанных записей.';
+        continue;
+      }
 
       let currentTheme = readMapTheme();
       const map = new maplibregl.Map({
         container: canvas,
         style: mapStyleUrls[currentTheme],
-        center: [points[0].longitude, points[0].latitude],
-        zoom: points.length === 1 ? 8 : 3,
+        center: initial[0].coordinates,
+        zoom: initial.length === 1 ? 8 : 3,
         attributionControl: false,
       });
-
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-right');
       map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-      const collapseAttribution = () => collapseAttributionControl(root);
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(collapseAttribution);
+      const markers: maplibregl.Marker[] = [];
+      const renderMarkers = () => {
+        while (markers.length) markers.pop()?.remove();
+        for (const group of groups()) {
+          const hasPhotos = group.photos.length > 0;
+          markers.push(new maplibregl.Marker(hasPhotos
+            ? { element: createPhotoMarkerElement(group), anchor: 'bottom' }
+            : undefined)
+            .setLngLat(group.coordinates)
+            .setPopup(new maplibregl.Popup({
+              maxWidth: 'min(22rem, 80vw)',
+              offset: hasPhotos ? 22 : 24,
+              focusAfterOpen: false,
+            }).setDOMContent(createMapPopupContent(group, peopleByRef)))
+            .addTo(map));
+        }
+      };
+      const fitOverview = () => {
+        const points = groups();
+        if (!points.length) return;
+        if (points.length === 1) {
+          map.easeTo({ center: points[0].coordinates, zoom: 8, duration: 0 });
+          return;
+        }
+        const bounds = new maplibregl.LngLatBounds();
+        for (const point of points) bounds.extend(point.coordinates);
+        map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
+      };
+      const removeSwitch = mountMapLayerSwitch(canvas, eventsForPerson.length > 0, photosForPerson.length > 0, (next: string) => {
+        layerMode = next;
+        renderMarkers();
+        fitOverview();
       });
-
-      const bounds = new maplibregl.LngLatBounds();
-      for (const point of points) {
-        const popupContent = document.createElement('div');
-        const title = document.createElement('strong');
-        title.textContent = point.label;
-        popupContent.append(title);
-        if (point.events.length) {
-          const list = document.createElement('ul');
-          for (const eventTitle of point.events) {
-            const item = document.createElement('li');
-            item.textContent = eventTitle;
-            list.append(item);
-          }
-          popupContent.append(list);
-        }
-        new maplibregl.Marker()
-          .setLngLat([point.longitude, point.latitude])
-          .setPopup(new maplibregl.Popup({ offset: 24 }).setDOMContent(popupContent))
-          .addTo(map);
-        bounds.extend([point.longitude, point.latitude]);
-      }
-
+      const collapseAttribution = () => collapseAttributionControl(root);
       map.once('load', () => {
+        renderMarkers();
+        fitOverview();
         collapseAttribution();
-        if (points.length > 1) {
-          map.fitBounds(bounds, { padding: 48, maxZoom: 8, duration: 0 });
-        }
       });
       map.once('idle', collapseAttribution);
+      window.requestAnimationFrame(() => window.requestAnimationFrame(collapseAttribution));
 
       const preference = window.matchMedia?.('(prefers-color-scheme: light)');
       const syncTheme = () => {
-        const nextTheme = readMapTheme();
-        if (nextTheme === currentTheme) return;
-        currentTheme = nextTheme;
+        const next = readMapTheme();
+        if (next === currentTheme) return;
+        currentTheme = next;
         map.setStyle(mapStyleUrls[currentTheme]);
         map.once('style.load', collapseAttribution);
       };
@@ -171,10 +194,10 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
       const cleanup = () => {
         themeObserver.disconnect();
         preference?.removeEventListener('change', syncTheme);
+        removeSwitch();
         map.remove();
       };
       document.addEventListener('astro:before-swap', cleanup, { once: true });
-
       root.dataset.mapReady = 'true';
     }
   }
@@ -212,6 +235,7 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   .map-note { color: var(--sl-color-gray-3); font-size: 0.875rem; }
 
   .person-map-canvas {
+    position: relative;
     width: 100%;
     height: min(58vh, 34rem);
     min-height: 24rem;
@@ -306,3 +330,4 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
     padding-left: 1.1rem;
   }
 </style>
+
