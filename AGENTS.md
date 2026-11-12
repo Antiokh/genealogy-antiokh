@@ -58,6 +58,16 @@ Treat a person's autobiography, diary, interview, or first-person recollection a
 - When a stronger primary document genuinely contradicts a recollection about a date, legal event, or other recordable fact, present the concrete discrepancy fairly and do not silently erase either source. Lack of a corroborating document by itself is **not** a contradiction.
 - Keep provenance and unresolved research questions in source records, citations, or editorial notes instead of turning the public biography into a critique of testimony.
 
+## Privacy: maximum address detail is a building
+
+**Mandatory for all published genealogy and evidence content** (people, places, events, media descriptions, sources, captions, imports intended for publication, generated metadata, and editorial prose):
+
+- A residential location may be identified **at most to the building**: country, city, street, house number, and a legitimate building/корпус/строение identifier. Map coordinates must point to the building or a less precise location, never to an individual unit.
+- **Never publish an apartment, unit, suite, room, entrance, floor, access code, intercom or mailbox number tied to an identifiable home or household.** This applies even when a participant or source supplied the more precise address. Exclude that information rather than recording it privately in published Markdown, YAML, or citation text.
+- Apply the limit to historical and current residential addresses alike, and to every person's data (not only the site owner). Do not reproduce unredacted source chat or photo metadata containing finer residence details.
+- If precision is unclear, omit the unit and use the building, street or city. Institution and venue addresses may have their normal public building identifiers; do not treat a building's **корпус** as an apartment.
+- The site-only check `scripts/check-address-privacy.mjs` guards against numbered apartments, units, rooms, and entrances in authored pages. Review context manually too, since no pattern can detect all identifying details.
+
 ## Public biographies contain only biography
 
 The Markdown body of a person page is a public article about a concrete person and that person's life. It must contain only reader-facing narrative or factual biographical text.
