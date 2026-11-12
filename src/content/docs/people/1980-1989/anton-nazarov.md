@@ -58,6 +58,8 @@ partners:
     divorced:
       known: true
       date: "2026-02-10"
+      place: "voroshilovsky-court-rostov-on-don.md"
+      placeLabel: "Ворошиловский районный суд, Ростов-на-Дону"
 occupation:
   - "предприниматель"
   - "руководитель IT"
@@ -91,6 +93,7 @@ sources:
   - "sfr-anton-nazarov-work-history-2024.md"
   - "myheritage-anton-nazarov-export.md"
   - "anton-nazarov-personal-history.md"
+  - "anton-nazarov-divorce-court-clarification-2026.md"
   - "anton-nazarov-childhood-recollections-2026.md"
   - "anton-nazarov-address-clarifications-2026.md"
   - "anton-nazarov-education-registry-clarifications-2026.md"
@@ -234,9 +237,11 @@ external:
 
 В 2025 году Антон стал одним из ключевых организаторов **Русской Масляницы в Белграде** на [Аде Циганлии](/places/ada-ciganlija/). Он участвовал в переработке концепции праздника, написал новый сценарий театрализованной программы и работал над общей программой вместе с командой организаторов. Праздник собрал более **500 гостей**.
 
-10 февраля 2026 года брак Антона и Анны был официально расторгнут.
+10 февраля 2026 года брак Антона и Анны был официально расторгнут. Дело рассматривал [Ворошиловский районный суд Ростова-на-Дону](/places/voroshilovsky-court-rostov-on-don/).
 
 ## Источники
+
+- [Уточнение о суде по делу о разводе с Анной Татаринцевой](/sources/anton-nazarov-divorce-court-clarification-2026/).
 
 - [Уточнение о школах, ЗАГСе и переезде осенью 1995 года](/sources/anton-nazarov-education-registry-clarifications-2026/).
 
