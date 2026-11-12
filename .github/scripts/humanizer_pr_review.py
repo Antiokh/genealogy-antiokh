@@ -597,10 +597,36 @@ def editorial_mdx_text(text: str) -> tuple[str, int]:
     return "".join(chars), visible_prop_chars
 
 
+def remove_fenced_code(text: str) -> str:
+    """Remove Markdown code fences before passing reader prose to Humanizer."""
+    lines = text.splitlines(keepends=True)
+    hidden = False
+    character = ""
+    width = 0
+    result = []
+    for line in lines:
+        candidate = re.match(r"^ {0,3}(`{3,}|~{3,})", line)
+        if not hidden and candidate:
+            hidden = True
+            character = candidate.group(1)[0]
+            width = len(candidate.group(1))
+            result.append("\n" if line.endswith("\n") else "")
+            continue
+        if hidden:
+            end = re.match(r"^ {0,3}(" + re.escape(character) + "{" + str(width) + r",})[ \t]*$", line.rstrip("\r\n"))
+            if end:
+                hidden = False
+            result.append("\n" if line.endswith("\n") else "")
+            continue
+        result.append(line)
+    return "".join(result)
+
+
 def editorial_input(raw: str) -> tuple[str, dict]:
     """Проверяет только читаемый текст страницы без YAML и технической разметки."""
     _frontmatter, body, had_frontmatter = split_frontmatter(raw)
-    visible, visible_prop_chars = editorial_mdx_text(body)
+    visible, visible_prop_chars = editorial_mdx_text(remove_fenced_code(body))
+    visible = re.sub(r'(`+)[^\n]*?\\1', ' ', visible)
     text = visible.strip() + "\n"
     return text, {
         "scope": "whole_article",
