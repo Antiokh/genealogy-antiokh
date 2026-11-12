@@ -63,8 +63,11 @@ occupation:
   - "старший преподаватель Тульского политехнического института"
   - "преподаватель информатики Коммерческо-банковского колледжа № 6"
   - "заведующая кафедрой Коммерческо-банковского колледжа № 6"
-residence: []
+residence:
+  - place: "korolev-kosmonavtov-2.md"
+    label: "Королёв, проспект Космонавтов, 2"
 sources:
+  - "anton-nazarov-address-clarifications-2026.md"
   - "civil-birth-emilia-kurochkina-1935.md"
   - "civil-marriage-vladimir-beskorovaynyi-emilia-kurochkina-1959.md"
   - "civil-death-emilia-beskorovaynaya-2024.md"
@@ -163,7 +166,13 @@ external:
 
 Эмилия Николаевна умерла 15 сентября 2024 года в Москве в возрасте 89 лет. Свидетельство о смерти указывает время смерти — **05:10**.
 
+## Адрес в Королёве
+
+В Королёве Эмилия Николаевна и Владимир Георгиевич Бескоровайные жили на проспекте Космонавтов, в доме 2. Точные годы проживания не установлены.
+
 ## Источники
+
+- [Уточнение семейных адресов, 12 ноября 2026 года](/sources/anton-nazarov-address-clarifications-2026/).
 
 - [Справка о рождении Эмилии Курочкиной](/sources/civil-birth-emilia-kurochkina-1935/)
 - [Справка о браке Владимира Бескоровайного и Эмилии Курочкиной](/sources/civil-marriage-vladimir-beskorovaynyi-emilia-kurochkina-1959/)
