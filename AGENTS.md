@@ -44,6 +44,16 @@ See the engine's `docs/engine-content-sync.md` for details.
 
 These rules are mandatory for all edits to public person pages under `src/content/docs/people/`.
 
+## Autobiographies and first-person recollections are primary sources
+
+Treat a person's autobiography, diary, interview, or first-person recollection as **primary evidence of their own life and lived experience**. For biographical facts directly reported by that person, or for family events that they recount, **accept the account as factual by default when there is no specific contradiction**. It does not require independent documentary corroboration merely because it is a memoir. First-person testimony is often the only surviving evidence of childhood, family circumstances, everyday life, emotions, and personal experience.
+
+- State uncontradicted details as normal biographical prose. Do not habitually distance the reader with “according to their recollections”, “allegedly”, “unverified”, “by their account”, or disclaimers that memoirs are not independently confirmed. Identify the author once in the source citation or where attribution adds real meaning.
+- Preserve meaningful uncertainty *expressed by the author* (“possibly”, “I do not remember”, an approximate period), and flag **specific** conflicts between sources or within a recollection. Never manufacture generic uncertainty as a substitute for an identified problem.
+- Distinguish direct experiences from reported family stories and from an author's interpretations of **another person's inner motives, feelings or intentions**. Only the last category inherently needs attribution if presented as a psychological judgment, unless corroborated. Directly witnessed conduct may be described without a blanket disclaimer.
+- When a stronger primary document genuinely contradicts a recollection about a date, legal event, or other recordable fact, present the concrete discrepancy fairly and do not silently erase either source. Lack of a corroborating document by itself is **not** a contradiction.
+- Keep provenance and unresolved research questions in source records, citations, or editorial notes instead of turning the public biography into a critique of testimony.
+
 ## Public biographies contain only biography
 
 The Markdown body of a person page is a public article about a concrete person and that person's life. It must contain only reader-facing narrative or factual biographical text.
