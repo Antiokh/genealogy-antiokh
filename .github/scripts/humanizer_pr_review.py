@@ -626,7 +626,7 @@ def editorial_input(raw: str) -> tuple[str, dict]:
     """Проверяет только читаемый текст страницы без YAML и технической разметки."""
     _frontmatter, body, had_frontmatter = split_frontmatter(raw)
     visible, visible_prop_chars = editorial_mdx_text(remove_fenced_code(body))
-    visible = re.sub(r'(`+)[^\n]*?\\1', ' ', visible)
+    visible = re.sub(r'(`+)[^\n]*?\1', ' ', visible)
     text = visible.strip() + "\n"
     return text, {
         "scope": "whole_article",
