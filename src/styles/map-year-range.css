@@ -94,6 +94,16 @@
 }
 
 
+/* MapLibre puts attribution controls at z-index:2, below the year dock (8).
+   When a user expands the compact map credits/license, raise its control
+   *container*, not just the attribution text: this is the stacking context.
+   The open panel and its close button must be fully visible and clickable.
+   In its compact state the control stays under the dock as before. */
+.maplibregl-ctrl-bottom-right:has(.maplibregl-ctrl-attrib.maplibregl-compact-show),
+.maplibregl-ctrl-bottom-left:has(.maplibregl-ctrl-attrib.maplibregl-compact-show) {
+  z-index: 12;
+}
+
 /* Only the layer switch moves upward when the range exists. Hidden sliders
    and maps with only undated records keep the original lower position. */
 .map-shell:has(.event-range:not([hidden])) .genealogy-map-layer-switch,
