@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { balanceTwoSpouseLayout } from '../public/tree/balance-spouses.js';
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url), 'utf8');
 const fail = (message) => {
@@ -38,5 +39,58 @@ expect(personCard.includes("const focusId = overviewMode ? ''"), 'overview cards
 expect(familyChart.includes('const overviewMode = context.overviewMode;'), 'Family Chart must consume overview context');
 expect(familyChart.includes('overviewMode,'), 'Family Chart must render overview-specific status');
 expect(familyChart.includes('if (overviewMode) expandAll();'), 'overview mode must expand the complete genealogy on initialization');
+
+
+// Family Chart v0.9.0 lays every spouse on one side. In a two-marriage row,
+// verify symmetrical placement without moving the row extent or breaking the
+// couple points used by children's connectors and relation icons.
+function twoSpouseFixture(gender = 'M') {
+  const direction = gender === 'M' ? 1 : -1;
+  const id = gender === 'M' ? 'parent-m' : 'parent-f';
+  const original = gender === 'M' ? [-286, 0, 286] : [286, 0, -286];
+  const first = { x: original[1], y: 0, sx: 0, data: { id: 'former' }, added: true };
+  const second = { x: original[2], y: 0, sx: -143 * direction, data: { id: 'current' }, added: true };
+  const firstChild = { data: { id: 'child-former', rels: { parents: [id, 'former'] } }, psx: NaN };
+  const secondChild = { data: { id: 'child-current', rels: { parents: [id, 'current'] } }, psx: NaN };
+  const parent = {
+    x: original[0], y: 0,
+    data: { id, data: { gender } },
+    spouses: [first, second],
+    children: [firstChild, secondChild],
+  };
+  return { tree: { is_horizontal: false, data: [parent, first, second, firstChild, secondChild] }, parent, first, second, firstChild, secondChild };
+}
+
+for (const gender of ['M', 'F']) {
+  const t = twoSpouseFixture(gender);
+  const originalExtent = [t.parent.x, t.first.x, t.second.x].sort((a, b) => a - b);
+  expect(balanceTwoSpouseLayout(t.tree) === 1, `exactly two spouses should balance for ${gender}`);
+  expect(t.parent.x === 0, `main parent remains centered for ${gender}`);
+  const reordered = [t.first.x, t.parent.x, t.second.x].sort((a, b) => a - b);
+  expect(JSON.stringify(reordered) === JSON.stringify(originalExtent), `row width stays unchanged for ${gender}`);
+  expect(Math.abs(t.first.x - t.parent.x) === Math.abs(t.second.x - t.parent.x), `both spouses at equal distance for ${gender}`);
+  expect(t.first.sx === (t.first.x + t.parent.x) / 2, `first marriage midpoint stays correct for ${gender}`);
+  expect(t.second.sx === (t.second.x + t.parent.x) / 2, `second marriage midpoint stays correct for ${gender}`);
+  expect(t.firstChild.psx === t.first.sx, `first couple's child descends from their union for ${gender}`);
+  expect(t.secondChild.psx === t.second.sx, `second couple's child descends from their union for ${gender}`);
+}
+const single = twoSpouseFixture();
+single.parent.spouses.pop();
+const priorX = single.parent.x;
+expect(balanceTwoSpouseLayout(single.tree) === 0 && single.parent.x === priorX, 'single marriage must keep native layout');
+const many = twoSpouseFixture();
+many.parent.spouses.push({ x: 572, y: 0, data: { id: 'third' }, added: true });
+expect(balanceTwoSpouseLayout(many.tree) === 0 && many.parent.x === priorX, '3+ marriages must keep native layout');
+const ancestry = twoSpouseFixture();
+ancestry.parent.is_ancestry = true;
+expect(balanceTwoSpouseLayout(ancestry.tree) === 0, 'ancestry layout must not change');
+const horizontal = twoSpouseFixture();
+horizontal.tree.is_horizontal = true;
+expect(balanceTwoSpouseLayout(horizontal.tree) === 0, 'horizontal layouts must remain untouched');
+expect(
+  familyChart.indexOf('chart.setBeforeUpdate(() => balanceTwoSpouseLayout(chart.store.getTree()))')
+    < familyChart.indexOf('chart.updateTree({ initial:true, main_id:layoutFocusId })'),
+  'balance positions before f3 calculates SVG links and renders cards',
+);
 
 if (!process.exitCode) console.log('Tree overview mode check passed.');

@@ -29,6 +29,7 @@
     <script type="module" is:inline>
       import * as f3 from 'https://esm.sh/family-chart@0.9.0';
       import { toFamilyChartData } from '/tree/renderer-adapters.js';
+      import { balanceTwoSpouseLayout } from '/tree/balance-spouses.js';
       import { personCardElementHtml } from '/tree/person-card.js';
       import { renderRelationSvg } from '/tree/relation-ui.js';
       import { startThemeBridge } from '/tree/theme-bridge.js';
@@ -101,6 +102,10 @@
               renderFamily(expansion.toggle(id), { anchorId:id });
             });
 
+          // Family Chart 0.9.0 stacks all spouses on one side. When there are
+          // exactly two, balance their already-computed positions before
+          // links and cards are generated; leave other marriages untouched.
+          chart.setBeforeUpdate(() => balanceTwoSpouseLayout(chart.store.getTree()));
           chart.updateTree({ initial:true, main_id:layoutFocusId });
           reportTreeScope(family);
           const total = sourceFamily.people?.length || family.summary.people;

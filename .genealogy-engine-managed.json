@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "bc1345cc96c67a7c97391407d08911e1f0f6aa18",
+  "commit": "2fef1493264118ddfc022768153067656e99c7c1",
   "files": [
     "public/textures/button.webp",
     "public/textures/dark-leather-tile.webp",
@@ -13,6 +13,7 @@
     "public/textures/slit-tl.svg",
     "public/textures/slit-tr.svg",
     "public/textures/tl-corner.webp",
+    "public/tree/balance-spouses.js",
     "public/tree/genealogy-theme.css",
     "public/tree/kinship-extended.js",
     "public/tree/kinship.js",
