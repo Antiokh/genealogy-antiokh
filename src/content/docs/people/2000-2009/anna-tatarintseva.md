@@ -62,6 +62,14 @@ partners:
       placeLabel: "Ворошиловский районный суд, Ростов-на-Дону"
 occupation: []
 residence:
+  - place: "shipilovskaya-38.md"
+    label: "Москва, Шипиловская ул., 38"
+    from:
+      year: 2021
+      month: 8
+      circa: true
+      text: "примерно август 2021 года"
+    to: "2022-12-10"
   - place: "novocherkassk.md"
     label: "Новочеркасск, Ростовская область"
     from: "2025-01-16"
@@ -69,6 +77,7 @@ sources:
   - "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
   - "anton-nazarov-personal-history.md"
+  - "anton-nazarov-shipilovskaya-2021-2022.md"
   - "anton-nazarov-divorce-court-clarification-2026.md"
 external:
   myheritage:
@@ -82,6 +91,8 @@ external:
 
 Анна Татаринцева родилась 11 июля 2001 года в Ставрополе.
 
+Примерно с августа 2021 года Анна жила вместе с [Антоном Назаровым](/people/1980-1989/anton-nazarov/) в Москве на [Шипиловской улице, 38](/places/shipilovskaya-38/). Она оставалась по этому адресу до **10 декабря 2022 года**, когда уехала в [Белград](/places/belgrade/).
+
 21 января 2023 года Анна и [Антон Назаров](/people/1980-1989/anton-nazarov/) зарегистрировали брак в Белграде. После регистрации брака Анна сохранила фамилию Татаринцева.
 
 10 февраля 2026 года брак с Антоном Назаровым был расторгнут; дело рассматривал [Ворошиловский районный суд Ростова-на-Дону](/places/voroshilovsky-court-rostov-on-don/).
@@ -89,6 +100,8 @@ external:
 С **16 января 2025 года** Анна живёт в [Новочеркасске](/places/novocherkassk/) Ростовской области вместе с сыном [Леонардом Назаровым](/people/2020-2029/leonard-nazarov/).
 
 ## Источники
+
+- [Авторское уточнение о проживании на Шипиловской улице](/sources/anton-nazarov-shipilovskaya-2021-2022/).
 
 - [Уточнение о суде по делу о разводе](/sources/anton-nazarov-divorce-court-clarification-2026/).
 
