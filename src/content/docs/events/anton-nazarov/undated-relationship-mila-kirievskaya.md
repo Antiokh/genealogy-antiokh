@@ -3,6 +3,7 @@ title: "Отношения Антона Назарова и Милы Кирие�
 description: "После знакомства и совместной музыкальной работы Антон Назаров и Мила Кириевская стали встречаться"
 entity: event
 kind: relationship
+timeline: false
 importance: standard
 participants:
   - "1980-1989/anton-nazarov.md"

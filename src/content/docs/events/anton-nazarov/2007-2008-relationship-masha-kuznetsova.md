@@ -3,6 +3,7 @@ title: "Отношения Антона Назарова и Маши Кузне�
 description: "В 2007–2008 годах Антон Назаров встречался с Машей Кузнецовой"
 entity: event
 kind: relationship
+timeline: false
 date:
   year: 2007
   circa: true
