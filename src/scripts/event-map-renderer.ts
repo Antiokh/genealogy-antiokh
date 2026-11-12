@@ -2,23 +2,16 @@
 import maplibregl from 'maplibre-gl';
 import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from './map-popup';
 import { MapOverviewControl } from './map-controls';
+import { mapEventsInYears, mapPhotosInYears, mountMapYearRange } from './map-year-range';
 
 const root = document.querySelector('[data-map-shell]');
 const canvas = document.querySelector('[data-map-canvas]');
 const rangeControl = document.querySelector('[data-range-control]');
-const rangeTrack = document.querySelector('[data-range-track]');
-const rangeFrom = document.querySelector('[data-range-from]');
-const rangeTo = document.querySelector('[data-range-to]');
-const rangeLabel = document.querySelector('[data-range-label]');
 const status = document.querySelector('[data-map-status]');
 
 if (!(root instanceof HTMLElement)
   || !(canvas instanceof HTMLElement)
   || !(rangeControl instanceof HTMLElement)
-  || !(rangeTrack instanceof HTMLElement)
-  || !(rangeFrom instanceof HTMLInputElement)
-  || !(rangeTo instanceof HTMLInputElement)
-  || !(rangeLabel instanceof HTMLOutputElement)
   || !(status instanceof HTMLElement)) {
   throw new Error('Event map renderer is missing required DOM nodes.');
 }
@@ -30,12 +23,6 @@ const mapStyleUrls = {
 
 function currentTheme() {
   return document.documentElement.dataset.theme === 'light' ? 'light' : 'dark';
-}
-
-function overlaps(feature, from, to) {
-  const start = feature.properties.startYear;
-  const end = feature.properties.endYear ?? start;
-  return Number.isFinite(start) && Number.isFinite(end) && Number(start) <= to && Number(end) >= from;
 }
 
 function collapseAttribution() {
@@ -65,40 +52,15 @@ const photoDataset = await photoResponse.json();
 const peopleByRef = new Map((peopleDataset.people ?? []).map((person) => [person.ref, person]));
 const allFeatures = dataset.features ?? [];
 const allPhotos = photoDataset.photos ?? [];
-const datedFeatures = allFeatures.filter((feature) => Number.isFinite(feature.properties?.startYear));
-const years = [
-  ...datedFeatures.flatMap((feature) => [
-    Number(feature.properties.startYear),
-    Number(feature.properties.endYear ?? feature.properties.startYear),
-  ]),
-  ...allPhotos.map((photo) => photo.year),
-].filter(Number.isFinite);
-
 if (!allFeatures.length && !allPhotos.length) {
   status.hidden = false;
   status.textContent = 'Нет географически привязанных событий или фотографий.';
   throw new Error('Event map has no georeferenced records.');
 }
 
-const hasDatedRange = years.length > 0;
-const datasetMin = hasDatedRange ? Math.min(...years) : 0;
-const datasetMax = hasDatedRange ? Math.max(...years) : 0;
-let selectedFrom = datasetMin;
-let selectedTo = datasetMax;
 let layerMode = 'all';
 let theme = currentTheme();
 const markers = [];
-
-if (hasDatedRange) {
-  for (const input of [rangeFrom, rangeTo]) {
-    input.min = String(datasetMin);
-    input.max = String(datasetMax);
-    input.step = '1';
-  }
-  rangeFrom.value = String(datasetMin);
-  rangeTo.value = String(datasetMax);
-}
-rangeControl.hidden = !hasDatedRange;
 
 const map = new maplibregl.Map({
   container: canvas,
@@ -109,24 +71,14 @@ const map = new maplibregl.Map({
   renderWorldCopies: false,
 });
 
-function isFullRange() {
-  return !hasDatedRange || (selectedFrom === datasetMin && selectedTo === datasetMax);
-}
+const yearRange = mountMapYearRange(rangeControl, allFeatures, allPhotos, () => renderMarkers());
 
 function filteredFeatures() {
-  return allFeatures.filter((feature) => (
-    Number.isFinite(feature.properties?.startYear)
-      ? overlaps(feature, selectedFrom, selectedTo)
-      : isFullRange()
-  ));
+  return mapEventsInYears(allFeatures, yearRange.selected());
 }
 
 function filteredPhotos() {
-  return allPhotos.filter((photo) => (
-    Number.isFinite(photo.year)
-      ? photo.year >= selectedFrom && photo.year <= selectedTo
-      : isFullRange()
-  ));
+  return mapPhotosInYears(allPhotos, yearRange.selected());
 }
 
 function placeGroups() {
@@ -191,34 +143,8 @@ map.addControl(new maplibregl.GeolocateControl({
 map.addControl(new maplibregl.ScaleControl({ maxWidth: 90, unit: 'metric' }), 'bottom-left');
 map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-right');
 
-function updateRange() {
-  if (!hasDatedRange) {
-    renderMarkers();
-    return;
-  }
-  let from = Number(rangeFrom.value);
-  let to = Number(rangeTo.value);
-  if (from > to) {
-    if (document.activeElement === rangeFrom) to = from;
-    else from = to;
-    rangeFrom.value = String(from);
-    rangeTo.value = String(to);
-  }
-  selectedFrom = from;
-  selectedTo = to;
-  rangeLabel.value = `Временной интервал: ${from === to ? from : `${from}–${to}`}`;
-
-  const span = Math.max(1, datasetMax - datasetMin);
-  rangeTrack.style.setProperty('--range-from', `${((from - datasetMin) / span) * 100}%`);
-  rangeTrack.style.setProperty('--range-to', `${((to - datasetMin) / span) * 100}%`);
-  renderMarkers();
-}
-
-rangeFrom.addEventListener('input', updateRange);
-rangeTo.addEventListener('input', updateRange);
-
 map.on('load', () => {
-  updateRange();
+  renderMarkers();
   collapseAttribution();
   fitOverview(false);
 });
