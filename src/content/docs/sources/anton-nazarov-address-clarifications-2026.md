@@ -17,6 +17,6 @@ publication: "Авторское уточнение семейной хроно�
 
 Адреса и координаты зданий сверены по открытым картографическим и адресным справочникам:
 
-- [Генерала Кузнецова, 13к2 — Яндекс Карты](https://yandex.com/maps/213/moscow/house/ulitsa_generala_kuznetsova_13k2/Z04YfgFgSkEFQFtvfXp5dnVnYA%3D%3D/);
-- [Мосфильмовская, 32 — Яндекс Карты](https://yandex.com/maps/213/moscow/house/mosfilmovskaya_ulitsa_32/Z04YcwVjS0wDQFtvfXtzcXpnZQ%3D%3D/services/);
+- [Генерала Кузнецова, 13к2 — Яндекс Карты](https://yandex.com/maps/213/moscow/house/ulitsa_generala_kuznetsova_13k2/Z04YfgFgSkEFQFtvfXp5dnVnYA%3D%3D/).
+- [Мосфильмовская, 32 — Яндекс Карты](https://yandex.com/maps/213/moscow/house/mosfilmovskaya_ulitsa_32/Z04YcwVjS0wDQFtvfXtzcXpnZQ%3D%3D/services/).
 - [Королёв, проспект Космонавтов, 2 — справка о здании](https://www.zdanija.ru/forum/topic-13664-korolev_prsp_kosmonavtov_2.html).
