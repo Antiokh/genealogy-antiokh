@@ -1,0 +1,29 @@
+name: Editorial PR integration contract
+
+on:
+  pull_request:
+    paths:
+      - '.github/scripts/editorial_pr_review.py'
+      - '.github/scripts/test_editorial_pr_publish.cjs'
+      - '.github/workflows/editorial-review.yml'
+      - '.github/workflows/editorial-base-refresh.yml'
+      - '.github/workflows/editorial-contract.yml'
+      - 'docs/EDITORIAL_PR_REVIEW.md'
+
+permissions:
+  contents: read
+
+jobs:
+  contract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout proposed integration without write permissions
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - name: Compile and self-test prose-only analyzer
+        run: |
+          python3 -m py_compile .github/scripts/editorial_pr_review.py
+          python3 .github/scripts/editorial_pr_review.py --mode genealogy --self-test
+      - name: Test safe PR inline publication and dispatch
+        run: node .github/scripts/test_editorial_pr_publish.cjs
