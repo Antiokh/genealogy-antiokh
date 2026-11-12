@@ -1,6 +1,5 @@
 import { getCollection } from 'astro:content';
 import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
-import { isUnmarriedRelationship } from './scripts/unmarried-relationships';
 
 function dateKey(value: unknown): number {
   if (typeof value === 'number') return value * 10000;
@@ -106,12 +105,11 @@ export const onRequest = defineRouteMiddleware(async (context) => {
   }
 
   if (events.length > 0) {
-    const visibleEvents = events.filter((event) => !isUnmarriedRelationship(event, docs, personRef));
     generatedItems.push({
       depth: 2,
       slug: 'event-seq-person-heading',
       text: 'Лента событий',
-      children: visibleEvents.map((event) => ({
+      children: events.map((event) => ({
         depth: 3,
         slug: eventAnchor(event.id),
         text: event.data.title,

@@ -4,6 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import '../styles/map-popup-shared.css';
 import '../styles/map-popup-tail.css';
 import '../styles/map-controls.css';
+import '../styles/map-year-range.css';
 
 interface Props {
   personRef: string;
@@ -56,7 +57,16 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
     <h2 id={`${mapId}-heading`}>Места на карте</h2>
     <p class="map-note">Точки собраны из событий и фотографий. Координаты с точностью «город» или «регион» являются репрезентативными, а не адресными.</p>
     <div id={mapId} class="person-map-canvas" aria-label={mapTitle}>
-      <div class="genealogy-map-title-tab" data-map-title title={mapTitle}>{mapTitle}</div>
+      <div class="genealogy-map-top-panels">
+        <div class="genealogy-map-title-tab" data-map-title title={mapTitle}>{mapTitle}</div>
+        <div class="event-range" data-range-control hidden aria-label="Фильтр событий и фотографий по годам">
+          <output data-range-label>Временной интервал: загрузка…</output>
+          <div class="event-range__track" data-range-track>
+            <input data-range-from type="range" aria-label="Начальный год" />
+            <input data-range-to type="range" aria-label="Конечный год" />
+          </div>
+        </div>
+      </div>
     </div>
     <noscript>Для интерактивной карты требуется JavaScript.</noscript>
   </section>
@@ -65,6 +75,7 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
 <script>
   import { createMapPopupContent, createPhotoMarkerElement, groupMapRecords, mountMapLayerSwitch } from '../scripts/map-popup';
   import { MapOverviewControl } from '../scripts/map-controls';
+  import { mapEventsInYears, mapPhotosInYears, mountMapYearRange } from '../scripts/map-year-range';
 
   type MapTheme = 'dark' | 'light';
 
@@ -113,6 +124,8 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
       const canvas = root.querySelector<HTMLElement>('.person-map-canvas');
       if (!canvas) continue;
       const personRef = root.dataset.personRef;
+      const rangeControl = canvas.querySelector<HTMLElement>('[data-range-control]');
+      if (!rangeControl) continue;
       let eventRefs: string[] = [];
       try {
         eventRefs = JSON.parse(root.dataset.eventRefs ?? '[]');
@@ -128,12 +141,17 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
         || photo.eventRefs?.some((ref: string) => relevantRefs.has(ref)));
 
       let layerMode = 'all';
+      // One controller per map keeps multiple people on a page independent.
+      const yearRange = mountMapYearRange(rangeControl, eventsForPerson, photosForPerson, () => {
+        renderMarkers();
+      });
       const groups = () => groupMapRecords(
-        layerMode === 'photos' ? [] : eventsForPerson,
-        layerMode === 'events' ? [] : photosForPerson,
+        layerMode === 'photos' ? [] : mapEventsInYears(eventsForPerson, yearRange.selected()),
+        layerMode === 'events' ? [] : mapPhotosInYears(photosForPerson, yearRange.selected()),
       );
       const initial = groups();
       if (!initial.length) {
+        yearRange.dispose();
         canvas.textContent = 'Нет географически привязанных записей.';
         continue;
       }
@@ -211,6 +229,7 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
       preference?.addEventListener('change', syncTheme);
 
       const cleanup = () => {
+        yearRange.dispose();
         themeObserver.disconnect();
         preference?.removeEventListener('change', syncTheme);
         removeSwitch();
@@ -229,6 +248,11 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   .person-places {
     --map-popup-bg: #ffffff;
     --map-popup-fg: #1f2937;
+    --map-panel-bg: var(--map-popup-bg);
+    --map-panel-fg: var(--map-popup-fg);
+    --map-panel-muted: #75604f;
+    --map-range-track: #c8b99f;
+    --map-range-active: #984a24;
     --map-panel-border: rgb(148 163 184 / 42%);
     --map-control-bg: #ffffff;
     --map-control-hover: #f1f5f9;
@@ -242,6 +266,9 @@ const mapId = `person-places-${personRef.replace(/[^a-z0-9]+/gi, '-')}`;
   :global(html[data-theme='dark']) .person-places {
     --map-popup-bg: #1f2937;
     --map-popup-fg: #e5e7eb;
+    --map-panel-muted: #c2aa96;
+    --map-range-track: #513726;
+    --map-range-active: #c66a32;
     --map-panel-border: rgb(100 116 139 / 50%);
     --map-control-bg: #1f2937;
     --map-control-hover: #334155;

@@ -1,6 +1,5 @@
 ---
 import { getCollection } from 'astro:content';
-import { isUnmarriedRelationship } from '../scripts/unmarried-relationships';
 
 interface Props {
   subject: 'person' | 'place';
@@ -123,16 +122,8 @@ interface EventGroup {
   major: boolean;
 }
 
-// A person's unregistered romantic relationships stay discoverable but closed
-// by default. Marriage and divorce remain in the ordinary chronology.
-const unmarriedEvents = subject === 'person'
-  ? events.filter((event) => isUnmarriedRelationship(event, docs, subjectRef))
-  : [];
-const unmarriedRefs = new Set(unmarriedEvents.map((event) => event.id));
-const visibleEvents = events.filter((event) => !unmarriedRefs.has(event.id));
-
 const eventGroups: EventGroup[] = [];
-for (const event of visibleEvents) {
+for (const event of events) {
   const label = eventDateLabel(event);
   const previous = eventGroups[eventGroups.length - 1];
   if (previous?.label === label) {
@@ -148,10 +139,10 @@ for (const event of visibleEvents) {
 }
 ---
 
-{(eventGroups.length > 0 || unmarriedEvents.length > 0) && (
+{eventGroups.length > 0 && (
   <section class="event-seq-section" aria-labelledby={`event-seq-${subject}-heading`}>
     <h2 id={`event-seq-${subject}-heading`}>{heading}</h2>
-    {eventGroups.length > 0 && <ol class="event-seq">
+    <ol class="event-seq">
       {eventGroups.map((group) => (
         <li class:list={['event-seq-item', group.major && 'importance-major']}>
           <div class="event-seq-date">{group.label}</div>
@@ -205,66 +196,13 @@ for (const event of visibleEvents) {
           </div>
         </li>
       ))}
-    </ol>}
-    {unmarriedEvents.length > 0 && (
-      <details class="event-seq-unmarried">
-        <summary>Отношения без брака ({unmarriedEvents.length})</summary>
-        <ol class="event-seq">
-          {unmarriedEvents.map((event) => {
-            const relatedPlaces = (event.data.places ?? [])
-              .map((ref) => ({ ref, entry: placesByRef.get(ref) }))
-              .filter((item) => item.entry);
-            return (
-              <li class="event-seq-item">
-                <div class="event-seq-date">{eventDateLabel(event)}</div>
-                <div class="event-seq-content">
-                  <article class="event-seq-event">
-                    <h3><a href={`/${event.id}/`}>{event.data.title}</a></h3>
-                    {(event.data.summary ?? event.data.description) && <p>{event.data.summary ?? event.data.description}</p>}
-                    {relatedPlaces.length > 0 && (
-                      <p class="event-seq-related">
-                        Место:{' '}
-                        {relatedPlaces.map((item, index) => (
-                          <>
-                            {index > 0 && ', '}
-                            <a href={`/places/${item.ref.replace(/\\.mdx?$/, '')}/`}>
-                              {item.entry?.data.label ?? item.entry?.data.title ?? item.ref}
-                            </a>
-                          </>
-                        ))}
-                      </p>
-                    )}
-                  </article>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
-      </details>
-    )}
+    </ol>
   </section>
 )}
 
 <style>
   .event-seq-section {
     margin-top: 2.75rem;
-  }
-
-  .event-seq-unmarried {
-    margin-top: 1.3rem;
-    padding: 0.8rem 1rem;
-    border: 1px solid var(--sl-color-gray-5);
-    border-radius: 0.65rem;
-  }
-
-  .event-seq-unmarried summary {
-    cursor: pointer;
-    color: var(--sl-color-text-accent);
-    font-weight: 600;
-  }
-
-  .event-seq-unmarried[open] summary {
-    margin-bottom: 0.7rem;
   }
 
   .event-seq {
