@@ -58,6 +58,8 @@ partners:
     divorced:
       known: true
       date: "2026-02-10"
+      place: "voroshilovsky-court-rostov-on-don.md"
+      placeLabel: "Ворошиловский районный суд, Ростов-на-Дону"
 occupation: []
 residence:
   - place: "novocherkassk.md"
@@ -67,6 +69,7 @@ sources:
   - "serbia-marriage-anton-nazarov-anna-tatarintseva-2023.md"
   - "myheritage-extended-export-2026-10-11.md"
   - "anton-nazarov-personal-history.md"
+  - "anton-nazarov-divorce-court-clarification-2026.md"
 external:
   myheritage:
     snapshot: "2026-09-10"
@@ -81,9 +84,13 @@ external:
 
 21 января 2023 года Анна и [Антон Назаров](/people/1980-1989/anton-nazarov/) зарегистрировали брак в Белграде. После регистрации брака Анна сохранила фамилию Татаринцева.
 
+10 февраля 2026 года брак с Антоном Назаровым был расторгнут; дело рассматривал [Ворошиловский районный суд Ростова-на-Дону](/places/voroshilovsky-court-rostov-on-don/).
+
 С **16 января 2025 года** Анна живёт в [Новочеркасске](/places/novocherkassk/) Ростовской области вместе с сыном [Леонардом Назаровым](/people/2020-2029/leonard-nazarov/).
 
 ## Источники
+
+- [Уточнение о суде по делу о разводе](/sources/anton-nazarov-divorce-court-clarification-2026/).
 
 - [Международная выписка о браке, Сербия](/sources/serbia-marriage-anton-nazarov-anna-tatarintseva-2023/)
 - [MyHeritage extended export, 11 October 2026](/sources/myheritage-extended-export-2026-10-11/)
