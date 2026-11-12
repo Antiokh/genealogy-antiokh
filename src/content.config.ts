@@ -63,6 +63,8 @@ const partner = z.union([
   z.string(),
   z.object({
     person: z.string(),
+    // Explicit marker: lack of a marriage date alone is not proof of an unregistered union.
+    unionType: z.enum(['unregistered', 'marriage', 'unknown']).optional(),
     married: lifeEvent.optional(),
     divorced: lifeEvent.optional(),
   }).passthrough(),

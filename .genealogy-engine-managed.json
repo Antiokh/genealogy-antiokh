@@ -1,6 +1,6 @@
 {
   "origin": "Antiokh/genealogy-engine",
-  "commit": "74f351e1440cc6444fb371fe2258a523d3eb7f4a",
+  "commit": "5f13c72c33891752a097d169b26fd0b4da24b43f",
   "files": [
     "public/textures/button.webp",
     "public/textures/dark-leather-tile.webp",
@@ -55,6 +55,7 @@
     "src/routeData.ts",
     "src/scripts/event-map-renderer.ts",
     "src/scripts/map-popup.ts",
+    "src/scripts/unmarried-relationships.ts",
     "src/styles/asides-genealogy.css",
     "src/styles/event-map-renderer.css",
     "src/styles/event-map-theme.css",

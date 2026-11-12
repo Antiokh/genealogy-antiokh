@@ -264,8 +264,13 @@ const partnerItems = (route.entry.data.partners || []).map((partner) => {
     married ? `брак ${married}${marriedPlace ? ` (${marriedPlace.label})` : ''}` : undefined,
     divorced ? `развод ${divorced}` : undefined,
   ].filter(Boolean).join('; ');
-  return { ...personLink(ref), details };
+  // An absent marriage date does not prove that a union was unregistered.
+  // Hide only relationships explicitly marked as unregistered in their record.
+  const unregistered = typeof partner !== 'string' && partner.unionType === 'unregistered';
+  return { ...personLink(ref), details, unregistered };
 }).filter((value): value is NonNullable<typeof value> => Boolean(value));
+const spouseItems = partnerItems.filter((item) => !item.unregistered);
+const unmarriedPartnerItems = partnerItems.filter((item) => item.unregistered);
 
 const childEntries = personRef
   ? personEntries.filter((entry) => personParentRefs(entry).includes(ownRef || ''))
@@ -327,19 +332,39 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
               <dd>{siblingLinks.map((item, index) => <><a href={item.href}>{item.label}</a>{index < siblingLinks.length - 1 ? ', ' : ''}</>)}</dd>
             </div>
           )}
-          {partnerItems.length > 0 && (
+          {spouseItems.length > 0 && (
             <div class="person-relation-row">
               <dt>Супруги</dt>
               <dd>
-                {partnerItems.map((item, index) => (
+                {spouseItems.map((item, index) => (
                   <>
                     <span class="person-relation-person">
                       <a href={item.href}>{item.label}</a>
                       {item.details && <small>{item.details}</small>}
                     </span>
-                    {index < partnerItems.length - 1 ? ', ' : ''}
+                    {index < spouseItems.length - 1 ? ', ' : ''}
                   </>
                 ))}
+              </dd>
+            </div>
+          )}
+          {unmarriedPartnerItems.length > 0 && (
+            <div class="person-relation-row">
+              <dt>Отношения</dt>
+              <dd>
+                <details class="person-unmarried">
+                  <summary>Отношения без брака ({unmarriedPartnerItems.length})</summary>
+                  <div class="person-unmarried-list">
+                    {unmarriedPartnerItems.map((item, index) => (
+                      <>
+                        <span class="person-relation-person">
+                          <a href={item.href}>{item.label}</a>
+                        </span>
+                        {index < unmarriedPartnerItems.length - 1 ? ', ' : ''}
+                      </>
+                    ))}
+                  </div>
+                </details>
               </dd>
             </div>
           )}
@@ -576,6 +601,15 @@ const hasExtendedFacts = researchInterests.length > 0 || courses.length > 0 || w
     color: var(--sl-color-gray-3);
     font-size: var(--sl-text-xs);
     white-space: nowrap;
+  }
+
+  .person-unmarried summary {
+    cursor: pointer;
+    color: var(--sl-color-text-accent);
+  }
+
+  .person-unmarried-list {
+    margin-top: 0.4rem;
   }
 
   .person-more {
