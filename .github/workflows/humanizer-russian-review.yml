@@ -1,0 +1,148 @@
+name: Русская редколлегия
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
+concurrency:
+  group: genealogy-humanizer-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pull-requests: write
+
+env:
+  HUMANIZER_SHA: 81af17bcb18ae9364a9f94f4e2f849a68d3b1eee
+
+jobs:
+  humanizer:
+    name: Отзыв
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Получение доверенного кода проверки
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: base
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Получение предложенного контента
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo.full_name }}
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: head
+          fetch-depth: 1
+          persist-credentials: false
+
+      - name: Сбор списка изменённых MDX-файлов
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        with:
+          script: |
+            const fs = require('fs');
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              per_page: 100,
+            });
+            const mdx = files
+              .filter(file =>
+                file.status !== 'removed' &&
+                file.filename.startsWith('src/content/docs/') &&
+                (file.filename.endsWith('.md') || file.filename.endsWith('.mdx'))
+              )
+              .map(file => file.filename);
+            fs.writeFileSync('/tmp/humanizer-files.txt', mdx.join('\n'));
+
+      - name: Проверка наличия доверенного адаптера в базовой ветке
+        id: trusted
+        run: |
+          if test -f base/.github/scripts/humanizer_pr_review.py; then
+            echo "ready=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "ready=false" >> "$GITHUB_OUTPUT"
+            echo "Первый PR подключает адаптер; отзыв начнёт работать после merge." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Получение зафиксированной версии редколлегии
+        run: |
+          git init /tmp/humanizer_russian
+          git -C /tmp/humanizer_russian remote add origin https://github.com/Antiokh/humanizer_russian.git
+          git -C /tmp/humanizer_russian fetch --depth=1 origin "$HUMANIZER_SHA"
+          git -C /tmp/humanizer_russian checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/humanizer_russian rev-parse HEAD)" = "$HUMANIZER_SHA"
+          python3 /tmp/humanizer_russian/scripts/lint.py --self-test
+
+      - name: Проверка интеграции
+        if: steps.trusted.outputs.ready == 'true'
+        run: |
+          python3 base/.github/scripts/humanizer_pr_review.py \
+            --humanizer-root /tmp/humanizer_russian \
+            --self-test | tee /tmp/humanizer-self-test.json
+          python3 - <<'PY'
+          import json
+          data = json.load(open('/tmp/humanizer-self-test.json', encoding='utf-8'))
+          assert data['mode'] == 'editorial_board'
+          assert data['style'] == 'neutral'
+          assert data['register'] == 'general'
+          assert data['frontmatter_excluded'] is True
+          assert len(data['libraries']) == 8
+          assert data['scope'] == 'whole_article'
+          print('Интеграция редколлегии: OK')
+          PY
+
+      - name: Формирование отзыва редколлегии
+        if: steps.trusted.outputs.ready == 'true'
+        run: |
+          python3 base/.github/scripts/humanizer_pr_review.py \
+            --humanizer-root /tmp/humanizer_russian \
+            --base-root base \
+            --head-root head \
+            --files /tmp/humanizer-files.txt \
+            --output /tmp/humanizer-comment.md
+
+      - name: Добавление отзыва в сводку запуска
+        if: steps.trusted.outputs.ready == 'true'
+        run: cat /tmp/humanizer-comment.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Обновление комментария редколлегии
+        if: steps.trusted.outputs.ready == 'true' && github.event.pull_request.head.repo.full_name == github.repository && github.actor != 'dependabot[bot]'
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        env:
+          COMMENT_PATH: /tmp/humanizer-comment.md
+        with:
+          script: |
+            const fs = require('fs');
+            const markers = [
+              '<!-- genealogy-humanizer-review -->',
+              '<!-- humanizer-russian-review -->',
+            ];
+            const body = fs.readFileSync(process.env.COMMENT_PATH, 'utf8');
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              per_page: 100,
+            });
+            const existing = comments.find(comment =>
+              comment.body && markers.some(marker => comment.body.includes(marker))
+            );
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body,
+              });
+            }
